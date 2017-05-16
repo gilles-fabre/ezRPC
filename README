@@ -1,0 +1,6 @@
+ezRPC is a simple yet hopefully efficient RPC library. RPC calls are currently transported over AF_UNIX or AF_INET tcp connections, but by deriving and specializing the Transport and Link classes, it should possible to use about any other connected transport/IPC. ezRPC is LGPL so feel free to use, modify it and distribute free of charge in compliance with the LGPL licence.
+
+To compile ezRPC, get into the root dir and just type "make", to build the test/example programs for the Transport or RPC, get into the corresponding sub directory and type "make -f Makefile.test rebuild".
+
+Have fun, 
+gilles fabre

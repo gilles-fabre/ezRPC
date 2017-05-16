@@ -1,0 +1,19 @@
+CXX = g++
+CXX_FLAGS = -std=c++11 -fPIC -ggdb
+LXX_FLAGS =  -L ../Thread -l Thread -L ../Transport -L ./ -l Transport -l RPC -l pthread
+IXX_FLAGS = -I ../Transport -I ../Thread
+OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
+
+all : test
+
+test :
+	$(CXX) -o test test.cpp $(CXX_FLAGS) $(IXX_FLAGS) $(LXX_FLAGS)
+
+clean :
+	-rm test ${OBJECTS} 2>/dev/null
+
+rebuild : clean test
+
+	
+
+	

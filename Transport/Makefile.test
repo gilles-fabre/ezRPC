@@ -1,0 +1,20 @@
+CXX = g++
+CXX_FLAGS = -std=c++11 -ggdb
+LXX_FLAGS = -l Transport -L .
+
+all : test
+
+test :
+	$(CXX) -o test test.cpp $(CXX_FLAGS) $(LXX_FLAGS) 
+
+clean :
+	-rm test test.o 2>/dev/null
+
+rebuild : clean test
+
+run : rebuild
+	./test server :444 yop
+	./test client 127.0.0.1:444 pouet
+	
+
+	
