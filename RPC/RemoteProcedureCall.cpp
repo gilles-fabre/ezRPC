@@ -627,26 +627,18 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 
 	// send all the serialized call parameters over to the peer
 	unsigned long buff_len = serialized_call.size();
-	unsigned char *bufferP = (unsigned char *)malloc(buff_len);
-	if (bufferP != NULL) {
+	SendPacket(serialized_call.data(), buff_len);
 
-		for (int i = 0; i < buff_len; i++)
-			bufferP[i] = serialized_call[i];
-
-		SendPacket(bufferP, buff_len);
 #ifdef RPC_TRACES
-		cout << "\t sent " <<  buff_len << " bytes. Will now wait for reply... " << endl << endl;
+	cout << "\t sent " <<  buff_len << " bytes. Will now wait for reply... " << endl << endl;
 #endif
 
+	// wait for reply
+	unsigned char *bufferP;
+	if ((bufferP = ReceivePacket(buff_len))) {
+		DeserializeCallReturn(bufferP);
+
 		free(bufferP);
-
-		// wait for reply
-		if ((bufferP = ReceivePacket(buff_len))) {
-			DeserializeCallReturn(bufferP);
-
-			free(bufferP);
-		}
-
 	}
 
 	return (unsigned long)result;

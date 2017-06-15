@@ -189,7 +189,7 @@ static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	int16_t &i = p1->GetInt16Value();
-	cout << "value: " << i << endl;
+	//cout << "value: " << i << endl;
 	++i;
 	return (unsigned long)i;
 }

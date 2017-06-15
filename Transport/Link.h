@@ -183,7 +183,7 @@ Library.
 #include <unistd.h>
 #include <sys/socket.h>
 
-#define LINK_TRACES 1
+// #define LINK_TRACES 1
 
 using namespace std;
 

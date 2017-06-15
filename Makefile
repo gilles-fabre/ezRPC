@@ -21,3 +21,5 @@ clean :
 	make -C Thread clean
 	make -C RPC clean
 	
+
+all : rebuild

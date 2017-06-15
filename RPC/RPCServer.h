@@ -187,7 +187,7 @@ Library.
 
 using namespace std;
 
-#define RPCSERVER_TRACES 1
+//#define RPCSERVER_TRACES 1
 
 typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*);
 
@@ -198,7 +198,7 @@ typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*)
  *        The latter can be used by the RPCClient to remotely invoke procedures of the
  *        (linked) RPCServer. Procedures can be dynamically added or removed from an
  *        RPCServer instance. See RemoteProcedureCall to get the details of the remote
- *        procedures invocation.
+ *        procedurlibjson lgples invocation.
  *
  *
  */

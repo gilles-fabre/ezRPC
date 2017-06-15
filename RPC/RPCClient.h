@@ -186,7 +186,7 @@ Library.
 
 using namespace std;
 
-#define RPCCLIENT_TRACES 1
+//#define RPCCLIENT_TRACES 1
 
 typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*);
 

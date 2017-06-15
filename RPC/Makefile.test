@@ -1,5 +1,6 @@
 CXX = g++
-CXX_FLAGS = -std=c++11 -fPIC -ggdb
+#CXX_FLAGS = -std=c++11 -fPIC -ggdb
+CXX_FLAGS = -std=c++11 -fPIC -O3
 LXX_FLAGS =  -L ../Thread -l Thread -L ../Transport -L ./ -l Transport -l RPC -l pthread
 IXX_FLAGS = -I ../Transport -I ../Thread
 OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
