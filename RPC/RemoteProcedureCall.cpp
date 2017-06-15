@@ -1265,19 +1265,10 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 #endif
 
 	// send all the serialized call parameters over to the peer
-	int buff_len = serialized_call.size();
-	unsigned char *bufferP = (unsigned char *)malloc(buff_len);
-	if (bufferP != NULL) {
-		for (int i = 0; i < buff_len; i++)
-			bufferP[i] = serialized_call[i];
-
-		SendPacket(bufferP, buff_len);
+	SendPacket(serialized_call.data(), serialized_call.size());
 #ifdef RPC_TRACES
-		cout << "\t sent " <<  buff_len << " bytes... " << endl << endl;
+	cout << "\t sent " <<  buff_len << " bytes... " << endl << endl;
 #endif
-
-		free(bufferP);
-	}
 }
 
 /**
