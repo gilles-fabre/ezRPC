@@ -188,7 +188,7 @@ using namespace std;
 
 //#define RPCCLIENT_TRACES 1
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*);
+typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*, void *user_dataP);
 
 /**
  * \class RPCClient
@@ -226,6 +226,10 @@ public:
 	void Stop() {
 		if (m_transportP)
 			m_transportP->Close();
+	}
+
+	bool IsConnected() {
+		return m_rpcP->IsConnected();
 	}
 
 	unsigned long RpcCall(string func_name, int num_args, ...);

@@ -236,14 +236,14 @@ unsigned char *RemoteProcedureCall::ReceivePacket(unsigned long &data_len) {
  * \param val is the data to serialize into the vector v
  */
 inline void RemoteProcedureCall::push_int64(vector<unsigned char> &v, int64_t val) {
-	v.push_back((val & 0xFF00000000000000) >> 56);
-	v.push_back((val & 0x00FF000000000000) >> 48);
-	v.push_back((val & 0x0000FF0000000000) >> 40);
-	v.push_back((val & 0x000000FF00000000) >> 32);
-	v.push_back((val & 0x00000000FF000000) >> 24);
-	v.push_back((val & 0x0000000000FF0000) >> 16);
-	v.push_back((val & 0x000000000000FF00) >> 8);
-	v.push_back((val & 0x00000000000000FF));
+	v.push_back((val & 0xFF00000000000000ull) >> 56);
+	v.push_back((val & 0x00FF000000000000ull) >> 48);
+	v.push_back((val & 0x0000FF0000000000ull) >> 40);
+	v.push_back((val & 0x000000FF00000000ull) >> 32);
+	v.push_back((val & 0x00000000FF000000ull) >> 24);
+	v.push_back((val & 0x0000000000FF0000ull) >> 16);
+	v.push_back((val & 0x000000000000FF00ull) >> 8);
+	v.push_back((val & 0x00000000000000FFull));
 }
 
 /**
@@ -254,14 +254,14 @@ inline void RemoteProcedureCall::push_int64(vector<unsigned char> &v, int64_t va
  * \param val is the data to serialize into the vector v
  */
 inline void RemoteProcedureCall::push_uint64(vector<unsigned char> &v, uint64_t val) {
-	v.push_back((val & 0xFF00000000000000) >> 56);
-	v.push_back((val & 0x00FF000000000000) >> 48);
-	v.push_back((val & 0x0000FF0000000000) >> 40);
-	v.push_back((val & 0x000000FF00000000) >> 32);
-	v.push_back((val & 0x00000000FF000000) >> 24);
-	v.push_back((val & 0x0000000000FF0000) >> 16);
-	v.push_back((val & 0x000000000000FF00) >> 8);
-	v.push_back((val & 0x00000000000000FF));
+	v.push_back((val & 0xFF00000000000000ull) >> 56);
+	v.push_back((val & 0x00FF000000000000ull) >> 48);
+	v.push_back((val & 0x0000FF0000000000ull) >> 40);
+	v.push_back((val & 0x000000FF00000000ull) >> 32);
+	v.push_back((val & 0x00000000FF000000ull) >> 24);
+	v.push_back((val & 0x0000000000FF0000ull) >> 16);
+	v.push_back((val & 0x000000000000FF00ull) >> 8);
+	v.push_back((val & 0x00000000000000FFull));
 }
 
 /**
@@ -666,14 +666,14 @@ inline int64_t RemoteProcedureCall::decode_int64(unsigned char *bufferP, int &of
 }
 
 inline void RemoteProcedureCall::encode_uint64(uint64_t val, unsigned char *bufferP, int &offset) {
-	bufferP[offset++] = ((val & 0xFF00000000000000) >> 56);
-	bufferP[offset++] = ((val & 0x00FF000000000000) >> 48);
-	bufferP[offset++] = ((val & 0x0000FF0000000000) >> 40);
-	bufferP[offset++] = ((val & 0x000000FF00000000) >> 32);
-	bufferP[offset++] = ((val & 0x00000000FF000000) >> 24);
-	bufferP[offset++] = ((val & 0x0000000000FF0000) >> 16);
-	bufferP[offset++] = ((val & 0x000000000000FF00) >> 8);
-	bufferP[offset++] = ((val & 0x00000000000000FF));
+	bufferP[offset++] = ((val & 0xFF00000000000000ull) >> 56);
+	bufferP[offset++] = ((val & 0x00FF000000000000ull) >> 48);
+	bufferP[offset++] = ((val & 0x0000FF0000000000ull) >> 40);
+	bufferP[offset++] = ((val & 0x000000FF00000000ull) >> 32);
+	bufferP[offset++] = ((val & 0x00000000FF000000ull) >> 24);
+	bufferP[offset++] = ((val & 0x0000000000FF0000ull) >> 16);
+	bufferP[offset++] = ((val & 0x000000000000FF00ull) >> 8);
+	bufferP[offset++] = ((val & 0x00000000000000FFull));
 }
 
 /**

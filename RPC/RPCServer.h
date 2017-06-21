@@ -189,7 +189,7 @@ using namespace std;
 
 //#define RPCSERVER_TRACES 1
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*);
+typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*, void *user_dataP);
 
 /**
  * \class RPCServer
@@ -205,6 +205,7 @@ typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*)
 class RPCServer {
 	Transport 		 				*m_transportP;			// transport used to talk to this server
 	string			 				m_address;				// associated address
+	void							*m_user_dataP;			// optional user data passed to rpc procedures
 	Thread 			 				*m_listening_threadP;	// responsible for listening and spawning service threads
 	vector<Thread *> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
 	map<string, RemoteProcedure *> 	m_rpc_map;				// the procedures to call based on their names
@@ -235,10 +236,11 @@ class RPCServer {
 	};
 
 public:
-	RPCServer(Transport::TransportType transport_type,  string &address) {
+	RPCServer(Transport::TransportType transport_type,  string &address, void *user_dataP = NULL) {
 		m_listening_threadP = NULL;
 		m_transportP = Transport::CreateTransport(transport_type);
 		m_address = address;
+		m_user_dataP = user_dataP;
 	}
 
 	virtual ~RPCServer() {

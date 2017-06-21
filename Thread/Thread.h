@@ -203,7 +203,7 @@ public:
 	int WaitA(unsigned long timeout) {
 		unsigned long milliLeft = timeout % 1000;
 		struct timespec delay = {__time_t(time(NULL) + (timeout / 1000)),
-								 __syscall_slong_t(milliLeft * 1000000)};
+								 long(milliLeft * 1000000)};
 		return sem_timedwait(&m_semaphore, &delay);
 	}
 	int TryA() {

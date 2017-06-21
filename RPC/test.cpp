@@ -185,11 +185,11 @@ Library.
 
 using namespace std;
 
-static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v) {
+static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	return (unsigned long)0;
 }
 
-static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v) {
+static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	int16_t &i = p1->GetInt16Value();
@@ -198,7 +198,7 @@ static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v) {
 	return (unsigned long)i;
 }
 
-static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v) {
+static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];
@@ -216,7 +216,7 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v) {
 	return text.length();
 }
 
-static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v) {
+static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];
@@ -231,7 +231,7 @@ static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v) {
 	return num;
 }
 
-static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter *> *v) {
+static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];

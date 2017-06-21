@@ -272,7 +272,7 @@ void *RPCServer::ServiceCallback(void *_paramsP) {
 		cout << "\t\t will call procedure " << func_name << endl;
 #endif
 
-		result = (*procP)(rpc_paramsP);
+		result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 		cout << "\t\t " << func_name << " returned: " << result << endl;
 #endif
