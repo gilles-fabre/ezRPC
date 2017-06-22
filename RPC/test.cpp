@@ -185,6 +185,13 @@ Library.
 
 using namespace std;
 
+RPCServer *gRpcServerP = NULL;
+
+static unsigned long ByeBye(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
+	if (gRpcServerP)
+		gRpcServerP->Stop();
+}
+
 static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	return (unsigned long)0;
 }
@@ -274,6 +281,7 @@ int main(int argc, char **argv) {
 
 	if (what == "server") {
 		RPCServer server(proto == "tcp" ? Transport::TCP : Transport::FILE, server_addr);
+		gRpcServerP = &server;
 
 		server.RegisterProcedure("nop", &Nop);
 		server.RegisterProcedure("inc", &Increment);
@@ -281,6 +289,7 @@ int main(int argc, char **argv) {
 		server.RegisterProcedure("concat", &Concatenate);
 		server.RegisterProcedure("sum", &SumNumbers);
 		server.RegisterProcedure("incdouble", &IncDouble);
+		server.RegisterProcedure("byebye", &ByeBye);
 
 
 		server.IterateAndWait();

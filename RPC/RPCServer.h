@@ -267,12 +267,28 @@ public:
 		m_rpc_map.erase(name);
 	}
 
+	void Run() {
+		if (!m_listening_threadP)
+			m_listening_threadP = new Thread(&ListeningCallback);
+
+		if (!m_listening_threadP->IsRunning() && !m_listening_threadP->IsAskedToStop())
+			m_listening_threadP->Run((void *)this);
+	}
+
 	void RunAndWait() {
 		if (!m_listening_threadP)
 			m_listening_threadP = new Thread(&ListeningCallback);
 
 		if (!m_listening_threadP->IsRunning() && !m_listening_threadP->IsAskedToStop())
 			m_listening_threadP->RunAndWait((void *)this);
+	}
+
+	void Iterate() {
+		if (!m_listening_threadP)
+			m_listening_threadP = new Thread(&ListeningCallback);
+
+		if (!m_listening_threadP->IsRunning() && !m_listening_threadP->IsAskedToStop())
+			m_listening_threadP->Iterate((void *)this);
 	}
 
 	void IterateAndWait() {

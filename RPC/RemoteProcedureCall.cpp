@@ -390,14 +390,15 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	// and all the given parameters
 	for (;;) {
 		char type = (char)va_arg(vl, int);
-		if (type == END_OF_CALL)
-			break;
 
 		// first push the parameter type in the call stream vector
 		serialized_call.push_back(type);
 #ifdef RPC_TRACES
 		cout << "\t pushed parameter type: " << type << endl;
 #endif
+		// we're done when encountering this parameter
+		if (type == END_OF_CALL)
+			break;
 
 		// then, the corresponding data
 		switch (type) {
