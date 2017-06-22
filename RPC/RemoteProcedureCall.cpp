@@ -317,7 +317,7 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char> &v, uint16_t 
 }
 
 /**
- * \fn unsigned long RemoteProcedureCall::SerializeCall(string &func_name, int num_args, ...)
+ * \fn unsigned long RemoteProcedureCall::SerializeCall(string &func_name, ...)
  * \brief Serializes the given function call and sends the resulting byte stream
  *        over the associated link.
  *
@@ -334,24 +334,24 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char> &v, uint16_t 
  *        				 string content
  *
  * \param func_name is the name of the function to call
- * \param num_args is the number of parameters to pass to the function
- * \param ... is the corresponding number of parameters with the following
- *        format (<type><value>)|(PTR<pointer_to_value>)
+ * \param ... is var list of parameters with the following format
+ * 		  (<type><value>)|(PTR<pointer_to_value>). The last argument must be
+ * 		  'END_OF_CALL'.
  *        STRING values MUST be passed as string pointers (std::string*)
  * \return the unsigned long result passed to SerializedCallReturn
  */
-inline unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int num_args, ...) {
+inline unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, ...) {
 	unsigned long result = 0;
 	va_list 	  vl;
 
-	va_start(vl, num_args);
-	result = SerializeCall(func_name, num_args, vl);
+	va_start(vl, func_name);
+	result = SerializeCall(func_name, vl);
 	va_end(vl);
 
 	return result;
 }
 
-unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int num_args, va_list vl) {
+unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_list vl) {
 	vector<unsigned char> 	serialized_call;
 	unsigned long			result = 0;
 	unsigned int 			len;
@@ -388,8 +388,10 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 #endif
 
 	// and all the given parameters
-	for (int i = 0; i < num_args;  i++) {
+	for (;;) {
 		char type = (char)va_arg(vl, int);
+		if (type == END_OF_CALL)
+			break;
 
 		// first push the parameter type in the call stream vector
 		serialized_call.push_back(type);
@@ -401,7 +403,6 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 		switch (type) {
 			case PTR:
 				// next parameter is a pointer
-				--i;
 				is_ptr = true;
 				break;
 
@@ -641,12 +642,6 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				break;
 		}
 	}
-
-	// add end of call marker
-	serialized_call.push_back(END_OF_CALL);
-#ifdef RPC_TRACES
-	cout << "\t pushed end of call stream marker" << endl << endl;
-#endif
 
 	// send all the serialized call parameters over to the peer
 	unsigned long buff_len = serialized_call.size();

@@ -232,7 +232,7 @@ public:
 		return m_rpcP->IsConnected();
 	}
 
-	unsigned long RpcCall(string func_name, int num_args, ...);
+	unsigned long RpcCall(string func_name, ...);
 };
 
 #endif /* _RPC_CLIENT_H */

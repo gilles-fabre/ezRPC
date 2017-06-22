@@ -183,11 +183,11 @@ Library.
  * \fn unsigned long RPCClient::RpcCall(string &func_name, int num_args, ...)
  * \brief see RemoteProcedureCall::SerializedCall ...
  */
-unsigned long RPCClient::RpcCall(string func_name, int num_args, ...) {
+unsigned long RPCClient::RpcCall(string func_name, ...) {
 	unsigned long result;
 
 #ifdef RPCCLIENT_TRACES
-	cout << "\n RPCClient::RpcCall(" << func_name << ", " << num_args << ", ...)" << endl;
+	cout << "\n RPCClient::RpcCall(" << func_name << ", ...)" << endl;
 #endif
 
 	if (!m_rpcP) {
@@ -196,8 +196,8 @@ unsigned long RPCClient::RpcCall(string func_name, int num_args, ...) {
 	}
 
 	va_list vl;
-	va_start(vl, num_args);
-	result = m_rpcP->SerializeCall(func_name, num_args, vl);
+	va_start(vl, func_name);
+	result = m_rpcP->SerializeCall(func_name, vl);
 	va_end(vl);
 
 	return result;

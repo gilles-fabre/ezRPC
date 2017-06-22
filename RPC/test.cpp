@@ -305,7 +305,7 @@ int main(int argc, char **argv) {
 			int16_t repeat = argc == 6 ? atoi(argv[5]) : 1;
 			for (int b = 0; b < repeat; b++) {
 				result = client.RpcCall(func_name,
-										0);
+										RemoteProcedureCall::END_OF_CALL);
 			}
 			cout << "result value: " << result << endl;
 		} else if (func_name == "inc") {
@@ -319,10 +319,10 @@ int main(int argc, char **argv) {
 			for (int b = 0; b < repeat; b++) {
 				i = atoi(argv[5]);
 				result = client.RpcCall(func_name,
-										1,
 										RemoteProcedureCall::PTR,
 										RemoteProcedureCall::INT16,
-										&i);
+										&i,
+										RemoteProcedureCall::END_OF_CALL);
 			}
 			cout << "result value: " << i << endl;
 		} else if (func_name == "incdouble") {
@@ -336,10 +336,10 @@ int main(int argc, char **argv) {
 			for (int b = 0; b < repeat; b++) {
 				d = atof(argv[5]);
 				result = client.RpcCall(func_name,
-										1,
 										RemoteProcedureCall::PTR,
 										RemoteProcedureCall::DOUBLE,
-										&d);
+										&d,
+										RemoteProcedureCall::END_OF_CALL);
 			}
 			cout << "result value: " << d << endl;
 		} else if (func_name == "concat") {
@@ -353,12 +353,12 @@ int main(int argc, char **argv) {
 			for (int b = 0; b < repeat; b++) {
 				p = argv[5];
 				result = client.RpcCall(func_name,
-										2,
 										RemoteProcedureCall::PTR,
 										RemoteProcedureCall::STRING,
 										&p,
 										RemoteProcedureCall::INT16,
-										atoi(argv[6]));
+										atoi(argv[6]),
+										RemoteProcedureCall::END_OF_CALL);
 			}
 			cout << "result string: " << p << endl;
 		} else if (func_name == "repeat") {
@@ -372,11 +372,11 @@ int main(int argc, char **argv) {
 			for (int b = 0; b < repeat; b++) {
 				s = argv[5];
 				result = client.RpcCall(func_name,
-										2,
 										RemoteProcedureCall::STRING,
 										&s,
 										RemoteProcedureCall::INT16,
-										atoi(argv[6]));
+										atoi(argv[6]),
+										RemoteProcedureCall::END_OF_CALL);
 			}
 		} else if (func_name == "sum") {
 			if (argc < 7) {
@@ -387,15 +387,15 @@ int main(int argc, char **argv) {
 			int16_t repeat = argc == 8 ? atoi(argv[7]) : 1;
 			for (int b = 0; b < repeat; b++) {
 				result = client.RpcCall(func_name,
-										2,
 										RemoteProcedureCall::INT16,
 										atoi(argv[5]),
 										RemoteProcedureCall::INT16,
-										atoi(argv[6]));
+										atoi(argv[6]),
+										RemoteProcedureCall::END_OF_CALL);
 			}
 			cout << "result : " << result << endl;
 		} else if (func_name == "byebye") {
-			result = client.RpcCall(func_name, 0);
+			result = client.RpcCall(func_name, RemoteProcedureCall::END_OF_CALL);
 		}
 
 		cout << "rpc server has returned \"" << result << "\"" << endl;

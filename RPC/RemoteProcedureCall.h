@@ -418,8 +418,8 @@ public:
 	// rpc call caller side
 
 	// call an rpc function
-	unsigned long 		 SerializeCall(const string &func_name, int num_args, ...);
-	unsigned long 		 SerializeCall(const string &func_name, int num_args, va_list vl);
+	unsigned long 		 SerializeCall(const string &func_name, ...);
+	unsigned long 		 SerializeCall(const string &func_name, va_list vl);
 
 	// rpc function callee side
 
