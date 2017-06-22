@@ -176,6 +176,7 @@ Library.
 #ifndef _RPC_REMOTEPROCEDURECALL_H_
 #define _RPC_REMOTEPROCEDURECALL_H_
 
+#include <stdarg.h>
 #include <Link.h>
 #include <string.h>
 #include <stdlib.h>
@@ -186,7 +187,7 @@ Library.
 
 using namespace std;
 
-//#define RPC_TRACES 1
+#define RPC_TRACES 1
 
 #define HTONLL(x) ((1==htonl(1)) ? (x) : ((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
 #define NTOHLL(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))
@@ -240,6 +241,7 @@ public:
 					UINT32 		= 'L',
 					INT64  		= 'h',
 					UINT64 		= 'H',
+					DOUBLE		= 'D',
 					STRING   	= 's',
 					RESULT_ADDRESS = 'R',
 					END_OF_CALL = 'X'};
@@ -266,6 +268,7 @@ public:
 			uint32_t	   _ui32;
 			int64_t		   _i64;
 			uint64_t	   _ui64;
+			double		   _double;
 			string		   *_stringP;
 		} m_value;
 
@@ -275,63 +278,70 @@ public:
 		// presence (for an output parameter).
 		Parameter(unsigned char value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = BYTE;
 			m_value._byte = value;
 		}
 
 		Parameter(char value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = CHAR;
 			m_value._char = value;
 		}
 
 		Parameter(int16_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = INT16;
 			m_value._i16 = value;
 		}
 
 		Parameter(uint16_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = UINT16;
 			m_value._ui16 = value;
 		}
 
 		Parameter(int32_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = INT32;
 			m_value._i32 = value;
 		}
 
 		Parameter(uint32_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = UINT32;
 			m_value._ui32 = value;
 		}
 
 		Parameter(int64_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = INT64;
 			m_value._i64 = value;
 		}
 
 		Parameter(uint64_t value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = UINT64;
 			m_value._ui64 = value;
 		}
 
+		Parameter(double value, uint64_t caller_valP = 0) {
+			m_caller_valP = caller_valP;
+			memset(&m_value, 0, sizeof(m_value));
+			m_type = DOUBLE;
+			m_value._double = value;
+		}
+
 		Parameter(const char *value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
-			m_value = {0,};
+			memset(&m_value, 0, sizeof(m_value));
 			m_type = STRING;
 			m_value._stringP = new string();
 			*m_value._stringP = value;
@@ -378,6 +388,10 @@ public:
 
 		uint64_t &GetUInt64Value() {
 			return m_value._ui64;
+		}
+
+		double &GetDoubleValue() {
+			return m_value._double;
 		}
 
 		string &GetStringValue() {

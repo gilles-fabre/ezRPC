@@ -451,7 +451,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// an int16_t ptr
+					// a short integer ptr
 					ptr = (void *)va_arg(vl, int16_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					i16 = ptr ? *(int16_t *)ptr : 0;
@@ -473,7 +473,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// a uint16_t ptr
+					// an unsigned short ptr
 					ptr = (void *)va_arg(vl, uint16_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					ui16 = ptr ? *(uint16_t *)ptr : 0;
@@ -495,7 +495,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// an int32_t ptr
+					// a long integer ptr
 					ptr = (void *)va_arg(vl, int32_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					i32 = ptr ? *(int32_t *)ptr : 0;
@@ -517,7 +517,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// a uint32_t ptr
+					// an unsigned long ptr
 					ptr = (void *)va_arg(vl, uint32_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					ui32 = ptr ? *(uint32_t *)ptr : 0;
@@ -539,7 +539,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// an int64_t ptr
+					// a long long ptr
 					ptr = (void *)va_arg(vl, int64_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					i64 = ptr ? *(int64_t *)ptr : 0;
@@ -561,7 +561,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 				if (is_ptr) {
 					is_ptr = false;
 
-					// a uint64_t ptr
+					// an unsigned long long ptr
 					ptr = (void *)va_arg(vl, uint64_t *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					ui64 = ptr ? *(uint64_t *)ptr : 0;
@@ -575,6 +575,29 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, int nu
 					push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
 					cout << "\t pushed parameter uint64_t: " << ui64 << endl;
+#endif
+				}
+				break;
+
+			case DOUBLE:
+				if (is_ptr) {
+					is_ptr = false;
+
+					// a double ptr
+					ptr = (void *)va_arg(vl, double *);
+					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					ui64 = ptr ? *(uint64_t *)ptr : 0;
+					push_uint64(serialized_call, NTOHLL(ui64));
+#ifdef RPC_TRACES
+					cout << "\t pushed parameter double ptr: " << hex << ptr << dec << endl;
+#endif
+				} else {
+					// a double
+					double d = (double)va_arg(vl, double);
+					ui64 = *(uint64_t *)&d;
+					push_uint64(serialized_call, HTONLL(ui64));
+#ifdef RPC_TRACES
+					cout << "\t pushed parameter double: " << d << endl;
 #endif
 				}
 				break;
@@ -776,7 +799,8 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 	char			c;
 	uint16_t 		ui16;
 	uint32_t 		ui32;
-	uint64_t 		ui64;
+	uint64_t 		ui64, ptr;
+	double 			d;
 	int16_t 		i16;
 	int32_t 		i32;
 	int64_t 		i64;
@@ -847,13 +871,13 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case BYTE:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					b = bufferP[offset++];
-					resultP->push_back(new Parameter(b, ui64));
+					resultP->push_back(new Parameter(b, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded byte: " << hex << "0x" << b << dec << endl;
 #endif
@@ -869,13 +893,13 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case CHAR:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					c = bufferP[offset++];
-					resultP->push_back(new Parameter(c, ui64));
+					resultP->push_back(new Parameter(c, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded byte: " << hex << "0x" << b << dec << endl;
 #endif
@@ -891,14 +915,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case INT16:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					i16 = decode_int16(bufferP, offset);
 					i16 = ntohs(i16);
-					resultP->push_back(new Parameter(i16, ui64));
+					resultP->push_back(new Parameter(i16, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded int16_t: " << i16 << endl;
 #endif
@@ -915,14 +939,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case UINT16:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
-					resultP->push_back(new Parameter(ui16, ui64));
+					resultP->push_back(new Parameter(ui16, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded int16_t: " << i16 << endl;
 #endif
@@ -939,14 +963,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case INT32:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					i32 = decode_int32(bufferP, offset);
 					i32 = ntohl(i32);
-					resultP->push_back(new Parameter(i32, ui64));
+					resultP->push_back(new Parameter(i32, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded int32_t: " << i32 << endl;
 #endif
@@ -963,14 +987,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case UINT32:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					ui32 = decode_uint32(bufferP, offset);
 					ui32 = ntohl(ui32);
-					resultP->push_back(new Parameter(ui32, ui64));
+					resultP->push_back(new Parameter(ui32, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded uint32_t: " << ui32 << endl;
 #endif
@@ -987,14 +1011,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case INT64:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					i64 = decode_int64(bufferP, offset);
 					i64 = NTOHLL(i64);
-					resultP->push_back(new Parameter(i64, ui64));
+					resultP->push_back(new Parameter(i64, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded int64_t: " << i64 << endl;
 #endif
@@ -1011,14 +1035,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 			case UINT64:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					ui64 = decode_uint64(bufferP, offset);
 					ui64 = NTOHLL(ui64);
-					resultP->push_back(new Parameter(ui64, ui64));
+					resultP->push_back(new Parameter(ui64, ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded uint64_t: " << ui64 << endl;
 #endif
@@ -1032,14 +1056,39 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 				}
 				break;
 
+			case DOUBLE:
+				if (is_ptr) {
+					is_ptr = false;
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
+#ifdef RPC_TRACES
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+#endif
+					ui64 = decode_uint64(bufferP, offset);
+					ui64 = NTOHLL(ui64);
+					d = *(double *)&ui64;
+					resultP->push_back(new Parameter(d, ptr));
+#ifdef RPC_TRACES
+					cout << "\t decoded double: " << d << endl;
+#endif
+				} else {
+					ui64 = decode_uint64(bufferP, offset);
+					ui64 = NTOHLL(ui64);
+					d = *(double *)&ui64;
+					resultP->push_back(new Parameter(d));
+#ifdef RPC_TRACES
+					cout << "\t decoded double: " << d << endl;
+#endif
+				}
+				break;
 
 			case STRING:
 				if (is_ptr) {
 					is_ptr = false;
-					ui64 = decode_uint64(bufferP, offset);
-					ui64 = NTOHLL(ui64);
+					ptr = decode_uint64(bufferP, offset);
+					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ui64 << dec << endl;
+					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
 #endif
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
@@ -1049,7 +1098,7 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					s.clear();
 					for (int i = 0; i < ui16; i ++)
 						s += bufferP[offset++];
-					resultP->push_back(new Parameter(s.c_str(), ui64));
+					resultP->push_back(new Parameter(s.c_str(), ptr));
 #ifdef RPC_TRACES
 					cout << "\t decoded string: " << s.substr(0, 10) << "..." << endl;
 #endif
@@ -1126,6 +1175,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 	uint32_t				ui32;
 	int64_t					i64;
 	uint64_t				ui64;
+	double					d;
 	string					s;
 #ifdef RPC_TRACES
 	cout << "\n RemoteProcedureCall::SerializeCallReturn" << endl;
@@ -1237,6 +1287,15 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 #endif
 				break;
 
+			case DOUBLE:
+				d = (*i)->GetDoubleValue();
+				ui64 = *(uint64_t *)&d;
+				push_uint64(serialized_call, HTONLL(ui64));
+#ifdef RPC_TRACES
+				cout << "\t\t pushed double parameter value: " << d << endl;
+#endif
+				break;
+
 			case STRING:
 				s = (*i)->GetStringValue();
 				ui16 = s.length();
@@ -1289,6 +1348,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 	uint32_t		ui32;
 	int64_t			i64;
 	uint64_t		ui64, ptr;
+	double 			d;
 	string			s;
 	bool			done = false;
 #ifdef RPC_TRACES
@@ -1408,6 +1468,16 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				cout << "\t\t decoded parameter uint64 value: " << ui64 << endl;
 #endif
 				*(uint64_t *)ptr = ui64;
+				break;
+
+			case DOUBLE:
+				ui64 = decode_uint64(bufferP, offset);
+				ui64 = NTOHLL(ui64);
+				d = *(double *)&ui64;
+#ifdef RPC_TRACES
+				cout << "\t\t decoded parameter double value: " << d << endl;
+#endif
+				*(double *)ptr = d;
 				break;
 
 			case STRING:

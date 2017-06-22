@@ -1,5 +1,8 @@
 install: rebuild
-	sudo cp *.so /usr/local/lib/
+	sudo cp *.so /usr/lib/
+	sudo cp Thread/*.h /usr/include
+	sudo cp Transport/*.h /usr/include
+	sudo cp RPC/*.h /usr/include
 	 
 Thread :
 	make -C Thread

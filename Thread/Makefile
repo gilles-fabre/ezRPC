@@ -1,6 +1,7 @@
-CXX = g++
-#CXX_FLAGS = -std=c++11 -fPIC -ggdb
-CXX_FLAGS = -std=c++11 -fPIC -O3
+CXX_FLAGS = -fPIC -ggdb -m32
+#CXX_FLAGS = -fPIC -O3 -m32
+#CXX_FLAGS = -fPIC -ggdb 
+#CXX_FLAGS = -fPIC -O3
 LXX_FLAGS = -l pthread
 OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
 SHARED_LIBS := $(wildcard *.so)

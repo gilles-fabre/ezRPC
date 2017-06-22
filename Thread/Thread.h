@@ -266,7 +266,7 @@ public:
 	void StopAndWait() {
 		if (IsRunning()) {
 			m_stopped.Inc();
-			pthread_kill(m_thread_id, SIGINT); // in case the thread is stuck in the callback...
+			pthread_kill((unsigned long)m_thread_id, SIGINT); // in case the thread is stuck in the callback...
 			m_exited.A(); // blocks until thread actually exits
 		}
 	}

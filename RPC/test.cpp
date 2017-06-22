@@ -189,12 +189,23 @@ static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user
 	return (unsigned long)0;
 }
 
+static unsigned long IncDouble(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
+	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter *p1 = (*v)[1];
+	double &d = p1->GetDoubleValue();
+	cout << "value: " << d << endl;
+	d += 0.1;
+	cout << "inc'ed value: " << d << endl;
+	return (unsigned long)0;
+}
+
 static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	int16_t &i = p1->GetInt16Value();
 	cout << "value: " << i << endl;
 	++i;
+	cout << "inc'ed value: " << i << endl;
 	return (unsigned long)i;
 }
 
@@ -269,6 +280,7 @@ int main(int argc, char **argv) {
 		server.RegisterProcedure("repeat", &RepeatPrint);
 		server.RegisterProcedure("concat", &Concatenate);
 		server.RegisterProcedure("sum", &SumNumbers);
+		server.RegisterProcedure("incdouble", &IncDouble);
 
 
 		server.IterateAndWait();
@@ -313,6 +325,23 @@ int main(int argc, char **argv) {
 										&i);
 			}
 			cout << "result value: " << i << endl;
+		} else if (func_name == "incdouble") {
+			if (argc < 6) {
+				cout << "usage:" << endl;
+				cout << "\ttest client <tcp|file> server_addr incdouble float_value" << endl;
+				return -1;
+			}
+			int16_t repeat = argc == 7 ? atoi(argv[6]) : 1;
+			double d;
+			for (int b = 0; b < repeat; b++) {
+				d = atof(argv[5]);
+				result = client.RpcCall(func_name,
+										1,
+										RemoteProcedureCall::PTR,
+										RemoteProcedureCall::DOUBLE,
+										&d);
+			}
+			cout << "result value: " << d << endl;
 		} else if (func_name == "concat") {
 			if (argc < 7) {
 				cout << "usage:" << endl;

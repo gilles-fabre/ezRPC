@@ -1,5 +1,8 @@
 CXX = g++
-CXX_FLAGS = -std=c++11 -ggdb
+#CXX_FLAGS = -fPIC -ggdb -m32
+CXX_FLAGS = -fPIC -O3 -m32
+#CXX_FLAGS = -fPIC -ggdb 
+#CXX_FLAGS = -fPIC -O3
 LXX_FLAGS = -l Transport -L .
 
 all : test
