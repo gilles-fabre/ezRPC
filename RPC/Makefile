@@ -1,6 +1,6 @@
-CXX_FLAGS = -fPIC -ggdb -m32
+#CXX_FLAGS = -fPIC -ggdb -m32
 #CXX_FLAGS = -fPIC -O3 -m32
-#CXX_FLAGS = -fPIC -ggdb 
+CXX_FLAGS = -fPIC -ggdb 
 #CXX_FLAGS = -fPIC -O3
 LXX_FLAGS = -L ../Transport -l Transport -L ../Thread -l Thread
 IXX_FLAGS = -I ../Transport -I ../Thread

@@ -319,7 +319,10 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 
 	// accept call creates a new socket for the incoming connection
 	addr_size = sizeof(server_storage);
-	c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size);
+	if ((c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size)) == -1) {
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't accept connection (" << strerror(errno) << ")" << endl;
+		return NULL;
+	}
 
 	if (setsockopt(c_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;

@@ -1,6 +1,6 @@
-CXX_FLAGS = -fPIC -ggdb -m32
+#CXX_FLAGS = -fPIC -ggdb -m32
 #CXX_FLAGS = -fPIC -O3 -m32
-#CXX_FLAGS = -fPIC -ggdb 
+CXX_FLAGS = -fPIC -ggdb 
 #CXX_FLAGS = -fPIC -O3
 
 OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
