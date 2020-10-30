@@ -277,7 +277,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 	// create the server socket
 	if (m_s_socket == -1) {
 		if ((m_s_socket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			return NULL;
 		}
 
@@ -298,7 +298,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 #endif
 
 		if (setsockopt(m_s_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
 		    close(m_s_socket);
 		    m_s_socket = -1;
 			return NULL;
@@ -310,7 +310,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_s_socket, 1))) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
 #ifdef TRANSPORT_TRACES
@@ -322,7 +322,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 	c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size);
 
 	if (setsockopt(c_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
 	    close(c_socket);
 		return NULL;
 	}
@@ -385,7 +385,7 @@ Link* TcpTransport::LinkRequest(const string &server_address) {
 
 	// create the client socket
 	if ((c_socket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
 
@@ -404,7 +404,7 @@ Link* TcpTransport::LinkRequest(const string &server_address) {
 
 	// connect the socket to the server using the address struct
 	if ((retval = connect(c_socket, (struct sockaddr *)&server_addr, sizeof(server_addr))) == -1)  {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't connect to socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't connect to socket (" << strerror(errno) << ")" << endl;
 		close(c_socket);
 		return NULL;
 	}
@@ -451,7 +451,7 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 
 		// create the server socket
 		if ((m_s_socket = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			return NULL;
 		}
 
@@ -469,7 +469,7 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 #endif
 
 		if (setsockopt(m_s_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
 		    close(m_s_socket);
 		    m_s_socket = -1;
 			return NULL;
@@ -481,7 +481,7 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_s_socket, 1))) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
 #ifdef TRANSPORT_TRACES
@@ -493,7 +493,7 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 	c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size);
 
 	if (setsockopt(c_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
 	    close(c_socket);
 		return NULL;
 	}
@@ -526,7 +526,7 @@ Link* FileTransport::LinkRequest(const string &server_address) {
 
 	// create the client socket
 	if ((c_socket = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
 
@@ -542,7 +542,7 @@ Link* FileTransport::LinkRequest(const string &server_address) {
 
 	// connect the socket to the server using the address struct
 	if ((retval = connect(c_socket, (struct sockaddr *)&server_addr, sizeof(server_addr))) == -1)  {
-		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't connect to socket!" << endl;
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't connect to socket (" << strerror(errno) << ")" << endl;
 		close(c_socket);
 		return NULL;
 	}

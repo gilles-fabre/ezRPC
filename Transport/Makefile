@@ -21,4 +21,4 @@ Transport : $(OBJECTS)
 rebuild : clean Transport
 
 clean :
-	-rm ${OBJECTS} ${SHARED_LIBS} ../${SHARED_LIBS} 2>/dev/null
+	-rm -rf ${OBJECTS} ${SHARED_LIBS} ../${SHARED_LIBS} 2>/dev/null

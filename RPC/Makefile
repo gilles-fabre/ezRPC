@@ -25,5 +25,5 @@ RPC : RemoteProcedureCall.o RPCServer.o RPCClient.o
 rebuild : clean all  
 
 clean :
-	-rm ${OBJECTS} ${SHARED_LIBS} ../${SHARED_LIBS} 2>/dev/null
+	-rm -rf ${OBJECTS} ${SHARED_LIBS} ../${SHARED_LIBS} 2>/dev/null
 

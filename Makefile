@@ -3,7 +3,7 @@ install: rebuild
 	sudo cp Thread/*.h /usr/include
 	sudo cp Transport/*.h /usr/include
 	sudo cp RPC/*.h /usr/include
-	 
+
 Thread :
 	make -C Thread
 	

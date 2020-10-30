@@ -11,7 +11,7 @@ test :
 	$(CXX) -o test test.cpp $(CXX_FLAGS) $(LXX_FLAGS) 
 
 clean :
-	-rm test test.o 2>/dev/null
+	-rm -rf test test.o 2>/dev/null
 
 rebuild : clean test
 
