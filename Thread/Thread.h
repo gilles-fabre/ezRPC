@@ -180,7 +180,7 @@ Library.
 #include <signal.h>
 #include <semaphore.h>
 
-typedef void *ThreadCallbackFunction(void *);
+typedef void ThreadCallbackFunction(void *);
 
 class Semaphore {
 	sem_t m_semaphore;
@@ -247,7 +247,7 @@ class Thread {
 	static void *RunSafely(void *_threadP);
 
 public:
-	Thread(ThreadCallbackFunction *callbackP) : m_running(0), m_stopped(0), m_exited(0) {
+	Thread(ThreadCallbackFunction *callbackP) : m_running(0), m_stopped(0), m_exited(0), m_thread_id(0) {
 		m_callbackP = callbackP;
 		m_parametersP = NULL;
 	}

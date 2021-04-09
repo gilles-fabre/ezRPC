@@ -166,137 +166,71 @@ permanent authorization for you to choose that version for the
 Library.
 */
 
-/**
- * \file RPCServer.cpp
- *
- * \author gilles-fabre
- * \date Mar 21, 2017
- */
-
 #include <iostream>
-#include <unistd.h>
+#include <string>
+#include <vector>
 
-#include "RPCServer.h"
+#include <Thread.h>
+#include <RPCServer.h>
+#include <EClient.h>
 
-/**
- * \fn void *RPCServer::ListeningCallback(void *_serverP)
- * \brief A single instance of listening thread call this method to
- *        wait for clients' requests to connect. Upon every new connection
- *        a link to the new client is established and passed over to a
- *        new dedicated service thread.
- *
- * \param _serverP is a pointer to the parent RPCServer
- */
-void RPCServer::ListeningCallback(void *_serverP) {
-	RPCServer *serverP = (RPCServer *)_serverP;
-#ifdef RPCSERVER_TRACES
-	cout << "\n RPCServer::ListeningCallback(" << serverP << ")" << endl;
-#endif
+#include "EPE.h"
 
-	if (!serverP || !serverP->m_transportP)
-		return;
-#ifdef RPCSERVER_TRACES
-	cout << "\t waiting for link request..." << endl;
-#endif
+using namespace std;
 
-	Link *linkP = serverP->m_transportP->WaitForLinkRequest(serverP->m_address);
-	if (!linkP)
-		return;
+int main(int argc, char **argv) {
+	for (int i = 0; i < argc; i++)
+		cout << "arg #" << i << ": " << argv[i] << endl;
 
-	Thread *threadP = new Thread(&ServiceCallback);
-	serverP->m_serving_threads.push_back(threadP);
-#ifdef RPCSERVER_TRACES
-	cout << "\t starting detached service thread..." << endl;
-#endif
-
-	threadP->Run((void *)new ServiceParameters(serverP, linkP));
-}
-
-/**
- * \fn void *RPCServer::ServiceCallback(void *_paramsP)
- * \brief A dedicated service thread, providing the linked client
- *        with remote procedures access. The procedures are those
- *        of the parent RPCServer.
- *
- * \param _paramsP is a pointer to a dedicated ServiceParameters, pointing
- *        to both the parent RPCServer and link to the client.
- */
-void RPCServer::ServiceCallback(void *_paramsP) {
-	ServiceParameters *paramsP = (ServiceParameters *)_paramsP;
-#ifdef RPCSERVER_TRACES
-	cout << "\n RPCServer::ServiceCallback(" << paramsP << ")" << endl;
-#endif
-
-	// ?!
-	if (!paramsP)
-		return;
-
-	if (!paramsP->m_serverP || !paramsP->m_linkP) {
-		// can't talk to client
-		delete paramsP;
-		return;
+	if (argc < 3) {
+		cout << "usage:" << endl;
+		cout << "\ttest <tcp|file> server_address client_address" << endl;
+		return -1;
 	}
 
+	string proto = argv[1];
+	string server_addr = argv[2];
+	string client_addr = argv[3];
 
-#ifdef RPCSERVER_TRACES
-	cout << "\t creating remote procedure call for link: " << paramsP->m_linkP << endl;
-#endif
+	EClient client(proto == "tcp" ? Transport::TCP : Transport::FILE,
+				   server_addr,
+				   client_addr);
 
-	RemoteProcedureCall rpc(paramsP->m_linkP);
-	for (;;) {
-		unsigned long 	result;
-		string   		func_name;
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t waiting for incoming data..." << endl;
-#endif
+	client.Run();
+	SMID smid = (SMID)client.CreateStateMachine("test_state_machine.json");
+	puts("\n\n1. inc\n2. restart\n3. exit");
+	while (smid) {
+		char c = getchar();
+		switch(c) {
+			case '1':
+				client.DoTransition(smid, "inc");
+				puts("\n\n1. inc\n2. restart\n3. exit");
+				break;
 
-		// wait and deserialize call stream
-		vector<RemoteProcedureCall::Parameter *> *rpc_paramsP = rpc.DeserializeCall(func_name);
-		if (!rpc_paramsP)
-			break; 
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t deserialized into parameters vector: " << rpc_paramsP << endl;
-#endif
+			case '2':
+				client.DoTransition(smid, "restart");
+				puts("\n\n1. inc\n2. restart\n3. exit");
+				break;
 
-		// process rpc call
-		RemoteProcedure *procP = paramsP->m_serverP->m_rpc_map[func_name];
-		if (!procP) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name!" << endl;
-			// serialize back 'error'
-			rpc.SerializeCallReturn(rpc_paramsP, 0);
-			continue;
+			case '3':
+				client.DestroyStateMachine(smid);
+				puts("\n\n1. inc\n2. restart\n3. exit");
+				smid = 0;
+				break;
 		}
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t will call procedure " << func_name << endl;
-#endif
-
-		result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t " << func_name << " returned: " << result << endl;
-#endif
-
-		// serialize back call results
-		rpc.SerializeCallReturn(rpc_paramsP, result);
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t serialized call return" << endl;
-#endif
-
-		// done with these parameters
-		for (vector<RemoteProcedureCall::Parameter *>::iterator i = rpc_paramsP->begin(); i != rpc_paramsP->end(); i++)
-			delete *i;
-		delete rpc_paramsP;
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t cleaned up parameters" << endl;
-#endif
 	}
 
-	delete paramsP;
-#ifdef RPCSERVER_TRACES
-	cout << "\t cleaned up service callback parameters, exiting" << endl;
-#endif
+	// wait for last pending callbacks
+	for (int i = 10; i > 0; i--) {
+		cout << "waiting " <<  i << " seconds before exiting" << endl;
+		sleep(1);
+	}
 
-	// if the link is broken, close this side of the socket
-	if (!rpc.IsConnected())
-		rpc.Close();
+	client.Stop();
+
+	return 0;
 }
+
+
+
 

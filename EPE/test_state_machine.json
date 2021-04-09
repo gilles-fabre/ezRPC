@@ -1,0 +1,87 @@
+{
+	"StateMachine" : {
+		"name" : "test",
+		"initial_state" : "start",
+		"states" : [
+			"start",
+			"state_1",
+			"state_2",
+			"state_3",
+			"end",
+			"game_over"
+		],
+		"transitions" : [
+			{
+				"name" : "restart",
+				"source" : "game_over",
+				"destination" : "start",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "restart",
+				"source" : "end",
+				"destination" : "start",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "inc",
+				"source" : "start",
+				"destination" : "state_1",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "inc",
+				"source" : "state_1",
+				"destination" : "state_2",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "inc",
+				"source" : "state_2",
+				"destination" : "state_3",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "inc",
+				"source" : "state_3",
+				"destination" : "end",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "time_out",
+				"source" : "state_1",
+				"destination" : "game_over",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "time_out",
+				"source" : "state_2",
+				"destination" : "game_over",
+				"callback" : "TransitionCallback"
+			},
+			{
+				"name" : "time_out",
+				"source" : "state_3",
+				"destination" : "game_over",
+				"callback" : "TransitionCallback"
+			}
+		],
+		"timers" : [
+			{
+				"state" : "state_1",
+				"timeout" : 10000,
+				"transition" : "time_out"
+			},
+			{
+				"state" : "state_2",
+				"timeout" : 5000,
+				"transition" : "time_out"
+			},
+			{
+				"state" : "state_3",
+				"timeout" : 1000,
+				"transition" : "time_out"
+			}
+		]
+	}
+}

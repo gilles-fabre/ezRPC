@@ -188,8 +188,6 @@ using namespace std;
 
 //#define RPCCLIENT_TRACES 1
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*, void *user_dataP);
-
 /**
  * \class RPCClient
  * \brief Provides the user with a high abstraction level Remote Procedure Calls service.

@@ -189,8 +189,6 @@ using namespace std;
 
 //#define RPCSERVER_TRACES 1
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*, void *user_dataP);
-
 /**
  * \class RPCServer
  * \brief An instance of RPCServer provides RPCClients with an address[:port] to connect
@@ -210,8 +208,8 @@ class RPCServer {
 	vector<Thread *> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
 	map<string, RemoteProcedure *> 	m_rpc_map;				// the procedures to call based on their names
 
-	static void *ListeningCallback(void *);					// threads' functions
-	static void *ServiceCallback(void *);
+	static void ListeningCallback(void *);					// threads' functions
+	static void ServiceCallback(void *);
 
 	/**
 	 * \class ServiceParameters

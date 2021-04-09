@@ -166,137 +166,116 @@ permanent authorization for you to choose that version for the
 Library.
 */
 
-/**
- * \file RPCServer.cpp
- *
- * \author gilles-fabre
- * \date Mar 21, 2017
- */
-
 #include <iostream>
-#include <unistd.h>
 
-#include "RPCServer.h"
+#include "EClient.h"
+
+// EClient callbacks....
 
 /**
- * \fn void *RPCServer::ListeningCallback(void *_serverP)
- * \brief A single instance of listening thread call this method to
- *        wait for clients' requests to connect. Upon every new connection
- *        a link to the new client is established and passed over to a
- *        new dedicated service thread.
+ * \fn void TransitionCallback(SMID state_machine_id, const std::string &from_state_name, const std::string &transition_name, const std::string &to_state_name, void *state_machine_user_data)
+ * \brief this is the default and fallback (in case no remote procedure is defined in the
+ *        json state machine definition file) callback. All remote procedures must respect
+ *        this prototype.
  *
- * \param _serverP is a pointer to the parent RPCServer
+ * \param v is a pointer to a remote procedure parameters vector. Modified pointed values
+ *        will be returned to the caller.
+ *        The first parameter shall be ignored (it is the return value result address and is
+ *        used by the rpc mechanism to automatically return the result of this procedure).
+ *        Then come the uint64 SMID (state machine ID), the SM name (string), the source
+ *        state name (string), the executed transition name (string), the destination
+ *        state name (string) and the user data pointer (passed when the machine was created).
+ *
+ * \return -1 upon error, 0 else.
  */
-void RPCServer::ListeningCallback(void *_serverP) {
-	RPCServer *serverP = (RPCServer *)_serverP;
-#ifdef RPCSERVER_TRACES
-	cout << "\n RPCServer::ListeningCallback(" << serverP << ")" << endl;
+unsigned long EClient::TransitionCallback(vector<RemoteProcedureCall::Parameter *> *v) {
+#ifdef ECLIENT_TRACES
+	cout << "\nEClient::TransitionCallback(" << v << ")" << endl;
 #endif
 
-	if (!serverP || !serverP->m_transportP)
-		return;
-#ifdef RPCSERVER_TRACES
-	cout << "\t waiting for link request..." << endl;
+	if (!v || v->size() != 7)
+		return (unsigned long)-1;
+
+#ifdef ECLIENT_TRACES
+	//RemoteProcedureCall::Parameter *pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter *p1 = (*v)[1];
+	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+	RemoteProcedureCall::Parameter *p3 = (*v)[3];
+	RemoteProcedureCall::Parameter *p4 = (*v)[4];
+	RemoteProcedureCall::Parameter *p5 = (*v)[5];
+	RemoteProcedureCall::Parameter *p6 = (*v)[6];
+
+	uint64_t sm_id = p1->GetUInt64Value();
+	cout << "\t machine id: " << hex << "0x" << sm_id << dec << endl;
+	string   &sm_name = p2->GetStringValue();
+	cout << "\t machine name: " << sm_name << endl;
+	string   &src_state = p3->GetStringValue();
+	cout << "\t source state: " << src_state << endl;
+	string   &transition = p4->GetStringValue();
+	cout << "\t transition: " << transition << endl;
+	uint64_t dst_state = p5->GetUInt64Value();
+	cout << "\t destination state: " << dst_state << endl;
+	void *user_dataP = (void *)p6->GetUInt64Value();
+	cout << "\t user data: " << user_dataP << endl;
 #endif
 
-	Link *linkP = serverP->m_transportP->WaitForLinkRequest(serverP->m_address);
-	if (!linkP)
-		return;
-
-	Thread *threadP = new Thread(&ServiceCallback);
-	serverP->m_serving_threads.push_back(threadP);
-#ifdef RPCSERVER_TRACES
-	cout << "\t starting detached service thread..." << endl;
-#endif
-
-	threadP->Run((void *)new ServiceParameters(serverP, linkP));
+	return 0;
 }
 
-/**
- * \fn void *RPCServer::ServiceCallback(void *_paramsP)
- * \brief A dedicated service thread, providing the linked client
- *        with remote procedures access. The procedures are those
- *        of the parent RPCServer.
- *
- * \param _paramsP is a pointer to a dedicated ServiceParameters, pointing
- *        to both the parent RPCServer and link to the client.
- */
-void RPCServer::ServiceCallback(void *_paramsP) {
-	ServiceParameters *paramsP = (ServiceParameters *)_paramsP;
-#ifdef RPCSERVER_TRACES
-	cout << "\n RPCServer::ServiceCallback(" << paramsP << ")" << endl;
-#endif
+// CODEC CALLBACKS
 
-	// ?!
-	if (!paramsP)
-		return;
+// std::string *GetMessageFieldCallback(MID message_id, const std::string &field_name, void *codec_user_data, void *message_user_data);
+unsigned long EClient::GetMessageFieldCallback(vector<RemoteProcedureCall::Parameter *> *v) {
+	return (unsigned long)-1;
+}
 
-	if (!paramsP->m_serverP || !paramsP->m_linkP) {
-		// can't talk to client
-		delete paramsP;
-		return;
-	}
+// void MessageReceivedCallback(MID message_id, const std::string &json_message_definition, void *codec_user_data, void *message_user_data);
+unsigned long EClient::MessageReceivedCallback(vector<RemoteProcedureCall::Parameter *> *v) {
+	return (unsigned long)-1;
+}
 
+// DATA EXCHANGE (with peer equipment) CALLBACK
 
-#ifdef RPCSERVER_TRACES
-	cout << "\t creating remote procedure call for link: " << paramsP->m_linkP << endl;
-#endif
+// bool SendDataCallback(unsigned char *message_data, unsigned int message_data_len, void *codec_user_data, void *message_user_data);
+unsigned long EClient::SendDataCallback(vector<RemoteProcedureCall::Parameter *> *v) {
+	return (unsigned long)-1;
+}
 
-	RemoteProcedureCall rpc(paramsP->m_linkP);
-	for (;;) {
-		unsigned long 	result;
-		string   		func_name;
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t waiting for incoming data..." << endl;
-#endif
+// unsigned char *ReceiveDataCallback(unsigned char *byte_buffer, unsigned int data_len, void *codec_user_data, void *message_user_data);
+unsigned long EClient::ReceiveDataCallback(vector<RemoteProcedureCall::Parameter *> *v) {
+	return (unsigned long)-1;
+}
 
-		// wait and deserialize call stream
-		vector<RemoteProcedureCall::Parameter *> *rpc_paramsP = rpc.DeserializeCall(func_name);
-		if (!rpc_paramsP)
-			break; 
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t deserialized into parameters vector: " << rpc_paramsP << endl;
-#endif
+// STATE MACHINE APIs
 
-		// process rpc call
-		RemoteProcedure *procP = paramsP->m_serverP->m_rpc_map[func_name];
-		if (!procP) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name!" << endl;
-			// serialize back 'error'
-			rpc.SerializeCallReturn(rpc_paramsP, 0);
-			continue;
-		}
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t will call procedure " << func_name << endl;
-#endif
+unsigned long EClient::CreateStateMachine(const string &json_definition_file, void *user_dataP) {
+	return m_epe_client.RpcCall("CreateStateMachine",
+								RemoteProcedureCall::STRING,
+								m_client_address,
+								RemoteProcedureCall::STRING,
+								json_definition_file,
+								RemoteProcedureCall::UINT64,
+								(uint64_t)user_dataP,
+								RemoteProcedureCall::END_OF_CALL);
+}
 
-		result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t " << func_name << " returned: " << result << endl;
-#endif
+unsigned long EClient::DestroyStateMachine(SMID state_machine_id) {
+	return m_epe_client.RpcCall("DestroyStateMachine",
+								RemoteProcedureCall::STRING,
+								m_client_address,
+								RemoteProcedureCall::UINT64,
+								(uint64_t)state_machine_id,
+								RemoteProcedureCall::END_OF_CALL);
+}
 
-		// serialize back call results
-		rpc.SerializeCallReturn(rpc_paramsP, result);
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t serialized call return" << endl;
-#endif
-
-		// done with these parameters
-		for (vector<RemoteProcedureCall::Parameter *>::iterator i = rpc_paramsP->begin(); i != rpc_paramsP->end(); i++)
-			delete *i;
-		delete rpc_paramsP;
-#ifdef RPCSERVER_TRACES
-		cout << "\t\t cleaned up parameters" << endl;
-#endif
-	}
-
-	delete paramsP;
-#ifdef RPCSERVER_TRACES
-	cout << "\t cleaned up service callback parameters, exiting" << endl;
-#endif
-
-	// if the link is broken, close this side of the socket
-	if (!rpc.IsConnected())
-		rpc.Close();
+unsigned long EClient::DoTransition(SMID state_machine_id, const string &transition_name) {
+	return m_epe_client.RpcCall("DoTransition",
+								RemoteProcedureCall::STRING,
+								m_client_address,
+								RemoteProcedureCall::UINT64,
+								(uint64_t)state_machine_id,
+								RemoteProcedureCall::STRING,
+								transition_name,
+								RemoteProcedureCall::END_OF_CALL);
 }
 

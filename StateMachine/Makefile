@@ -2,10 +2,7 @@
 #CXX_FLAGS = -fPIC -O3 -m32
 CXX_FLAGS = -fPIC -ggdb 
 #CXX_FLAGS = -fPIC -O3
-
-OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
-SHARED_LIBS := $(wildcard *.so)CXX = g++
-LXX_FLAGS = -L ../Transport -l Transport -L ../Thread -l Thread -L ../RPC -l RPC -L /usr/lib/x86_64-linux-gnu -l jsoncpp 
+LXX_FLAGS = -L ../Transport -l Transport -l jsoncpp -L ../Thread -l Thread
 IXX_FLAGS = -I ../Transport -I ../Thread -I ../RPC -I /usr/include/jsoncpp
 OBJECTS := $(patsubst %.cpp,%.o, $(wildcard *.cpp))
 SHARED_LIBS := $(wildcard *.so)

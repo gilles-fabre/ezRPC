@@ -166,14 +166,6 @@ permanent authorization for you to choose that version for the
 Library.
 */
 
-/**
- * \file StateMachine.h
- *
- * \author  gilles fabre
- * \date Mar 24, 2017
- */
-
-
 #ifndef STATEMACHINE_H_
 #define STATEMACHINE_H_
 
@@ -393,7 +385,7 @@ public:
  * 		  built/destroyed.
  */
 class StateMachine {
-	const RPCClient					*m_rpcClientP;		// to invoke the transition callbacks
+	const RPCClient					*m_rpcClientP;		// to invoke the EClient callbacks
 	string							m_name;	 	  		// in case we have different machines...
 	void							*m_user_dataP; 	 	// user data
 	map<string, State *> 			m_states; 		 	// all states
@@ -407,7 +399,7 @@ class StateMachine {
 
 	virtual ~StateMachine();
 
-	static void *GarbageCollectorCallback(void *parametersP);
+	static void GarbageCollectorCallback(void *parametersP);
 
 public:
 	StateMachine(string &name, void *user_dataP = NULL);
@@ -605,7 +597,7 @@ public:
 	};
 	list<Thread *>  m_callback_threads;	 // all pending threads
 
-	static void *CallbackThread(void *parametersP);
+	static void CallbackThread(void *parametersP);
 	void DoTransition(const string &transition_name, bool from_timer_thread = false) {
 		if (!m_current_stateP || IsExiting())
 			return;
@@ -665,7 +657,7 @@ public:
 		}
 	};
 
-	static void *TimerThreadCallback(void *parametersP);
+	static void TimerThreadCallback(void *parametersP);
 	void 		InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name);
 	void 		CancelTransitionTimer() {
 		m_timer_sem.A();

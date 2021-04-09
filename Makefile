@@ -18,16 +18,27 @@ RPC : Thread Transport
 StateMachine : RPC
 	make -C StateMachine
 
+EClient : StateMachine
+	make -C EClient
+
+EPE : EClient
+	make -C EPE
+	make -C EPE -f Makefile.test rebuild
+
 rebuild :
 	make -C Thread rebuild
 	make -C Transport rebuild
 	make -C RPC rebuild
 	make -C StateMachine rebuild
+	make -C EClient rebuild
+	make -C EPE rebuild
 
 clean :
 	make -C Thread clean
 	make -C Transport clean
 	make -C RPC clean
 	make -C StateMachine clean
+	make -C EClient clean
+	make -C EPE clean
 
 all : rebuild

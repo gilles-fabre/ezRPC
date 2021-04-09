@@ -166,13 +166,6 @@ permanent authorization for you to choose that version for the
 Library.
 */
 
-/**
- * \file StateMachine.cpp
- *
- * \author  gilles fabre
- * \date Mar 14, 2017
- */
-
 #include <stdio.h>
 #include <unistd.h>
 #include <json/json.h>
@@ -254,7 +247,7 @@ StateMachine::~StateMachine() {
  * 		  triggered or have been cancelled before then.
  *
  */
-void *StateMachine::GarbageCollectorCallback(void *parametersP) {
+void StateMachine::GarbageCollectorCallback(void *parametersP) {
 	bool exit = false;
 
 #ifdef STATE_MACHINE_TRACES
@@ -286,7 +279,7 @@ void *StateMachine::GarbageCollectorCallback(void *parametersP) {
 	cout << "State Machine Garbage Collector is exiting" << endl;
 #endif
 
-	return NULL;
+	return;
 }
 
 /**
@@ -295,11 +288,11 @@ void *StateMachine::GarbageCollectorCallback(void *parametersP) {
  *
  * \param parametersP points to a CallbackThreadParameters structure
  */
-void *StateMachine::CallbackThread(void *parametersP) {
+void StateMachine::CallbackThread(void *parametersP) {
 	CallbackThreadParameters *paramsP = (CallbackThreadParameters *)parametersP;
 	if (!paramsP || !paramsP->m_machineP || paramsP->m_machineP->IsExiting()) {
 		paramsP->m_machineP->m_callback_threads.remove(paramsP->m_threadP);
-		return NULL;
+		return;
 	}
 
 #ifdef STATE_MACHINE_TRACES
@@ -332,7 +325,7 @@ void *StateMachine::CallbackThread(void *parametersP) {
 	}
 
 	paramsP->m_machineP->m_callback_threads.remove(paramsP->m_threadP);
-	return NULL;
+	return;
 }
 
 /**
@@ -343,11 +336,11 @@ void *StateMachine::CallbackThread(void *parametersP) {
  * \param milli_sec_timeout is the delay before the transition is injected in the state machine
  * \param transition_name is the injected transition's identifier
  */
-void *StateMachine::TimerThreadCallback(void *parametersP) {
+void StateMachine::TimerThreadCallback(void *parametersP) {
 	TimerThreadParameters *paramsP = (TimerThreadParameters *)parametersP;
 
 	if (!paramsP || !paramsP->m_machineP)
-		return NULL;
+		return;
 
 #ifdef STATE_MACHINE_TRACES
 	cout << "TimerThread sleeping for " << paramsP->m_milli_seconds << " millisecond(s)" << endl;
@@ -371,7 +364,7 @@ void *StateMachine::TimerThreadCallback(void *parametersP) {
 		else cout << "TimerThread Cancelled!!!" << endl;
 #endif
 
-	return NULL;
+	return;
 }
 
 void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name) {
@@ -565,7 +558,7 @@ StateMachine *StateMachine::CreateFromDefinition(string &json_definition_filenam
 					cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: " << t << " invalid timeout source state!" << endl;
 			}
 		}
-	} catch (const Json::RuntimeError &e) {
+	} catch (Json::RuntimeError &e) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error:" << endl << e.what() << endl;
 		return NULL;
 	}
