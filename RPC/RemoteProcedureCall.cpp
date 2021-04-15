@@ -1,182 +1,8 @@
-/*
-                     GNU LESSER GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
-
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-
-
-  This version of the GNU Lesser General Public License incorporates
-the terms and conditions of version 3 of the GNU General Public
-License, supplemented by the additional permissions listed below.
-
-  0. Additional Definitions.
-
-  As used herein, "this License" refers to version 3 of the GNU Lesser
-General Public License, and the "GNU GPL" refers to version 3 of the GNU
-General Public License.
-
-  "The Library" refers to a covered work governed by this License,
-other than an Application or a Combined Work as defined below.
-
-  An "Application" is any work that makes use of an interface provided
-by the Library, but which is not otherwise based on the Library.
-Defining a subclass of a class defined by the Library is deemed a mode
-of using an interface provided by the Library.
-
-  A "Combined Work" is a work produced by combining or linking an
-Application with the Library.  The particular version of the Library
-with which the Combined Work was made is also called the "Linked
-Version".
-
-  The "Minimal Corresponding Source" for a Combined Work means the
-Corresponding Source for the Combined Work, excluding any source code
-for portions of the Combined Work that, considered in isolation, are
-based on the Application, and not on the Linked Version.
-
-  The "Corresponding Application Code" for a Combined Work means the
-object code and/or source code for the Application, including any data
-and utility programs needed for reproducing the Combined Work from the
-Application, but excluding the System Libraries of the Combined Work.
-
-  1. Exception to Section 3 of the GNU GPL.
-
-  You may convey a covered work under sections 3 and 4 of this License
-without being bound by section 3 of the GNU GPL.
-
-  2. Conveying Modified Versions.
-
-  If you modify a copy of the Library, and, in your modifications, a
-facility refers to a function or data to be supplied by an Application
-that uses the facility (other than as an argument passed when the
-facility is invoked), then you may convey a copy of the modified
-version:
-
-   a) under this License, provided that you make a good faith effort to
-   ensure that, in the event an Application does not supply the
-   function or data, the facility still operates, and performs
-   whatever part of its purpose remains meaningful, or
-
-   b) under the GNU GPL, with none of the additional permissions of
-   this License applicable to that copy.
-
-  3. Object Code Incorporating Material from Library Header Files.
-
-  The object code form of an Application may incorporate material from
-a header file that is part of the Library.  You may convey such object
-code under terms of your choice, provided that, if the incorporated
-material is not limited to numerical parameters, data structure
-layouts and accessors, or small macros, inline functions and templates
-(ten or fewer lines in length), you do both of the following:
-
-   a) Give prominent notice with each copy of the object code that the
-   Library is used in it and that the Library and its use are
-   covered by this License.
-
-   b) Accompany the object code with a copy of the GNU GPL and this license
-   document.
-
-  4. Combined Works.
-
-  You may convey a Combined Work under terms of your choice that,
-taken together, effectively do not restrict modification of the
-portions of the Library contained in the Combined Work and reverse
-engineering for debugging such modifications, if you also do each of
-the following:
-
-   a) Give prominent notice with each copy of the Combined Work that
-   the Library is used in it and that the Library and its use are
-   covered by this License.
-
-   b) Accompany the Combined Work with a copy of the GNU GPL and this license
-   document.
-
-   c) For a Combined Work that displays copyright notices during
-   execution, include the copyright notice for the Library among
-   these notices, as well as a reference directing the user to the
-   copies of the GNU GPL and this license document.
-
-   d) Do one of the following:
-
-       0) Convey the Minimal Corresponding Source under the terms of this
-       License, and the Corresponding Application Code in a form
-       suitable for, and under terms that permit, the user to
-       recombine or relink the Application with a modified version of
-       the Linked Version to produce a modified Combined Work, in the
-       manner specified by section 6 of the GNU GPL for conveying
-       Corresponding Source.
-
-       1) Use a suitable shared library mechanism for linking with the
-       Library.  A suitable mechanism is one that (a) uses at run time
-       a copy of the Library already present on the user's computer
-       system, and (b) will operate properly with a modified version
-       of the Library that is interface-compatible with the Linked
-       Version.
-
-   e) Provide Installation Information, but only if you would otherwise
-   be required to provide such information under section 6 of the
-   GNU GPL, and only to the extent that such information is
-   necessary to install and execute a modified version of the
-   Combined Work produced by recombining or relinking the
-   Application with a modified version of the Linked Version. (If
-   you use option 4d0, the Installation Information must accompany
-   the Minimal Corresponding Source and Corresponding Application
-   Code. If you use option 4d1, you must provide the Installation
-   Information in the manner specified by section 6 of the GNU GPL
-   for conveying Corresponding Source.)
-
-  5. Combined Libraries.
-
-  You may place library facilities that are a work based on the
-Library side by side in a single library together with other library
-facilities that are not Applications and are not covered by this
-License, and convey such a combined library under terms of your
-choice, if you do both of the following:
-
-   a) Accompany the combined library with a copy of the same work based
-   on the Library, uncombined with any other library facilities,
-   conveyed under the terms of this License.
-
-   b) Give prominent notice with the combined library that part of it
-   is a work based on the Library, and explaining where to find the
-   accompanying uncombined form of the same work.
-
-  6. Revised Versions of the GNU Lesser General Public License.
-
-  The Free Software Foundation may publish revised and/or new versions
-of the GNU Lesser General Public License from time to time. Such new
-versions will be similar in spirit to the present version, but may
-differ in detail to address new problems or concerns.
-
-  Each version is given a distinguishing version number. If the
-Library as you received it specifies that a certain numbered version
-of the GNU Lesser General Public License "or any later version"
-applies to it, you have the option of following the terms and
-conditions either of that published version or of any later version
-published by the Free Software Foundation. If the Library as you
-received it does not specify a version number of the GNU Lesser
-General Public License, you may choose any version of the GNU Lesser
-General Public License ever published by the Free Software Foundation.
-
-  If the Library as you received it specifies that a proxy can decide
-whether future versions of the GNU Lesser General Public License shall
-apply, that proxy's public statement of acceptance of any version is
-permanent authorization for you to choose that version for the
-Library.
-*/
-
-/**
- * \file RemoteProcedureCall.cpp
- *
- * \author  gilles fabre
- * \date Mar 14, 2017
- */
-
 #include <stdio.h>
 #include <stdarg.h>
 #include <Link.h>
 #include <iostream>
+#include <log2reporter.h>
 
 #include "RemoteProcedureCall.h"
 
@@ -367,7 +193,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	bool 					is_ptr = false;
 	void					*ptr;
 #ifdef RPC_TRACES
-	cout << "\n RemoteProcedureCall::SerializeCall" << endl;
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SerializeCall(%s)", func_name.c_str());
 #endif
 
 	// first pass the function name
@@ -377,14 +203,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	for (int i = 0; i < len; i++)
 		serialized_call.push_back(func_name[i]);
 #ifdef RPC_TRACES
-	cout << "\t pushed func_name: " << func_name << endl;
+	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
 #endif
 
 	// then add the return result address
 	serialized_call.push_back(UINT64);
 	push_uint64(serialized_call, HTONLL((uint64_t)&result));
 #ifdef RPC_TRACES
-	cout << "\t pushed return result address: " << hex << &result << dec << endl;
+	LogVText(RPC_MODULE, 4, true, "pushed return address %p", &result);
 #endif
 
 	// and all the given parameters
@@ -394,7 +220,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 		// first push the parameter type in the call stream vector
 		serialized_call.push_back(type);
 #ifdef RPC_TRACES
-		cout << "\t pushed parameter type: " << type << endl;
+		LogVText(RPC_MODULE, 6, true, "pushed parameter type %x", type);
 #endif
 		// we're done when encountering this parameter
 		if (type == END_OF_CALL)
@@ -416,14 +242,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					serialized_call.push_back(ptr ? *(unsigned char *)ptr : 0);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter byte ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter byte ptr %p", ptr);
 #endif
 				} else {
 					// a byte
 					byte = (unsigned char)va_arg(vl, int);
 					serialized_call.push_back(byte);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter byte: " << hex << "0x" << c << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter byte %u", byte);
 #endif
 				}
 				break;
@@ -437,14 +263,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 					serialized_call.push_back(ptr ? *(char *)ptr : 0);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter char ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter char ptr %p", ptr);
 #endif
 				} else {
 					// a char
 					c = (char)va_arg(vl, int);
 					serialized_call.push_back(c);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter char: " << hex << "0x" << c << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter char %c", c);
 #endif
 				}
 				break;
@@ -459,14 +285,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					i16 = ptr ? *(int16_t *)ptr : 0;
 					push_int16(serialized_call, ntohs(i16));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int16_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int16 ptr %p", ptr);
 #endif
 				} else {
 					// a short integer
 					i16 = (int16_t)va_arg(vl, int);
 					push_int16(serialized_call, htons(i16));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int16_t: " << i16 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int16_t %ud", i16);
 #endif
 				}
 				break;
@@ -481,14 +307,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ui16 = ptr ? *(uint16_t *)ptr : 0;
 					push_uint16(serialized_call, ntohs(ui16));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint16_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned short integer
 					ui16 = (uint16_t)va_arg(vl, int);
 					push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint16_t: " << ui16 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t %u", ui16);
 #endif
 				}
 				break;
@@ -503,14 +329,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					i32 = ptr ? *(int32_t *)ptr : 0;
 					push_int32(serialized_call, ntohl(i32));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int16_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t ptr %p", ptr);
 #endif
 				} else {
 					// a long integer
 					i32 = (int32_t)va_arg(vl, int32_t);
 					push_int32(serialized_call, htonl(i32));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int32_t: " << i32 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t %d", i32);
 #endif
 				}
 				break;
@@ -525,14 +351,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ui32 = ptr ? *(uint32_t *)ptr : 0;
 					push_uint32(serialized_call, ntohl(ui32));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint32_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned long integer
 					ui32 = (uint32_t)va_arg(vl, uint32_t);
 					push_uint32(serialized_call, htonl(ui32));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint32_t: " << ui32 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t %u", ui32);
 #endif
 				}
 				break;
@@ -547,14 +373,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					i64 = ptr ? *(int64_t *)ptr : 0;
 					push_int64(serialized_call, NTOHLL(i64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int64_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t ptr %p", ptr);
 #endif
 				} else {
 					// a long long integer
 					i64 = va_arg(vl, int64_t);
 					push_int64(serialized_call, HTONLL(i64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter int64_t: " << i64 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t %ld", i64);
 #endif
 				}
 				break;
@@ -569,14 +395,14 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ui64 = ptr ? *(uint64_t *)ptr : 0;
 					push_uint64(serialized_call, NTOHLL(ui64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint64_t ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned long long integer
 					ui64 = va_arg(vl, uint64_t);
 					push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter uint64_t: " << ui64 << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t %lu", ui64);
 #endif
 				}
 				break;
@@ -591,7 +417,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ui64 = ptr ? *(uint64_t *)ptr : 0;
 					push_uint64(serialized_call, NTOHLL(ui64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter double ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter double ptr %p", ptr);
 #endif
 				} else {
 					// a double
@@ -599,7 +425,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ui64 = *(uint64_t *)&d;
 					push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter double: " << d << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter double %f", d);
 #endif
 				}
 				break;
@@ -612,19 +438,19 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					ptr = (void *)va_arg(vl, string *);
 					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter string ptr: " << hex << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter string %p", ptr);
 #endif
 					// string
 					s = ptr ? *(string *)ptr : "";
 					len = (unsigned int)s.length();
 					push_uint16(serialized_call, htons(len));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter string len: " << len << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 					for (int i = 0; i < len; i++)
 						serialized_call.push_back(s[i]);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter string: " << s.substr(0, 10) << "..." << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
 				} else {
 					// string
@@ -632,12 +458,12 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 					len = (unsigned int)s.length();
 					push_uint16(serialized_call, htons(len));
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter string len: " << len << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 					for (int i = 0; i < len; i++)
 						serialized_call.push_back(s[i]);
 #ifdef RPC_TRACES
-					cout << "\t pushed parameter string: " << s.substr(0, 10) << "..." << endl;
+					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
 				}
 				break;
@@ -649,7 +475,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	SendPacket(serialized_call.data(), buff_len);
 
 #ifdef RPC_TRACES
-	cout << "\t sent " <<  buff_len << " bytes. Will now wait for reply... " << endl << endl;
+	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now wait for reply...", buff_len);
 #endif
 
 	// wait for reply
@@ -805,7 +631,7 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 	string			s;
 	bool			is_ptr = false;
 #ifdef RPC_TRACES
-	cout << "\n RemoteProcedureCall::DeserializeCall" << endl;
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCall(%s)", func_name.c_str());
 #endif
 
 	// an empty name is returned upon error
@@ -828,14 +654,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 	ui16 = decode_uint16(bufferP, offset);
 	ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-	cout << "\t decoded func_name len: " << ui16 << endl;
+	LogVText(RPC_MODULE, 4, true, "decoded func_name len: %u", ui16);
 #endif
 
 	// get the name
 	for (int i = 0; i < ui16; i ++)
 		func_name += bufferP[offset++];
 #ifdef RPC_TRACES
-	cout << "\t decoded func_name: " << func_name << endl;
+	LogVText(RPC_MODULE, 4, true, "decoded func_name %s", func_name.c_str());
 #endif
 
 	// next, we must get the return result address
@@ -849,14 +675,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 	ui64 = NTOHLL(ui64);
 	resultP->push_back(new Parameter(ui64));
 #ifdef RPC_TRACES
-	cout << "\t decoded return result address: " << hex << "0x" << ui64 << dec << endl;
+	LogVText(RPC_MODULE, 4, true, "decoded return result address: %lx", ui64);
 #endif
 
 	while (!done) {
 		// get the parameter type
 		type = bufferP[offset++];
 #ifdef RPC_TRACES
-		cout << "\t decoded arg type: " << type << endl;
+		LogVText(RPC_MODULE, 6, true, "decoded parameter type %x", type);
 #endif
 		switch ((ParamType)type) {
 			case PTR:
@@ -870,18 +696,18 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded ptr %p", ptr);
 #endif
 					b = bufferP[offset++];
 					resultP->push_back(new Parameter(b, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded byte: " << hex << "0x" << b << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded byte %u", b);
 #endif
 				} else {
 					b = bufferP[offset++];
 					resultP->push_back(new Parameter(b));
 #ifdef RPC_TRACES
-					cout << "\t decoded byte: " << hex << "0x" << b << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded byte %u", b);
 #endif
 				}
 				break;
@@ -892,18 +718,18 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded ptr %p", ptr);
 #endif
 					c = bufferP[offset++];
 					resultP->push_back(new Parameter(c, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded byte: " << hex << "0x" << b << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded byte %u", b);
 #endif
 				} else {
 					c = bufferP[offset++];
 					resultP->push_back(new Parameter(c));
 #ifdef RPC_TRACES
-					cout << "\t decoded char: " << hex << "0x" << c << dec << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded char %c", c);
 #endif
 				}
 				break;
@@ -914,20 +740,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					i16 = decode_int16(bufferP, offset);
 					i16 = ntohs(i16);
 					resultP->push_back(new Parameter(i16, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded int16_t: " << i16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int16_t %d", i16);
 #endif
 				} else {
 					i16 = decode_int16(bufferP, offset);
 					i16 = ntohs(i16);
 					resultP->push_back(new Parameter(i16));
 #ifdef RPC_TRACES
-					cout << "\t decoded int16_t: " << i16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int16_t %d", i16);
 #endif
 				}
 				break;
@@ -938,20 +764,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
 					resultP->push_back(new Parameter(ui16, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded int16_t: " << i16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint16_t %u", ui16);
 #endif
 				} else {
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
 					resultP->push_back(new Parameter(ui16));
 #ifdef RPC_TRACES
-					cout << "\t decoded uint16_t: " << ui16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint16_t %u", ui16);
 #endif
 				}
 				break;
@@ -962,20 +788,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					i32 = decode_int32(bufferP, offset);
 					i32 = ntohl(i32);
 					resultP->push_back(new Parameter(i32, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded int32_t: " << i32 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int32_t %d", i32);
 #endif
 				} else {
 					i32 = decode_int32(bufferP, offset);
 					i32 = ntohl(i32);
 					resultP->push_back(new Parameter(i32));
 #ifdef RPC_TRACES
-					cout << "\t decoded int32_t: " << i32 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int32_t %d", i32);
 #endif
 				}
 				break;
@@ -986,20 +812,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					ui32 = decode_uint32(bufferP, offset);
 					ui32 = ntohl(ui32);
 					resultP->push_back(new Parameter(ui32, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded uint32_t: " << ui32 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint32_t %u", ui32);
 #endif
 				} else {
 					ui32 = decode_uint32(bufferP, offset);
 					ui32 = ntohl(ui32);
 					resultP->push_back(new Parameter(ui32));
 #ifdef RPC_TRACES
-					cout << "\t decoded uint32_t: " << ui32 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint32_t %u", ui32);
 #endif
 				}
 				break;
@@ -1010,20 +836,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					i64 = decode_int64(bufferP, offset);
 					i64 = NTOHLL(i64);
 					resultP->push_back(new Parameter(i64, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded int64_t: " << i64 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int64_t %l", i64);
 #endif
 				} else {
 					i64 = decode_int64(bufferP, offset);
 					i64 = NTOHLL(i64);
 					resultP->push_back(new Parameter(i64));
 #ifdef RPC_TRACES
-					cout << "\t decoded int64_t: " << i64 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded int64_t %l", i64);
 #endif
 				}
 				break;
@@ -1034,20 +860,20 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					ui64 = decode_uint64(bufferP, offset);
 					ui64 = NTOHLL(ui64);
 					resultP->push_back(new Parameter(ui64, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded uint64_t: " << ui64 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint64_t %lu", ui64);
 #endif
 				} else {
 					ui64 = decode_uint64(bufferP, offset);
 					ui64 = NTOHLL(ui64);
 					resultP->push_back(new Parameter(ui64));
 #ifdef RPC_TRACES
-					cout << "\t decoded uint64_t: " << ui64 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded uint64_t %lu", ui64);
 #endif
 				}
 				break;
@@ -1058,14 +884,14 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					ui64 = decode_uint64(bufferP, offset);
 					ui64 = NTOHLL(ui64);
 					d = *(double *)&ui64;
 					resultP->push_back(new Parameter(d, ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded double: " << d << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded double %f", d);
 #endif
 				} else {
 					ui64 = decode_uint64(bufferP, offset);
@@ -1073,7 +899,7 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					d = *(double *)&ui64;
 					resultP->push_back(new Parameter(d));
 #ifdef RPC_TRACES
-					cout << "\t decoded double: " << d << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded double %f", d);
 #endif
 				}
 				break;
@@ -1084,32 +910,32 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 					ptr = decode_uint64(bufferP, offset);
 					ptr = NTOHLL(ptr);
 #ifdef RPC_TRACES
-					cout << "\t decoded ptr: " << hex << "0x" << ptr << dec << endl;
+					LogVText(RPC_MODULE, 4, true, "decoded ptr %p", ptr);
 #endif
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-					cout << "\t decoded string len: " << ui16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded string len %u", ui16);
 #endif
 					s.clear();
 					for (int i = 0; i < ui16; i ++)
 						s += bufferP[offset++];
 					resultP->push_back(new Parameter(s.c_str(), ptr));
 #ifdef RPC_TRACES
-					cout << "\t decoded string: " << s.substr(0, 10) << "..." << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded string %s", s.c_str());
 #endif
 				} else {
 					ui16 = decode_uint16(bufferP, offset);
 					ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-					cout << "\t decoded string len: " << ui16 << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded string len %u", ui16);
 #endif
 					s.clear();
 					for (int i = 0; i < ui16; i ++)
 						s += bufferP[offset++];
 					resultP->push_back(new Parameter(s.c_str()));
 #ifdef RPC_TRACES
-					cout << "\t decoded string: " << s.substr(0, 10) << "..." << endl;
+					LogVText(RPC_MODULE, 8, true, "decoded string %s", s.c_str());
 #endif
 				}
 				break;
@@ -1118,7 +944,7 @@ vector<RemoteProcedureCall::Parameter *> *RemoteProcedureCall::DeserializeCall(s
 				// marks the end of the parameters (and call stream)
 				done = true;
 #ifdef RPC_TRACES
-				cout << "\t decoded end of call stream marker" << endl << endl;
+				LogText(RPC_MODULE, 4, true, "decoded end of stream marker");
 #endif
 				break;
 
@@ -1174,7 +1000,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 	double					d;
 	string					s;
 #ifdef RPC_TRACES
-	cout << "\n RemoteProcedureCall::SerializeCallReturn" << endl;
+	LogText(RPC_MODULE, 0, true, "RemoteProcedureCal::SerializeCallReturn(...)");
 #endif
 
 	serialized_call.push_back(UINT64);
@@ -1182,14 +1008,14 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 	ui64 = paramP->at(0)->GetUInt64Value();
 	push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-	cout << "\t pushed return result address: " << hex << "0x" << ui64 << dec << endl;
+	LogVText(RPC_MODULE, 0, true, "pushed return result address %lx", ui64);
 #endif
 
 	ui64 = (uint64_t)ret_val;
 	serialized_call.push_back(UINT64);
 	push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-	cout << "\t pushed return result: " << ui64 << endl;
+	LogVText(RPC_MODULE, 0, true, "pushed return result: %lu", ui64);
 #endif
 
 	// push all ptr parameters back
@@ -1200,21 +1026,21 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 		// push ptr type
 		serialized_call.push_back(PTR);
 #ifdef RPC_TRACES
-		cout << "\t\t pushed ptr type" << endl;
+		LogText(RPC_MODULE, 4, true, "pushed ptr type");
 #endif
 
 		// push ptr
 		ui64 = (*i)->GetCallerPointer();
 		push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-		cout << "\t\t pushed parameter ptr: " << hex << "0x" << ui64 << dec << endl;
+		LogVText(RPC_MODULE, 8, true, "pushed parameter ptr %lx", ui64);
 #endif
 
 		// push type
 		type = (unsigned char)(*i)->GetType();
 		serialized_call.push_back(type);
 #ifdef RPC_TRACES
-		cout << "\t\t pushed parameter type: " << type << endl;
+		LogVText(RPC_MODULE, 8, true, "pushed parameter type %x", type);
 #endif
 
 		// push value
@@ -1223,7 +1049,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				b = (*i)->GetByteValue();
 				serialized_call.push_back(b);
 #ifdef RPC_TRACES
-				cout << "\t\t pushed byte parameter value: " << hex << "0x" << b << dec << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed byte parameter value %u", b);
 #endif
 				break;
 
@@ -1231,7 +1057,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				c = (*i)->GetCharValue();
 				serialized_call.push_back(c);
 #ifdef RPC_TRACES
-				cout << "\t\t pushed char parameter value: " << hex << "0x" << c << dec << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed char parameter value %c", c);
 #endif
 				break;
 
@@ -1239,7 +1065,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				i16 = (*i)->GetInt16Value();
 				push_int16(serialized_call, htons(i16));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed int16 parameter value: " << i16 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed int16 parameter value %d", i16);
 #endif
 				break;
 
@@ -1247,7 +1073,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				ui16 = (*i)->GetUInt16Value();
 				push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed uint16 parameter value: " << ui16 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed uin16 parameter value %u", ui16);
 #endif
 				break;
 
@@ -1255,7 +1081,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				i32 = (*i)->GetInt32Value();
 				push_int32(serialized_call, htonl(i32));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed int32 parameter value: " << i32 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed int32 parameter value %d", i32);
 #endif
 				break;
 
@@ -1263,7 +1089,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				ui32 = (*i)->GetUInt32Value();
 				push_uint32(serialized_call, htonl(ui32));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed uint32 parameter value: " << ui32 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed uint32 parameter value %u", ui32);
 #endif
 				break;
 
@@ -1271,7 +1097,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				i64 = (*i)->GetInt64Value();
 				push_int64(serialized_call, HTONLL(i64));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed int64 parameter value: " << i64 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed int64 parameter value %ld", i64);
 #endif
 				break;
 
@@ -1279,7 +1105,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				ui64 = (*i)->GetUInt64Value();
 				push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed uint64 parameter value: " << ui64 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed uint64 parameter value %lu", ui64);
 #endif
 				break;
 
@@ -1288,7 +1114,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				ui64 = *(uint64_t *)&d;
 				push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed double parameter value: " << d << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed double parameter value %f", d);
 #endif
 				break;
 
@@ -1297,13 +1123,13 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				ui16 = s.length();
 				push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES
-				cout << "\t\t pushed string parameter value len: " << ui16 << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed string parameter value len %u", ui16);
 #endif
 
 				for (int i = 0; i < ui16; i++)
 					serialized_call.push_back(s[i]);
 #ifdef RPC_TRACES
-				cout << "\t\t pushed string parameter value: " << s.substr(0, 10) << endl;
+				LogVText(RPC_MODULE, 8, true, "pushed string parameter value %s", s.c_str());
 #endif
 				break;
 
@@ -1316,13 +1142,13 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 	// end of call stream marker
 	serialized_call.push_back(END_OF_CALL);
 #ifdef RPC_TRACES
-	cout << "\t pushed end of call stream marker" << endl << endl;
+	LogText(RPC_MODULE, 4, true, "pushed end of stream marker");
 #endif
 
 	// send all the serialized call parameters over to the peer
 	SendPacket(serialized_call.data(), serialized_call.size());
 #ifdef RPC_TRACES
-	cout << "\t sent " <<  serialized_call.size() << " bytes... " << endl << endl;
+	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serialized_call.size());
 #endif
 }
 
@@ -1348,7 +1174,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 	string			s;
 	bool			done = false;
 #ifdef RPC_TRACES
-	cout << "\n RemoteProcedureCall::DeserializeCallReturn" << endl;
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCallReturn(%p)", bufferP);
 #endif
 
 	// read and decode the returned result address, value, optional output
@@ -1364,7 +1190,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 	ui64 = NTOHLL(ui64);
 	resultP = (unsigned long *)ui64;
 #ifdef RPC_TRACES
-	cout << "\t decoded return result address: " << hex << "0x" << ui64 << dec << endl;
+	LogVText(RPC_MODULE, 4, true, "decoded return result address: %lx", ui64);
 #endif
 
 	// get the result
@@ -1378,13 +1204,13 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 	ui64 = NTOHLL(ui64);
 	*resultP = (unsigned long)ui64;
 #ifdef RPC_TRACES
-	cout << "\t decoded result: " << ui64 << endl;
+	LogVText(RPC_MODULE, 4, true, "decoded result: %lu", ui64);
 #endif
 
 	while (!done) {
 		type = bufferP[offset++];
 #ifdef RPC_TRACES
-		cout << "\t\t decoded parameter type: " << type << endl;
+		LogVText(RPC_MODULE, 6, true, "decoded parameter type: %x", type);
 #endif
 		switch (type) {
 			case PTR:
@@ -1392,14 +1218,14 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui64 = decode_uint64(bufferP, offset);
 				ptr = NTOHLL(ui64);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter ptr: " << hex << "0x" << ptr << dec << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter ptr: %p", ptr);
 #endif
 				break;
 
 			case BYTE:
 				b = (unsigned char)bufferP[offset++];
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter byte value: " << hex << b << dec << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter byte value: %u", b);
 #endif
 				*(unsigned char *)ptr = b;
 				break;
@@ -1407,7 +1233,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 			case CHAR:
 				c = (char)bufferP[offset++];
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter char value: " << hex << c << dec << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter char value: %c", c);
 #endif
 				*(char *)ptr = c;
 				break;
@@ -1416,7 +1242,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				i16 = decode_int16(bufferP, offset);
 				i16 = ntohs(i16);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter int16 value: " << i16 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter int16 value: %d", i16);
 #endif
 				*(int16_t *)ptr = i16;
 				break;
@@ -1425,7 +1251,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui16 = decode_uint16(bufferP, offset);
 				ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter uint16 value: " << ui16 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter uint16 value: %u", ui16);
 #endif
 				*(uint16_t *)ptr = ui16;
 				break;
@@ -1434,7 +1260,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				i32 = decode_int32(bufferP, offset);
 				i32 = ntohl(i32);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter int32 value: " << i32 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter int32 value: %d", i32);
 #endif
 				*(int32_t *)ptr = i32;
 				break;
@@ -1443,7 +1269,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui32 = decode_uint32(bufferP, offset);
 				ui32 = ntohl(ui32);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter uint32 value: " << ui32 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter uint32 value: %u", ui32);
 #endif
 				*(uint32_t *)ptr = ui32;
 				break;
@@ -1452,7 +1278,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				i64 = decode_int64(bufferP, offset);
 				i64 = NTOHLL(i64);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter int64 value: " << i64 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter int64 value: %l", i64);
 #endif
 				*(int64_t *)ptr = i64;
 				break;
@@ -1461,7 +1287,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui64 = decode_uint64(bufferP, offset);
 				ui64 = NTOHLL(ui64);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter uint64 value: " << ui64 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter uint64 value: %lu", ui64);
 #endif
 				*(uint64_t *)ptr = ui64;
 				break;
@@ -1471,7 +1297,7 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui64 = NTOHLL(ui64);
 				d = *(double *)&ui64;
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter double value: " << d << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter double value: %f", d);
 #endif
 				*(double *)ptr = d;
 				break;
@@ -1480,20 +1306,20 @@ bool RemoteProcedureCall::DeserializeCallReturn(unsigned char *bufferP) {
 				ui16 = decode_uint16(bufferP, offset);
 				ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter string len: " << ui16 << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter string len: %u", ui16);
 #endif
 				s.clear();
 				for (int i = 0; i < ui16; i ++)
 					s += bufferP[offset++];
 #ifdef RPC_TRACES
-				cout << "\t\t decoded parameter string: " << s.substr(0, 10) << "..." << endl;
+				LogVText(RPC_MODULE, 6, true, "decoded parameter string: %s", s.c_str());
 #endif
 				*(string *)ptr = s;
 				break;
 
 			case END_OF_CALL:
 #ifdef RPC_TRACES
-				cout << "\t\t decoded end of call stream marker" << endl;
+				LogText(RPC_MODULE, 6, true, "decoded end of stream marker");
 #endif
 				done = true;
 				break;

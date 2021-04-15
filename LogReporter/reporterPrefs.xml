@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE preferences SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<preferences EXTERNAL_XML_VERSION="1.0">
+  <root type="user">
+    <map/>
+    <node name="reporter">
+      <map/>
+      <node name="globalFilters">
+        <map>
+          <entry key="nPidFilters" value="0"/>
+          <entry key="nModFilters" value="2"/>
+          <entry key="nProgFilters" value="1"/>
+          <entry key="nWindows" value="1"/>
+          <entry key="divider" value="337"/>
+          <entry key="divider1" value="314"/>
+          <entry key="Name" value="253"/>
+          <entry key="Mask" value="49"/>
+          <entry key="Value" value="49"/>
+          <entry key="PID" value="71"/>
+        </map>
+        <node name="modFilter0">
+          <map>
+            <entry key="modId" value="0x000000FF"/>
+            <entry key="modMask" value="0x0000FFFF"/>
+            <entry key="name" value="reporter_text"/>
+            <entry key="color" value="0xFFFF1100"/>
+          </map>
+        </node>
+        <node name="modFilter1">
+          <map>
+            <entry key="modId" value="0x0000FF00"/>
+            <entry key="modMask" value="0x0000FFFF"/>
+            <entry key="name" value="reporter_data"/>
+            <entry key="color" value="0xFF09FF05"/>
+          </map>
+        </node>
+        <node name="progFilter0">
+          <map>
+            <entry key="name" value="C:\Users\gille\Documents\GitHub\LogReporter\log-reporter-test\build\Debug\Log2Reporter_Test.exe"/>
+            <entry key="color" value="0xFF001EFF"/>
+          </map>
+        </node>
+        <node name="window0">
+          <map>
+            <entry key="x" value="0"/>
+            <entry key="y" value="0"/>
+            <entry key="height" value="664"/>
+            <entry key="width" value="844"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="title" value="LogReporter_Test"/>
+            <entry key="divider" value="175"/>
+            <entry key="divider1" value="300"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="regexp" value=""/>
+            <entry key="nModFilters" value="2"/>
+            <entry key="mod0" value="reporter_text"/>
+            <entry key="mod1" value="reporter_data"/>
+            <entry key="Name" value="106"/>
+            <entry key="Mask" value="38"/>
+            <entry key="Value" value="37"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="C:\Users\gille\Documents\GitHub\LogReporter\log-reporter-test\build\Debug\Log2Reporter_Test.exe"/>
+            <entry key="PID" value="56"/>
+          </map>
+        </node>
+      </node>
+    </node>
+  </root>
+</preferences>
