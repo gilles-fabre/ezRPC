@@ -5,7 +5,10 @@
 #include <Link.h>
 #include <string.h>
 #include <stdlib.h>
+
+#ifndef WIN32
 #include <arpa/inet.h>
+#endif
 
 #include <string>
 #include <vector>
@@ -244,8 +247,8 @@ public:
 	// rpc call caller side
 
 	// call an rpc function
-	unsigned long 		 SerializeCall(const string &func_name, ...);
-	unsigned long 		 SerializeCall(const string &func_name, va_list vl);
+	unsigned long 		 SerializeCall(const string func_name, ...);
+	unsigned long 		 SerializeCall(const string func_name, va_list vl);
 
 	// rpc function callee side
 
@@ -254,10 +257,6 @@ public:
 
 	// send back rpc function result
 	void 				 SerializeCallReturn(vector<Parameter *>* paramP, unsigned long ret_val);
-
-	bool IsConnected() {
-		return m_linkP && m_linkP->IsConnected();
-	}
 
 	void Close() {
 		if (m_linkP)

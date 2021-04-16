@@ -1,6 +1,9 @@
 #include <iostream>
-#include <unistd.h>
 #include <cstdarg>
+
+#ifndef WIN32
+#include <unistd.h>
+#endif
 
 #include "RPCClient.h"
 

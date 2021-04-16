@@ -1,6 +1,10 @@
 #ifndef _TRANSPORT_H
 #define _TRANSPORT_H
 
+#ifdef WIN32
+#pragma warning(disable:4996)
+#endif
+
 #include <string.h>
 
 #include <sstream>
@@ -12,6 +16,10 @@
 #include "Link.h"
 
 using namespace std;
+
+#ifdef WIN32
+#define SO_REUSEPORT 0
+#endif
 
 #define TRANSPORT_TRACES 1
 #define TRANSPORT_MODULE 0x2
@@ -69,7 +77,7 @@ public:
 };
 
 class TcpTransport : public Transport {
-	int m_s_socket;
+	SOCKET m_s_socket;
 
 public:
 	TcpTransport() : Transport() {m_s_socket = -1;}
@@ -87,10 +95,16 @@ public:
 #endif
 		// don't need the server socket anymore
 		if (m_s_socket != -1)
+#ifdef WIN32
+			closesocket(m_s_socket);
+#else
 			close(m_s_socket);
+#endif
+		m_s_socket = -1;
 	}
 };
 
+#ifndef WIN32
 class FileTransport : public Transport {
 	int 	m_s_socket;
 	string	m_server_address;
@@ -122,6 +136,7 @@ public:
 		}
 	}
 };
+#endif // ifndef WIN32 -- no AF_UNIX support under windows
 
 #endif // _TRANSPORT_H
 

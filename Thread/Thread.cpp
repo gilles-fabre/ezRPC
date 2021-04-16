@@ -49,8 +49,8 @@ void Thread::Iterate(void *parametersP) {
 		return;
 
 	m_parametersP = parametersP;
-	if (!pthread_create(&m_thread_id, NULL, &IterateSafely, (void *)this))
-		pthread_detach(m_thread_id);
+	m_threadP = new thread(&IterateSafely, (void*)this);
+	m_threadP->detach();
 }
 
 void Thread::RunAndWait(void *parametersP) {
@@ -64,7 +64,7 @@ void Thread::Run(void *parametersP) {
 		return;
 
 	m_parametersP = parametersP;
-	if (!pthread_create(&m_thread_id, NULL, &RunSafely, (void *)this))
-		pthread_detach(m_thread_id);
+	m_threadP = new thread(&RunSafely, (void*)this);
+	m_threadP->detach();
 }
 

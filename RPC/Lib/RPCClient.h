@@ -52,10 +52,6 @@ public:
 			m_transportP->Close();
 	}
 
-	bool IsConnected() {
-		return m_rpcP->IsConnected();
-	}
-
 	unsigned long RpcCall(string func_name, ...);
 };
 

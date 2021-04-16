@@ -166,7 +166,7 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char> &v, uint16_t 
  *        STRING values MUST be passed as string pointers (std::string*)
  * \return the unsigned long result passed to SerializedCallReturn
  */
-inline unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, ...) {
+inline unsigned long RemoteProcedureCall::SerializeCall(const string func_name, ...) {
 	unsigned long result = 0;
 	va_list 	  vl;
 
@@ -177,7 +177,7 @@ inline unsigned long RemoteProcedureCall::SerializeCall(const string &func_name,
 	return result;
 }
 
-unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_list vl) {
+unsigned long RemoteProcedureCall::SerializeCall(const string func_name, va_list vl) {
 	vector<unsigned char> 	serialized_call;
 	unsigned long			result = 0;
 	unsigned int 			len;
@@ -200,7 +200,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	serialized_call.push_back(STRING);
 	len = (unsigned int)func_name.length();
 	push_uint16(serialized_call, htons(len));
-	for (int i = 0; i < len; i++)
+	for (unsigned int i = 0; i < len; i++)
 		serialized_call.push_back(func_name[i]);
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
@@ -447,7 +447,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
-					for (int i = 0; i < len; i++)
+					for (unsigned int i = 0; i < len; i++)
 						serialized_call.push_back(s[i]);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
@@ -460,7 +460,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
-					for (int i = 0; i < len; i++)
+					for (unsigned int i = 0; i < len; i++)
 						serialized_call.push_back(s[i]);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
@@ -471,7 +471,7 @@ unsigned long RemoteProcedureCall::SerializeCall(const string &func_name, va_lis
 	}
 
 	// send all the serialized call parameters over to the peer
-	unsigned long buff_len = serialized_call.size();
+	unsigned long buff_len = (unsigned long)serialized_call.size();
 	SendPacket(serialized_call.data(), buff_len);
 
 #ifdef RPC_TRACES
@@ -1120,7 +1120,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 
 			case STRING:
 				s = (*i)->GetStringValue();
-				ui16 = s.length();
+				ui16 = (uint16_t)s.length();
 				push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed string parameter value len %u", ui16);
@@ -1146,7 +1146,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 #endif
 
 	// send all the serialized call parameters over to the peer
-	SendPacket(serialized_call.data(), serialized_call.size());
+	SendPacket(serialized_call.data(), (unsigned long)serialized_call.size());
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serialized_call.size());
 #endif

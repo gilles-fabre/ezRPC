@@ -15,6 +15,7 @@ RPCServer *gRpcServerP = NULL;
 static unsigned long ByeBye(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	if (gRpcServerP)
 		gRpcServerP->Stop();
+	return (unsigned long)0;
 }
 
 static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
@@ -56,7 +57,7 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v, vo
 	for (int i = 0; i < num; i++)
 		text.append(origin_text);
 	cout << "concatenated text: " << text << endl;
-	return text.length();
+	return (unsigned long)text.length();
 }
 
 static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {

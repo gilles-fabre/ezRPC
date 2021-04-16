@@ -16,11 +16,11 @@ bool Link::Send(unsigned char *byte_buffer, int data_len) {
 	if (!byte_buffer || m_out == -1)
 		return false;
 #ifdef LINK_TRACES
-	LogVText(LINK_MODULE, 0, true, "Link::Send(%p, %d)", (unsigned long)byte_buffer, data_len);
+	LogVText(LINK_MODULE, 0, true, "Link::Send(%p, %d)", byte_buffer, data_len);
 #endif
 
 	while (total != data_len) {
-		if ((last = send(m_out, (const void *)&byte_buffer[total], data_len - total, MSG_NOSIGNAL)) == -1)
+		if ((last = send(m_out, (const char *)&byte_buffer[total], data_len - total, MSG_NOSIGNAL)) == -1)
 			return false;
 
 		if (last == 0)
@@ -51,10 +51,10 @@ bool Link::Send(unsigned char *byte_buffer, int *data_lenP) {
 	if (!byte_buffer || !data_lenP || m_out == -1)
 		return false;
 #ifdef LINK_TRACES
-	LogVText(LINK_MODULE, 0, true, "Link::Send(%p, %d)", (unsigned long)byte_buffer, *data_lenP);
+	LogVText(LINK_MODULE, 0, true, "Link::Send(%p, %d)", byte_buffer, *data_lenP);
 #endif
 
-	*data_lenP = send(m_out, (const void *)byte_buffer, *data_lenP, MSG_NOSIGNAL);
+	*data_lenP = send(m_out, (const char *)byte_buffer, *data_lenP, MSG_NOSIGNAL);
 #ifdef LINK_TRACES
 	LogVText(LINK_MODULE, 8, true, "sent %d total bytes", *data_lenP);
 #endif
@@ -78,11 +78,11 @@ bool Link::Receive(unsigned char *byte_buffer, int data_len) {
 	if (!byte_buffer || m_in == -1)
 		return false;
 #ifdef LINK_TRACES
-	LogVText(LINK_MODULE, 0, true, "Link::Receive(%p, %d)", (unsigned long)byte_buffer, data_len);
+	LogVText(LINK_MODULE, 0, true, "Link::Receive(%p, %d)", byte_buffer, data_len);
 #endif
 
 	while (total != data_len) {
-		if ((last = recv(m_in, (void *)&byte_buffer[total], data_len - total, MSG_NOSIGNAL)) == -1)
+		if ((last = recv(m_in, (char *)&byte_buffer[total], data_len - total, MSG_NOSIGNAL)) == -1)
 			return false;
 
 		if (last == 0)
@@ -113,10 +113,10 @@ bool Link::Receive(unsigned char *byte_buffer, int *data_lenP) {
 	if (!byte_buffer || !data_lenP || m_in == -1)
 		return false;
 #ifdef LINK_TRACES
-	LogVText(LINK_MODULE, 0, true, "Link::Receive(%p, %d)", (unsigned long)byte_buffer, *data_lenP);
+	LogVText(LINK_MODULE, 0, true, "Link::Receive(%p, %d)", byte_buffer, *data_lenP);
 #endif
 
-	*data_lenP = recv(m_in, (void *)byte_buffer, *data_lenP, MSG_NOSIGNAL);
+	*data_lenP = recv(m_in, (char *)byte_buffer, *data_lenP, MSG_NOSIGNAL);
 #ifdef LINK_TRACES
 	LogVText(LINK_MODULE, 8, true, "received %d total bytes", *data_lenP);
 #endif
@@ -137,10 +137,10 @@ bool Link::Peek(unsigned char *byte_buffer, int *data_lenP) {
 	if (!byte_buffer || !data_lenP || m_in == -1)
 		return false;
 #ifdef LINK_TRACES
-	LogVText(LINK_MODULE, 0, true, "Link::Peek(%p, %d)", (unsigned long)byte_buffer, *data_lenP);
+	LogVText(LINK_MODULE, 0, true, "Link::Peek(%p, %d)", byte_buffer, *data_lenP);
 #endif
 
-	*data_lenP = recv(m_in, (void *)byte_buffer, *data_lenP, MSG_NOSIGNAL | MSG_PEEK);
+	*data_lenP = recv(m_in, (char *)byte_buffer, *data_lenP, MSG_NOSIGNAL | MSG_PEEK);
 #ifdef LINK_TRACES
 	LogVText(LINK_MODULE, 8, true, "peeked %d total bytes", *data_lenP);
 #endif

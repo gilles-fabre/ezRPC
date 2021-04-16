@@ -1,43 +1,65 @@
 #ifndef _THREAD_THREAD_H
 #define _THREAD_THREAD_H
 
-#include <pthread.h>
-#include <signal.h>
-#include <semaphore.h>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 typedef void ThreadCallbackFunction(void *);
 
+using namespace std;
+
 class Semaphore {
-	sem_t m_semaphore;
+	mutex				m_mutex;
+	condition_variable	m_cv;
+	int					m_count;
 
 public:
-	Semaphore(int count) {
-		sem_init(&m_semaphore, 0, count);
-	}
-	~Semaphore() {
-		sem_destroy(&m_semaphore);
+	Semaphore(int count) : m_count(count) {
 	}
 
 	// Acquire
 	int Dec() {
-		return sem_wait(&m_semaphore);
+		unique_lock<mutex> lock(m_mutex);
+		while (m_count == 0) {
+			m_cv.wait(lock);
+		}
+		--m_count;
+
+		return 0; // could acquire sem.
 	}
 	int A() {
 		return Dec();
 	}
 	int WaitA(unsigned long timeout) {
-		unsigned long milliLeft = timeout % 1000;
-		struct timespec delay = {__time_t(time(NULL) + (timeout / 1000)),
-								 long(milliLeft * 1000000)};
-		return sem_timedwait(&m_semaphore, &delay);
+		unique_lock<mutex> lock(m_mutex);
+
+		if (m_cv.wait_for(lock, timeout * 1ms, [this] {return m_count > 0; })) {
+			--m_count;
+			return 0;
+		}
+
+		return -1; // couldn't acquire sem
 	}
+
 	int TryA() {
-		return sem_trywait(&m_semaphore);
+		unique_lock<mutex> lock(m_mutex);
+
+		if (m_count > 0) {
+			--m_count;
+			return 0;
+		}
+
+		return -1; // couldn't acquire sem
 	}
 
 	// Release
 	int Inc() {
-		return sem_post(&m_semaphore);
+		unique_lock<mutex> lock(m_mutex);
+		++m_count;
+		m_cv.notify_all();
+
+		return 0; // could release sem.
 	}
 	int R() {
 		return Inc();
@@ -45,10 +67,8 @@ public:
 
 	// value
 	int Val() {
-		int value;
-		if (!sem_getvalue(&m_semaphore, &value))
-			return value;
-		return 0;
+		unique_lock<mutex> lock(m_mutex);
+		return m_count;
 	}
 
 	// reset to value
@@ -66,15 +86,19 @@ class Thread {
 	Semaphore			   m_stopped;
 	Semaphore			   m_running;
 	Semaphore			   m_exited;
-	pthread_t 			   m_thread_id; 	  // to provide a timer based transition injection mechanism
+	thread 				   *m_threadP; 	  // to provide a timer based transition injection mechanism
 
 	static void *IterateSafely(void *_threadP);
 	static void *RunSafely(void *_threadP);
 
 public:
-	Thread(ThreadCallbackFunction *callbackP) : m_running(0), m_stopped(0), m_exited(0), m_thread_id(0) {
+	Thread(ThreadCallbackFunction *callbackP) : m_running(0), m_stopped(0), m_exited(0) {
 		m_callbackP = callbackP;
 		m_parametersP = NULL;
+		m_threadP = NULL;
+	}
+	~Thread() {
+		delete m_threadP;
 	}
 
 	void IterateAndWait(void *parametersP = NULL);
@@ -91,7 +115,6 @@ public:
 	void StopAndWait() {
 		if (IsRunning()) {
 			m_stopped.Inc();
-			pthread_kill((unsigned long)m_thread_id, SIGINT); // in case the thread is stuck in the callback...
 			m_exited.A(); // blocks until thread actually exits
 		}
 	}
