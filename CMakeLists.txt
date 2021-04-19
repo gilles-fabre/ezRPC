@@ -38,6 +38,16 @@ target_include_directories(ezRPC_Test
 						   "${CMAKE_INSTALL_PREFIX}/Thread" 
 						   "${CMAKE_INSTALL_PREFIX}/LogReporter")
 
+find_package(Threads REQUIRED)
+if(THREADS_HAVE_PTHREAD_ARG)
+  target_compile_options(ezRPC PUBLIC "-pthread")
+  target_compile_options(ezRPC_Test PUBLIC "-pthread")
+endif()
+if(CMAKE_THREAD_LIBS_INIT)
+  target_link_libraries(ezRPC "${CMAKE_THREAD_LIBS_INIT}")
+  target_link_libraries(ezRPC_Test "${CMAKE_THREAD_LIBS_INIT}")
+endif()
+
 install(FILES RPC/ezRPC_Test.log-settings DESTINATION bin)
 install(TARGETS ezRPC_Test RUNTIME DESTINATION bin)
 install(TARGETS ezRPC_Test

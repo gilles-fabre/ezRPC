@@ -408,4 +408,4 @@ Link* FileTransport::LinkRequest(const string &server_address) {
 
 	return new_linkP;
 }
-#endif -- no AF-UNIX support under windows
+#endif // no AF-UNIX support under windows
