@@ -155,15 +155,28 @@ static void InitSettings(const char *appName) {
 	fopen_s(&file, logSettings, "r");
 	if (!file) {
 		char errBuffer[256 + 1];
-		strerror_s(errBuffer, sizeof(errBuffer), errno);
-		fprintf(stderr, "couldn't open setting file %s: %s\n", logSettings, errBuffer);
-#else
-	if (!(file = fopen(logSettings, "r"))) {
-		fprintf(stderr, "couldn't open setting file %s: %s\n", logSettings, strerror(errno));
+		char currentDirectory[MAX_PATH + 1];
 
-#endif
+		strerror_s(errBuffer, sizeof(errBuffer), errno);
+		if (GetCurrentDirectory(sizeof(currentDirectory) - 1, currentDirectory) == 0)
+			strcpy_s(currentDirectory, sizeof(currentDirectory) - 1, "?");
+
+		fprintf(stderr, "couldn't open setting file %s in %s: %s\n", logSettings, currentDirectory, errBuffer);
+
 		return;
 	}
+#else
+	if (!(file = fopen(logSettings, "r"))) {
+		char currentDirectory[PATH_MAX + 1];
+
+		if (!getcwd(currentDirectory, sizeof(currentDirectory) - 1))
+			strcpy(currentDirectory, "?");
+
+		fprintf(stderr, "couldn't open setting file %s in %s: %s\n", logSettings, currentDirectory, strerror(errno));
+
+		return;
+	}
+#endif
 
 	// iterates on lines
 	char line[256 + 1];
