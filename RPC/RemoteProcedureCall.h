@@ -16,7 +16,7 @@
 using namespace std;
 
 #define RPC_TRACES 1
-#define RPC_MODULE 0x3
+#define RPC_MODULE 0x4
 
 #define HTONLL(x) ((1==htonl(1)) ? (x) : ((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
 #define NTOHLL(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))

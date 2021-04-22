@@ -21,7 +21,7 @@
 #include <log2reporter.h>
 
 #define LINK_TRACES 1
-#define LINK_MODULE 0x1
+#define LINK_MODULE 0x2
 
 #ifdef WIN32
 #define MSG_DONTWAIT 0

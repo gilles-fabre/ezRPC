@@ -22,7 +22,7 @@ using namespace std;
 #endif
 
 #define TRANSPORT_TRACES 1
-#define TRANSPORT_MODULE 0x2
+#define TRANSPORT_MODULE 0x3
 
 /**
 * \class Transport
