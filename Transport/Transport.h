@@ -21,7 +21,7 @@ using namespace std;
 #define SO_REUSEPORT 0
 #endif
 
-#define TRANSPORT_TRACES 1
+//#define TRANSPORT_TRACES 1
 #define TRANSPORT_MODULE 0x3
 
 /**
@@ -29,6 +29,10 @@ using namespace std;
 * \brief Abstract transport over any of the supported transports.
 */
 class Transport {
+#ifdef WIN32
+	static uint8_t m_WSAStartupDone; // more windows crap
+#endif
+
 protected:
 	vector<Link *> m_links; // the communication links
 
@@ -37,6 +41,12 @@ public:
 				       FILE};
 
 	Transport() {
+		if (!m_WSAStartupDone) {
+			WSADATA wsa; 
+			WSAStartup(MAKEWORD(2, 2), &wsa);
+			m_WSAStartupDone = -1;
+		}
+
 #ifdef TRANSPORT_TRACES
 		LogVText(TRANSPORT_MODULE, 0, true, "Transport::Transport(), creating transport %p", this);
 #endif
