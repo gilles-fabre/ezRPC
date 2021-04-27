@@ -1,9 +1,23 @@
-ezRPC is a simple yet hopefully efficient RPC library. RPC calls are currently 
-transported over AF_UNIX or AF_INET tcp connections, but by deriving and 
-specializing the Transport and Link classes, it should possible to use 
-about any other connected transport/IPC. ezRPC comes under the MIT license so 
-feel free to use, modify it and distribute free of charge in compliance with 
-the MIT licence.
+ezRPC is a simple yet hopefully efficient RPC library for both Linux and Windows. 
+RPC calls are currently transported over AF_UNIX (Linux only) or AF_INET tcp 
+connections, but by deriving and specializing the Transport and Link classes, 
+it is possible to use about any other connected transport/IPC. 
+
+To build the project run cmake at the ezRPC directory, then navigate to the cmake build
+directory you've set and run make/make install. The bin directory under the ezRPC 
+directory shall contain everything you need to start playing with ezRPC.
+
+By default, some traces are generated that are automatically sent to a viewer tool 
+located in the ezRPC/LogReporter tool. 
+
+ezRPC doesn't require to use an IDL language/compiler to generate RPC code or messages, 
+it is fast and very simple to use.
+
+Just have a look at the ezRPC/RPC/Test code to see how to implement an RPC client or 
+server in a few lines of code.
+
+ezRPC comes under the MIT license so feel free to use, modify it and distribute free 
+of charge in compliance with the MIT licence.
 
 Have fun, 
 gilles fabre
