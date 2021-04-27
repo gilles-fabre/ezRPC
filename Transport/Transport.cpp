@@ -17,7 +17,7 @@
 using namespace std;
 
 #ifdef WIN32
-uint8_t Transport::m_WSAStartupDone = 0;
+uint8_t TcpTransport::m_WSAStartupDone = 0;
 #endif
 
 /**
