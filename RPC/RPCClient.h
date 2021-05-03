@@ -12,7 +12,7 @@
 using namespace std;
 
 #define RPCCLIENT_TRACES 1
-#define RPCCLIENT_MODULE 0x4
+#define RPCCLIENT_MODULE 0x5
 
 /**
  * \class RPCClient

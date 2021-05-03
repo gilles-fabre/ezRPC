@@ -14,7 +14,7 @@
 using namespace std;
 
 #define RPCSERVER_TRACES 1
-#define RPCSERVER_MODULE 0x5
+#define RPCSERVER_MODULE 0x6
 
 /**
  * \class RPCServer

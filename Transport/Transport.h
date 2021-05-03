@@ -21,8 +21,8 @@ using namespace std;
 #define SO_REUSEPORT 0
 #endif
 
-#define TRANSPORT_TRACES 1
-#define TRANSPORT_MODULE 0x2
+//#define TRANSPORT_TRACES 1
+#define TRANSPORT_MODULE 0x3
 
 /**
 * \class Transport
@@ -77,10 +77,25 @@ public:
 };
 
 class TcpTransport : public Transport {
+#ifdef WIN32
+	static uint8_t m_WSAStartupDone; // more windows crap
+#endif
+
 	SOCKET m_s_socket;
 
 public:
-	TcpTransport() : Transport() {m_s_socket = -1;}
+	TcpTransport() : Transport() {
+#ifdef WIN32
+		if (!m_WSAStartupDone) {
+			WSADATA wsa;
+			if (!WSAStartup(MAKEWORD(2, 2), &wsa))
+				m_WSAStartupDone = -1;
+		}
+#endif
+
+		m_s_socket = -1;
+	}
+	
 	~TcpTransport() {
 		Close();
 	}

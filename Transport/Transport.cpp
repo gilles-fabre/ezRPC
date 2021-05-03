@@ -16,6 +16,10 @@
 
 using namespace std;
 
+#ifdef WIN32
+uint8_t TcpTransport::m_WSAStartupDone = 0;
+#endif
+
 /**
  * \fn Transport *Transport::CreateTransport(TransportType transport_type)
  * \brief Returns a newly created transport for the given transport type

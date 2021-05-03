@@ -5,6 +5,9 @@
 #include <mutex>
 #include <condition_variable>
 
+//#define THREAD_TRACES 1
+#define THREAD_MODULE 0x1
+
 typedef void ThreadCallbackFunction(void *);
 
 using namespace std;

@@ -16,7 +16,7 @@ using namespace std;
 #define GARBAGE_COLLECTOR_PAUSE 5 // the garbage collector will work every <this amount of> seconds
 
 #define SM_TRACES 1 // the state machine will printf traces
-#define SM_MODULE 8
+#define SM_MODULE 6
 
 /**
  * \class Transition
