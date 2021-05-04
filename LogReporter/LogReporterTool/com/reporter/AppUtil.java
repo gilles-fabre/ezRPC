@@ -1,6 +1,5 @@
 package reporter;
 
-
 // Miscellaneous utilities.
 //
 public final class AppUtil {
@@ -60,5 +59,4 @@ public final class AppUtil {
 		"user.home", // User's home directory
 		"user.dir", // User's current working directory
 	};
-
 }

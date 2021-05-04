@@ -527,7 +527,7 @@ public class ContentFrameVE extends JInternalFrame {
 	/**
 	 * This method initializes progTable
 	 *
-	 * @return com.gfprod.reporter.ProgTable
+	 * @return com.reporter.ProgTable
 	 */
 	private ProgTable getProgTable() {
 		if (progTable == null) {

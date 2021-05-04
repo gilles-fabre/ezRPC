@@ -16,7 +16,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
  * to the one that is currently selected in the combo box.
  * @author Tom Keel
  */
-public class LookAndFeelComboBox extends JComboBox {
+public class LookAndFeelComboBox extends JComboBox<String> {
 
 	private static final long serialVersionUID = 1L;
 

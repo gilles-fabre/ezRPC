@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.prefs.Preferences;
 
+@SuppressWarnings("deprecation")
 public class TracesFilter {
 	public static final String globalFiltersKey = "globalFilters";
 

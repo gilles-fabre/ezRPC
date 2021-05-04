@@ -21,8 +21,8 @@ import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.WindowConstants;
 
 import tracesListener.ProgFilter;
 import tracesListener.TraceMessage;
@@ -30,28 +30,37 @@ import tracesListener.TracesDataThread;
 import tracesListener.TracesFilter;
 import tracesListener.TracesListenerServer;
 
+@SuppressWarnings("deprecation")
 public final class App {
+	// Let the user pause/stop/(re)start the log
 	static public enum LogMode {PLAY, PAUSE, STOP};
-
 	private static LogMode logMode;
 
 	// The singleton instance.
 	private static App instance = null;
+	
 	// Preferences.
 	private Prefs prefs = new Prefs();
+	
 	// The main JFrame.
 	private MainFrame mainFrame = null;
+	
 	// This object notifies us of TracesDataThread creation/destruction,
 	// and of the arrival of each TraceMessage. We tell it when to shut down.
 	private TracesListenerServer tracesListenerServer = null;
+	
 	// The queue of trace messages waiting to be displayed.
 	private LinkedList<TraceQueueItem> traceMessageQueue = new LinkedList<TraceQueueItem>();
+	
 	// The max number of trace messages we will consume in any one cycle.
 	private final static int traceMessageQueueMaxBuffer = 500;
+	
 	// The consumer thread waits on this semaphore
 	private Semaphore traceMessageAvailable = new Semaphore(0);
+	
 	// True between startup and shutdown
 	private boolean running = false;
+	
 	// Used to pass the "traces data thread" from which the first message is coming
 	// from the consumer thread to the EDT thread.
 	private TracesDataThread dataThreadWithAFirstMessage;
@@ -498,8 +507,6 @@ public final class App {
 		public String importPrefsDir = null;
 		public String importPrefsFile = null;
 		public int	  maxLines = 500;
-
-
 		public String lookAndFeel = null;
 
 		private void load() {

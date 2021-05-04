@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
+@SuppressWarnings("deprecation")
 public class TracesListenerServer extends Observable implements Runnable {
 	static final int _DefaultTracesPort = 25998;
 	int port;

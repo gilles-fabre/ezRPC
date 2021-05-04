@@ -990,7 +990,7 @@ public class MainFrameVE extends JFrame {
 	/**
 	 * This method initializes modIdTable
 	 *
-	 * @return com.gfprod.reporter.ModIdTable
+	 * @return com.reporter.ModIdTable
 	 */
 	private ModIdTable getModIdTable() {
 		if (modIdTable == null) {
@@ -1033,7 +1033,7 @@ public class MainFrameVE extends JFrame {
 	/**
 	 * This method initializes progTable
 	 *
-	 * @return com.gfprod.reporter.ProgTable
+	 * @return com.reporter.ProgTable
 	 */
 	private ProgTable getProgTable() {
 		if (progTable == null) {

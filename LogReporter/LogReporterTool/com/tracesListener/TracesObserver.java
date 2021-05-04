@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.Observable;
 import java.util.Observer;
 
+@SuppressWarnings("deprecation")
 public class TracesObserver implements Observer {
 	PrintStream out;
 	TracesFilter filter;

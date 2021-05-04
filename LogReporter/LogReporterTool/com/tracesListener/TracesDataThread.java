@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
 
+@SuppressWarnings("deprecation")
 public class TracesDataThread extends Observable implements Runnable {
 	private volatile boolean running = false;
 	private BufferedInputStream in = null;
