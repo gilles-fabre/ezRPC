@@ -82,6 +82,7 @@ public class MainFrameVE extends JFrame {
 	protected JMenuItem hideAllFiltersMI = null;
 	protected JMenuItem showAllFiltersMI = null;
 	protected JMenuItem traceBgColorMI = null;
+	protected JMenuItem lookAndFeelMI = null;
 	protected JCheckBoxMenuItem showModuleIdMI = null;
 	protected JCheckBoxMenuItem showTimestampMI = null;
 	protected JCheckBoxMenuItem showProcessIdMI = null;
@@ -575,6 +576,7 @@ public class MainFrameVE extends JFrame {
 			viewMenu.add(getShowWindowPerProcessMI());
 			viewMenu.addSeparator();
 			viewMenu.add(getTraceBgColorMI());
+			viewMenu.add(getLookAndFeelMI());
 		}
 		return viewMenu;
 	}
@@ -868,6 +870,19 @@ public class MainFrameVE extends JFrame {
 			traceBgColorMI.setText(Strings.getString("traceBgColorMI"));
 		}
 		return traceBgColorMI;
+	}
+
+	/**
+	 * This method initializes lookAndFeelMI
+	 *
+	 * @return javax.swing.JMenuItem
+	 */
+	private JMenuItem getLookAndFeelMI() {
+		if (lookAndFeelMI == null) {
+			lookAndFeelMI = new JMenuItem();
+			lookAndFeelMI.setText(Strings.getString("lookAndFeelMI"));
+		}
+		return lookAndFeelMI;
 	}
 
 	/**

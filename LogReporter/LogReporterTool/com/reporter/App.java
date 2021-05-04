@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import tracesListener.ProgFilter;
 import tracesListener.TraceMessage;
@@ -54,6 +55,9 @@ public final class App {
 	// Used to pass the "traces data thread" from which the first message is coming
 	// from the consumer thread to the EDT thread.
 	private TracesDataThread dataThreadWithAFirstMessage;
+
+
+	private static String	PREFERRED_LOOK_AND_FEEL = "Nimbus";
 	// Preferences file passed as argument, if any.
 	private String prefsFile = null;
 
@@ -95,11 +99,7 @@ public final class App {
 	private void startup() {
 		System.out.println("startup()");
 		running = true;
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			System.err.println("Can't set look and feel: " + e);
-		}
+		setLookAndFeelWithFallback();
 		createMainFrame();
 		AppUtil.printMemStats();
 		startListening();
@@ -172,7 +172,27 @@ public final class App {
 			throw e;
 		}
 	}
+	
+	// Set the look-and-feel according to user preference.
+	// If that fails, try reverting to the cross-platform look-and-feel (aka "metal").
+	private void setLookAndFeelWithFallback() {
+		if (!setLookAndFeel()) {
+			prefs.lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
+			setLookAndFeel();
+		}
+	}
 
+	// Set the look-and-feel according to user preference.
+	private boolean setLookAndFeel() {
+		try {
+			UIManager.setLookAndFeel(prefs.lookAndFeel);
+			return true;
+		} catch (Exception e) {
+			System.err.println("Can't set look and feel " + prefs.lookAndFeel + ": " + e);
+			return false;
+		}
+	}
+	
 	private void createMainFrame() {
 		mainFrame = new MainFrame();
 		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -422,8 +442,17 @@ public final class App {
 		});
 	}
 
-	// Inner class encapsulating a trace message and the data thread that read it
-	final class TraceQueueItem {
+	// Get the preferred look and feel if possible, otherwise default to system
+	public static String getPreferredLookAndFeel() {
+		for (LookAndFeelInfo lfi : UIManager.getInstalledLookAndFeels()) {
+		    if (PREFERRED_LOOK_AND_FEEL.equals(lfi.getName()))
+		        return lfi.getClassName();
+		}
+		return UIManager.getSystemLookAndFeelClassName();
+	}
+	
+	// Inner class encapsulating a trace message and the "data thread" it came from.
+	private static final class TraceQueueItem {
 		TraceMessage message;
 		TracesDataThread dataThread;
 
@@ -470,6 +499,9 @@ public final class App {
 		public String importPrefsFile = null;
 		public int	  maxLines = 500;
 
+
+		public String lookAndFeel = null;
+
 		private void load() {
 			mainFramePosX = uNode.getInt("mainFramePosX", 0);
 			mainFramePosY = uNode.getInt("mainFramePosY", 0);
@@ -491,11 +523,12 @@ public final class App {
 			importPrefsDir = uNode.get("importPrefsDir", "");
 			importPrefsFile = uNode.get("importPrefsFile", "reporterPrefs.xml");
 			maxLines = uNode.getInt("maxLines", DEFAULT_MAX_LINES);
+			lookAndFeel = uNode.get("lookAndFeel", App.getPreferredLookAndFeel());
 			fNode = uNode.node(uNode.absolutePath() + "/" + TracesFilter.globalFiltersKey);
 		}
 
 		// Note: this must be called before the main frame is destroyed.
-		private void save() {
+		void save() {
 			Rectangle r = mainFrame.getBounds();
 			uNode.putInt("mainFramePosX", r.x);
 			uNode.putInt("mainFramePosY", r.y);
@@ -517,6 +550,7 @@ public final class App {
 			uNode.put("importPrefsDir", importPrefsDir);
 			uNode.put("importPrefsFile", importPrefsFile);
 			uNode.putInt("maxLines", maxLines);
+			uNode.put("lookAndFeel", lookAndFeel);
 			saveFilterPrefs();
 			saveFramesPrefs();
 			try {

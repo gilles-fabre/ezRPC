@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -345,6 +346,12 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 				askForTraceBgColor();
 			}
 		});
+		lookAndFeelMI.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				askForLookAndFeel();
+			}
+		});
 		newWindowMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -421,7 +428,21 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 
 		updateLogModeButtons();
 	}
-
+	
+	private void showMemUsageDialog() {
+		Runtime rt = Runtime.getRuntime();
+		long heap = rt.totalMemory();
+		long used = heap - rt.freeMemory();
+		long maxi = rt.maxMemory();
+		JOptionPane.showMessageDialog(this,
+				toMBStr(used) + " used\n" +
+				toMBStr(heap) + " heap\n" +
+				toMBStr(maxi) + " limit\n" +
+				"Requesting garbage collection...",
+				Strings.getString("memUsageMI"), JOptionPane.INFORMATION_MESSAGE);
+		System.gc();
+	}
+	
 	private void updateLogModeButtons() {
 		App.LogMode mode = App.getLogMode();
 		playButton.setSelected(mode == App.LogMode.PLAY);
@@ -856,20 +877,21 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 			ContentFrameEnsemble.getInstance().setTextAreaBgColor(color);
 		}
 	}
-
-	private void showMemUsageDialog() {
-		Runtime rt = Runtime.getRuntime();
-		long heap = rt.totalMemory();
-		long used = heap - rt.freeMemory();
-		long maxi = rt.maxMemory();
-		JOptionPane.showMessageDialog(this,
-				toMBStr(used) + " used\n" +
-				toMBStr(heap) + " heap\n" +
-				toMBStr(maxi) + " limit\n" +
-				"Requesting garbage collection...",
-				Strings.getString("memUsageMI"), JOptionPane.INFORMATION_MESSAGE);
-		System.gc();
+	
+	private void askForLookAndFeel() {
+		App.Prefs prefs = App.getPrefs();
+		LookAndFeelComboBox lnfcb = new LookAndFeelComboBox();
+		int resp = JOptionPane.showConfirmDialog(this, lnfcb, Strings.getString("lookAndFeel"), JOptionPane.OK_CANCEL_OPTION);
+		String newLnfClassName = lnfcb.getSelectedLookAndFeelClassName();
+		if (resp == JOptionPane.OK_OPTION && newLnfClassName != null) {
+			prefs.lookAndFeel = newLnfClassName;
+			// Save prefs now since switching to gtk lnf sometimes crashes...
+			prefs.save();
+			lnfcb.changeLookAndFeel();
+			SwingUtilities.updateComponentTreeUI(this);
+		}
 	}
+
 
 	private static String toMBStr(long l) {
 		int i = (int) ((l + 524288L) >> 20);
