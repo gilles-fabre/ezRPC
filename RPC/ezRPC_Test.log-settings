@@ -1,6 +1,178 @@
-MODID_LOG_MASK=0xFFFFFFFF
-MAX_LOG_SIZE=0
-SERVER_IP=127.0.0.1
-SERVER_PORT=25998
-AUTO_RECONNECT=1
-TRACES_OFF=0
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE preferences SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<preferences EXTERNAL_XML_VERSION="1.0">
+  <root type="user">
+    <map/>
+    <node name="reporter">
+      <map/>
+      <node name="globalFilters">
+        <map>
+          <entry key="nPidFilters" value="0"/>
+          <entry key="nModFilters" value="6"/>
+          <entry key="nProgFilters" value="1"/>
+          <entry key="nWindows" value="4"/>
+          <entry key="divider" value="184"/>
+          <entry key="divider1" value="314"/>
+          <entry key="Name" value="86"/>
+          <entry key="Mask" value="45"/>
+          <entry key="Value" value="45"/>
+          <entry key="PID" value="85"/>
+        </map>
+        <node name="modFilter0">
+          <map>
+            <entry key="modId" value="0x00000002"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="LINK"/>
+            <entry key="color" value="0xFF7D0500"/>
+          </map>
+        </node>
+        <node name="modFilter1">
+          <map>
+            <entry key="modId" value="0x00000003"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="TRANSPORT"/>
+            <entry key="color" value="0xFFD10000"/>
+          </map>
+        </node>
+        <node name="modFilter2">
+          <map>
+            <entry key="modId" value="0x00000004"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="RPC"/>
+            <entry key="color" value="0xFF008700"/>
+          </map>
+        </node>
+        <node name="modFilter3">
+          <map>
+            <entry key="modId" value="0x00000005"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="CLIENT"/>
+            <entry key="color" value="0xFF3729FF"/>
+          </map>
+        </node>
+        <node name="modFilter4">
+          <map>
+            <entry key="modId" value="0x00000006"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="SERVER"/>
+            <entry key="color" value="0xFFFF08B9"/>
+          </map>
+        </node>
+        <node name="modFilter5">
+          <map>
+            <entry key="modId" value="0x00000001"/>
+            <entry key="modMask" value="0x0000000F"/>
+            <entry key="name" value="THREAD"/>
+            <entry key="color" value="0xFF000000"/>
+          </map>
+        </node>
+        <node name="progFilter0">
+          <map>
+            <entry key="name" value="ezRPC_Test"/>
+            <entry key="color" value="0xFF000000"/>
+          </map>
+        </node>
+        <node name="window0">
+          <map>
+            <entry key="x" value="0"/>
+            <entry key="y" value="0"/>
+            <entry key="height" value="442"/>
+            <entry key="width" value="542"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="title" value="All ezRPC Traces"/>
+            <entry key="divider" value="4"/>
+            <entry key="divider1" value="226"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="regexp" value=""/>
+            <entry key="nModFilters" value="6"/>
+            <entry key="mod0" value="LINK"/>
+            <entry key="mod1" value="TRANSPORT"/>
+            <entry key="mod2" value="CLIENT"/>
+            <entry key="mod3" value="RPC"/>
+            <entry key="mod4" value="SERVER"/>
+            <entry key="mod5" value="THREAD"/>
+            <entry key="Name" value="15"/>
+            <entry key="Mask" value="15"/>
+            <entry key="Value" value="15"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="PID" value="15"/>
+          </map>
+        </node>
+        <node name="window1">
+          <map>
+            <entry key="x" value="542"/>
+            <entry key="y" value="0"/>
+            <entry key="height" value="442"/>
+            <entry key="width" value="542"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="title" value="TRANSPORT"/>
+            <entry key="divider" value="1"/>
+            <entry key="divider1" value="300"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="regexp" value=""/>
+            <entry key="nModFilters" value="2"/>
+            <entry key="mod0" value="TRANSPORT"/>
+            <entry key="mod1" value="LINK"/>
+            <entry key="Name" value="97"/>
+            <entry key="Mask" value="56"/>
+            <entry key="Value" value="56"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="PID" value="96"/>
+          </map>
+        </node>
+        <node name="window2">
+          <map>
+            <entry key="x" value="0"/>
+            <entry key="y" value="442"/>
+            <entry key="height" value="442"/>
+            <entry key="width" value="542"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="title" value="RPC Traces"/>
+            <entry key="divider" value="4"/>
+            <entry key="divider1" value="300"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="regexp" value=""/>
+            <entry key="nModFilters" value="1"/>
+            <entry key="mod0" value="RPC"/>
+            <entry key="Name" value="15"/>
+            <entry key="Mask" value="15"/>
+            <entry key="Value" value="15"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="PID" value="15"/>
+          </map>
+        </node>
+        <node name="window3">
+          <map>
+            <entry key="x" value="542"/>
+            <entry key="y" value="442"/>
+            <entry key="height" value="442"/>
+            <entry key="width" value="542"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="title" value="RPC Client and Server Traces"/>
+            <entry key="divider" value="1"/>
+            <entry key="divider1" value="300"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="regexp" value=""/>
+            <entry key="nModFilters" value="3"/>
+            <entry key="mod0" value="SERVER"/>
+            <entry key="mod1" value="CLIENT"/>
+            <entry key="mod2" value="RPC"/>
+            <entry key="Name" value="112"/>
+            <entry key="Mask" value="64"/>
+            <entry key="Value" value="64"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="PID" value="112"/>
+          </map>
+        </node>
+      </node>
+    </node>
+  </root>
+</preferences>

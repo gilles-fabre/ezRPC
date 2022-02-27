@@ -94,6 +94,7 @@ int main(int argc, char **argv) {
 		cout << "\ttest <tcp|file> server server_address" << endl;
 		cout << "\ttest <tcp|file> client server_address function_name [repeat_count]" << endl;
 		cout << "\ttest server_address must be addr:port for tcp" << endl;
+		cout << "registered funtions are: nop, inc <int>, repeat <string> <int>, concat <string> <int>, sum <int> <int>, incdouble <double>, byebye" << endl;
 		return -1;
 	}
 
