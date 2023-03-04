@@ -89,7 +89,7 @@ void RPCServer::ServiceCallback(void *_paramsP) {
 		// process rpc call
 		RemoteProcedure *procP = paramsP->m_serverP->m_rpc_map[func_name];
 		if (!procP) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << func_name << ")!" << endl;
 			// serialize back 'error'
 			rpc.SerializeCallReturn(rpc_paramsP, 0);
 			continue;

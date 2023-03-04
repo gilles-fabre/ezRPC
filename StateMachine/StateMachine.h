@@ -16,7 +16,7 @@ using namespace std;
 #define GARBAGE_COLLECTOR_PAUSE 5 // the garbage collector will work every <this amount of> seconds
 
 #define SM_TRACES 1 // the state machine will printf traces
-#define SM_MODULE 6
+#define SM_MODULE 7
 
 /**
  * \class Transition
@@ -241,6 +241,9 @@ public:
 	}
 
 	void SetRpcClient(const RPCClient *rpcClientP) {
+		if (m_rpcClientP)
+			delete m_rpcClientP;
+			
 		m_rpcClientP = rpcClientP;
 	}
 

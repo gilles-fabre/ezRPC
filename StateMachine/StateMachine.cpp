@@ -19,10 +19,10 @@ list<StateMachine *>	StateMachine::m_machines;
  *        transition callbacks
  */
 StateMachine::StateMachine(string &name, void *user_dataP) :
-		m_call_sem(1),
-		m_exiting(0),
-		m_timer_sem(1),
-		m_timer_thread(&TimerThreadCallback) {
+	m_call_sem(1),
+	m_exiting(0),
+	m_timer_sem(1),
+	m_timer_thread(&TimerThreadCallback) {
 	m_rpcClientP = NULL;
 	m_name = name;
 	m_user_dataP = user_dataP;
@@ -386,6 +386,13 @@ StateMachine *StateMachine::CreateFromDefinition(string &json_definition_filenam
 					cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: " << t << " invalid timeout source state!" << endl;
 			}
 		}
+
+		// if a timer, set it
+		State *initialStateP = (State *)smP->GetState();
+		unsigned long timeOut = initialStateP->GetTimeout();
+		if (timeOut != 0)
+			smP->InitiateTransitionTimer(timeOut, initialStateP->GetTimeoutTransition());
+
 	} catch (Json::RuntimeError &e) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error:" << endl << e.what() << endl;
 		return NULL;

@@ -1,0 +1,105 @@
+{
+    "StateMachine" : 
+    {
+        "name" : "test_machine",
+        "initial_state" : "init",
+        "states" : ["init", "start_game", "one", "two", "three", "game_over", "win"],
+        "transitions" : 
+        [ 
+            {
+                "name" : "start",
+                "source" : "init",
+                "destination" : "start_game",
+                "callback" : "to_game_start"  
+            },
+            {
+                "name" : "step",
+                "source" : "start_game",
+                "destination" : "one",
+                "callback" : "to_one"  
+            },
+            {
+                "name" : "step_back",
+                "source" : "start_game",
+                "destination" : "game_over",
+                "callback" : "to_game_over"  
+            },
+            {
+                "name" : "step",
+                "source" : "one",
+                "destination" : "two",
+                "callback" : "to_two"  
+            },
+            {
+                "name" : "step_back",
+                "source" : "one",
+                "destination" : "start_game",
+                "callback" : "to_game_start"  
+            },
+            {
+                "name" : "step",
+                "source" : "two",
+                "destination" : "three",
+                "callback" : "to_three"  
+            },
+            {
+                "name" : "step_back",
+                "source" : "two",
+                "destination" : "one",
+                "callback" : "to_one"  
+            },
+            {
+                "name" : "step",
+                "source" : "three",
+                "destination" : "win",
+                "callback" : "to_win"  
+            },
+            {
+                "name" : "step_back",
+                "source" : "three",
+                "destination" : "two",
+                "callback" : "to_two"  
+            },
+            {
+                "name" : "start",
+                "source" : "win",
+                "destination" : "start_game",
+                "callback" : "to_game_start"  
+            },
+            {
+                "name" : "start",
+                "source" : "game_over",
+                "destination" : "start_game",
+                "callback" : "to_game_start"  
+            }
+        ],
+        "timers" : 
+        [
+            {
+                "state" : "init",
+                "transition" : "start",
+                "timeout" : 5000
+            },
+            {
+                "state" : "start_game",
+                "transition" : "step_back",
+                "timeout" : 10000
+            },
+            {
+                "state" : "one",
+                "transition" : "step_back",
+                "timeout" : 7000
+            },
+            {
+                "state" : "two",
+                "transition" : "step_back",
+                "timeout" : 5000
+            },
+            {
+                "state" : "three",
+                "transition" : "step_back",
+                "timeout" : 3000
+            }
+        ]
+    }
+}

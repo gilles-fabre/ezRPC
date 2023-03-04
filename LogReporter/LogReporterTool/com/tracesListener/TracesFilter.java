@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.prefs.Preferences;
 
-@SuppressWarnings("deprecation")
 public class TracesFilter {
 	public static final String globalFiltersKey = "globalFilters";
 
@@ -40,7 +39,7 @@ public class TracesFilter {
 	//----- adders
 
 	public void addProcessIdFilter(int aFilter) {
-		pidFilters.add(new Integer(aFilter));
+		pidFilters.add(Integer.valueOf(aFilter));
 	}
 
 	public void addModuleIdFilter(ModuleFilter aFilter) {
@@ -68,7 +67,7 @@ public class TracesFilter {
 	//----- setters
 
 	public void setProcessIdFilter(int index, int aFilter) {
-		pidFilters.set(index, new Integer(aFilter));
+		pidFilters.set(index, Integer.valueOf(aFilter));
 	}
 
 	public void setModuleIdFilter(int index, ModuleFilter aFilter) {
