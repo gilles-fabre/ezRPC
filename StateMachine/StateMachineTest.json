@@ -78,7 +78,7 @@
             {
                 "state" : "init",
                 "transition" : "start",
-                "timeout" : 5000
+                "timeout" : 10000
             },
             {
                 "state" : "start_game",

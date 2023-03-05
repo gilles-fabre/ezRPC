@@ -70,6 +70,28 @@ static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter *> *v,
 }
 
 /**
+ * \fn unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP)
+ * \brief Release the given machine so the garbage collector can trash it.
+ * 
+ * \param (*v)[0] RemoteProcedureCall::UIN64 + target StateMachine ID
+ * 
+ * \return 0 is everything went fine, -1 else.
+*/
+static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
+	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter *p1 = (*v)[1];
+	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+	if (!p1 || !p2)
+		return -1;
+
+	StateMachine* machineP = (StateMachine*)p1->GetUInt64Reference();
+	if (machineP) 
+		machineP->Release();
+	
+	return 0;
+}
+
+/**
  * \fn unsigned long DoTransition(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP)
  * \brief Instruct the given machine to do a transition.
  * 
@@ -139,6 +161,7 @@ int main(int argc, char **argv) {
 	server.RegisterProcedure("do_transition", &DoTransition);
 	server.RegisterProcedure("delayed_connect", &DelayedConnect);
 	server.RegisterProcedure("build_machine", &BuildMachine);
+	server.RegisterProcedure("release_machine", &ReleaseMachine);
 
 	server.IterateAndWait();
 

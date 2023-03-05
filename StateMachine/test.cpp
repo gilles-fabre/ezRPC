@@ -4,6 +4,8 @@
 #include <math.h>
 #include <fstream>
 
+#include <termios.h>
+
 #include <RemoteProcedureCall.h>
 #include <RPCServer.h>
 #include <RPCClient.h>
@@ -21,6 +23,48 @@ static const std::string sStart("start");
 
 static 	Thread* gThreadP = NULL;
 
+struct termios orig_termios;
+
+// courtesy of Mr Bee @https://forums.swift.org/t/how-to-do-non-blocking-keyboard-input-reading-on-console-app/23894/4
+// ----------------------------------------------------------------------------
+void reset_terminal_mode() {
+    tcsetattr(0, TCSANOW, &orig_termios);
+}
+
+void set_conio_terminal_mode() {
+    struct termios new_termios;
+
+    /* take two copies - one for now, one for later */
+    tcgetattr(0, &orig_termios);
+    memcpy(&new_termios, &orig_termios, sizeof(new_termios));
+
+    /* register cleanup handler, and set the new terminal mode */
+    atexit(reset_terminal_mode);
+    cfmakeraw(&new_termios);
+    tcsetattr(0, TCSANOW, &new_termios);
+}
+
+int kbhit() {
+	set_conio_terminal_mode();
+    struct timeval tv = { 0L, 0L };
+    fd_set fds;
+    FD_ZERO(&fds);
+    FD_SET(0, &fds);
+    int keyPress = select(1, &fds, NULL, NULL, &tv);
+	reset_terminal_mode();
+	return keyPress;
+}
+
+int getch() {
+    int r;
+    unsigned char c;
+    if ((r = read(0, &c, sizeof(c))) < 0) {
+        return r;
+    } else {
+        return c;
+    }
+}
+// ----------------------------------------------------------------------------
 static int RandomAddQuestion() {
 	srand48(time(NULL));
 	int a = rand() % 10;
@@ -30,10 +74,35 @@ static int RandomAddQuestion() {
 }
 static void PromptTheUserAndDoTransition(void *parameterP) {
 	Thread *threadP = (Thread*)parameterP;
+
 	int expected = RandomAddQuestion();
-	int answer;
-	cin >> answer;
+
+	char key;
+	string num;
+	do {
+		key = (char)-1;
+		if (kbhit())
+			key = getch();
+			
+		if (threadP->IsAskedToStop())
+			break;
+
+		if (key == '\n' || key == '\r')
+			break;
+
+		if (key < '0' || key > '9')
+			continue;
+
+		cout << key << flush;
+		num += key;
+
+	} while (true);
+
 	if (!threadP->IsAskedToStop()) {
+		stringstream ss;
+		ss << num;
+		int answer;
+		ss >> answer; 
 		if (expected == answer)
 			gRpcMachineServerP->RpcCall("do_transition", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::STRING, sStep, RemoteProcedureCall::END_OF_CALL);
 		else
@@ -95,8 +164,10 @@ static unsigned long Win(vector<RemoteProcedureCall::Parameter *> *v, void *user
 	cin >> c;
 	if (c == 'Y')
 		gRpcMachineServerP->RpcCall("do_transition", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::STRING, sStart, RemoteProcedureCall::END_OF_CALL);
-	else exit(0);
-
+	else {
+		gRpcMachineClientP->Stop();
+		gRpcMachineServerP->Stop();	
+	}
 	return 0;
 }
 static unsigned long GameOver(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
@@ -113,7 +184,10 @@ static unsigned long GameOver(vector<RemoteProcedureCall::Parameter *> *v, void 
 	cin >> c;
 	if (c == 'Y')
 		gRpcMachineServerP->RpcCall("do_transition", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::STRING, sStart, RemoteProcedureCall::END_OF_CALL);
-	else exit(0);
+	else {
+		gRpcMachineClientP->Stop();
+		gRpcMachineServerP->Stop();	
+	}
 
 	return 0;
 }
@@ -160,14 +234,20 @@ int main(int argc, char **argv) {
 				   RemoteProcedureCall::PTR, RemoteProcedureCall::UINT64, (uint64_t*)&gMachineId,
 				   RemoteProcedureCall::END_OF_CALL); 			
 	
-	// tell the state machine to connect here after 0 seconds (the definition file sets a timeout on the first state!)
+	// tell the state machine to connect here after 1 seconds (the definition file sets a timeout on the first state!)
 	machineServer.RpcCall("delayed_connect", 
 				   RemoteProcedureCall::UINT64, gMachineId,
 				   RemoteProcedureCall::STRING, client_addr, 			
-				   RemoteProcedureCall::UINT16, 0,
+				   RemoteProcedureCall::UINT16, 1,
 				   RemoteProcedureCall::END_OF_CALL); 			
 
 	server.IterateAndWait();
+
+	// let the machine be freed by the garbage collector
+	gRpcMachineServerP->RpcCall("release_machine", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::END_OF_CALL);
+
+	if (gThreadP) 
+		gThreadP->Stop();
 
 	return 0;
 }
