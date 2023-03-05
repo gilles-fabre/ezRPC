@@ -33,8 +33,8 @@
             {
                 "name" : "step_back",
                 "source" : "one",
-                "destination" : "start_game",
-                "callback" : "to_game_start"  
+                "destination" : "game_over",
+                "callback" : "to_game_over"  
             },
             {
                 "name" : "step",
@@ -45,8 +45,8 @@
             {
                 "name" : "step_back",
                 "source" : "two",
-                "destination" : "one",
-                "callback" : "to_one"  
+                "destination" : "game_over",
+                "callback" : "to_game_over"  
             },
             {
                 "name" : "step",

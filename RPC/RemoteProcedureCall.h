@@ -187,43 +187,43 @@ public:
 
 		// parameter getters, return a reference to the embedded
 		// parameter value such that it can be modified
-		char &GetCharValue() {
+		char &GetCharReference() {
 			return m_value._char;
 		}
 
-		unsigned char &GetByteValue() {
+		unsigned char &GetByteReference() {
 			return m_value._byte;
 		}
 
-		int16_t &GetInt16Value() {
+		int16_t &GetInt16Reference() {
 			return m_value._i16;
 		}
 
-		uint16_t &GetUInt16Value() {
+		uint16_t &GetUInt16Reference() {
 			return m_value._ui16;
 		}
 
-		int32_t &GetInt32Value() {
+		int32_t &GetInt32Reference() {
 			return m_value._i32;
 		}
 
-		uint32_t &GetUInt32Value() {
+		uint32_t &GetUInt32Reference() {
 			return m_value._ui32;
 		}
 
-		int64_t &GetInt64Value() {
+		int64_t &GetInt64Reference() {
 			return m_value._i64;
 		}
 
-		uint64_t &GetUInt64Value() {
+		uint64_t &GetUInt64Reference() {
 			return m_value._ui64;
 		}
 
-		double &GetDoubleValue() {
+		double &GetDoubleReference() {
 			return m_value._double;
 		}
 
-		string &GetStringValue() {
+		string &GetStringReference() {
 			return *m_value._stringP;
 		}
 

@@ -7,16 +7,16 @@
       <map/>
       <node name="globalFilters">
         <map>
-          <entry key="Mask" value="161"/>
-          <entry key="Name" value="265"/>
-          <entry key="PID" value="264"/>
-          <entry key="Value" value="161"/>
+          <entry key="Mask" value="86"/>
+          <entry key="Name" value="152"/>
+          <entry key="PID" value="152"/>
+          <entry key="Value" value="86"/>
           <entry key="divider" value="1"/>
           <entry key="divider1" value="314"/>
           <entry key="nModFilters" value="7"/>
           <entry key="nPidFilters" value="0"/>
           <entry key="nProgFilters" value="3"/>
-          <entry key="nWindows" value="4"/>
+          <entry key="nWindows" value="5"/>
         </map>
         <node name="modFilter0">
           <map>
@@ -102,7 +102,7 @@
             <entry key="divider1" value="226"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="haveGhostDivider" value="false"/>
-            <entry key="height" value="539"/>
+            <entry key="height" value="306"/>
             <entry key="isMaximum" value="false"/>
             <entry key="mod0" value="LINK"/>
             <entry key="mod1" value="TRANSPORT"/>
@@ -133,7 +133,7 @@
             <entry key="divider1" value="300"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="haveGhostDivider" value="false"/>
-            <entry key="height" value="539"/>
+            <entry key="height" value="306"/>
             <entry key="isMaximum" value="false"/>
             <entry key="mod0" value="TRANSPORT"/>
             <entry key="mod1" value="LINK"/>
@@ -159,7 +159,7 @@
             <entry key="divider1" value="300"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="haveGhostDivider" value="false"/>
-            <entry key="height" value="539"/>
+            <entry key="height" value="306"/>
             <entry key="isMaximum" value="false"/>
             <entry key="mod0" value="RPC"/>
             <entry key="nModFilters" value="1"/>
@@ -171,7 +171,7 @@
             <entry key="title" value="RPC Traces"/>
             <entry key="width" value="954"/>
             <entry key="x" value="0"/>
-            <entry key="y" value="539"/>
+            <entry key="y" value="306"/>
           </map>
         </node>
         <node name="window3">
@@ -184,7 +184,7 @@
             <entry key="divider1" value="300"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="haveGhostDivider" value="false"/>
-            <entry key="height" value="539"/>
+            <entry key="height" value="306"/>
             <entry key="isMaximum" value="false"/>
             <entry key="mod0" value="SERVER"/>
             <entry key="mod1" value="CLIENT"/>
@@ -198,7 +198,30 @@
             <entry key="title" value="RPC Client and Server Traces"/>
             <entry key="width" value="954"/>
             <entry key="x" value="954"/>
-            <entry key="y" value="539"/>
+            <entry key="y" value="306"/>
+          </map>
+        </node>
+        <node name="window4">
+          <map>
+            <entry key="Mask" value="15"/>
+            <entry key="Name" value="15"/>
+            <entry key="PID" value="15"/>
+            <entry key="Value" value="15"/>
+            <entry key="divider" value="4"/>
+            <entry key="divider1" value="237"/>
+            <entry key="ghostDivider" value="0"/>
+            <entry key="haveGhostDivider" value="false"/>
+            <entry key="height" value="306"/>
+            <entry key="isMaximum" value="false"/>
+            <entry key="mod0" value="STATE_MACHINE"/>
+            <entry key="nModFilters" value="1"/>
+            <entry key="nProgFilters" value="1"/>
+            <entry key="prog0" value="ezStateMachineServer"/>
+            <entry key="regexp" value=""/>
+            <entry key="title" value="State Machine Traces"/>
+            <entry key="width" value="954"/>
+            <entry key="x" value="0"/>
+            <entry key="y" value="612"/>
           </map>
         </node>
       </node>

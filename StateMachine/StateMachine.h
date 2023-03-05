@@ -514,6 +514,8 @@ public:
 	}
 
 	static StateMachine *CreateFromDefinition(string &json_definition_filename);
+	static StateMachine *CreateFromDefinition(istream &json_definition_stream);
+	
 	static void printTransition(State *sourceP, State *destinationP, const string &transition_name, void *user_dataP);
 };
 

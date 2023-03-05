@@ -19,10 +19,10 @@ list<StateMachine *>	StateMachine::m_machines;
  *        transition callbacks
  */
 StateMachine::StateMachine(string &name, void *user_dataP) :
-	m_call_sem(1),
-	m_exiting(0),
-	m_timer_sem(1),
-	m_timer_thread(&TimerThreadCallback) {
+		m_call_sem(1),
+		m_exiting(0),
+		m_timer_sem(1),
+		m_timer_thread(&TimerThreadCallback) {
 	m_rpcClientP = NULL;
 	m_name = name;
 	m_user_dataP = user_dataP;
@@ -211,32 +211,42 @@ void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, cons
 }
 
 /**
- * \fn StateMachine *StateMachine::CreateFromDefinition(StateMachineDefinition *pDef)
+ * \fn StateMachine *StateMachine::CreateFromDefinition(string& json_defintion_filename)
  * \brief This factory method creates a state machine from the given definition.
  *
  * \param json_defintion_filename is the JSON SM definition file.
- * \param id is the newly created state machine id (can be retrieved later on to identify
- * 		  the machine.
  *
  * \return the created machine or NULL if an error occured.
  */
 StateMachine *StateMachine::CreateFromDefinition(string &json_definition_filename) {
-	Json::Value 	root;   		// 'root' will contain the root value after parsing.
-	StateMachine	*smP = NULL;
-
 #ifdef SM_TRACES
 	LogVText(SM_MODULE, 0, true, "StateMachine::CreateFromDefinition(%s)", json_definition_filename.c_str());
 #endif
 
-	try {
-		ifstream file(json_definition_filename);
-		if (!file.is_open()) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't open " << json_definition_filename << "!" << endl;
-			return NULL;
-		}
+	ifstream file(json_definition_filename);
+	if (!file.is_open()) {
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't open " << json_definition_filename << "!" << endl;
+		return NULL;
+	}
 
-		// create the state machine from the file definition
-		file >> root;
+	// create the state machine from the file definition
+	return CreateFromDefinition(file);
+}
+
+/**
+ * \fn StateMachine *StateMachine::CreateFromDefinition(istream& json_stream)
+ * \brief This factory method creates a state machine from the given definition.
+ *
+ * \param json_stream is the JSON SM definition input stream.
+ *
+ * \return the created machine or NULL if an error occured.
+ */
+StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
+	Json::Value 	root;   		// 'root' will contain the root value after parsing.
+	StateMachine	*smP = NULL;
+
+	try {
+		json_stream >> root;
 
 		// get and check state machine object
 		Json::Value sm = root["StateMachine"];

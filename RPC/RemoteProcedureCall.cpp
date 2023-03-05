@@ -1005,7 +1005,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 
 	serialized_call.push_back(UINT64);
 
-	ui64 = paramP->at(0)->GetUInt64Value();
+	ui64 = paramP->at(0)->GetUInt64Reference();
 	push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 0, true, "pushed return result address %lx", ui64);
@@ -1046,7 +1046,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 		// push value
 		switch (type) {
 			case BYTE:
-				b = (*i)->GetByteValue();
+				b = (*i)->GetByteReference();
 				serialized_call.push_back(b);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed byte parameter value %u", b);
@@ -1054,7 +1054,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case CHAR:
-				c = (*i)->GetCharValue();
+				c = (*i)->GetCharReference();
 				serialized_call.push_back(c);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed char parameter value %c", c);
@@ -1062,7 +1062,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case INT16:
-				i16 = (*i)->GetInt16Value();
+				i16 = (*i)->GetInt16Reference();
 				push_int16(serialized_call, htons(i16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int16 parameter value %d", i16);
@@ -1070,7 +1070,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case UINT16:
-				ui16 = (*i)->GetUInt16Value();
+				ui16 = (*i)->GetUInt16Reference();
 				push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uin16 parameter value %u", ui16);
@@ -1078,7 +1078,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case INT32:
-				i32 = (*i)->GetInt32Value();
+				i32 = (*i)->GetInt32Reference();
 				push_int32(serialized_call, htonl(i32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int32 parameter value %d", i32);
@@ -1086,7 +1086,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case UINT32:
-				ui32 = (*i)->GetUInt32Value();
+				ui32 = (*i)->GetUInt32Reference();
 				push_uint32(serialized_call, htonl(ui32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uint32 parameter value %u", ui32);
@@ -1094,7 +1094,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case INT64:
-				i64 = (*i)->GetInt64Value();
+				i64 = (*i)->GetInt64Reference();
 				push_int64(serialized_call, HTONLL(i64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int64 parameter value %ld", i64);
@@ -1102,7 +1102,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case UINT64:
-				ui64 = (*i)->GetUInt64Value();
+				ui64 = (*i)->GetUInt64Reference();
 				push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uint64 parameter value %lu", ui64);
@@ -1110,7 +1110,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case DOUBLE:
-				d = (*i)->GetDoubleValue();
+				d = (*i)->GetDoubleReference();
 				ui64 = *(uint64_t *)&d;
 				push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
@@ -1119,7 +1119,7 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter *>* paramP, unsig
 				break;
 
 			case STRING:
-				s = (*i)->GetStringValue();
+				s = (*i)->GetStringReference();
 				ui16 = (uint16_t)s.length();
 				push_uint16(serialized_call, htons(ui16));
 #ifdef RPC_TRACES

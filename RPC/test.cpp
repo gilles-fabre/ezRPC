@@ -25,7 +25,7 @@ static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user
 static unsigned long IncDouble(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	double &d = p1->GetDoubleValue();
+	double &d = p1->GetDoubleReference();
 	cout << "value: " << d << endl;
 	d += 0.1;
 	cout << "inc'ed value: " << d << endl;
@@ -35,7 +35,7 @@ static unsigned long IncDouble(vector<RemoteProcedureCall::Parameter *> *v, void
 static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
 	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	int16_t &i = p1->GetInt16Value();
+	int16_t &i = p1->GetInt16Reference();
 	cout << "value: " << i << endl;
 	++i;
 	cout << "inc'ed value: " << i << endl;
@@ -48,11 +48,11 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v, vo
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];
 
 
-	string &text = p1->GetStringValue();
+	string &text = p1->GetStringReference();
 	cout << "text: " << text << endl;
 	string origin_text = text;
 	cout << "origin_text: " << origin_text << endl;
-	int16_t num = p2->GetInt16Value();
+	int16_t num = p2->GetInt16Reference();
 	cout << "num concat: " << num << endl;
 	for (int i = 0; i < num; i++)
 		text.append(origin_text);
@@ -66,8 +66,8 @@ static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v, vo
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];
 
 	string text;
-	text = p1->GetStringValue();
-	int16_t num = p2->GetInt16Value();
+	text = p1->GetStringReference();
+	int16_t num = p2->GetInt16Reference();
 
 	for (int i = 0; i < num; i++)
 		cout << "repeat: " << text << endl;
@@ -80,8 +80,8 @@ static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter *> *v, voi
 	RemoteProcedureCall::Parameter *p1 = (*v)[1];
 	RemoteProcedureCall::Parameter *p2 = (*v)[2];
 
-	int16_t num1 = p1->GetInt16Value();
-	int16_t num2 = p2->GetInt16Value();
+	int16_t num1 = p1->GetInt16Reference();
+	int16_t num2 = p2->GetInt16Reference();
 
 	cout << "sum: " << num1 + num2 << endl;
 
