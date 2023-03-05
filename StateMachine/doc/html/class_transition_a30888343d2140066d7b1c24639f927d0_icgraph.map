@@ -1,0 +1,6 @@
+<map id="Transition::SetState" name="Transition::SetState">
+<area shape="rect" id="node1" title=" " alt="" coords="452,42,600,69"/>
+<area shape="rect" id="node2" href="$class_state.html#a6f844a37ab79228ef76118708fe9884b" title="Creates a new or modifies an existing transition." alt="" coords="256,42,404,69"/>
+<area shape="rect" id="node3" href="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479" title="This factory method creates a state machine from the given definition." alt="" coords="9,5,204,47"/>
+<area shape="rect" id="node4" href="$class_state_machine.html#a5ae50df76241fa60b614f1137036f9ce" title="Creates a new or modifies an existing transition." alt="" coords="5,71,208,98"/>
+</map>

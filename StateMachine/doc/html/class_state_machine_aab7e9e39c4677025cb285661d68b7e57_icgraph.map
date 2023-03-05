@@ -1,0 +1,4 @@
+<map id="StateMachine::GetName" name="StateMachine::GetName">
+<area shape="rect" id="node1" title="returns the machine&#39;s name" alt="" coords="273,5,455,32"/>
+<area shape="rect" id="node2" href="$class_state_machine.html#a650177fcdb065e12880e94405fa8036c" title="Creates and starts a new thread to call a transition callback." alt="" coords="5,5,225,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="StateMachine::CheckTransition" name="StateMachine::CheckTransition">
+<area shape="rect" id="node1" title="Checks whether the given transition exists for the current state." alt="" coords="5,5,228,32"/>
+<area shape="rect" id="node2" href="$class_state.html#a63ec1de002b5a2f9c28125b27efa3f80" title="Checks whether the given transition exists for this." alt="" coords="276,5,443,32"/>
+</map>

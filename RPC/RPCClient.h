@@ -23,12 +23,24 @@ class RPCClient {
 	RemoteProcedureCall *m_rpcP;		// rpc underlying abstraction
 
 public:
+	/**
+	 * \fn RPCClient(Transport::TransportType transport_type,  string &server_address)
+	 * \brief RPCClient constructor
+	 * 
+	 * \param transport_type is one of the Transport::TransportType enum values
+	 * \param server_address is the server address (for the given transport_type)
+	*/
 	RPCClient(Transport::TransportType transport_type,  string &server_address) {
 		m_transportP = Transport::CreateTransport(transport_type);
 		Link *linkP = m_transportP ? m_transportP->LinkRequest((const string &)server_address) : NULL;
 		m_rpcP = linkP ? new RemoteProcedureCall(linkP) : NULL;
 	}
 
+	/**
+	 * \fn virtual ~RPCClient()
+	 * \brief RPCClient destructor. Closes and destroys the associated RPC 
+	 * 		  and Transport members.
+	*/
 	virtual ~RPCClient() {
 #ifdef RPCCLIENT_TRACES
 		LogText(RPCCLIENT_MODULE, 0, true, "RPCClient::~RpcClient()");
@@ -47,6 +59,10 @@ public:
 		m_rpcP = NULL;
 	}
 
+	/**
+	 * \fn void Stop()
+	 * \brief Stops the associated transport.
+	*/
 	void Stop() {
 		if (m_transportP)
 			m_transportP->Close();

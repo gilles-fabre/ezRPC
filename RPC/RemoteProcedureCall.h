@@ -102,9 +102,16 @@ public:
 		} m_value;
 
 	public:
-		// parameter constructors, invoked depending on
-		// the serialized parameter type and pointer
-		// presence (for an output parameter).
+		/**
+		 * \fn Parameter(<type> value, uint64_t caller_valP = 0)
+		 * \brief parameter constructors, invoked depending on 
+		 * 		  the serialized parameter type and pointer
+		 * 		  presence (for an output parameter).
+		 * 
+		 * \param value is the parameter value
+		 * \param caller_valP is the shadow parameter address (to return a 
+		 * 					  valuet the caller if set). Set to 0 by default.
+		*/
 		Parameter(unsigned char value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
 			memset(&m_value, 0, sizeof(m_value));
@@ -176,8 +183,12 @@ public:
 			*m_value._stringP = value;
 		}
 
-		// if destroying a STRING parameter, the string object
-		// must be freed.
+		/**
+		 * \fn ~Parameter
+		 * \brief parameter destructor. if destroying a STRING parameter, 
+		 * 		  the string objectmust be freed.
+		 * 
+		*/
 		~Parameter() {
 			if (m_type == STRING && m_value._stringP)
 				delete m_value._stringP;
@@ -185,8 +196,11 @@ public:
 
 		ParamType GetType() {return m_type;}
 
-		// parameter getters, return a reference to the embedded
-		// parameter value such that it can be modified
+		/**
+		 * \fn Get<Type>Reference
+		 * \brief parameter getters, return a reference to the embedded
+		 * 		  parameter value such that it can be modified.
+		*/
 		char &GetCharReference() {
 			return m_value._char;
 		}
@@ -237,26 +251,50 @@ public:
 		}
 	};
 
-	// RPC constructor keeps the link reference
-	// the link is owned by the transport which will
-	// close and delete it upon destruction
+	/**
+	 * \fn RemoteProcedureCall(Link *linkP)
+	 * \brief RPC constructor keeps the link reference
+	 * 		  the link is owned by the transport which will
+	 * 		  close and delete it upon destruction.
+	 * 
+	 * \param linkP is the transport link to the server.
+	*/
 	RemoteProcedureCall(Link *linkP) {
 		m_linkP = linkP;
 	}
 
 	// rpc call caller side
 
-	// call an rpc function
+	/**
+	 * \fn unsigned long SerializeCall(const string func_name, ...)
+	 * \brief Serializes a call to the server.
+	 * 
+	 * \param func_name is the name of the Remote Procedure to call
+	 * 					on the server side.
+	 * \param ... variadic, ended by RemoteProcedure::END_OF_CALL, see
+	 * 		      ParamType for possible values.
+	*/
 	unsigned long 		 SerializeCall(const string func_name, ...);
 	unsigned long 		 SerializeCall(const string func_name, va_list vl);
 
 	// rpc function callee side
 
-	// analyze an rpc function call
+	/**
+	 * \fn vector<Parameter *>* DeserializeCall(string &func_name)
+	 * \brief Deserializes a call into the server.
+	 * 
+	 * \param func_name is the name of the Remote Procedure to call
+	 * 					on the server side.
+	*/
 	vector<Parameter *>* DeserializeCall(string &func_name);
 
-	// send back rpc function result
-	void 				 SerializeCallReturn(vector<Parameter *>* paramP, unsigned long ret_val);
+	/**
+	 * \fn
+	 * \brief Send back the Remote Procedure result
+	 * 
+	 * \param paramP the vector<Parameter *>* containing the passed parameters.
+	*/
+	void SerializeCallReturn(vector<Parameter *>* paramP, unsigned long ret_val);
 
 	void Close() {
 		if (m_linkP)

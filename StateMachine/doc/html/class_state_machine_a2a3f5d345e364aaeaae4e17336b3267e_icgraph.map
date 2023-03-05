@@ -1,0 +1,4 @@
+<map id="StateMachine::IsExiting" name="StateMachine::IsExiting">
+<area shape="rect" id="node1" title=" " alt="" coords="273,5,448,32"/>
+<area shape="rect" id="node2" href="$class_state_machine.html#a650177fcdb065e12880e94405fa8036c" title="Creates and starts a new thread to call a transition callback." alt="" coords="5,5,225,32"/>
+</map>

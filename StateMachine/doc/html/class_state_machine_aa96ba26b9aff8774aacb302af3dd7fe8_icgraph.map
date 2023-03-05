@@ -1,0 +1,4 @@
+<map id="StateMachine::InitiateTransitionTimer" name="StateMachine::InitiateTransitionTimer">
+<area shape="rect" id="node1" title="Creates and starts a timer which will inject a transition into the current state when the given time ..." alt="" coords="248,5,476,47"/>
+<area shape="rect" id="node2" href="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479" title="This factory method creates a state machine from the given definition." alt="" coords="5,5,200,47"/>
+</map>

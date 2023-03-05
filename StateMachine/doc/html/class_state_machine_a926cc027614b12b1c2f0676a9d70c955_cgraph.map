@@ -1,0 +1,5 @@
+<map id="StateMachine::SetTransitionCallback" name="StateMachine::SetTransitionCallback">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,208,47"/>
+<area shape="rect" id="node2" href="$class_state.html#a6a338d3f16aed2a9e34bfe366f45a8a4" title="Modifies an existing transition&#39;s callback." alt="" coords="256,13,460,39"/>
+<area shape="rect" id="node3" href="$class_transition.html#a2c3cf207d78732bb24c6b7d62d956c32" title=" " alt="" coords="508,13,679,39"/>
+</map>

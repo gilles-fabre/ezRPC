@@ -1,0 +1,4 @@
+<map id="RPCClient::RpcCall" name="RPCClient::RpcCall">
+<area shape="rect" id="node1" title="see RemoteProcedureCall::SerializedCall ..." alt="" coords="5,13,148,39"/>
+<area shape="rect" id="node2" href="$class_remote_procedure_call.html#abe4b7a7d4ace994b765593dce30f0f44" title="Serializes a call to the server." alt="" coords="196,5,359,47"/>
+</map>

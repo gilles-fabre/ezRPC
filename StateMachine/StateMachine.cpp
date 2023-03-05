@@ -11,7 +11,7 @@ Thread		  	 		StateMachine::m_garbage_collector_thread(&GarbageCollectorCallback
 list<StateMachine *>	StateMachine::m_machines;
 
 /**
- * \fn StateMachine(void *pUserData)
+ * \fn StateMachine::StateMachine(string &name, void *user_dataP)
  * \brief StateMachine constructor, WARNING: does not set the initial state.
  *
  * \param name is the name of the state machine
@@ -38,7 +38,7 @@ StateMachine::StateMachine(string &name, void *user_dataP) :
 }
 
 /**
- * \fn Release()
+ * \fn void StateMachine::Release()
  * \brief Stops the state machine's context pending threads, then mark the state machine as
  *        exiting so the garbage collector thread can destroy it.
  */
@@ -51,7 +51,7 @@ void StateMachine::Release() {
 }
 
 /**
- * \fn ~StateMachine()
+ * \fn StateMachine::~StateMachine()
  * \brief StateMachine destructor, clear all of the State Machine content. DO NOT
  *        CALL DIRECTLY. Call Release instead. The Garbage collector will free this
  *        SM later on when its safe (no pending threads)
@@ -73,7 +73,7 @@ StateMachine::~StateMachine() {
 }
 
 /**
- * \fn GarbageCollector
+ * \fn void StateMachine::GarbageCollectorCallback(void *parametersP)
  * \brief StateMachine garbage collector destroys the exiting state machines
  * 		  every once in a while, ensuring all pending callback threads have
  * 		  triggered or have been cancelled before then.
@@ -199,6 +199,14 @@ void StateMachine::TimerThreadCallback(void *parametersP) {
 	return;
 }
 
+/**
+ * \fn void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name)
+ * \brief Clears the current transition timer (timeout) if any, then sets a new
+ * 		 transition timer to the the given transition.
+ *
+ * \param milli_sec_timeout is the new timer duration
+ * \param transition_name is the name of the target transition (upon timer tiggering)
+ */
 void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name) {
 	// cancel pending timer if any
 	CancelTransitionTimer();

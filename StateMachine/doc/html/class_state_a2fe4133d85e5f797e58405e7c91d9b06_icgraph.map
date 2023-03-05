@@ -1,0 +1,6 @@
+<map id="State::GetTimeout" name="State::GetTimeout">
+<area shape="rect" id="node1" title=" " alt="" coords="504,42,645,69"/>
+<area shape="rect" id="node2" href="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479" title="This factory method creates a state machine from the given definition." alt="" coords="259,5,453,47"/>
+<area shape="rect" id="node3" href="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb" title="Executes the given transition on the current state." alt="" coords="256,71,456,98"/>
+<area shape="rect" id="node4" href="$class_state_machine.html#ab502559100a6bc6d7cbf0bbaff8a6d3a" title=" " alt="" coords="5,64,208,105"/>
+</map>

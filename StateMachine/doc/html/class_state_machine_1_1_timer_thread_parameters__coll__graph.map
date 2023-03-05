@@ -1,0 +1,4 @@
+<map id="StateMachine::TimerThreadParameters" name="StateMachine::TimerThreadParameters">
+<area shape="rect" id="node1" title=" " alt="" coords="5,95,208,136"/>
+<area shape="rect" id="node2" href="$class_state_machine.html" title="Defines a dynamically programmable thread safe state machine. Only the DoTransition method is thread ..." alt="" coords="51,5,162,32"/>
+</map>

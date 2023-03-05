@@ -8,6 +8,15 @@
 
 using namespace std;
 
+/**
+ * \fn bool RemoteProcedureCall::SendPacket(unsigned char *bufferP, unsigned long data_len)
+ * \brief Sends a data packet over the transport link.
+ * 
+ * \param bufferP contains the data to be sent
+ * \param data_len is the number of bytes to sent from bufferP
+ * 
+ * \return true if everything went fine, false else.
+*/
 bool RemoteProcedureCall::SendPacket(unsigned char *bufferP, unsigned long data_len) {
 	uint64_t 		len = data_len;
 	unsigned char 	buffer[sizeof(uint64_t)];
@@ -28,6 +37,15 @@ bool RemoteProcedureCall::SendPacket(unsigned char *bufferP, unsigned long data_
 	return true;
 }
 
+/**
+ * \fn unsigned char *RemoteProcedureCall::ReceivePacket(unsigned long &data_len)
+ * \brief Receives a data packet over the transport link.
+ * 
+ * \param data_len is the number of bytes to receive. This is blocking call!
+ * 
+ * \return a newly (m)allocated buffer pointing the received data. This buffer must
+ * 		   be freed by the caller. Returns NULL if an error occured.
+*/
 unsigned char *RemoteProcedureCall::ReceivePacket(unsigned long &data_len) {
 	uint64_t 		len;
 	unsigned char 	buffer[sizeof(uint64_t)];

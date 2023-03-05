@@ -1,0 +1,7 @@
+<map id="State::DoTransition" name="State::DoTransition">
+<area shape="rect" id="node1" title="Executes the given transition on this, DOES NOT CALL the associated callback." alt="" coords="5,81,151,108"/>
+<area shape="rect" id="node2" href="$class_transition.html#a76202cd3c273ba4a4d33725d376177e4" title=" " alt="" coords="199,5,371,32"/>
+<area shape="rect" id="node3" href="$class_transition.html#ae5ca14ac36b4392e3a9d3916d441d224" title=" " alt="" coords="207,56,362,83"/>
+<area shape="rect" id="node4" href="$class_state.html#ab8c2ab4b9d17b92d54c6d56d24bb4f98" title=" " alt="" coords="221,107,348,133"/>
+<area shape="rect" id="node5" href="$class_transition.html#aba3dd6dc74e05b78e6e932ace31b3984" title=" " alt="" coords="209,157,360,184"/>
+</map>

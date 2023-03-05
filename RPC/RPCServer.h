@@ -53,6 +53,9 @@ class RPCServer {
 		 * \brief constructs a service parameters object giving
 		 *        access to the 'parent' RPCServer and the link
 		 *        to the client.
+		 * 
+		 * \param serverP points to the RPC Server
+		 * \param linkP points the tranport link
 		 */
 		ServiceParameters(RPCServer *serverP, Link *linkP) {
 			m_serverP = serverP;
@@ -61,6 +64,14 @@ class RPCServer {
 	};
 
 public:
+	/**
+	 * \fn RPCServer(Transport::TransportType transport_type,  string &server_address, void *user_dataP = NULL)
+	 * \brief RPCServer constructor
+	 * 
+	 * \param transport_type is one of the Transport::TransportType enum values
+	 * \param server_address is the server address (for the given transport_type)
+	 * \param user_dataP is a pointer to user data passed in every subsequent RPC call. Set to NULL by default
+	*/
 	RPCServer(Transport::TransportType transport_type,  string &address, void *user_dataP = NULL) {
 		m_listening_threadP = NULL;
 		m_transportP = Transport::CreateTransport(transport_type);
@@ -68,6 +79,11 @@ public:
 		m_user_dataP = user_dataP;
 	}
 
+	/**
+	 * \fn virtual ~RPCServer()
+	 * \brief RPCClient destructor. Closes and destroys the associated RPC 
+	 * 		  and Transport members.
+	*/
 	virtual ~RPCServer() {
 #ifdef RPCSERVER_TRACES
 		LogText(RPCSERVER_MODULE, 0, true, "RPCServer::~RpcServer()");
@@ -84,14 +100,33 @@ public:
 		m_transportP = NULL;
 	}
 
+	/**
+	 * \fn void RegisterProcedure(string name, RemoteProcedure *procedureP)
+	 * \brief Registers a procedure so it can be called by a Remote Client.
+	 * 
+	 * \param name is the name of the registered procedure
+	 * \param procedureP is a pointer to the registered procedure callback
+	*/
 	void RegisterProcedure(string name, RemoteProcedure *procedureP) {
 		m_rpc_map.insert(std::pair<string, RemoteProcedure *>(name, procedureP));
 	}
 
+	/**
+	 * \fn void UnregisterProcedure(string name)
+	 * \brief Unregisters a procedure.
+	 * 
+	 * \param name is the name of the unregistered procedure
+	*/
 	void UnregisterProcedure(string name) {
 		m_rpc_map.erase(name);
 	}
 
+	/**
+	 * \fn void Run()
+	 * \brief Once shot run of the server, will accept a single connection
+	 *        and then serve the connected client. Exits when the connection
+	 * 		  drops.
+	*/
 	void Run() {
 		if (!m_listening_threadP)
 			m_listening_threadP = new Thread(&ListeningCallback);
@@ -100,6 +135,12 @@ public:
 			m_listening_threadP->Run((void *)this);
 	}
 
+	/**
+	 * \fn void RunAndWait()
+	 * \brief Once shot run of the server, will accept a single connection
+	 *        and then serve the connected client. Exits and Wait when the connection
+	 * 		  drops.
+	*/
 	void RunAndWait() {
 		if (!m_listening_threadP)
 			m_listening_threadP = new Thread(&ListeningCallback);
@@ -108,6 +149,10 @@ public:
 			m_listening_threadP->RunAndWait((void *)this);
 	}
 
+	/**
+	 * \fn void Iterate()
+	 * \brief Iterates on Run.
+	*/
 	void Iterate() {
 		if (!m_listening_threadP)
 			m_listening_threadP = new Thread(&ListeningCallback);
@@ -116,6 +161,10 @@ public:
 			m_listening_threadP->Iterate((void *)this);
 	}
 
+	/**
+	 * \fn void Iterate()
+	 * \brief Iterates on Run then Wait.
+	*/
 	void IterateAndWait() {
 		if (!m_listening_threadP)
 			m_listening_threadP = new Thread(&ListeningCallback);
@@ -124,6 +173,10 @@ public:
 			m_listening_threadP->IterateAndWait((void *)this);
 	}
 
+	/**
+	 * \fn void Stop()
+	 * \brief Stops the associated transport.
+	*/
 	void Stop() {
 #ifdef RPCSERVER_TRACES
 		LogText(RPCSERVER_MODULE, 0, true, "RPCServer::Stop()");

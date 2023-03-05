@@ -193,7 +193,6 @@ public:
 	 * \fn bool CheckTransition(const string &transition_name)
 	 * \brief Checks whether the given transition exists for this
 	 *
-	 *
 	 * \param name is the transition identifier
 	 *
 	 * \return true if and only if the transition exists
@@ -363,7 +362,6 @@ public:
 	 * \param transition_name is the transition's identifier
 	 *
 	 * \return true if the transition exists, false else.
-	 *
 	 */
 	bool CheckTransition(const string &transition_name) {
 		if (!m_current_stateP)
@@ -382,7 +380,6 @@ public:
 	 * \brief Checks whether the state machine has pending threads
 	 *
 	 * \return true if the state machine has threads still running
-	 *
 	 */
 	inline bool IsPendingThread() {
 		 bool pending;
@@ -405,7 +402,6 @@ public:
 	 * \param transition_name is the transition's identifier
 	 * \param from_timer_thread shall be set when calling from the timer thread
 	 *        to prevent the thread from being canceled prior to the transition.
-	 *
 	 */
 
 	// callback thread parameters

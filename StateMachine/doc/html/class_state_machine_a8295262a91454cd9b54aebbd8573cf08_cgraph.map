@@ -1,0 +1,4 @@
+<map id="StateMachine::Release" name="StateMachine::Release">
+<area shape="rect" id="node1" title="Stops the state machine&#39;s context pending threads, then mark the state machine as exiting so the garb..." alt="" coords="5,13,176,39"/>
+<area shape="rect" id="node2" href="$class_state_machine.html#a0fb3b2d1e0daeeacac4edee9d85d033d" title=" " alt="" coords="224,5,451,47"/>
+</map>

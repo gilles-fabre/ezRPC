@@ -11,6 +11,11 @@
 /**
  * \fn unsigned long RPCClient::RpcCall(string &func_name, int num_args, ...)
  * \brief see RemoteProcedureCall::SerializedCall ...
+ * 
+ * \param func_name is the name of the Remote Procedure called
+ * \param ... variadic, is a set of param types and paramters, ended by END_OF_CALL
+ * 
+ * \return the Remote Procedure result.
  */
 unsigned long RPCClient::RpcCall(string func_name, ...) {
 	unsigned long result;

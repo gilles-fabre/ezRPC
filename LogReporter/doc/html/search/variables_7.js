@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['gautoreconnect_801',['gAutoReconnect',['../log2reporter_8c.html#a9a27abec8d833ee653051de1250dd8d5',1,'log2reporter.c']]],
+  ['gconnectionfailed_802',['gConnectionFailed',['../log2reporter_8c.html#ad4d79eec222f053a0da1fe2b4f347e7b',1,'log2reporter.c']]],
+  ['globalfilterskey_803',['globalFiltersKey',['../classtraces_listener_1_1_traces_filter.html#ac3a26787f2cef7c8e97632df6c627ece',1,'tracesListener::TracesFilter']]],
+  ['glogfile_804',['gLogFile',['../log2reporter_8c.html#aad8856ff229fd6bcfaca228884bb713b',1,'log2reporter.c']]],
+  ['glogsocket_805',['gLogSocket',['../log2reporter_8c.html#a52349f187e6fb05972b3a473e48818de',1,'log2reporter.c']]],
+  ['gmaxlogsize_806',['gMaxLogSize',['../log2reporter_8c.html#a6eb99b3df74689a9b8c0c87cf9b4d0f5',1,'log2reporter.c']]],
+  ['gmodidlogmask_807',['gModIdLogMask',['../log2reporter_8c.html#a2921d860fbf8b2ff97598c09e997d991',1,'log2reporter.c']]],
+  ['gotomi_808',['gotoMI',['../classreporter_1_1_main_frame_v_e.html#ae5e04b520150bfb3cff9fa9f2ffb066d',1,'reporter::MainFrameVE']]],
+  ['gotopumi_809',['gotoPUMI',['../classreporter_1_1_content_frame_v_e.html#aff76daf468164902cf20fc7d84b6b46d',1,'reporter::ContentFrameVE']]],
+  ['gprocessname_810',['gProcessName',['../log2reporter_8c.html#a9c797c773c8dacb9a8818882a3e7c5b4',1,'log2reporter.c']]],
+  ['granted_811',['granted',['../_l_i_c_e_n_s_e_8txt.html#a3091a38580d45626a207e82bb0fc1dd5',1,'LICENSE.txt']]],
+  ['greenslider_812',['greenSlider',['../classreporter_1_1_a_r_g_b_color_panel.html#ae5d38ae79c7a1acb5c1a6fc4193651ad',1,'reporter::ARGBColorPanel']]],
+  ['greenspinner_813',['greenSpinner',['../classreporter_1_1_a_r_g_b_color_panel.html#ab842e2b27d58741fae7feca028740c63',1,'reporter::ARGBColorPanel']]],
+  ['gserveripaddress_814',['gServerIpAddress',['../log2reporter_8c.html#a1c1ac2ecb691d5bc1a71db867cb11e7f',1,'log2reporter.c']]],
+  ['gserverport_815',['gServerPort',['../log2reporter_8c.html#afb995dd6d98301af7ce20e5d2e0c17f9',1,'log2reporter.c']]],
+  ['gsettingsloaded_816',['gSettingsLoaded',['../log2reporter_8c.html#af62ae474b4b2ea4d9d71cd7a5e70d618',1,'log2reporter.c']]],
+  ['gtracesoff_817',['gTracesOff',['../log2reporter_8c.html#aa83d79bcac254f2cc2e915cfddfdd9a0',1,'log2reporter.c']]]
+];
