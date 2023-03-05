@@ -165,8 +165,10 @@ static unsigned long Win(vector<RemoteProcedureCall::Parameter *> *v, void *user
 	if (c == 'Y')
 		gRpcMachineServerP->RpcCall("do_transition", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::STRING, sStart, RemoteProcedureCall::END_OF_CALL);
 	else {
-		gRpcMachineClientP->Stop();
-		gRpcMachineServerP->Stop();	
+		// let the machine be freed by the garbage collector
+		gRpcMachineServerP->RpcCall("release_machine", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::END_OF_CALL);
+
+		exit(0);
 	}
 	return 0;
 }
@@ -185,8 +187,10 @@ static unsigned long GameOver(vector<RemoteProcedureCall::Parameter *> *v, void 
 	if (c == 'Y')
 		gRpcMachineServerP->RpcCall("do_transition", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::STRING, sStart, RemoteProcedureCall::END_OF_CALL);
 	else {
-		gRpcMachineClientP->Stop();
-		gRpcMachineServerP->Stop();	
+		// let the machine be freed by the garbage collector
+		gRpcMachineServerP->RpcCall("release_machine", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::END_OF_CALL);
+
+		exit(0);
 	}
 
 	return 0;
@@ -242,12 +246,6 @@ int main(int argc, char **argv) {
 				   RemoteProcedureCall::END_OF_CALL); 			
 
 	server.IterateAndWait();
-
-	// let the machine be freed by the garbage collector
-	gRpcMachineServerP->RpcCall("release_machine", RemoteProcedureCall::UINT64, gMachineId, RemoteProcedureCall::END_OF_CALL);
-
-	if (gThreadP) 
-		gThreadP->Stop();
 
 	return 0;
 }

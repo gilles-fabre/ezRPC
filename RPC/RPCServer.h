@@ -90,13 +90,9 @@ public:
 #endif
 		Stop();
 
-		if (m_transportP) {
-#ifdef RPCSERVER_TRACES
-			LogText(RPCSERVER_MODULE, 4, true, "Closing transport");
-#endif
-			m_transportP->Close();
+		if (m_transportP) 
 			delete m_transportP;
-		}
+
 		m_transportP = NULL;
 	}
 
@@ -181,9 +177,17 @@ public:
 #ifdef RPCSERVER_TRACES
 		LogText(RPCSERVER_MODULE, 0, true, "RPCServer::Stop()");
 #endif
+
+		if (m_transportP) {
+#ifdef RPCSERVER_TRACES
+			LogText(RPCSERVER_MODULE, 4, true, "Closing transport");
+#endif
+			m_transportP->Close();
+		}
+
 		if (m_listening_threadP) {
 			if (m_listening_threadP->IsRunning())
-				m_listening_threadP->StopAndWait();
+				m_listening_threadP->Stop();
 
 			delete m_listening_threadP;
 			m_listening_threadP = NULL;
