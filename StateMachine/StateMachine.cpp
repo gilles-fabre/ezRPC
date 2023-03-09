@@ -211,10 +211,12 @@ void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, cons
 	// cancel pending timer if any
 	CancelTransitionTimer();
 
-	m_timer_sem.A();
+#ifdef SM_TRACES
+	LogVText(SM_MODULE, 0, true, "Initiating transition timer to %ld ms", milli_sec_timeout);
+#endif
 
+	m_timer_sem.A(); 
 	m_timer_thread.Run(new TimerThreadParameters(this, milli_sec_timeout, transition_name));
-
 	m_timer_sem.R();
 }
 

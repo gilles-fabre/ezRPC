@@ -250,197 +250,199 @@ $(document).ready(function(){initNavTree('_state_machine_8cpp_source.html',''); 
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="comment">// cancel pending timer if any</span></div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="class_state_machine.html#a0fb3b2d1e0daeeacac4edee9d85d033d">CancelTransitionTimer</a>();</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    m_timer_sem.A();</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    m_timer_thread.Run(<span class="keyword">new</span> <a class="code" href="class_state_machine_1_1_timer_thread_parameters.html">TimerThreadParameters</a>(<span class="keyword">this</span>, milli_sec_timeout, transition_name));</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#ifdef SM_TRACES</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    LogVText(<a class="code" href="_state_machine_8h.html#a2cc936d783885a8fcd27e0b8cb3b8d54">SM_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Initiating transition timer to %ld ms&quot;</span>, milli_sec_timeout);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    m_timer_sem.R();</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">  229</a></span>&#160;<a class="code" href="class_state_machine.html">StateMachine</a> *<a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a>(<span class="keywordtype">string</span> &amp;json_definition_filename) {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">#ifdef SM_TRACES</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    LogVText(<a class="code" href="_state_machine_8h.html#a2cc936d783885a8fcd27e0b8cb3b8d54">SM_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;StateMachine::CreateFromDefinition(%s)&quot;</span>, json_definition_filename.c_str());</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    ifstream file(json_definition_filename);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordflow">if</span> (!file.is_open()) {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t open &quot;</span> &lt;&lt; json_definition_filename &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="comment">// create the state machine from the file definition</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">CreateFromDefinition</a>(file);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;}</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="class_state_machine.html#a54afd6ed82abb59621d4011c6889b479">  252</a></span>&#160;<a class="code" href="class_state_machine.html">StateMachine</a> *<a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a>(istream &amp;json_stream) {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    Json::Value     root;           <span class="comment">// &#39;root&#39; will contain the root value after parsing.</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="class_state_machine.html">StateMachine</a>    *smP = NULL;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        json_stream &gt;&gt; root;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="comment">// get and check state machine object</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        Json::Value sm = root[<span class="stringliteral">&quot;StateMachine&quot;</span>];</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordflow">if</span> (sm.empty() || !sm.isObject()) {</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: JSON file missing &#39;StateMachine&#39; object!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="comment">// get and check machine&#39;s name</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;name&quot;</span>) || !sm[<span class="stringliteral">&quot;name&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;name&#39; object!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        }</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="keywordtype">string</span> machine_name = sm[<span class="stringliteral">&quot;name&quot;</span>].asString();</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordflow">if</span> (machine_name.empty()) {</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;name&#39; is empty!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="comment">// get and check machine&#39;s initial state</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;initial_state&quot;</span>) || !sm[<span class="stringliteral">&quot;initial_state&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missig &#39;initial_state&#39; object!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <span class="keywordtype">string</span> initial_state = sm[<span class="stringliteral">&quot;initial_state&quot;</span>].asString();</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordflow">if</span> (initial_state.empty()) {</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;initial_state&#39; is empty!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        }</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="comment">// get and check states</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;states&quot;</span>) || !sm[<span class="stringliteral">&quot;states&quot;</span>].isArray()) {</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;states&#39; array!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        }</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        Json::Value states = sm[<span class="stringliteral">&quot;states&quot;</span>];</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator state = states.begin(); state !=  states.end(); state++) {</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordflow">if</span> (!(*state).isString()) {</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;states&#39; array must contain strings only!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            }</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="comment">// get and check transitions</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;transitions&quot;</span>) || !sm[<span class="stringliteral">&quot;transitions&quot;</span>].isArray()) {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;transitions&#39; array!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        Json::Value transitions = sm[<span class="stringliteral">&quot;transitions&quot;</span>];</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            Json::Value &amp;t = *transition;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordflow">if</span> (!t.isObject()) {</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;transitions&#39; array must contain transition objects only!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            }</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;name&quot;</span>) || !t[<span class="stringliteral">&quot;name&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing transition &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            }</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;source&quot;</span>) || !t[<span class="stringliteral">&quot;source&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;source&#39; state name!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            }</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;destination&quot;</span>) || !t[<span class="stringliteral">&quot;destination&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;destination&#39; state name!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            }</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;callback&quot;</span>) || !t[<span class="stringliteral">&quot;callback&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;callback&#39; name!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        Json::Value timers;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        <span class="keywordflow">if</span> (sm.isMember(<span class="stringliteral">&quot;timers&quot;</span>)) {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            timers = sm[<span class="stringliteral">&quot;timers&quot;</span>];</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            <span class="keywordflow">if</span> (!timers.isArray()) {</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition&#39;s &#39;timers&#39; must be an array: &quot;</span> &lt;&lt; timers.asString() &lt;&lt; endl;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            }</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            <span class="keywordflow">for</span> (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                Json::Value &amp;t = *timer;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                <span class="keywordflow">if</span> (!t.isObject()) {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;timers&#39; array must contain timer transitions only: &quot;</span> &lt;&lt; t.asString() &lt;&lt; endl;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                }</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;state&quot;</span>) || !t[<span class="stringliteral">&quot;state&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing initial state &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                }</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;transition&quot;</span>) || !t[<span class="stringliteral">&quot;transition&quot;</span>].isString()) {</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing transition &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                }</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;timeout&quot;</span>) || !t[<span class="stringliteral">&quot;timeout&quot;</span>].isInt64()) {</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;timeout&#39; value!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                }</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            }</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        }</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <span class="comment">// we&#39;ve got everything ready, build the state machine</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    m_timer_sem.A(); </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    m_timer_thread.Run(<span class="keyword">new</span> <a class="code" href="class_state_machine_1_1_timer_thread_parameters.html">TimerThreadParameters</a>(<span class="keyword">this</span>, milli_sec_timeout, transition_name));</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    m_timer_sem.R();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">  231</a></span>&#160;<a class="code" href="class_state_machine.html">StateMachine</a> *<a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a>(<span class="keywordtype">string</span> &amp;json_definition_filename) {</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#ifdef SM_TRACES</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    LogVText(<a class="code" href="_state_machine_8h.html#a2cc936d783885a8fcd27e0b8cb3b8d54">SM_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;StateMachine::CreateFromDefinition(%s)&quot;</span>, json_definition_filename.c_str());</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    ifstream file(json_definition_filename);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span> (!file.is_open()) {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t open &quot;</span> &lt;&lt; json_definition_filename &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="comment">// create the state machine from the file definition</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">CreateFromDefinition</a>(file);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;}</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="class_state_machine.html#a54afd6ed82abb59621d4011c6889b479">  254</a></span>&#160;<a class="code" href="class_state_machine.html">StateMachine</a> *<a class="code" href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a>(istream &amp;json_stream) {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    Json::Value     root;           <span class="comment">// &#39;root&#39; will contain the root value after parsing.</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <a class="code" href="class_state_machine.html">StateMachine</a>    *smP = NULL;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        json_stream &gt;&gt; root;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="comment">// get and check state machine object</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        Json::Value sm = root[<span class="stringliteral">&quot;StateMachine&quot;</span>];</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">if</span> (sm.empty() || !sm.isObject()) {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: JSON file missing &#39;StateMachine&#39; object!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="comment">// get and check machine&#39;s name</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;name&quot;</span>) || !sm[<span class="stringliteral">&quot;name&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;name&#39; object!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordtype">string</span> machine_name = sm[<span class="stringliteral">&quot;name&quot;</span>].asString();</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">if</span> (machine_name.empty()) {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;name&#39; is empty!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">// get and check machine&#39;s initial state</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;initial_state&quot;</span>) || !sm[<span class="stringliteral">&quot;initial_state&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missig &#39;initial_state&#39; object!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        }</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordtype">string</span> initial_state = sm[<span class="stringliteral">&quot;initial_state&quot;</span>].asString();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordflow">if</span> (initial_state.empty()) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;initial_state&#39; is empty!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        }</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160; </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="comment">// get and check states</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;states&quot;</span>) || !sm[<span class="stringliteral">&quot;states&quot;</span>].isArray()) {</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;states&#39; array!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        Json::Value states = sm[<span class="stringliteral">&quot;states&quot;</span>];</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator state = states.begin(); state !=  states.end(); state++) {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordflow">if</span> (!(*state).isString()) {</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;states&#39; array must contain strings only!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        }</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="comment">// get and check transitions</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordflow">if</span> (!sm.isMember(<span class="stringliteral">&quot;transitions&quot;</span>) || !sm[<span class="stringliteral">&quot;transitions&quot;</span>].isArray()) {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition missing &#39;transitions&#39; array!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        Json::Value transitions = sm[<span class="stringliteral">&quot;transitions&quot;</span>];</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            Json::Value &amp;t = *transition;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">if</span> (!t.isObject()) {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;transitions&#39; array must contain transition objects only!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;name&quot;</span>) || !t[<span class="stringliteral">&quot;name&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing transition &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;source&quot;</span>) || !t[<span class="stringliteral">&quot;source&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;source&#39; state name!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;destination&quot;</span>) || !t[<span class="stringliteral">&quot;destination&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;destination&#39; state name!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            }</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;callback&quot;</span>) || !t[<span class="stringliteral">&quot;callback&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;callback&#39; name!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        Json::Value timers;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="keywordflow">if</span> (sm.isMember(<span class="stringliteral">&quot;timers&quot;</span>)) {</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            timers = sm[<span class="stringliteral">&quot;timers&quot;</span>];</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keywordflow">if</span> (!timers.isArray()) {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine definition&#39;s &#39;timers&#39; must be an array: &quot;</span> &lt;&lt; timers.asString() &lt;&lt; endl;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="keywordflow">for</span> (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                Json::Value &amp;t = *timer;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                <span class="keywordflow">if</span> (!t.isObject()) {</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: StateMachine&#39;s &#39;timers&#39; array must contain timer transitions only: &quot;</span> &lt;&lt; t.asString() &lt;&lt; endl;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                }</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;state&quot;</span>) || !t[<span class="stringliteral">&quot;state&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing initial state &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                }</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;transition&quot;</span>) || !t[<span class="stringliteral">&quot;transition&quot;</span>].isString()) {</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing transition &#39;name&#39;!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                }</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                <span class="keywordflow">if</span> (!t.isMember(<span class="stringliteral">&quot;timeout&quot;</span>) || !t[<span class="stringliteral">&quot;timeout&quot;</span>].isInt64()) {</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; is missing &#39;timeout&#39; value!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                }</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            }</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        }</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="comment">// create the sm</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        smP = <span class="keyword">new</span> <a class="code" href="class_state_machine.html#a886e61db4c098668d64f65a1eade3b4a">StateMachine</a>(machine_name);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="comment">// add the states</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator state = states.begin(); state !=  states.end(); state++)</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            smP-&gt;<a class="code" href="class_state_machine.html#a78531f4d2f3b7dd82f430d82c58a9b8c">AddState</a>((*state).asString());</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        <span class="comment">// set the initial state</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        smP-&gt;<a class="code" href="class_state_machine.html#ad6160b36bf79f050a9e653f80d45e3ba">SetInitialState</a>(initial_state);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        <span class="comment">// add the transitions</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            Json::Value &amp;t = *transition;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            <a class="code" href="class_state.html">State</a>  *srcP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;source&quot;</span>].asString());</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            <a class="code" href="class_state.html">State</a>  *dstP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;destination&quot;</span>].asString());</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;transition_name = t[<span class="stringliteral">&quot;name&quot;</span>].asString();</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;callback_name = t[<span class="stringliteral">&quot;callback&quot;</span>].asString();</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            <span class="keywordflow">if</span> (srcP &amp;&amp; dstP)</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                srcP-&gt;<a class="code" href="class_state.html#a6f844a37ab79228ef76118708fe9884b">SetTransition</a>(dstP, transition_name, callback_name);</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; invalid source or destination state(s)!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        <span class="comment">// add the timers</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">if</span> (!timers.empty()) {</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            <span class="keywordflow">for</span> (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                Json::Value &amp;t = *timer;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                <a class="code" href="class_state.html">State</a>  *srcP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;state&quot;</span>].asString());</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                <span class="keywordflow">if</span> (srcP) {</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;transition_name = t[<span class="stringliteral">&quot;transition&quot;</span>].asString();</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> timeout = (<span class="keywordtype">unsigned</span> long )t[<span class="stringliteral">&quot;timeout&quot;</span>].asInt64();</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                    srcP-&gt;<a class="code" href="class_state.html#a0106fcfa02319f93fc06afc9552f70c0">SetTimeoutTransition</a>(timeout, transition_name);</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                } <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; invalid timeout source state!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            }</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        }</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        <span class="comment">// if a timer, set it</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <a class="code" href="class_state.html">State</a> *initialStateP = (<a class="code" href="class_state.html">State</a> *)smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>();</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> timeOut = initialStateP-&gt;<a class="code" href="class_state.html#a2fe4133d85e5f797e58405e7c91d9b06">GetTimeout</a>();</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="keywordflow">if</span> (timeOut != 0)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            smP-&gt;<a class="code" href="class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8">InitiateTransitionTimer</a>(timeOut, initialStateP-&gt;<a class="code" href="class_state.html#a700ecce21d27009a4db867ed6fbc92aa">GetTimeoutTransition</a>());</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    } <span class="keywordflow">catch</span> (Json::RuntimeError &amp;e) {</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error:&quot;</span> &lt;&lt; endl &lt;&lt; e.what() &lt;&lt; endl;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    }</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160; </div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    <span class="keywordflow">return</span> smP;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;}</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="comment">// we&#39;ve got everything ready, build the state machine</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="comment">// create the sm</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        smP = <span class="keyword">new</span> <a class="code" href="class_state_machine.html#a886e61db4c098668d64f65a1eade3b4a">StateMachine</a>(machine_name);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="comment">// add the states</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator state = states.begin(); state !=  states.end(); state++)</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            smP-&gt;<a class="code" href="class_state_machine.html#a78531f4d2f3b7dd82f430d82c58a9b8c">AddState</a>((*state).asString());</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="comment">// set the initial state</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        smP-&gt;<a class="code" href="class_state_machine.html#ad6160b36bf79f050a9e653f80d45e3ba">SetInitialState</a>(initial_state);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        <span class="comment">// add the transitions</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keywordflow">for</span> (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            Json::Value &amp;t = *transition;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            <a class="code" href="class_state.html">State</a>  *srcP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;source&quot;</span>].asString());</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            <a class="code" href="class_state.html">State</a>  *dstP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;destination&quot;</span>].asString());</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;transition_name = t[<span class="stringliteral">&quot;name&quot;</span>].asString();</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;callback_name = t[<span class="stringliteral">&quot;callback&quot;</span>].asString();</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            <span class="keywordflow">if</span> (srcP &amp;&amp; dstP)</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                srcP-&gt;<a class="code" href="class_state.html#a6f844a37ab79228ef76118708fe9884b">SetTransition</a>(dstP, transition_name, callback_name);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; invalid source or destination state(s)!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        }</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="comment">// add the timers</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keywordflow">if</span> (!timers.empty()) {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="keywordflow">for</span> (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                Json::Value &amp;t = *timer;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <a class="code" href="class_state.html">State</a>  *srcP = smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>(t[<span class="stringliteral">&quot;state&quot;</span>].asString());</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                <span class="keywordflow">if</span> (srcP) {</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                    <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;transition_name = t[<span class="stringliteral">&quot;transition&quot;</span>].asString();</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> timeout = (<span class="keywordtype">unsigned</span> long )t[<span class="stringliteral">&quot;timeout&quot;</span>].asInt64();</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                    srcP-&gt;<a class="code" href="class_state.html#a0106fcfa02319f93fc06afc9552f70c0">SetTimeoutTransition</a>(timeout, transition_name);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                } <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                    cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: &quot;</span> &lt;&lt; t &lt;&lt; <span class="stringliteral">&quot; invalid timeout source state!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            }</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        }</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="comment">// if a timer, set it</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <a class="code" href="class_state.html">State</a> *initialStateP = (<a class="code" href="class_state.html">State</a> *)smP-&gt;<a class="code" href="class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8">GetState</a>();</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> timeOut = initialStateP-&gt;<a class="code" href="class_state.html#a2fe4133d85e5f797e58405e7c91d9b06">GetTimeout</a>();</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        <span class="keywordflow">if</span> (timeOut != 0)</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            smP-&gt;<a class="code" href="class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8">InitiateTransitionTimer</a>(timeOut, initialStateP-&gt;<a class="code" href="class_state.html#a700ecce21d27009a4db867ed6fbc92aa">GetTimeoutTransition</a>());</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160; </div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    } <span class="keywordflow">catch</span> (Json::RuntimeError &amp;e) {</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error:&quot;</span> &lt;&lt; endl &lt;&lt; e.what() &lt;&lt; endl;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    }</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordflow">return</span> smP;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_state_machine_1_1_callback_thread_parameters_html_a5d19e6cf214beaa3677547ef57d14b36"><div class="ttname"><a href="class_state_machine_1_1_callback_thread_parameters.html#a5d19e6cf214beaa3677547ef57d14b36">StateMachine::CallbackThreadParameters::m_threadP</a></div><div class="ttdeci">Thread * m_threadP</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00416">StateMachine.h:416</a></div></div>
@@ -450,7 +452,7 @@ $(document).ready(function(){initNavTree('_state_machine_8cpp_source.html',''); 
 <div class="ttc" id="aclass_state_machine_html_a8295262a91454cd9b54aebbd8573cf08"><div class="ttname"><a href="class_state_machine.html#a8295262a91454cd9b54aebbd8573cf08">StateMachine::Release</a></div><div class="ttdeci">void Release()</div><div class="ttdoc">Stops the state machine's context pending threads, then mark the state machine as exiting so the garb...</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8cpp_source.html#l00045">StateMachine.cpp:45</a></div></div>
 <div class="ttc" id="aclass_state_machine_1_1_timer_thread_parameters_html"><div class="ttname"><a href="class_state_machine_1_1_timer_thread_parameters.html">StateMachine::TimerThreadParameters</a></div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00465">StateMachine.h:465</a></div></div>
 <div class="ttc" id="aclass_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdoc">State represents a machine state, it owns the paths to the connected (through Events and Actions) Sta...</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00062">StateMachine.h:62</a></div></div>
-<div class="ttc" id="aclass_state_machine_html_a9e282b1b3524dc89ef69c4022bd629f5"><div class="ttname"><a href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a></div><div class="ttdeci">static StateMachine * CreateFromDefinition(string &amp;json_definition_filename)</div><div class="ttdoc">This factory method creates a state machine from the given definition.</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8cpp_source.html#l00229">StateMachine.cpp:229</a></div></div>
+<div class="ttc" id="aclass_state_machine_html_a9e282b1b3524dc89ef69c4022bd629f5"><div class="ttname"><a href="class_state_machine.html#a9e282b1b3524dc89ef69c4022bd629f5">StateMachine::CreateFromDefinition</a></div><div class="ttdeci">static StateMachine * CreateFromDefinition(string &amp;json_definition_filename)</div><div class="ttdoc">This factory method creates a state machine from the given definition.</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8cpp_source.html#l00231">StateMachine.cpp:231</a></div></div>
 <div class="ttc" id="aclass_state_machine_1_1_callback_thread_parameters_html_a46ceb02b23ead991d16d8026ea549299"><div class="ttname"><a href="class_state_machine_1_1_callback_thread_parameters.html#a46ceb02b23ead991d16d8026ea549299">StateMachine::CallbackThreadParameters::m_machineP</a></div><div class="ttdeci">StateMachine * m_machineP</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00415">StateMachine.h:415</a></div></div>
 <div class="ttc" id="aclass_state_machine_1_1_timer_thread_parameters_html_a9d620530f1d364249c29877eb0d2434f"><div class="ttname"><a href="class_state_machine_1_1_timer_thread_parameters.html#a9d620530f1d364249c29877eb0d2434f">StateMachine::TimerThreadParameters::m_transition_name</a></div><div class="ttdeci">string m_transition_name</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00469">StateMachine.h:469</a></div></div>
 <div class="ttc" id="aclass_state_machine_1_1_callback_thread_parameters_html_a20909f610b59cfda115aee41b49edfe4"><div class="ttname"><a href="class_state_machine_1_1_callback_thread_parameters.html#a20909f610b59cfda115aee41b49edfe4">StateMachine::CallbackThreadParameters::m_transition_name</a></div><div class="ttdeci">string m_transition_name</div><div class="ttdef"><b>Definition:</b> <a href="_state_machine_8h_source.html#l00413">StateMachine.h:413</a></div></div>
