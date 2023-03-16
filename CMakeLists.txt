@@ -33,8 +33,6 @@ add_executable(ezStateMachine_Test
 add_executable(ezStateMachineServer 
 			   StateMachine/StateMachineServer.cpp)
 
-target_link_libraries(ezRPC_Test ezRPC)
-
 target_link_libraries(ezStateMachine_Test ezStateMachine)
 
 target_link_libraries(ezStateMachineServer ezStateMachine)
