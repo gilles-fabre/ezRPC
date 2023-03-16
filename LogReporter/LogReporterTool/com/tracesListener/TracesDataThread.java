@@ -3,47 +3,25 @@ package tracesListener;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Observable;
 
 @SuppressWarnings("deprecation")
-public class TracesDataThread extends Observable implements Runnable {
-	private volatile boolean running = false;
+public class TracesDataThread extends DataThread {
 	private BufferedInputStream in = null;
 	private TraceMessage firstMessage = null;
 	private Socket clientSocket;
 	private TracesListenerServer listenerServer;
-	private Thread thread;
 
 	/**
 	 * @param clientSocket
 	 * @param listenerServer
 	 */
 	TracesDataThread(Socket clientSocket, TracesListenerServer listenerServer) {
-		super();
+		super("TracesDataThread");
 		this.clientSocket = clientSocket;
 		this.listenerServer = listenerServer;
-		this.thread = new Thread(this, "TraceData");
 	}
 
-	public void start() {
-		thread.start();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
-	 */
-	public void run() {
-		try {
-			runInnards();
-		} catch (RuntimeException e) {
-			setChanged();
-			notifyObservers(e);
-		}
-	}
-
-	private void runInnards() {
+	protected void runInnards() {
 		// Loop reading trace messages and notifying observers until EOF or io exception.
 		// (Another thread calling our shutdown() method will result in an io exception.)
 		running = true;
@@ -70,7 +48,7 @@ public class TracesDataThread extends Observable implements Runnable {
 	}
 
 	// Remove all observers, and close the input stream.
-	void shutdown() {
+	public void shutdown() {
 		if (running) {
 			running = false;
 			deleteObservers();
@@ -86,13 +64,4 @@ public class TracesDataThread extends Observable implements Runnable {
 			}
 		}
 	}
-
-	public boolean isRunning() {
-		return running;
-	}
-
-	public TraceMessage getFirstMessage() {
-		return firstMessage;
-	}
-
 }

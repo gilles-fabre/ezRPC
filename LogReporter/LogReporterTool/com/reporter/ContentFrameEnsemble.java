@@ -11,8 +11,8 @@ import java.util.prefs.Preferences;
 import javax.swing.JDesktopPane;
 import javax.swing.SwingUtilities;
 
+import tracesListener.DataThread;
 import tracesListener.TraceMessage;
-import tracesListener.TracesDataThread;
 
 public class ContentFrameEnsemble {
 	private static ContentFrameEnsemble instance = null;
@@ -338,7 +338,7 @@ public class ContentFrameEnsemble {
 	// For each non-zombie content frame, if the given message coming from the given thread
 	// matches that content frame, buffer it to that content frame.
 	// This gets called on the consumer thread.
-	void bufferIfMatches(TraceMessage msg, TracesDataThread dt) {
+	void bufferIfMatches(TraceMessage msg, DataThread dt) {
 		for (ContentFrame contentFrame : contentFrameList) {
 			if (!contentFrame.isZombie) {
 				contentFrame.bufferIfMatches(msg, dt);

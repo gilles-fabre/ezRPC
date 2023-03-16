@@ -74,11 +74,11 @@ public class TracesListenerServer extends Observable implements Runnable {
 		}
 	}
 
-	public boolean dataThreadExited(TracesDataThread aDataThread) {
+	public boolean dataThreadExited(DataThread aDataThread) {
 		return dataThreads.indexOf(aDataThread) == -1;
 	}
 
-	public boolean addDataThread(TracesDataThread aDataThread) {
+	public boolean addDataThread(DataThread aDataThread) {
 		boolean result;
 		// Register all observers for the new data thread
 		Iterator<Object> observersIterator = tracesObservers.listIterator();
@@ -91,7 +91,7 @@ public class TracesListenerServer extends Observable implements Runnable {
 		return result;
 	}
 
-	public boolean removeDataThread(TracesDataThread aDataThread) {
+	public boolean removeDataThread(DataThread aDataThread) {
 		boolean result = dataThreads.remove(aDataThread);
 		if (result) {
 			// Unregister all data thread observers, close stream.
@@ -105,7 +105,7 @@ public class TracesListenerServer extends Observable implements Runnable {
 
 	public void removeAllDataThreads() {
 		while (!dataThreads.isEmpty()) {
-			removeDataThread((TracesDataThread)dataThreads.get(0));
+			removeDataThread((DataThread)dataThreads.get(0));
 		}
 	}
 

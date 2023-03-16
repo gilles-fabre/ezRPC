@@ -24,6 +24,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.WindowConstants;
 
+import tracesListener.DataThread;
+import tracesListener.LogDataThread;
 import tracesListener.ProgFilter;
 import tracesListener.TraceMessage;
 import tracesListener.TracesDataThread;
@@ -63,7 +65,7 @@ public final class App {
 	
 	// Used to pass the "traces data thread" from which the first message is coming
 	// from the consumer thread to the EDT thread.
-	private TracesDataThread dataThreadWithAFirstMessage;
+	private DataThread dataThreadWithAFirstMessage;
 
 
 	private static String	PREFERRED_LOOK_AND_FEEL = "Nimbus";
@@ -147,6 +149,19 @@ public final class App {
 	void saveFilterPrefs() {
 		prefs.saveFilterPrefs();
 		prefs.saveFramesPrefs();
+	}
+
+	void importLog(String fileLocation) throws IOException {
+		try {
+			FileInputStream logFileIn = new FileInputStream(fileLocation);
+			LogDataThread logImporter = new LogDataThread(logFileIn);
+			tracesListenerServer.addDataThread(logImporter);
+			logImporter.start();
+			
+		} catch (IOException e) {
+			System.err.println("Can't read log file: " + e);
+			throw e;
+		}
 	}
 
 	// Sets the new global filters in the preferences from the prefs file
@@ -258,7 +273,7 @@ public final class App {
 		tracesListenerServer.addTracesObserver(new Observer() {
 			public void update(Observable source, Object o) {
 				if (o instanceof TraceMessage) {
-					onTraceMessageReceivedFrom((TraceMessage) o, (TracesDataThread) source);
+					onTraceMessageReceivedFrom((TraceMessage) o, (DataThread) source);
 				} else if (o instanceof Exception) {
 					displayErrorAndDie((Exception) o);
 				}
@@ -284,7 +299,7 @@ public final class App {
 
 	// Arrival of a new trace message; queue it.
 	// This gets called by multiple non-EDT threads.
-	private void onTraceMessageReceivedFrom(TraceMessage aTraceMessage, TracesDataThread aDataThread) {
+	private void onTraceMessageReceivedFrom(TraceMessage aTraceMessage, DataThread aDataThread) {
 		TraceQueueItem item = new TraceQueueItem(aTraceMessage, aDataThread);
 		synchronized (traceMessageQueue) {
 			traceMessageQueue.addLast(item);
@@ -463,9 +478,9 @@ public final class App {
 	// Inner class encapsulating a trace message and the "data thread" it came from.
 	private static final class TraceQueueItem {
 		TraceMessage message;
-		TracesDataThread dataThread;
+		DataThread dataThread;
 
-		public TraceQueueItem(TraceMessage message, TracesDataThread dataThread) {
+		public TraceQueueItem(TraceMessage message, DataThread dataThread) {
 			this.message = message;
 			this.dataThread = dataThread;
 		}

@@ -86,19 +86,25 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 				updateViewToolbar();
 			}
 		});
-		importMI.addActionListener(new ActionListener() {
+		importLogMI.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				importLog();
+			}
+		});
+		importSettingsMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				importFilters();
 			}
 		});
-		exportMI.addActionListener(new ActionListener() {
+		exportSettingsMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				exportFilters();
 			}
 		});
-		saveMI.addActionListener(new ActionListener() {
+		saveSettingsMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				saveCurrentContentFrame();
@@ -586,6 +592,23 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 
 	private void openSettings() {
 		WindowSettingsDialog.doIt(App.getMainFrame(), (ContentFrame)desktopPane.getSelectedFrame());
+	}
+
+	private void importLog() {
+		FilePicker fp = new FilePicker(Strings.getString("importFile"), ".", "*.log", false);
+		String file = fp.getFile();
+		if (file == null) {
+			return; // user canceled
+		}
+		
+		String dir = fp.getDirectory();
+		App app = App.getInstance();
+		try {
+			app.importLog(dir + file);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(App.getMainFrame(), "Can't read " + dir + file, null, JOptionPane.ERROR_MESSAGE);
+			return; // error
+		}
 	}
 
 	private void importFilters() {

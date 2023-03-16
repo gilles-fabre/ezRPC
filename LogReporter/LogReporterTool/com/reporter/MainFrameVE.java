@@ -35,9 +35,10 @@ public class MainFrameVE extends JFrame {
 	protected JMenu fileMenu = null;
 	protected JMenuItem exitMI = null;
 	protected JMenuItem settingsMI = null;
-	protected JMenuItem importMI = null;
-	protected JMenuItem exportMI = null;
-	protected JMenuItem saveMI = null;
+	protected JMenuItem importLogMI = null;
+	protected JMenuItem importSettingsMI = null;
+	protected JMenuItem exportSettingsMI = null;
+	protected JMenuItem saveSettingsMI = null;
 	protected JMenu paletteMenu = null;
 	protected JMenuItem newModIdMI = null;
 	protected JMenuItem editModIdMI = null;
@@ -162,6 +163,8 @@ public class MainFrameVE extends JFrame {
 		if (fileMenu == null) {
 			fileMenu = new JMenu();
 			fileMenu.setText(Strings.getString("fileMenu"));
+			fileMenu.add(getImportLog());
+			fileMenu.addSeparator();
 			fileMenu.add(getImportMI());
 			fileMenu.add(getExportMI());
 			fileMenu.addSeparator();
@@ -199,16 +202,29 @@ public class MainFrameVE extends JFrame {
 	}
 
 	/**
+	 * This method initializes importLog
+	 *
+	 * @return javax.swing.JMenuItem
+	 */
+	private JMenuItem getImportLog() {
+		if (importLogMI == null) {
+			importLogMI = new JMenuItem();
+			importLogMI.setText(Strings.getString("importLogMI"));
+		}
+		return importLogMI;
+	}
+
+	/**
 	 * This method initializes importMI
 	 *
 	 * @return javax.swing.JMenuItem
 	 */
 	private JMenuItem getImportMI() {
-		if (importMI == null) {
-			importMI = new JMenuItem();
-			importMI.setText(Strings.getString("importMI"));
+		if (importSettingsMI == null) {
+			importSettingsMI = new JMenuItem();
+			importSettingsMI.setText(Strings.getString("importMI"));
 		}
-		return importMI;
+		return importSettingsMI;
 	}
 
 	/**
@@ -217,11 +233,11 @@ public class MainFrameVE extends JFrame {
 	 * @return javax.swing.JMenuItem
 	 */
 	private JMenuItem getExportMI() {
-		if (exportMI == null) {
-			exportMI = new JMenuItem();
-			exportMI.setText(Strings.getString("exportMI"));
+		if (exportSettingsMI == null) {
+			exportSettingsMI = new JMenuItem();
+			exportSettingsMI.setText(Strings.getString("exportMI"));
 		}
-		return exportMI;
+		return exportSettingsMI;
 	}
 
 	/**
@@ -230,12 +246,12 @@ public class MainFrameVE extends JFrame {
 	 * @return javax.swing.JMenuItem
 	 */
 	private JMenuItem getSaveMI() {
-		if (saveMI == null) {
-			saveMI = new JMenuItem();
-			saveMI.setText(Strings.getString("saveWindowMI"));
-			saveMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, false));
+		if (saveSettingsMI == null) {
+			saveSettingsMI = new JMenuItem();
+			saveSettingsMI.setText(Strings.getString("saveWindowMI"));
+			saveSettingsMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, false));
 		}
-		return saveMI;
+		return saveSettingsMI;
 	}
 
 	/**

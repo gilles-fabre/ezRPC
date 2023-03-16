@@ -34,6 +34,7 @@ import javax.swing.event.InternalFrameListener;
 
 import reporter.App.Prefs;
 import tracesListener.ByteUtil;
+import tracesListener.DataThread;
 import tracesListener.ModuleFilter;
 import tracesListener.ProgFilter;
 import tracesListener.TraceMessage;
@@ -66,7 +67,7 @@ public class ContentFrame extends ContentFrameVE {
 	// The buffered messages waiting to be displayed.
 	LinkedList<ColorStringList> bufferedMessages = new LinkedList<ColorStringList>();
 	// If This content frame is associated to a thread, only take this thread's messages.
-	TracesDataThread dataThread = null;
+	DataThread dataThread = null;
 	private boolean isThreadStopped = false;
 	// For hiding/showing the the filters in this window.
 	private boolean haveGhostDividerLocation = false;
@@ -701,7 +702,7 @@ public class ContentFrame extends ContentFrameVE {
 
 	// If the given message, which came from the given thread, matches this content frame, buffer it.
 	// This gets called on the consumer thread.
-	void bufferIfMatches(TraceMessage msg, TracesDataThread dt) {
+	void bufferIfMatches(TraceMessage msg, DataThread dt) {
     	if (dataThread == null || dataThread == dt) {
     		if (filter.messageMatches(msg)) {
     			formatTraceMessage(msg);
