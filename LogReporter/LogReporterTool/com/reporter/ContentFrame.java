@@ -38,7 +38,6 @@ import tracesListener.DataThread;
 import tracesListener.ModuleFilter;
 import tracesListener.ProgFilter;
 import tracesListener.TraceMessage;
-import tracesListener.TracesDataThread;
 import tracesListener.TracesFilter;
 
 public class ContentFrame extends ContentFrameVE {
@@ -444,7 +443,7 @@ public class ContentFrame extends ContentFrameVE {
 
 	void save() {
 		App.Prefs prefs = App.getPrefs();
-		FilePicker fp = new FilePicker(Strings.getString("saveWindow"), prefs.saveWindowDir, prefs.saveWindowFile, true);
+		FilePicker fp = new FilePicker(Strings.getString("saveWindow"), prefs.saveWindowDir, prefs.saveWindowFile, "txt", true);
 		String file = fp.getFile();
 		if (file == null) {
 			return; // user canceled

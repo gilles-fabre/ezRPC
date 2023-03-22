@@ -595,7 +595,7 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 	}
 
 	private void importLog() {
-		FilePicker fp = new FilePicker(Strings.getString("importFile"), ".", "*.log", false);
+		FilePicker fp = new FilePicker(Strings.getString("importFile"), "", "", "log", false);
 		String file = fp.getFile();
 		if (file == null) {
 			return; // user canceled
@@ -613,7 +613,7 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 
 	private void importFilters() {
 		App.Prefs prefs = App.getPrefs();
-		FilePicker fp = new FilePicker(Strings.getString("importSettings"), prefs.importPrefsDir, prefs.importPrefsFile, false);
+		FilePicker fp = new FilePicker(Strings.getString("importSettings"), prefs.importPrefsDir, prefs.importPrefsFile, "xml", false);
 		String file = fp.getFile();
 		if (file == null) {
 			return; // user canceled
@@ -633,7 +633,7 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 
 	private void exportFilters() {
 		App.Prefs prefs = App.getPrefs();
-		FilePicker fp = new FilePicker(Strings.getString("exportSettings"), prefs.importPrefsDir, prefs.importPrefsFile, true);
+		FilePicker fp = new FilePicker(Strings.getString("exportSettings"), prefs.importPrefsDir, prefs.importPrefsFile, "xml", true);
 		String file = fp.getFile();
 		if (file == null) {
 			return; // user canceled
