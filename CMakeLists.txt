@@ -89,6 +89,8 @@ if(CMAKE_THREAD_LIBS_INIT)
 endif()
 
 install(FILES RPC/ezRPC_Test.log-settings DESTINATION bin)
+install(FILES StateMachine/ezStateMachine_Test.log-settings DESTINATION bin)
+install(FILES StateMachine/ezStateMachineServer.log-settings DESTINATION bin)
 
 install(TARGETS ezRPC_Test RUNTIME DESTINATION bin)
 
