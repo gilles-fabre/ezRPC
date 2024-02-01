@@ -14,12 +14,25 @@ using namespace std;
 #define RPCCLIENT_TRACES 1
 #define RPCCLIENT_MODULE 0x5
 
+#ifdef WIN32
+#pragma warning(disable:4251)
+#ifdef _EXPORTING
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
+#endif
+
 /**
  * \class RPCClient
  * \brief Provides the user with a high abstraction level Remote Procedure Calls service.
  */
-class RPCClient {
-	Transport 		 	*m_transportP; 	// transport used to talk to the peer server
+#ifdef WIN32
+class	DECLSPEC RPCClient {
+#else
+class	RPCClient {
+#endif
+	Transport 		 			*m_transportP; 	// transport used to talk to the peer server
 	RemoteProcedureCall *m_rpcP;		// rpc underlying abstraction
 
 public:
@@ -30,9 +43,9 @@ public:
 	 * \param transport_type is one of the Transport::TransportType enum values
 	 * \param server_address is the server address (for the given transport_type)
 	*/
-	RPCClient(Transport::TransportType transport_type,  string &server_address) {
+	RPCClient(Transport::TransportType transport_type,  string& server_address) {
 		m_transportP = Transport::CreateTransport(transport_type);
-		Link *linkP = m_transportP ? m_transportP->LinkRequest((const string &)server_address) : NULL;
+		Link *linkP = m_transportP ? m_transportP->LinkRequest((const string&)server_address) : NULL;
 		m_rpcP = linkP ? new RemoteProcedureCall(linkP) : NULL;
 	}
 

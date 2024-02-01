@@ -31,33 +31,33 @@ using namespace std;
  *
  */
 class RemoteProcedureCall {
-	Link *m_linkP; // the pointer to the link conveying the calls
+	Link* m_linkP; // the pointer to the link conveying the calls
 
 	// invoked internally (by SerializeCall) upon rpc reply receipt
-	bool 		DeserializeCallReturn(unsigned char *bufferP);
+	bool DeserializeCallReturn(unsigned char* bufferP);
 
 	// exchange sized call streams
-	bool			SendPacket(unsigned char *bufferP, unsigned long data_len);
-	unsigned char 	*ReceivePacket(unsigned long &data_len);
+	bool						SendPacket(unsigned char* bufferP, unsigned long data_len);
+	unsigned char*  ReceivePacket(unsigned long& data_len);
 
 	// utility methods to push parameter values [and pointers] into the
 	// call stream serialization vector and read/decode parameter
 	// values [and pointers] from the serialization call return byte stream.
-	void 		push_int64(vector<unsigned char> &s, int64_t val);
-	void 		push_uint64(vector<unsigned char> &s, uint64_t val);
-	int64_t 	decode_int64(unsigned char *bufferP, int &offset);
-	uint64_t 	decode_uint64(unsigned char *bufferP, int &offset);
-	void		encode_uint64(uint64_t val, unsigned char *bufferP, int &offset);
+	void 			push_int64(vector<unsigned char>& s, int64_t val);
+	void 			push_uint64(vector<unsigned char>& s, uint64_t val);
+	int64_t 	decode_int64(unsigned char* bufferP, int& offset);
+	uint64_t 	decode_uint64(unsigned char* bufferP, int& offset);
+	void			encode_uint64(uint64_t val, unsigned char* bufferP, int& offset);
 
-	void 		push_int32(vector<unsigned char> &s, int32_t val);
-	void 		push_uint32(vector<unsigned char> &s, uint32_t val);
-	int32_t 	decode_int32(unsigned char *bufferP, int &offset);
-	uint32_t 	decode_uint32(unsigned char *bufferP, int &offset);
+	void 			push_int32(vector<unsigned char>& s, int32_t val);
+	void 			push_uint32(vector<unsigned char>& s, uint32_t val);
+	int32_t 	decode_int32(unsigned char* bufferP, int& offset);
+	uint32_t 	decode_uint32(unsigned char* bufferP, int& offset);
 
-	void 		push_int16(vector<unsigned char> &s, int16_t val);
-	void 		push_uint16(vector<unsigned char> &s, uint16_t val);
-	int16_t 	decode_int16(unsigned char *bufferP, int &offset);
-	uint16_t 	decode_uint16(unsigned char *bufferP, int &offset);
+	void 			push_int16(vector<unsigned char>& s, int16_t val);
+	void 			push_uint16(vector<unsigned char>& s, uint16_t val);
+	int16_t 	decode_int16(unsigned char* bufferP, int& offset);
+	uint16_t 	decode_uint16(unsigned char* bufferP, int& offset);
 
 public:
 	// the parameter types
@@ -86,19 +86,19 @@ public:
 	 */
 	class Parameter {
 	private:
-		ParamType m_type;
+		ParamType				m_type;
 		uint64_t	  		m_caller_valP; // caller's side ptr, to transmit back upon return;
 		union {
-			char 		   _char;
-			unsigned char  _byte;
-			int16_t		   _i16;
-			uint16_t	   _ui16;
-			int32_t		   _i32;
-			uint32_t	   _ui32;
-			int64_t		   _i64;
-			uint64_t	   _ui64;
-			double		   _double;
-			string		   *_stringP;
+			char 					_char;
+			unsigned char _byte;
+			int16_t		    _i16;
+			uint16_t	    _ui16;
+			int32_t		    _i32;
+			uint32_t	    _ui32;
+			int64_t		    _i64;
+			uint64_t	    _ui64;
+			double		    _double;
+			string*				_stringP;
 		} m_value;
 
 	public:
@@ -259,7 +259,7 @@ public:
 	 * 
 	 * \param linkP is the transport link to the server.
 	*/
-	RemoteProcedureCall(Link *linkP) {
+	RemoteProcedureCall(Link* linkP) {
 		m_linkP = linkP;
 	}
 
@@ -275,7 +275,7 @@ public:
 	 * 		      ParamType for possible values.
 	*/
 	unsigned long 		 SerializeCall(const string func_name, ...);
-	unsigned long 		 SerializeCall(const string func_name, va_list vl);
+	unsigned long 		 SerializeCall(const string& func_name, va_list vl);
 
 	// rpc function callee side
 
@@ -286,7 +286,7 @@ public:
 	 * \param func_name is the name of the Remote Procedure to call
 	 * 					on the server side.
 	*/
-	vector<Parameter *>* DeserializeCall(string &func_name);
+	vector<Parameter *>* DeserializeCall(string& func_name);
 
 	/**
 	 * \fn
@@ -294,7 +294,7 @@ public:
 	 * 
 	 * \param paramP the vector<Parameter *>* containing the passed parameters.
 	*/
-	void SerializeCallReturn(vector<Parameter *>* paramP, unsigned long ret_val);
+	void SerializeCallReturn(vector<Parameter*>* paramP, unsigned long ret_val);
 
 	void Close() {
 		if (m_linkP)
@@ -302,6 +302,6 @@ public:
 	}
 };
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter *>*, void *user_dataP);
+typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter*>*, void* user_dataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

@@ -78,10 +78,10 @@ public:
 
 class TcpTransport : public Transport {
 #ifdef WIN32
-	static uint8_t m_WSAStartupDone; // more windows crap
+	static uint8_t	m_WSAStartupDone; // more windows crap
 #endif
 
-	SOCKET m_s_socket;
+	SOCKET					m_s_socket;
 
 public:
 	TcpTransport() : Transport() {
@@ -119,9 +119,8 @@ public:
 	}
 };
 
-#ifndef WIN32
 class FileTransport : public Transport {
-	int 	m_s_socket;
+	int 		m_s_socket;
 	string	m_server_address;
 
 public:
@@ -140,7 +139,11 @@ public:
 #endif
 		// don't need the server socket anymore
 		if (m_s_socket != -1)
+#ifdef WIN32
+			closesocket(m_s_socket);
+#else
 			close(m_s_socket);
+#endif
 
 		// don't need the file anymore
 		if (!m_server_address.empty()) {
@@ -151,7 +154,6 @@ public:
 		}
 	}
 };
-#endif // ifndef WIN32 -- no AF_UNIX support under windows
 
 #endif // _TRANSPORT_H
 

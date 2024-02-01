@@ -10,45 +10,45 @@
 
 using namespace std;
 
-RPCServer *gRpcServerP = NULL;
+RPCServer* gRpcServerP = NULL;
 
-static unsigned long ByeBye(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
+static unsigned long ByeBye(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
 	if (gRpcServerP)
 		gRpcServerP->Stop();
 	return (unsigned long)0;
 }
 
-static unsigned long Nop(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
+static unsigned long Nop(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
 	return (unsigned long)0;
 }
 
-static unsigned long IncDouble(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	double &d = p1->GetDoubleReference();
+static unsigned long IncDouble(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	double& d = p1->GetDoubleReference();
 	cout << "value: " << d << endl;
 	d += 0.1;
 	cout << "inc'ed value: " << d << endl;
 	return (unsigned long)0;
 }
 
-static unsigned long Increment(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	int16_t &i = p1->GetInt16Reference();
+static unsigned long Increment(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	int16_t& i = p1->GetInt16Reference();
 	cout << "value: " << i << endl;
 	++i;
 	cout << "inc'ed value: " << i << endl;
 	return (unsigned long)i;
 }
 
-static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 
 
-	string &text = p1->GetStringReference();
+	string& text = p1->GetStringReference();
 	cout << "text: " << text << endl;
 	string origin_text = text;
 	cout << "origin_text: " << origin_text << endl;
@@ -60,10 +60,10 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::Parameter *> *v, vo
 	return (unsigned long)text.length();
 }
 
-static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 
 	string text;
 	text = p1->GetStringReference();
@@ -75,10 +75,10 @@ static unsigned long RepeatPrint(vector<RemoteProcedureCall::Parameter *> *v, vo
 	return num;
 }
 
-static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 
 	int16_t num1 = p1->GetInt16Reference();
 	int16_t num2 = p2->GetInt16Reference();

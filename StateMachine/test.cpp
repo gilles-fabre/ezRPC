@@ -13,9 +13,9 @@
 
 using namespace std;
 
-RPCServer 		*gRpcMachineClientP = NULL;
-RPCClient 		*gRpcMachineServerP = NULL;
-uint64_t 		gMachineId;
+RPCServer* gRpcMachineClientP = NULL;
+RPCClient* gRpcMachineServerP = NULL;
+uint64_t	 gMachineId;
 
 static const std::string sStep("step");
 static const std::string sStepBack("step_back");
@@ -72,8 +72,8 @@ static int RandomAddQuestion() {
 	cout << "what's the sum of " << a << " + " << b << "?" << endl;
 	return a + b;
 }
-static void PromptTheUserAndDoTransition(void *parameterP) {
-	Thread *threadP = (Thread*)parameterP;
+static void PromptTheUserAndDoTransition(void* parameterP) {
+	Thread* threadP = (Thread*)parameterP;
 
 	int expected = RandomAddQuestion();
 
@@ -114,12 +114,12 @@ static void PromptTheUserAndDoTransition(void *parameterP) {
 	delete threadP;
 }
 
-static unsigned long GameStart(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter *pSource = (*v)[3];
-	RemoteProcedureCall::Parameter *pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter *pDestination = (*v)[5];
+static unsigned long GameStart(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
+	RemoteProcedureCall::Parameter* pSource = (*v)[3];
+	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
+	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
 	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
 	cout << "Let's start playing" << endl;
@@ -132,12 +132,12 @@ static unsigned long GameStart(vector<RemoteProcedureCall::Parameter *> *v, void
 
 	return 0;
 }
-static unsigned long Step(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter *pSource = (*v)[3];
-	RemoteProcedureCall::Parameter *pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter *pDestination = (*v)[5];
+static unsigned long Step(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
+	RemoteProcedureCall::Parameter* pSource = (*v)[3];
+	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
+	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
 	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
 	cout << "Let's keep on playing" << endl;
@@ -150,12 +150,12 @@ static unsigned long Step(vector<RemoteProcedureCall::Parameter *> *v, void *use
 
 	return 0;
 }
-static unsigned long Win(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter *pSource = (*v)[3];
-	RemoteProcedureCall::Parameter *pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter *pDestination = (*v)[5];
+static unsigned long Win(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
+	RemoteProcedureCall::Parameter* pSource = (*v)[3];
+	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
+	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
 	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
 	cout << "You Won!!" << endl;
@@ -172,12 +172,12 @@ static unsigned long Win(vector<RemoteProcedureCall::Parameter *> *v, void *user
 	}
 	return 0;
 }
-static unsigned long GameOver(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter *pSource = (*v)[3];
-	RemoteProcedureCall::Parameter *pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter *pDestination = (*v)[5];
+static unsigned long GameOver(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
+	RemoteProcedureCall::Parameter* pSource = (*v)[3];
+	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
+	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
 	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
 	cout << "You lost!!" << endl;

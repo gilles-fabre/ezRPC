@@ -51,14 +51,14 @@ public:
 		Close();
 	}
 
-	bool Send(unsigned char *byte_buffer, int data_len);
-	bool Send(unsigned char *byte_buffer, int *data_lenP);
-	bool Receive(unsigned char *byte_buffer, int data_len);
-	bool Receive(unsigned char *byte_buffer, int *data_lenP);
-	bool Peek(unsigned char *byte_buffer, int *data_lenP);
+	bool Send(unsigned char* byte_buffer, unsigned int data_len);
+	bool Send(unsigned char* byte_buffer, unsigned int* data_lenP);
+	bool Receive(unsigned char* byte_buffer, unsigned int data_len);
+	bool Receive(unsigned char* byte_buffer, unsigned int* data_lenP);
+	bool Peek(unsigned char* byte_buffer, unsigned int* data_lenP);
 	void WaitForRead() {
-        fd_set 	        readset;
-        int 			result;
+        fd_set readset;
+        int 	result;
 
         do {
            FD_ZERO(&readset);
@@ -67,8 +67,8 @@ public:
         } while (result == -1 && errno == EINTR);
 	}
 	void WaitForWrite() {
-        fd_set 	        writeset;
-        int 			result;
+        fd_set writeset;
+        int 	result;
 
         do {
            FD_ZERO(&writeset);

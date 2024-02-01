@@ -2,8 +2,8 @@
 
 #include <log2reporter.h>
 
-void *Thread::IterateSafely(void *_threadP) {
-	Thread *threadP = (Thread *)_threadP;
+void* Thread::IterateSafely(void* _threadP) {
+	Thread *threadP = (Thread*)_threadP;
 	if (!threadP || !threadP->m_callbackP)
 		return NULL;
 
@@ -32,8 +32,8 @@ void *Thread::IterateSafely(void *_threadP) {
 	return NULL;
 }
 
-void *Thread::RunSafely(void *_threadP) {
-	Thread *threadP = (Thread *)_threadP;
+void* Thread::RunSafely(void* _threadP) {
+	Thread* threadP = (Thread*)_threadP;
 	if (!threadP || !threadP->m_callbackP)
 		return NULL;
 
@@ -61,7 +61,7 @@ void *Thread::RunSafely(void *_threadP) {
 	return NULL;
 }
 
-void Thread::IterateAndWait(void *parametersP) {
+void Thread::IterateAndWait(void* parametersP) {
 	if (IsRunning())
 		return;
 
@@ -78,7 +78,7 @@ void Thread::IterateAndWait(void *parametersP) {
 #endif
 }
 
-void Thread::Iterate(void *parametersP) {
+void Thread::Iterate(void* parametersP) {
 	if (IsRunning())
 		return;
 
@@ -95,7 +95,7 @@ void Thread::Iterate(void *parametersP) {
 #endif
 }
 
-void Thread::RunAndWait(void *parametersP) {
+void Thread::RunAndWait(void* parametersP) {
 #ifdef THREAD_TRACES
 	LogVText(THREAD_MODULE, 0, true, "Thread::RunAndWait(%p) thread spwaned", parametersP);
 #endif
@@ -109,7 +109,7 @@ void Thread::RunAndWait(void *parametersP) {
 #endif
 }
 
-void Thread::Run(void *parametersP) {
+void Thread::Run(void* parametersP) {
 	if (IsRunning())
 		return;
 

@@ -11,14 +11,14 @@ Thread		  	 		StateMachine::m_garbage_collector_thread(&GarbageCollectorCallback
 list<StateMachine *>	StateMachine::m_machines;
 
 /**
- * \fn StateMachine::StateMachine(string &name, void *user_dataP)
+ * \fn StateMachine::StateMachine(string& name, void* user_dataP)
  * \brief StateMachine constructor, WARNING: does not set the initial state.
  *
  * \param name is the name of the state machine
  * \param user_dataP is a pointer to a user data block which'll be passed to all
  *        transition callbacks
  */
-StateMachine::StateMachine(string &name, void *user_dataP) :
+StateMachine::StateMachine(string& name, void* user_dataP) :
 		m_call_sem(1),
 		m_exiting(0),
 		m_timer_sem(1),
@@ -73,13 +73,13 @@ StateMachine::~StateMachine() {
 }
 
 /**
- * \fn void StateMachine::GarbageCollectorCallback(void *parametersP)
+ * \fn void StateMachine::GarbageCollectorCallback(void* parametersP)
  * \brief StateMachine garbage collector destroys the exiting state machines
  * 		  every once in a while, ensuring all pending callback threads have
  * 		  triggered or have been cancelled before then.
  *
  */
-void StateMachine::GarbageCollectorCallback(void *parametersP) {
+void StateMachine::GarbageCollectorCallback(void* parametersP) {
 	bool exit = false;
 
 #ifdef SM_TRACES
@@ -90,9 +90,9 @@ void StateMachine::GarbageCollectorCallback(void *parametersP) {
 		sleep(GARBAGE_COLLECTOR_PAUSE);
 
 		// go through all the state machines and delete those that are declared as exiting
-		list<StateMachine *>::iterator i = m_machines.begin();
+		list<StateMachine*>::iterator i = m_machines.begin();
 		while (i != m_machines.end()) {
-			StateMachine *smP = *i++;
+			StateMachine* smP = *i++;
 
 			if (smP->IsExiting() && !smP->IsPendingThread()) {
 #ifdef SM_TRACES
@@ -115,13 +115,13 @@ void StateMachine::GarbageCollectorCallback(void *parametersP) {
 }
 
 /**
- * \fn void StateMachine::CallbackThread(void *parametersP)
+ * \fn void StateMachine::CallbackThread(void* parametersP)
  * \brief Creates and starts a new thread to call a transition callback
  *
  * \param parametersP points to a CallbackThreadParameters structure
  */
-void StateMachine::CallbackThread(void *parametersP) {
-	CallbackThreadParameters *paramsP = (CallbackThreadParameters *)parametersP;
+void StateMachine::CallbackThread(void* parametersP) {
+	CallbackThreadParameters* paramsP = (CallbackThreadParameters*)parametersP;
 	if (!paramsP || !paramsP->m_machineP || paramsP->m_machineP->IsExiting()) {
 		paramsP->m_machineP->m_callback_threads.remove(paramsP->m_threadP);
 		return;
@@ -133,7 +133,7 @@ void StateMachine::CallbackThread(void *parametersP) {
 
 	if (!paramsP->m_machineP->IsExiting()) {
 		// invoke remote procedure...
-		RPCClient *clientP = (RPCClient *)paramsP->m_machineP->GetRpcClient();
+		RPCClient* clientP = (RPCClient *)paramsP->m_machineP->GetRpcClient();
 		if (clientP) {
 			string machine = paramsP->m_machineP->GetName();
 			string src = paramsP->m_sourceP->GetName();
@@ -160,16 +160,8 @@ void StateMachine::CallbackThread(void *parametersP) {
 	return;
 }
 
-/**
- * \fn void *StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, string &transition_name)
- * \brief Creates and starts a timer which will inject a transition into the current state when
- *        the given time has elapsed.
- *
- * \param milli_sec_timeout is the delay before the transition is injected in the state machine
- * \param transition_name is the injected transition's identifier
- */
-void StateMachine::TimerThreadCallback(void *parametersP) {
-	TimerThreadParameters *paramsP = (TimerThreadParameters *)parametersP;
+void StateMachine::TimerThreadCallback(void* parametersP) {
+	TimerThreadParameters* paramsP = (TimerThreadParameters*)parametersP;
 
 	if (!paramsP || !paramsP->m_machineP)
 		return;
@@ -200,14 +192,14 @@ void StateMachine::TimerThreadCallback(void *parametersP) {
 }
 
 /**
- * \fn void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name)
+ * \fn void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string& transition_name)
  * \brief Clears the current transition timer (timeout) if any, then sets a new
  * 		 transition timer to the the given transition.
  *
  * \param milli_sec_timeout is the new timer duration
  * \param transition_name is the name of the target transition (upon timer tiggering)
  */
-void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string &transition_name) {
+void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, const string& transition_name) {
 	// cancel pending timer if any
 	CancelTransitionTimer();
 
@@ -221,14 +213,14 @@ void StateMachine::InitiateTransitionTimer(unsigned long milli_sec_timeout, cons
 }
 
 /**
- * \fn StateMachine *StateMachine::CreateFromDefinition(string& json_defintion_filename)
+ * \fn StateMachine* StateMachine::CreateFromDefinition(string& json_defintion_filename)
  * \brief This factory method creates a state machine from the given definition.
  *
  * \param json_defintion_filename is the JSON SM definition file.
  *
  * \return the created machine or NULL if an error occured.
  */
-StateMachine *StateMachine::CreateFromDefinition(string &json_definition_filename) {
+StateMachine* StateMachine::CreateFromDefinition(string& json_definition_filename) {
 #ifdef SM_TRACES
 	LogVText(SM_MODULE, 0, true, "StateMachine::CreateFromDefinition(%s)", json_definition_filename.c_str());
 #endif
@@ -244,16 +236,16 @@ StateMachine *StateMachine::CreateFromDefinition(string &json_definition_filenam
 }
 
 /**
- * \fn StateMachine *StateMachine::CreateFromDefinition(istream& json_stream)
+ * \fn StateMachine* StateMachine::CreateFromDefinition(istream& json_stream)
  * \brief This factory method creates a state machine from the given definition.
  *
  * \param json_stream is the JSON SM definition input stream.
  *
  * \return the created machine or NULL if an error occured.
  */
-StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
+StateMachine* StateMachine::CreateFromDefinition(istream& json_stream) {
 	Json::Value 	root;   		// 'root' will contain the root value after parsing.
-	StateMachine	*smP = NULL;
+	StateMachine* smP = NULL;
 
 	try {
 		json_stream >> root;
@@ -307,7 +299,7 @@ StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
 		}
 		Json::Value transitions = sm["transitions"];
 		for (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {
-			Json::Value &t = *transition;
+			Json::Value& t = *transition;
 			if (!t.isObject()) {
 				cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: StateMachine's 'transitions' array must contain transition objects only!" << endl;
 				return NULL;
@@ -343,7 +335,7 @@ StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
 				return NULL;
 			}
 			for (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {
-				Json::Value &t = *timer;
+				Json::Value& t = *timer;
 				if (!t.isObject()) {
 					cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: StateMachine's 'timers' array must contain timer transitions only: " << t.asString() << endl;
 					return NULL;
@@ -380,12 +372,12 @@ StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
 
 		// add the transitions
 		for (Json::Value::iterator transition = transitions.begin(); transition != transitions.end(); transition++) {
-			Json::Value &t = *transition;
+			Json::Value& t = *transition;
 
-			State  *srcP = smP->GetState(t["source"].asString());
-			State  *dstP = smP->GetState(t["destination"].asString());
-			const string &transition_name = t["name"].asString();
-			const string &callback_name = t["callback"].asString();
+			State* srcP = smP->GetState(t["source"].asString());
+			State* dstP = smP->GetState(t["destination"].asString());
+			const string& transition_name = t["name"].asString();
+			const string& callback_name = t["callback"].asString();
 			if (srcP && dstP)
 				srcP->SetTransition(dstP, transition_name, callback_name);
 			else
@@ -395,11 +387,11 @@ StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
 		// add the timers
 		if (!timers.empty()) {
 			for (Json::Value::iterator timer = timers.begin(); timer != timers.end(); timer++) {
-				Json::Value &t = *timer;
+				Json::Value& t = *timer;
 
-				State  *srcP = smP->GetState(t["state"].asString());
+				State* srcP = smP->GetState(t["state"].asString());
 				if (srcP) {
-					const string &transition_name = t["transition"].asString();
+					const string& transition_name = t["transition"].asString();
 					unsigned long timeout = (unsigned long )t["timeout"].asInt64();
 					srcP->SetTimeoutTransition(timeout, transition_name);
 				} else
@@ -408,12 +400,12 @@ StateMachine *StateMachine::CreateFromDefinition(istream &json_stream) {
 		}
 
 		// if a timer, set it
-		State *initialStateP = (State *)smP->GetState();
+		State* initialStateP = (State *)smP->GetState();
 		unsigned long timeOut = initialStateP->GetTimeout();
 		if (timeOut != 0)
 			smP->InitiateTransitionTimer(timeOut, initialStateP->GetTimeoutTransition());
 
-	} catch (Json::RuntimeError &e) {
+	} catch (Json::RuntimeError& e) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error:" << endl << e.what() << endl;
 		return NULL;
 	}

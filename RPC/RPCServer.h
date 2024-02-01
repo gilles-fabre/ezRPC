@@ -16,6 +16,15 @@ using namespace std;
 #define RPCSERVER_TRACES 1
 #define RPCSERVER_MODULE 0x6
 
+#ifdef WIN32
+#pragma warning(disable:4251)
+#ifdef _EXPORTING
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
+#endif
+
 /**
  * \class RPCServer
  * \brief An instance of RPCServer provides RPCClients with an address[:port] to connect
@@ -27,13 +36,17 @@ using namespace std;
  *
  *
  */
-class RPCServer {
-	Transport 		 				*m_transportP;			// transport used to talk to this server
-	string			 				m_address;				// associated address
-	void							*m_user_dataP;			// optional user data passed to rpc procedures
-	Thread 			 				*m_listening_threadP;	// responsible for listening and spawning service threads
-	vector<Thread *> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
-	map<string, RemoteProcedure *> 	m_rpc_map;				// the procedures to call based on their names
+#ifdef WIN32
+class	DECLSPEC RPCServer {
+#else
+class	RPCServer {
+#endif
+	Transport*											m_transportP;			// transport used to talk to this server
+	string			 										m_address;					// associated address
+	void*														m_user_dataP;			// optional user data passed to rpc procedures
+	Thread*													m_listening_threadP;	// responsible for listening and spawning service threads
+	vector<Thread*> 								m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
+	map<string, RemoteProcedure*> 	m_rpc_map;				// the procedures to call based on their names
 
 	static void ListeningCallback(void *);					// threads' functions
 	static void ServiceCallback(void *);
@@ -45,8 +58,8 @@ class RPCServer {
 	 */
 	class ServiceParameters {
 	public:
-		RPCServer *m_serverP;
-		Link 	  *m_linkP;
+		RPCServer* m_serverP;
+		Link*			 m_linkP;
 
 		/**
 		 * \fn ServiceParameters(RPCServer *serverP, Link *linkP)

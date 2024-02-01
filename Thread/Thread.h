@@ -13,9 +13,9 @@ typedef void ThreadCallbackFunction(void *);
 using namespace std;
 
 class Semaphore {
-	mutex				m_mutex;
+	mutex								m_mutex;
 	condition_variable	m_cv;
-	int					m_count;
+	int									m_count;
 
 public:
 	Semaphore(int count) : m_count(count) {
@@ -84,18 +84,18 @@ public:
 };
 
 class Thread {
-	ThreadCallbackFunction *m_callbackP;
-	void				   *m_parametersP;
-	Semaphore			   m_stopped;
-	Semaphore			   m_running;
-	Semaphore			   m_exited;
-	thread 				   *m_threadP; 	  // to provide a timer based transition injection mechanism
+	ThreadCallbackFunction* m_callbackP;
+	void*										m_parametersP;
+	Semaphore							  m_stopped;
+	Semaphore							  m_running;
+	Semaphore							  m_exited;
+	thread*									m_threadP; 	  // to provide a timer based transition injection mechanism
 
-	static void *IterateSafely(void *_threadP);
-	static void *RunSafely(void *_threadP);
+	static void* IterateSafely(void* _threadP);
+	static void* RunSafely(void* _threadP);
 
 public:
-	Thread(ThreadCallbackFunction *callbackP) : m_running(0), m_stopped(0), m_exited(0) {
+	Thread(ThreadCallbackFunction* callbackP) : m_running(0), m_stopped(0), m_exited(0) {
 		m_callbackP = callbackP;
 		m_parametersP = NULL;
 		m_threadP = NULL;

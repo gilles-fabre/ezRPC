@@ -78,11 +78,11 @@ bool        gAutoReconnect = false;		// will try to reconnect every single messa
 bool        gConnectionFailed = false;      	// last connection failed, will retry if gAutoReconnect is set
 
 /**
- * \fn static const char *GetProcessName()
+ * \fn static const char* GetProcessName()
  * \brief return the name of the current process
  *
  */
-static const char *GetProcessName() {
+static const char* GetProcessName() {
 	if (*gProcessName)
 		return gProcessName;
 
@@ -94,7 +94,7 @@ static const char *GetProcessName() {
 				 gProcessName, sizeof(gProcessName) - 1,
 				 NULL, 0);
 #else
-	FILE *f = fopen("/proc/self/cmdline", "r");
+	FILE* f = fopen("/proc/self/cmdline", "r");
 	if (f) {
 		size_t size;
 		if ((size = fread(gProcessName, sizeof(char), PATH_MAX, f)) > 0) {
@@ -116,14 +116,14 @@ static const char *GetProcessName() {
 }
 
 /**
- * \fn static void InitSettings(const char *appName)
+ * \fn static void InitSettings(const char* appName)
  * \brief Load the log settings from the LOG_SETTINGS_FILE (once per client process). This is
  *        not protected against concurrent access to the settings file.
  *
  * \param appName is the name of the calling application
  *
  */
-static char *Trim(char *stringP) {
+static char* Trim(char* stringP) {
 	if (stringP) {
 		int i = 0, j = 0;
 		while (stringP[i] != '\0') {
@@ -135,7 +135,7 @@ static char *Trim(char *stringP) {
 	}
 	return stringP;
 }
-static void InitSettings(const char *appName) {
+static void InitSettings(const char* appName) {
 	if (gSettingsLoaded)
 		return;
 
@@ -179,8 +179,8 @@ static void InitSettings(const char *appName) {
 #endif
 
 	// iterates on lines
-	char line[256 + 1];
-	char *dummy;
+	char  line[256 + 1];
+	char* dummy;
 	while (fgets(line, sizeof(line), file)) {
 		Trim(line);
 		// read the setting
@@ -192,8 +192,8 @@ static void InitSettings(const char *appName) {
 		if (keyP && valueP) {
 
 #else
-		char *keyP;
-		char *valueP;
+		char* keyP;
+		char* valueP;
 		if ((keyP = strtok(line, "=")) &&
 			(valueP = strtok(NULL, "="))) {
 #endif
@@ -252,7 +252,7 @@ static inline uint64_t GetMilliTime() {
 #endif
 
 /**
- * \fn static void BuildMessage(Message *messageP, const char *appName, uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t size, TYPE_DATA_TYPE type)
+ * \fn static void BuildMessage(Message* messageP, const char* appName, uint32_t module, uint8_t indent, const uint8_t* dataP, uint16_t size, TYPE_DATA_TYPE type)
  * \brief build a protocol log message and send it to the connected log-reporter server
  *
  * \param messageP points to the message to be formatted
@@ -269,7 +269,7 @@ static inline uint64_t GetMilliTime() {
 #define ntohll(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))
 #endif
 
-static void BuildMessage(Message *messageP, const char *appName, uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t size, TYPE_DATA_TYPE type) {
+static void BuildMessage(Message* messageP, const char* appName, uint32_t module, uint8_t indent, const uint8_t* dataP, uint16_t size, TYPE_DATA_TYPE type) {
 	// get pid and tid.
 	uint32_t pid, tid;
 #ifdef WIN32
@@ -283,48 +283,48 @@ static void BuildMessage(Message *messageP, const char *appName, uint32_t module
 #endif
 	// build message structure
 	// app name parameter
-	Parameter *appNameParamP = &messageP->parameters[APPNAME_PARAM];
+	Parameter* appNameParamP = &messageP->parameters[APPNAME_PARAM];
 	appNameParamP->header.size = (uint16_t)strlen(appName) + 1;
-	appNameParamP->dataP = (uint8_t *)malloc(appNameParamP->header.size);
+	appNameParamP->dataP = (uint8_t*)malloc(appNameParamP->header.size);
 	assert(appNameParamP->dataP != NULL);
 	memcpy(appNameParamP->dataP, appName, appNameParamP->header.size);
 	appNameParamP->header.type = APPNAME;
 
 	// attributes
-	Parameter *attrParamP = &messageP->parameters[ATTR_PARAM];
+	Parameter* attrParamP = &messageP->parameters[ATTR_PARAM];
 	attrParamP->header.size = ATTR_DATA_SIZE;
 	attrParamP->dataP = (uint8_t*)malloc(ATTR_DATA_SIZE);
 	assert(attrParamP->dataP != NULL);
-	*(MODULE_DATA_TYPE *)(attrParamP->dataP) = (MODULE_DATA_TYPE)htonl(module);
-	*(TYPE_DATA_TYPE *)(&attrParamP->dataP[sizeof(MODULE_DATA_TYPE)]) = type;
+	*(MODULE_DATA_TYPE*)(attrParamP->dataP) = (MODULE_DATA_TYPE)htonl(module);
+	*(TYPE_DATA_TYPE*)(&attrParamP->dataP[sizeof(MODULE_DATA_TYPE)]) = type;
 	attrParamP->header.type = ATTR;
 
 	// indent
-	Parameter *indentParamP = &messageP->parameters[INDENT_PARAM];
+	Parameter* indentParamP = &messageP->parameters[INDENT_PARAM];
 	indentParamP->header.size = INDENT_DATA_SIZE;
 	indentParamP->dataP = (uint8_t*)malloc(INDENT_DATA_SIZE);
 	assert(indentParamP->dataP != NULL);
-	*(INDENT_DATA_TYPE *)(indentParamP->dataP) = indent;
+	*(INDENT_DATA_TYPE*)(indentParamP->dataP) = indent;
 	indentParamP->header.type = INDENT;
 
 	// pid
-	Parameter *pidParamP = &messageP->parameters[PID_PARAM];
+	Parameter* pidParamP = &messageP->parameters[PID_PARAM];
 	pidParamP->header.size = PID_DATA_SIZE;
 	pidParamP->dataP = (uint8_t*)malloc(PID_DATA_SIZE);
 	assert(pidParamP->dataP != NULL);
-	*(PID_DATA_TYPE *)(pidParamP->dataP) = (PID_DATA_TYPE)htonl(pid);
+	*(PID_DATA_TYPE*)(pidParamP->dataP) = (PID_DATA_TYPE)htonl(pid);
 	pidParamP->header.type = PID;
 
 	// tid
-	Parameter *tidParamP = &messageP->parameters[TID_PARAM];
+	Parameter* tidParamP = &messageP->parameters[TID_PARAM];
 	tidParamP->header.size = TID_DATA_SIZE;
 	tidParamP->dataP = (uint8_t*)malloc(TID_DATA_SIZE);
 	assert(tidParamP->dataP != NULL);
-	*(TID_DATA_TYPE *)(tidParamP->dataP) = (TID_DATA_TYPE)htonl(tid);
+	*(TID_DATA_TYPE*)(tidParamP->dataP) = (TID_DATA_TYPE)htonl(tid);
 	tidParamP->header.type = TID;
 
 	// data
-	Parameter *dataParamP = &messageP->parameters[DATA_PARAM];
+	Parameter* dataParamP = &messageP->parameters[DATA_PARAM];
 	dataParamP->header.size = size;
 	dataParamP->dataP = (uint8_t*)malloc(dataParamP->header.size);
 	assert(dataParamP->dataP != NULL);
@@ -332,16 +332,16 @@ static void BuildMessage(Message *messageP, const char *appName, uint32_t module
 	dataParamP->header.type = DATA;
 
 	// timestamp
-	Parameter *timeParamP = &messageP->parameters[TIME_PARAM];
+	Parameter* timeParamP = &messageP->parameters[TIME_PARAM];
 	timeParamP->header.size = TIME_DATA_SIZE;
 	timeParamP->dataP = (uint8_t*)malloc(TIME_DATA_SIZE);
 	assert(timeParamP->dataP != NULL);
-	*(TIME_DATA_TYPE *)(timeParamP->dataP) =
+	*(TIME_DATA_TYPE*)(timeParamP->dataP) =
  (TIME_DATA_TYPE)htonll((TIME_DATA_TYPE)GetMilliTime());
 	timeParamP->header.type = TIME;
 	
 	// eom
-	Parameter *eomParamP = &messageP->parameters[EOM_PARAM];
+	Parameter* eomParamP = &messageP->parameters[EOM_PARAM];
 	eomParamP->header.size = 0;
 	eomParamP->dataP = NULL;
 	eomParamP->header.type = EOM;
@@ -361,14 +361,14 @@ static void BuildMessage(Message *messageP, const char *appName, uint32_t module
 }
 
 /**
- * \fn static void SendAndFreeMessage(Message *messageP, uint8_t logToFile)
+ * \fn static void SendAndFreeMessage(Message* messageP, uint8_t logToFile)
  * \brief sends a protocol formatted message to the reporter application and stores it in log file
  *
  * \param messageP points to a properly formatted message. Message parameters'
  *        data are freed by this function
  * \param logToFile is set if the message must also be saved to the log file
  */
-static void SendAndFreeMessage(Message *messageP, uint8_t logToFile) {
+static void SendAndFreeMessage(Message* messageP, uint8_t logToFile) {
 	uint32_t u32;
 	uint16_t u16;
 
@@ -451,7 +451,7 @@ static void SendAndFreeMessage(Message *messageP, uint8_t logToFile) {
  *
  * \param appName is the name of the calling application
  */
-static void DumpLogFile(const char *appName) {
+static void DumpLogFile(const char* appName) {
 	if (gLogFile != -1 && gLogSocket != -1) {
 
 		// connected, if we were logging to file, re-send file content over new connection
@@ -466,7 +466,7 @@ static void DumpLogFile(const char *appName) {
 #endif
 		// send a 'start dump message, so reporter can filter out redundancies'
 		Message message;
-		BuildMessage(&message, appName, 0, 0, (uint8_t *)START_DUMP_MSG, (uint16_t)strlen(START_DUMP_MSG), START_DUMP_TAG);
+		BuildMessage(&message, appName, 0, 0, (uint8_t*)START_DUMP_MSG, (uint16_t)strlen(START_DUMP_MSG), START_DUMP_TAG);
 		SendAndFreeMessage(&message, 0);
 
 		// dump to reporter
@@ -483,7 +483,7 @@ static void DumpLogFile(const char *appName) {
 		} while (bytes > 0);
 
 		// send a 'end dump message, so reporter can filter out redundancies'
-		BuildMessage(&message, appName, 0, 0, (uint8_t *)END_DUMP_MSG, (uint16_t)strlen(END_DUMP_MSG), END_DUMP_TAG);
+		BuildMessage(&message, appName, 0, 0, (uint8_t*)END_DUMP_MSG, (uint16_t)strlen(END_DUMP_MSG), END_DUMP_TAG);
 		SendAndFreeMessage(&message, 0);
 
 		// truncate file
@@ -504,7 +504,7 @@ static void DumpLogFile(const char *appName) {
  *
  * \return 0 on success, -1 else
  */
-static int InitLogFile(const char *appName) {
+static int InitLogFile(const char* appName) {
 	// if logging, keep going
 	if (gLogFile != -1 || gMaxLogSize == 0)
 		return 0;
@@ -534,7 +534,7 @@ static int InitLogFile(const char *appName) {
  *
  * \return 0 on success, -1 else
  */
-static int InitConnection(const char *appName) {
+static int InitConnection(const char* appName) {
 	// if logging, keep going
 	if (gLogSocket != -1 || (!gAutoReconnect && gConnectionFailed))
 		return 0;
@@ -583,7 +583,7 @@ static int InitConnection(const char *appName) {
 
 	/*---- Connect the socket to the server using the address struct ----*/
 	addr_size = sizeof serverAddr;
-	if (!connect(fd, (struct sockaddr *) &serverAddr, addr_size)) {
+	if (!connect(fd, (struct sockaddr*)&serverAddr, addr_size)) {
 		gConnectionFailed = false;
 		gLogSocket = (int)fd;
 		DumpLogFile(appName);
@@ -594,28 +594,28 @@ static int InitConnection(const char *appName) {
 }
 
 /**
- * \fn static int InitLog()
+ * \fn static int InitLog(const char* appName)
  * \ brief creates the connection and/or the the log file if not done yet
  *
  * \param appName is the name of the calling application
  *
  * \return 0 on success (at least one of the log routes was opened), -1 else
  */
-static int InitLog(const char *appName) {
+static int InitLog(const char* appName) {
 	int result = InitLogFile(appName);
 	result &= InitConnection(appName);
 	return result;
 }
 
 /**
- * \fn void SetLogAddress(const char *ipAddress, uint16_t port)
+ * \fn void SetLogAddress(const char* ipAddress, uint16_t port)
  * \brief set the IP (either IPV4 XXX.XXX.XXX.XXX numeric form or host name) address of the log-reporter
  * 		  server. 	This function overrides the settings file's address
  *
  * \param ipAddress is the IP address of the log-reporter server
  * \param port is the associated port number
  */
-void SetLogAddress(const char *ipAddress, uint16_t port) {
+void SetLogAddress(const char* ipAddress, uint16_t port) {
 	if (!ipAddress)
 		return;
 
@@ -630,16 +630,16 @@ void SetLogAddress(const char *ipAddress, uint16_t port) {
 		gLogSocket = (int)-1;
 	}
 
-    	struct hostent *he;
-    	struct in_addr **addr_list;
+  struct hostent*  he;
+  struct in_addr** addr_list;
 
-   	if (!(he = gethostbyname(ipAddress))) {  // get the host info
+  if (!(he = gethostbyname(ipAddress))) {  // get the host info
 		fprintf(stderr, "couldn't get host name for %s!\n", ipAddress);
 		return;
-    	}
+  }
 
 	// store new address
-    	addr_list = (struct in_addr **)he->h_addr_list;
+  addr_list = (struct in_addr **)he->h_addr_list;
 
 
 #ifdef WIN32
@@ -655,7 +655,7 @@ void SetLogAddress(const char *ipAddress, uint16_t port) {
 }
 
 /**
- * \fn static void BuildAndSendMessage(const char *appName, uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t size, TYPE_DATA_TYPE type)
+ * \fn static void BuildAndSendMessage(const char* appName, uint32_t module, uint8_t indent, const uint8_t* dataP, uint16_t size, TYPE_DATA_TYPE type)
  * \brief build a protocol log message and send it to the connected log-reporter server
  *
  * \param appName is the either the fully qualified or base name of the executable issuing the call. Can be used to filter in/colorize
@@ -666,7 +666,7 @@ void SetLogAddress(const char *ipAddress, uint16_t port) {
  * \param type specifies the type of data pointed by dataP
  * \param size is the length of the binary array referenced by dataP
  */
-static void BuildAndSendMessage(const char *appName, uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t size, TYPE_DATA_TYPE type) {
+static void BuildAndSendMessage(const char* appName, uint32_t module, uint8_t indent, const uint8_t* dataP, uint16_t size, TYPE_DATA_TYPE type) {
 	// create message
 	Message message;
 	BuildMessage(&message, appName, module, indent, dataP, size, type);
@@ -676,7 +676,7 @@ static void BuildAndSendMessage(const char *appName, uint32_t module, uint8_t in
 }
 
 /**
- * \fn void LogText(const char *appName, uint32_t module, uint8_t indent, const char *textP, uint8_t lineBreak)
+ * \fn void LogText(uint32_t module, uint8_t indent, const char* textP, uint8_t lineBreak)
  * \brief logs a message
  *
  * \param module is the module bit mask to be used to filter in/colorise the log message
@@ -684,12 +684,12 @@ static void BuildAndSendMessage(const char *appName, uint32_t module, uint8_t in
  * \param lineBreak is true if a line break shall happen before the next message
  * \param textP points to the C string to be sent
  */
-void LogText(uint32_t module, uint8_t indent, bool lineBreak, const char *textP) {
+void LogText(uint32_t module, uint8_t indent, bool lineBreak, const char* textP) {
 	if (!textP)
 		return;
 
 	// get calling process name
-	const char *appName = GetProcessName();
+	const char* appName = GetProcessName();
 
 	// load settings from setting file
 	InitSettings(appName);
@@ -709,7 +709,7 @@ void LogText(uint32_t module, uint8_t indent, bool lineBreak, const char *textP)
 }
 
 /**
- * \fn void LogData(const char *appName, uint32_t module, uint8_t indent, const char *dataP, uint16_t size)
+ * \fn void LogData(uint32_t module, uint8_t indent, const char* dataP, uint16_t size)
  * \brief logs a message
  *
  * \param module is the module bit mask to be used to filter in/colorise the log message
@@ -717,12 +717,12 @@ void LogText(uint32_t module, uint8_t indent, bool lineBreak, const char *textP)
  * \param dataP points to the binary array to be sent
  * \param size is the length of the binary array referenced by dataP
  */
-void LogData(uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t size) {
+void LogData(uint32_t module, uint8_t indent, const uint8_t* dataP, uint16_t size) {
 	if (!dataP)
 		return;
 
 	// get calling process name
-	const char *appName = GetProcessName();
+	const char* appName = GetProcessName();
 
 	// load settings from setting file
 	InitSettings(appName);
@@ -742,7 +742,7 @@ void LogData(uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t siz
 }
 
 /**
- * \fn void LogVText(const char *appName, uint32_t module, uint8_t indent, uint8_t lineBreak, const char *formatP, )
+ * \fn void LogVText(uint32_t module, uint8_t indent, uint8_t lineBreak, const char* formatP, ...)
  * \brief logs a message
  *
  * \param module is the module bit mask to be used to filter in/colorise the log message
@@ -751,7 +751,7 @@ void LogData(uint32_t module, uint8_t indent, const uint8_t *dataP, uint16_t siz
  * \param formatP points to the format string as expected by the s*printf functions familly
  */
 static char message[1024 + 1];
-void LogVText(uint32_t module, uint8_t indent, bool lineBreak, const char *formatP, ...) {
+void LogVText(uint32_t module, uint8_t indent, bool lineBreak, const char* formatP, ...) {
 	va_list vl;
 	va_start(vl, formatP);
 	vsnprintf(message, sizeof(message), formatP, vl);

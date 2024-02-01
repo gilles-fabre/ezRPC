@@ -1,16 +1,21 @@
 #include <stdio.h>
 
+#include <sys/types.h>  
+#include <sys/stat.h>   
+#include <fcntl.h>
+
 #ifdef WIN32
+#define UNIX_PATH_MAX 108
+struct sockaddr_un {
+	unsigned short		sun_family;
+	char							sun_path[UNIX_PATH_MAX];  // pathname 
+};
 #else
 #include <sys/socket.h>
 #include <netinet/in.h> // PF_INET/AF_INET
 #include <arpa/inet.h>
 #include <sys/un.h>		// AF_UNIX
 #endif
-
-#include <sys/types.h>  // mkfifo
-#include <sys/stat.h>   // mkfifo
-#include <fcntl.h>
 
 #include "Transport.h"
 
@@ -21,14 +26,14 @@ uint8_t TcpTransport::m_WSAStartupDone = 0;
 #endif
 
 /**
- * \fn Transport *Transport::CreateTransport(TransportType transport_type)
+ * \fn Transport* Transport::CreateTransport(TransportType transport_type)
  * \brief Returns a newly created transport for the given transport type
  *
  * \param transport_type specifies the requested type of underlying transport
  * \return an instance of specialized transport, NULL if an error occured
  */
-Transport *Transport::CreateTransport(TransportType transport_type) {
-	Transport *transport = NULL;
+Transport* Transport::CreateTransport(TransportType transport_type) {
+	Transport* transport = NULL;
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "Transport::CreateTransport(%d)", transport_type);
 #endif
@@ -41,14 +46,12 @@ Transport *Transport::CreateTransport(TransportType transport_type) {
 #endif
 			break;
 
-#ifndef WIN32
 		case FILE:
 			transport = new FileTransport();
 #ifdef TRANSPORT_TRACES
 			LogVText(TRANSPORT_MODULE, 4, true, "created transport %p of type FILE", transport);
 #endif
 			break;
-#endif
 
 		default:
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown Transport type!" << endl;
@@ -59,28 +62,28 @@ Transport *Transport::CreateTransport(TransportType transport_type) {
 }
 
 /**
- * \fn Link* TcpTransport::WaitForLinkRequest(const string &server_address)
+ * \fn Link* TcpTransport::WaitForLinkRequest(const string& server_address)
  * \brief Waits for a LinkRequest and returns the resulting link
  *
  * \param server_address is the IP address to listen on
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
-	SOCKET						c_socket;
-	struct 	sockaddr_in 		server_addr = {0,};
+Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
+	SOCKET							c_socket;
+	struct 	sockaddr_in server_addr = {0,};
 
 #ifdef WIN32
-	struct 	sockaddr 			server_storage;
-	int							addr_size;
+	struct 	sockaddr 		server_storage;
+	int									addr_size;
 #else
 	struct 	sockaddr_storage 	server_storage;
 	socklen_t 					addr_size;
 #endif
-	string						s_ipaddr;
-	string						s_port;
-	int							n_port;
-	int 						retval;
-	int 						off = 0;
+	string							s_ipaddr;
+	string							s_port;
+	int									n_port;
+	int 								retval;
+	int 								off = 0;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::WaitForLinkRequest(%s)", server_address.c_str());
@@ -132,7 +135,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 		server_addr.sin_addr.s_addr = inet_addr(s_ipaddr.c_str());
 
 		// bind the address struct to the socket
-		bind(m_s_socket, (struct sockaddr *) &server_addr, sizeof(server_addr));
+		bind(m_s_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
 #ifdef TRANSPORT_TRACES
 		LogVText(TRANSPORT_MODULE, 4, true, "created and bound to socket %d", m_s_socket);
 #endif
@@ -163,7 +166,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 
 	// accept call creates a new socket for the incoming connection
 	addr_size = sizeof(server_storage);
-	if ((c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size)) == -1) {
+	if ((c_socket = accept(m_s_socket, (struct sockaddr*)&server_storage, &addr_size)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't accept connection (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
@@ -179,7 +182,7 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 		return NULL;
 	}
 
-	Link *new_linkP = new Link(c_socket, c_socket);
+	Link* new_linkP = new Link(c_socket, c_socket);
 	m_links.push_back(new_linkP);
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
@@ -189,20 +192,20 @@ Link* TcpTransport::WaitForLinkRequest(const string &server_address) {
 }
 
 /**
- * \fn Link* TcpTransport::LinkRequest(const string &server_address)
+ * \fn Link* TcpTransport::LinkRequest(const string& server_address)
  * \brief Connects to a server blocked on WaitLinkRequest and
  * 		  returns the resulting link
  *
  * \param server_address is the IP addr of the server to connect to
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::LinkRequest(const string &server_address) {
-	SOCKET 				c_socket;
+Link* TcpTransport::LinkRequest(const string& server_address) {
+	SOCKET 							c_socket;
 	struct 	sockaddr_in server_addr = {0,};
-	string				s_ipaddr;
-	string				s_port;
-	int					n_port;
-	int 				retval;
+	string							s_ipaddr;
+	string							s_port;
+	int									n_port;
+	int 								retval;
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", server_address.c_str());
 #endif
@@ -265,7 +268,7 @@ Link* TcpTransport::LinkRequest(const string &server_address) {
 		return NULL;
 	}
 
-	Link *new_linkP = new Link(c_socket, c_socket);
+	Link* new_linkP = new Link(c_socket, c_socket);
 	m_links.push_back(new_linkP);
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
@@ -274,21 +277,20 @@ Link* TcpTransport::LinkRequest(const string &server_address) {
 	return new_linkP;
 }
 
-#ifndef WIN32
 /**
- * \fn Link* FileTransport::WaitForLinkRequest(const string &server_address)
+ * \fn Link* FileTransport::WaitForLinkRequest(const string& server_address)
  * \brief Waits for a LinkRequest and returns the resulting link
  *
  * \param server_address is the file name to listen on
  * \return a connected link to the peer, NULL upon error
  */
-Link* FileTransport::WaitForLinkRequest(const string &server_address) {
-	int 						c_socket;
-	sockaddr_un 				server_addr = {0,};
-	struct 	sockaddr_storage 	server_storage;
-	socklen_t 					addr_size;
-	int 						retval;
-	int 						off = 0;
+Link* FileTransport::WaitForLinkRequest(const string& server_address) {
+	int 											c_socket;
+	sockaddr_un 							server_addr = { 0, };
+	struct sockaddr_storage 	server_storage;
+	socklen_t 								addr_size;
+	int 											retval;
+	int 											off = 0;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::WaitForLinkRequest(%s)", server_address.c_str());
@@ -307,7 +309,7 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 		unlink(m_server_address.c_str());
 
 		// create the server socket
-		if ((m_s_socket = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+		if ((m_s_socket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			return NULL;
 		}
@@ -320,15 +322,19 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 		strcpy(server_addr.sun_path, server_address.c_str());
 
 		// bind the address struct to the socket
-		bind(m_s_socket, (struct sockaddr *) &server_addr, sizeof(server_addr));
+		bind(m_s_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
 #ifdef TRANSPORT_TRACES
 		LogVText(TRANSPORT_MODULE, 4, true, "created and bound to socket %d", m_s_socket);
 #endif
 
 		if (setsockopt(m_s_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
-		    close(m_s_socket);
-		    m_s_socket = -1;
+#ifdef WIN32
+			closesocket(m_s_socket);
+#else
+			close(m_s_socket);
+#endif
+			m_s_socket = -1;
 			return NULL;
 		}
 	}
@@ -347,15 +353,19 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 
 	// accept call creates a new socket for the incoming connection
 	addr_size = sizeof(server_storage);
-	c_socket = accept(m_s_socket, (struct sockaddr *)&server_storage, &addr_size);
+	c_socket = (int)accept(m_s_socket, (struct sockaddr*)&server_storage, &addr_size);
 
 	if (setsockopt(c_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
-	    close(c_socket);
+#ifdef WIN32
+		closesocket(c_socket);
+#else
+		close(c_socket);
+#endif
 		return NULL;
 	}
 
-	Link *new_linkP = new Link(c_socket, c_socket);
+	Link* new_linkP = new Link(c_socket, c_socket);
 	m_links.push_back(new_linkP);
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
@@ -365,24 +375,23 @@ Link* FileTransport::WaitForLinkRequest(const string &server_address) {
 }
 
 /**
- * \fn Link* FileTransport::LinkRequest(const string &server_address)
+ * \fn Link* FileTransport::LinkRequest(const string& server_address)
  * \brief Connects to a server blocked on WaitLinkRequest and
  * 		  returns the resulting link
  *
  * \param server_address is the filename the server is listening on
  * \return a connected link to the peer, NULL upon error
  */
-Link* FileTransport::LinkRequest(const string &server_address) {
-	int 				c_socket;
-	sockaddr_un 		server_addr = {0,};
-	string				s_host;
-	int 				retval;
+Link* FileTransport::LinkRequest(const string& server_address) {
+	int 					c_socket;
+	sockaddr_un 	server_addr = { 0, };
+	int 					retval;
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::LinkRequest(%s)", server_address.c_str());
 #endif
 
 	// create the client socket
-	if ((c_socket = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+	if ((c_socket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
@@ -400,11 +409,15 @@ Link* FileTransport::LinkRequest(const string &server_address) {
 	// connect the socket to the server using the address struct
 	if ((retval = connect(c_socket, (struct sockaddr *)&server_addr, sizeof(server_addr))) == -1)  {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't connect to socket (" << strerror(errno) << ")" << endl;
+#ifdef WIN32
+		closesocket(c_socket);
+#else
 		close(c_socket);
+#endif
 		return NULL;
 	}
 
-	Link *new_linkP = new Link(c_socket, c_socket);
+	Link* new_linkP = new Link(c_socket, c_socket);
 	m_links.push_back(new_linkP);
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
@@ -412,4 +425,3 @@ Link* FileTransport::LinkRequest(const string &server_address) {
 
 	return new_linkP;
 }
-#endif // no AF-UNIX support under windows

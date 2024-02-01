@@ -1,7 +1,7 @@
 #include "Link.h"
 
 /**
- * \fn bool Link::Send(unsigned char *byte_buffer, unsigned int data_len)
+ * \fn bool Link::Send(unsigned char* byte_buffer, unsigned int data_len)
  * \brief Sends data_len bytes from byte_buffer to the linked peer.
  *        This a blocking complete send.
  *
@@ -9,7 +9,7 @@
  *	\param data_len is the amount of data to be sent
  *	\return TRUE if all data could be sent, else returns FALSE.
  */
-bool Link::Send(unsigned char *byte_buffer, int data_len) {
+bool Link::Send(unsigned char* byte_buffer, unsigned int data_len) {
 	int total = 0,
 	    last;
 
@@ -39,7 +39,7 @@ bool Link::Send(unsigned char *byte_buffer, int data_len) {
 }
 
 /**
- * \fn bool Link::Send(unsigned char *byte_buffer, unsigned int *data_lenP)
+ * \fn bool Link::Send(unsigned char* byte_buffer, unsigned int* data_lenP)
  * \brief Sends up to data_len bytes from byte_buffer to the linked peer.
  *        This a blocking potentially non complete send.
  *
@@ -47,7 +47,7 @@ bool Link::Send(unsigned char *byte_buffer, int data_len) {
  *	\param data_len is the max amount of data to be sent
  *	\return TRUE if data could be sent, else returns FALSE.
  */
-bool Link::Send(unsigned char *byte_buffer, int *data_lenP) {
+bool Link::Send(unsigned char* byte_buffer, unsigned int* data_lenP) {
 	if (!byte_buffer || !data_lenP || m_out == -1)
 		return false;
 #ifdef LINK_TRACES
@@ -63,7 +63,7 @@ bool Link::Send(unsigned char *byte_buffer, int *data_lenP) {
 }
 
 /**
- * \fn bool Link::Receive(unsigned char *byte_buffer, unsigned int data_len)
+ * \fn bool Link::Receive(unsigned char* byte_buffer, unsigned int data_len)
  * \brief Receives data_len bytes into byte_buffer from the linked peer.
  *        This a blocking complete receive.
  *
@@ -71,9 +71,9 @@ bool Link::Send(unsigned char *byte_buffer, int *data_lenP) {
  *	\param data_len is the amount of data to be received
  *	\return TRUE if all data could be received, else returns FALSE.
  */
-bool Link::Receive(unsigned char *byte_buffer, int data_len) {
+bool Link::Receive(unsigned char* byte_buffer, unsigned int data_len) {
 	int total = 0,
-		last;
+			last;
 
 	if (!byte_buffer || m_in == -1)
 		return false;
@@ -101,7 +101,7 @@ bool Link::Receive(unsigned char *byte_buffer, int data_len) {
 }
 
 /**
- * \fn bool Link::Receive(unsigned char *byte_buffer, unsigned int *data_lenP)
+ * \fn bool Link::Receive(unsigned char* byte_buffer, unsigned int* data_lenP)
  * \brief Receives up to data_len bytes into byte_buffer from the linked peer.
  *        This a blocking potentially non complete receive.
  *
@@ -109,7 +109,7 @@ bool Link::Receive(unsigned char *byte_buffer, int data_len) {
  *	\param data_len is the max amount of data to be received
  *	\return TRUE if data could be received, else returns FALSE.
  */
-bool Link::Receive(unsigned char *byte_buffer, int *data_lenP) {
+bool Link::Receive(unsigned char* byte_buffer, unsigned int* data_lenP) {
 	if (!byte_buffer || !data_lenP || m_in == -1)
 		return false;
 #ifdef LINK_TRACES
@@ -125,7 +125,7 @@ bool Link::Receive(unsigned char *byte_buffer, int *data_lenP) {
 }
 
 /**
- * \fn bool Link::Peek(unsigned char *byte_buffer, unsigned int *data_lenP)
+ * \fn bool Link::Peek(unsigned char* byte_buffer, unsigned int* data_lenP)
  * \brief Peeks up to data_len bytes into byte_buffer from the linked peer.
  *        This a blocking potentially non complete receive.
  *
@@ -133,7 +133,7 @@ bool Link::Receive(unsigned char *byte_buffer, int *data_lenP) {
  *	\param data_len is the max amount of data to be received
  *	\return TRUE if data could be received, else returns FALSE.
  */
-bool Link::Peek(unsigned char *byte_buffer, int *data_lenP) {
+bool Link::Peek(unsigned char* byte_buffer, unsigned int* data_lenP) {
 	if (!byte_buffer || !data_lenP || m_in == -1)
 		return false;
 #ifdef LINK_TRACES

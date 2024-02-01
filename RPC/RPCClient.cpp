@@ -6,10 +6,11 @@
 #include <unistd.h>
 #endif
 
+#define _EXPORTING
 #include "RPCClient.h"
 
 /**
- * \fn unsigned long RPCClient::RpcCall(string &func_name, int num_args, ...)
+ * \fn unsigned long RPCClient::RpcCall(string func_name, int num_args, ...)
  * \brief see RemoteProcedureCall::SerializedCall ...
  * 
  * \param func_name is the name of the Remote Procedure called

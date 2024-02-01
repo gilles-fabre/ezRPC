@@ -10,17 +10,17 @@
 
 using namespace std;
 
-RPCServer 		*gRpcServerP = NULL;
+RPCServer* gRpcServerP = NULL;
 
 // structure to connect to the state machine referenced by delayed_connect
 typedef struct {
 	StateMachine*	machineP;	// the machine asked to connect to
-	string  		addr;		// this server addr
+	string  			addr;		// this server addr
 	uint16_t  		delay;		// after this delay
 } DelayedConnectionInfo;
 
 /**
- * \fn void DelayedConnectionThread(void *paramP) 
+ * \fn void DelayedConnectionThread(void* paramP) 
  * \brief Delayed connection thread, invoked by the client to request the given
  * 		  state machine to connect to itself, so the state machine can invoke
  * 		  the client's state transition callbacks.
@@ -29,7 +29,7 @@ typedef struct {
  * 				 target state machine, the client IP_V4:port address, and the 
  * 				 connection delay in seconds. 
  */
-static void DelayedConnectionThread(void *paramP) {
+static void DelayedConnectionThread(void* paramP) {
 	DelayedConnectionInfo*	infoP = (DelayedConnectionInfo*)paramP;
 
 	if (infoP) {
@@ -44,7 +44,7 @@ static void DelayedConnectionThread(void *paramP) {
 }
 
 /**
- * \fn unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) 
+ * \fn unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) 
  * \brief Delayed connection RPC service, invoked by the client to request the given
  * 		  state machine to connect to itself, so the state machine can invoke
  * 		  the client's state transition callbacks.
@@ -55,11 +55,11 @@ static void DelayedConnectionThread(void *paramP) {
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
-	RemoteProcedureCall::Parameter *p3 = (*v)[3];
+static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
+	RemoteProcedureCall::Parameter* p3 = (*v)[3];
 	if (!p1 || !p2 || !p3)
 		return -1;
 
@@ -70,17 +70,17 @@ static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter *> *v,
 }
 
 /**
- * \fn unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP)
+ * \fn unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP)
  * \brief Release the given machine so the garbage collector can trash it.
  * 
  * \param (*v)[0] RemoteProcedureCall::UIN64 + target StateMachine ID
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 	if (!p1 || !p2)
 		return -1;
 
@@ -92,7 +92,7 @@ static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v,
 }
 
 /**
- * \fn unsigned long DoTransition(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP)
+ * \fn unsigned long DoTransition(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP)
  * \brief Instruct the given machine to do a transition.
  * 
  * \param (*v)[0] RemoteProcedureCall::UIN64 + target StateMachine ID
@@ -100,10 +100,10 @@ static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter *> *v,
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 	if (!p1 || !p2)
 		return -1;
 
@@ -115,7 +115,7 @@ static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter *> *v, v
 }
 
 /**
- * \fn unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP)
+ * \fn unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP)
  * \brief Asks the server to build a State Machine based on the passed json definition.
  * 
  * \param (*v)[0] RemoteProcedureCall::PTR + RemoteProcedureCall::UIN64 + ptr to returned StateMachine ID. 
@@ -124,10 +124,10 @@ static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter *> *v, v
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter *> *v, void *user_dataP) {
-	RemoteProcedureCall::Parameter *pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter *p1 = (*v)[1];
-	RemoteProcedureCall::Parameter *p2 = (*v)[2];
+static unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+	RemoteProcedureCall::Parameter* p2 = (*v)[2];
 	if (!p1 || !p2)
 		return -1;
 
