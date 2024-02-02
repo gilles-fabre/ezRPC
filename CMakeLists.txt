@@ -12,20 +12,28 @@ message("ezRPC.ROOT_DIR = ${ROOT_DIR}")
 message("ezRPC.CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
 
 
+add_library(LogReporter SHARED 
+			LogReporter/log2reporter.c)
+
 add_library(ezRPC SHARED 
 			RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp
 		    Transport/Transport.cpp Transport/Link.cpp
-		    Thread/Thread.cpp
-		    LogReporter/log2reporter.c)
+		    Thread/Thread.cpp)
 						
+target_link_libraries(ezRPC LogReporter)
+
 add_executable(ezRPC_Test 
 			   RPC/test.cpp)
 
 target_link_libraries(ezRPC_Test ezRPC)
 
+if (NOT WIN32)
 add_library(ezStateMachine SHARED
-			StateMachine/StateMachine.cpp
-		    LogReporter/log2reporter.c)
+			StateMachine/StateMachine.cpp)
+
+target_link_libraries(ezStateMachine LogReporter)
+
+target_link_libraries(ezStateMachine ezRPC jsoncpp)
 
 add_executable(ezStateMachine_Test 
 			   StateMachine/test.cpp)
@@ -36,8 +44,7 @@ add_executable(ezStateMachineServer
 target_link_libraries(ezStateMachine_Test ezStateMachine)
 
 target_link_libraries(ezStateMachineServer ezStateMachine)
-
-target_link_libraries(ezStateMachine ezRPC jsoncpp)
+endif()
 
 target_include_directories(ezRPC 
 							PUBLIC
@@ -54,6 +61,7 @@ target_include_directories(ezRPC_Test
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
 						    "${CMAKE_INSTALL_PREFIX}/LogReporter")
 
+if (NOT WIN32)
 target_include_directories(ezStateMachine 
 						   PUBLIC
 						  "${CMAKE_INSTALL_PREFIX}/RPC" 
@@ -77,6 +85,7 @@ target_include_directories(ezStateMachineServer
 							"${CMAKE_INSTALL_PREFIX}/Thread" 
 							"${CMAKE_INSTALL_PREFIX}/LogReporter")
 
+endif()
 
 find_package(Threads REQUIRED)
 if(THREADS_HAVE_PTHREAD_ARG)
@@ -89,8 +98,16 @@ if(CMAKE_THREAD_LIBS_INIT)
 endif()
 
 install(FILES RPC/ezRPC_Test.log-settings DESTINATION bin)
+
+if (NOT WIN32)
 install(FILES StateMachine/ezStateMachine_Test.log-settings DESTINATION bin)
 install(FILES StateMachine/ezStateMachineServer.log-settings DESTINATION bin)
+endif()
+
+install(TARGETS LogReporter
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
 
 install(TARGETS ezRPC_Test RUNTIME DESTINATION bin)
 
@@ -104,6 +121,7 @@ install(TARGETS ezRPC
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
+if (NOT WIN32)
 install(TARGETS ezStateMachine
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
@@ -125,4 +143,5 @@ install(FILES
 		RPC/RPCServer.h
 		RPC/RemoteProcedureCall.h
 		DESTINATION include)
+endif()
 		
