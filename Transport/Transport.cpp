@@ -403,7 +403,7 @@ Link* FileTransport::LinkRequest(const string& server_address) {
 	// set IP address to localhost
     strcpy(server_addr.sun_path, server_address.c_str());
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "created and will connect to sokcet %d", c_socket);
+	LogVText(TRANSPORT_MODULE, 4, true, "created and will connect to socket %d", c_socket);
 #endif
 
 	// connect the socket to the server using the address struct

@@ -88,6 +88,27 @@ static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter*>* v, void
 	return num1 + num2;
 }
 
+static unsigned long GetString(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
+
+	string& text = p1->GetStringReference();
+
+	cout << "enter a string :" << endl;
+
+	cin >> text;
+
+	return (unsigned long)text.length();
+}
+
+string			g_string;
+Semaphore		g_sem(0);
+
+static void AsyncReplyProc(unsigned long asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned " << result << " and string is " << g_string << endl;
+	g_sem.R();
+}
+
 int main(int argc, char **argv) {
 	if (argc < 4) {
 		cout << "usage:" << endl;
@@ -118,6 +139,7 @@ int main(int argc, char **argv) {
 		server.RegisterProcedure("sum", &SumNumbers);
 		server.RegisterProcedure("incdouble", &IncDouble);
 		server.RegisterProcedure("byebye", &ByeBye);
+		server.RegisterProcedure("get_string", &GetString);
 
 
 		server.IterateAndWait();
@@ -133,7 +155,17 @@ int main(int argc, char **argv) {
 		string func_name = argv[4];
 
 		unsigned long result = -1;
-		if (func_name == "nop") {
+		if (func_name == "get_string") {
+			g_string = "overwrite me!";
+			result = client.RpcCallAsync(AsyncReplyProc,
+									func_name,
+									RemoteProcedureCall::PTR,
+									RemoteProcedureCall::STRING,
+									&g_string,
+									RemoteProcedureCall::END_OF_CALL);
+			g_sem.WaitA(10000);
+		}
+		else if (func_name == "nop") {
 			if (argc < 5) {
 				cout << "usage:" << endl;
 				cout << "\ttest client <tcp|file> server_addr nop" << endl;

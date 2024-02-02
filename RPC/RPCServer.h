@@ -85,7 +85,7 @@ public:
 	 * \param server_address is the server address (for the given transport_type)
 	 * \param user_dataP is a pointer to user data passed in every subsequent RPC call. Set to NULL by default
 	*/
-	RPCServer(Transport::TransportType transport_type,  string &address, void *user_dataP = NULL) {
+	RPCServer(Transport::TransportType transport_type, const string &address, void *user_dataP = NULL) {
 		m_listening_threadP = NULL;
 		m_transportP = Transport::CreateTransport(transport_type);
 		m_address = address;

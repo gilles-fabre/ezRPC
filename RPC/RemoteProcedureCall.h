@@ -266,7 +266,7 @@ public:
 	// rpc call caller side
 
 	/**
-	 * \fn unsigned long SerializeCall(const string func_name, ...)
+	 * \fn unsigned long SerializeCall(string func_name, ...)
 	 * \brief Serializes a call to the server.
 	 * 
 	 * \param func_name is the name of the Remote Procedure to call
@@ -274,19 +274,19 @@ public:
 	 * \param ... variadic, ended by RemoteProcedure::END_OF_CALL, see
 	 * 		      ParamType for possible values.
 	*/
-	unsigned long 		 SerializeCall(const string func_name, ...);
+	unsigned long 		 SerializeCall(string func_name, ...);
 	unsigned long 		 SerializeCall(const string& func_name, va_list vl);
 
 	// rpc function callee side
 
 	/**
-	 * \fn vector<Parameter *>* DeserializeCall(string &func_name)
+	 * \fn vector<Parameter*>* DeserializeCall(string& func_name)
 	 * \brief Deserializes a call into the server.
 	 * 
 	 * \param func_name is the name of the Remote Procedure to call
 	 * 					on the server side.
 	*/
-	vector<Parameter *>* DeserializeCall(string& func_name);
+	vector<Parameter*>* DeserializeCall(string& func_name);
 
 	/**
 	 * \fn

@@ -161,7 +161,7 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
 }
 
 /**
- * \fn unsigned long RemoteProcedureCall::SerializeCall(const string& func_name, ...)
+ * \fn unsigned long RemoteProcedureCall::SerializeCall(string func_name, ...)
  * \brief Serializes the given function call and sends the resulting byte stream
  *        over the associated link.
  *
@@ -184,7 +184,7 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
  *        STRING values MUST be passed as string pointers (std::string*)
  * \return the unsigned long result passed to SerializedCallReturn
  */
-inline unsigned long RemoteProcedureCall::SerializeCall(const string func_name, ...) {
+inline unsigned long RemoteProcedureCall::SerializeCall(string func_name, ...) {
 	unsigned long result = 0;
 	va_list 	  vl;
 
