@@ -88,6 +88,9 @@ static unsigned long SumNumbers(vector<RemoteProcedureCall::Parameter*>* v, void
 	return num1 + num2;
 }
 
+string			g_string;
+Semaphore		g_sem(0);
+
 static unsigned long GetString(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
 	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
 	RemoteProcedureCall::Parameter* p1 = (*v)[1];
@@ -101,10 +104,23 @@ static unsigned long GetString(vector<RemoteProcedureCall::Parameter*>* v, void*
 	return (unsigned long)text.length();
 }
 
-string			g_string;
-Semaphore		g_sem(0);
+static unsigned long PutString(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
+	RemoteProcedureCall::Parameter* p1 = (*v)[1];
 
-static void AsyncReplyProc(unsigned long asyncId, unsigned long result) {
+	string& text = p1->GetStringReference();
+
+	cout << "string passed :" << text << endl;
+
+	return 0;
+}
+
+static void GetStringAsyncReplyProc(unsigned long asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned " << result << " and string is " << g_string << endl;
+	g_sem.R();
+}
+
+static void PutStringAsyncReplyProc(unsigned long asyncId, unsigned long result) {
 	cout << "asyncId : " << asyncId << ", returned " << result << " and string is " << g_string << endl;
 	g_sem.R();
 }
@@ -140,7 +156,7 @@ int main(int argc, char **argv) {
 		server.RegisterProcedure("incdouble", &IncDouble);
 		server.RegisterProcedure("byebye", &ByeBye);
 		server.RegisterProcedure("get_string", &GetString);
-
+		server.RegisterProcedure("put_string", &PutString);
 
 		server.IterateAndWait();
 	} else if (what == "client"){
@@ -156,14 +172,34 @@ int main(int argc, char **argv) {
 
 		unsigned long result = -1;
 		if (func_name == "get_string") {
+			if (argc != 5) {
+				cout << "usage:" << endl;
+				cout << "\ttest client <tcp|file> server_addr get_string" << endl;
+				return -1;
+			}
 			g_string = "overwrite me!";
-			result = client.RpcCallAsync(AsyncReplyProc,
+			result = client.RpcCallAsync(GetStringAsyncReplyProc,
 									func_name,
 									RemoteProcedureCall::PTR,
 									RemoteProcedureCall::STRING,
 									&g_string,
 									RemoteProcedureCall::END_OF_CALL);
 			g_sem.WaitA(10000);
+		}
+		else if (func_name == "put_string") {
+			if (argc != 6) {
+				cout << "usage:" << endl;
+				cout << "\ttest client <tcp|file> server_addr put_string text" << endl;
+				return -1;
+			}
+			g_string = argv[5];
+			result = client.RpcCallAsync(PutStringAsyncReplyProc,
+									func_name,
+									RemoteProcedureCall::PTR,
+									RemoteProcedureCall::STRING,
+									&g_string,
+									RemoteProcedureCall::END_OF_CALL);
+				g_sem.WaitA(10000);
 		}
 		else if (func_name == "nop") {
 			if (argc < 5) {
