@@ -54,6 +54,12 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	return result;
 }
 
+/**
+ * \fn void RPCClient::AsyncRpcCallHandler(void* paramP)
+ * \brief This is the function called by the spawned thread to process the async rpn call.
+ *
+ * \param paramP contains a pointer to a newly allocated (per thread) AsyncReplyHandlerParameters.
+ */
 void RPCClient::AsyncRpcCallHandler(void* paramP) {
 	AsyncReplyHandlerParameters* p = (AsyncReplyHandlerParameters*)paramP;
 	if (!p)
@@ -93,6 +99,19 @@ void RPCClient::AsyncRpcCallHandler(void* paramP) {
 	(*procedureP)(asyncId, result);
 }
 
+/**
+ * \fn unsigned long RPCClient::RpcCallAsync(string func_name, ...)
+ * \brief see RemoteProcedureCall::SerializedCall ...
+ * 
+ * WARNING : ALL PASSED PARAMETERS MUST BE KEPT ALIVE/IN SCOPE UNTIL THE
+ *           CALLBACK PROCEDURE IS CALLED!
+ *
+ * \param procedureP is the callback method called upon asynchronous call completion
+ * \param func_name is the name of the Remote Procedure called
+ * \param ... variadic, is a set of param types and paramters, ended by END_OF_CALL
+ *
+ * \return the asynchronous call identified, also passed to the callback procedure upon async rpc completion.
+ */
 unsigned long RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, ...) {
 	// build the asyncId
 	stringstream ss;

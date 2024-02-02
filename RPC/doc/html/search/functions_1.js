@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deserializecall_86',['DeserializeCall',['../class_remote_procedure_call.html#af875a128e9f3f7bbbdf667f6f04fb9ed',1,'RemoteProcedureCall']]]
+  ['close_0',['Close',['../class_remote_procedure_call.html#a31cda1aad54d910ea156ee3a74668805',1,'RemoteProcedureCall']]]
 ];

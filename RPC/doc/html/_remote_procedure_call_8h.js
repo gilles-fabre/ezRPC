@@ -1,7 +1,7 @@
 var _remote_procedure_call_8h =
 [
     [ "RemoteProcedureCall", "class_remote_procedure_call.html", "class_remote_procedure_call" ],
-    [ "Parameter", "class_remote_procedure_call_1_1_parameter.html", "class_remote_procedure_call_1_1_parameter" ],
+    [ "RemoteProcedureCall::Parameter", "class_remote_procedure_call_1_1_parameter.html", "class_remote_procedure_call_1_1_parameter" ],
     [ "HTONLL", "_remote_procedure_call_8h.html#a806795ac46f7f8b024b4d5686c74074f", null ],
     [ "NTOHLL", "_remote_procedure_call_8h.html#af033e32e0f831cd69a14e0bd18f4e725", null ],
     [ "RPC_MODULE", "_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d", null ],

@@ -1,24 +1,6 @@
 var searchData=
 [
-  ['registerprocedure_41',['RegisterProcedure',['../class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b',1,'RPCServer']]],
-  ['remoteprocedure_42',['RemoteProcedure',['../_remote_procedure_call_8h.html#ace8a0725ccae02c32c7d5ce7381df265',1,'RemoteProcedureCall.h']]],
-  ['remoteprocedurecall_43',['RemoteProcedureCall',['../class_remote_procedure_call.html',1,'RemoteProcedureCall'],['../class_remote_procedure_call.html#a608a47dd5f4abafdb40329582f3392e5',1,'RemoteProcedureCall::RemoteProcedureCall()']]],
-  ['remoteprocedurecall_2ecpp_44',['RemoteProcedureCall.cpp',['../_remote_procedure_call_8cpp.html',1,'']]],
-  ['remoteprocedurecall_2eh_45',['RemoteProcedureCall.h',['../_remote_procedure_call_8h.html',1,'']]],
-  ['result_5faddress_46',['RESULT_ADDRESS',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b',1,'RemoteProcedureCall']]],
-  ['rpc_5fmodule_47',['RPC_MODULE',['../_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d',1,'RemoteProcedureCall.h']]],
-  ['rpc_5ftraces_48',['RPC_TRACES',['../_remote_procedure_call_8h.html#a51d09c9ea289a8f4f45d04b758665396',1,'RemoteProcedureCall.h']]],
-  ['rpccall_49',['RpcCall',['../class_r_p_c_client.html#aafa4b8e67880abb541605fb0e3925af8',1,'RPCClient']]],
-  ['rpcclient_50',['RPCClient',['../class_r_p_c_client.html',1,'RPCClient'],['../class_r_p_c_client.html#a998f522d4e130549560551fd62fc7575',1,'RPCClient::RPCClient()']]],
-  ['rpcclient_2ecpp_51',['RPCClient.cpp',['../_r_p_c_client_8cpp.html',1,'']]],
-  ['rpcclient_2eh_52',['RPCClient.h',['../_r_p_c_client_8h.html',1,'']]],
-  ['rpcclient_5fmodule_53',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
-  ['rpcclient_5ftraces_54',['RPCCLIENT_TRACES',['../_r_p_c_client_8h.html#ad947692f8397d4a3352c4b6323c0debb',1,'RPCClient.h']]],
-  ['rpcserver_55',['RPCServer',['../class_r_p_c_server.html',1,'RPCServer'],['../class_r_p_c_server.html#aa38a6b541a64ac4c7956adf1e55f0bd5',1,'RPCServer::RPCServer()']]],
-  ['rpcserver_2ecpp_56',['RPCServer.cpp',['../_r_p_c_server_8cpp.html',1,'']]],
-  ['rpcserver_2eh_57',['RPCServer.h',['../_r_p_c_server_8h.html',1,'']]],
-  ['rpcserver_5fmodule_58',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]],
-  ['rpcserver_5ftraces_59',['RPCSERVER_TRACES',['../_r_p_c_server_8h.html#ad6079fb1027af793f01f1a47e2c4c04c',1,'RPCServer.h']]],
-  ['run_60',['Run',['../class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7',1,'RPCServer']]],
-  ['runandwait_61',['RunAndWait',['../class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca',1,'RPCServer']]]
+  ['parameter_0',['Parameter',['../class_remote_procedure_call_1_1_parameter.html',1,'RemoteProcedureCall::Parameter'],['../class_remote_procedure_call_1_1_parameter.html#aee9834a3b3b85cacbd8f2336efb6863b',1,'RemoteProcedureCall::Parameter::Parameter(unsigned char value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#acb668ab76f94be40b4b5694e4ffc97bb',1,'RemoteProcedureCall::Parameter::Parameter(char value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#ada348fc29a1cc027db30bc5ed82d941b',1,'RemoteProcedureCall::Parameter::Parameter(int16_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#acac976bf36c66223fc5768f25d7be6d8',1,'RemoteProcedureCall::Parameter::Parameter(uint16_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#abe7945e32668a008c0f0bd8121d37026',1,'RemoteProcedureCall::Parameter::Parameter(int32_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#a10e412c0a0acade485f5c09672541d67',1,'RemoteProcedureCall::Parameter::Parameter(uint32_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#a886fdabd16113489ce115095d26391d5',1,'RemoteProcedureCall::Parameter::Parameter(int64_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#ae5a59853d72d1bcc83856b89eb9a47b0',1,'RemoteProcedureCall::Parameter::Parameter(uint64_t value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#aa977abca95b168c723c188dc6f432b5f',1,'RemoteProcedureCall::Parameter::Parameter(double value, uint64_t caller_valP=0)'],['../class_remote_procedure_call_1_1_parameter.html#aacf9865f3d6bb1ae4bdd35df8b0bb4cf',1,'RemoteProcedureCall::Parameter::Parameter(const char *value, uint64_t caller_valP=0)']]],
+  ['paramtype_1',['ParamType',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1',1,'RemoteProcedureCall']]],
+  ['ptr_2',['PTR',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00',1,'RemoteProcedureCall']]]
 ];

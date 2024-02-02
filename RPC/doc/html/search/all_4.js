@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['end_5fof_5fcall_15',['END_OF_CALL',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c',1,'RemoteProcedureCall']]]
+  ['deserializecall_0',['DeserializeCall',['../class_remote_procedure_call.html#af875a128e9f3f7bbbdf667f6f04fb9ed',1,'RemoteProcedureCall']]],
+  ['double_1',['DOUBLE',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50',1,'RemoteProcedureCall']]]
 ];
