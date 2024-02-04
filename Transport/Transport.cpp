@@ -8,8 +8,9 @@
 #define UNIX_PATH_MAX 108
 struct sockaddr_un {
 	unsigned short		sun_family;
-	char							sun_path[UNIX_PATH_MAX];  // pathname 
+	char				sun_path[UNIX_PATH_MAX];  // pathname 
 };
+
 #else
 #include <sys/socket.h>
 #include <netinet/in.h> // PF_INET/AF_INET
@@ -69,21 +70,21 @@ Transport* Transport::CreateTransport(TransportType transport_type) {
  * \return a connected link to the peer, NULL upon error
  */
 Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
-	SOCKET							c_socket;
+	SOCKET				c_socket;
 	struct 	sockaddr_in server_addr = {0,};
 
 #ifdef WIN32
-	struct 	sockaddr 		server_storage;
-	int									addr_size;
+	struct 	sockaddr 	server_storage;
+	int					addr_size;
 #else
 	struct 	sockaddr_storage 	server_storage;
 	socklen_t 					addr_size;
 #endif
-	string							s_ipaddr;
-	string							s_port;
-	int									n_port;
-	int 								retval;
-	int 								off = 0;
+	string	s_ipaddr;
+	string	s_port;
+	int		n_port;
+	int 	retval;
+	int 	off = 0;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::WaitForLinkRequest(%s)", server_address.c_str());
@@ -200,12 +201,13 @@ Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
  * \return a connected link to the peer, NULL upon error
  */
 Link* TcpTransport::LinkRequest(const string& server_address) {
-	SOCKET 							c_socket;
+	SOCKET 				c_socket;
 	struct 	sockaddr_in server_addr = {0,};
-	string							s_ipaddr;
-	string							s_port;
-	int									n_port;
-	int 								retval;
+	string				s_ipaddr;
+	string				s_port;
+	int					n_port;
+	int 				retval;
+
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", server_address.c_str());
 #endif
@@ -285,12 +287,12 @@ Link* TcpTransport::LinkRequest(const string& server_address) {
  * \return a connected link to the peer, NULL upon error
  */
 Link* FileTransport::WaitForLinkRequest(const string& server_address) {
-	int 											c_socket;
-	sockaddr_un 							server_addr = { 0, };
-	struct sockaddr_storage 	server_storage;
-	socklen_t 								addr_size;
-	int 											retval;
-	int 											off = 0;
+	int 					c_socket;
+	sockaddr_un 			server_addr = { 0, };
+	struct sockaddr_storage server_storage;
+	socklen_t 				addr_size;
+	int 					retval;
+	int 					off = 0;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::WaitForLinkRequest(%s)", server_address.c_str());
@@ -383,9 +385,10 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
  * \return a connected link to the peer, NULL upon error
  */
 Link* FileTransport::LinkRequest(const string& server_address) {
-	int 					c_socket;
-	sockaddr_un 	server_addr = { 0, };
-	int 					retval;
+	int 		c_socket;
+	sockaddr_un server_addr = { 0, };
+	int 		retval;
+	
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::LinkRequest(%s)", server_address.c_str());
 #endif

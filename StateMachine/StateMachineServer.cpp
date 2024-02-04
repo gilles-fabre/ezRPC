@@ -15,7 +15,7 @@ RPCServer* gRpcServerP = NULL;
 // structure to connect to the state machine referenced by delayed_connect
 typedef struct {
 	StateMachine*	machineP;	// the machine asked to connect to
-	string  			addr;		// this server addr
+	string  		addr;		// this server addr
 	uint16_t  		delay;		// after this delay
 } DelayedConnectionInfo;
 

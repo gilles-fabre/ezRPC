@@ -19,6 +19,7 @@
  */
 void RPCServer::ListeningCallback(void* _serverP) {
 	RPCServer* serverP = (RPCServer*)_serverP;
+	
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 0, true, "RPCServer::listeningCallback(%p)", serverP);
 #endif
@@ -53,6 +54,7 @@ void RPCServer::ListeningCallback(void* _serverP) {
  */
 void RPCServer::ServiceCallback(void* _paramsP) {
 	ServiceParameters* paramsP = (ServiceParameters*)_paramsP;
+
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 0, true, "RPCServer::ServiceCallback(%p)", paramsP);
 #endif

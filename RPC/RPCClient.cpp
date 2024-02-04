@@ -23,7 +23,6 @@
  * \return the Remote Procedure result.
  */
 unsigned long RPCClient::RpcCall(string func_name, ...) {
-	unsigned long result;
 
 #ifdef RPCCLIENT_TRACES
 	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCall(%s)", func_name.c_str());
@@ -35,23 +34,26 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	}
 
 #ifdef RPCCLIENT_TRACES
-	std::chrono::time_point<std::chrono::system_clock> start, end;
-	start = std::chrono::system_clock::now();
+	chrono::time_point<chrono::system_clock> start, end;
+	start = chrono::system_clock::now();
 #endif
 
-	std::chrono::duration<double> elapsed_seconds = end - start;
+	shared_ptr<vector<unsigned char>> serialized_call = make_shared<vector<unsigned char>>();
+	shared_ptr<unsigned long> result = make_shared<unsigned long>();
 	va_list vl;
 	va_start(vl, func_name);
-	result = m_rpcP->SerializeCall(func_name, vl);
+	m_rpcP->PrepareSerializeCall(*serialized_call.get(), result.get(), func_name, vl);
 	va_end(vl);
 
+	m_rpcP->SendSerializedCall(*(serialized_call.get()));
+
 #ifdef RPCCLIENT_TRACES
-	end = std::chrono::system_clock::now();
-	std::chrono::duration<double> elapsed = end - start;
+	end = chrono::system_clock::now();
+	chrono::duration<double> elapsed = end - start;
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	return result;
+	return *result.get();
 }
 
 /**
@@ -61,12 +63,12 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
  * \param paramP contains a pointer to a newly allocated (per thread) AsyncReplyHandlerParameters.
  */
 void RPCClient::AsyncRpcCallHandler(void* paramP) {
-	AsyncReplyHandlerParameters* p = (AsyncReplyHandlerParameters*)paramP;
+	AsyncRpcParameters* p = (AsyncRpcParameters*)paramP;
 	if (!p)
 		return;
 
 #ifdef RPCCLIENT_TRACES
-	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCallAsync(%s)", p->m_function.c_str());
+	LogText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCallAsync");
 #endif
 
 	if (!p->m_rpcP) {
@@ -75,25 +77,23 @@ void RPCClient::AsyncRpcCallHandler(void* paramP) {
 	}
 
 #ifdef RPCCLIENT_TRACES
-	std::chrono::time_point<std::chrono::system_clock> start, end;
-	start = std::chrono::system_clock::now();
+	chrono::time_point<chrono::system_clock> start, end;
+	start = chrono::system_clock::now();
 #endif
 
-	std::chrono::duration<double> elapsed_seconds = end - start;
-	unsigned long result = p->m_rpcP->SerializeCall(p->m_function, p->m_args);
-	va_end(p->m_args);
+	p->m_rpcP->SendSerializedCall(*(p->m_serialized_call.get()));
 
 #ifdef RPCCLIENT_TRACES
-	end = std::chrono::system_clock::now();
-	std::chrono::duration<double> elapsed = end - start;
+	end = chrono::system_clock::now();
+	chrono::duration<double> elapsed = end - start;
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCallAsync executed in %f second(s)", elapsed.count());
 #endif
 
 
 	// call back async procedure result handler
 	AsyncReplyProcedure* procedureP = p->m_procedureP;
-	unsigned long				 asyncId = p->m_asyncId;
-
+	unsigned long		 asyncId = p->m_asyncId;
+	unsigned long		 result = *p->m_result;
 	delete p;
 
 	(*procedureP)(asyncId, result);
@@ -115,17 +115,24 @@ void RPCClient::AsyncRpcCallHandler(void* paramP) {
 unsigned long RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, ...) {
 	// build the asyncId
 	stringstream ss;
-	ss << func_name << "-" << std::chrono::system_clock::now().time_since_epoch().count();
-	unsigned long asyncId = (unsigned long)std::hash<std::string>{}(ss.str());
+	ss << func_name << "-" << chrono::system_clock::now().time_since_epoch().count();
+	unsigned long asyncId = (unsigned long)hash<string>{}(ss.str());
 	
-	va_list vl, vlc;
+	shared_ptr<Thread> thread = make_shared<Thread>(&RPCClient::AsyncRpcCallHandler);
+
+	shared_ptr<vector<unsigned char>> serialized_call = make_shared<vector<unsigned char>>();
+	shared_ptr<unsigned long> result = make_shared<unsigned long>();
+	va_list vl;
 	va_start(vl, func_name);
-	va_copy(vlc, vl);
-
-	std::shared_ptr<Thread> thread = std::make_shared<Thread>(&RPCClient::AsyncRpcCallHandler);
-	thread->Run(new RPCClient::AsyncReplyHandlerParameters(m_rpcP, procedureP, asyncId, thread, func_name, vlc));
-
+	m_rpcP->PrepareSerializeCall(*(serialized_call.get()), result.get(), func_name, vl);
 	va_end(vl);
+
+	thread->Run(new RPCClient::AsyncRpcParameters(m_rpcP,
+												  procedureP,
+												  asyncId,
+												  thread,
+												  result,
+												  serialized_call));
 
 	return asyncId;
 }

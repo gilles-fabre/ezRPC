@@ -120,7 +120,7 @@ public:
 };
 
 class FileTransport : public Transport {
-	int 		m_s_socket;
+	int 	m_s_socket;
 	string	m_server_address;
 
 public:

@@ -1,6 +1,9 @@
 #ifndef _RPC_REMOTEPROCEDURECALL_H_
 #define _RPC_REMOTEPROCEDURECALL_H_
 
+#include <string>
+#include <vector>
+
 #include <stdarg.h>
 #include <Link.h>
 #include <string.h>
@@ -9,9 +12,6 @@
 #ifndef WIN32
 #include <arpa/inet.h>
 #endif
-
-#include <string>
-#include <vector>
 
 using namespace std;
 
@@ -37,25 +37,25 @@ class RemoteProcedureCall {
 	bool DeserializeCallReturn(unsigned char* bufferP);
 
 	// exchange sized call streams
-	bool						SendPacket(unsigned char* bufferP, unsigned long data_len);
+	bool			SendPacket(unsigned char* bufferP, unsigned long data_len);
 	unsigned char*  ReceivePacket(unsigned long& data_len);
 
 	// utility methods to push parameter values [and pointers] into the
 	// call stream serialization vector and read/decode parameter
 	// values [and pointers] from the serialization call return byte stream.
-	void 			push_int64(vector<unsigned char>& s, int64_t val);
-	void 			push_uint64(vector<unsigned char>& s, uint64_t val);
+	void 		push_int64(vector<unsigned char>& s, int64_t val);
+	void 		push_uint64(vector<unsigned char>& s, uint64_t val);
 	int64_t 	decode_int64(unsigned char* bufferP, int& offset);
 	uint64_t 	decode_uint64(unsigned char* bufferP, int& offset);
-	void			encode_uint64(uint64_t val, unsigned char* bufferP, int& offset);
+	void		encode_uint64(uint64_t val, unsigned char* bufferP, int& offset);
 
-	void 			push_int32(vector<unsigned char>& s, int32_t val);
-	void 			push_uint32(vector<unsigned char>& s, uint32_t val);
+	void 		push_int32(vector<unsigned char>& s, int32_t val);
+	void 		push_uint32(vector<unsigned char>& s, uint32_t val);
 	int32_t 	decode_int32(unsigned char* bufferP, int& offset);
 	uint32_t 	decode_uint32(unsigned char* bufferP, int& offset);
 
-	void 			push_int16(vector<unsigned char>& s, int16_t val);
-	void 			push_uint16(vector<unsigned char>& s, uint16_t val);
+	void 		push_int16(vector<unsigned char>& s, int16_t val);
+	void 		push_uint16(vector<unsigned char>& s, uint16_t val);
 	int16_t 	decode_int16(unsigned char* bufferP, int& offset);
 	uint16_t 	decode_uint16(unsigned char* bufferP, int& offset);
 
@@ -73,7 +73,8 @@ public:
 					DOUBLE		= 'D',
 					STRING   	= 's',
 					RESULT_ADDRESS = 'R',
-					END_OF_CALL = 'X'};
+					END_OF_CALL = 'X',
+					EMPTY};
 
 	/**
 	 * \class Parameter
@@ -86,11 +87,11 @@ public:
 	 */
 	class Parameter {
 	private:
-		ParamType				m_type;
+		ParamType			m_type;
 		uint64_t	  		m_caller_valP; // caller's side ptr, to transmit back upon return;
 		union {
-			char 					_char;
-			unsigned char _byte;
+			char 			_char;
+			unsigned char 	_byte;
 			int16_t		    _i16;
 			uint16_t	    _ui16;
 			int32_t		    _i32;
@@ -98,19 +99,19 @@ public:
 			int64_t		    _i64;
 			uint64_t	    _ui64;
 			double		    _double;
-			string*				_stringP;
+			string*			_stringP;
 		} m_value;
 
 	public:
 		/**
-		 * \fn Parameter(<type> value, uint64_t caller_valP = 0)
+		 * \fn Parameter(<type> value, void* caller_valP = 0)
 		 * \brief parameter constructors, invoked depending on 
 		 * 		  the serialized parameter type and pointer
 		 * 		  presence (for an output parameter).
 		 * 
 		 * \param value is the parameter value
 		 * \param caller_valP is the shadow parameter address (to return a 
-		 * 					  valuet the caller if set). Set to 0 by default.
+		 * 					  value to the caller if set). Set to 0 by default.
 		*/
 		Parameter(unsigned char value, uint64_t caller_valP = 0) {
 			m_caller_valP = caller_valP;
@@ -182,6 +183,17 @@ public:
 			m_value._stringP = new string();
 			*m_value._stringP = value;
 		}
+		Parameter(const Parameter& other) {
+			m_caller_valP = other.m_caller_valP;
+			m_type = other.m_type;
+			m_value = other.m_value;
+		}
+		Parameter(Parameter&& other) {
+			m_caller_valP = other.m_caller_valP;
+			m_type = other.m_type;
+			m_value = other.m_value;
+			other.m_type = EMPTY;
+		}
 
 		/**
 		 * \fn ~Parameter
@@ -192,6 +204,15 @@ public:
 		~Parameter() {
 			if (m_type == STRING && m_value._stringP)
 				delete m_value._stringP;
+		}
+
+		Parameter& operator =(Parameter&& other) {
+			*this = move(other);
+			return *this;
+		}
+		Parameter& operator =(const Parameter& other) {
+			*this = other;
+			return *this;
 		}
 
 		ParamType GetType() {return m_type;}
@@ -274,8 +295,9 @@ public:
 	 * \param ... variadic, ended by RemoteProcedure::END_OF_CALL, see
 	 * 		      ParamType for possible values.
 	*/
-	unsigned long 		 SerializeCall(string func_name, ...);
-	unsigned long 		 SerializeCall(const string& func_name, va_list vl);
+	unsigned long 		SerializeCall(string func_name, ...);
+	void 				PrepareSerializeCall(vector<unsigned char>& serialized_call, unsigned long* resultP, const string& func_name, va_list vl);
+	void 				SendSerializedCall(vector<unsigned char>& serialized_call);
 
 	// rpc function callee side
 

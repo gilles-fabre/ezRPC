@@ -189,27 +189,47 @@ inline unsigned long RemoteProcedureCall::SerializeCall(string func_name, ...) {
 	va_list 	  vl;
 
 	va_start(vl, func_name);
-	result = SerializeCall(func_name, vl);
+	vector<unsigned char> serialized_call;
+	PrepareSerializeCall(serialized_call, &result, func_name, vl);
 	va_end(vl);
+
+	SendSerializedCall(serialized_call);
 
 	return result;
 }
 
-unsigned long RemoteProcedureCall::SerializeCall(const string& func_name, va_list vl) {
-	vector<unsigned char> 	serialized_call;
-	unsigned long		result = 0;
-	unsigned int 		len;
-	string					s;
-	unsigned char		byte;
-	char						c;
-	int16_t					i16;
-	uint16_t				ui16;
-	int32_t					i32;
-	uint32_t				ui32;
-	int64_t					i64;
-	uint64_t				ui64;
-	bool 						is_ptr = false;
-	void*						ptr;
+void RemoteProcedureCall::SendSerializedCall(vector<unsigned char>& serialized_call) {
+	// send all the serialized call parameters over to the peer
+	unsigned long buff_len = (unsigned long)serialized_call.size();
+	SendPacket((unsigned char *)serialized_call.data(), buff_len);
+
+	#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now wait for reply...", buff_len);
+	#endif
+
+	// wait for reply
+	unsigned char* bufferP;
+	if ((bufferP = ReceivePacket(buff_len))) {
+		DeserializeCallReturn(bufferP);
+
+		free(bufferP);
+	}
+}
+
+void RemoteProcedureCall::PrepareSerializeCall(vector<unsigned char>& serialized_call, unsigned long* resultP, const string& func_name, va_list vl) {
+	unsigned int 	len;
+	string			s;
+	unsigned char	byte;
+	char			c;
+	int16_t			i16;
+	uint16_t		ui16;
+	int32_t			i32;
+	uint32_t		ui32;
+	int64_t			i64;
+	uint64_t		ui64;
+	bool 			is_ptr = false;
+	void*			ptr;
+
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SerializeCall(%s)", func_name.c_str());
 #endif
@@ -226,9 +246,9 @@ unsigned long RemoteProcedureCall::SerializeCall(const string& func_name, va_lis
 
 	// then add the return result address
 	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL((uint64_t)&result));
+	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "pushed return address %p", &result);
+	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
 #endif
 
 	// and all the given parameters
@@ -487,24 +507,6 @@ unsigned long RemoteProcedureCall::SerializeCall(const string& func_name, va_lis
 				break;
 		}
 	}
-
-	// send all the serialized call parameters over to the peer
-	unsigned long buff_len = (unsigned long)serialized_call.size();
-	SendPacket(serialized_call.data(), buff_len);
-
-#ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now wait for reply...", buff_len);
-#endif
-
-	// wait for reply
-	unsigned char* bufferP;
-	if ((bufferP = ReceivePacket(buff_len))) {
-		DeserializeCallReturn(bufferP);
-
-		free(bufferP);
-	}
-
-	return (unsigned long)result;
 }
 
 /**
@@ -636,18 +638,19 @@ vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(st
 	vector<RemoteProcedureCall::Parameter*>* resultP;
 	unsigned char	b, type, *bufferP;
 	unsigned long	len;
-	char					c;
-	uint16_t 			ui16;
-	uint32_t 			ui32;
-	uint64_t 			ui64, ptr;
-	double 				d;
-	int16_t 			i16;
-	int32_t 			i32;
-	int64_t 			i64;
-	int						offset = 0;
-	bool 					done = false;
-	string				s;
-	bool					is_ptr = false;
+	char			c;
+	uint16_t 		ui16;
+	uint32_t 		ui32;
+	uint64_t 		ui64, ptr;
+	double 			d;
+	int16_t 		i16;
+	int32_t 		i32;
+	int64_t 		i64;
+	int				offset = 0;
+	bool 			done = false;
+	string			s;
+	bool			is_ptr = false;
+
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCall(%s)", func_name.c_str());
 #endif

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <cstdarg>
+#include <memory>
+#include <vector>
 
 #include <log2reporter.h>
 #include <Transport.h>
@@ -34,8 +36,8 @@ class	DECLSPEC RPCClient {
 #else
 class	RPCClient {
 #endif
-	Transport 		 														*m_transportP; 				// transport used to talk to the peer server
-	RemoteProcedureCall												*m_rpcP;							// rpc underlying abstraction
+	Transport*				m_transportP;	// transport used to talk to the peer server
+	RemoteProcedureCall* 	m_rpcP;			// rpc underlying abstraction
 
 public:
 	/**
@@ -83,22 +85,22 @@ public:
 			m_transportP->Close();
 	}
 
-	class AsyncReplyHandlerParameters {
+	class AsyncRpcParameters {
 	public:
-		RemoteProcedureCall*		m_rpcP;							// rpc underlying abstraction
-		AsyncReplyProcedure*		m_procedureP;				// async call completion callback
-		unsigned long						m_asyncId;					// processed async call identifier
-		std::shared_ptr<Thread> m_thread;						// processing thread (to ref the shared ptr)
-		string									m_function;					// called function
-		std::va_list					  m_args;							// args to the called function
+		RemoteProcedureCall*		m_rpcP;				// rpc underlying abstraction
+		AsyncReplyProcedure*		m_procedureP;		// async call completion callback
+		unsigned long				m_asyncId;			// processed async call identifier
+		shared_ptr<Thread> 			m_thread;			// processing thread (to ref the shared ptr)
+		shared_ptr<unsigned long> 	m_result;			// call result
+		shared_ptr<vector<unsigned char>> 	m_serialized_call;	// serialized call buffer
 
-		AsyncReplyHandlerParameters(RemoteProcedureCall* rpc, AsyncReplyProcedure* procedureP, unsigned long asyncId, std::shared_ptr<Thread> thread, string func_name, std::va_list vl) {
+		AsyncRpcParameters(RemoteProcedureCall* rpc, AsyncReplyProcedure* procedureP, unsigned long asyncId, std::shared_ptr<Thread> thread, shared_ptr<unsigned long> result, shared_ptr<vector<unsigned char>> serialized_call) {
 			m_rpcP = rpc;
 			m_procedureP = procedureP;
 			m_asyncId = asyncId;
 			m_thread = thread;
-			m_function = func_name;
-			m_args = vl;
+			m_result = result;
+			m_serialized_call = serialized_call;
 		}
 	};
 
