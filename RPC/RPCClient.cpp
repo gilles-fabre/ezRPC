@@ -46,7 +46,7 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	va_end(vl);
 
 	{
-		unique_lock lock(m_mutex);
+		unique_lock<mutex> lock(m_mutex);
 		m_rpcP->SendSerializedCall(*(serialized_call.get()));
 	}
 
@@ -85,7 +85,7 @@ void RPCClient::AsyncRpcCallHandler(void* paramP) {
 #endif
 
 	{
-		unique_lock lock(*(p->m_mutexP));
+		unique_lock<mutex> lock(*(p->m_mutexP));
 		p->m_rpcP->SendSerializedCall(*(p->m_serialized_call.get()));
 	}
 
