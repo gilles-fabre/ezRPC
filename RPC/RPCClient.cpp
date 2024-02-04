@@ -45,9 +45,12 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	m_rpcP->PrepareSerializeCall(*serialized_call.get(), result.get(), func_name, vl);
 	va_end(vl);
 
-	m_rpcP->SendSerializedCall(*(serialized_call.get()));
+	{
+		unique_lock lock(m_mutex);
+		m_rpcP->SendSerializedCall(*(serialized_call.get()));
+	}
 
-#ifdef RPCCLIENT_TRACES
+	#ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
 	chrono::duration<double> elapsed = end - start;
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
@@ -81,7 +84,10 @@ void RPCClient::AsyncRpcCallHandler(void* paramP) {
 	start = chrono::system_clock::now();
 #endif
 
-	p->m_rpcP->SendSerializedCall(*(p->m_serialized_call.get()));
+	{
+		unique_lock lock(*(p->m_mutexP));
+		p->m_rpcP->SendSerializedCall(*(p->m_serialized_call.get()));
+	}
 
 #ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -127,7 +133,8 @@ unsigned long RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string fu
 	m_rpcP->PrepareSerializeCall(*(serialized_call.get()), result.get(), func_name, vl);
 	va_end(vl);
 
-	thread->Run(new RPCClient::AsyncRpcParameters(m_rpcP,
+	thread->Run(new RPCClient::AsyncRpcParameters(&m_mutex,
+												  m_rpcP,
 												  procedureP,
 												  asyncId,
 												  thread,

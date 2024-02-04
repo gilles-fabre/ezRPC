@@ -131,8 +131,7 @@ int main(int argc, char **argv) {
 		cout << argv[0] << "\t <tcp|file> server server_address" << endl;
 		cout << argv[0] << "\t <tcp|file> client server_address function_name [repeat_count]" << endl;
 		cout << argv[0] << "\t server_address must be addr:port for tcp" << endl;
-		cout << argv[0] << "\n\tregistered funtions are: nop, inc <int>, repeat <string> <int>, \n\t\
-		concat <string> <int>, sum <int> <int>, incdouble <double>, byebye" << endl;
+		cout << argv[0] << "\n\tregistered funtions are: nop, inc <int>, repeat <string> <int>,\n\tconcat <string> <int>, sum <int> <int>, incdouble <double>, byebye,\n\tput_string, get_string." << endl;
 		return -1;
 	}
 

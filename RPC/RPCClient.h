@@ -5,6 +5,7 @@
 #include <cstdarg>
 #include <memory>
 #include <vector>
+#include <mutex>
 
 #include <log2reporter.h>
 #include <Transport.h>
@@ -38,6 +39,7 @@ class	RPCClient {
 #endif
 	Transport*				m_transportP;	// transport used to talk to the peer server
 	RemoteProcedureCall* 	m_rpcP;			// rpc underlying abstraction
+	mutex					m_mutex;		// can't multiplex calls to the server (TODO : fixme!)
 
 public:
 	/**
@@ -87,14 +89,16 @@ public:
 
 	class AsyncRpcParameters {
 	public:
-		RemoteProcedureCall*		m_rpcP;				// rpc underlying abstraction
-		AsyncReplyProcedure*		m_procedureP;		// async call completion callback
-		unsigned long				m_asyncId;			// processed async call identifier
-		shared_ptr<Thread> 			m_thread;			// processing thread (to ref the shared ptr)
-		shared_ptr<unsigned long> 	m_result;			// call result
+		RemoteProcedureCall*				m_rpcP;				// rpc underlying abstraction
+		AsyncReplyProcedure*				m_procedureP;		// async call completion callback
+		unsigned long						m_asyncId;			// processed async call identifier
+		shared_ptr<Thread> 					m_thread;			// processing thread (to ref the shared ptr)
+		shared_ptr<unsigned long> 			m_result;			// call result
 		shared_ptr<vector<unsigned char>> 	m_serialized_call;	// serialized call buffer
+		mutex*								m_mutexP;
 
-		AsyncRpcParameters(RemoteProcedureCall* rpc, AsyncReplyProcedure* procedureP, unsigned long asyncId, std::shared_ptr<Thread> thread, shared_ptr<unsigned long> result, shared_ptr<vector<unsigned char>> serialized_call) {
+		AsyncRpcParameters(mutex* mutexP, RemoteProcedureCall* rpc, AsyncReplyProcedure* procedureP, unsigned long asyncId, std::shared_ptr<Thread> thread, shared_ptr<unsigned long> result, shared_ptr<vector<unsigned char>> serialized_call) {
+			m_mutexP = mutexP;
 			m_rpcP = rpc;
 			m_procedureP = procedureP;
 			m_asyncId = asyncId;
