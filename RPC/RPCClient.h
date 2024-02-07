@@ -26,8 +26,6 @@ using namespace std;
 #endif
 #endif
 
-typedef void AsyncReplyProcedure(unsigned long asyncId, unsigned long result);
-
 /**
  * \class RPCClient
  * \brief Provides the user with a high abstraction level Remote Procedure Calls service.
@@ -87,31 +85,8 @@ public:
 			m_transportP->Close();
 	}
 
-	class AsyncRpcParameters {
-	public:
-		RemoteProcedureCall*				m_rpcP;				// rpc underlying abstraction
-		AsyncReplyProcedure*				m_procedureP;		// async call completion callback
-		unsigned long						m_asyncId;			// processed async call identifier
-		shared_ptr<Thread> 					m_thread;			// processing thread (to ref the shared ptr)
-		shared_ptr<unsigned long> 			m_result;			// call result
-		shared_ptr<vector<unsigned char>> 	m_serialized_call;	// serialized call buffer
-		mutex*								m_mutexP;
-
-		AsyncRpcParameters(mutex* mutexP, RemoteProcedureCall* rpc, AsyncReplyProcedure* procedureP, unsigned long asyncId, std::shared_ptr<Thread> thread, shared_ptr<unsigned long> result, shared_ptr<vector<unsigned char>> serialized_call) {
-			m_mutexP = mutexP;
-			m_rpcP = rpc;
-			m_procedureP = procedureP;
-			m_asyncId = asyncId;
-			m_thread = thread;
-			m_result = result;
-			m_serialized_call = serialized_call;
-		}
-	};
-
-	static void AsyncRpcCallHandler(void* paramP);
-
 	unsigned long RpcCall(string func_name, ...);
-	unsigned long RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, ...);
+	AsyncID		  RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, ...);
 };
 
 #endif /* _RPC_CLIENT_H */

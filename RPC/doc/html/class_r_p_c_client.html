@@ -93,9 +93,7 @@ $(function(){initNavTree('class_r_p_c_client.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_r_p_c_client-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RPCClient Class Reference</div></div>
 </div><!--header-->
@@ -106,11 +104,6 @@ $(function(){initNavTree('class_r_p_c_client.html',''); initResizable(); });
 
 <p><code>#include &lt;<a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_p_c_client_1_1_async_reply_handler_parameters.html">AsyncReplyHandlerParameters</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adbf378c8643a20a53ec0be2fac9588fd" id="r_adbf378c8643a20a53ec0be2fac9588fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf378c8643a20a53ec0be2fac9588fd">RPCClient</a> (Transport::TransportType transport_type, const string &amp;server_address)</td></tr>
@@ -123,22 +116,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a380e02c5b8dfd35f1e9684a932c74cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the associated transport.  <br /></td></tr>
 <tr class="separator:a380e02c5b8dfd35f1e9684a932c74cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafa4b8e67880abb541605fb0e3925af8" id="r_aafa4b8e67880abb541605fb0e3925af8"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafa4b8e67880abb541605fb0e3925af8">RpcCall</a> (string func_name,...)</td></tr>
-<tr class="memdesc:aafa4b8e67880abb541605fb0e3925af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">see RemoteProcedureCall::SerializedCall ...  <br /></td></tr>
+<tr class="memdesc:aafa4b8e67880abb541605fb0e3925af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">see RemoteProcedureCall::SerializedCall and <a class="el" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">RemoteProcedureCall::SendSerializedCall</a>...  <br /></td></tr>
 <tr class="separator:aafa4b8e67880abb541605fb0e3925af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03c216110ef6e00e0d21196197b48f7c" id="r_a03c216110ef6e00e0d21196197b48f7c"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03c216110ef6e00e0d21196197b48f7c">RpcCallAsync</a> (<a class="el" href="_r_p_c_client_8h.html#a02e77db240415dc11391a383a13bd45e">AsyncReplyProcedure</a> *procedureP, string func_name,...)</td></tr>
-<tr class="memdesc:a03c216110ef6e00e0d21196197b48f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">see RemoteProcedureCall::SerializedCall ...  <br /></td></tr>
-<tr class="separator:a03c216110ef6e00e0d21196197b48f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afe9629140e7654d0481904650bc04188" id="r_afe9629140e7654d0481904650bc04188"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe9629140e7654d0481904650bc04188">AsyncRpcCallHandler</a> (void *paramP)</td></tr>
-<tr class="memdesc:afe9629140e7654d0481904650bc04188"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the function called by the spawned thread to process the async rpn call.  <br /></td></tr>
-<tr class="separator:afe9629140e7654d0481904650bc04188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3e82b18a51cfdc27b1b249fba614718" id="r_ab3e82b18a51cfdc27b1b249fba614718"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3e82b18a51cfdc27b1b249fba614718">RpcCallAsync</a> (<a class="el" href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a> *procedureP, string func_name,...)</td></tr>
+<tr class="memdesc:ab3e82b18a51cfdc27b1b249fba614718"><td class="mdescLeft">&#160;</td><td class="mdescRight">see RemoteProcedureCall::SerializedCall and <a class="el" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">RemoteProcedureCall::SendSerializedCall</a>...  <br /></td></tr>
+<tr class="separator:ab3e82b18a51cfdc27b1b249fba614718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides the user with a high abstraction level Remote Procedure Calls service. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00035">35</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00036">36</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adbf378c8643a20a53ec0be2fac9588fd" name="adbf378c8643a20a53ec0be2fac9588fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adbf378c8643a20a53ec0be2fac9588fd">&#9670;&#160;</a></span>RPCClient()</h2>
@@ -176,7 +163,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00048">48</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00050">50</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 
 </div>
 </div>
@@ -205,56 +192,11 @@ Static Public Member Functions</h2></td></tr>
 
 <p><a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> destructor. Closes and destroys the associated RPC and Transport members. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00059">59</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00061">61</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afe9629140e7654d0481904650bc04188" name="afe9629140e7654d0481904650bc04188"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe9629140e7654d0481904650bc04188">&#9670;&#160;</a></span>AsyncRpcCallHandler()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void RPCClient::AsyncRpcCallHandler </td>
-          <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>paramP</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>This is the function called by the spawned thread to process the async rpn call. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">paramP</td><td>contains a pointer to a newly allocated (per thread) <a class="el" href="class_r_p_c_client_1_1_async_reply_handler_parameters.html">AsyncReplyHandlerParameters</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8cpp_source.html#l00063">63</a> of file <a class="el" href="_r_p_c_client_8cpp_source.html">RPCClient.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_r_p_c_client_afe9629140e7654d0481904650bc04188_cgraph.png" border="0" usemap="#aclass_r_p_c_client_afe9629140e7654d0481904650bc04188_cgraph" alt=""/></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_r_p_c_client_afe9629140e7654d0481904650bc04188_icgraph.png" border="0" usemap="#aclass_r_p_c_client_afe9629140e7654d0481904650bc04188_icgraph" alt=""/></div>
-</div>
-
-</div>
-</div>
 <a id="aafa4b8e67880abb541605fb0e3925af8" name="aafa4b8e67880abb541605fb0e3925af8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafa4b8e67880abb541605fb0e3925af8">&#9670;&#160;</a></span>RpcCall()</h2>
 
@@ -274,7 +216,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>see RemoteProcedureCall::SerializedCall ... </p>
+<p>see RemoteProcedureCall::SerializedCall and <a class="el" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">RemoteProcedureCall::SendSerializedCall</a>... </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">func_name</td><td>is the name of the Remote Procedure called </td></tr>
@@ -302,16 +244,16 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a03c216110ef6e00e0d21196197b48f7c" name="a03c216110ef6e00e0d21196197b48f7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03c216110ef6e00e0d21196197b48f7c">&#9670;&#160;</a></span>RpcCallAsync()</h2>
+<a id="ab3e82b18a51cfdc27b1b249fba614718" name="ab3e82b18a51cfdc27b1b249fba614718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e82b18a51cfdc27b1b249fba614718">&#9670;&#160;</a></span>RpcCallAsync()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned long RPCClient::RpcCallAsync </td>
+          <td class="memname"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> RPCClient::RpcCallAsync </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_r_p_c_client_8h.html#a02e77db240415dc11391a383a13bd45e">AsyncReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em>, </span></td>
+          <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -326,7 +268,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>see RemoteProcedureCall::SerializedCall ... </p>
+<p>see RemoteProcedureCall::SerializedCall and <a class="el" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">RemoteProcedureCall::SendSerializedCall</a>... </p>
 <p>WARNING : ALL PASSED PARAMETERS MUST BE KEPT ALIVE/IN SCOPE UNTIL THE CALLBACK PROCEDURE IS CALLED!</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -336,18 +278,18 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the asynchronous call identified, also passed to the callback procedure upon async rpc completion. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the asynchronous call identifier, also passed to the callback procedure upon async rpc completion. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8cpp_source.html#l00115">115</a> of file <a class="el" href="_r_p_c_client_8cpp_source.html">RPCClient.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8cpp_source.html#l00072">72</a> of file <a class="el" href="_r_p_c_client_8cpp_source.html">RPCClient.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_r_p_c_client_a03c216110ef6e00e0d21196197b48f7c_cgraph.png" border="0" usemap="#aclass_r_p_c_client_a03c216110ef6e00e0d21196197b48f7c_cgraph" alt=""/></div>
+<div class="center"><img src="class_r_p_c_client_ab3e82b18a51cfdc27b1b249fba614718_cgraph.png" border="0" usemap="#aclass_r_p_c_client_ab3e82b18a51cfdc27b1b249fba614718_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_r_p_c_client_a03c216110ef6e00e0d21196197b48f7c_icgraph.png" border="0" usemap="#aclass_r_p_c_client_a03c216110ef6e00e0d21196197b48f7c_icgraph" alt=""/></div>
+<div class="center"><img src="class_r_p_c_client_ab3e82b18a51cfdc27b1b249fba614718_icgraph.png" border="0" usemap="#aclass_r_p_c_client_ab3e82b18a51cfdc27b1b249fba614718_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -377,7 +319,7 @@ Here is the caller graph for this function:</div>
 
 <p>Stops the associated transport. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00081">81</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00083">83</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 
 </div>
 </div>

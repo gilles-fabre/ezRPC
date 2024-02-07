@@ -3,11 +3,14 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
+#include <unordered_map>
 
 #include <stdarg.h>
 #include <Link.h>
 #include <string.h>
 #include <stdlib.h>
+#include <Thread.h>
 
 #ifndef WIN32
 #include <arpa/inet.h>
@@ -21,6 +24,10 @@ using namespace std;
 #define HTONLL(x) ((1==htonl(1)) ? (x) : ((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
 #define NTOHLL(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))
 
+typedef uint64_t AsyncID;
+
+typedef void AsyncReplyProcedure(AsyncID asyncId);
+
 /**
  * \class RemoteProcedureCall
  * \brief Instantiate an object of this class with a Link to
@@ -31,10 +38,14 @@ using namespace std;
  *
  */
 class RemoteProcedureCall {
-	Link* m_linkP; // the pointer to the link conveying the calls
+	Link* m_linkP;			 // the pointer to the link conveying the calls
+	mutex m_cli_send_mutex;		 // protect the transport against concurrent send (async calls multiplexing)
+	mutex m_cli_receive_mutex;	 // protect the transport against concurrent receive (async calls multiplexing)
+	mutex m_srv_send_mutex;		 // protect the transport against concurrent send (async calls multiplexing)
+	mutex m_srv_receive_mutex;	 // protect the transport against concurrent receive (async calls multiplexing)
 
 	// invoked internally (by SerializeCall) upon rpc reply receipt
-	bool DeserializeCallReturn(unsigned char* bufferP);
+	bool DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP);
 
 	// exchange sized call streams
 	bool			SendPacket(unsigned char* bufferP, unsigned long data_len);
@@ -74,6 +85,7 @@ public:
 					STRING   	= 's',
 					RESULT_ADDRESS = 'R',
 					END_OF_CALL = 'X',
+					ASYNC_ID    = 'A',
 					EMPTY};
 
 	/**
@@ -285,38 +297,13 @@ public:
 	}
 
 	// rpc call caller side
-
-	/**
-	 * \fn unsigned long SerializeCall(string func_name, ...)
-	 * \brief Serializes a call to the server.
-	 * 
-	 * \param func_name is the name of the Remote Procedure to call
-	 * 					on the server side.
-	 * \param ... variadic, ended by RemoteProcedure::END_OF_CALL, see
-	 * 		      ParamType for possible values.
-	*/
-	unsigned long 		SerializeCall(string func_name, ...);
-	void 				PrepareSerializeCall(vector<unsigned char>& serialized_call, unsigned long* resultP, const string& func_name, va_list vl);
-	void 				SendSerializedCall(vector<unsigned char>& serialized_call);
+	void 				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl);
+	void 				SendSerializedCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result);
 
 	// rpc function callee side
 
-	/**
-	 * \fn vector<Parameter*>* DeserializeCall(string& func_name)
-	 * \brief Deserializes a call into the server.
-	 * 
-	 * \param func_name is the name of the Remote Procedure to call
-	 * 					on the server side.
-	*/
-	vector<Parameter*>* DeserializeCall(string& func_name);
-
-	/**
-	 * \fn
-	 * \brief Send back the Remote Procedure result
-	 * 
-	 * \param paramP the vector<Parameter *>* containing the passed parameters.
-	*/
-	void SerializeCallReturn(vector<Parameter*>* paramP, unsigned long ret_val);
+	vector<Parameter*>* DeserializeCall(AsyncID& asyncId, string& func_name);
+	void				SerializeCallReturn(AsyncID asyncId, vector<Parameter*>* paramP, unsigned long ret_val);
 
 	void Close() {
 		if (m_linkP)

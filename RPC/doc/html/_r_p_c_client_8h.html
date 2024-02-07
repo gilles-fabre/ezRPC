@@ -94,13 +94,15 @@ $(function(){initNavTree('_r_p_c_client_8h.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">RPCClient.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;cstdarg&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
 <code>#include &lt;log2reporter.h&gt;</code><br />
 <code>#include &lt;Transport.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>&quot;</code><br />
@@ -141,8 +143,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_p_c_client.html">RPCClient</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the user with a high abstraction level Remote Procedure Calls service.  <a href="class_r_p_c_client.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_p_c_client_1_1_async_reply_handler_parameters.html">RPCClient::AsyncReplyHandlerParameters</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -150,11 +150,6 @@ Macros</h2></td></tr>
 <tr class="separator:ad947692f8397d4a3352c4b6323c0debb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f35f1a348f5746dd6a6b1befddb9151" id="r_a7f35f1a348f5746dd6a6b1befddb9151"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>&#160;&#160;&#160;0x5</td></tr>
 <tr class="separator:a7f35f1a348f5746dd6a6b1befddb9151"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a02e77db240415dc11391a383a13bd45e" id="r_a02e77db240415dc11391a383a13bd45e"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02e77db240415dc11391a383a13bd45e">AsyncReplyProcedure</a>(unsigned long asyncId, unsigned long result)</td></tr>
-<tr class="separator:a02e77db240415dc11391a383a13bd45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a7f35f1a348f5746dd6a6b1befddb9151" name="a7f35f1a348f5746dd6a6b1befddb9151"></a>
@@ -169,7 +164,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00015">15</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00018">18</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 
 </div>
 </div>
@@ -185,24 +180,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00014">14</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a02e77db240415dc11391a383a13bd45e" name="a02e77db240415dc11391a383a13bd45e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02e77db240415dc11391a383a13bd45e">&#9670;&#160;</a></span>AsyncReplyProcedure</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void AsyncReplyProcedure(unsigned long asyncId, unsigned long result)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00026">26</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_client_8h_source.html#l00017">17</a> of file <a class="el" href="_r_p_c_client_8h_source.html">RPCClient.h</a>.</p>
 
 </div>
 </div>

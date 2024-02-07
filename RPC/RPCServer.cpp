@@ -52,6 +52,33 @@ void RPCServer::ListeningCallback(void* _serverP) {
  * \param _paramsP is a pointer to a dedicated ServiceParameters, pointing
  *        to both the parent RPCServer and link to the client.
  */
+
+void RPCServer::CallServiceReplyAndCleanup(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, ServiceParameters* paramsP, vector<RemoteProcedureCall::Parameter*>* rpc_paramsP) {
+	unsigned long result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
+#ifdef RPCSERVER_TRACES
+	LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
+#endif
+
+	// serialize back call results
+	rpc.SerializeCallReturn(asyncId, rpc_paramsP, result);
+#ifdef RPCSERVER_TRACES
+	LogText(RPCSERVER_MODULE, 8, true, "serialized call return");
+#endif
+
+	// done with these parameters
+	for (vector<RemoteProcedureCall::Parameter*>::iterator i = rpc_paramsP->begin(); i != rpc_paramsP->end(); i++)
+		delete* i;
+	delete rpc_paramsP;
+#ifdef RPCSERVER_TRACES
+	LogText(RPCSERVER_MODULE, 8, true, "cleaned up parameters");
+#endif
+
+	delete paramsP;
+#ifdef RPCSERVER_TRACES
+	LogText(RPCSERVER_MODULE, 8, true, "cleaned up service callback parameters, exiting");
+#endif
+}
+
 void RPCServer::ServiceCallback(void* _paramsP) {
 	ServiceParameters* paramsP = (ServiceParameters*)_paramsP;
 
@@ -76,14 +103,14 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 
 	RemoteProcedureCall rpc(paramsP->m_linkP);
 	for (;;) {
-		unsigned long 	result;
+		AsyncID			asyncId;
 		string   		func_name;
 #ifdef RPCSERVER_TRACES
 		LogText(RPCSERVER_MODULE, 4, true, "waiting for incoming data...");
 #endif
 
 		// wait and deserialize call stream
-		vector<RemoteProcedureCall::Parameter*>* rpc_paramsP = rpc.DeserializeCall(func_name);
+		vector<RemoteProcedureCall::Parameter*>* rpc_paramsP = rpc.DeserializeCall(asyncId, func_name);
 		if (!rpc_paramsP)
 			break; 
 #ifdef RPCSERVER_TRACES
@@ -95,36 +122,31 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 		if (!procP) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << func_name << ")!" << endl;
 			// serialize back 'error'
-			rpc.SerializeCallReturn(rpc_paramsP, 0);
+			rpc.SerializeCallReturn(asyncId, rpc_paramsP, 0);
 			continue;
 		}
+
 #ifdef RPCSERVER_TRACES
-		LogVText(RPCSERVER_MODULE, 8, true, "will call procedure %s", func_name.c_str());
+		LogVText(RPCSERVER_MODULE, 8, true, "will call procedure %s, asyncId %lu", func_name.c_str(), asyncId);
 #endif
 
-		result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
-#ifdef RPCSERVER_TRACES
-		LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
-#endif
+		if (asyncId) {
+			// asynchronous call
+			Semaphore detachedSem(0);
 
-		// serialize back call results
-		rpc.SerializeCallReturn(rpc_paramsP, result);
-#ifdef RPCSERVER_TRACES
-		LogText(RPCSERVER_MODULE, 8, true, "serialized call return");
-#endif
+			// create a thread which will wait for deserialized reply
+			shared_ptr<thread> aThread = make_shared<thread>([&]() {
+				aThread->detach();
+				detachedSem.R();
 
-		// done with these parameters
-		for (vector<RemoteProcedureCall::Parameter*>::iterator i = rpc_paramsP->begin(); i != rpc_paramsP->end(); i++)
-			delete *i;
-		delete rpc_paramsP;
-#ifdef RPCSERVER_TRACES
-		LogText(RPCSERVER_MODULE, 8, true, "cleaned up parameters");
-#endif
+				CallServiceReplyAndCleanup(rpc, procP, asyncId, func_name, paramsP, rpc_paramsP);
+			});
+
+			detachedSem.A();
+		} else {
+			// synchronous call
+			CallServiceReplyAndCleanup(rpc, procP, asyncId, func_name, paramsP, rpc_paramsP);
+		}
 	}
-
-	delete paramsP;
-#ifdef RPCSERVER_TRACES
-	LogText(RPCSERVER_MODULE, 8, true, "cleaned up service callback parameters, exiting");
-#endif
 }
 

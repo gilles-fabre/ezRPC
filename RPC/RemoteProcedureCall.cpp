@@ -1,3 +1,5 @@
+#include <thread>
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <Link.h>
@@ -47,7 +49,7 @@ bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_
  * 		   be freed by the caller. Returns NULL if an error occured.
 */
 unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& data_len) {
-	uint64_t 				len;
+	uint64_t 		len;
 	unsigned char 	buffer[sizeof(uint64_t)];
 	unsigned char*	bufferP;
 
@@ -161,12 +163,12 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
 }
 
 /**
- * \fn unsigned long RemoteProcedureCall::SerializeCall(string func_name, ...)
- * \brief Serializes the given function call and sends the resulting byte stream
- *        over the associated link.
+ * \fn unsigned long RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl)
+ * \brief Serializes the given function call so the resulting byte stream can 
+ *		  be sent over the associated link using SendSerializedCall.
  *
  *        The stream format is:
- *	        	STRING.<function_name>.UINT64.<result_address>.<parameters>.END_OF_CALL
+ *	        	ASYNC_ID.<asyncId>.STRING.<function_name>.UINT64.<result_address>.<parameters>.END_OF_CALL
  *  	      	result_address : address of the UINT64 to receive return_value on the
  *                         		 caller side
  *        		parameters := ((<type>.<value>)|(PTR.<type>.<ptr_value>.<value>))*
@@ -177,46 +179,16 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
  *        				 string values are streamed as uint16_t len followed by non asciiz
  *        				 string content
  *
+ * \param asyncId is asynchronous call identifier, which will be returned with
+ *				 the result to match it. It is O if the call is synchronous
  * \param func_name is the name of the function to call
- * \param ... is var list of parameters with the following format
+ * \param serialized_call is the serialized vector of parameters to build with the vl list of 
+ *		  arguments
  * 		  (<type><value>)|(PTR<pointer_to_value>). The last argument must be
  * 		  'END_OF_CALL'.
  *        STRING values MUST be passed as string pointers (std::string*)
- * \return the unsigned long result passed to SerializedCallReturn
  */
-inline unsigned long RemoteProcedureCall::SerializeCall(string func_name, ...) {
-	unsigned long result = 0;
-	va_list 	  vl;
-
-	va_start(vl, func_name);
-	vector<unsigned char> serialized_call;
-	PrepareSerializeCall(serialized_call, &result, func_name, vl);
-	va_end(vl);
-
-	SendSerializedCall(serialized_call);
-
-	return result;
-}
-
-void RemoteProcedureCall::SendSerializedCall(vector<unsigned char>& serialized_call) {
-	// send all the serialized call parameters over to the peer
-	unsigned long buff_len = (unsigned long)serialized_call.size();
-	SendPacket((unsigned char *)serialized_call.data(), buff_len);
-
-	#ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now wait for reply...", buff_len);
-	#endif
-
-	// wait for reply
-	unsigned char* bufferP;
-	if ((bufferP = ReceivePacket(buff_len))) {
-		DeserializeCallReturn(bufferP);
-
-		free(bufferP);
-	}
-}
-
-void RemoteProcedureCall::PrepareSerializeCall(vector<unsigned char>& serialized_call, unsigned long* resultP, const string& func_name, va_list vl) {
+void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl) {
 	unsigned int 	len;
 	string			s;
 	unsigned char	byte;
@@ -231,10 +203,14 @@ void RemoteProcedureCall::PrepareSerializeCall(vector<unsigned char>& serialized
 	void*			ptr;
 
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SerializeCall(%s)", func_name.c_str());
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, func_name.c_str());
 #endif
 
-	// first pass the function name
+	// first pass the asyncId
+	serialized_call.push_back(ASYNC_ID);
+	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+
+	// then pass the function name
 	serialized_call.push_back(STRING);
 	len = (unsigned int)func_name.length();
 	push_uint16(serialized_call, htons(len));
@@ -246,9 +222,9 @@ void RemoteProcedureCall::PrepareSerializeCall(vector<unsigned char>& serialized
 
 	// then add the return result address
 	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
+	push_uint64(serialized_call, HTONLL((uint64_t)result.get()));
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
+	LogVText(RPC_MODULE, 4, true, "pushed return address %p", result.get());
 #endif
 
 	// and all the given parameters
@@ -510,6 +486,85 @@ void RemoteProcedureCall::PrepareSerializeCall(vector<unsigned char>& serialized
 }
 
 /**
+ * \fn unsigned long RemoteProcedureCall::SendSerializeCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result)
+ * \brief Send the serialized call stream prepared by PrepareSerializeCall to the server.
+ *
+ * \param asyncId is asynchronous call identifier, which will be returned with
+ *				 the result to match it. It is O if the call is synchronous
+ * \param procedureP is the callback function called upon completion of the call, with the associated a/synchronous call identifier
+ * \param serialized_call is the serialized vector of parameters to build with the vl list of
+ *		  arguments
+ * \param result is the reference to the result variable to receive the a/synchronous call result
+ */
+void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result) {
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SendSerializedCall(%lu, %p, ...)", asyncId, procedureP);
+#endif
+
+	// send all the serialized call parameters over to the peer
+	unsigned long buff_len = (unsigned long)serialized_call.size();
+	{
+		unique_lock<mutex> lock(m_cli_send_mutex);
+		SendPacket((unsigned char*)serialized_call.data(), buff_len);
+	}
+
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now spawn asynchronous reply handling thread...", buff_len);
+#endif
+
+	if (asyncId) {
+		// asynchronous call
+
+		Semaphore detachedSem(0);
+
+		// create a thread which will wait for deserialized reply
+		shared_ptr<thread> aThread = make_shared<thread>([&](AsyncReplyProcedure* _procedureP) {
+			AsyncID		   asyncId;
+			unsigned char* bufferP;
+
+			aThread->detach();
+			detachedSem.R();
+
+			{
+				unique_lock<mutex> lock(m_cli_receive_mutex);
+				bufferP = ReceivePacket(buff_len); // blocking
+			}
+
+#ifdef RPC_TRACES
+			LogVText(RPC_MODULE, 4, true, "received %lu bytes. Will now DeserializeCallReturn...", buff_len);
+#endif
+
+			if (bufferP) {
+				DeserializeCallReturn(asyncId, bufferP);
+				free(bufferP);
+
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 4, true, "Will now call ReplyProc(%lu)", asyncId);
+#endif
+				(*_procedureP)(asyncId);				 // dispatch result
+			}
+			}, procedureP);
+
+		detachedSem.A();
+	}
+	else {
+		// synchronous call, blocking until we have a reply from the server
+		AsyncID		   dummy;
+		unsigned char* bufferP;
+		{
+			unique_lock<mutex> lock(m_cli_receive_mutex);
+			bufferP = ReceivePacket(buff_len); // blocking
+		}
+
+		if (bufferP) {
+			DeserializeCallReturn(dummy, bufferP);
+			free(bufferP);
+			(*procedureP)(asyncId);				 // dispatch result
+		}
+	}
+}
+
+/**
  * \fn int64_t RemoteProcedureCall::decode_int64(unsigned char* bufferP, int& offset)
  * \brief return the int64 value contained at &bufferP[offset] and increment
  *        the offset by the appropriate number of bytes.
@@ -630,11 +685,13 @@ inline uint16_t RemoteProcedureCall::decode_uint16(unsigned char* bufferP, int& 
  * \fn vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(const string& func_name)
  * \brief Deserializes a function call byte stream built by SerializeCall.
  *
+ * \param asyncId is asynchronous call identifier, which will be returned with
+ *		  the result to match it. It is O if the call is synchronous
  * \param func_name receives the name of the function to call
  * \param bufferP is the function call byte stream built by SerializeCall
  * \return a vector of parameters associated with the function call
  */
-vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(string& func_name) {
+vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& func_name) {
 	vector<RemoteProcedureCall::Parameter*>* resultP;
 	unsigned char	b, type, *bufferP;
 	unsigned long	len;
@@ -659,12 +716,27 @@ vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(st
 	func_name.clear();
 
 	// wait for incoming call stream
-	if (!(bufferP = ReceivePacket(len)))
-		return NULL;
+	{
+		unique_lock<mutex> lock(m_srv_receive_mutex);
+		if (!(bufferP = ReceivePacket(len)))
+			return NULL;
+	}
 
 	resultP = new vector<RemoteProcedureCall::Parameter*>();
 
-	// first, we must get the function name
+	// first get the asyncId
+	if (bufferP[offset++] != (unsigned char)ASYNC_ID) {
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: asynchronous callee identifier name missing!" << endl;
+		goto clean_up;
+	}
+	asyncId = (AsyncID)decode_uint64(bufferP, offset);
+	asyncId = NTOHLL((uint64_t)asyncId);
+
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "found asyncId : %lu", asyncId);
+#endif
+
+	// then, we must get the function name
 	// which is of type STRING
 	if (bufferP[offset++] != (unsigned char)STRING) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: function name missing!" << endl;
@@ -1005,13 +1077,16 @@ clean_up:
  *        				 string values are streamed as uint16_t len followed by non asciiz
  *        				 string content
  *
+ * \param asyncId is asynchronous call identifier, which will be returned with
+ *				  the result to match it. It is O if the call is synchronous
  * \param paramP points to a parameter vector built by DeserializeCall
+ * \param ret_val is the server's procedure return value
  * \param result is the unsigned long function call result
  */
-void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsigned long ret_val) {
+void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<Parameter*>* paramP, unsigned long ret_val) {
 	vector<unsigned char> 	serialized_call;
-	unsigned char		b, type;
-	char						c;
+	unsigned char			b, type;
+	char					c;
 	int16_t					i16;
 	uint16_t				ui16;
 	int32_t					i32;
@@ -1022,6 +1097,13 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsign
 	string					s;
 #ifdef RPC_TRACES
 	LogText(RPC_MODULE, 0, true, "RemoteProcedureCal::SerializeCallReturn(...)");
+#endif
+
+	serialized_call.push_back(ASYNC_ID);
+	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "pushed asyncId : %lu", (uint64_t)asyncId);
 #endif
 
 	serialized_call.push_back(UINT64);
@@ -1167,7 +1249,10 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsign
 #endif
 
 	// send all the serialized call parameters over to the peer
-	SendPacket(serialized_call.data(), (unsigned long)serialized_call.size());
+	{
+		unique_lock<mutex> lock(m_srv_send_mutex); 
+		SendPacket(serialized_call.data(), (unsigned long)serialized_call.size());
+	}
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serialized_call.size());
 #endif
@@ -1178,29 +1263,44 @@ void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsign
  * \brief Analyzes the given serialized call return byte stream and assigns
  *        the various 'out' parameters.
  *
+ * \param asyncId is asynchronous call identifier, which will be returned with
+ *				  the result to match it. It is O if the call is synchronous
  * \param bufferP points to a function call byte stream built by SerializeCallReturn
+ * \return true upon success, else return false
  */
-bool RemoteProcedureCall::DeserializeCallReturn(unsigned char* bufferP) {
-	unsigned long* resultP;
-	int						 offset = 0;
-	unsigned char	 b, type;
-	char					 c;
-	int16_t				 i16;
-	uint16_t			 ui16;
-	int32_t				 i32;
-	uint32_t			 ui32;
-	int64_t				 i64;
-	uint64_t			 ui64, ptr;
-	double 				 d;
-	string				 s;
-	bool					 done = false;
+bool RemoteProcedureCall::DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP) {
+	unsigned long*		resultP;
+	int					offset = 0;
+	unsigned char		b, type;
+	char				c;
+	int16_t				i16;
+	uint16_t			ui16;
+	int32_t				i32;
+	uint32_t			ui32;
+	int64_t				i64;
+	uint64_t			ui64, ptr;
+	double 				d;
+	string				s;
+	bool				done = false;
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCallReturn(%p)", bufferP);
 #endif
 
+	// get the asyncId
+	if (bufferP[offset++] != (unsigned char)ASYNC_ID) {
+		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing callee asynchronous identifier!" << endl;
+		return false;
+	}
+	asyncId = (AsyncID)decode_uint64(bufferP, offset);
+	asyncId = NTOHLL((uint64_t)asyncId);
+
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "found asyncId : %lu", asyncId);
+#endif
+
 	// read and decode the returned result address, value, optional output
 	// parameters and end mark from the data stream
-
+	// 
 	// get the return result address
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing return result address!" << endl;

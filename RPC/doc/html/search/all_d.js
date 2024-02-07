@@ -1,7 +1,25 @@
 var searchData=
 [
-  ['serializecall_0',['SerializeCall',['../class_remote_procedure_call.html#abe6e19d2238cb6688bc5577dc32dbb53',1,'RemoteProcedureCall::SerializeCall(string func_name,...)'],['../class_remote_procedure_call.html#a5fe2c8080c6beec86de5f059889243d9',1,'RemoteProcedureCall::SerializeCall(const string &amp;func_name, va_list vl)']]],
-  ['serializecallreturn_1',['SerializeCallReturn',['../class_remote_procedure_call.html#a4044ddee7cce7a6b6b1319ec2c9e5bf3',1,'RemoteProcedureCall']]],
-  ['stop_2',['Stop',['../class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8',1,'RPCClient::Stop()'],['../class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683',1,'RPCServer::Stop()']]],
-  ['string_3',['STRING',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4',1,'RemoteProcedureCall']]]
+  ['registerprocedure_0',['RegisterProcedure',['../class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b',1,'RPCServer']]],
+  ['remoteprocedure_1',['RemoteProcedure',['../_remote_procedure_call_8h.html#ace8a0725ccae02c32c7d5ce7381df265',1,'RemoteProcedureCall.h']]],
+  ['remoteprocedurecall_2',['RemoteProcedureCall',['../class_remote_procedure_call.html',1,'RemoteProcedureCall'],['../class_remote_procedure_call.html#a608a47dd5f4abafdb40329582f3392e5',1,'RemoteProcedureCall::RemoteProcedureCall()']]],
+  ['remoteprocedurecall_2ecpp_3',['RemoteProcedureCall.cpp',['../_remote_procedure_call_8cpp.html',1,'']]],
+  ['remoteprocedurecall_2eh_4',['RemoteProcedureCall.h',['../_remote_procedure_call_8h.html',1,'']]],
+  ['result_5faddress_5',['RESULT_ADDRESS',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b',1,'RemoteProcedureCall']]],
+  ['rpc_5fmodule_6',['RPC_MODULE',['../_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d',1,'RemoteProcedureCall.h']]],
+  ['rpc_5ftraces_7',['RPC_TRACES',['../_remote_procedure_call_8h.html#a51d09c9ea289a8f4f45d04b758665396',1,'RemoteProcedureCall.h']]],
+  ['rpccall_8',['RpcCall',['../class_r_p_c_client.html#aafa4b8e67880abb541605fb0e3925af8',1,'RPCClient']]],
+  ['rpccallasync_9',['RpcCallAsync',['../class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718',1,'RPCClient']]],
+  ['rpcclient_10',['RPCClient',['../class_r_p_c_client.html',1,'RPCClient'],['../class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd',1,'RPCClient::RPCClient()']]],
+  ['rpcclient_2ecpp_11',['RPCClient.cpp',['../_r_p_c_client_8cpp.html',1,'']]],
+  ['rpcclient_2eh_12',['RPCClient.h',['../_r_p_c_client_8h.html',1,'']]],
+  ['rpcclient_5fmodule_13',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
+  ['rpcclient_5ftraces_14',['RPCCLIENT_TRACES',['../_r_p_c_client_8h.html#ad947692f8397d4a3352c4b6323c0debb',1,'RPCClient.h']]],
+  ['rpcserver_15',['RPCServer',['../class_r_p_c_server.html',1,'RPCServer'],['../class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232',1,'RPCServer::RPCServer()']]],
+  ['rpcserver_2ecpp_16',['RPCServer.cpp',['../_r_p_c_server_8cpp.html',1,'']]],
+  ['rpcserver_2eh_17',['RPCServer.h',['../_r_p_c_server_8h.html',1,'']]],
+  ['rpcserver_5fmodule_18',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]],
+  ['rpcserver_5ftraces_19',['RPCSERVER_TRACES',['../_r_p_c_server_8h.html#ad6079fb1027af793f01f1a47e2c4c04c',1,'RPCServer.h']]],
+  ['run_20',['Run',['../class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7',1,'RPCServer']]],
+  ['runandwait_21',['RunAndWait',['../class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca',1,'RPCServer']]]
 ];

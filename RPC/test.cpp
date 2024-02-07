@@ -115,13 +115,13 @@ static unsigned long PutString(vector<RemoteProcedureCall::Parameter*>* v, void*
 	return 0;
 }
 
-static void GetStringAsyncReplyProc(unsigned long asyncId, unsigned long result) {
-	cout << "asyncId : " << asyncId << ", returned " << result << " and string is " << g_string << endl;
+static void GetStringAsyncReplyProc(AsyncID asyncId) {
+	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << endl;
 	g_sem.R();
 }
 
-static void PutStringAsyncReplyProc(unsigned long asyncId, unsigned long result) {
-	cout << "asyncId : " << asyncId << ", returned " << result << " and string is " << g_string << endl;
+static void PutStringAsyncReplyProc(AsyncID asyncId) {
+	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << endl;
 	g_sem.R();
 }
 
@@ -177,13 +177,15 @@ int main(int argc, char **argv) {
 				return -1;
 			}
 			g_string = "overwrite me!";
-			result = client.RpcCallAsync(GetStringAsyncReplyProc,
+			AsyncID id = client.RpcCallAsync(GetStringAsyncReplyProc,
 									func_name,
 									RemoteProcedureCall::PTR,
 									RemoteProcedureCall::STRING,
 									&g_string,
 									RemoteProcedureCall::END_OF_CALL);
-			g_sem.WaitA(10000);
+			cout << "\ttest client get_string asyncId : " << id << endl;
+			g_sem.A();
+			//g_sem.Wait(10000);
 		}
 		else if (func_name == "put_string") {
 			if (argc != 6) {
@@ -192,13 +194,15 @@ int main(int argc, char **argv) {
 				return -1;
 			}
 			g_string = argv[5];
-			result = client.RpcCallAsync(PutStringAsyncReplyProc,
+			AsyncID id = client.RpcCallAsync(PutStringAsyncReplyProc,
 									func_name,
 									RemoteProcedureCall::PTR,
 									RemoteProcedureCall::STRING,
 									&g_string,
 									RemoteProcedureCall::END_OF_CALL);
-				g_sem.WaitA(10000);
+			cout << "\ttest client put_string asyncId : " << id << endl;
+			g_sem.A();
+			//g_sem.Wait(10000);
 		}
 		else if (func_name == "nop") {
 			if (argc < 5) {

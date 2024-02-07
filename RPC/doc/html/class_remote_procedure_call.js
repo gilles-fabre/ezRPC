@@ -14,12 +14,14 @@ var class_remote_procedure_call =
       [ "DOUBLE", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50", null ],
       [ "STRING", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4", null ],
       [ "RESULT_ADDRESS", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b", null ],
-      [ "END_OF_CALL", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c", null ]
+      [ "END_OF_CALL", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c", null ],
+      [ "ASYNC_ID", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789", null ],
+      [ "EMPTY", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf", null ]
     ] ],
     [ "RemoteProcedureCall", "class_remote_procedure_call.html#a608a47dd5f4abafdb40329582f3392e5", null ],
     [ "Close", "class_remote_procedure_call.html#a31cda1aad54d910ea156ee3a74668805", null ],
-    [ "DeserializeCall", "class_remote_procedure_call.html#af875a128e9f3f7bbbdf667f6f04fb9ed", null ],
-    [ "SerializeCall", "class_remote_procedure_call.html#a5fe2c8080c6beec86de5f059889243d9", null ],
-    [ "SerializeCall", "class_remote_procedure_call.html#abe6e19d2238cb6688bc5577dc32dbb53", null ],
-    [ "SerializeCallReturn", "class_remote_procedure_call.html#a4044ddee7cce7a6b6b1319ec2c9e5bf3", null ]
+    [ "DeserializeCall", "class_remote_procedure_call.html#a5d9d4c3d20b98d7156fbee375775478e", null ],
+    [ "PrepareSerializeCall", "class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711", null ],
+    [ "SendSerializedCall", "class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478", null ],
+    [ "SerializeCallReturn", "class_remote_procedure_call.html#acbc240a3b97a7618299f7208a86e248f", null ]
 ];

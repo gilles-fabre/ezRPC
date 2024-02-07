@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['string_0',['STRING',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4',1,'RemoteProcedureCall']]]
+  ['result_5faddress_0',['RESULT_ADDRESS',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b',1,'RemoteProcedureCall']]]
 ];

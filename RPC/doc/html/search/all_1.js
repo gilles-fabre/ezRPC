@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['asyncreplyhandlerparameters_0',['AsyncReplyHandlerParameters',['../class_r_p_c_client_1_1_async_reply_handler_parameters.html',1,'RPCClient::AsyncReplyHandlerParameters'],['../class_r_p_c_client_1_1_async_reply_handler_parameters.html#a162ac7207674c30224e2b772dafef988',1,'RPCClient::AsyncReplyHandlerParameters::AsyncReplyHandlerParameters()']]],
-  ['asyncreplyprocedure_1',['AsyncReplyProcedure',['../_r_p_c_client_8h.html#a02e77db240415dc11391a383a13bd45e',1,'RPCClient.h']]],
-  ['asyncrpccallhandler_2',['AsyncRpcCallHandler',['../class_r_p_c_client.html#afe9629140e7654d0481904650bc04188',1,'RPCClient']]]
+  ['async_5fid_0',['ASYNC_ID',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789',1,'RemoteProcedureCall']]],
+  ['asyncid_1',['AsyncID',['../_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957',1,'RemoteProcedureCall.h']]],
+  ['asyncreplyprocedure_2',['AsyncReplyProcedure',['../_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f',1,'RemoteProcedureCall.h']]]
 ];

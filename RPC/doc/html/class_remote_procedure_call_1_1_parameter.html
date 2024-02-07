@@ -126,9 +126,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa977abca95b168c723c188dc6f432b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf9865f3d6bb1ae4bdd35df8b0bb4cf" id="r_aacf9865f3d6bb1ae4bdd35df8b0bb4cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacf9865f3d6bb1ae4bdd35df8b0bb4cf">Parameter</a> (const char *value, uint64_t caller_valP=0)</td></tr>
 <tr class="separator:aacf9865f3d6bb1ae4bdd35df8b0bb4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481c69ddd6ae3cc16d8d5d75bbb01a02" id="r_a481c69ddd6ae3cc16d8d5d75bbb01a02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a481c69ddd6ae3cc16d8d5d75bbb01a02">Parameter</a> (const <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;other)</td></tr>
+<tr class="separator:a481c69ddd6ae3cc16d8d5d75bbb01a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5614400588186cc8df08c9f43190432a" id="r_a5614400588186cc8df08c9f43190432a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5614400588186cc8df08c9f43190432a">Parameter</a> (<a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&amp;other)</td></tr>
+<tr class="separator:a5614400588186cc8df08c9f43190432a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab52fe36cea8502b4f987d442b4365880" id="r_ab52fe36cea8502b4f987d442b4365880"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab52fe36cea8502b4f987d442b4365880">~Parameter</a> ()</td></tr>
 <tr class="memdesc:ab52fe36cea8502b4f987d442b4365880"><td class="mdescLeft">&#160;</td><td class="mdescRight">parameter destructor. if destroying a STRING parameter, the string objectmust be freed.  <br /></td></tr>
 <tr class="separator:ab52fe36cea8502b4f987d442b4365880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe2ae72c53aba0e4808928c886d760e0" id="r_afe2ae72c53aba0e4808928c886d760e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe2ae72c53aba0e4808928c886d760e0">operator=</a> (<a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&amp;other)</td></tr>
+<tr class="separator:afe2ae72c53aba0e4808928c886d760e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19471f8a4776eb45c3d6b7769ac01cfa" id="r_a19471f8a4776eb45c3d6b7769ac01cfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19471f8a4776eb45c3d6b7769ac01cfa">operator=</a> (const <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;other)</td></tr>
+<tr class="separator:a19471f8a4776eb45c3d6b7769ac01cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af97b7f336943195d06e9061f8e53c801" id="r_af97b7f336943195d06e9061f8e53c801"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1">ParamType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af97b7f336943195d06e9061f8e53c801">GetType</a> ()</td></tr>
 <tr class="separator:af97b7f336943195d06e9061f8e53c801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ba154e5e2724e31d29776997c9de5ba" id="r_a9ba154e5e2724e31d29776997c9de5ba"><td class="memItemLeft" align="right" valign="top">char &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ba154e5e2724e31d29776997c9de5ba">GetCharReference</a> ()</td></tr>
@@ -159,10 +167,10 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Instances of this class are passed to the caller of the DeserializeCall method, describing and providing access to the parameters passed through the call stream built by SerializeCall. Out parameters can be modified and their modified value will transparently be passed back to the SerializeCall caller. </p>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00087">87</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00100">100</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aee9834a3b3b85cacbd8f2336efb6863b" name="aee9834a3b3b85cacbd8f2336efb6863b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee9834a3b3b85cacbd8f2336efb6863b">&#9670;&#160;</a></span>Parameter() <span class="overload">[1/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9834a3b3b85cacbd8f2336efb6863b">&#9670;&#160;</a></span>Parameter() <span class="overload">[1/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,12 +196,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00115">115</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00128">128</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="acb668ab76f94be40b4b5694e4ffc97bb" name="acb668ab76f94be40b4b5694e4ffc97bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb668ab76f94be40b4b5694e4ffc97bb">&#9670;&#160;</a></span>Parameter() <span class="overload">[2/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acb668ab76f94be40b4b5694e4ffc97bb">&#9670;&#160;</a></span>Parameter() <span class="overload">[2/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,12 +227,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00122">122</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00135">135</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="ada348fc29a1cc027db30bc5ed82d941b" name="ada348fc29a1cc027db30bc5ed82d941b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada348fc29a1cc027db30bc5ed82d941b">&#9670;&#160;</a></span>Parameter() <span class="overload">[3/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ada348fc29a1cc027db30bc5ed82d941b">&#9670;&#160;</a></span>Parameter() <span class="overload">[3/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,12 +258,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00129">129</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00142">142</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="acac976bf36c66223fc5768f25d7be6d8" name="acac976bf36c66223fc5768f25d7be6d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acac976bf36c66223fc5768f25d7be6d8">&#9670;&#160;</a></span>Parameter() <span class="overload">[4/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acac976bf36c66223fc5768f25d7be6d8">&#9670;&#160;</a></span>Parameter() <span class="overload">[4/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,12 +289,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00136">136</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00149">149</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="abe7945e32668a008c0f0bd8121d37026" name="abe7945e32668a008c0f0bd8121d37026"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe7945e32668a008c0f0bd8121d37026">&#9670;&#160;</a></span>Parameter() <span class="overload">[5/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abe7945e32668a008c0f0bd8121d37026">&#9670;&#160;</a></span>Parameter() <span class="overload">[5/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,12 +320,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00143">143</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00156">156</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="a10e412c0a0acade485f5c09672541d67" name="a10e412c0a0acade485f5c09672541d67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10e412c0a0acade485f5c09672541d67">&#9670;&#160;</a></span>Parameter() <span class="overload">[6/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e412c0a0acade485f5c09672541d67">&#9670;&#160;</a></span>Parameter() <span class="overload">[6/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,12 +351,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00150">150</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00163">163</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="a886fdabd16113489ce115095d26391d5" name="a886fdabd16113489ce115095d26391d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a886fdabd16113489ce115095d26391d5">&#9670;&#160;</a></span>Parameter() <span class="overload">[7/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a886fdabd16113489ce115095d26391d5">&#9670;&#160;</a></span>Parameter() <span class="overload">[7/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -374,12 +382,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00157">157</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00170">170</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="ae5a59853d72d1bcc83856b89eb9a47b0" name="ae5a59853d72d1bcc83856b89eb9a47b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5a59853d72d1bcc83856b89eb9a47b0">&#9670;&#160;</a></span>Parameter() <span class="overload">[8/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a59853d72d1bcc83856b89eb9a47b0">&#9670;&#160;</a></span>Parameter() <span class="overload">[8/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -405,12 +413,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00164">164</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00177">177</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="aa977abca95b168c723c188dc6f432b5f" name="aa977abca95b168c723c188dc6f432b5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa977abca95b168c723c188dc6f432b5f">&#9670;&#160;</a></span>Parameter() <span class="overload">[9/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa977abca95b168c723c188dc6f432b5f">&#9670;&#160;</a></span>Parameter() <span class="overload">[9/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -436,12 +444,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00171">171</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00184">184</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
 <a id="aacf9865f3d6bb1ae4bdd35df8b0bb4cf" name="aacf9865f3d6bb1ae4bdd35df8b0bb4cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacf9865f3d6bb1ae4bdd35df8b0bb4cf">&#9670;&#160;</a></span>Parameter() <span class="overload">[10/10]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aacf9865f3d6bb1ae4bdd35df8b0bb4cf">&#9670;&#160;</a></span>Parameter() <span class="overload">[10/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -467,7 +475,61 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00178">178</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00191">191</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+
+</div>
+</div>
+<a id="a481c69ddd6ae3cc16d8d5d75bbb01a02" name="a481c69ddd6ae3cc16d8d5d75bbb01a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481c69ddd6ae3cc16d8d5d75bbb01a02">&#9670;&#160;</a></span>Parameter() <span class="overload">[11/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RemoteProcedureCall::Parameter::Parameter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00198">198</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+
+</div>
+</div>
+<a id="a5614400588186cc8df08c9f43190432a" name="a5614400588186cc8df08c9f43190432a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5614400588186cc8df08c9f43190432a">&#9670;&#160;</a></span>Parameter() <span class="overload">[12/12]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RemoteProcedureCall::Parameter::Parameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00203">203</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +558,7 @@ Public Member Functions</h2></td></tr>
 
 <p>parameter destructor. if destroying a STRING parameter, the string objectmust be freed. </p>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00192">192</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00216">216</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -524,7 +586,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00208">208</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00241">241</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -551,7 +613,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00249">249</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00282">282</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +640,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00204">204</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00237">237</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -605,7 +667,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00236">236</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00269">269</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -632,7 +694,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00212">212</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00245">245</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -659,7 +721,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00220">220</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00253">253</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -686,7 +748,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00228">228</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00261">261</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -713,7 +775,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00240">240</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00273">273</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -740,7 +802,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00197">197</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00230">230</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -767,7 +829,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00216">216</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00249">249</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -794,7 +856,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00224">224</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00257">257</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -821,7 +883,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00232">232</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00265">265</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -848,7 +910,61 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00245">245</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00278">278</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+
+</div>
+</div>
+<a id="a19471f8a4776eb45c3d6b7769ac01cfa" name="a19471f8a4776eb45c3d6b7769ac01cfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19471f8a4776eb45c3d6b7769ac01cfa">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp; RemoteProcedureCall::Parameter::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00225">225</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+
+</div>
+</div>
+<a id="afe2ae72c53aba0e4808928c886d760e0" name="afe2ae72c53aba0e4808928c886d760e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2ae72c53aba0e4808928c886d760e0">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp; RemoteProcedureCall::Parameter::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00221">221</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -865,7 +981,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00093">93</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00106">106</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -881,7 +997,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00092">92</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00105">105</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -897,7 +1013,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00100">100</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00113">113</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -913,7 +1029,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00094">94</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00107">107</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -929,7 +1045,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00096">96</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00109">109</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -945,7 +1061,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00098">98</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00111">111</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -961,7 +1077,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00101">101</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00114">114</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -977,7 +1093,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00095">95</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00108">108</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -993,7 +1109,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00097">97</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00110">110</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -1009,7 +1125,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00099">99</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00112">112</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>

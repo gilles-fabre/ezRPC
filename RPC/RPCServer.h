@@ -48,33 +48,34 @@ class	RPCServer {
 	vector<Thread*> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
 	map<string, RemoteProcedure*> 	m_rpc_map;				// the procedures to call based on their names
 
-	static void ListeningCallback(void *);					// threads' functions
-	static void ServiceCallback(void *);
-
 	/**
-	 * \class ServiceParameters
-	 * \brief An instance of this is passed to each new ServiceThread in order to
-	 *        give it the necessary information to serve the linked client.
-	 */
+		 * \class ServiceParameters
+		 * \brief An instance of this is passed to each new ServiceThread in order to
+		 *        give it the necessary information to serve the linked client.
+		 */
 	class ServiceParameters {
 	public:
-		RPCServer* m_serverP;
-		Link*			 m_linkP;
+		RPCServer*	m_serverP;
+		Link*		m_linkP;
 
 		/**
 		 * \fn ServiceParameters(RPCServer *serverP, Link *linkP)
 		 * \brief constructs a service parameters object giving
 		 *        access to the 'parent' RPCServer and the link
 		 *        to the client.
-		 * 
+		 *
 		 * \param serverP points to the RPC Server
 		 * \param linkP points the tranport link
 		 */
-		ServiceParameters(RPCServer *serverP, Link *linkP) {
+		ServiceParameters(RPCServer* serverP, Link* linkP) {
 			m_serverP = serverP;
 			m_linkP = linkP;
 		}
 	};
+
+	static void ListeningCallback(void *);					// threads' functions
+	static void CallServiceReplyAndCleanup(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, ServiceParameters* paramsP, vector<RemoteProcedureCall::Parameter*>* rpc_paramsP);
+	static void ServiceCallback(void *);	
 
 public:
 	/**
