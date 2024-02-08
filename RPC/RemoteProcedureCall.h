@@ -26,8 +26,6 @@ using namespace std;
 
 typedef uint64_t AsyncID;
 
-typedef void AsyncReplyProcedure(AsyncID asyncId);
-
 /**
  * \class RemoteProcedureCall
  * \brief Instantiate an object of this class with a Link to
@@ -297,8 +295,8 @@ public:
 	}
 
 	// rpc call caller side
-	void 				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl);
-	void 				SendSerializedCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result);
+	void 				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, va_list vl);
+	void 				SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serialized_call);
 
 	// rpc function callee side
 

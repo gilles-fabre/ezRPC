@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <mutex>
+#include <map>
 
 #include <log2reporter.h>
 #include <Transport.h>
@@ -26,6 +27,8 @@ using namespace std;
 #endif
 #endif
 
+typedef void AsyncReplyProcedure(AsyncID asyncId, unsigned long result);
+
 /**
  * \class RPCClient
  * \brief Provides the user with a high abstraction level Remote Procedure Calls service.
@@ -37,7 +40,8 @@ class	RPCClient {
 #endif
 	Transport*				m_transportP;	// transport used to talk to the peer server
 	RemoteProcedureCall* 	m_rpcP;			// rpc underlying abstraction
-	mutex					m_mutex;		// can't multiplex calls to the server (TODO : fixme!)
+	mutex					m_async_procs_mutex; 
+	multimap<AsyncID, AsyncReplyProcedure*> m_async_procs;
 
 public:
 	/**

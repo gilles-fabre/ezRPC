@@ -38,14 +38,14 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	start = chrono::system_clock::now();
 #endif
 
-	vector<unsigned char> serialized_call;
-	shared_ptr<unsigned long> result = make_shared<unsigned long>();
+	vector<unsigned char>	serialized_call;
+	unsigned long			result;
 	va_list vl;
 	va_start(vl, func_name);
-	m_rpcP->PrepareSerializeCall(0, func_name, serialized_call, result, vl);
+	m_rpcP->PrepareSerializeCall(0, func_name, serialized_call, &result, vl);
 	va_end(vl);
 
-	m_rpcP->SendSerializedCall(0, NULL, serialized_call, result);
+	m_rpcP->SendSerializedCall(0, serialized_call);
 
 	#ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -53,7 +53,7 @@ unsigned long RPCClient::RpcCall(string func_name, ...) {
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	return *result;
+	return result;
 }
 
 /**
@@ -89,14 +89,40 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string func_nam
 	start = chrono::system_clock::now();
 #endif
 
-	vector<unsigned char> serialized_call;
-	shared_ptr<unsigned long> result = make_shared<unsigned long>();
+	shared_ptr<vector<unsigned char>>	serialized_call = make_shared<vector<unsigned char>>();
+	shared_ptr<unsigned long>			result = make_shared<unsigned long>();
 	va_list vl;
 	va_start(vl, func_name);
-	m_rpcP->PrepareSerializeCall(asyncId, func_name, serialized_call, result, vl);
+	m_rpcP->PrepareSerializeCall(asyncId, func_name, *serialized_call, result.get(), vl);
 	va_end(vl);
 
-	m_rpcP->SendSerializedCall(asyncId, procedureP, serialized_call, result);
+	Semaphore detachedSem(0);
+
+	{
+		unique_lock<mutex> lock(m_async_procs_mutex);
+		m_async_procs.insert(pair<AsyncID, AsyncReplyProcedure*>(asyncId, procedureP));
+	}
+
+	// create a thread which will wait for *a* deserialized reply
+	// this reply can be associated with any previous async call,
+	// hence we need to redirect it to the proper async reply procedure
+	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serialized_call, shared_ptr<unsigned long> _result) {
+		aThread->detach();
+		detachedSem.R();
+
+		m_rpcP->SendSerializedCall(_asyncId, *_serialized_call); // this is the block call, the server has processed the service when we're unblocked
+
+		{
+			unique_lock<mutex> lock(m_async_procs_mutex);
+			auto i = m_async_procs.find(_asyncId);
+			if (i != m_async_procs.end()) {
+				(*(i->second))(_asyncId, *_result);
+				m_async_procs.erase(_asyncId);
+			}
+		}
+	}, asyncId, serialized_call, result);
+
+	detachedSem.A();
 
 #ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();

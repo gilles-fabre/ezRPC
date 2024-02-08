@@ -115,13 +115,13 @@ static unsigned long PutString(vector<RemoteProcedureCall::Parameter*>* v, void*
 	return 0;
 }
 
-static void GetStringAsyncReplyProc(AsyncID asyncId) {
-	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << endl;
+static void GetStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
 	g_sem.R();
 }
 
-static void PutStringAsyncReplyProc(AsyncID asyncId) {
-	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << endl;
+static void PutStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
 	g_sem.R();
 }
 

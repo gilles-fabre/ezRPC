@@ -183,12 +183,13 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
  *				 the result to match it. It is O if the call is synchronous
  * \param func_name is the name of the function to call
  * \param serialized_call is the serialized vector of parameters to build with the vl list of 
+ * \param result points to the variable which will receive the server's procedure return value
  *		  arguments
  * 		  (<type><value>)|(PTR<pointer_to_value>). The last argument must be
  * 		  'END_OF_CALL'.
  *        STRING values MUST be passed as string pointers (std::string*)
  */
-void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl) {
+void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, va_list vl) {
 	unsigned int 	len;
 	string			s;
 	unsigned char	byte;
@@ -222,9 +223,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 	// then add the return result address
 	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL((uint64_t)result.get()));
+	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "pushed return address %p", result.get());
+	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
 #endif
 
 	// and all the given parameters
@@ -491,14 +492,12 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
  *
  * \param asyncId is asynchronous call identifier, which will be returned with
  *				 the result to match it. It is O if the call is synchronous
- * \param procedureP is the callback function called upon completion of the call, with the associated a/synchronous call identifier
  * \param serialized_call is the serialized vector of parameters to build with the vl list of
  *		  arguments
- * \param result is the reference to the result variable to receive the a/synchronous call result
  */
-void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result) {
+void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serialized_call) {
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SendSerializedCall(%lu, %p, ...)", asyncId, procedureP);
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SendSerializedCall(%lu, ...)", asyncId);
 #endif
 
 	// send all the serialized call parameters over to the peer
@@ -512,55 +511,17 @@ void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, AsyncReplyProcedur
 	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now spawn asynchronous reply handling thread...", buff_len);
 #endif
 
-	if (asyncId) {
-		// asynchronous call
-
-		Semaphore detachedSem(0);
-
-		// create a thread which will wait for deserialized reply
-		shared_ptr<thread> aThread = make_shared<thread>([&](AsyncReplyProcedure* _procedureP) {
-			AsyncID		   asyncId;
-			unsigned char* bufferP;
-
-			aThread->detach();
-			detachedSem.R();
-
-			{
-				unique_lock<mutex> lock(m_cli_receive_mutex);
-				bufferP = ReceivePacket(buff_len); // blocking
-			}
-
-#ifdef RPC_TRACES
-			LogVText(RPC_MODULE, 4, true, "received %lu bytes. Will now DeserializeCallReturn...", buff_len);
-#endif
-
-			if (bufferP) {
-				DeserializeCallReturn(asyncId, bufferP);
-				free(bufferP);
-
-#ifdef RPC_TRACES
-				LogVText(RPC_MODULE, 4, true, "Will now call ReplyProc(%lu)", asyncId);
-#endif
-				(*_procedureP)(asyncId);				 // dispatch result
-			}
-			}, procedureP);
-
-		detachedSem.A();
+	// synchronous call, blocking until we have a reply from the server
+	AsyncID		   dummy;
+	unsigned char* bufferP;
+	{
+		unique_lock<mutex> lock(m_cli_receive_mutex);
+		bufferP = ReceivePacket(buff_len); // blocking
 	}
-	else {
-		// synchronous call, blocking until we have a reply from the server
-		AsyncID		   dummy;
-		unsigned char* bufferP;
-		{
-			unique_lock<mutex> lock(m_cli_receive_mutex);
-			bufferP = ReceivePacket(buff_len); // blocking
-		}
 
-		if (bufferP) {
-			DeserializeCallReturn(dummy, bufferP);
-			free(bufferP);
-			(*procedureP)(asyncId);				 // dispatch result
-		}
+	if (bufferP) {
+		DeserializeCallReturn(dummy, bufferP);
+		free(bufferP);
 	}
 }
 
