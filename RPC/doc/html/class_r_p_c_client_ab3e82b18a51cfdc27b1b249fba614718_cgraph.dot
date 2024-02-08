@@ -7,7 +7,7 @@ digraph "RPCClient::RpcCallAsync"
   rankdir="LR";
   Node1 [id="Node000001",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711",tooltip="Serializes the given function call so the resulting byte stream can be sent over the associated link ..."];
+  Node2 [id="Node000002",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf",tooltip="Serializes the given function call so the resulting byte stream can be sent over the associated link ..."];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478",tooltip=" "];
+  Node3 [id="Node000003",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07",tooltip=" "];
 }

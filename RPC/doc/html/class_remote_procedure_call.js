@@ -21,7 +21,7 @@ var class_remote_procedure_call =
     [ "RemoteProcedureCall", "class_remote_procedure_call.html#a608a47dd5f4abafdb40329582f3392e5", null ],
     [ "Close", "class_remote_procedure_call.html#a31cda1aad54d910ea156ee3a74668805", null ],
     [ "DeserializeCall", "class_remote_procedure_call.html#a5d9d4c3d20b98d7156fbee375775478e", null ],
-    [ "PrepareSerializeCall", "class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711", null ],
-    [ "SendSerializedCall", "class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478", null ],
+    [ "PrepareSerializeCall", "class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf", null ],
+    [ "SendSerializedCall", "class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07", null ],
     [ "SerializeCallReturn", "class_remote_procedure_call.html#acbc240a3b97a7618299f7208a86e248f", null ]
 ];

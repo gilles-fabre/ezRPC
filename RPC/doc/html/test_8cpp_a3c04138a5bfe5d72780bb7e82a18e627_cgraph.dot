@@ -15,9 +15,9 @@ digraph "main"
   Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="RPCClient::RpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#aafa4b8e67880abb541605fb0e3925af8",tooltip="see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...."];
   Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711",tooltip="Serializes the given function call so the resulting byte stream can be sent over the associated link ..."];
+  Node6 [id="Node000006",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf",tooltip="Serializes the given function call so the resulting byte stream can be sent over the associated link ..."];
   Node5 -> Node7 [id="edge6_Node000005_Node000007",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478",tooltip=" "];
+  Node7 [id="Node000007",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07",tooltip=" "];
   Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718",tooltip="see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...."];
   Node8 -> Node6 [id="edge8_Node000008_Node000006",color="steelblue1",style="solid",tooltip=" "];

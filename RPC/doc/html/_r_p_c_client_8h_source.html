@@ -108,87 +108,91 @@ $(function(){initNavTree('_r_p_c_client_8h_source.html',''); initResizable(); })
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;log2reporter.h&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Transport.h&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_remote_procedure_call_8h.html">RemoteProcedureCall.h</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="_r_p_c_client_8h.html#ad947692f8397d4a3352c4b6323c0debb">   17</a></span><span class="preprocessor">#define RPCCLIENT_TRACES 1</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">   18</a></span><span class="preprocessor">#define RPCCLIENT_MODULE 0x5</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#pragma warning(disable:4251)</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef _EXPORTING</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define DECLSPEC __declspec(dllexport)</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define DECLSPEC __declspec(dllimport)</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;log2reporter.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;Transport.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_remote_procedure_call_8h.html">RemoteProcedureCall.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="_r_p_c_client_8h.html#ad947692f8397d4a3352c4b6323c0debb">   18</a></span><span class="preprocessor">#define RPCCLIENT_TRACES 1</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">   19</a></span><span class="preprocessor">#define RPCCLIENT_MODULE 0x5</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#pragma warning(disable:4251)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef _EXPORTING</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define DECLSPEC __declspec(dllexport)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define DECLSPEC __declspec(dllimport)</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class   </span>DECLSPEC <a class="code hl_class" href="class_r_p_c_client.html">RPCClient</a> {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#else</span></div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html">   36</a></span><span class="keyword">class   </span><a class="code hl_class" href="class_r_p_c_client.html">RPCClient</a> {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    Transport*              m_transportP;   <span class="comment">// transport used to talk to the peer server</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>*    m_rpcP;         <span class="comment">// rpc underlying abstraction</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    mutex                   m_mutex;        <span class="comment">// can&#39;t multiplex calls to the server (TODO : fixme!)</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">   50</a></span>    <a class="code hl_function" href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">RPCClient</a>(Transport::TransportType transport_type,  <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        m_transportP = Transport::CreateTransport(transport_type);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        Link *linkP = m_transportP ? m_transportP-&gt;LinkRequest((<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;)server_address) : NULL;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        m_rpcP = linkP ? <span class="keyword">new</span> <a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>(linkP) : NULL;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">   30</a></span><span class="keyword">typedef</span> <span class="keywordtype">void</span> <a class="code hl_typedef" href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">AsyncReplyProcedure</a>(<a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class   </span>DECLSPEC <a class="code hl_class" href="class_r_p_c_client.html">RPCClient</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#else</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html">   39</a></span><span class="keyword">class   </span><a class="code hl_class" href="class_r_p_c_client.html">RPCClient</a> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Transport*              m_transportP;   <span class="comment">// transport used to talk to the peer server</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>*    m_rpcP;         <span class="comment">// rpc underlying abstraction</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    mutex                   m_async_procs_mutex; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    multimap&lt;AsyncID, AsyncReplyProcedure*&gt; m_async_procs;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">   54</a></span>    <a class="code hl_function" href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">RPCClient</a>(Transport::TransportType transport_type,  <span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        m_transportP = Transport::CreateTransport(transport_type);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        Link *linkP = m_transportP ? m_transportP-&gt;LinkRequest((<span class="keyword">const</span> <span class="keywordtype">string</span>&amp;)server_address) : NULL;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        m_rpcP = linkP ? <span class="keyword">new</span> <a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>(linkP) : NULL;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">   61</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">~RPCClient</a>() {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#ifdef RPCCLIENT_TRACES</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        LogText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCClient::~RpcClient()&quot;</span>);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (m_transportP) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">   65</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">~RPCClient</a>() {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#ifdef RPCCLIENT_TRACES</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            LogText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Closing transport&quot;</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        LogText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCClient::~RpcClient()&quot;</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            m_transportP-&gt;Close();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keyword">delete</span> m_transportP;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        m_transportP = NULL;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (m_rpcP)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keyword">delete</span> m_rpcP;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        m_rpcP = NULL;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">if</span> (m_transportP) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#ifdef RPCCLIENT_TRACES</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            LogText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Closing transport&quot;</span>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            m_transportP-&gt;Close();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keyword">delete</span> m_transportP;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        m_transportP = NULL;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">if</span> (m_rpcP)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keyword">delete</span> m_rpcP;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        m_rpcP = NULL;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
 </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">   83</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">Stop</a>() {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">if</span> (m_transportP)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            m_transportP-&gt;Close();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
-</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> RpcCall(<span class="keywordtype">string</span> func_name, ...);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>       RpcCallAsync(<a class="code hl_typedef" href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a>* procedureP, <span class="keywordtype">string</span> func_name, ...);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">   87</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">Stop</a>() {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">if</span> (m_transportP)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            m_transportP-&gt;Close();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
 </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif </span><span class="comment">/* _RPC_CLIENT_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a_r_p_c_client_8h_html_a7f35f1a348f5746dd6a6b1befddb9151"><div class="ttname"><a href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a></div><div class="ttdeci">#define RPCCLIENT_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00018">RPCClient.h:18</a></div></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> RpcCall(<span class="keywordtype">string</span> func_name, ...);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>       RpcCallAsync(<a class="code hl_typedef" href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">AsyncReplyProcedure</a>* procedureP, <span class="keywordtype">string</span> func_name, ...);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif </span><span class="comment">/* _RPC_CLIENT_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_r_p_c_client_8h_html_a7d3a51183143beb57acc22ca6942cb99"><div class="ttname"><a href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">AsyncReplyProcedure</a></div><div class="ttdeci">void AsyncReplyProcedure(AsyncID asyncId, unsigned long result)</div><div class="ttdef"><b>Definition</b> <a href="#l00030">RPCClient.h:30</a></div></div>
+<div class="ttc" id="a_r_p_c_client_8h_html_a7f35f1a348f5746dd6a6b1befddb9151"><div class="ttname"><a href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a></div><div class="ttdeci">#define RPCCLIENT_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00019">RPCClient.h:19</a></div></div>
 <div class="ttc" id="a_remote_procedure_call_8h_html"><div class="ttname"><a href="_remote_procedure_call_8h.html">RemoteProcedureCall.h</a></div></div>
 <div class="ttc" id="a_remote_procedure_call_8h_html_abc67c9d81d5fde9559b47f86502e2957"><div class="ttname"><a href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></div><div class="ttdeci">uint64_t AsyncID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00027">RemoteProcedureCall.h:27</a></div></div>
-<div class="ttc" id="a_remote_procedure_call_8h_html_ae43960083e4b6ed75cc7b0e232987f2f"><div class="ttname"><a href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a></div><div class="ttdeci">void AsyncReplyProcedure(AsyncID asyncId)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00029">RemoteProcedureCall.h:29</a></div></div>
-<div class="ttc" id="aclass_r_p_c_client_html"><div class="ttname"><a href="class_r_p_c_client.html">RPCClient</a></div><div class="ttdoc">Provides the user with a high abstraction level Remote Procedure Calls service.</div><div class="ttdef"><b>Definition</b> <a href="#l00036">RPCClient.h:36</a></div></div>
-<div class="ttc" id="aclass_r_p_c_client_html_a30b8cae7e2b173b7bb348d6cfbfd14b8"><div class="ttname"><a href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">RPCClient::~RPCClient</a></div><div class="ttdeci">virtual ~RPCClient()</div><div class="ttdoc">RPCClient destructor. Closes and destroys the associated RPC and Transport members.</div><div class="ttdef"><b>Definition</b> <a href="#l00061">RPCClient.h:61</a></div></div>
-<div class="ttc" id="aclass_r_p_c_client_html_a380e02c5b8dfd35f1e9684a932c74cf8"><div class="ttname"><a href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">RPCClient::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the associated transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">RPCClient.h:83</a></div></div>
-<div class="ttc" id="aclass_r_p_c_client_html_adbf378c8643a20a53ec0be2fac9588fd"><div class="ttname"><a href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">RPCClient::RPCClient</a></div><div class="ttdeci">RPCClient(Transport::TransportType transport_type, const string &amp;server_address)</div><div class="ttdoc">RPCClient constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">RPCClient.h:50</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html"><div class="ttname"><a href="class_remote_procedure_call.html">RemoteProcedureCall</a></div><div class="ttdoc">Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a re...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00040">RemoteProcedureCall.h:40</a></div></div>
+<div class="ttc" id="aclass_r_p_c_client_html"><div class="ttname"><a href="class_r_p_c_client.html">RPCClient</a></div><div class="ttdoc">Provides the user with a high abstraction level Remote Procedure Calls service.</div><div class="ttdef"><b>Definition</b> <a href="#l00039">RPCClient.h:39</a></div></div>
+<div class="ttc" id="aclass_r_p_c_client_html_a30b8cae7e2b173b7bb348d6cfbfd14b8"><div class="ttname"><a href="class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8">RPCClient::~RPCClient</a></div><div class="ttdeci">virtual ~RPCClient()</div><div class="ttdoc">RPCClient destructor. Closes and destroys the associated RPC and Transport members.</div><div class="ttdef"><b>Definition</b> <a href="#l00065">RPCClient.h:65</a></div></div>
+<div class="ttc" id="aclass_r_p_c_client_html_a380e02c5b8dfd35f1e9684a932c74cf8"><div class="ttname"><a href="class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8">RPCClient::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the associated transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00087">RPCClient.h:87</a></div></div>
+<div class="ttc" id="aclass_r_p_c_client_html_adbf378c8643a20a53ec0be2fac9588fd"><div class="ttname"><a href="class_r_p_c_client.html#adbf378c8643a20a53ec0be2fac9588fd">RPCClient::RPCClient</a></div><div class="ttdeci">RPCClient(Transport::TransportType transport_type, const string &amp;server_address)</div><div class="ttdoc">RPCClient constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">RPCClient.h:54</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html"><div class="ttname"><a href="class_remote_procedure_call.html">RemoteProcedureCall</a></div><div class="ttdoc">Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a re...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00038">RemoteProcedureCall.h:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

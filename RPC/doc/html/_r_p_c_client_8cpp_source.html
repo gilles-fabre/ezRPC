@@ -132,14 +132,14 @@ $(function(){initNavTree('_r_p_c_client_8cpp_source.html',''); initResizable(); 
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    start = chrono::system_clock::now();</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    vector&lt;unsigned char&gt; serialized_call;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    shared_ptr&lt;unsigned long&gt; result = make_shared&lt;unsigned long&gt;();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    vector&lt;unsigned char&gt;   serialized_call;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>           result;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    va_list vl;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    va_start(vl, func_name);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711">PrepareSerializeCall</a>(0, func_name, serialized_call, result, vl);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf">PrepareSerializeCall</a>(0, func_name, serialized_call, &amp;result, vl);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    va_end(vl);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">SendSerializedCall</a>(0, NULL, serialized_call, result);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07">SendSerializedCall</a>(0, serialized_call);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    #ifdef RPCCLIENT_TRACES</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    end = chrono::system_clock::now();</div>
@@ -147,12 +147,12 @@ $(function(){initNavTree('_r_p_c_client_8cpp_source.html',''); initResizable(); 
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    LogVText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;RpcCall executed in %f second(s)&quot;</span>, elapsed.count());</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> *result;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718">   72</a></span><a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> <a class="code hl_function" href="class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718">RPCClient::RpcCallAsync</a>(<a class="code hl_typedef" href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a>* procedureP, <span class="keywordtype">string</span> func_name, ...) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718">   72</a></span><a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> <a class="code hl_function" href="class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718">RPCClient::RpcCallAsync</a>(<a class="code hl_typedef" href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">AsyncReplyProcedure</a>* procedureP, <span class="keywordtype">string</span> func_name, ...) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// build the asyncId</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    stringstream ss;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    ss &lt;&lt; func_name &lt;&lt; <span class="stringliteral">&quot;-&quot;</span> &lt;&lt; chrono::system_clock::now().time_since_epoch().count();</div>
@@ -172,32 +172,58 @@ $(function(){initNavTree('_r_p_c_client_8cpp_source.html',''); initResizable(); 
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    start = chrono::system_clock::now();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    vector&lt;unsigned char&gt; serialized_call;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    shared_ptr&lt;unsigned long&gt; result = make_shared&lt;unsigned long&gt;();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    shared_ptr&lt;vector&lt;unsigned char&gt;&gt;   serialized_call = make_shared&lt;vector&lt;unsigned char&gt;&gt;();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    shared_ptr&lt;unsigned long&gt;           result = make_shared&lt;unsigned long&gt;();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    va_list vl;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    va_start(vl, func_name);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711">PrepareSerializeCall</a>(asyncId, func_name, serialized_call, result, vl);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf">PrepareSerializeCall</a>(asyncId, func_name, *serialized_call, result.get(), vl);</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    va_end(vl);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">SendSerializedCall</a>(asyncId, procedureP, serialized_call, result);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    Semaphore detachedSem(0);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#ifdef RPCCLIENT_TRACES</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    end = chrono::system_clock::now();</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    chrono::duration&lt;double&gt; elapsed = end - start;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    LogVText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;RpcCallAsync %lu executed in %f second(s)&quot;</span>, asyncId, elapsed.count());</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> asyncId;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        unique_lock&lt;mutex&gt; lock(m_async_procs_mutex);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        m_async_procs.insert(pair&lt;AsyncID, AsyncReplyProcedure*&gt;(asyncId, procedureP));</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// create a thread which will wait for *a* deserialized reply</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// this reply can be associated with any previous async call,</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// hence we need to redirect it to the proper async reply procedure</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    shared_ptr&lt;thread&gt; aThread = make_shared&lt;thread&gt;([&amp;](<a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> _asyncId, shared_ptr&lt;vector&lt;unsigned char&gt;&gt; _serialized_call, shared_ptr&lt;unsigned long&gt; _result) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        aThread-&gt;detach();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        detachedSem.R();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        m_rpcP-&gt;<a class="code hl_function" href="class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07">SendSerializedCall</a>(_asyncId, *_serialized_call); <span class="comment">// this is the block call, the server has processed the service when we&#39;re unblocked</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            unique_lock&lt;mutex&gt; lock(m_async_procs_mutex);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="keyword">auto</span> i = m_async_procs.find(_asyncId);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keywordflow">if</span> (i != m_async_procs.end()) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                (*(i-&gt;second))(_asyncId, *_result);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                m_async_procs.erase(_asyncId);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }, asyncId, serialized_call, result);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    detachedSem.A();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#ifdef RPCCLIENT_TRACES</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    end = chrono::system_clock::now();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    chrono::duration&lt;double&gt; elapsed = end - start;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    LogVText(<a class="code hl_define" href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;RpcCallAsync %lu executed in %f second(s)&quot;</span>, asyncId, elapsed.count());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> asyncId;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
 </div>
 <div class="ttc" id="a_r_p_c_client_8h_html"><div class="ttname"><a href="_r_p_c_client_8h.html">RPCClient.h</a></div></div>
-<div class="ttc" id="a_r_p_c_client_8h_html_a7f35f1a348f5746dd6a6b1befddb9151"><div class="ttname"><a href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a></div><div class="ttdeci">#define RPCCLIENT_MODULE</div><div class="ttdef"><b>Definition</b> <a href="_r_p_c_client_8h_source.html#l00018">RPCClient.h:18</a></div></div>
+<div class="ttc" id="a_r_p_c_client_8h_html_a7d3a51183143beb57acc22ca6942cb99"><div class="ttname"><a href="_r_p_c_client_8h.html#a7d3a51183143beb57acc22ca6942cb99">AsyncReplyProcedure</a></div><div class="ttdeci">void AsyncReplyProcedure(AsyncID asyncId, unsigned long result)</div><div class="ttdef"><b>Definition</b> <a href="_r_p_c_client_8h_source.html#l00030">RPCClient.h:30</a></div></div>
+<div class="ttc" id="a_r_p_c_client_8h_html_a7f35f1a348f5746dd6a6b1befddb9151"><div class="ttname"><a href="_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151">RPCCLIENT_MODULE</a></div><div class="ttdeci">#define RPCCLIENT_MODULE</div><div class="ttdef"><b>Definition</b> <a href="_r_p_c_client_8h_source.html#l00019">RPCClient.h:19</a></div></div>
 <div class="ttc" id="a_remote_procedure_call_8h_html_abc67c9d81d5fde9559b47f86502e2957"><div class="ttname"><a href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></div><div class="ttdeci">uint64_t AsyncID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00027">RemoteProcedureCall.h:27</a></div></div>
-<div class="ttc" id="a_remote_procedure_call_8h_html_ae43960083e4b6ed75cc7b0e232987f2f"><div class="ttname"><a href="_remote_procedure_call_8h.html#ae43960083e4b6ed75cc7b0e232987f2f">AsyncReplyProcedure</a></div><div class="ttdeci">void AsyncReplyProcedure(AsyncID asyncId)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00029">RemoteProcedureCall.h:29</a></div></div>
 <div class="ttc" id="aclass_r_p_c_client_html_aafa4b8e67880abb541605fb0e3925af8"><div class="ttname"><a href="class_r_p_c_client.html#aafa4b8e67880abb541605fb0e3925af8">RPCClient::RpcCall</a></div><div class="ttdeci">unsigned long RpcCall(string func_name,...)</div><div class="ttdoc">see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall....</div><div class="ttdef"><b>Definition</b> <a href="#l00025">RPCClient.cpp:25</a></div></div>
 <div class="ttc" id="aclass_r_p_c_client_html_ab3e82b18a51cfdc27b1b249fba614718"><div class="ttname"><a href="class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718">RPCClient::RpcCallAsync</a></div><div class="ttdeci">AsyncID RpcCallAsync(AsyncReplyProcedure *procedureP, string func_name,...)</div><div class="ttdoc">see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall....</div><div class="ttdef"><b>Definition</b> <a href="#l00072">RPCClient.cpp:72</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a6d2372c3e97c87b803e4c098810db711"><div class="ttname"><a href="class_remote_procedure_call.html#a6d2372c3e97c87b803e4c098810db711">RemoteProcedureCall::PrepareSerializeCall</a></div><div class="ttdeci">void PrepareSerializeCall(AsyncID asyncId, const string &amp;func_name, vector&lt; unsigned char &gt; &amp;serialized_call, shared_ptr&lt; unsigned long &gt; result, va_list vl)</div><div class="ttdoc">Serializes the given function call so the resulting byte stream can be sent over the associated link ...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8cpp_source.html#l00191">RemoteProcedureCall.cpp:191</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_ad552257ecae47716b1e21945bd166478"><div class="ttname"><a href="class_remote_procedure_call.html#ad552257ecae47716b1e21945bd166478">RemoteProcedureCall::SendSerializedCall</a></div><div class="ttdeci">void SendSerializedCall(AsyncID asyncId, AsyncReplyProcedure *procedureP, vector&lt; unsigned char &gt; &amp;serialized_call, shared_ptr&lt; unsigned long &gt; result)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8cpp_source.html#l00499">RemoteProcedureCall.cpp:499</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a25e88f16f1beec5b66eec3f3bc43eecf"><div class="ttname"><a href="class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf">RemoteProcedureCall::PrepareSerializeCall</a></div><div class="ttdeci">void PrepareSerializeCall(AsyncID asyncId, const string &amp;func_name, vector&lt; unsigned char &gt; &amp;serialized_call, unsigned long *resultP, va_list vl)</div><div class="ttdoc">Serializes the given function call so the resulting byte stream can be sent over the associated link ...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8cpp_source.html#l00192">RemoteProcedureCall.cpp:192</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a96c3278928409ed5bcd18a0b64478e07"><div class="ttname"><a href="class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07">RemoteProcedureCall::SendSerializedCall</a></div><div class="ttdeci">void SendSerializedCall(AsyncID asyncId, vector&lt; unsigned char &gt; &amp;serialized_call)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8cpp_source.html#l00498">RemoteProcedureCall.cpp:498</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
