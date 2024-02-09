@@ -7,16 +7,17 @@
 using namespace std;
 
 string	  g_string;
-Semaphore g_sem(0);
+Semaphore g_sem_put_str(0);
+Semaphore g_sem_get_str(0);
 
 static void GetStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
 	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
-	g_sem.R();
+	g_sem_get_str.R();
 }
 
 static void PutStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
 	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
-	g_sem.R();
+	g_sem_put_str.R();
 }
 
 int main(int argc, char **argv) {
@@ -46,9 +47,9 @@ int main(int argc, char **argv) {
 			cout << "\ttest client <tcp|file> server_addr get_string [repeat_count]" << endl;
 			return -1;
 		}
-		g_string = "overwrite me!";
 		int16_t repeat = argc == 5 ? atoi(argv[4]) : 1;
 		for (int b = 0; b < repeat; b++) {
+			g_string = "overwrite me!";
 			AsyncID id = client.RpcCallAsync(GetStringAsyncReplyProc,
 								func_name,
 								RemoteProcedureCall::PTR,
@@ -56,7 +57,7 @@ int main(int argc, char **argv) {
 								&g_string,
 								RemoteProcedureCall::END_OF_CALL);
 			cout << "\ttest client get_string asyncId : " << id << endl;
-			g_sem.A();
+			g_sem_get_str.A();
 		}
 	}
 	else if (func_name == "put_string") {
@@ -75,7 +76,7 @@ int main(int argc, char **argv) {
 								&g_string,
 								RemoteProcedureCall::END_OF_CALL);
 			cout << "\ttest client put_string asyncId : " << id << endl;
-			g_sem.A();
+			g_sem_put_str.A();
 		}
 	}
 	else if (func_name == "nop") {
