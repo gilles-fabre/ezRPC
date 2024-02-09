@@ -6,5 +6,6 @@ var files_dup =
     [ "RPCClient.h", "_r_p_c_client_8h.html", "_r_p_c_client_8h" ],
     [ "RPCServer.cpp", "_r_p_c_server_8cpp.html", "_r_p_c_server_8cpp" ],
     [ "RPCServer.h", "_r_p_c_server_8h.html", "_r_p_c_server_8h" ],
-    [ "test.cpp", "test_8cpp.html", "test_8cpp" ]
+    [ "TestClient.cpp", "_test_client_8cpp.html", "_test_client_8cpp" ],
+    [ "TestServer.cpp", "_test_server_8cpp.html", "_test_server_8cpp" ]
 ];

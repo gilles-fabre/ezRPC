@@ -9,14 +9,14 @@
         <map>
           <entry key="nPidFilters" value="0"/>
           <entry key="nModFilters" value="8"/>
-          <entry key="nProgFilters" value="3"/>
+          <entry key="nProgFilters" value="4"/>
           <entry key="nWindows" value="4"/>
-          <entry key="divider" value="1"/>
+          <entry key="divider" value="427"/>
           <entry key="divider1" value="314"/>
-          <entry key="Name" value="90"/>
-          <entry key="Mask" value="46"/>
-          <entry key="Value" value="46"/>
-          <entry key="PID" value="90"/>
+          <entry key="Name" value="205"/>
+          <entry key="Mask" value="137"/>
+          <entry key="Value" value="136"/>
+          <entry key="PID" value="205"/>
         </map>
         <node name="modFilter0">
           <map>
@@ -90,7 +90,7 @@
         </node>
         <node name="progFilter1">
           <map>
-            <entry key="name" value="ezRPC_Test"/>
+            <entry key="name" value="ezRPC_TestServer"/>
             <entry key="color" value="0xFF000000"/>
           </map>
         </node>
@@ -100,15 +100,21 @@
             <entry key="color" value="0xFF000000"/>
           </map>
         </node>
+        <node name="progFilter3">
+          <map>
+            <entry key="name" value="ezRPC_TestClient"/>
+            <entry key="color" value="0xFF000000"/>
+          </map>
+        </node>
         <node name="window0">
           <map>
-            <entry key="x" value="1016"/>
-            <entry key="y" value="-2"/>
-            <entry key="height" value="706"/>
-            <entry key="width" value="1018"/>
+            <entry key="x" value="0"/>
+            <entry key="y" value="0"/>
+            <entry key="height" value="402"/>
+            <entry key="width" value="762"/>
             <entry key="isMaximum" value="false"/>
             <entry key="title" value="All ezRPC Traces"/>
-            <entry key="divider" value="1"/>
+            <entry key="divider" value="4"/>
             <entry key="divider1" value="300"/>
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
@@ -124,19 +130,19 @@
             <entry key="Mask" value="15"/>
             <entry key="Value" value="15"/>
             <entry key="nProgFilters" value="1"/>
-            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="PID" value="15"/>
           </map>
         </node>
         <node name="window1">
           <map>
-            <entry key="x" value="0"/>
-            <entry key="y" value="507"/>
-            <entry key="height" value="507"/>
-            <entry key="width" value="1018"/>
+            <entry key="x" value="762"/>
+            <entry key="y" value="0"/>
+            <entry key="height" value="402"/>
+            <entry key="width" value="762"/>
             <entry key="isMaximum" value="false"/>
             <entry key="title" value="RPC Traces"/>
-            <entry key="divider" value="1"/>
+            <entry key="divider" value="4"/>
             <entry key="divider1" value="300"/>
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
@@ -147,19 +153,19 @@
             <entry key="Mask" value="15"/>
             <entry key="Value" value="15"/>
             <entry key="nProgFilters" value="1"/>
-            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="PID" value="15"/>
           </map>
         </node>
         <node name="window2">
           <map>
-            <entry key="x" value="-1"/>
-            <entry key="y" value="1"/>
-            <entry key="height" value="507"/>
-            <entry key="width" value="1018"/>
+            <entry key="x" value="0"/>
+            <entry key="y" value="402"/>
+            <entry key="height" value="402"/>
+            <entry key="width" value="762"/>
             <entry key="isMaximum" value="false"/>
             <entry key="title" value="RPC Client and Server Traces"/>
-            <entry key="divider" value="1"/>
+            <entry key="divider" value="4"/>
             <entry key="divider1" value="300"/>
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
@@ -171,19 +177,19 @@
             <entry key="Mask" value="15"/>
             <entry key="Value" value="15"/>
             <entry key="nProgFilters" value="1"/>
-            <entry key="prog0" value="ezRPC_Test"/>
+            <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="PID" value="15"/>
           </map>
         </node>
         <node name="window3">
           <map>
-            <entry key="x" value="1018"/>
-            <entry key="y" value="702"/>
-            <entry key="height" value="312"/>
-            <entry key="width" value="1015"/>
+            <entry key="x" value="762"/>
+            <entry key="y" value="402"/>
+            <entry key="height" value="402"/>
+            <entry key="width" value="762"/>
             <entry key="isMaximum" value="false"/>
             <entry key="title" value="Window 0"/>
-            <entry key="divider" value="1"/>
+            <entry key="divider" value="4"/>
             <entry key="divider1" value="137"/>
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>

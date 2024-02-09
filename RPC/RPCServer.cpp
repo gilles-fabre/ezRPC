@@ -53,55 +53,37 @@ void RPCServer::ListeningCallback(void* _serverP) {
  *        to both the parent RPCServer and link to the client.
  */
 
-void RPCServer::CallServiceReplyAndCleanup(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, ServiceParameters* paramsP, vector<RemoteProcedureCall::Parameter*>* rpc_paramsP) {
-	unsigned long result = (*procP)(rpc_paramsP, paramsP->m_serverP->m_user_dataP);
+void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::Parameter*>> rpc_params) {
+	unsigned long result = (*procP)(rpc_params.get(), params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
 #endif
 
 	// serialize back call results
-	rpc.SerializeCallReturn(asyncId, rpc_paramsP, result);
+	rpc.SerializeCallReturn(asyncId, rpc_params.get(), result);
 #ifdef RPCSERVER_TRACES
 	LogText(RPCSERVER_MODULE, 8, true, "serialized call return");
-#endif
-
-	// done with these parameters
-	for (vector<RemoteProcedureCall::Parameter*>::iterator i = rpc_paramsP->begin(); i != rpc_paramsP->end(); i++)
-		delete* i;
-	delete rpc_paramsP;
-#ifdef RPCSERVER_TRACES
-	LogText(RPCSERVER_MODULE, 8, true, "cleaned up parameters");
-#endif
-
-	delete paramsP;
-#ifdef RPCSERVER_TRACES
-	LogText(RPCSERVER_MODULE, 8, true, "cleaned up service callback parameters, exiting");
 #endif
 }
 
 void RPCServer::ServiceCallback(void* _paramsP) {
-	ServiceParameters* paramsP = (ServiceParameters*)_paramsP;
+	shared_ptr<ServiceParameters> params((ServiceParameters*)_paramsP);
 
 #ifdef RPCSERVER_TRACES
-	LogVText(RPCSERVER_MODULE, 0, true, "RPCServer::ServiceCallback(%p)", paramsP);
+	LogVText(RPCSERVER_MODULE, 0, true, "RPCServer::ServiceCallback(%p)", params.get());
 #endif
 
-	// ?!
-	if (!paramsP)
-		return;
-
-	if (!paramsP->m_serverP || !paramsP->m_linkP) {
+	if (!params.get() || !params->m_serverP || !params->m_linkP) {
 		// can't talk to client
-		delete paramsP;
 		return;
 	}
 
 
 #ifdef RPCSERVER_TRACES
-	LogVText(RPCSERVER_MODULE, 4, true, "creating remote procedure call for server %p and link %p", paramsP->m_serverP, paramsP->m_linkP);
+	LogVText(RPCSERVER_MODULE, 4, true, "creating remote procedure call for server %p and link %p", params->m_serverP, params->m_linkP);
 #endif
 
-	RemoteProcedureCall rpc(paramsP->m_linkP);
+	RemoteProcedureCall rpc(params->m_linkP);
 	for (;;) {
 		AsyncID			asyncId;
 		string   		func_name;
@@ -110,19 +92,19 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 #endif
 
 		// wait and deserialize call stream
-		vector<RemoteProcedureCall::Parameter*>* rpc_paramsP = rpc.DeserializeCall(asyncId, func_name);
-		if (!rpc_paramsP)
+		shared_ptr<vector<RemoteProcedureCall::Parameter*>> rpc_params(rpc.DeserializeCall(asyncId, func_name));
+		if (!rpc_params.get())
 			break; 
 #ifdef RPCSERVER_TRACES
-		LogVText(RPCSERVER_MODULE, 8, true, "deserialized into parameters vector: %p", rpc_paramsP);
+		LogVText(RPCSERVER_MODULE, 8, true, "deserialized into parameters vector: %p", rpc_params.get());
 #endif
 
 		// process rpc call
-		RemoteProcedure* procP = paramsP->m_serverP->m_rpc_map[func_name];
+		RemoteProcedure* procP = params->m_serverP->m_rpc_map[func_name];
 		if (!procP) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << func_name << ")!" << endl;
 			// serialize back 'error'
-			rpc.SerializeCallReturn(asyncId, rpc_paramsP, 0);
+			rpc.SerializeCallReturn(asyncId, rpc_params.get(), 0);
 			continue;
 		}
 
@@ -139,13 +121,13 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 				aThread->detach();
 				detachedSem.R();
 
-				CallServiceReplyAndCleanup(rpc, procP, asyncId, func_name, paramsP, rpc_paramsP);
+				CallServiceAndReply(rpc, procP, asyncId, func_name, params, rpc_params);
 			});
 
 			detachedSem.A();
 		} else {
 			// synchronous call
-			CallServiceReplyAndCleanup(rpc, procP, asyncId, func_name, paramsP, rpc_paramsP);
+			CallServiceAndReply(rpc, procP, asyncId, func_name, params, rpc_params);
 		}
 	}
 }

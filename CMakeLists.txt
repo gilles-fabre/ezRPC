@@ -22,10 +22,14 @@ add_library(ezRPC SHARED
 						
 target_link_libraries(ezRPC LogReporter)
 
-add_executable(ezRPC_Test 
-			   RPC/test.cpp)
+add_executable(ezRPC_TestServer 
+			   RPC/TestServer.cpp)
 
-target_link_libraries(ezRPC_Test ezRPC)
+add_executable(ezRPC_TestClient 
+			   RPC/TestClient.cpp)
+
+target_link_libraries(ezRPC_TestServer ezRPC)
+target_link_libraries(ezRPC_TestClient ezRPC)
 
 if (NOT WIN32)
 add_library(ezStateMachine SHARED
@@ -53,7 +57,15 @@ target_include_directories(ezRPC
 						   "${CMAKE_INSTALL_PREFIX}/Thread" 
 						   "${CMAKE_INSTALL_PREFIX}/LogReporter")
 
-target_include_directories(ezRPC_Test 
+target_include_directories(ezRPC_TestServer 
+							PUBLIC
+							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
+							"${CMAKE_INSTALL_PREFIX}/RPC" 
+						    "${CMAKE_INSTALL_PREFIX}/Transport" 
+						    "${CMAKE_INSTALL_PREFIX}/Thread" 
+						    "${CMAKE_INSTALL_PREFIX}/LogReporter")
+
+target_include_directories(ezRPC_TestClient
 							PUBLIC
 							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
@@ -90,14 +102,17 @@ endif()
 find_package(Threads REQUIRED)
 if(THREADS_HAVE_PTHREAD_ARG)
   target_compile_options(ezRPC PUBLIC "-pthread")
-  target_compile_options(ezRPC_Test PUBLIC "-pthread")
+  target_compile_options(ezRPC_TestServer PUBLIC "-pthread")
+  target_compile_options(ezRPC_TestClient PUBLIC "-pthread")
 endif()
 if(CMAKE_THREAD_LIBS_INIT)
   target_link_libraries(ezRPC "${CMAKE_THREAD_LIBS_INIT}")
-  target_link_libraries(ezRPC_Test "${CMAKE_THREAD_LIBS_INIT}")
+  target_link_libraries(ezRPC_TestServer "${CMAKE_THREAD_LIBS_INIT}")
+  target_link_libraries(ezRPC_TestClient "${CMAKE_THREAD_LIBS_INIT}")
 endif()
 
-install(FILES RPC/ezRPC_Test.log-settings DESTINATION bin)
+install(FILES RPC/ezRPC_TestServer.log-settings DESTINATION bin)
+install(FILES RPC/ezRPC_TestClient.log-settings DESTINATION bin)
 
 if (NOT WIN32)
 install(FILES StateMachine/ezStateMachine_Test.log-settings DESTINATION bin)
@@ -109,9 +124,15 @@ install(TARGETS LogReporter
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
-install(TARGETS ezRPC_Test RUNTIME DESTINATION bin)
+install(TARGETS ezRPC_TestServer RUNTIME DESTINATION bin)
+install(TARGETS ezRPC_TestClient RUNTIME DESTINATION bin)
 
-install(TARGETS ezRPC_Test
+install(TARGETS ezRPC_TestServer
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
+
+install(TARGETS ezRPC_TestClient
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)

@@ -8,5 +8,5 @@ digraph "RPCServer.h"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="RPCServer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_r_p_c_server_8cpp.html",tooltip=" "];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="test.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$test_8cpp.html",tooltip=" "];
+  Node3 [id="Node000003",label="TestServer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_test_server_8cpp.html",tooltip=" "];
 }
