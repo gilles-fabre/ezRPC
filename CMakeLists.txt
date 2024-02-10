@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.9)
 
 project(ezRPC)
 
+if (NOT WIN32)
+set(CMAKE_BUILD_TYPE "Debug")  # remove this to generate Release makefiles under Linux
+endif()
+
 if(${ROOT_DIR})
   set(CMAKE_INSTALL_PREFIX "${ROOT_DIR}" CACHE PATH "set install root dir to : ${ROOT_DIR}" FORCE)
 else()

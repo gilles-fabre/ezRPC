@@ -112,7 +112,7 @@ static unsigned long PutString(vector<RemoteProcedureCall::Parameter*>* v, void*
 int main(int argc, char **argv) {
 	if (argc < 3) {
 		cout << "usage:" << endl;
-		cout << argv[0] << "\t <tcp|file> server server_address" << endl;
+		cout << argv[0] << "\t <tcp|file> server_address" << endl;
 		return -1;
 	}
 
