@@ -54,13 +54,15 @@ void RPCServer::ListeningCallback(void* _serverP) {
  */
 
 void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::Parameter*>> rpc_params) {
-	unsigned long result = (*procP)(rpc_params.get(), params->m_serverP->m_user_dataP);
+	shared_ptr<ServiceParameters> _params = params;
+	shared_ptr<vector<RemoteProcedureCall::Parameter*>> _rpc_params = rpc_params;
+	unsigned long result = (*procP)(_rpc_params.get(), _params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
 #endif
 
 	// serialize back call results
-	rpc.SerializeCallReturn(asyncId, rpc_params.get(), result);
+	rpc.SerializeCallReturn(asyncId, _rpc_params.get(), result);
 #ifdef RPCSERVER_TRACES
 	LogText(RPCSERVER_MODULE, 8, true, "serialized call return");
 #endif

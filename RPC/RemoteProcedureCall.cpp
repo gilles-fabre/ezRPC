@@ -215,8 +215,8 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 	serialized_call.push_back(STRING);
 	len = (unsigned int)func_name.length();
 	push_uint16(serialized_call, htons(len));
-	for (unsigned int i = 0; i < len; i++)
-		serialized_call.push_back(func_name[i]);
+	unsigned char* p = (unsigned char*)func_name.c_str();
+	serialized_call.insert(serialized_call.end(), p, p+len);
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
 #endif
@@ -462,8 +462,8 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
-					for (unsigned int i = 0; i < len; i++)
-						serialized_call.push_back(s[i]);
+					unsigned char* p = (unsigned char*)s.c_str();
+					serialized_call.insert(serialized_call.end(), p, p+len);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -475,8 +475,8 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
-					for (unsigned int i = 0; i < len; i++)
-						serialized_call.push_back(s[i]);
+					unsigned char* p = (unsigned char*)s.c_str();
+					serialized_call.insert(serialized_call.end(), p, p+len);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -712,8 +712,8 @@ vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(As
 #endif
 
 	// get the name
-	for (int i = 0; i < ui16; i ++)
-		func_name += bufferP[offset++];
+	func_name = string((const char*)&bufferP[offset], ui16);
+	offset += ui16;
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "decoded func_name %s", func_name.c_str());
 #endif
@@ -971,9 +971,8 @@ vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(As
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "decoded string len %u", ui16);
 #endif
-					s.clear();
-					for (int i = 0; i < ui16; i ++)
-						s += bufferP[offset++];
+					s = string((const char*)&bufferP[offset], ui16);
+					offset += ui16;
 					resultP->push_back(new Parameter(s.c_str(), ptr));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "decoded string %s", s.c_str());
@@ -984,9 +983,8 @@ vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(As
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "decoded string len %u", ui16);
 #endif
-					s.clear();
-					for (int i = 0; i < ui16; i ++)
-						s += bufferP[offset++];
+					s = string((const char*)&bufferP[offset], ui16);
+					offset += ui16;
 					resultP->push_back(new Parameter(s.c_str()));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "decoded string %s", s.c_str());
@@ -1047,6 +1045,7 @@ clean_up:
 void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<Parameter*>* paramP, unsigned long ret_val) {
 	vector<unsigned char> 	serialized_call;
 	unsigned char			b, type;
+	unsigned char* 			p;
 	char					c;
 	int16_t					i16;
 	uint16_t				ui16;
@@ -1189,9 +1188,8 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<Parameter*
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed string parameter value len %u", ui16);
 #endif
-
-				for (int i = 0; i < ui16; i++)
-					serialized_call.push_back(s[i]);
+				p = (unsigned char*)s.c_str();
+				serialized_call.insert(serialized_call.end(), p, p+ui16);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed string parameter value %s", s.c_str());
 #endif
@@ -1390,9 +1388,8 @@ bool RemoteProcedureCall::DeserializeCallReturn(AsyncID& asyncId, unsigned char*
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 6, true, "decoded parameter string len: %u", ui16);
 #endif
-				s.clear();
-				for (int i = 0; i < ui16; i ++)
-					s += bufferP[offset++];
+				s = string((const char*)&bufferP[offset], ui16);
+				offset += ui16;
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 6, true, "decoded parameter string: %s", s.c_str());
 #endif
