@@ -114,14 +114,18 @@ static void PromptTheUserAndDoTransition(void* parameterP) {
 	delete threadP;
 }
 
-static unsigned long GameStart(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter* pSource = (*v)[3];
-	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
+static unsigned long GameStart(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<string>* pMachineName = ParameterSafeCast(string, (*v)[1]);
+	RemoteProcedureCall::Parameter<uint64_t>* pMachine = ParameterSafeCast(uint64_t, (*v)[2]);
+	RemoteProcedureCall::Parameter<string>* pSource = ParameterSafeCast(string, (*v)[3]);
+	RemoteProcedureCall::Parameter<string>* pTransition = ParameterSafeCast(string, (*v)[4]);
+	RemoteProcedureCall::Parameter<string>* pDestination = ParameterSafeCast(string, (*v)[5]);
 
-	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
+	if (!pReturn || !pMachineName || !pMachine || !pSource || !pTransition || !pDestination)
+		return -1;
+
+	cout << "Machine("<< pMachine->GetReference() << "):" << pSource->GetReference() << "-" << pTransition->GetReference() << "->" << pDestination->GetReference() << endl;
 	cout << "Let's start playing" << endl;
 
 	if (gThreadP && gThreadP->IsRunning()) 
@@ -132,14 +136,18 @@ static unsigned long GameStart(vector<RemoteProcedureCall::Parameter*>* v, void*
 
 	return 0;
 }
-static unsigned long Step(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter* pSource = (*v)[3];
-	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
+static unsigned long Step(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<string>* pMachineName = ParameterSafeCast(string, (*v)[1]);
+	RemoteProcedureCall::Parameter<uint64_t>* pMachine = ParameterSafeCast(uint64_t, (*v)[2]);
+	RemoteProcedureCall::Parameter<string>* pSource = ParameterSafeCast(string, (*v)[3]);
+	RemoteProcedureCall::Parameter<string>* pTransition = ParameterSafeCast(string, (*v)[4]);
+	RemoteProcedureCall::Parameter<string>* pDestination = ParameterSafeCast(string, (*v)[5]);
 
-	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
+	if (!pReturn || !pMachineName || !pMachine || !pSource || !pTransition || !pDestination)
+		return -1;
+
+	cout << "Machine("<< pMachine->GetReference() << "):" << pSource->GetReference() << "-" << pTransition->GetReference() << "->" << pDestination->GetReference() << endl;
 	cout << "Let's keep on playing" << endl;
 
 	if (gThreadP && gThreadP->IsRunning()) 
@@ -150,14 +158,18 @@ static unsigned long Step(vector<RemoteProcedureCall::Parameter*>* v, void* user
 
 	return 0;
 }
-static unsigned long Win(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter* pSource = (*v)[3];
-	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
+static unsigned long Win(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<string>* pMachineName = ParameterSafeCast(string, (*v)[1]);
+	RemoteProcedureCall::Parameter<uint64_t>* pMachine = ParameterSafeCast(uint64_t, (*v)[2]);
+	RemoteProcedureCall::Parameter<string>* pSource = ParameterSafeCast(string, (*v)[3]);
+	RemoteProcedureCall::Parameter<string>* pTransition = ParameterSafeCast(string, (*v)[4]);
+	RemoteProcedureCall::Parameter<string>* pDestination = ParameterSafeCast(string, (*v)[5]);
 
-	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
+	if (!pReturn || !pMachineName || !pMachine || !pSource || !pTransition || !pDestination)
+		return -1;
+
+	cout << "Machine("<< pMachine->GetReference() << "):" << pSource->GetReference() << "-" << pTransition->GetReference() << "->" << pDestination->GetReference() << endl;
 	cout << "You Won!!" << endl;
 	cout << "Play a new game (Y/N)? : ";
 	char  c;
@@ -172,14 +184,18 @@ static unsigned long Win(vector<RemoteProcedureCall::Parameter*>* v, void* user_
 	}
 	return 0;
 }
-static unsigned long GameOver(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* pMachine = (*v)[2];
-	RemoteProcedureCall::Parameter* pSource = (*v)[3];
-	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
-	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
+static unsigned long GameOver(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<string>* pMachineName = ParameterSafeCast(string, (*v)[1]);
+	RemoteProcedureCall::Parameter<uint64_t>* pMachine = ParameterSafeCast(uint64_t, (*v)[2]);
+	RemoteProcedureCall::Parameter<string>* pSource = ParameterSafeCast(string, (*v)[3]);
+	RemoteProcedureCall::Parameter<string>* pTransition = ParameterSafeCast(string, (*v)[4]);
+	RemoteProcedureCall::Parameter<string>* pDestination = ParameterSafeCast(string, (*v)[5]);
 
-	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
+	if (!pReturn || !pMachineName || !pMachine || !pSource || !pTransition || !pDestination)
+		return -1;
+
+	cout << "Machine("<< pMachine->GetReference() << "):" << pSource->GetReference() << "-" << pTransition->GetReference() << "->" << pDestination->GetReference() << endl;
 	cout << "You lost!!" << endl;
 	cout << "Play a new game (Y/N)? : ";
 	char  c;

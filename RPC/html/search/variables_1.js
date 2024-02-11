@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['g_5fstring_128',['g_string',['../_test_client_8cpp.html#ab5e544a0c665a2408d1db9920e74b471',1,'TestClient.cpp']]],
-  ['grpcserverp_129',['gRpcServerP',['../_test_server_8cpp.html#abb49c364d9326f434c34912e84a90b6b',1,'TestServer.cpp']]]
+  ['m_5fcaller_5fvalp_116',['m_caller_valP',['../class_remote_procedure_call_1_1_parameter_base.html#a8ffd5973ceaa049ec296fabfb5e7bb3d',1,'RemoteProcedureCall::ParameterBase']]],
+  ['m_5ftype_117',['m_type',['../class_remote_procedure_call_1_1_parameter_base.html#a00fd7d1fcad0ace1735a76c498645b1d',1,'RemoteProcedureCall::ParameterBase']]]
 ];

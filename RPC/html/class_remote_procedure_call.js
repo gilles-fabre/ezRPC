@@ -1,6 +1,7 @@
 var class_remote_procedure_call =
 [
     [ "Parameter", "class_remote_procedure_call_1_1_parameter.html", "class_remote_procedure_call_1_1_parameter" ],
+    [ "ParameterBase", "class_remote_procedure_call_1_1_parameter_base.html", "class_remote_procedure_call_1_1_parameter_base" ],
     [ "ParamType", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1", [
       [ "PTR", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00", null ],
       [ "BYTE", "class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a580be0922934f3fe3b05816b20e6f522", null ],
@@ -20,8 +21,8 @@ var class_remote_procedure_call =
     ] ],
     [ "RemoteProcedureCall", "class_remote_procedure_call.html#a608a47dd5f4abafdb40329582f3392e5", null ],
     [ "Close", "class_remote_procedure_call.html#a31cda1aad54d910ea156ee3a74668805", null ],
-    [ "DeserializeCall", "class_remote_procedure_call.html#a5d9d4c3d20b98d7156fbee375775478e", null ],
+    [ "DeserializeCall", "class_remote_procedure_call.html#a788f764e16aa35c5f7bb22363d3cce2b", null ],
     [ "PrepareSerializeCall", "class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf", null ],
     [ "SendSerializedCall", "class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07", null ],
-    [ "SerializeCallReturn", "class_remote_procedure_call.html#acbc240a3b97a7618299f7208a86e248f", null ]
+    [ "SerializeCallReturn", "class_remote_procedure_call.html#ae6723cb1bf29ed54584a4e2e7ecb8e93", null ]
 ];

@@ -59,6 +59,7 @@ public class MainFrameVE extends JFrame {
 	protected JMenu windowMenu = null;
 	protected JMenuItem newWindowMI = null;
 	protected JMenuItem clearAllMI = null;
+	protected JMenuItem separateAllMI = null;
 	protected JMenuItem closeAllMI = null;
 	protected JMenuItem renameWindowMI = null;
 	protected JMenu selectWindowMenu = null;
@@ -617,6 +618,7 @@ public class MainFrameVE extends JFrame {
 			windowMenu.add(getShowAllFiltersMI());
 			windowMenu.addSeparator();
 			windowMenu.add(getClearAllMI());
+			windowMenu.add(getSeparateAllMI());
 			windowMenu.add(getCloseAllMI());
 			windowMenu.addSeparator();
 			windowMenu.add(getSettingsMI());
@@ -688,7 +690,7 @@ public class MainFrameVE extends JFrame {
 		if (clearWindowMI == null) {
 			clearWindowMI = new JMenuItem();
 			clearWindowMI.setText(Strings.getString("clearWindowMI"));
-			clearWindowMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_DOWN_MASK, false));
+			clearWindowMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK, false));
 		}
 		return clearWindowMI;
 	}
@@ -702,9 +704,23 @@ public class MainFrameVE extends JFrame {
 		if (clearAllMI == null) {
 			clearAllMI = new JMenuItem();
 			clearAllMI.setText(Strings.getString("clearAllWindowsMI"));
-			clearAllMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK, false));
+			clearAllMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.SHIFT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK, false));
 		}
 		return clearAllMI;
+	}
+
+	/**
+	 * This method initializes separateAllMI
+	 *
+	 * @return javax.swing.JMenuItem
+	 */
+	private JMenuItem getSeparateAllMI() {
+		if (separateAllMI == null) {
+			separateAllMI = new JMenuItem();
+			separateAllMI.setText(Strings.getString("separateAllWindowsMI"));
+			separateAllMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.SHIFT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK, false));
+		}
+		return separateAllMI;
 	}
 
 	/**
@@ -742,7 +758,7 @@ public class MainFrameVE extends JFrame {
 		if (selectNextWindowMI == null) {
 			selectNextWindowMI = new JMenuItem();
 			selectNextWindowMI.setText(Strings.getString("selectNextWindowMI"));
-			selectNextWindowMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK, false));
+			selectNextWindowMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.SHIFT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK, false));
 		}
 		return selectNextWindowMI;
 	}

@@ -9,7 +9,7 @@ var searchData=
   ['getstate_16',['GetState',['../class_transition.html#aba3dd6dc74e05b78e6e932ace31b3984',1,'Transition::GetState()'],['../class_state_machine.html#aee6d41146c32f48ffd34f4f1955bbde8',1,'StateMachine::GetState()'],['../class_state_machine.html#ad6c679ac500b4d812c665c109264cb49',1,'StateMachine::GetState(const string &amp;state_name)']]],
   ['gettimeout_17',['GetTimeout',['../class_state.html#a2fe4133d85e5f797e58405e7c91d9b06',1,'State']]],
   ['gettimeouttransition_18',['GetTimeoutTransition',['../class_state.html#a700ecce21d27009a4db867ed6fbc92aa',1,'State']]],
-  ['getuserdata_19',['GetUserData',['../class_state.html#aa4979e959fffb3f8524b8b85d7e0baab',1,'State::GetUserData()'],['../class_state_machine.html#af79dbbcf277635f9ddb2e49a95336e36',1,'StateMachine::GetUserData()']]],
+  ['getuserdata_19',['GetUserData',['../class_state_machine.html#af79dbbcf277635f9ddb2e49a95336e36',1,'StateMachine::GetUserData()'],['../class_state.html#aa4979e959fffb3f8524b8b85d7e0baab',1,'State::GetUserData()']]],
   ['gmachineid_20',['gMachineId',['../test_8cpp.html#a06ecb61bf52d611d41a369ee69b0eb2c',1,'test.cpp']]],
   ['grpcmachineclientp_21',['gRpcMachineClientP',['../test_8cpp.html#a5d3b7e7e8e28f57dadba52c98f3f39eb',1,'test.cpp']]],
   ['grpcmachineserverp_22',['gRpcMachineServerP',['../test_8cpp.html#a9789291aa8cfb01132a1b2d9b6190567',1,'test.cpp']]],

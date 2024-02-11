@@ -53,9 +53,9 @@ void RPCServer::ListeningCallback(void* _serverP) {
  *        to both the parent RPCServer and link to the client.
  */
 
-void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::Parameter*>> rpc_params) {
+void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params) {
 	shared_ptr<ServiceParameters> _params = params;
-	shared_ptr<vector<RemoteProcedureCall::Parameter*>> _rpc_params = rpc_params;
+	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> _rpc_params = rpc_params;
 	unsigned long result = (*procP)(_rpc_params.get(), _params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
@@ -94,7 +94,7 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 #endif
 
 		// wait and deserialize call stream
-		shared_ptr<vector<RemoteProcedureCall::Parameter*>> rpc_params(rpc.DeserializeCall(asyncId, func_name));
+		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rpc.DeserializeCall(asyncId, func_name));
 		if (!rpc_params.get())
 			break; 
 #ifdef RPCSERVER_TRACES

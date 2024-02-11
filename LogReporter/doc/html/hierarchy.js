@@ -15,7 +15,10 @@ var hierarchy =
     [ "ParameterHeader", "struct_parameter_header.html", null ],
     [ "tracesListener.ProgFilter", "classtraces_listener_1_1_prog_filter.html", null ],
     [ "Runnable", null, [
-      [ "tracesListener.TracesDataThread", "classtraces_listener_1_1_traces_data_thread.html", null ],
+      [ "tracesListener.DataThread", "classtraces_listener_1_1_data_thread.html", [
+        [ "tracesListener.LogDataThread", "classtraces_listener_1_1_log_data_thread.html", null ],
+        [ "tracesListener.TracesDataThread", "classtraces_listener_1_1_traces_data_thread.html", null ]
+      ] ],
       [ "tracesListener.TracesListenerServer", "classtraces_listener_1_1_traces_listener_server.html", null ]
     ] ],
     [ "reporter.Strings", "classreporter_1_1_strings.html", null ],
@@ -81,7 +84,7 @@ var hierarchy =
       [ "reporter.ColorCircle", "classreporter_1_1_color_circle.html", null ]
     ] ],
     [ "Observable", null, [
-      [ "tracesListener.TracesDataThread", "classtraces_listener_1_1_traces_data_thread.html", null ],
+      [ "tracesListener.DataThread", "classtraces_listener_1_1_data_thread.html", null ],
       [ "tracesListener.TracesListenerServer", "classtraces_listener_1_1_traces_listener_server.html", null ]
     ] ],
     [ "Observer", null, [

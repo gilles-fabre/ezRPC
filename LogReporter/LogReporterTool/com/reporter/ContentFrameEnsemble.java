@@ -224,6 +224,14 @@ public class ContentFrameEnsemble {
 		}
 	}
 
+	void separateAll() {
+		for (ContentFrame contentFrame : contentFrameList) {
+			if (!contentFrame.isZombie) {
+				contentFrame.insertSeparator();
+			}
+		}
+	}
+
 	void closeAll() {
 		for (ContentFrame contentFrame : contentFrameList) {
 			if (!contentFrame.isZombie) {

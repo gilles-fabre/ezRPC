@@ -141,7 +141,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html">RemoteProcedureCall</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a result. Calls are blocking, parameters are 'in' or 'out'. out parameters must be passed as pointers, prefixed by a PTR type.  <a href="class_remote_procedure_call.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instances of this class are passed to the caller of the DeserializeCall method, describing and providing access to the parameters passed through the call stream built by SerializeCall. Out parameters can be modified and their modified value will transparently be passed back to the SerializeCall caller.  <a href="class_remote_procedure_call_1_1_parameter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -155,13 +157,15 @@ Macros</h2></td></tr>
 <tr class="separator:a806795ac46f7f8b024b4d5686c74074f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af033e32e0f831cd69a14e0bd18f4e725"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_remote_procedure_call_8h.html#af033e32e0f831cd69a14e0bd18f4e725">NTOHLL</a>(x)&#160;&#160;&#160;((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) &amp; 0xFFFFFFFF) &lt;&lt; 32) | ntohl((x) &gt;&gt; 32))</td></tr>
 <tr class="separator:af033e32e0f831cd69a14e0bd18f4e725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bb31dbe98511669ce6c5a5cf06f5158"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_remote_procedure_call_8h.html#a0bb31dbe98511669ce6c5a5cf06f5158">ParameterSafeCast</a>(Type,  BasePtr)&#160;&#160;&#160;dynamic_cast&lt;<a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a>&lt;Type&gt;*&gt;(BasePtr)</td></tr>
+<tr class="separator:a0bb31dbe98511669ce6c5a5cf06f5158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:abc67c9d81d5fde9559b47f86502e2957"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></td></tr>
 <tr class="separator:abc67c9d81d5fde9559b47f86502e2957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8a0725ccae02c32c7d5ce7381df265"><td class="memItemLeft" align="right" valign="top">typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_remote_procedure_call_8h.html#ace8a0725ccae02c32c7d5ce7381df265">RemoteProcedure</a>(vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a> * &gt; *, void *user_dataP)</td></tr>
-<tr class="separator:ace8a0725ccae02c32c7d5ce7381df265"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a7031b36cdd5f1161911afcc5c449e"><td class="memItemLeft" align="right" valign="top">typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_remote_procedure_call_8h.html#ab2a7031b36cdd5f1161911afcc5c449e">RemoteProcedure</a>(vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; *, void *user_dataP)</td></tr>
+<tr class="separator:ab2a7031b36cdd5f1161911afcc5c449e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a806795ac46f7f8b024b4d5686c74074f"></a>
@@ -201,6 +205,36 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00025">25</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+
+</div>
+</div>
+<a id="a0bb31dbe98511669ce6c5a5cf06f5158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bb31dbe98511669ce6c5a5cf06f5158">&#9670;&nbsp;</a></span>ParameterSafeCast</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ParameterSafeCast</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">Type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">BasePtr&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;dynamic_cast&lt;<a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a>&lt;Type&gt;*&gt;(BasePtr)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00238">238</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -253,19 +287,19 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a id="ace8a0725ccae02c32c7d5ce7381df265"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace8a0725ccae02c32c7d5ce7381df265">&#9670;&nbsp;</a></span>RemoteProcedure</h2>
+<a id="ab2a7031b36cdd5f1161911afcc5c449e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a7031b36cdd5f1161911afcc5c449e">&#9670;&nbsp;</a></span>RemoteProcedure</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef unsigned long RemoteProcedure(vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a> * &gt; *, void *user_dataP)</td>
+          <td class="memname">typedef unsigned long RemoteProcedure(vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; *, void *user_dataP)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00284">284</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00240">240</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 <map id="StateMachine::InitiateTransitionTimer" name="StateMachine::InitiateTransitionTimer">
-<area shape="rect" id="node1" title="Creates and starts a timer which will inject a transition into the current state when the given time ..." alt="" coords="5,5,233,47"/>
+<area shape="rect" id="node1" title="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..." alt="" coords="5,5,233,47"/>
 <area shape="rect" id="node2" href="$class_state_machine.html#a0fb3b2d1e0daeeacac4edee9d85d033d" title=" " alt="" coords="281,5,508,47"/>
 </map>

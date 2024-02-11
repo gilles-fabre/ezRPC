@@ -102,6 +102,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instances of this class are passed to the caller of the DeserializeCall method, describing and providing access to the parameters passed through the call stream built by SerializeCall. Out parameters can be modified and their modified value will transparently be passed back to the SerializeCall caller.  <a href="class_remote_procedure_call_1_1_parameter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -138,12 +140,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a25e88f16f1beec5b66eec3f3bc43eecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96c3278928409ed5bcd18a0b64478e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07">SendSerializedCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, vector&lt; unsigned char &gt; &amp;serialized_call)</td></tr>
 <tr class="separator:a96c3278928409ed5bcd18a0b64478e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d9d4c3d20b98d7156fbee375775478e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#a5d9d4c3d20b98d7156fbee375775478e">DeserializeCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;asyncId, string &amp;func_name)</td></tr>
-<tr class="memdesc:a5d9d4c3d20b98d7156fbee375775478e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a function call byte stream built by SerializeCall.  <a href="class_remote_procedure_call.html#a5d9d4c3d20b98d7156fbee375775478e">More...</a><br /></td></tr>
-<tr class="separator:a5d9d4c3d20b98d7156fbee375775478e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbc240a3b97a7618299f7208a86e248f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#acbc240a3b97a7618299f7208a86e248f">SerializeCallReturn</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> * &gt; *paramP, unsigned long ret_val)</td></tr>
-<tr class="memdesc:acbc240a3b97a7618299f7208a86e248f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare serialized call return byte stream and send it over the associated link.  <a href="class_remote_procedure_call.html#acbc240a3b97a7618299f7208a86e248f">More...</a><br /></td></tr>
-<tr class="separator:acbc240a3b97a7618299f7208a86e248f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a788f764e16aa35c5f7bb22363d3cce2b"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#a788f764e16aa35c5f7bb22363d3cce2b">DeserializeCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;asyncId, string &amp;func_name)</td></tr>
+<tr class="memdesc:a788f764e16aa35c5f7bb22363d3cce2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a function call byte stream built by SerializeCall.  <a href="class_remote_procedure_call.html#a788f764e16aa35c5f7bb22363d3cce2b">More...</a><br /></td></tr>
+<tr class="separator:a788f764e16aa35c5f7bb22363d3cce2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6723cb1bf29ed54584a4e2e7ecb8e93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#ae6723cb1bf29ed54584a4e2e7ecb8e93">SerializeCallReturn</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; *paramP, unsigned long ret_val)</td></tr>
+<tr class="memdesc:ae6723cb1bf29ed54584a4e2e7ecb8e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare serialized call return byte stream and send it over the associated link.  <a href="class_remote_procedure_call.html#ae6723cb1bf29ed54584a4e2e7ecb8e93">More...</a><br /></td></tr>
+<tr class="separator:ae6723cb1bf29ed54584a4e2e7ecb8e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31cda1aad54d910ea156ee3a74668805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html#a31cda1aad54d910ea156ee3a74668805">Close</a> ()</td></tr>
 <tr class="separator:a31cda1aad54d910ea156ee3a74668805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -218,7 +220,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00265">265</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00219">219</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -246,18 +248,18 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00278">278</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00232">232</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
-<a id="a5d9d4c3d20b98d7156fbee375775478e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d9d4c3d20b98d7156fbee375775478e">&#9670;&nbsp;</a></span>DeserializeCall()</h2>
+<a id="a788f764e16aa35c5f7bb22363d3cce2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a788f764e16aa35c5f7bb22363d3cce2b">&#9670;&nbsp;</a></span>DeserializeCall()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">RemoteProcedureCall::Parameter</a> * &gt; * RemoteProcedureCall::DeserializeCall </td>
+          <td class="memname">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; * RemoteProcedureCall::DeserializeCall </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;&#160;</td>
           <td class="paramname"><em>asyncId</em>, </td>
@@ -406,8 +408,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="acbc240a3b97a7618299f7208a86e248f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbc240a3b97a7618299f7208a86e248f">&#9670;&nbsp;</a></span>SerializeCallReturn()</h2>
+<a id="ae6723cb1bf29ed54584a4e2e7ecb8e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6723cb1bf29ed54584a4e2e7ecb8e93">&#9670;&nbsp;</a></span>SerializeCallReturn()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -421,7 +423,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter.html">Parameter</a> * &gt; *&#160;</td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; *&#160;</td>
           <td class="paramname"><em>paramP</em>, </td>
         </tr>
         <tr>
@@ -461,7 +463,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l01045">1045</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l01046">1046</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 
 </div>
 </div>

@@ -95,22 +95,36 @@ public:
 	 * 		  and their modified value will transparently be passed
 	 * 		  back to the SerializeCall caller.
 	 */
-	class Parameter {
+	class ParameterBase {
+	protected:
+		ParamType 		m_type;
+		uint64_t		m_caller_valP;
+
+	public:
+		ParameterBase(ParamType type, uint64_t caller_valP) {
+			m_caller_valP = caller_valP;
+			m_type = type;
+		}
+
+	    virtual ~ParameterBase() = default; // just so we can dynamic_cast ParameterBase* into Parameter<T>*
+
+		// type accessor
+		ParamType GetType() {return m_type;}
+
+		// pointer getters
+		bool IsValidPointer() {
+			return m_caller_valP != 0;
+		}
+
+		uint64_t GetCallerPointer() {
+			return m_caller_valP;
+		}
+	};
+
+	template <typename T>
+	class Parameter : public ParameterBase {
 	private:
-		ParamType			m_type;
-		uint64_t	  		m_caller_valP; // caller's side ptr, to transmit back upon return;
-		union {
-			char 			_char;
-			unsigned char 	_byte;
-			int16_t		    _i16;
-			uint16_t	    _ui16;
-			int32_t		    _i32;
-			uint32_t	    _ui32;
-			int64_t		    _i64;
-			uint64_t	    _ui64;
-			double		    _double;
-			string*			_stringP;
-		} m_value;
+		T m_value;
 
 	public:
 		/**
@@ -123,97 +137,56 @@ public:
 		 * \param caller_valP is the shadow parameter address (to return a 
 		 * 					  value to the caller if set). Set to 0 by default.
 		*/
-		Parameter(unsigned char value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = BYTE;
-			m_value._byte = value;
+		Parameter(unsigned char value, uint64_t caller_valP = 0) : ParameterBase(BYTE, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(char value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = CHAR;
-			m_value._char = value;
+		Parameter(char value, uint64_t caller_valP = 0) : ParameterBase(CHAR, caller_valP){
+			m_value = value;
 		}
 
-		Parameter(int16_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = INT16;
-			m_value._i16 = value;
+		Parameter(int16_t value, uint64_t caller_valP = 0) : ParameterBase(INT16, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(uint16_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = UINT16;
-			m_value._ui16 = value;
+		Parameter(uint16_t value, uint64_t caller_valP = 0) : ParameterBase(UINT16, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(int32_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = INT32;
-			m_value._i32 = value;
+		Parameter(int32_t value, uint64_t caller_valP = 0) : ParameterBase(INT32, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(uint32_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = UINT32;
-			m_value._ui32 = value;
+		Parameter(uint32_t value, uint64_t caller_valP = 0) : ParameterBase(UINT32, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(int64_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = INT64;
-			m_value._i64 = value;
+		Parameter(int64_t value, uint64_t caller_valP = 0) : ParameterBase(INT64, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(uint64_t value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = UINT64;
-			m_value._ui64 = value;
+		Parameter(uint64_t value, uint64_t caller_valP = 0) : ParameterBase(UINT64, caller_valP) {
+			m_value = value;
 		}
 
-		Parameter(double value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = DOUBLE;
-			m_value._double = value;
+		Parameter(double value, uint64_t caller_valP = 0) : ParameterBase(DOUBLE, caller_valP){
+			m_value = value;
 		}
 
-		Parameter(const char *value, uint64_t caller_valP = 0) {
-			m_caller_valP = caller_valP;
-			memset(&m_value, 0, sizeof(m_value));
-			m_type = STRING;
-			m_value._stringP = new string();
-			*m_value._stringP = value;
+		Parameter(const char* valueP, uint64_t caller_valP = 0) : ParameterBase(STRING, caller_valP){
+			m_value = string(valueP);
 		}
-		Parameter(const Parameter& other) {
-			m_caller_valP = other.m_caller_valP;
-			m_type = other.m_type;
+
+		Parameter(const string& value, uint64_t caller_valP = 0) : ParameterBase(STRING, caller_valP){
+			m_value = value;
+		}
+
+		Parameter(const Parameter& other) : ParameterBase(other.m_type, other.m_caller_valP) {
 			m_value = other.m_value;
 		}
-		Parameter(Parameter&& other) {
-			m_caller_valP = other.m_caller_valP;
-			m_type = other.m_type;
+		Parameter(Parameter&& other) : ParameterBase(other.m_type, other.m_caller_valP)  {
 			m_value = other.m_value;
 			other.m_type = EMPTY;
-		}
-
-		/**
-		 * \fn ~Parameter
-		 * \brief parameter destructor. if destroying a STRING parameter,
-		 * 		  the string objectmust be freed.
-		 *
-		*/
-		~Parameter() {
-			if (m_type == STRING && m_value._stringP)
-				delete m_value._stringP;
 		}
 
 		Parameter& operator =(Parameter&& other) {
@@ -225,32 +198,13 @@ public:
 			return *this;
 		}
 
-		ParamType GetType() {return m_type;}
-
 		/**
 		 * \fn Get<Type>Reference
 		 * \brief parameter getters, return a reference to the embedded
 		 * 		  parameter value such that it can be modified.
 		*/
-		template <typename T>
 		T& GetReference() {
-			T* valueP;
-
-			if (m_type == STRING)
-				valueP = (T*)m_value._stringP;
-			else
-				valueP = (T*)&m_value;
-
-			return *valueP;
-		}
-
-		// pointer getters
-		bool IsValidPointer() {
-			return m_caller_valP != 0;
-		}
-
-		uint64_t GetCallerPointer() {
-			return m_caller_valP;
+			return m_value;
 		}
 	};
 
@@ -272,8 +226,8 @@ public:
 
 	// rpc function callee side
 
-	vector<Parameter*>* DeserializeCall(AsyncID& asyncId, string& func_name);
-	void				SerializeCallReturn(AsyncID asyncId, vector<Parameter*>* paramP, unsigned long ret_val);
+	vector<ParameterBase*>* DeserializeCall(AsyncID& asyncId, string& func_name);
+	void					SerializeCallReturn(AsyncID asyncId, vector<ParameterBase*>* paramP, unsigned long ret_val);
 
 	void Close() {
 		if (m_linkP)
@@ -281,6 +235,8 @@ public:
 	}
 };
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::Parameter*>*, void* user_dataP);
+#define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
+
+typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

@@ -55,16 +55,17 @@ static void DelayedConnectionThread(void* paramP) {
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* p1 = (*v)[1];
-	RemoteProcedureCall::Parameter* p2 = (*v)[2];
-	RemoteProcedureCall::Parameter* p3 = (*v)[3];
+static unsigned long DelayedConnect(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<uint64_t>* p1 = ParameterSafeCast(uint64_t, (*v)[1]);
+	RemoteProcedureCall::Parameter<string>* p2 = ParameterSafeCast(string, (*v)[2]);
+	RemoteProcedureCall::Parameter<uint16_t>* p3 = ParameterSafeCast(uint16_t, (*v)[3]);
+
 	if (!p1 || !p2 || !p3)
 		return -1;
 
 	static Thread thread(DelayedConnectionThread);
-	thread.Run((void *)new DelayedConnectionInfo{(StateMachine*)p1->GetReference<uint64_t>(), p2->GetReference<string>(), p3->GetReference<uint16_t>()});
+	thread.Run((void *)new DelayedConnectionInfo{(StateMachine*)p1->GetReference(), p2->GetReference(), p3->GetReference()});
 
 	return 0;
 }
@@ -77,14 +78,14 @@ static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter*>* v, 
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* p1 = (*v)[1];
-	RemoteProcedureCall::Parameter* p2 = (*v)[2];
-	if (!p1 || !p2)
+static unsigned long ReleaseMachine(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<uint64_t>* p1 = ParameterSafeCast(uint64_t, (*v)[1]);
+
+	if (!pReturn || !p1)
 		return -1;
 
-	StateMachine* machineP = (StateMachine*)p1->GetReference<uint64_t>();
+	StateMachine* machineP = (StateMachine*)p1->GetReference();
 	if (machineP) 
 		machineP->Release();
 	
@@ -100,16 +101,17 @@ static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter*>* v, 
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* p1 = (*v)[1];
-	RemoteProcedureCall::Parameter* p2 = (*v)[2];
-	if (!p1 || !p2)
+static unsigned long DoTransition(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<uint64_t>* p1 = ParameterSafeCast(uint64_t, (*v)[1]);
+	RemoteProcedureCall::Parameter<string>* p2 = ParameterSafeCast(string, (*v)[2]);
+
+	if (!pReturn || !p1 || !p2)
 		return -1;
 
-	StateMachine* machineP = (StateMachine*)p1->GetReference<uint64_t>();
+	StateMachine* machineP = (StateMachine*)p1->GetReference();
 	if (machineP) 
-		machineP->DoTransition(p2->GetReference<string>());
+		machineP->DoTransition(p2->GetReference());
 	
 	return 0;
 }
@@ -124,18 +126,19 @@ static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter*>* v, vo
  * 
  * \return 0 is everything went fine, -1 else.
 */
-static unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter*>* v, void* user_dataP) {
-	RemoteProcedureCall::Parameter* pReturn = (*v)[0];
-	RemoteProcedureCall::Parameter* p1 = (*v)[1];
-	RemoteProcedureCall::Parameter* p2 = (*v)[2];
-	if (!p1 || !p2)
+static unsigned long BuildMachine(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
+	RemoteProcedureCall::Parameter<uint64_t>* p2 = ParameterSafeCast(uint64_t, (*v)[2]);
+
+	if (!pReturn || !p1 || !p2)
 		return -1;
 
-	string&	jsonString = p1->GetReference<string>();
+	string&	jsonString = p1->GetReference();
 	stringstream jsonStream;
 	jsonStream.write(jsonString.c_str(), jsonString.length());
 	
-	uint64_t& result = p2->GetReference<uint64_t>();
+	uint64_t& result = p2->GetReference();
 	result = (uint64_t)StateMachine::CreateFromDefinition(jsonStream);
 
 	return 0;

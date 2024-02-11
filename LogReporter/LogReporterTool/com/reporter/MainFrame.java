@@ -385,6 +385,12 @@ public class MainFrame extends MainFrameVE implements ChangeListener {
 				ContentFrameEnsemble.getInstance().clearAll();
 			}
 		});
+		separateAllMI.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ContentFrameEnsemble.getInstance().separateAll();
+			}
+		});
 		cascadeMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

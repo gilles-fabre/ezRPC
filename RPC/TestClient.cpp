@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
 	if (func_name == "get_string") {
 		if (argc < 4) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr get_string [repeat_count]" << endl;
+			cout << "\ttest <tcp|file> server_addr get_string [repeat_count]" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 5 ? atoi(argv[4]) : 1;
@@ -56,14 +56,14 @@ int main(int argc, char **argv) {
 								RemoteProcedureCall::STRING,
 								&g_string,
 								RemoteProcedureCall::END_OF_CALL);
-			cout << "\ttest client get_string asyncId : " << id << endl;
+			cout << "\ttest get_string asyncId : " << id << endl;
 			g_sem_get_str.A();
 		}
 	}
 	else if (func_name == "put_string") {
 		if (argc < 5) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr put_string text [repeat_count]" << endl;
+			cout << "\ttest <tcp|file> server_addr put_string text [repeat_count]" << endl;
 			return -1;
 		}
 		g_string = argv[4];
@@ -71,7 +71,6 @@ int main(int argc, char **argv) {
 		for (int b = 0; b < repeat; b++) {
 			AsyncID id = client.RpcCallAsync(PutStringAsyncReplyProc,
 								func_name,
-								RemoteProcedureCall::PTR,
 								RemoteProcedureCall::STRING,
 								&g_string,
 								RemoteProcedureCall::END_OF_CALL);
@@ -82,7 +81,7 @@ int main(int argc, char **argv) {
 	else if (func_name == "nop") {
 		if (argc < 4) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr nop" << endl;
+			cout << "\ttest <tcp|file> server_addr nop" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 5 ? atoi(argv[4]) : 1;
@@ -94,7 +93,7 @@ int main(int argc, char **argv) {
 	} else if (func_name == "inc") {
 		if (argc < 5) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr inc value" << endl;
+			cout << "\ttest <tcp|file> server_addr inc value" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 6 ? atoi(argv[5]) : 1;
@@ -111,7 +110,7 @@ int main(int argc, char **argv) {
 	} else if (func_name == "inc_double") {
 		if (argc < 5) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr inc_double float_value" << endl;
+			cout << "\ttest <tcp|file> server_addr inc_double float_value" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 6 ? atoi(argv[5]) : 1;
@@ -128,7 +127,7 @@ int main(int argc, char **argv) {
 	} else if (func_name == "concat") {
 		if (argc < 6) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr concat string num_concat" << endl;
+			cout << "\ttest <tcp|file> server_addr concat string num_concat" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 7 ? atoi(argv[6]) : 1;
@@ -147,7 +146,7 @@ int main(int argc, char **argv) {
 	} else if (func_name == "repeat") {
 		if (argc < 6) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr repeat string num_repeat" << endl;
+			cout << "\ttest <tcp|file> server_addr repeat string num_repeat" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 7 ? atoi(argv[6]) : 1;
@@ -164,7 +163,7 @@ int main(int argc, char **argv) {
 	} else if (func_name == "sum") {
 		if (argc < 6) {
 			cout << "usage:" << endl;
-			cout << "\ttest client <tcp|file> server_addr sum number1 number2" << endl;
+			cout << "\ttest <tcp|file> server_addr sum number1 number2" << endl;
 			return -1;
 		}
 		int16_t repeat = argc == 7 ? atoi(argv[6]) : 1;
