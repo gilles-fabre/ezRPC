@@ -121,7 +121,7 @@ static unsigned long GameStart(vector<RemoteProcedureCall::Parameter*>* v, void*
 	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
 	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
-	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
+	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
 	cout << "Let's start playing" << endl;
 
 	if (gThreadP && gThreadP->IsRunning()) 
@@ -139,7 +139,7 @@ static unsigned long Step(vector<RemoteProcedureCall::Parameter*>* v, void* user
 	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
 	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
-	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
+	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
 	cout << "Let's keep on playing" << endl;
 
 	if (gThreadP && gThreadP->IsRunning()) 
@@ -157,7 +157,7 @@ static unsigned long Win(vector<RemoteProcedureCall::Parameter*>* v, void* user_
 	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
 	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
-	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
+	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
 	cout << "You Won!!" << endl;
 	cout << "Play a new game (Y/N)? : ";
 	char  c;
@@ -179,7 +179,7 @@ static unsigned long GameOver(vector<RemoteProcedureCall::Parameter*>* v, void* 
 	RemoteProcedureCall::Parameter* pTransition = (*v)[4];
 	RemoteProcedureCall::Parameter* pDestination = (*v)[5];
 
-	cout << "Machine("<< pMachine->GetStringReference() << "):" << pSource->GetStringReference() << "-" << pTransition->GetStringReference() << "->" << pDestination->GetStringReference() << endl;
+	cout << "Machine("<< pMachine->GetReference<string>() << "):" << pSource->GetReference<string>() << "-" << pTransition->GetReference<string>() << "->" << pDestination->GetReference<string>() << endl;
 	cout << "You lost!!" << endl;
 	cout << "Play a new game (Y/N)? : ";
 	char  c;

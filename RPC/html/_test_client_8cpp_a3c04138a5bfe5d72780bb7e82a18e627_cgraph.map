@@ -1,0 +1,6 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,46,60,73"/>
+<area shape="rect" id="node2" href="$class_r_p_c_client.html#ab3e82b18a51cfdc27b1b249fba614718" title="see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...." alt="" coords="108,46,291,73"/>
+<area shape="rect" id="node3" href="$class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf" title="Serializes the given function call so the resulting byte stream can be sent over the associated link ..." alt="" coords="339,5,501,47"/>
+<area shape="rect" id="node4" href="$class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07" title=" " alt="" coords="339,71,501,112"/>
+</map>

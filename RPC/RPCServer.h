@@ -32,7 +32,7 @@ using namespace std;
  *        The latter can be used by the RPCClient to remotely invoke procedures of the
  *        (linked) RPCServer. Procedures can be dynamically added or removed from an
  *        RPCServer instance. See RemoteProcedureCall to get the details of the remote
- *        procedurlibjson lgples invocation.
+ *        procedure invocation.
  *
  *
  */
@@ -133,7 +133,7 @@ public:
 
 	/**
 	 * \fn void Run()
-	 * \brief Once shot run of the server, will accept a single connection
+	 * \brief One shot run of the server, will accept a single connection
 	 *        and then serve the connected client. Exits when the connection
 	 * 		  drops.
 	*/
@@ -147,7 +147,7 @@ public:
 
 	/**
 	 * \fn void RunAndWait()
-	 * \brief Once shot run of the server, will accept a single connection
+	 * \brief One shot run of the server, will accept a single connection
 	 *        and then serve the connected client. Exits and Wait when the connection
 	 * 		  drops.
 	*/

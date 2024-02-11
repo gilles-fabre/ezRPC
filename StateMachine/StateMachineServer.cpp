@@ -64,7 +64,7 @@ static unsigned long DelayedConnect(vector<RemoteProcedureCall::Parameter*>* v, 
 		return -1;
 
 	static Thread thread(DelayedConnectionThread);
-	thread.Run((void *)new DelayedConnectionInfo{(StateMachine*)p1->GetUInt64Reference(), p2->GetStringReference(), p3->GetUInt16Reference()});
+	thread.Run((void *)new DelayedConnectionInfo{(StateMachine*)p1->GetReference<uint64_t>(), p2->GetReference<string>(), p3->GetReference<uint16_t>()});
 
 	return 0;
 }
@@ -84,7 +84,7 @@ static unsigned long ReleaseMachine(vector<RemoteProcedureCall::Parameter*>* v, 
 	if (!p1 || !p2)
 		return -1;
 
-	StateMachine* machineP = (StateMachine*)p1->GetUInt64Reference();
+	StateMachine* machineP = (StateMachine*)p1->GetReference<uint64_t>();
 	if (machineP) 
 		machineP->Release();
 	
@@ -107,9 +107,9 @@ static unsigned long DoTransition(vector<RemoteProcedureCall::Parameter*>* v, vo
 	if (!p1 || !p2)
 		return -1;
 
-	StateMachine* machineP = (StateMachine*)p1->GetUInt64Reference();
+	StateMachine* machineP = (StateMachine*)p1->GetReference<uint64_t>();
 	if (machineP) 
-		machineP->DoTransition(p2->GetStringReference());
+		machineP->DoTransition(p2->GetReference<string>());
 	
 	return 0;
 }
@@ -131,11 +131,11 @@ static unsigned long BuildMachine(vector<RemoteProcedureCall::Parameter*>* v, vo
 	if (!p1 || !p2)
 		return -1;
 
-	string&	jsonString = p1->GetStringReference();
+	string&	jsonString = p1->GetReference<string>();
 	stringstream jsonStream;
 	jsonStream.write(jsonString.c_str(), jsonString.length());
 	
-	uint64_t& result = p2->GetUInt64Reference();
+	uint64_t& result = p2->GetReference<uint64_t>();
 	result = (uint64_t)StateMachine::CreateFromDefinition(jsonStream);
 
 	return 0;

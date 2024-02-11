@@ -207,9 +207,9 @@ public:
 
 		/**
 		 * \fn ~Parameter
-		 * \brief parameter destructor. if destroying a STRING parameter, 
+		 * \brief parameter destructor. if destroying a STRING parameter,
 		 * 		  the string objectmust be freed.
-		 * 
+		 *
 		*/
 		~Parameter() {
 			if (m_type == STRING && m_value._stringP)
@@ -232,44 +232,16 @@ public:
 		 * \brief parameter getters, return a reference to the embedded
 		 * 		  parameter value such that it can be modified.
 		*/
-		char &GetCharReference() {
-			return m_value._char;
-		}
+		template <typename T>
+		T& GetReference() {
+			T* valueP;
 
-		unsigned char &GetByteReference() {
-			return m_value._byte;
-		}
+			if (m_type == STRING)
+				valueP = (T*)m_value._stringP;
+			else
+				valueP = (T*)&m_value;
 
-		int16_t &GetInt16Reference() {
-			return m_value._i16;
-		}
-
-		uint16_t &GetUInt16Reference() {
-			return m_value._ui16;
-		}
-
-		int32_t &GetInt32Reference() {
-			return m_value._i32;
-		}
-
-		uint32_t &GetUInt32Reference() {
-			return m_value._ui32;
-		}
-
-		int64_t &GetInt64Reference() {
-			return m_value._i64;
-		}
-
-		uint64_t &GetUInt64Reference() {
-			return m_value._ui64;
-		}
-
-		double &GetDoubleReference() {
-			return m_value._double;
-		}
-
-		string &GetStringReference() {
-			return *m_value._stringP;
+			return *valueP;
 		}
 
 		// pointer getters
