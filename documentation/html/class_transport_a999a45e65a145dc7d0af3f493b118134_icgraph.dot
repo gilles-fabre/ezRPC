@@ -1,0 +1,23 @@
+digraph "Transport::Close"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Transport::Close",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="TcpTransport::Close",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_tcp_transport.html#a2f542f820033b09b18f8bdb5b1e358c0",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="TcpTransport::~TcpTransport",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_tcp_transport.html#ab203d6679e0a43ebbe20202ee2a5a467",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="FileTransport::Close",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_file_transport.html#af830f652af42263a97f2fd924c5f56b9",tooltip=" "];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="FileTransport::~FileTransport",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_file_transport.html#a66475c433459fd8feaa6b5d053fec9ac",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="RPCClient::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#a380e02c5b8dfd35f1e9684a932c74cf8",tooltip="Stops the associated transport."];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="RPCServer::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683",tooltip="Stops the associated transport."];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="RPCClient::~RPCClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#a30b8cae7e2b173b7bb348d6cfbfd14b8",tooltip="RPCClient destructor. Closes and destroys the associated RPC and Transport members."];
+}

@@ -28,11 +28,9 @@ typedef uint64_t AsyncID;
 
 /**
  * \class RemoteProcedureCall
- * \brief Instantiate an object of this class with a Link to
- *        pass calls to the connected peer and retrieve a
- *        result. Calls are blocking, parameters are 'in' or 'out'.
- *        out parameters must be passed as pointers, prefixed by
- *        a	PTR type.
+ * \brief Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a
+ *        result. Calls are either synchronous or asynchronous, parameters are 'in' or 'out'.
+ *        out parameters must be passed as pointers, prefixed by a PTR type.
  *
  */
 class RemoteProcedureCall {

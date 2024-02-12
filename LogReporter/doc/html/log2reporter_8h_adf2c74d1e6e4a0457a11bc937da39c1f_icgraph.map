@@ -1,4 +1,0 @@
-<map id="SetLogAddress" name="SetLogAddress">
-<area shape="rect" id="node1" title="set the IP (either IPV4 XXX.XXX.XXX.XXX numeric form or host name) address of the log&#45;reporter server..." alt="" coords="259,13,377,39"/>
-<area shape="rect" id="node2" href="$class_c_sharp_log2_reporter_1_1_logger.html#a7ebab749703b3bbfb693d7e07afac95c" title=" " alt="" coords="5,5,211,47"/>
-</map>

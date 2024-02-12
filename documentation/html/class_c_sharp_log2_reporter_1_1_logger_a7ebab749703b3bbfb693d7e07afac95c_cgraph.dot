@@ -1,0 +1,11 @@
+digraph "CSharpLog2Reporter.Logger.SetLogAddress"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="CSharpLog2Reporter.Logger.\lSetLogAddress",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="SetLogAddress",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adf2c74d1e6e4a0457a11bc937da39c1f",tooltip="set the IP (either IPV4 XXX.XXX.XXX.XXX numeric form or host name) address of the log-reporter server..."];
+}

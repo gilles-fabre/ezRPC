@@ -1,6 +1,0 @@
-<map id="Transition::GetState" name="Transition::GetState">
-<area shape="rect" id="node1" title=" " alt="" coords="697,13,848,39"/>
-<area shape="rect" id="node2" href="$class_state.html#a99a1d13a86063d8d5376d31657c2c7ff" title="Executes the given transition on this, DOES NOT CALL the associated callback." alt="" coords="504,13,649,39"/>
-<area shape="rect" id="node3" href="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb" title="Executes the given transition on the current state." alt="" coords="256,13,456,39"/>
-<area shape="rect" id="node4" href="$class_state_machine.html#ab502559100a6bc6d7cbf0bbaff8a6d3a" title=" " alt="" coords="5,5,208,47"/>
-</map>

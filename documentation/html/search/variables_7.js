@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['g_5fsem_5fget_5fstr_0',['g_sem_get_str',['../_test_client_8cpp.html#a3b3e2d50aabac6825fe7438fc240363a',1,'TestClient.cpp']]],
+  ['g_5fsem_5fput_5fstr_1',['g_sem_put_str',['../_test_client_8cpp.html#a8d983eade9ab71f3847f389d1038123b',1,'TestClient.cpp']]],
+  ['g_5fstring_2',['g_string',['../_test_client_8cpp.html#ab5e544a0c665a2408d1db9920e74b471',1,'TestClient.cpp']]],
+  ['garbagecollectorcallback_3',['GarbageCollectorCallback',['../_state_machine_8cpp.html#a40f33a28a08fb5b51297a178702306f4',1,'StateMachine.cpp']]],
+  ['gautoreconnect_4',['gAutoReconnect',['../log2reporter_8c.html#a9a27abec8d833ee653051de1250dd8d5',1,'log2reporter.c']]],
+  ['gconnectionfailed_5',['gConnectionFailed',['../log2reporter_8c.html#ad4d79eec222f053a0da1fe2b4f347e7b',1,'log2reporter.c']]],
+  ['globalfilterskey_6',['globalFiltersKey',['../classtraces_listener_1_1_traces_filter.html#ac3a26787f2cef7c8e97632df6c627ece',1,'tracesListener::TracesFilter']]],
+  ['glogfile_7',['gLogFile',['../log2reporter_8c.html#aad8856ff229fd6bcfaca228884bb713b',1,'log2reporter.c']]],
+  ['glogsocket_8',['gLogSocket',['../log2reporter_8c.html#a52349f187e6fb05972b3a473e48818de',1,'log2reporter.c']]],
+  ['gmachineid_9',['gMachineId',['../test_8cpp.html#a06ecb61bf52d611d41a369ee69b0eb2c',1,'test.cpp']]],
+  ['gmaxlogsize_10',['gMaxLogSize',['../log2reporter_8c.html#a6eb99b3df74689a9b8c0c87cf9b4d0f5',1,'log2reporter.c']]],
+  ['gmodidlogmask_11',['gModIdLogMask',['../log2reporter_8c.html#a2921d860fbf8b2ff97598c09e997d991',1,'log2reporter.c']]],
+  ['gotomi_12',['gotoMI',['../classreporter_1_1_main_frame_v_e.html#ae5e04b520150bfb3cff9fa9f2ffb066d',1,'reporter::MainFrameVE']]],
+  ['gotopumi_13',['gotoPUMI',['../classreporter_1_1_content_frame_v_e.html#aff76daf468164902cf20fc7d84b6b46d',1,'reporter::ContentFrameVE']]],
+  ['gprocessname_14',['gProcessName',['../log2reporter_8c.html#a9c797c773c8dacb9a8818882a3e7c5b4',1,'log2reporter.c']]],
+  ['greenslider_15',['greenSlider',['../classreporter_1_1_a_r_g_b_color_panel.html#ae5d38ae79c7a1acb5c1a6fc4193651ad',1,'reporter::ARGBColorPanel']]],
+  ['greenspinner_16',['greenSpinner',['../classreporter_1_1_a_r_g_b_color_panel.html#ab842e2b27d58741fae7feca028740c63',1,'reporter::ARGBColorPanel']]],
+  ['grpcmachineclientp_17',['gRpcMachineClientP',['../test_8cpp.html#a5d3b7e7e8e28f57dadba52c98f3f39eb',1,'test.cpp']]],
+  ['grpcmachineserverp_18',['gRpcMachineServerP',['../test_8cpp.html#a9789291aa8cfb01132a1b2d9b6190567',1,'test.cpp']]],
+  ['grpcserverp_19',['gRpcServerP',['../_test_server_8cpp.html#abb49c364d9326f434c34912e84a90b6b',1,'gRpcServerP:&#160;TestServer.cpp'],['../_state_machine_server_8cpp.html#abb49c364d9326f434c34912e84a90b6b',1,'gRpcServerP:&#160;StateMachineServer.cpp']]],
+  ['gserveripaddress_20',['gServerIpAddress',['../log2reporter_8c.html#a1c1ac2ecb691d5bc1a71db867cb11e7f',1,'log2reporter.c']]],
+  ['gserverport_21',['gServerPort',['../log2reporter_8c.html#afb995dd6d98301af7ce20e5d2e0c17f9',1,'log2reporter.c']]],
+  ['gsettingsloaded_22',['gSettingsLoaded',['../log2reporter_8c.html#af62ae474b4b2ea4d9d71cd7a5e70d618',1,'log2reporter.c']]],
+  ['gtracesoff_23',['gTracesOff',['../log2reporter_8c.html#aa83d79bcac254f2cc2e915cfddfdd9a0',1,'log2reporter.c']]]
+];

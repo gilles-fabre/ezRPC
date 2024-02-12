@@ -1,7 +1,0 @@
-<map id="tracesListener.TracesObserver.update" name="tracesListener.TracesObserver.update">
-<area shape="rect" id="node1" title=" " alt="" coords="5,111,271,138"/>
-<area shape="rect" id="node2" href="$classtraces_listener_1_1_byte_util.html#a82d516b5fbc7b49c3cf5ad55625e084e" title=" " alt="" coords="336,5,555,47"/>
-<area shape="rect" id="node3" href="$classtraces_listener_1_1_trace_message.html#a8de62e4de0a5a4d006e7a2266479b656" title=" " alt="" coords="328,71,563,112"/>
-<area shape="rect" id="node4" href="$classtraces_listener_1_1_data_thread.html#a6f114ecc198e0ac1de42faa52b3fd850" title=" " alt="" coords="336,136,555,177"/>
-<area shape="rect" id="node5" href="$classtraces_listener_1_1_traces_filter.html#af0554273bde86cae7203402785a65438" title=" " alt="" coords="319,201,572,243"/>
-</map>

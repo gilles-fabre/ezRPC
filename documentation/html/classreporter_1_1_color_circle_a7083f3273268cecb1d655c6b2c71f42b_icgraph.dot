@@ -1,0 +1,13 @@
+digraph "reporter.ColorCircle.setBackground"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="reporter.ColorCircle.set\lBackground",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="reporter.ColorCircle.mouse\lDragged",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classreporter_1_1_color_circle.html#a180242b6170fb9509bf43ec4a9267bb0",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="reporter.ColorCircle.mouse\lPressed",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classreporter_1_1_color_circle.html#a595682fb2c8c7859f08528018962300b",tooltip=" "];
+}

@@ -1,9 +1,0 @@
-<map id="tracesListener.TracesDataThread.runInnards" name="tracesListener.TracesDataThread.runInnards">
-<area shape="rect" id="node1" title=" " alt="" coords="5,109,195,150"/>
-<area shape="rect" id="node2" href="$classtraces_listener_1_1_traces_decoder.html#a46c9315ef518b5c898adbb5c1a8d4801" title=" " alt="" coords="243,62,487,103"/>
-<area shape="rect" id="node6" href="$classtraces_listener_1_1_traces_listener_server.html#adcd65bb954ea9be8d79d1694ecb58ebd" title=" " alt="" coords="259,141,470,182"/>
-<area shape="rect" id="node3" href="$classtraces_listener_1_1_byte_util.html#a32b525dbdaf482ecab32a2003b10fe31" title=" " alt="" coords="546,5,783,32"/>
-<area shape="rect" id="node4" href="$classtraces_listener_1_1_byte_util.html#a827a52433847783e22fdd6ca70d008bf" title=" " alt="" coords="539,56,790,83"/>
-<area shape="rect" id="node5" href="$classtraces_listener_1_1_byte_util.html#acd91e67cab6a4a51d20f5f89b371e0f3" title=" " alt="" coords="555,107,775,149"/>
-<area shape="rect" id="node7" href="$classtraces_listener_1_1_data_thread.html#ac8dda0e6de56401fc2dbe9d322c5fc28" title=" " alt="" coords="535,173,795,200"/>
-</map>

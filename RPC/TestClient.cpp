@@ -71,6 +71,7 @@ int main(int argc, char **argv) {
 		for (int b = 0; b < repeat; b++) {
 			AsyncID id = client.RpcCallAsync(PutStringAsyncReplyProc,
 								func_name,
+								RemoteProcedureCall::PTR,
 								RemoteProcedureCall::STRING,
 								&g_string,
 								RemoteProcedureCall::END_OF_CALL);

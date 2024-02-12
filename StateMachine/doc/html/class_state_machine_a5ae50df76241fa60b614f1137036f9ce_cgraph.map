@@ -1,6 +1,0 @@
-<map id="StateMachine::SetTransition" name="StateMachine::SetTransition">
-<area shape="rect" id="node1" title="Creates a new or modifies an existing transition." alt="" coords="5,31,208,57"/>
-<area shape="rect" id="node2" href="$class_state.html#a6f844a37ab79228ef76118708fe9884b" title="Creates a new or modifies an existing transition." alt="" coords="256,31,404,57"/>
-<area shape="rect" id="node3" href="$class_transition.html#a2c3cf207d78732bb24c6b7d62d956c32" title=" " alt="" coords="452,5,623,32"/>
-<area shape="rect" id="node4" href="$class_transition.html#a30888343d2140066d7b1c24639f927d0" title=" " alt="" coords="463,56,611,83"/>
-</map>

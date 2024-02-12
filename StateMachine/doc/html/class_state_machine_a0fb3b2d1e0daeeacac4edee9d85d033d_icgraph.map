@@ -1,6 +1,0 @@
-<map id="StateMachine::CancelTransitionTimer" name="StateMachine::CancelTransitionTimer">
-<area shape="rect" id="node1" title=" " alt="" coords="524,35,751,76"/>
-<area shape="rect" id="node2" href="$class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8" title="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..." alt="" coords="248,5,476,47"/>
-<area shape="rect" id="node4" href="$class_state_machine.html#a8295262a91454cd9b54aebbd8573cf08" title="Stops the state machine&#39;s context pending threads, then mark the state machine as exiting so the garb..." alt="" coords="277,71,447,98"/>
-<area shape="rect" id="node3" href="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479" title="This factory method creates a state machine from the given definition." alt="" coords="5,5,200,47"/>
-</map>

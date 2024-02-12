@@ -1,5 +1,0 @@
-<map id="StateMachine::CallbackThreadParameters" name="StateMachine::CallbackThreadParameters">
-<area shape="rect" id="node1" title=" " alt="" coords="11,109,231,151"/>
-<area shape="rect" id="node2" href="$class_state_machine.html" title="Defines a dynamically programmable thread safe state machine. Only the DoTransition method is thread ..." alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node3" href="$class_state.html" title="State represents a machine state, it owns the paths to the connected (through Events and Actions) Sta..." alt="" coords="153,5,209,32"/>
-</map>

@@ -1025,9 +1025,11 @@ clean_up:
  * \brief Prepare serialized call return byte stream and send it over the associated link.
  *
  *        The stream format is:
- *	        	UINT64.<result_address>.UINT64.<return_value>.<parameters>.END_OF_CALL
+ *				
+ *	        	UINT64.<asyncId>.UINT64.<result_address>.UINT64.<return_value>.<parameters>.END_OF_CALL
  *  	      	result_address : address of the UINT64 to receive return_value on the
  *                         		 caller side
+ *				asyncId : UINT64 asynchronous call identifier
  *        		return_value : UINT64 value returned by callee
  *        		parameters := (PTR.<ptr_value>.<type>.<value>)*
  *        		ptr_value := address of the location to receive value on the caller

@@ -1,0 +1,20 @@
+digraph "Thread::Stop"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Thread::Stop",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="StateMachine::CancelTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a0fb3b2d1e0daeeacac4edee9d85d033d",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="StateMachine::DoTransition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb",tooltip="Executes the given transition on the current state."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="StateMachine::InitiateTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8",tooltip="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..."];
+  Node4 -> Node3 [id="edge4_Node000004_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node5 [id="edge5_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="StateMachine::Release",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a8295262a91454cd9b54aebbd8573cf08",tooltip="Stops the state machine's context pending threads, then mark the state machine as exiting so the garb..."];
+  Node1 -> Node6 [id="edge6_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="RPCServer::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683",tooltip="Stops the associated transport."];
+}

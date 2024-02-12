@@ -12,6 +12,7 @@ RPCServer* gRpcServerP = NULL;
 static unsigned long ByeBye(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (gRpcServerP)
 		gRpcServerP->Stop();
+
 	return (unsigned long)0;
 }
 
@@ -20,6 +21,9 @@ static unsigned long Nop(vector<RemoteProcedureCall::ParameterBase*>* v, void* u
 }
 
 static unsigned long IncDouble(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 2)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<double>* p1 = ParameterSafeCast(double, (*v)[1]);
 
@@ -30,10 +34,14 @@ static unsigned long IncDouble(vector<RemoteProcedureCall::ParameterBase*>* v, v
 	cout << "value: " << d << endl;
 	d += 0.1;
 	cout << "inc'ed value: " << d << endl;
+
 	return (unsigned long)0;
 }
 
 static unsigned long Increment(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 2)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<int16_t>* p1 = ParameterSafeCast(int16_t, (*v)[1]);
 
@@ -45,10 +53,14 @@ static unsigned long Increment(vector<RemoteProcedureCall::ParameterBase*>* v, v
 	cout << "value: " << i << endl;
 	++i;
 	cout << "inc'ed value: " << i << endl;
+
 	return (unsigned long)i;
 }
 
 static unsigned long Concatenate(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 3)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
 	RemoteProcedureCall::Parameter<int16_t>* p2 = ParameterSafeCast(int16_t, (*v)[2]);
@@ -65,10 +77,14 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::ParameterBase*>* v,
 	for (int i = 0; i < num; i++)
 		text.append(origin_text);
 	cout << "concatenated text: " << text << endl;
+
 	return (unsigned long)text.length();
 }
 
 static unsigned long RepeatPrint(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 3)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
 	RemoteProcedureCall::Parameter<int16_t>* p2 = ParameterSafeCast(int16_t, (*v)[2]);
@@ -87,6 +103,9 @@ static unsigned long RepeatPrint(vector<RemoteProcedureCall::ParameterBase*>* v,
 }
 
 static unsigned long SumNumbers(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 3)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<int16_t>* p1 = ParameterSafeCast(int16_t, (*v)[1]);
 	RemoteProcedureCall::Parameter<int16_t>* p2 = ParameterSafeCast(int16_t, (*v)[2]);
@@ -103,6 +122,9 @@ static unsigned long SumNumbers(vector<RemoteProcedureCall::ParameterBase*>* v, 
 }
 
 static unsigned long GetString(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 2)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
 
@@ -119,6 +141,9 @@ static unsigned long GetString(vector<RemoteProcedureCall::ParameterBase*>* v, v
 }
 
 static unsigned long PutString(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+	if (v->size() < 2)
+		return -1;
+
 	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
 	RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
 

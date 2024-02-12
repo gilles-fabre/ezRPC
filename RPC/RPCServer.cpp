@@ -48,17 +48,28 @@ void RPCServer::ListeningCallback(void* _serverP) {
  * \brief A dedicated service thread, providing the linked client
  *        with remote procedures access. The procedures are those
  *        of the parent RPCServer.
- *
- * \param _paramsP is a pointer to a dedicated ServiceParameters, pointing
- *        to both the parent RPCServer and link to the client.
+ *		  WARNING : this is called asynchronously, all passed args
+ *				    must remain valid for the whole execution time
+ *					of THIS method.
+ * \param rpc the reference of the instance of the remote procedure
+			  call parameters (link, mutexes) valid for the whole
+			  rpc client session.
+ * \param procP points to the server's remote procedure call to invoke.
+ * \param asyncId is the asynchronous call identifier, to be returned to
+ * 		  the rpc client upon asynchronous remote procedure completion.
+ *		  Its value is 0 for synchronous calls.
+ * \param params is a shared ptr to the ServiceParameters, containing the
+ *		  rpc server and communication link to the peer.
+ * \param rpc_params is a shared ptr to the called procedure parameters 
+ *		  vector.
  */
 
-void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, const string& func_name, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params) {
+void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params) {
 	shared_ptr<ServiceParameters> _params = params;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> _rpc_params = rpc_params;
 	unsigned long result = (*procP)(_rpc_params.get(), _params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
-	LogVText(RPCSERVER_MODULE, 8, true, "%s returned %lu", func_name.c_str(), result);
+	LogVText(RPCSERVER_MODULE, 8, true, "CallServiceAndReply for asyncId %lu returned %lu", asyncId, result);
 #endif
 
 	// serialize back call results
@@ -95,8 +106,13 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 
 		// wait and deserialize call stream
 		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rpc.DeserializeCall(asyncId, func_name));
-		if (!rpc_params.get())
-			break; 
+		if (!rpc_params.get() || rpc_params.get()->size() == 0) {
+#ifdef RPCSERVER_TRACES
+			LogVText(RPCSERVER_MODULE, 8, true, "server_error, couldn't deserialize parameters!");
+#endif
+			break;
+		}
+
 #ifdef RPCSERVER_TRACES
 		LogVText(RPCSERVER_MODULE, 8, true, "deserialized into parameters vector: %p", rpc_params.get());
 #endif
@@ -123,13 +139,13 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 				aThread->detach();
 				detachedSem.R();
 
-				CallServiceAndReply(rpc, procP, asyncId, func_name, params, rpc_params);
+				CallServiceAndReply(rpc, procP, asyncId, params, rpc_params);
 			});
 
 			detachedSem.A();
 		} else {
 			// synchronous call
-			CallServiceAndReply(rpc, procP, asyncId, func_name, params, rpc_params);
+			CallServiceAndReply(rpc, procP, asyncId, params, rpc_params);
 		}
 	}
 }
