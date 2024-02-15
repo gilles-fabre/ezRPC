@@ -20,7 +20,7 @@ add_library(LogReporter SHARED
 			LogReporter/log2reporter.c)
 
 add_library(ezRPC SHARED 
-			RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp
+			RPC/JsonRPCClient.cpp RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp
 		    Transport/Transport.cpp Transport/Link.cpp
 		    Thread/Thread.cpp)
 						
@@ -32,8 +32,12 @@ add_executable(ezRPC_TestServer
 add_executable(ezRPC_TestClient 
 			   RPC/TestClient.cpp)
 
+add_executable(ezRPC_JsonTestClient 
+			   RPC/JsonTestClient.cpp)
+
 target_link_libraries(ezRPC_TestServer ezRPC)
 target_link_libraries(ezRPC_TestClient ezRPC)
+target_link_libraries(ezRPC_JsonTestClient ezRPC)
 
 if (NOT WIN32)
 add_library(ezStateMachine SHARED
@@ -56,6 +60,7 @@ endif()
 
 target_include_directories(ezRPC 
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/RPC/json/include" 
 						   "${CMAKE_INSTALL_PREFIX}/RPC" 
 						   "${CMAKE_INSTALL_PREFIX}/Transport" 
 						   "${CMAKE_INSTALL_PREFIX}/Thread" 
@@ -63,7 +68,6 @@ target_include_directories(ezRPC
 
 target_include_directories(ezRPC_TestServer 
 							PUBLIC
-							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
@@ -71,7 +75,14 @@ target_include_directories(ezRPC_TestServer
 
 target_include_directories(ezRPC_TestClient
 							PUBLIC
-							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
+							"${CMAKE_INSTALL_PREFIX}/RPC" 
+						    "${CMAKE_INSTALL_PREFIX}/Transport" 
+						    "${CMAKE_INSTALL_PREFIX}/Thread" 
+						    "${CMAKE_INSTALL_PREFIX}/LogReporter")
+
+target_include_directories(ezRPC_JsonTestClient
+							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/RPC/json/include" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
@@ -108,11 +119,13 @@ if(THREADS_HAVE_PTHREAD_ARG)
   target_compile_options(ezRPC PUBLIC "-pthread")
   target_compile_options(ezRPC_TestServer PUBLIC "-pthread")
   target_compile_options(ezRPC_TestClient PUBLIC "-pthread")
+  target_compile_options(ezRPC_JsonTestClient PUBLIC "-pthread")
 endif()
 if(CMAKE_THREAD_LIBS_INIT)
   target_link_libraries(ezRPC "${CMAKE_THREAD_LIBS_INIT}")
   target_link_libraries(ezRPC_TestServer "${CMAKE_THREAD_LIBS_INIT}")
   target_link_libraries(ezRPC_TestClient "${CMAKE_THREAD_LIBS_INIT}")
+  target_link_libraries(ezRPC_JsonTestClient "${CMAKE_THREAD_LIBS_INIT}")
 endif()
 
 install(FILES RPC/ezRPC_TestServer.log-settings DESTINATION bin)
@@ -130,6 +143,7 @@ install(TARGETS LogReporter
 
 install(TARGETS ezRPC_TestServer RUNTIME DESTINATION bin)
 install(TARGETS ezRPC_TestClient RUNTIME DESTINATION bin)
+install(TARGETS ezRPC_JsonTestClient RUNTIME DESTINATION bin)
 
 install(TARGETS ezRPC_TestServer
         RUNTIME DESTINATION bin
@@ -137,6 +151,11 @@ install(TARGETS ezRPC_TestServer
         ARCHIVE DESTINATION lib)
 
 install(TARGETS ezRPC_TestClient
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
+
+install(TARGETS ezRPC_JsonTestClient
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
@@ -164,6 +183,7 @@ install(TARGETS ezStateMachine_Test
 
 install(FILES 
 		StateMachine/StateMachine.h
+		RPC/JsonRPCClient.h
 		RPC/RPCClient.h
 		RPC/RPCServer.h
 		RPC/RemoteProcedureCall.h

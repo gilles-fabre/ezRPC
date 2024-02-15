@@ -190,54 +190,70 @@ bool JsonRPCClient::BuildJsonFromParameters(string& function, unique_ptr<vector<
 				case RemoteProcedureCall::ParamType::STRING:
 					param["type"] = "STRING_REF";
 					param["value"] = ParameterSafeCast(string, paramP)->GetReference(true);
+					delete ((string*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::BYTE:
 					param["type"] = "BYTE_REF";
 					param["value"] = ParameterSafeCast(uint8_t, paramP)->GetReference(true);
+					delete ((uint8_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::CHAR:
 					param["type"] = "CHAR_REF";
 					param["value"] = ParameterSafeCast(uint8_t, paramP)->GetReference(true);
+					delete ((uint8_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::UINT16:
 					param["type"] = "UINT16_REF";
 					param["value"] = ParameterSafeCast(uint16_t, paramP)->GetReference(true);
+					delete ((uint16_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::INT16:
 					param["type"] = "INT16_REF";
 					param["value"] = ParameterSafeCast(int16_t, paramP)->GetReference(true);
+					delete ((int16_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::UINT32:
 					param["type"] = "UINT32_REF";
 					param["value"] = ParameterSafeCast(uint32_t, paramP)->GetReference(true);
+					delete ((uint32_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::INT32:
 					param["type"] = "INT32_REF";
 					param["value"] = ParameterSafeCast(int32_t, paramP)->GetReference(true);
+					delete ((int32_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::UINT64:
 					param["type"] = "UINT64_REF";
 					param["value"] = ParameterSafeCast(uint64_t, paramP)->GetReference(true);
+					delete ((uint64_t*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 
 				case RemoteProcedureCall::ParamType::INT64:
 					param["type"] = "INT64_REF";
 					param["value"] = ParameterSafeCast(int64_t, paramP)->GetReference(true);
+					delete ((int64_t*)paramP->GetCallerPointer());
+					parameters += param;
+					break;
+
+				case RemoteProcedureCall::ParamType::DOUBLE:
+					param["type"] = "DOUBLE_REF";
+					param["value"] = ParameterSafeCast(double, paramP)->GetReference(true);
+					delete ((double*)paramP->GetCallerPointer());
 					parameters += param;
 					break;
 				}
