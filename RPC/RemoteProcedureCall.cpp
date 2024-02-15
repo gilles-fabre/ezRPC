@@ -200,6 +200,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 	uint32_t		ui32;
 	int64_t			i64;
 	uint64_t		ui64;
+	double			d;
 	bool 			is_ptr = false;
 	void*			ptr;
 
@@ -436,7 +437,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 #endif
 				} else {
 					// a double
-					double d = (double)va_arg(vl, double);
+					d = (double)va_arg(vl, double);
 					ui64 = *(uint64_t*)&d;
 					push_uint64(serialized_call, HTONLL(ui64));
 #ifdef RPC_TRACES
@@ -482,6 +483,313 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 #endif
 				}
 				break;
+		}
+	}
+}
+
+void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+	unsigned int 	len;
+	string			s;
+	unsigned char	byte;
+	char			c;
+	int16_t			i16;
+	uint16_t		ui16;
+	int32_t			i32;
+	uint32_t		ui32;
+	int64_t			i64;
+	uint64_t		ui64;
+	double			d;
+	bool 			is_ptr = false;
+	void*			ptr;
+
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, func_name.c_str());
+#endif
+
+	// first pass the asyncId
+	serialized_call.push_back(ASYNC_ID);
+	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+
+	// then pass the function name
+	serialized_call.push_back(STRING);
+	len = (unsigned int)func_name.length();
+	push_uint16(serialized_call, htons(len));
+	unsigned char* p = (unsigned char*)func_name.c_str();
+	serialized_call.insert(serialized_call.end(), p, p + len);
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
+#endif
+
+	// then add the return result address
+	serialized_call.push_back(UINT64);
+	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
+#ifdef RPC_TRACES
+	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
+#endif
+
+	// and all the given parameters
+	for (ParameterBase* paramP : *paramsP) {
+		ParamType type = paramP->GetType();
+
+		// first push the parameter type in the call stream vector
+		serialized_call.push_back(type);
+#ifdef RPC_TRACES
+		LogVText(RPC_MODULE, 6, true, "pushed parameter type %x", type);
+#endif
+		// we're done when encountering this parameter
+		if (type == END_OF_CALL)
+			break;
+
+		// then, the corresponding data
+		switch (type) {
+		case PTR:
+			is_ptr = true;
+			break;
+
+		case BYTE:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a byte ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				serialized_call.push_back(ptr ? *(unsigned char*)ptr : 0);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter byte ptr %p", ptr);
+#endif
+			}
+			else {
+				// a byte
+				byte = ParameterSafeCast(uint8_t, paramP)->GetReference();
+				serialized_call.push_back(byte);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter byte %u", byte);
+#endif
+			}
+			break;
+
+		case CHAR:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a char ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				serialized_call.push_back(ptr ? *(char*)ptr : 0);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter char ptr %p", ptr);
+#endif
+			}
+			else {
+				// a char
+				c = ParameterSafeCast(int, paramP)->GetReference();
+				serialized_call.push_back(c);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter char %c", c);
+#endif
+			}
+			break;
+
+		case INT16:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a short integer ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				i16 = ptr ? *(int16_t*)ptr : 0;
+				push_int16(serialized_call, ntohs(i16));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int16 ptr %p", ptr);
+#endif
+			}
+			else {
+				// a short integer
+				i16 = ParameterSafeCast(int16_t, paramP)->GetReference();
+				push_int16(serialized_call, htons(i16));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int16_t %ud", i16);
+#endif
+			}
+			break;
+
+		case UINT16:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// an unsigned short ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				ui16 = ptr ? *(uint16_t*)ptr : 0;
+				push_uint16(serialized_call, ntohs(ui16));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t ptr %p", ptr);
+#endif
+			}
+			else {
+				// an unsigned short integer
+				ui16 = ParameterSafeCast(uint16_t, paramP)->GetReference();
+				push_uint16(serialized_call, htons(ui16));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t %u", ui16);
+#endif
+			}
+			break;
+
+		case INT32:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a long integer ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				i32 = ptr ? *(int32_t*)ptr : 0;
+				push_int32(serialized_call, ntohl(i32));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t ptr %p", ptr);
+#endif
+			}
+			else {
+				// a long integer
+				i32 = ParameterSafeCast(int32_t, paramP)->GetReference();
+				push_int32(serialized_call, htonl(i32));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t %d", i32);
+#endif
+			}
+			break;
+
+		case UINT32:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// an unsigned long ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				ui32 = ptr ? *(uint32_t*)ptr : 0;
+				push_uint32(serialized_call, ntohl(ui32));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t ptr %p", ptr);
+#endif
+			}
+			else {
+				// an unsigned long integer
+				ui32 = ParameterSafeCast(uint32_t, paramP)->GetReference();
+				push_uint32(serialized_call, htonl(ui32));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t %u", ui32);
+#endif
+			}
+			break;
+
+		case INT64:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a long long ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				i64 = ptr ? *(int64_t*)ptr : 0;
+				push_int64(serialized_call, NTOHLL(i64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t ptr %p", ptr);
+#endif
+			}
+			else {
+				// a long long integer
+				i64 = ParameterSafeCast(int64_t, paramP)->GetReference();
+				push_int64(serialized_call, HTONLL(i64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t %ld", i64);
+#endif
+			}
+			break;
+
+		case UINT64:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// an unsigned long long ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				ui64 = ptr ? *(uint64_t*)ptr : 0;
+				push_uint64(serialized_call, NTOHLL(ui64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t ptr %p", ptr);
+#endif
+			}
+			else {
+				// an unsigned long long integer
+				ui64 = ParameterSafeCast(uint64_t, paramP)->GetReference();
+				push_uint64(serialized_call, HTONLL(ui64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t %lu", ui64);
+#endif
+			}
+			break;
+
+		case DOUBLE:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a double ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				ui64 = ptr ? *(uint64_t*)ptr : 0;
+				push_uint64(serialized_call, NTOHLL(ui64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter double ptr %p", ptr);
+#endif
+			}
+			else {
+				// a double
+				d = ParameterSafeCast(double, paramP)->GetReference();
+				ui64 = *(uint64_t*)&d;
+				push_uint64(serialized_call, HTONLL(ui64));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter double %f", d);
+#endif
+			}
+			break;
+
+		case STRING:
+			if (is_ptr) {
+				is_ptr = false;
+
+				// a string ptr
+				ptr = (void*)paramP->GetCallerPointer();
+				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter string %p", ptr);
+#endif
+				// string
+				s = ptr ? *(string*)ptr : "";
+				len = (unsigned int)s.length();
+				push_uint16(serialized_call, htons(len));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
+#endif
+				unsigned char* p = (unsigned char*)s.c_str();
+				serialized_call.insert(serialized_call.end(), p, p + len);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
+#endif
+			}
+			else {
+				// string
+				s = ParameterSafeCast(string, paramP)->GetReference();
+				len = (unsigned int)s.length();
+				push_uint16(serialized_call, htons(len));
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
+#endif
+				unsigned char* p = (unsigned char*)s.c_str();
+				serialized_call.insert(serialized_call.end(), p, p + len);
+#ifdef RPC_TRACES
+				LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
+#endif
+			}
+			break;
 		}
 	}
 }

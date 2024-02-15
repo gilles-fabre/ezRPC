@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "function": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "array",
+      "minItems": 1,
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "STRING",
+                "STRING_REF",
+                "UINT64",
+                "UINT64_REF",
+                "DOUBLE",
+                "DOUBLE_REF"
+              ]
+            },
+            "value": {
+              "type": ["string", "number"]
+            }
+          },
+          "required": ["type", "value"],
+          "if": {
+            "properties": { "type": { "enum": ["STRING", "STRING_REF"] } }
+          },
+          "then": {
+            "properties": { "value": { "type": "string" } }
+          },
+          "else": {
+            "properties": { "value": { "type": "number" } }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "function"
+  ]
+}

@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <RPCClient.h>
+#include <RPCJsonClient.h>
 
 using namespace std;
 
@@ -38,6 +39,26 @@ int main(int argc, char **argv) {
 	string proto = argv[1];
 	string server_addr = argv[2];
 	string func_name = argv[3];
+
+	uint64_t jclient = CreateRpcClient(proto == "tcp" ? Transport::TCP : Transport::FILE, server_addr.c_str());
+
+	const char* rpc_call2 = "{ \
+		\"function\" : \"concat\", \
+		\"parameters\" : \
+		[ \
+			{ \"type\" : \"STRING_REF\", \
+			  \"value\" : \"_hop_hop\"}, \
+			{ \"type\" : \"INT16\", \
+			  \"value\" : 10 } \
+		] \
+	}";
+
+	char buffer[256 + 1];
+	RpcCall(jclient, rpc_call2, buffer, sizeof(buffer));
+
+	cout << "returned json : " << string(buffer) << endl;
+
+	return 0;
 
 	RPCClient client(proto == "tcp" ? Transport::TCP : Transport::FILE, server_addr);
 

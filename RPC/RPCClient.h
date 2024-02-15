@@ -89,8 +89,13 @@ public:
 			m_transportP->Close();
 	}
 
+	// to handle calls with variable number or arguments
 	unsigned long RpcCall(string func_name, ...);
 	AsyncID		  RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, ...);
+
+	// to handle calls with ParameterBase* vector
+	unsigned long RpcCall(string func_name, vector<RemoteProcedureCall::ParameterBase*>* paramsP);
+	AsyncID		  RpcCallAsync(AsyncReplyProcedure* procedureP, string func_name, vector<RemoteProcedureCall::ParameterBase*>* paramsP);
 };
 
 #endif /* _RPC_CLIENT_H */

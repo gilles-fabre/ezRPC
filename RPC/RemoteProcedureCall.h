@@ -135,6 +135,10 @@ public:
 		 * \param caller_valP is the shadow parameter address (to return a 
 		 * 					  value to the caller if set). Set to 0 by default.
 		*/
+		Parameter(ParamType type) : ParameterBase(type, 0) {
+			m_value = type;
+		}
+
 		Parameter(unsigned char value, uint64_t caller_valP = 0) : ParameterBase(BYTE, caller_valP) {
 			m_value = value;
 		}
@@ -198,10 +202,15 @@ public:
 
 		/**
 		 * \fn Get<Type>Reference
-		 * \brief parameter getters, return a reference to the embedded
+		 * \brief parameter getter, return a reference to the embedded
 		 * 		  parameter value such that it can be modified.
+		 * \param update_from_ptr if set, the initially passed value 
+		 *        is overwritten by the pointed RPCClient side variable
+		 *		  which the RPCServer may have modified (out variable).
 		*/
-		T& GetReference() {
+		T& GetReference(bool update_from_ptr = false) {
+			if (update_from_ptr && m_caller_valP)
+				m_value = *((T*)(m_caller_valP));
 			return m_value;
 		}
 	};
@@ -219,6 +228,7 @@ public:
 	}
 
 	// rpc call caller side
+	void				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
 	void 				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, va_list vl);
 	void 				SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serialized_call);
 
