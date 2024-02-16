@@ -7,7 +7,10 @@
 
 using namespace std;
 
+#ifdef _DEBUG
 #define JSONRPC_TRACES 1
+#endif
+
 #define JSONRPC_MODULE 0x10
 
 #ifdef WIN32

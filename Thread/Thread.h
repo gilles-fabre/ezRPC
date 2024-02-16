@@ -5,7 +5,10 @@
 #include <mutex>
 #include <condition_variable>
 
+#ifdef _DEBUG
 #define THREAD_TRACES 1
+#endif
+
 #define THREAD_MODULE 0x1
 
 typedef void ThreadCallbackFunction(void *);

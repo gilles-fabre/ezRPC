@@ -21,7 +21,9 @@ using namespace std;
 #define SO_REUSEPORT 0
 #endif
 
+#ifdef _DEBUG
 #define TRANSPORT_TRACES 1
+#endif
 #define TRANSPORT_MODULE 0x3
 
 /**

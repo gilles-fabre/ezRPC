@@ -20,7 +20,10 @@
 #include <errno.h>
 #include <log2reporter.h>
 
+#ifdef _DEBUG
 #define LINK_TRACES 1
+#endif
+
 #define LINK_MODULE 0x2
 
 #ifdef WIN32

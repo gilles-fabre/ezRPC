@@ -13,7 +13,9 @@
 
 using namespace std;
 
+#ifdef _DEBUG
 #define RPCSERVER_TRACES 1
+#endif
 #define RPCSERVER_MODULE 0x6
 
 #ifdef WIN32

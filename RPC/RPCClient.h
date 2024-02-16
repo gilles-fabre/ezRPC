@@ -15,7 +15,10 @@
 
 using namespace std;
 
+#ifdef _DEBUG
 #define RPCCLIENT_TRACES 1
+#endif
+
 #define RPCCLIENT_MODULE 0x5
 
 #ifdef WIN32
