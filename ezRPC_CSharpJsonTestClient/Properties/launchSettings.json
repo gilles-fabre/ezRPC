@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ezRPC_CSharpJsonTestClient": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Dev\\ezRPC\\bin"
+    }
+  }
+}
