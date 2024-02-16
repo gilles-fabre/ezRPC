@@ -42,18 +42,37 @@ class	DECLSPEC JsonRPCClient {
 #else
 class	RPCJsonClient {
 #endif
+
+	struct AsyncJsonCallParams {
+		string													m_function;
+		char*													m_json_call_resultP;
+		size_t													m_json_call_result_len;
+		AsyncJsonReplyProcedure*								m_replyProcP;
+		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> m_params;
+
+		AsyncJsonCallParams(string& function, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params) {
+			m_function = function;
+			m_json_call_resultP = json_call_resultP;
+			m_json_call_result_len = json_call_result_len;
+			m_replyProcP = replyProcP;
+			m_params = params;
+		}
+	};
+
 	unique_ptr<RPCClient> m_client;
+	static mutex												   m_asyncParamsMutex;
+	static unordered_map<AsyncID, shared_ptr<AsyncJsonCallParams>> m_asyncParams;
 
 	static void AsyncRpcReplyProc(AsyncID asyncId, unsigned long result);
 
-	bool BuildParametersFromJson(const char* json_call, string& function, unique_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
-	bool BuildJsonFromParameters(string& function, unique_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result);
+	static bool BuildParametersFromJson(const char* json_callP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
+	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result);
 
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& server_addr);
 
-	AsyncID	 AsyncRpcCall(const char* json_call, char* json_call_result, size_t json_call_result_len, AsyncJsonReplyProcedure replyProc);
-	unsigned long RpcCall(const char* json_call, char* json_call_result, size_t json_call_result_len);
+	AsyncID	 AsyncRpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP);
+	unsigned long RpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len);
 };
 
 #endif /* _JSON_RPC_H */

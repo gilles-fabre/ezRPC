@@ -27,14 +27,56 @@ DECLSPEC void  DestroyRpcClient(uint64_t client_id) {
 	delete (JsonRPCClient*)client_id;
 }
 
+mutex JsonRPCClient::m_asyncParamsMutex;
+unordered_map<AsyncID, shared_ptr<JsonRPCClient::AsyncJsonCallParams>> JsonRPCClient::m_asyncParams;
+
 void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
+	// make sure the asyncId was returned and the parameters block built BEFORE
+	// the RpcAsync reply proc was called....
+	unordered_map<AsyncID, shared_ptr<JsonRPCClient::AsyncJsonCallParams>>::iterator i;
+	for (;;) {
+		{
+			unique_lock<mutex> lock(m_asyncParamsMutex);
+			i = m_asyncParams.find(asyncId);
+			if (i != m_asyncParams.end())
+				break;
+			Sleep(5);
+		}
+	};
+
+	// build the result json.
+	string json_result;
+	BuildJsonFromParameters(i->second->m_function, i->second->m_params, json_result);
+
+	// copy the result json into the result buffer if it is long enough, else, return an error.
+	if (i->second->m_json_call_result_len > json_result.size()) {
+		strncpy_s(i->second->m_json_call_resultP, i->second->m_json_call_result_len, json_result.c_str(), json_result.size());
+	}
+
+	(*(i->second->m_replyProcP))(asyncId, i->second->m_json_call_resultP);
+
+	{
+		unique_lock<mutex> lock(m_asyncParamsMutex);
+		m_asyncParams.erase(asyncId);
+	}
 }
-AsyncID	JsonRPCClient::AsyncRpcCall(const char* json_call, char* json_call_result, size_t json_call_result_len, AsyncJsonReplyProcedure replyProc) {
+
+AsyncID	JsonRPCClient::AsyncRpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP) {
 	// analyze the json call and build the parameters vector
-	unique_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_unique<vector<RemoteProcedureCall::ParameterBase*>>();
+	string function;
+	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
+	if (!BuildParametersFromJson(json_callP, function, params))
+		return -1;
 
 	// invoke the rpc client.
-	return m_client->RpcCallAsync(JsonRPCClient::AsyncRpcReplyProc, "nop", params.get());
+	AsyncID asyncId;
+	{
+		unique_lock<mutex> lock(m_asyncParamsMutex);
+		asyncId = m_client->RpcCallAsync(JsonRPCClient::AsyncRpcReplyProc, function, params.get());
+		m_asyncParams[asyncId] = make_shared<AsyncJsonCallParams>(function, json_call_resultP, json_call_result_len, replyProcP, params);
+	}
+
+	return asyncId;
 }
 
 unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_result, size_t json_call_result_len) {
@@ -42,7 +84,7 @@ unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_resu
 
 	// analyze the json call and build the parameters vector
 	string function;
-	unique_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_unique<vector<RemoteProcedureCall::ParameterBase*>>();
+	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
 	if (!BuildParametersFromJson(json_call, function, params))
 		return -1;
 
@@ -62,7 +104,7 @@ unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_resu
 }
 
 
-bool JsonRPCClient::BuildParametersFromJson(const char* json_call, string& function, unique_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params) {
+bool JsonRPCClient::BuildParametersFromJson(const char* json_call, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params) {
 
 	json call = json::parse(json_call);
 	if (call.is_null() || !call.contains("function"))
@@ -214,7 +256,7 @@ bool JsonRPCClient::BuildParametersFromJson(const char* json_call, string& funct
 	return true;
 }
 
-bool JsonRPCClient::BuildJsonFromParameters(string& function, unique_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result) {
+bool JsonRPCClient::BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result) {
 	// parse the parameters vector 'back' and build the result json
 	json json_reply;
 	json_reply["function"] = function;

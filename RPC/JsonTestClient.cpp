@@ -14,13 +14,13 @@ Semaphore g_sem_get_str(0);
 
 char g_Buffer[256 + 1];
 
-static void GetStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
-	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
+static void GetStringAsyncReplyProc(AsyncID asyncId, char* json_resultP) {
+	cout << "asyncId : " << asyncId << ", returned json : " << json_resultP << endl;
 	g_sem_get_str.R();
 }
 
-static void PutStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
-	cout << "asyncId : " << asyncId << ", returned and string is : " << g_string << ", result : " << result << endl;
+static void PutStringAsyncReplyProc(AsyncID asyncId, char* json_resultP) {
+	cout << "asyncId : " << asyncId << ", returned json : " << json_resultP << endl;
 	g_sem_put_str.R();
 }
 
@@ -45,7 +45,6 @@ int main(int argc, char **argv) {
 
 	uint64_t jclient = CreateRpcClient(proto == "tcp" ? Transport::TCP : Transport::FILE, server_addr.c_str());
 
-	/*
 	if (func_name == "get_string") {
 		if (argc < 4) {
 			cout << "usage:" << endl;
@@ -54,14 +53,17 @@ int main(int argc, char **argv) {
 		}
 		int16_t repeat = argc == 5 ? atoi(argv[4]) : 1;
 		for (int b = 0; b < repeat; b++) {
-			g_string = "overwrite me!";
-			AsyncID id = client.RpcCallAsync(GetStringAsyncReplyProc,
-								func_name,
-								RemoteProcedureCall::PTR,
-								RemoteProcedureCall::STRING,
-								&g_string,
-								RemoteProcedureCall::END_OF_CALL);
-			cout << "\ttest get_string asyncId : " << id << endl;
+			json call;
+			call["function"] = func_name;
+			json parameters = json::array();
+			{
+				json param;
+				param["type"] = "STRING_REF";
+				param["value"] = argv[3];
+				parameters += param;
+			}
+			call["parameters"] = parameters;
+			AsyncRpcCall(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), GetStringAsyncReplyProc);
 			g_sem_get_str.A();
 		}
 	}
@@ -74,17 +76,21 @@ int main(int argc, char **argv) {
 		g_string = argv[4];
 		int16_t repeat = argc == 6 ? atoi(argv[5]) : 1;
 		for (int b = 0; b < repeat; b++) {
-			AsyncID id = client.RpcCallAsync(PutStringAsyncReplyProc,
-								func_name,
-								RemoteProcedureCall::PTR,
-								RemoteProcedureCall::STRING,
-								&g_string,
-								RemoteProcedureCall::END_OF_CALL);
-			cout << "\ttest client put_string asyncId : " << id << endl;
+			json call;
+			call["function"] = func_name;
+			json parameters = json::array();
+			{
+				json param;
+				param["type"] = "STRING";
+				param["value"] = argv[4];
+				parameters += param;
+			}
+			call["parameters"] = parameters;
+			AsyncRpcCall(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), PutStringAsyncReplyProc);
 			g_sem_put_str.A();
 		}
 	} 
-	else */ if (func_name == "nop") {
+	if (func_name == "nop") {
 		if (argc < 4) {
 			cout << "usage:" << endl;
 			cout << "\ttest <tcp|file> server_addr nop" << endl;
@@ -227,6 +233,8 @@ int main(int argc, char **argv) {
 	}
 
 	cout << "rpc server has returned \"" << result << "\"" << endl;
+
+	DestroyRpcClient(jclient);
 
 	return 0;
 }
