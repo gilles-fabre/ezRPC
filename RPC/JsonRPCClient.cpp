@@ -75,95 +75,136 @@ bool JsonRPCClient::BuildParametersFromJson(const char* json_call, string& funct
 	json jparams = call["parameters"];
 	if (!jparams.is_null() && jparams.is_array() && !jparams.empty()) {
 		for (auto param : jparams) {
-			if (param["type"] == "STRING") {
-				string value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<string>(value));
-			}
-			else if (param["type"] == "STRING_REF") {
-				string* valueP = new string(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<string>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "BYTE") {
-				uint8_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(value));
-			}
-			else if (param["type"] == "BYTE_REF") {
-				uint8_t* valueP = new uint8_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "CHAR") {
-				char value = (uint8_t)param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<char>(value));
-			}
-			else if (param["type"] == "CHAR_REF") {
-				uint8_t* valueP = new uint8_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<char>(*((char*)valueP), (uint64_t)valueP));
-			}
-			else if (param["type"] == "UINT16") {
-				uint16_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(value));
-			}
-			else if (param["type"] == "UINT16_REF") {
-				uint16_t* valueP = new uint16_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "UINT32") {
-				uint32_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(value));
-			}
-			else if (param["type"] == "UINT32_REF") {
-				uint32_t* valueP = new uint32_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "UINT64") {
-				uint64_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(value));
-			}
-			else if (param["type"] == "UINT64_REF") {
-				uint64_t* valueP = new uint64_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "INT16") {
-				int16_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<int16_t>(value));
-			}
-			else if (param["type"] == "INT16_REF") {
-				int16_t* valueP = new int16_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<int16_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "INT32") {
-				int32_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<int32_t>(value));
-			}
-			else if (param["type"] == "INT32_REF") {
-				int32_t* valueP = new int32_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<int32_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "INT64") {
-				int64_t value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<int64_t>(value));
-			}
-			else if (param["type"] == "INT64_REF") {
-				int64_t* valueP = new int64_t(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<int64_t>(*valueP, (uint64_t)valueP));
-			}
-			else if (param["type"] == "DOUBLE") {
-				double value = param["value"];
-				params->push_back(new RemoteProcedureCall::Parameter<double>(value));
-			}
-			else if (param["type"] == "DOUBLE_REF") {
-				double* valueP = new double(param["value"]);
-				params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
-				params->push_back(new RemoteProcedureCall::Parameter<double>(*valueP, (uint64_t)valueP));
+			switch (RemoteProcedureCall::GetParameterType(param["type"])) {
+				case RemoteProcedureCall::STRING: {
+					string value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<string>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::STRING_REF: {
+					string* valueP = new string(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<string>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::BYTE: {
+					uint8_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::BYTE_REF: {
+					uint8_t* valueP = new uint8_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::CHAR: {
+					char value = (uint8_t)param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<char>(value));
+					break;
+				}
+
+				case RemoteProcedureCall::CHAR_REF: {
+					uint8_t* valueP = new uint8_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<char>(*((char*)valueP), (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::UINT16: {
+					uint16_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::UINT16_REF: {
+					uint16_t* valueP = new uint16_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::UINT32: {
+					uint32_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(value));
+					break;
+				}
+
+				case RemoteProcedureCall::UINT32_REF: {
+					uint32_t* valueP = new uint32_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::UINT64: {
+					uint64_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(value));
+					break;
+				}
+
+				case RemoteProcedureCall::UINT64_REF: {
+					uint64_t* valueP = new uint64_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+			
+				case RemoteProcedureCall::INT16: {
+					int16_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<int16_t>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::INT16_REF: {
+					int16_t* valueP = new int16_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<int16_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::INT32: {
+					int32_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<int32_t>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::INT32_REF: {
+					int32_t* valueP = new int32_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<int32_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+			
+				case RemoteProcedureCall::INT64: {
+					int64_t value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<int64_t>(value));
+					break;
+				}
+			
+				case RemoteProcedureCall::INT64_REF: {
+					int64_t* valueP = new int64_t(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<int64_t>(*valueP, (uint64_t)valueP));
+					break;
+				}
+
+				case RemoteProcedureCall::DOUBLE: {
+					double value = param["value"];
+					params->push_back(new RemoteProcedureCall::Parameter<double>(value));
+					break;
+				}
+
+				case RemoteProcedureCall::DOUBLE_REF: {
+					double* valueP = new double(param["value"]);
+					params->push_back(new RemoteProcedureCall::Parameter<RemoteProcedureCall::ParamType>(RemoteProcedureCall::ParamType::PTR));
+					params->push_back(new RemoteProcedureCall::Parameter<double>(*valueP, (uint64_t)valueP));
+					break;
+				}
 			}
 		}
 	}

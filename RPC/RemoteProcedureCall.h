@@ -70,19 +70,31 @@ public:
 	// the parameter types
 	enum ParamType {PTR 		= 'P', // if present before type, this is a pointer parameter
 					BYTE   		= 'b',
+					BYTE_REF	= 'B',
 					CHAR   		= 'c',
+					CHAR_REF	= 'C',
 					INT16  		= 'i',
-					UINT16 		= 'I',
-					INT32  		= 'l',
-					UINT32 		= 'L',
-					INT64  		= 'h',
-					UINT64 		= 'H',
-					DOUBLE		= 'D',
-					STRING   	= 's',
+					INT16_REF   = 'I',
+					UINT16 		= 'j',
+					UINT16_REF  = 'J',
+					INT32  		= 'k',
+					INT32_REF	= 'K',
+					UINT32 		= 'l',
+					UINT32_REF	= 'L',
+					INT64  		= 'm',
+					INT64_REF	= 'M',
+					UINT64 		= 'n',
+					UINT64_REF	= 'N',
+					DOUBLE		= 'o',
+					DOUBLE_REF	= 'O',
+					STRING   	= 'p',
+					STRING_REF	= 'P',
 					RESULT_ADDRESS = 'R',
 					END_OF_CALL = 'X',
 					ASYNC_ID    = 'A',
 					EMPTY};
+
+	static const unordered_map<string, ParamType> m_types;
 
 	/**
 	 * \class Parameter
@@ -240,6 +252,14 @@ public:
 	void Close() {
 		if (m_linkP)
 			m_linkP->Close();
+	}
+
+	static ParamType GetParameterType(const string& type_name) {
+		auto t = m_types.find(type_name);
+		if (t != m_types.end())
+		return t->second;
+
+		return EMPTY;
 	}
 };
 

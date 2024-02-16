@@ -6,7 +6,7 @@
 #include <memory>
 #include <vector>
 #include <mutex>
-#include <map>
+#include <unordered_map>
 
 #include <log2reporter.h>
 #include <Transport.h>
@@ -41,7 +41,7 @@ class	RPCClient {
 	Transport*				m_transportP;	// transport used to talk to the peer server
 	RemoteProcedureCall* 	m_rpcP;			// rpc underlying abstraction
 	mutex					m_async_procs_mutex; 
-	multimap<AsyncID, AsyncReplyProcedure*> m_async_procs;
+	unordered_map<AsyncID, AsyncReplyProcedure*> m_async_procs;
 
 public:
 	/**

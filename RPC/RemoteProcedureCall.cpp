@@ -10,6 +10,34 @@
 
 using namespace std;
 
+const unordered_map<string, RemoteProcedureCall::ParamType> RemoteProcedureCall::m_types = {
+	{"ptr",			PTR},
+	{"BYTE",		BYTE},
+	{"BYTE_REF",	BYTE_REF},
+	{"CHAR",		CHAR},
+	{"CHAR_REF",	CHAR_REF},
+	{"INT16",		INT16},
+	{"INT16_REF",	INT16_REF},
+	{"UINT16",		UINT16},
+	{"UINT16_REF",	UINT16_REF},
+	{"INT32",		INT32},
+	{"INT32_REF",	INT32_REF},
+	{"UINT32",		UINT32},
+	{"UINT32_REF",	UINT32_REF},
+	{"INT64",		INT64},
+	{"INT64_REF",	INT64_REF},
+	{"UINT64",		UINT64},
+	{"UINT64_RFE",	UINT64_REF},
+	{"DOUBLE",		DOUBLE},
+	{"DOUBLE_REF",	DOUBLE_REF},
+	{"STRING",		STRING},
+	{"STRING_REF",	STRING_REF},
+	{"RESULT_ADDRESS", RESULT_ADDRESS},
+	{"END_OF_CALL", END_OF_CALL},
+	{"ASYNC_ID",	ASYNC_ID},
+	{"EMPTY",		EMPTY}
+};
+
 /**
  * \fn bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_len)
  * \brief Sends a data packet over the transport link.
