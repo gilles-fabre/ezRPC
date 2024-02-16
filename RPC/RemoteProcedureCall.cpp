@@ -39,16 +39,16 @@ const unordered_map<string, RemoteProcedureCall::ParamType> RemoteProcedureCall:
 };
 
 /**
- * \fn bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_len)
+ * \fn bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataLen)
  * \brief Sends a data packet over the transport link.
  * 
  * \param bufferP contains the data to be sent
- * \param data_len is the number of bytes to sent from bufferP
+ * \param dataLen is the number of bytes to sent from bufferP
  * 
  * \return true if everything went fine, false else.
 */
-bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_len) {
-	uint64_t 		len = data_len;
+bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataLen) {
+	uint64_t 		len = dataLen;
 	unsigned char 	buffer[sizeof(uint64_t)];
 
 	if (len == 0 || !bufferP)
@@ -62,13 +62,13 @@ bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_
 	m_linkP->Send(buffer, (unsigned long)sizeof(len));
 
 	// send the whole call stream
-	m_linkP->Send(bufferP, data_len);
+	m_linkP->Send(bufferP, dataLen);
 
 	return true;
 }
 
 /**
- * \fn unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& data_len)
+ * \fn unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& dataLen)
  * \brief Receives a data packet over the transport link.
  * 
  * \param data_len is the number of bytes to receive. This is blocking call!
@@ -76,7 +76,7 @@ bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long data_
  * \return a newly (m)allocated buffer pointing the received data. This buffer must
  * 		   be freed by the caller. Returns NULL if an error occured.
 */
-unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& data_len) {
+unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& dataLen) {
 	uint64_t 		len;
 	unsigned char 	buffer[sizeof(uint64_t)];
 	unsigned char*	bufferP;
@@ -86,15 +86,15 @@ unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& data_len) {
 
 	int offset = 0;
 	len = decode_uint64(buffer, offset);
-	if ((data_len = (unsigned long)NTOHLL(len)) == 0)
+	if ((dataLen = (unsigned long)NTOHLL(len)) == 0)
 		return NULL;
 
 	// allocate the necessary bufferP
-	if (!(bufferP = (unsigned char*)malloc(data_len)))
+	if (!(bufferP = (unsigned char*)malloc(dataLen)))
 		return NULL;
 
 	// wait and read the whole call stream
-	if (!m_linkP->Receive(bufferP, (unsigned long)data_len)) {
+	if (!m_linkP->Receive(bufferP, (unsigned long)dataLen)) {
 		free(bufferP);  // garbage received before connection dropped
 		bufferP = NULL;
 	}
@@ -191,12 +191,12 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
 }
 
 /**
- * \fn unsigned long RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result, va_list vl)
+ * \fn unsigned long RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& function, vector<unsigned char>& serializedCall, shared_ptr<unsigned long> result, va_list vl)
  * \brief Serializes the given function call so the resulting byte stream can 
  *		  be sent over the associated link using SendSerializedCall.
  *
  *        The stream format is:
- *	        	ASYNC_ID.<asyncId>.STRING.<function_name>.UINT64.<result_address>.<parameters>.END_OF_CALL
+ *	        	ASYNC_ID.<asyncId>.STRING.<function>.UINT64.<result_address>.<parameters>.END_OF_CALL
  *  	      	result_address : address of the UINT64 to receive return_value on the
  *                         		 caller side
  *        		parameters := ((<type>.<value>)|(PTR.<type>.<ptr_value>.<value>))*
@@ -209,15 +209,15 @@ inline void RemoteProcedureCall::push_uint16(vector<unsigned char>& v, uint16_t 
  *
  * \param asyncId is asynchronous call identifier, which will be returned with
  *				 the result to match it. It is O if the call is synchronous
- * \param func_name is the name of the function to call
- * \param serialized_call is the serialized vector of parameters to build with the vl list of 
- * \param result points to the variable which will receive the server's procedure return value
+ * \param function is the name of the function to call
+ * \param serializedCall is the serialized vector of parameters to build with the vl list of 
+ * \param resultP points to the variable which will receive the server's procedure return value
  *		  arguments
  * 		  (<type><value>)|(PTR<pointer_to_value>). The last argument must be
  * 		  'END_OF_CALL'.
  *        STRING values MUST be passed as string pointers (std::string*)
  */
-void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, va_list vl) {
+void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& function, vector<unsigned char>& serializedCall, unsigned long* resultP, va_list vl) {
 	unsigned int 	len;
 	string			s;
 	unsigned char	byte;
@@ -233,26 +233,26 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 	void*			ptr;
 
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, func_name.c_str());
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, function.c_str());
 #endif
 
 	// first pass the asyncId
-	serialized_call.push_back(ASYNC_ID);
-	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+	serializedCall.push_back(ASYNC_ID);
+	push_uint64(serializedCall, HTONLL((uint64_t)asyncId));
 
 	// then pass the function name
-	serialized_call.push_back(STRING);
-	len = (unsigned int)func_name.length();
-	push_uint16(serialized_call, htons(len));
-	unsigned char* p = (unsigned char*)func_name.c_str();
-	serialized_call.insert(serialized_call.end(), p, p+len);
+	serializedCall.push_back(STRING);
+	len = (unsigned int)function.length();
+	push_uint16(serializedCall, htons(len));
+	unsigned char* p = (unsigned char*)function.c_str();
+	serializedCall.insert(serializedCall.end(), p, p+len);
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
+	LogVText(RPC_MODULE, 4, true, "pushed function %s", function.c_str());
 #endif
 
 	// then add the return result address
-	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
+	serializedCall.push_back(UINT64);
+	push_uint64(serializedCall, HTONLL((uint64_t)resultP));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
 #endif
@@ -262,7 +262,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 		ParamType type = (ParamType)va_arg(vl, int);
 
 		// first push the parameter type in the call stream vector
-		serialized_call.push_back(type);
+		serializedCall.push_back(type);
 #ifdef RPC_TRACES
 		LogVText(RPC_MODULE, 6, true, "pushed parameter type %x", type);
 #endif
@@ -283,15 +283,15 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a byte ptr
 					ptr = (void*)va_arg(vl, unsigned char*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
-					serialized_call.push_back(ptr ? *(unsigned char*)ptr : 0);
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
+					serializedCall.push_back(ptr ? *(unsigned char*)ptr : 0);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter byte ptr %p", ptr);
 #endif
 				} else {
 					// a byte
 					byte = (unsigned char)va_arg(vl, int);
-					serialized_call.push_back(byte);
+					serializedCall.push_back(byte);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter byte %u", byte);
 #endif
@@ -304,15 +304,15 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a char ptr
 					ptr = (void*)va_arg(vl, char*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
-					serialized_call.push_back(ptr ? *(char*)ptr : 0);
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
+					serializedCall.push_back(ptr ? *(char*)ptr : 0);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter char ptr %p", ptr);
 #endif
 				} else {
 					// a char
 					c = (char)va_arg(vl, int);
-					serialized_call.push_back(c);
+					serializedCall.push_back(c);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter char %c", c);
 #endif
@@ -325,16 +325,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a short integer ptr
 					ptr = (void*)va_arg(vl, int16_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					i16 = ptr ? *(int16_t*)ptr : 0;
-					push_int16(serialized_call, ntohs(i16));
+					push_int16(serializedCall, ntohs(i16));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int16 ptr %p", ptr);
 #endif
 				} else {
 					// a short integer
 					i16 = (int16_t)va_arg(vl, int);
-					push_int16(serialized_call, htons(i16));
+					push_int16(serializedCall, htons(i16));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int16_t %ud", i16);
 #endif
@@ -347,16 +347,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// an unsigned short ptr
 					ptr = (void*)va_arg(vl, uint16_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					ui16 = ptr ? *(uint16_t*)ptr : 0;
-					push_uint16(serialized_call, ntohs(ui16));
+					push_uint16(serializedCall, ntohs(ui16));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned short integer
 					ui16 = (uint16_t)va_arg(vl, int);
-					push_uint16(serialized_call, htons(ui16));
+					push_uint16(serializedCall, htons(ui16));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t %u", ui16);
 #endif
@@ -369,16 +369,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a long integer ptr
 					ptr = (void*)va_arg(vl, int32_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					i32 = ptr ? *(int32_t*)ptr : 0;
-					push_int32(serialized_call, ntohl(i32));
+					push_int32(serializedCall, ntohl(i32));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t ptr %p", ptr);
 #endif
 				} else {
 					// a long integer
 					i32 = (int32_t)va_arg(vl, int32_t);
-					push_int32(serialized_call, htonl(i32));
+					push_int32(serializedCall, htonl(i32));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t %d", i32);
 #endif
@@ -391,16 +391,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// an unsigned long ptr
 					ptr = (void*)va_arg(vl, uint32_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					ui32 = ptr ? *(uint32_t*)ptr : 0;
-					push_uint32(serialized_call, ntohl(ui32));
+					push_uint32(serializedCall, ntohl(ui32));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned long integer
 					ui32 = (uint32_t)va_arg(vl, uint32_t);
-					push_uint32(serialized_call, htonl(ui32));
+					push_uint32(serializedCall, htonl(ui32));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t %u", ui32);
 #endif
@@ -413,16 +413,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a long long ptr
 					ptr = (void*)va_arg(vl, int64_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					i64 = ptr ? *(int64_t*)ptr : 0;
-					push_int64(serialized_call, NTOHLL(i64));
+					push_int64(serializedCall, NTOHLL(i64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t ptr %p", ptr);
 #endif
 				} else {
 					// a long long integer
 					i64 = va_arg(vl, int64_t);
-					push_int64(serialized_call, HTONLL(i64));
+					push_int64(serializedCall, HTONLL(i64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t %ld", i64);
 #endif
@@ -435,16 +435,16 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// an unsigned long long ptr
 					ptr = (void*)va_arg(vl, uint64_t*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					ui64 = ptr ? *(uint64_t*)ptr : 0;
-					push_uint64(serialized_call, NTOHLL(ui64));
+					push_uint64(serializedCall, NTOHLL(ui64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t ptr %p", ptr);
 #endif
 				} else {
 					// an unsigned long long integer
 					ui64 = va_arg(vl, uint64_t);
-					push_uint64(serialized_call, HTONLL(ui64));
+					push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t %lu", ui64);
 #endif
@@ -457,9 +457,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a double ptr
 					ptr = (void*)va_arg(vl, double*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 					ui64 = ptr ? *(uint64_t*)ptr : 0;
-					push_uint64(serialized_call, NTOHLL(ui64));
+					push_uint64(serializedCall, NTOHLL(ui64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter double ptr %p", ptr);
 #endif
@@ -467,7 +467,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 					// a double
 					d = (double)va_arg(vl, double);
 					ui64 = *(uint64_t*)&d;
-					push_uint64(serialized_call, HTONLL(ui64));
+					push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter double %f", d);
 #endif
@@ -480,19 +480,19 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 					// a string ptr
 					ptr = (void*)va_arg(vl, string*);
-					push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+					push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %p", ptr);
 #endif
 					// string
 					s = ptr ? *(string*)ptr : "";
 					len = (unsigned int)s.length();
-					push_uint16(serialized_call, htons(len));
+					push_uint16(serializedCall, htons(len));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 					unsigned char* p = (unsigned char*)s.c_str();
-					serialized_call.insert(serialized_call.end(), p, p+len);
+					serializedCall.insert(serializedCall.end(), p, p+len);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -500,12 +500,12 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 					// string
 					s = *va_arg(vl, string*);
 					len = (unsigned int)s.length();
-					push_uint16(serialized_call, htons(len));
+					push_uint16(serializedCall, htons(len));
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 					unsigned char* p = (unsigned char*)s.c_str();
-					serialized_call.insert(serialized_call.end(), p, p+len);
+					serializedCall.insert(serializedCall.end(), p, p+len);
 #ifdef RPC_TRACES
 					LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -515,7 +515,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 	}
 }
 
-void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& function, vector<unsigned char>& serializedCall, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
 	unsigned int 	len;
 	string			s;
 	unsigned char	byte;
@@ -531,26 +531,26 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 	void*			ptr;
 
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, func_name.c_str());
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::PrepareSerializeCall(%lu, %s, ...)", asyncId, function.c_str());
 #endif
 
 	// first pass the asyncId
-	serialized_call.push_back(ASYNC_ID);
-	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+	serializedCall.push_back(ASYNC_ID);
+	push_uint64(serializedCall, HTONLL((uint64_t)asyncId));
 
 	// then pass the function name
-	serialized_call.push_back(STRING);
-	len = (unsigned int)func_name.length();
-	push_uint16(serialized_call, htons(len));
-	unsigned char* p = (unsigned char*)func_name.c_str();
-	serialized_call.insert(serialized_call.end(), p, p + len);
+	serializedCall.push_back(STRING);
+	len = (unsigned int)function.length();
+	push_uint16(serializedCall, htons(len));
+	unsigned char* p = (unsigned char*)function.c_str();
+	serializedCall.insert(serializedCall.end(), p, p + len);
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "pushed func_name %s", func_name.c_str());
+	LogVText(RPC_MODULE, 4, true, "pushed function %s", function.c_str());
 #endif
 
 	// then add the return result address
-	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL((uint64_t)resultP));
+	serializedCall.push_back(UINT64);
+	push_uint64(serializedCall, HTONLL((uint64_t)resultP));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed return address %p", resultP);
 #endif
@@ -560,7 +560,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 		ParamType type = paramP->GetType();
 
 		// first push the parameter type in the call stream vector
-		serialized_call.push_back(type);
+		serializedCall.push_back(type);
 #ifdef RPC_TRACES
 		LogVText(RPC_MODULE, 6, true, "pushed parameter type %x", type);
 #endif
@@ -580,8 +580,8 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a byte ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
-				serialized_call.push_back(ptr ? *(unsigned char*)ptr : 0);
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
+				serializedCall.push_back(ptr ? *(unsigned char*)ptr : 0);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter byte ptr %p", ptr);
 #endif
@@ -589,7 +589,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// a byte
 				byte = ParameterSafeCast(uint8_t, paramP)->GetReference();
-				serialized_call.push_back(byte);
+				serializedCall.push_back(byte);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter byte %u", byte);
 #endif
@@ -602,8 +602,8 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a char ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
-				serialized_call.push_back(ptr ? *(char*)ptr : 0);
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
+				serializedCall.push_back(ptr ? *(char*)ptr : 0);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter char ptr %p", ptr);
 #endif
@@ -611,7 +611,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// a char
 				c = ParameterSafeCast(int, paramP)->GetReference();
-				serialized_call.push_back(c);
+				serializedCall.push_back(c);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter char %c", c);
 #endif
@@ -624,9 +624,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a short integer ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				i16 = ptr ? *(int16_t*)ptr : 0;
-				push_int16(serialized_call, ntohs(i16));
+				push_int16(serializedCall, ntohs(i16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int16 ptr %p", ptr);
 #endif
@@ -634,7 +634,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// a short integer
 				i16 = ParameterSafeCast(int16_t, paramP)->GetReference();
-				push_int16(serialized_call, htons(i16));
+				push_int16(serializedCall, htons(i16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int16_t %ud", i16);
 #endif
@@ -647,9 +647,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// an unsigned short ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				ui16 = ptr ? *(uint16_t*)ptr : 0;
-				push_uint16(serialized_call, ntohs(ui16));
+				push_uint16(serializedCall, ntohs(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t ptr %p", ptr);
 #endif
@@ -657,7 +657,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// an unsigned short integer
 				ui16 = ParameterSafeCast(uint16_t, paramP)->GetReference();
-				push_uint16(serialized_call, htons(ui16));
+				push_uint16(serializedCall, htons(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint16_t %u", ui16);
 #endif
@@ -670,9 +670,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a long integer ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				i32 = ptr ? *(int32_t*)ptr : 0;
-				push_int32(serialized_call, ntohl(i32));
+				push_int32(serializedCall, ntohl(i32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t ptr %p", ptr);
 #endif
@@ -680,7 +680,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// a long integer
 				i32 = ParameterSafeCast(int32_t, paramP)->GetReference();
-				push_int32(serialized_call, htonl(i32));
+				push_int32(serializedCall, htonl(i32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int32_t %d", i32);
 #endif
@@ -693,9 +693,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// an unsigned long ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				ui32 = ptr ? *(uint32_t*)ptr : 0;
-				push_uint32(serialized_call, ntohl(ui32));
+				push_uint32(serializedCall, ntohl(ui32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t ptr %p", ptr);
 #endif
@@ -703,7 +703,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// an unsigned long integer
 				ui32 = ParameterSafeCast(uint32_t, paramP)->GetReference();
-				push_uint32(serialized_call, htonl(ui32));
+				push_uint32(serializedCall, htonl(ui32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint32_t %u", ui32);
 #endif
@@ -716,9 +716,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a long long ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				i64 = ptr ? *(int64_t*)ptr : 0;
-				push_int64(serialized_call, NTOHLL(i64));
+				push_int64(serializedCall, NTOHLL(i64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t ptr %p", ptr);
 #endif
@@ -726,7 +726,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// a long long integer
 				i64 = ParameterSafeCast(int64_t, paramP)->GetReference();
-				push_int64(serialized_call, HTONLL(i64));
+				push_int64(serializedCall, HTONLL(i64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter int64_t %ld", i64);
 #endif
@@ -739,9 +739,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// an unsigned long long ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				ui64 = ptr ? *(uint64_t*)ptr : 0;
-				push_uint64(serialized_call, NTOHLL(ui64));
+				push_uint64(serializedCall, NTOHLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t ptr %p", ptr);
 #endif
@@ -749,7 +749,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 			else {
 				// an unsigned long long integer
 				ui64 = ParameterSafeCast(uint64_t, paramP)->GetReference();
-				push_uint64(serialized_call, HTONLL(ui64));
+				push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter uint64_t %lu", ui64);
 #endif
@@ -762,9 +762,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a double ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 				ui64 = ptr ? *(uint64_t*)ptr : 0;
-				push_uint64(serialized_call, NTOHLL(ui64));
+				push_uint64(serializedCall, NTOHLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter double ptr %p", ptr);
 #endif
@@ -773,7 +773,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 				// a double
 				d = ParameterSafeCast(double, paramP)->GetReference();
 				ui64 = *(uint64_t*)&d;
-				push_uint64(serialized_call, HTONLL(ui64));
+				push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter double %f", d);
 #endif
@@ -786,19 +786,19 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 
 				// a string ptr
 				ptr = (void*)paramP->GetCallerPointer();
-				push_uint64(serialized_call, HTONLL((uint64_t)ptr));
+				push_uint64(serializedCall, HTONLL((uint64_t)ptr));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter string %p", ptr);
 #endif
 				// string
 				s = ptr ? *(string*)ptr : "";
 				len = (unsigned int)s.length();
-				push_uint16(serialized_call, htons(len));
+				push_uint16(serializedCall, htons(len));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 				unsigned char* p = (unsigned char*)s.c_str();
-				serialized_call.insert(serialized_call.end(), p, p + len);
+				serializedCall.insert(serializedCall.end(), p, p + len);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -807,12 +807,12 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 				// string
 				s = ParameterSafeCast(string, paramP)->GetReference();
 				len = (unsigned int)s.length();
-				push_uint16(serialized_call, htons(len));
+				push_uint16(serializedCall, htons(len));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter string len %u", len);
 #endif
 				unsigned char* p = (unsigned char*)s.c_str();
-				serialized_call.insert(serialized_call.end(), p, p + len);
+				serializedCall.insert(serializedCall.end(), p, p + len);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed parameter string %s", s.c_str());
 #endif
@@ -823,24 +823,24 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
 }
 
 /**
- * \fn unsigned long RemoteProcedureCall::SendSerializeCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serialized_call, shared_ptr<unsigned long> result)
+ * \fn unsigned long RemoteProcedureCall::SendSerializeCall(AsyncID asyncId, AsyncReplyProcedure* procedureP, vector<unsigned char>& serializedCall, shared_ptr<unsigned long> result)
  * \brief Send the serialized call stream prepared by PrepareSerializeCall to the server.
  *
  * \param asyncId is asynchronous call identifier, which will be returned with
  *				 the result to match it. It is O if the call is synchronous
- * \param serialized_call is the serialized vector of parameters to build with the vl list of
+ * \param serializedCall is the serialized vector of parameters to build with the vl list of
  *		  arguments
  */
-void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serialized_call) {
+void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall) {
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::SendSerializedCall(%lu, ...)", asyncId);
 #endif
 
 	// send all the serialized call parameters over to the peer
-	unsigned long buff_len = (unsigned long)serialized_call.size();
+	unsigned long buff_len = (unsigned long)serializedCall.size();
 	{
 		unique_lock<mutex> lock(m_cli_send_mutex);
-		SendPacket((unsigned char*)serialized_call.data(), buff_len);
+		SendPacket((unsigned char*)serializedCall.data(), buff_len);
 	}
 
 #ifdef RPC_TRACES
@@ -979,16 +979,16 @@ inline uint16_t RemoteProcedureCall::decode_uint16(unsigned char* bufferP, int& 
 }
 
 /**
- * \fn vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(const string& func_name)
+ * \fn vector<RemoteProcedureCall::Parameter*>* RemoteProcedureCall::DeserializeCall(const string& function)
  * \brief Deserializes a function call byte stream built by SerializeCall.
  *
  * \param asyncId is asynchronous call identifier, which will be returned with
  *		  the result to match it. It is O if the call is synchronous
- * \param func_name receives the name of the function to call
+ * \param function receives the name of the function to call
  * \param bufferP is the function call byte stream built by SerializeCall
  * \return a vector of parameters associated with the function call
  */
-vector<RemoteProcedureCall::ParameterBase*>* RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& func_name) {
+vector<RemoteProcedureCall::ParameterBase*>* RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& function) {
 	vector<RemoteProcedureCall::ParameterBase*>* resultP;
 	ParamType		type;
 	unsigned char	b, *bufferP;
@@ -1007,11 +1007,11 @@ vector<RemoteProcedureCall::ParameterBase*>* RemoteProcedureCall::DeserializeCal
 	bool			is_ptr = false;
 
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCall(%s)", func_name.c_str());
+	LogVText(RPC_MODULE, 0, true, "RemoteProcedureCall::DeserializeCall(%s)", function.c_str());
 #endif
 
 	// an empty name is returned upon error
-	func_name.clear();
+	function.clear();
 
 	// wait for incoming call stream
 	{
@@ -1045,14 +1045,14 @@ vector<RemoteProcedureCall::ParameterBase*>* RemoteProcedureCall::DeserializeCal
 	ui16 = decode_uint16(bufferP, offset);
 	ui16 = ntohs(ui16);
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "decoded func_name len: %u", ui16);
+	LogVText(RPC_MODULE, 4, true, "decoded function len: %u", ui16);
 #endif
 
 	// get the name
-	func_name = string((const char*)&bufferP[offset], ui16);
+	function = string((const char*)&bufferP[offset], ui16);
 	offset += ui16;
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "decoded func_name %s", func_name.c_str());
+	LogVText(RPC_MODULE, 4, true, "decoded function %s", function.c_str());
 #endif
 
 	// next, we must get the return result address
@@ -1357,18 +1357,18 @@ clean_up:
 }
 
 /**
- * \fn void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsigned long ret_val)
+ * \fn void RemoteProcedureCall::SerializeCallReturn(vector<Parameter*>* paramP, unsigned long retVal)
  * \brief Prepare serialized call return byte stream and send it over the associated link.
  *
  *        The stream format is:
  *				
  *	        	UINT64.<asyncId>.UINT64.<result_address>.UINT64.<return_value>.<parameters>.END_OF_CALL
- *  	      	result_address : address of the UINT64 to receive return_value on the
+ *  	      	result_address : address of the UINT64 to receive returnValue on the
  *                         		 caller side
  *				asyncId : UINT64 asynchronous call identifier
  *        		return_value : UINT64 value returned by callee
- *        		parameters := (PTR.<ptr_value>.<type>.<value>)*
- *        		ptr_value := address of the location to receive value on the caller
+ *        		parameters := (PTR.<ptrValue>.<type>.<value>)*
+ *        		ptrValue := address of the location to receive value on the caller
  *                     		 side
  *        		type := see ParamType in .h
  *        		value := output parameter value
@@ -1378,11 +1378,10 @@ clean_up:
  * \param asyncId is asynchronous call identifier, which will be returned with
  *				  the result to match it. It is O if the call is synchronous
  * \param paramP points to a parameter vector built by DeserializeCall
- * \param ret_val is the server's procedure return value
- * \param result is the unsigned long function call result
+ * \param retVal is the server's procedure return value
  */
-void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterBase*>* paramP, unsigned long ret_val) {
-	vector<unsigned char> 	serialized_call;
+void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterBase*>* paramP, unsigned long retVal) {
+	vector<unsigned char> 	serializedCall;
 	ParamType				type;
 	unsigned char			b;
 	unsigned char* 			p;
@@ -1399,24 +1398,24 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 	LogText(RPC_MODULE, 0, true, "RemoteProcedureCal::SerializeCallReturn(...)");
 #endif
 
-	serialized_call.push_back(ASYNC_ID);
-	push_uint64(serialized_call, HTONLL((uint64_t)asyncId));
+	serializedCall.push_back(ASYNC_ID);
+	push_uint64(serializedCall, HTONLL((uint64_t)asyncId));
 
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed asyncId : %lu", (uint64_t)asyncId);
 #endif
 
-	serialized_call.push_back(UINT64);
+	serializedCall.push_back(UINT64);
 
 	ui64 = ParameterSafeCast(uint64_t, paramP->at(0))->GetReference();
-	push_uint64(serialized_call, HTONLL(ui64));
+	push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed return result address %lx", ui64);
 #endif
 
-	ui64 = (uint64_t)ret_val;
-	serialized_call.push_back(UINT64);
-	push_uint64(serialized_call, HTONLL(ui64));
+	ui64 = (uint64_t)retVal;
+	serializedCall.push_back(UINT64);
+	push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed return result: %lu", ui64);
 #endif
@@ -1427,21 +1426,21 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 			continue;
 
 		// push ptr type
-		serialized_call.push_back(PTR);
+		serializedCall.push_back(PTR);
 #ifdef RPC_TRACES
 		LogText(RPC_MODULE, 6, true, "pushed ptr type");
 #endif
 
 		// push ptr
 		ui64 = (*i)->GetCallerPointer();
-		push_uint64(serialized_call, HTONLL(ui64));
+		push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 		LogVText(RPC_MODULE, 6, true, "pushed parameter ptr %lx", ui64);
 #endif
 
 		// push type
 		type = (*i)->GetType();
-		serialized_call.push_back(type);
+		serializedCall.push_back(type);
 #ifdef RPC_TRACES
 		LogVText(RPC_MODULE, 6, true, "pushed parameter type %x", type);
 #endif
@@ -1450,7 +1449,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 		switch (type) {
 			case BYTE:
 				b = ParameterSafeCast(unsigned char, *i)->GetReference();
-				serialized_call.push_back(b);
+				serializedCall.push_back(b);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed byte parameter value %u", b);
 #endif
@@ -1458,7 +1457,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case CHAR:
 				c = ParameterSafeCast(char, *i)->GetReference();
-				serialized_call.push_back(c);
+				serializedCall.push_back(c);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed char parameter value %c", c);
 #endif
@@ -1466,7 +1465,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case INT16:
 				i16 = ParameterSafeCast(int16_t, *i)->GetReference();
-				push_int16(serialized_call, htons(i16));
+				push_int16(serializedCall, htons(i16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int16 parameter value %d", i16);
 #endif
@@ -1474,7 +1473,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case UINT16:
 				ui16 = ParameterSafeCast(uint16_t, *i)->GetReference();
-				push_uint16(serialized_call, htons(ui16));
+				push_uint16(serializedCall, htons(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uin16 parameter value %u", ui16);
 #endif
@@ -1482,7 +1481,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case INT32:
 				i32 = ParameterSafeCast(int32_t, *i)->GetReference();
-				push_int32(serialized_call, htonl(i32));
+				push_int32(serializedCall, htonl(i32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int32 parameter value %d", i32);
 #endif
@@ -1490,7 +1489,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case UINT32:
 				ui32 = ParameterSafeCast(uint32_t, *i)->GetReference();
-				push_uint32(serialized_call, htonl(ui32));
+				push_uint32(serializedCall, htonl(ui32));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uint32 parameter value %u", ui32);
 #endif
@@ -1498,7 +1497,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case INT64:
 				i64 = ParameterSafeCast(int64_t, *i)->GetReference();
-				push_int64(serialized_call, HTONLL(i64));
+				push_int64(serializedCall, HTONLL(i64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed int64 parameter value %ld", i64);
 #endif
@@ -1506,7 +1505,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 			case UINT64:
 				ui64 = ParameterSafeCast(uint64_t, *i)->GetReference();
-				push_uint64(serialized_call, HTONLL(ui64));
+				push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed uint64 parameter value %lu", ui64);
 #endif
@@ -1515,7 +1514,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 			case DOUBLE:
 				d = ParameterSafeCast(double, *i)->GetReference();
 				ui64 = *(uint64_t*)&d;
-				push_uint64(serialized_call, HTONLL(ui64));
+				push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed double parameter value %f", d);
 #endif
@@ -1524,12 +1523,12 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 			case STRING:
 				s = ParameterSafeCast(string, *i)->GetReference();
 				ui16 = (uint16_t)s.length();
-				push_uint16(serialized_call, htons(ui16));
+				push_uint16(serializedCall, htons(ui16));
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed string parameter value len %u", ui16);
 #endif
 				p = (unsigned char*)s.c_str();
-				serialized_call.insert(serialized_call.end(), p, p+ui16);
+				serializedCall.insert(serializedCall.end(), p, p+ui16);
 #ifdef RPC_TRACES
 				LogVText(RPC_MODULE, 8, true, "pushed string parameter value %s", s.c_str());
 #endif
@@ -1542,7 +1541,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 	}
 
 	// end of call stream marker
-	serialized_call.push_back(END_OF_CALL);
+	serializedCall.push_back(END_OF_CALL);
 #ifdef RPC_TRACES
 	LogText(RPC_MODULE, 4, true, "pushed end of stream marker");
 #endif
@@ -1550,10 +1549,10 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 	// send all the serialized call parameters over to the peer
 	{
 		unique_lock<mutex> lock(m_srv_send_mutex); 
-		SendPacket(serialized_call.data(), (unsigned long)serialized_call.size());
+		SendPacket(serializedCall.data(), (unsigned long)serializedCall.size());
 	}
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serialized_call.size());
+	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serializedCall.size());
 #endif
 }
 

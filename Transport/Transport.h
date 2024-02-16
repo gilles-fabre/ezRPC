@@ -48,10 +48,10 @@ public:
 #endif
 	}
 
-	static Transport *CreateTransport(TransportType transport_type);
+	static Transport *CreateTransport(TransportType transportType);
 
-	virtual Link* LinkRequest(const string &server_address) = 0;
-	virtual Link* WaitForLinkRequest(const string &server_address) = 0;
+	virtual Link* LinkRequest(const string &serverAddress) = 0;
+	virtual Link* WaitForLinkRequest(const string &serverAddress) = 0;
 
 	virtual void Close() {
 #ifdef TRANSPORT_TRACES
@@ -81,7 +81,7 @@ class TcpTransport : public Transport {
 	static uint8_t	m_WSAStartupDone; // more windows crap
 #endif
 
-	SOCKET					m_s_socket;
+	SOCKET			m_s_socket;
 
 public:
 	TcpTransport() : Transport() {
@@ -100,8 +100,8 @@ public:
 		Close();
 	}
 
-	Link* LinkRequest(const string &server_address);
-	Link* WaitForLinkRequest(const string &server_address);
+	Link* LinkRequest(const string &serverAddress);
+	Link* WaitForLinkRequest(const string &serverAddress);
 	void Close() {
 		Transport::Close();
 
@@ -120,37 +120,37 @@ public:
 };
 
 class FileTransport : public Transport {
-	int 	m_s_socket;
-	string	m_server_address;
+	int 	m_srcSocket;
+	string	m_serverAddress;
 
 public:
-	FileTransport() : Transport() {m_s_socket = -1;}
+	FileTransport() : Transport() {m_srcSocket = -1;}
 	~FileTransport() {
 		Close();
 	}
 
-	Link* LinkRequest(const string &server_address);
-	Link* WaitForLinkRequest(const string &server_address);
+	Link* LinkRequest(const string &serverAddress);
+	Link* WaitForLinkRequest(const string &serverAddress);
 	void  Close() {
 		Transport::Close();
 
 #ifdef TRANSPORT_TRACES
-		LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::Close(), closing listening socket %d", m_s_socket);
+		LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::Close(), closing listening socket %d", m_srcSocket);
 #endif
 		// don't need the server socket anymore
-		if (m_s_socket != -1)
+		if (m_srcSocket != -1)
 #ifdef WIN32
-			closesocket(m_s_socket);
+			closesocket(m_srcSocket);
 #else
 			close(m_s_socket);
 #endif
 
 		// don't need the file anymore
-		if (!m_server_address.empty()) {
+		if (!m_serverAddress.empty()) {
 #ifdef TRANSPORT_TRACES
-			LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::Close(), deleting file %s", m_server_address.c_str());
+			LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::Close(), deleting file %s", m_serverAddress.c_str());
 #endif
-			unlink(m_server_address.c_str()); // this file should already have been deleted...
+			unlink(m_serverAddress.c_str()); // this file should already have been deleted...
 		}
 	}
 };

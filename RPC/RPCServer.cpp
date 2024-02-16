@@ -99,13 +99,13 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 	RemoteProcedureCall rpc(params->m_linkP);
 	for (;;) {
 		AsyncID			asyncId;
-		string   		func_name;
+		string   		function;
 #ifdef RPCSERVER_TRACES
 		LogText(RPCSERVER_MODULE, 4, true, "waiting for incoming data...");
 #endif
 
 		// wait and deserialize call stream
-		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rpc.DeserializeCall(asyncId, func_name));
+		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rpc.DeserializeCall(asyncId, function));
 		if (!rpc_params.get() || rpc_params.get()->size() == 0) {
 #ifdef RPCSERVER_TRACES
 			LogVText(RPCSERVER_MODULE, 8, true, "server_error, couldn't deserialize parameters!");
@@ -118,16 +118,16 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 #endif
 
 		// process rpc call
-		RemoteProcedure* procP = params->m_serverP->m_rpc_map[func_name];
+		RemoteProcedure* procP = params->m_serverP->m_rpc_map[function];
 		if (!procP) {
-			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << func_name << ")!" << endl;
+			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << function << ")!" << endl;
 			// serialize back 'error'
 			rpc.SerializeCallReturn(asyncId, rpc_params.get(), 0);
 			continue;
 		}
 
 #ifdef RPCSERVER_TRACES
-		LogVText(RPCSERVER_MODULE, 8, true, "will call procedure %s, asyncId %lu", func_name.c_str(), asyncId);
+		LogVText(RPCSERVER_MODULE, 8, true, "will call procedure %s, asyncId %lu", function.c_str(), asyncId);
 #endif
 
 		if (asyncId) {

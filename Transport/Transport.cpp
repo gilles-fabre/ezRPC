@@ -63,13 +63,13 @@ Transport* Transport::CreateTransport(TransportType transport_type) {
 }
 
 /**
- * \fn Link* TcpTransport::WaitForLinkRequest(const string& server_address)
+ * \fn Link* TcpTransport::WaitForLinkRequest(const string& serverAddress)
  * \brief Waits for a LinkRequest and returns the resulting link
  *
  * \param server_address is the IP address to listen on
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
+Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	SOCKET				c_socket;
 	struct 	sockaddr_in server_addr = {0,};
 
@@ -87,23 +87,23 @@ Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
 	int 	off = 0;
 
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::WaitForLinkRequest(%s)", server_address.c_str());
+	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::WaitForLinkRequest(%s)", serverAddress.c_str());
 #endif
 
-	if (server_address.empty()) {
+	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid server address!" << endl;
 		return NULL;
 	}
 
 	// get the server port
-	size_t found = server_address.find_last_of(':');
+	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
 		return NULL;
 	}
 
 	// check numeric port set
-	s_port = server_address.substr(found + 1);
+	s_port = serverAddress.substr(found + 1);
 	istringstream ps(s_port);
 	ps >> n_port;
 	if (ps.fail()) {
@@ -111,7 +111,7 @@ Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
 		return NULL; // port must be numeric
 	}
 
-	s_ipaddr = server_address.substr(0, found);
+	s_ipaddr = serverAddress.substr(0, found);
 	if (s_ipaddr.empty())
 		s_ipaddr = "0.0.0.0";
 #ifdef TRANSPORT_TRACES
@@ -193,14 +193,14 @@ Link* TcpTransport::WaitForLinkRequest(const string& server_address) {
 }
 
 /**
- * \fn Link* TcpTransport::LinkRequest(const string& server_address)
+ * \fn Link* TcpTransport::LinkRequest(const string& serverAddress)
  * \brief Connects to a server blocked on WaitLinkRequest and
  * 		  returns the resulting link
  *
  * \param server_address is the IP addr of the server to connect to
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::LinkRequest(const string& server_address) {
+Link* TcpTransport::LinkRequest(const string& serverAddress) {
 	SOCKET 				c_socket;
 	struct 	sockaddr_in server_addr = {0,};
 	string				s_ipaddr;
@@ -209,23 +209,23 @@ Link* TcpTransport::LinkRequest(const string& server_address) {
 	int 				retval;
 
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", server_address.c_str());
+	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", serverAddress.c_str());
 #endif
 
-	if (server_address.empty()) {
+	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty address!" << endl;
 		return NULL;
 	}
 
 	// get the server port
-	size_t found = server_address.find_last_of(':');
+	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
 		return NULL;
 	}
 
 	// check numeric port set
-	s_port = server_address.substr(found + 1);
+	s_port = serverAddress.substr(found + 1);
 	istringstream ps(s_port);
 	ps >> n_port;
 	if (ps.fail()) {
@@ -233,7 +233,7 @@ Link* TcpTransport::LinkRequest(const string& server_address) {
 		return NULL; // port must be numeric
 	}
 
-	s_ipaddr = server_address.substr(0, found);
+	s_ipaddr = serverAddress.substr(0, found);
 	if (s_ipaddr.empty())
 		s_ipaddr = "0.0.0.0";
 #ifdef TRANSPORT_TRACES
@@ -303,15 +303,15 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 		return NULL;
 	}
 
-	if (m_s_socket == -1) {
+	if (m_srcSocket == -1) {
 		// keep the file name to later unlink
-		m_server_address = server_address;
+		m_serverAddress = server_address;
 
 		// in case the file already exist, must delete it
-		unlink(m_server_address.c_str());
+		unlink(m_serverAddress.c_str());
 
 		// create the server socket
-		if ((m_s_socket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
+		if ((m_srcSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			return NULL;
 		}
@@ -324,38 +324,38 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 		strcpy(server_addr.sun_path, server_address.c_str());
 
 		// bind the address struct to the socket
-		bind(m_s_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
+		bind(m_srcSocket, (struct sockaddr*)&server_addr, sizeof(server_addr));
 #ifdef TRANSPORT_TRACES
-		LogVText(TRANSPORT_MODULE, 4, true, "created and bound to socket %d", m_s_socket);
+		LogVText(TRANSPORT_MODULE, 4, true, "created and bound to socket %d", m_srcSocket);
 #endif
 
-		if (setsockopt(m_s_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
+		if (setsockopt(m_srcSocket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;
 #ifdef WIN32
-			closesocket(m_s_socket);
+			closesocket(m_srcSocket);
 #else
 			close(m_s_socket);
 #endif
-			m_s_socket = -1;
+			m_srcSocket = -1;
 			return NULL;
 		}
 	}
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "will now listen on socket %d", m_s_socket);
+	LogVText(TRANSPORT_MODULE, 4, true, "will now listen on socket %d", m_srcSocket);
 #endif
 
 	// listen on the socket, with 1 max connection request queued
-	if ((retval = listen(m_s_socket, 1))) {
+	if ((retval = listen(m_srcSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
 		return NULL;
 	}
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "accepting connection on socket", m_s_socket);
+	LogVText(TRANSPORT_MODULE, 4, true, "accepting connection on socket", m_srcSocket);
 #endif
 
 	// accept call creates a new socket for the incoming connection
 	addr_size = sizeof(server_storage);
-	c_socket = (int)accept(m_s_socket, (struct sockaddr*)&server_storage, &addr_size);
+	c_socket = (int)accept(m_srcSocket, (struct sockaddr*)&server_storage, &addr_size);
 
 	if (setsockopt(c_socket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't set socket option (" << strerror(errno) << ")" << endl;

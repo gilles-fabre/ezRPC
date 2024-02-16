@@ -169,9 +169,9 @@ int main(int argc, char **argv) {
 		cout << "arg #" << i << ": " << argv[i] << endl;
 
 	string proto = argv[1];
-	string server_addr = argv[2];
+	string serverAddr = argv[2];
 
-	RPCServer server(proto == "tcp" ? Transport::TCP : Transport::FILE, server_addr);
+	RPCServer server(proto == "tcp" ? Transport::TCP : Transport::FILE, serverAddr);
 	gRpcServerP = &server;
 
 	server.RegisterProcedure("nop", &Nop);

@@ -27,10 +27,10 @@ using namespace std;
 typedef void AsyncJsonReplyProcedure(AsyncID, char*);
 
 extern "C" {
-DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *server_addr);
-DECLSPEC AsyncID  AsyncRpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t json_call_result_len, AsyncJsonReplyProcedure reply_proc);
-DECLSPEC uint64_t RpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t json_call_result_len);
-DECLSPEC void	  DestroyRpcClient(uint64_t client_id);
+DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
+DECLSPEC AsyncID  AsyncRpcCall(uint64_t client_id, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+DECLSPEC uint64_t RpcCall(uint64_t client_id, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+DECLSPEC void	  DestroyRpcClient(uint64_t clientId);
 };
 
 /**
@@ -45,15 +45,15 @@ class	RPCJsonClient {
 
 	struct AsyncJsonCallParams {
 		string													m_function;
-		char*													m_json_call_resultP;
-		size_t													m_json_call_result_len;
+		char*													m_jsonCallResultP;
+		size_t													m_jsonCallResultLen;
 		AsyncJsonReplyProcedure*								m_replyProcP;
 		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> m_params;
 
-		AsyncJsonCallParams(string& function, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params) {
+		AsyncJsonCallParams(string& function, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params) {
 			m_function = function;
-			m_json_call_resultP = json_call_resultP;
-			m_json_call_result_len = json_call_result_len;
+			m_jsonCallResultP = jsonCallResultP;
+			m_jsonCallResultLen = jsonCallResultLen;
 			m_replyProcP = replyProcP;
 			m_params = params;
 		}
@@ -69,10 +69,10 @@ class	RPCJsonClient {
 	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result);
 
 public:
-	JsonRPCClient(Transport::TransportType transport, const string& server_addr);
+	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);
 
-	AsyncID	 AsyncRpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP);
-	unsigned long RpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len);
+	AsyncID	 AsyncRpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+	unsigned long RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 };
 
 #endif /* _JSON_RPC_H */

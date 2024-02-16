@@ -40,7 +40,7 @@ class	RPCClient {
 #endif
 	Transport*				m_transportP;	// transport used to talk to the peer server
 	RemoteProcedureCall* 	m_rpcP;			// rpc underlying abstraction
-	mutex					m_async_procs_mutex; 
+	mutex					m_asyncProcsMutex; 
 	unordered_map<AsyncID, AsyncReplyProcedure*> m_async_procs;
 
 public:

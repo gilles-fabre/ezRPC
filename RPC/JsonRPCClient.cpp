@@ -5,22 +5,22 @@
 
 using json = nlohmann::json;
 
-JsonRPCClient::JsonRPCClient(Transport::TransportType transport, const string& server_addr) {
-	m_client = make_unique<RPCClient>(transport, server_addr);
+JsonRPCClient::JsonRPCClient(Transport::TransportType transport, const string& serverAddr) {
+	m_client = make_unique<RPCClient>(transport, serverAddr);
 }
 
-DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char* server_addr) {
-	return (uint64_t)new JsonRPCClient(transport, server_addr);
+DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char* serverAddrP) {
+	return (uint64_t)new JsonRPCClient(transport, serverAddrP);
 }
 
-DECLSPEC AsyncID  AsyncRpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t json_call_result_len, AsyncJsonReplyProcedure reply_proc) {
+DECLSPEC AsyncID  AsyncRpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t jsonCallResultLen, AsyncJsonReplyProcedure reply_proc) {
 	auto client = (JsonRPCClient*)client_id;
-	return client->AsyncRpcCall(json_call, json_call_result, json_call_result_len, reply_proc);
+	return client->AsyncRpcCall(json_call, json_call_result, jsonCallResultLen, reply_proc);
 }
 
-DECLSPEC uint64_t RpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t json_call_result_len) {
+DECLSPEC uint64_t RpcCall(uint64_t client_id, const char* json_call, char* json_call_result, size_t jsonCallResultLen) {
 	auto client = (JsonRPCClient*)client_id;
-	return client->RpcCall(json_call, json_call_result, json_call_result_len);
+	return client->RpcCall(json_call, json_call_result, jsonCallResultLen);
 }
 
 DECLSPEC void  DestroyRpcClient(uint64_t client_id) {
@@ -49,11 +49,11 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 	BuildJsonFromParameters(i->second->m_function, i->second->m_params, json_result);
 
 	// copy the result json into the result buffer if it is long enough, else, return an error.
-	if (i->second->m_json_call_result_len > json_result.size()) {
-		strncpy_s(i->second->m_json_call_resultP, i->second->m_json_call_result_len, json_result.c_str(), json_result.size());
+	if (i->second->m_jsonCallResultLen > json_result.size()) {
+		strncpy_s(i->second->m_jsonCallResultP, i->second->m_jsonCallResultLen, json_result.c_str(), json_result.size());
 	}
 
-	(*(i->second->m_replyProcP))(asyncId, i->second->m_json_call_resultP);
+	(*(i->second->m_replyProcP))(asyncId, i->second->m_jsonCallResultP);
 
 	{
 		unique_lock<mutex> lock(m_asyncParamsMutex);
@@ -61,7 +61,7 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 	}
 }
 
-AsyncID	JsonRPCClient::AsyncRpcCall(const char* json_callP, char* json_call_resultP, size_t json_call_result_len, AsyncJsonReplyProcedure* replyProcP) {
+AsyncID	JsonRPCClient::AsyncRpcCall(const char* json_callP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP) {
 	// analyze the json call and build the parameters vector
 	string function;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
@@ -73,13 +73,13 @@ AsyncID	JsonRPCClient::AsyncRpcCall(const char* json_callP, char* json_call_resu
 	{
 		unique_lock<mutex> lock(m_asyncParamsMutex);
 		asyncId = m_client->RpcCallAsync(JsonRPCClient::AsyncRpcReplyProc, function, params.get());
-		m_asyncParams[asyncId] = make_shared<AsyncJsonCallParams>(function, json_call_resultP, json_call_result_len, replyProcP, params);
+		m_asyncParams[asyncId] = make_shared<AsyncJsonCallParams>(function, jsonCallResultP, jsonCallResultLen, replyProcP, params);
 	}
 
 	return asyncId;
 }
 
-unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_result, size_t json_call_result_len) {
+unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_result, size_t jsonCallResultLen) {
 	unsigned long result = -1;
 
 	// analyze the json call and build the parameters vector
@@ -96,8 +96,8 @@ unsigned long JsonRPCClient::RpcCall(const char* json_call, char* json_call_resu
 	BuildJsonFromParameters(function, params, json_result);
 
 	// copy the result json into the result buffer if it is long enough, else, return an error.
-	if (json_call_result_len > json_result.size()) {
-		strncpy_s(json_call_result, json_call_result_len, json_result.c_str(), json_result.size());
+	if (jsonCallResultLen > json_result.size()) {
+		strncpy_s(json_call_result, jsonCallResultLen, json_result.c_str(), json_result.size());
 	}
 
 	return result;
