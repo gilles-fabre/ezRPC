@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-public delegate void AsyncJsonReplyProcedureType(ulong asyncId, char[] jsonResult);
+public delegate void AsyncJsonReplyProcedureType(ulong asyncId, byte[] jsonResult);
 
 namespace ezRPC
 {
@@ -10,13 +10,13 @@ namespace ezRPC
 		public enum TransportType {TCP, FILE};
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong CreateRpcClient(TransportType transport, char[] serverAddrP);
+		public static extern ulong CreateRpcClient(TransportType transport, char[] serverAddr);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong AsyncRpcCall(ulong clientId, char[] jsonCallP, char[] jsonCallResultP, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProcP);
+		public static extern ulong AsyncRpcCall(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProc);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong RpcCall(ulong clientId, char[] jsonCallP, char[] jsonCallResultP, ulong jsonCallResultLen);
+		public static extern ulong RpcCall(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void DestroyRpcClient(ulong clientId);
@@ -25,21 +25,17 @@ namespace ezRPC
 		{
 			return CreateRpcClient(transport, serverAddr.ToCharArray());
 		}
-		public static ulong Call(ulong clientId, string jsonCall, ref string jsonCallResult)
+		public static ulong Call(ulong clientId, string jsonCall, ref string jsonCallResult, ulong jsonCallResultLen)
 		{
-			char[] jsonResult = new char[1024];
-			ulong result = RpcCall(clientId, jsonCall.ToCharArray(), jsonResult, 1024);
-			jsonCallResult = new string(jsonResult);
+			byte[] jsonResult = new byte[jsonCallResultLen];
+			ulong result = RpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(jsonCall), jsonResult, jsonCallResultLen);
+			jsonCallResult = new string(System.Text.Encoding.ASCII.GetString(jsonResult));
 
 			return result;
 		}
-		public static ulong AsyncCall(ulong clientId, string jsonCall, ref string jsonCallResult)
+		public static ulong AsyncCall(ulong clientId, string jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProc)
 		{
-			char[] jsonResult = new char[1024];
-			return AsyncRpcCall(clientId, jsonCall.ToCharArray(), jsonResult, 1024, (asyncId, jsonResult) => { 
-				Console.WriteLine("asyncId : {0} -> result : {1}", asyncId, jsonResult);
-				//jsonCallResult = new string(jsonResult);
-			});
+			return AsyncRpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(jsonCall), jsonCallResult, jsonCallResultLen, replyProc);
 		}
 		public static void DestroyClient(ulong clientId)
 		{

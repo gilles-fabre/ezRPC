@@ -31,8 +31,8 @@ typedef void AsyncJsonReplyProcedure(AsyncID, char*);
 
 extern "C" {
 DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
-DECLSPEC AsyncID  AsyncRpcCall(uint64_t client_id, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
-DECLSPEC uint64_t RpcCall(uint64_t client_id, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+DECLSPEC AsyncID  AsyncRpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+DECLSPEC uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 DECLSPEC void	  DestroyRpcClient(uint64_t clientId);
 };
 
@@ -68,8 +68,8 @@ class	RPCJsonClient {
 
 	static void AsyncRpcReplyProc(AsyncID asyncId, unsigned long result);
 
-	static bool BuildParametersFromJson(const char* json_callP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
-	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& json_result);
+	static bool BuildParametersFromJson(const char* jsonCallP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
+	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult);
 
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);
