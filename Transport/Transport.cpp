@@ -120,7 +120,7 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 
 	// create the server socket
 	if (m_s_socket == -1) {
-		if ((m_s_socket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
+		if ((m_s_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			return NULL;
 		}

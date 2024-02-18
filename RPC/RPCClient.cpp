@@ -62,7 +62,7 @@ unsigned long RPCClient::RpcCall(string function, vector<RemoteProcedureCall::Pa
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		return 0;
+		return -1; // #### TODO : find a proper way to return an error.
 	}
 
 #ifdef RPCCLIENT_TRACES

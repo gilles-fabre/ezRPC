@@ -27,7 +27,7 @@ using namespace std;
  * \brief Provides C APIs on top of RPCClient services
  */
 
-typedef void AsyncJsonReplyProcedure(AsyncID, char*);
+typedef void AsyncJsonReplyProcedure(AsyncID);
 
 extern "C" {
 DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
@@ -70,6 +70,7 @@ class	RPCJsonClient {
 
 	static bool BuildParametersFromJson(const char* jsonCallP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
 	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult);
+	static void CleanupParameters(shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
 
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);

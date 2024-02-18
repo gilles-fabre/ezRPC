@@ -840,7 +840,7 @@ void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned ch
 	unsigned long buff_len = (unsigned long)serializedCall.size();
 	{
 		unique_lock<mutex> lock(m_cli_send_mutex);
-		SendPacket((unsigned char*)serializedCall.data(), buff_len);
+		SendPacket((unsigned char*)serializedCall.data(), buff_len); // #### TODO : handle error & find a proper way to return an error.
 	}
 
 #ifdef RPC_TRACES
@@ -852,11 +852,11 @@ void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned ch
 	unsigned char* bufferP;
 	{
 		unique_lock<mutex> lock(m_cli_receive_mutex);
-		bufferP = ReceivePacket(buff_len); // blocking
+		bufferP = ReceivePacket(buff_len); // blocking // #### TODO : handle error & find a proper way to return an error.
 	}
 
 	if (bufferP) {
-		DeserializeCallReturn(dummy, bufferP);
+		DeserializeCallReturn(dummy, bufferP); // #### TODO : handle error & find a proper way to return an error.
 		free(bufferP);
 	}
 }
@@ -1549,7 +1549,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 	// send all the serialized call parameters over to the peer
 	{
 		unique_lock<mutex> lock(m_srv_send_mutex); 
-		SendPacket(serializedCall.data(), (unsigned long)serializedCall.size());
+		SendPacket(serializedCall.data(), (unsigned long)serializedCall.size()); // #### TODO : handle error & find a proper way to return an error.
 	}
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serializedCall.size());

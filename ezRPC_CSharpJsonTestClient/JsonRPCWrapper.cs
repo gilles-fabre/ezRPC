@@ -12,7 +12,8 @@ namespace ezRPC
 	{
 		public enum TransportType {TCP, FILE};
 
-		public delegate void AsyncJsonReplyProcedureType(ulong asyncId, byte[] jsonResult);
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
+		public delegate void AsyncJsonReplyProcedureType(ulong asyncId);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong CreateRpcClient(TransportType transport, char[] serverAddr);
@@ -44,7 +45,7 @@ namespace ezRPC
 		public static ulong AsyncCall(ulong clientId, JsonRpcWrapper.JsonCall call, ulong maxJsonReplyLen, AsyncJsonCallReplyProcedureType replyProc)
 		{
 			byte[] jsonCallResult = new byte[maxJsonReplyLen + 1];	
-			return AsyncRpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonRpcWrapper.JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId, _jsonCallResult) =>
+			return AsyncRpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonRpcWrapper.JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId) =>
 			{
 				JsonCall? callResult = JsonCall.FromJson(jsonCallResult);
 				replyProc(_asyncId, callResult);
