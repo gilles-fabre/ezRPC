@@ -21,7 +21,7 @@ add_library(LogReporter SHARED
 
 add_library(ezRPC SHARED 
 			RPC/JsonRPCClient.cpp RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp
-		    Transport/Transport.cpp Transport/Link.cpp
+		    Transport/Transport.cpp Transport/TcpTransport.cpp Transport/FileTransport.cpp Transport/Link.cpp
 		    Thread/Thread.cpp)
 						
 target_link_libraries(ezRPC LogReporter)

@@ -120,7 +120,11 @@ public:
 			m_type = type;
 		}
 
-	    virtual ~ParameterBase() = default; // just so we can dynamic_cast ParameterBase* into Parameter<T>*
+	    virtual ~ParameterBase() {
+#ifdef RPC_TRACES
+			LogVText(RPC_MODULE, 0, true, "deleting parameter %p, of type %c...", this, m_type);
+#endif
+		}
 
 		// type accessor
 		ParamType GetType() {return m_type;}
