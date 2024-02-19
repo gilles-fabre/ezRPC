@@ -1,5 +1,5 @@
-#ifndef _JSON_RPC_H
-#define _JSON_RPC_H
+#ifndef _JSON_RPC_CLIENT_H
+#define _JSON_RPC_CLIENT_H
 
 #include <log2reporter.h>
 
@@ -8,10 +8,10 @@
 using namespace std;
 
 #ifdef _DEBUG
-#define JSONRPC_TRACES 1
+#define JSONRPCCLIENT_TRACES 1
 #endif
 
-#define JSONRPC_MODULE 0x10
+#define JSONRPCCLIENT_MODULE 0x10
 
 #ifdef WIN32
 #pragma warning(disable:4251)
@@ -23,7 +23,7 @@ using namespace std;
 #endif
 
 /**
- * \RPCJson C API
+ * \JsonRPCClient C API
  * \brief Provides C APIs on top of RPCClient services
  */
 
@@ -37,15 +37,14 @@ DECLSPEC void	  DestroyRpcClient(uint64_t clientId);
 };
 
 /**
- * \class RPCJsonClient
+ * \class JsonRPCClient
  * \brief Provides the user with a high abstraction level Remote Procedure Calls service.
  */
 #ifdef WIN32
 class	DECLSPEC JsonRPCClient {
 #else
-class	RPCJsonClient {
+class	JsonRPCClient {
 #endif
-
 	struct AsyncJsonCallParams {
 		string													m_function;
 		char*													m_jsonCallResultP;
@@ -79,5 +78,5 @@ public:
 	unsigned long RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 };
 
-#endif /* _JSON_RPC_H */
+#endif /* _JSON_RPC_CLIENT_H */
 #pragma once

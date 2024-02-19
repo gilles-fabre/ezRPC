@@ -76,7 +76,7 @@ class	RPCServer {
 	};
 
 	static void ListeningCallback(void *);					// threads' functions
-	static void CallServiceAndReply(RemoteProcedureCall& rpc, RemoteProcedure* procP, AsyncID asyncId, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params);
+	static void CallServiceAndReply(RemoteProcedureCall& rpc, string& name, RemoteProcedure* procP, AsyncID asyncId, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params);
 	static void ServiceCallback(void *);	
 
 public:

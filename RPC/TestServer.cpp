@@ -9,18 +9,18 @@ using namespace std;
 
 RPCServer* gRpcServerP = NULL;
 
-static unsigned long ByeBye(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long ByeBye(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (gRpcServerP)
 		gRpcServerP->Stop();
 
 	return (unsigned long)0;
 }
 
-static unsigned long Nop(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long Nop(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	return (unsigned long)0;
 }
 
-static unsigned long IncDouble(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long IncDouble(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 2)
 		return -1;
 
@@ -38,7 +38,7 @@ static unsigned long IncDouble(vector<RemoteProcedureCall::ParameterBase*>* v, v
 	return (unsigned long)0;
 }
 
-static unsigned long Increment(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long Increment(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 2)
 		return -1;
 
@@ -57,7 +57,7 @@ static unsigned long Increment(vector<RemoteProcedureCall::ParameterBase*>* v, v
 	return (unsigned long)i;
 }
 
-static unsigned long Concatenate(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long Concatenate(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 3)
 		return -1;
 
@@ -81,7 +81,7 @@ static unsigned long Concatenate(vector<RemoteProcedureCall::ParameterBase*>* v,
 	return (unsigned long)text.length();
 }
 
-static unsigned long RepeatPrint(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long RepeatPrint(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 3)
 		return -1;
 
@@ -102,7 +102,7 @@ static unsigned long RepeatPrint(vector<RemoteProcedureCall::ParameterBase*>* v,
 	return num;
 }
 
-static unsigned long SumNumbers(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long SumNumbers(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 3)
 		return -1;
 
@@ -121,7 +121,7 @@ static unsigned long SumNumbers(vector<RemoteProcedureCall::ParameterBase*>* v, 
 	return num1 + num2;
 }
 
-static unsigned long GetString(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long GetString(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 2)
 		return -1;
 
@@ -140,7 +140,7 @@ static unsigned long GetString(vector<RemoteProcedureCall::ParameterBase*>* v, v
 	return (unsigned long)text.length();
 }
 
-static unsigned long PutString(vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
+static unsigned long PutString(string& name, vector<RemoteProcedureCall::ParameterBase*>* v, void* user_dataP) {
 	if (v->size() < 2)
 		return -1;
 

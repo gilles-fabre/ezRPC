@@ -273,6 +273,6 @@ public:
 
 #define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
 
-typedef unsigned long RemoteProcedure(vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);
+typedef unsigned long RemoteProcedure(string& function, vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_
