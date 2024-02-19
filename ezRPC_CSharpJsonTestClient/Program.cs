@@ -8,79 +8,220 @@ using System.Text.Json;
 class TestApplication {
 	static void Main(string[] args)
 	{
-		ulong clientId = JsonClientRpcWrapper.CreateClient(JsonClientRpcWrapper.TransportType.TCP, "127.0.0.1:4444");
-
-		JsonCall? call = new JsonCall { function = "repeat", 
-										parameters = new Parameter[] { 
-													 new Parameter { type = "STRING", value = "_pouet" }, 
-													 new Parameter { type = "INT16", value = 100 } } };
-		JsonClientRpcWrapper.Call(clientId, ref call, 100);
-		if (call != null)
-			Console.WriteLine("result : {0}", call.ToJson());
-
-		call = new JsonCall
+		if (args.Length < 3)
 		{
-			function = "concat",
-			parameters = new Parameter[] {
-						 new Parameter { type = "STRING_REF", value = "_yop" },
-						 new Parameter { type = "INT16", value = 100 } }
-		};
-		JsonClientRpcWrapper.Call(clientId, ref call, 1024);
-		if (call != null)
-			Console.WriteLine("result : {0}", call.ToJson());
+			System.Console.WriteLine("usage:");
+			System.Console.WriteLine(@" <tcp|file> server_address function_name [repeat_count]");
+			System.Console.WriteLine(@" server_address must be addr:port for tcp");
+			System.Console.WriteLine(@" tregistered funtions are: nop, inc <int>, repeat <string> <int>,\n\tconcat <string> <int>, sum <int> <int>, inc_double <double>, byebye,\n\tput_string, get_string.");
+			return;
+		}
 
-		call = new JsonCall
-		{
-			function = "inc",
-			parameters = new Parameter[] {
-						 new Parameter { type = "INT16", value = 199 } }
-		};
-		JsonClientRpcWrapper.Call(clientId, ref call, 100);
-		if (call != null)
-			Console.WriteLine("result : {0}", call.ToJson());
+		System.Console.WriteLine("# args : {0}", args.Length);
+		for (int i = 0; i < args.Length; i++)
+			System.Console.WriteLine("	arg #{0} : {1}", i, args[i]);
 
-		call = new JsonCall
-		{
-			function = "sum",
-			parameters = new Parameter[] {
-						 new Parameter { type = "INT16", value = 1234 },
-						 new Parameter    { type = "INT16", value = 4321 }}
-		};
-		JsonClientRpcWrapper.Call(clientId, ref call, 100);
-		if (call != null)
-			Console.WriteLine("result : {0}", call.ToJson());
+		string proto = args[0];
+		string serverAddr = args[1];
+		string functionStr = args[2];
 
-		call = new JsonCall
-		{
-			function = "get_string",
-			parameters = new Parameter[] {
-						 new Parameter { type = "STRING_REF", value = "overwrite me!" } }
-		};
+		ulong clientId = JsonClientRpcWrapper.CreateClient(proto == "tcp" ? JsonClientRpcWrapper.TransportType.TCP : JsonClientRpcWrapper.TransportType.FILE, serverAddr);
 
-		Semaphore s = new Semaphore(initialCount: 0, maximumCount: 1);
-		JsonClientRpcWrapper.AsyncCall(clientId, call, 256, (_asyncId, _call) =>
+		JsonCall?  call;
+		Parameter[]? parameters;
+		if (functionStr == "get_string")
 		{
-			if (_call != null)
-				Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
-			s.Release();
-		});
-		s.WaitOne();
+			if (args.Length < 3)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr get_string [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
 
-		call = new JsonCall
-		{
-			function = "inc_double",
-			parameters = new Parameter[] {
-						 new Parameter { type = "DOUBLE_REF", value = 1.5 } }
-		};
+			int repeat = args.Length == 4 ? Int16.Parse(args[3]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "STRING_REF", value = "overwrite me!" } }
+				};
 
-		s = new Semaphore(initialCount: 0, maximumCount: 1);
-		JsonClientRpcWrapper.AsyncCall(clientId, call, 100, (_asyncId, _call) =>
-		{
-			if (_call != null)
-				Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
-			s.Release();
-		});
-		s.WaitOne();
+				Semaphore s = new Semaphore(initialCount: 0, maximumCount: 1);
+				JsonClientRpcWrapper.AsyncCall(clientId, call, 256, (_asyncId, _call) =>
+				{
+					if (_call != null)
+						Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
+					s.Release();
+				});
+				s.WaitOne();
+			}
+		} else if (functionStr == "put_string") {
+			if (args.Length < 4)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr put_string text [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 5 ? Int16.Parse(args[4]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] {new Parameter { type = "STRING_REF", value = args[3] }}
+				};
+
+				Semaphore s = new Semaphore(initialCount: 0, maximumCount: 1);
+				JsonClientRpcWrapper.AsyncCall(clientId, call, 256, (_asyncId, _call) =>
+				{
+					if (_call != null)
+						Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
+					s.Release();
+				});
+				s.WaitOne();
+			}
+		} else if (functionStr == "nop") {
+			if (args.Length < 3)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr nop [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 4 ? Int16.Parse(args[3]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] {}
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "inc") {
+			if (args.Length < 4)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr inc value [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 5 ? Int16.Parse(args[4]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "INT16_REF", value = Int16.Parse(args[3]) }}
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "inc_double") {
+			if (args.Length < 4)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr inc_double double_value [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 5 ? Int16.Parse(args[4]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "DOUBLE_REF", value = Double.Parse(args[3]) } }
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "concat") {
+			if (args.Length < 5)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr concat string num_concat [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 6 ? Int16.Parse(args[5]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "STRING_REF", value = args[3] },
+												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 1024);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "repeat") {
+			if (args.Length < 5)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr repeat string num_repeat [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 6 ? Int16.Parse(args[5]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "STRING", value = args[3] },
+												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "sum") {
+			if (args.Length < 5)
+			{
+				System.Console.WriteLine(@"usage:");
+				System.Console.WriteLine(@" test <tcp|file> server_addr sum number1 number2 [repeat_count]");
+				JsonClientRpcWrapper.DestroyClient(clientId);
+				return;
+			}
+
+			int repeat = args.Length == 6 ? Int16.Parse(args[5]) : 1;
+			for (int i = 0; i < repeat; i++)
+			{
+				call = new JsonCall
+				{
+					function = functionStr,
+					parameters = new Parameter[] { new Parameter { type = "INT16", value = Int16.Parse(args[3]) },
+												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
+				};
+				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				if (call != null)
+					Console.WriteLine("result : {0}", call.ToJson());
+			}
+		} else if (functionStr == "byebye") {
+			call = new JsonCall
+			{
+				function = functionStr,
+				parameters = new Parameter[] { }
+			};
+
+			JsonClientRpcWrapper.Call(clientId, ref call, 256);
+		}
 
 		JsonClientRpcWrapper.DestroyClient(clientId);
 	}
