@@ -25,17 +25,18 @@ class TestApplication {
 		string serverAddr = args[1];
 		string functionStr = args[2];
 
-		ulong clientId = JsonClientRpcWrapper.CreateClient(proto == "tcp" ? JsonClientRpcWrapper.TransportType.TCP : JsonClientRpcWrapper.TransportType.FILE, serverAddr);
+		JsonClientRpcWrapper jsonClient = new JsonClientRpcWrapper();
+
+		jsonClient.CreateClient(proto == "tcp" ? JsonClientRpcWrapper.TransportType.TCP : JsonClientRpcWrapper.TransportType.FILE, serverAddr);
 
 		JsonCall?  call;
-		Parameter[]? parameters;
 		if (functionStr == "get_string")
 		{
 			if (args.Length < 3)
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr get_string [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -49,7 +50,7 @@ class TestApplication {
 				};
 
 				Semaphore s = new Semaphore(initialCount: 0, maximumCount: 1);
-				JsonClientRpcWrapper.AsyncCall(clientId, call, 256, (_asyncId, _call) =>
+				jsonClient.AsyncCall(call, 256, (_asyncId, _call) =>
 				{
 					if (_call != null)
 						Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
@@ -62,7 +63,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr put_string text [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -76,7 +77,7 @@ class TestApplication {
 				};
 
 				Semaphore s = new Semaphore(initialCount: 0, maximumCount: 1);
-				JsonClientRpcWrapper.AsyncCall(clientId, call, 256, (_asyncId, _call) =>
+				jsonClient.AsyncCall(call, 256, (_asyncId, _call) =>
 				{
 					if (_call != null)
 						Console.WriteLine("asyncId : {0} -> result : {1}", _asyncId, _call.ToJson());
@@ -89,7 +90,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr nop [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -101,7 +102,7 @@ class TestApplication {
 					function = functionStr,
 					parameters = new Parameter[] {}
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				jsonClient.Call(ref call, 256);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -110,7 +111,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr inc value [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -122,7 +123,7 @@ class TestApplication {
 					function = functionStr,
 					parameters = new Parameter[] { new Parameter { type = "INT16_REF", value = Int16.Parse(args[3]) }}
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				jsonClient.Call(ref call, 256);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -131,7 +132,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr inc_double double_value [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -143,7 +144,7 @@ class TestApplication {
 					function = functionStr,
 					parameters = new Parameter[] { new Parameter { type = "DOUBLE_REF", value = Double.Parse(args[3]) } }
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				jsonClient.Call(ref call, 256);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -152,7 +153,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr concat string num_concat [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -165,7 +166,7 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "STRING_REF", value = args[3] },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 1024);
+				jsonClient.Call(ref call, 1024);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -174,7 +175,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr repeat string num_repeat [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -187,7 +188,7 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "STRING", value = args[3] },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				jsonClient.Call(ref call, 256);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -196,7 +197,7 @@ class TestApplication {
 			{
 				System.Console.WriteLine(@"usage:");
 				System.Console.WriteLine(@" test <tcp|file> server_addr sum number1 number2 [repeat_count]");
-				JsonClientRpcWrapper.DestroyClient(clientId);
+				jsonClient.DestroyClient();
 				return;
 			}
 
@@ -209,7 +210,7 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "INT16", value = Int16.Parse(args[3]) },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				JsonClientRpcWrapper.Call(clientId, ref call, 256);
+				jsonClient.Call(ref call, 256);
 				if (call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
@@ -220,9 +221,9 @@ class TestApplication {
 				parameters = new Parameter[] { }
 			};
 
-			JsonClientRpcWrapper.Call(clientId, ref call, 256);
+			jsonClient.Call(ref call, 256);
 		}
 
-		JsonClientRpcWrapper.DestroyClient(clientId);
+		jsonClient.DestroyClient();
 	}
 }

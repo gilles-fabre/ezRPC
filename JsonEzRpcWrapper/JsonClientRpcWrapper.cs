@@ -9,13 +9,15 @@ namespace ezRPC
 {
 	public class JsonClientRpcWrapper
 	{
+		ulong m_clientId {  get; set; }	
+
 		public enum TransportType {TCP, FILE};
 
 		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		public delegate void AsyncJsonReplyProcedureType(ulong asyncId);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong CreateRpcClient(TransportType transport, char[] serverAddr);
+		public static extern ulong CreateRpcClient(TransportType transport, byte[] serverAddr);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong AsyncRpcCall(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProc);
@@ -26,33 +28,40 @@ namespace ezRPC
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void DestroyRpcClient(ulong clientId);
 
-		public static ulong CreateClient(TransportType transport, string serverAddr)
+		public void CreateClient(TransportType transport, string serverAddr)
 		{
-			return CreateRpcClient(transport, serverAddr.ToCharArray());
+			m_clientId = CreateRpcClient(transport, System.Text.Encoding.ASCII.GetBytes(serverAddr));
 		}
-		public static ulong Call(ulong clientId, ref JsonCall? call, ulong maxJsonReplyLen)
+		public ulong Call(ref JsonCall? call, ulong maxJsonReplyLen)
 		{
-			if (call == null || call.parameters == null)
+			if (m_clientId == 0 || call == null || call.parameters == null)
 				return 0;
 
 			byte[] jsonResult = new byte[maxJsonReplyLen + 1];
-			ulong result = RpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(call.ToJson()), jsonResult, maxJsonReplyLen);
+			ulong result = RpcCall(m_clientId, System.Text.Encoding.ASCII.GetBytes(call.ToJson()), jsonResult, maxJsonReplyLen);
 			call = JsonCall.FromJson(jsonResult);
 
 			return result;
 		}
-		public static ulong AsyncCall(ulong clientId, JsonCall call, ulong maxJsonReplyLen, AsyncJsonCallReplyProcedureType replyProc)
+		public ulong AsyncCall(JsonCall call, ulong maxJsonReplyLen, AsyncJsonCallReplyProcedureType replyProc)
 		{
+			if (m_clientId == 0)
+				return 0;
+
 			byte[] jsonCallResult = new byte[maxJsonReplyLen + 1];	
-			return AsyncRpcCall(clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId) =>
+			return AsyncRpcCall(m_clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId) =>
 			{
 				JsonCall? callResult = JsonCall.FromJson(jsonCallResult);
 				replyProc(_asyncId, callResult);
 			});
 		}
-		public static void DestroyClient(ulong clientId)
+		public void DestroyClient()
 		{
-			DestroyRpcClient(clientId);
+			if (m_clientId == 0)
+				return;
+
+			DestroyRpcClient(m_clientId);
+			m_clientId = 0;	
 		}
 	}
 }
