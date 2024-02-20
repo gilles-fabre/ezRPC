@@ -27,12 +27,15 @@ using namespace std;
  * \brief Provides C APIs on top of RPCServer services
  */
 
-typedef uint64_t ServerProcedure(const char* jsonCall, char* jsonCallResult, size_t jsonCallResultLen);
+typedef uint64_t ServerProcedure(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 
 extern "C" {
 DECLSPEC uint64_t CreateRpcServer(Transport::TransportType transport, const char *serverAddrP);
-DECLSPEC void	  RegisterProcedure(uint64_t serverId, const char* name, ServerProcedure* procedureP);
+DECLSPEC void	  RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP);
+DECLSPEC void	  UnregisterProcedure(uint64_t serverId, const char* nameP);
 DECLSPEC void	  DestroyRpcServer(uint64_t serverId);
+DECLSPEC void     IterateAndWait(uint64_t serverId);
+DECLSPEC void     Stop(uint64_t serverId);
 };
 
 /**
@@ -44,12 +47,11 @@ class	DECLSPEC JsonRPCServer {
 #else
 class	JsonRPCServer {
 #endif
+public:
 	unique_ptr<RPCServer>	m_server;
-
 	static mutex									m_serverProcsMutex;
 	static unordered_map<string, ServerProcedure*>	m_serverProcs;
 
-public:
 	JsonRPCServer(Transport::TransportType transport, const string& serverAddr);
 
 	static unsigned long JsonRPCServiceProc(string& name, vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);

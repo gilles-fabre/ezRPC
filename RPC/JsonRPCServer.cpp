@@ -7,6 +7,10 @@ JsonRPCServer::JsonRPCServer(Transport::TransportType transport, const string& s
 	m_server = make_unique<RPCServer>(transport, serverAddr);
 }
 
+DECLSPEC uint64_t CreateRpcServer(Transport::TransportType transport, const char* serverAddrP) {
+	return (uint64_t)new JsonRPCServer(transport, serverAddrP);
+}
+
 DECLSPEC void DestroyRpcServer(uint64_t serverId) {
 	delete (JsonRPCServer*)serverId;
 }
@@ -24,16 +28,15 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, vector<RemoteProce
 	// invoke origin procedure with json
 	ServerProcedure* procP = nullptr;
 	{
-		unique_lock<mutex> lock(m_serverProcsMutex);
-		auto p = m_serverProcs.find(name);
-		if (p == m_serverProcs.end()) {
+		unique_lock<mutex> lock(JsonRPCServer::m_serverProcsMutex);
+		auto p = JsonRPCServer::m_serverProcs.find(name);
+		if (p != JsonRPCServer::m_serverProcs.end())
 			procP = p->second;
-			m_serverProcs.erase(name);
-		}
 	}
+
 	if (procP) {
 		char* jsonCallResult = new char[1024];
-		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResult, sizeof(jsonCallResult));
+		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResult, 1024);
 
 		// converts result json to params.
 		string jsonResult;
@@ -43,8 +46,36 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, vector<RemoteProce
 	return result;
 }
 
-DECLSPEC void RegisterProcedure(uint64_t serverId, const char* name, ServerProcedure* procedureP) {
-	auto server = (RPCServer*)serverId;
+DECLSPEC void RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP) {
+	auto serverP = (JsonRPCServer*)serverId;
+	string name(nameP);
 
-	server->RegisterProcedure(string(name), JsonRPCServer::JsonRPCServiceProc);
+	{
+		unique_lock<mutex> lock(JsonRPCServer::m_serverProcsMutex);
+		JsonRPCServer::m_serverProcs[name] = procedureP;
+	}
+
+	serverP->m_server->RegisterProcedure(name, JsonRPCServer::JsonRPCServiceProc);
+}
+
+DECLSPEC void UnregisterProcedure(uint64_t serverId, const char* nameP) {
+	auto serverP = (JsonRPCServer*)serverId;
+	string name(nameP);
+
+	serverP->m_server->UnregisterProcedure(name);
+
+	{
+		unique_lock<mutex> lock(JsonRPCServer::m_serverProcsMutex);
+		JsonRPCServer::m_serverProcs.erase(name);
+	}
+}
+
+DECLSPEC void IterateAndWait(uint64_t serverId) {
+	auto serverP = (JsonRPCServer*)serverId;
+	serverP->m_server->IterateAndWait();
+}
+
+DECLSPEC void Stop(uint64_t serverId) {
+	auto serverP = (JsonRPCServer*)serverId;
+	serverP->m_server->Stop();
 }

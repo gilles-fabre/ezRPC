@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <log2reporter.h>
 
 #include <Thread.h>
@@ -48,7 +48,7 @@ class	RPCServer {
 	void*							m_user_dataP;			// optional user data passed to rpc procedures
 	Thread*							m_listening_threadP;	// responsible for listening and spawning service threads
 	vector<Thread*> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
-	map<string, RemoteProcedure*> 	m_rpc_map;				// the procedures to call based on their names
+	unordered_map<string, RemoteProcedure*> m_rpc_map;				// the procedures to call based on their names
 
 	/**
 		 * \class ServiceParameters
@@ -120,7 +120,7 @@ public:
 	 * \param procedureP is a pointer to the registered procedure callback
 	*/
 	void RegisterProcedure(string name, RemoteProcedure *procedureP) {
-		m_rpc_map.insert(std::pair<string, RemoteProcedure *>(name, procedureP));
+		m_rpc_map[name] = procedureP;
 	}
 
 	/**
