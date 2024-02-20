@@ -65,22 +65,20 @@ void RPCServer::ListeningCallback(void* _serverP) {
  */
 
 void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, string& name, RemoteProcedure* procP, AsyncID asyncId, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params) {
-	shared_ptr<ServiceParameters> _params = params;
-	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> _rpc_params = rpc_params;
-	unsigned long result = (*procP)(name, _rpc_params.get(), _params->m_serverP->m_user_dataP);
+	unsigned long result = (*procP)(name, rpc_params, params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 8, true, "CallServiceAndReply for asyncId %lu returned %lu", asyncId, result);
 #endif
 
 	// serialize back call results
-	rpc.SerializeCallReturn(asyncId, _rpc_params.get(), result);
+	rpc.SerializeCallReturn(asyncId, rpc_params, result);
 #ifdef RPCSERVER_TRACES
 	LogText(RPCSERVER_MODULE, 8, true, "serialized call return");
 #endif
 }
 
-void RPCServer::ServiceCallback(void* _paramsP) {
-	shared_ptr<ServiceParameters> params((ServiceParameters*)_paramsP);
+void RPCServer::ServiceCallback(void* paramsP) {
+	shared_ptr<ServiceParameters> params((ServiceParameters*)paramsP);
 
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 0, true, "RPCServer::ServiceCallback(%p)", params.get());
@@ -121,8 +119,8 @@ void RPCServer::ServiceCallback(void* _paramsP) {
 		RemoteProcedure* procP = params->m_serverP->m_rpc_map[name];
 		if (!procP) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: unknown remote procedure name (" << name << ")!" << endl;
-			// serialize back 'error'
-			rpc.SerializeCallReturn(asyncId, rpc_params.get(), 0);
+			// #### serialize back 'error'
+			rpc.SerializeCallReturn(asyncId, rpc_params, 0);
 			continue;
 		}
 

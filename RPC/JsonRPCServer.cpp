@@ -17,13 +17,12 @@ DECLSPEC void DestroyRpcServer(uint64_t serverId) {
 
 mutex JsonRPCServer::m_serverProcsMutex;
 unordered_map<string, ServerProcedure*> JsonRPCServer::m_serverProcs;
-unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, vector<RemoteProcedureCall::ParameterBase*>* paramsP, void* user_dataP) {
+unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP) {
 	string			jsonCall;
 	unsigned long	result = -1;
 	
 	// convert params to json
-	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params(paramsP);
-	JsonParameters::BuildJsonFromParameters(name, params, jsonCall);
+	JsonParameters::BuildJsonFromCallParameters(name, params, jsonCall);
 
 	// invoke origin procedure with json
 	ServerProcedure* procP = nullptr;
@@ -35,12 +34,16 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, vector<RemoteProce
 	}
 
 	if (procP) {
-		char* jsonCallResult = new char[1024];
-		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResult, 1024);
+		char* jsonCallResultP = new char[1024];
+		
+		// invoke server's proc
+		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResultP, 1024);
 
 		// converts result json to params.
 		string jsonResult;
-		JsonParameters::BuildParametersFromJson(jsonCallResult, name, params);
+		JsonParameters::BuildParametersFromJson(jsonCallResultP, name, params);
+		
+		delete[] jsonCallResultP;
 	}
 
 	return result;

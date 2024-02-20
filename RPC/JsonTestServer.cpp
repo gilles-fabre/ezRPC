@@ -35,7 +35,9 @@ static uint64_t Nop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCal
 static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	call["parameters"][0]["value"] += double(0.1);
+	double value = call["parameters"][1]["value"];
+	value += 0.1;
+	call["parameters"][1]["value"] = value;
 
 	string jsonCallResult = call.dump();
 	if (jsonCallResult.length() < jsonCallResultLen)
@@ -47,7 +49,9 @@ static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t j
 static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	call["parameters"][0]["value"] += 1;
+	int16_t value = call["parameters"][1]["value"];
+	value++; 
+	call["parameters"][1]["value"] = value;
 
 	string jsonCallResult = call.dump();
 	if (jsonCallResult.length() < jsonCallResultLen)
@@ -59,8 +63,8 @@ static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t j
 static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	string text = call["parameters"][0]["value"];
-	int16_t num = call["parameters"][1]["value"];
+	string text = call["parameters"][1]["value"];
+	int16_t num = call["parameters"][2]["value"];
 
 	string concatText = text;
 	for (int i = 0; i < num; i++)
@@ -78,8 +82,8 @@ static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t
 static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	string text = call["parameters"][0]["value"];
-	int16_t num = call["parameters"][1]["value"];
+	string text = call["parameters"][1]["value"];
+	int16_t num = call["parameters"][2]["value"];
 
 	string concatText = text;
 	for (int i = 0; i < num; i++)
@@ -95,8 +99,8 @@ static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t
 static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	int16_t num1 = call["parameters"][0]["value"];
-	int16_t num2 = call["parameters"][1]["value"];
+	int16_t num1 = call["parameters"][1]["value"];
+	int16_t num2 = call["parameters"][2]["value"];
 
 	cout << num1 + num2 << endl;
 
@@ -110,7 +114,7 @@ static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t 
 static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
-	string text = call["parameters"][0]["value"];
+	string text = call["parameters"][1]["value"];
 
 	cout << "enter a string: "<< endl;
 	cin >> text;
@@ -127,7 +131,7 @@ static uint64_t PutString(const char* jsonCallP, char* jsonCallResultP, size_t j
 
 	json call = json::parse(jsonCallP);
 
-	string text = call["parameters"][0]["value"];
+	string text = call["parameters"][1]["value"];
 
 	cout << "string passed :" << text << endl;
 

@@ -54,7 +54,7 @@ public:
 
 	JsonRPCServer(Transport::TransportType transport, const string& serverAddr);
 
-	static unsigned long JsonRPCServiceProc(string& name, vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);
+	static unsigned long JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP);
 };
 
 #endif /* _JSON_RPC_SERVER_H */

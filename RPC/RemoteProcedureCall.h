@@ -255,7 +255,7 @@ public:
 	// rpc function callee side
 
 	vector<ParameterBase*>* DeserializeCall(AsyncID& asyncId, string& func_name);
-	void					SerializeCallReturn(AsyncID asyncId, vector<ParameterBase*>* paramP, unsigned long ret_val);
+	void					SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long ret_val);
 
 	void Close() {
 		if (m_linkP)
@@ -273,6 +273,6 @@ public:
 
 #define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
 
-typedef unsigned long RemoteProcedure(string& function, vector<RemoteProcedureCall::ParameterBase*>*, void* user_dataP);
+typedef unsigned long RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

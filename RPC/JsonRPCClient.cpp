@@ -44,7 +44,7 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 
 	// build the result json.
 	string jsonResult;
-	if (JsonParameters::BuildJsonFromParameters(i->second->m_function, i->second->m_params, jsonResult)) {
+	if (JsonParameters::BuildJsonFromResultParameters(i->second->m_function, i->second->m_params, jsonResult)) {
 		// copy the result json into the result buffer if it is long enough, else, return an error.
 		if (i->second->m_jsonCallResultLen > jsonResult.size()) {
 			memcpy(i->second->m_jsonCallResultP, jsonResult.c_str(), jsonResult.length() + 1);
@@ -96,7 +96,7 @@ unsigned long JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResult
 
 	// build the result json.
 	string jsonResult;
-	if (JsonParameters::BuildJsonFromParameters(function, params, jsonResult)) {
+	if (JsonParameters::BuildJsonFromResultParameters(function, params, jsonResult)) {
 		// copy the result json into the result buffer if it is long enough, else, return an error.
 		if (jsonCallResultLen > jsonResult.size()) {
 			memcpy(jsonCallResultP, jsonResult.c_str(), jsonResult.length() + 1);

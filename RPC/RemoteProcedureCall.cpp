@@ -1380,7 +1380,7 @@ clean_up:
  * \param paramP points to a parameter vector built by DeserializeCall
  * \param retVal is the server's procedure return value
  */
-void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterBase*>* paramP, unsigned long retVal) {
+void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
 	vector<unsigned char> 	serializedCall;
 	ParamType				type;
 	unsigned char			b;
@@ -1407,7 +1407,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 
 	serializedCall.push_back(UINT64);
 
-	ui64 = ParameterSafeCast(uint64_t, paramP->at(0))->GetReference();
+	ui64 = ParameterSafeCast(uint64_t, params->at(0))->GetReference();
 	push_uint64(serializedCall, HTONLL(ui64));
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "pushed return result address %lx", ui64);
@@ -1421,7 +1421,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, vector<ParameterB
 #endif
 
 	// push all ptr parameters back
-	for (vector<ParameterBase*>::iterator i = paramP->begin(); i != paramP->end(); i++) {
+	for (vector<ParameterBase*>::iterator i = params->begin(); i != params->end(); i++) {
 		if (!(*i)->IsValidPointer())
 			continue;
 
