@@ -70,7 +70,7 @@ static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t
 	for (int i = 0; i < num; i++)
 		concatText += text;
 
-	call["parameters"][0]["value"] = concatText;
+	call["parameters"][1]["value"] = concatText;
 
 	string jsonCallResult = call.dump();
 	if (jsonCallResult.length() < jsonCallResultLen)
@@ -117,7 +117,7 @@ static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t j
 
 	cout << "enter a string: "<< endl;
 	cin >> text;
-	call["parameters"][0]["value"] = text;
+	call["parameters"][1]["value"] = text;
 
 	string jsonCallResult = call.dump();
 	if (jsonCallResult.length() < jsonCallResultLen)
