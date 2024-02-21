@@ -24,6 +24,10 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 	// convert params to json
 	JsonParameters::BuildJsonFromCallParameters(name, params, jsonCall);
 
+#ifdef JSONRPCSERVER_TRACES
+	LogVText(JSONRPCSERVER_MODULE, 0, true, "JsonRPCServiceProc will process : %s", jsonCall.c_str());
+#endif
+
 	// invoke origin procedure with json
 	ServerProcedure* procP = nullptr;
 	{
@@ -43,6 +47,10 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 		params->clear();
 		JsonParameters::BuildParametersFromJson(jsonCallResultP, name, params);
 		
+#ifdef JSONRPCSERVER_TRACES
+		LogVText(JSONRPCSERVER_MODULE, 0, true, "received from JSON service procedure : %s", jsonCallResultP);
+#endif
+
 		delete[] jsonCallResultP;
 	}
 

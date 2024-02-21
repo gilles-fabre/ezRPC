@@ -844,7 +844,7 @@ void RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned ch
 	}
 
 #ifdef RPC_TRACES
-	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now spawn asynchronous reply handling thread...", buff_len);
+	LogVText(RPC_MODULE, 4, true, "sent %lu bytes. Will now wait for reply...", buff_len);
 #endif
 
 	// synchronous call, blocking until we have a reply from the server

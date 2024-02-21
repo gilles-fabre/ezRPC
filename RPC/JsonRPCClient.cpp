@@ -51,6 +51,10 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 		}
 	}
 
+#ifdef JSONRPCCLIENT_TRACES
+	LogVText(JSONRPCCLIENT_MODULE, 0, true, "AsyncRpcReplyProc got JSON result : %s", jsonResult.c_str());
+#endif
+
 	// we now can free the parameter copies
 	JsonParameters::CleanupParameters(i->second->m_params);
 
@@ -65,6 +69,10 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 }
 
 AsyncID	JsonRPCClient::AsyncRpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
+#ifdef JSONRPCCLIENT_TRACES
+	LogVText(JSONRPCCLIENT_MODULE, 0, true, "AsyncRpcCall will process JSON : %s", jsonCallP);
+#endif
+
 	// analyze the json call and build the parameters vector
 	string function;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
@@ -85,6 +93,10 @@ AsyncID	JsonRPCClient::AsyncRpcCall(const char* jsonCallP, char* jsonCallResultP
 unsigned long JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	unsigned long result = -1;
 
+#ifdef JSONRPCCLIENT_TRACES
+	LogVText(JSONRPCCLIENT_MODULE, 0, true, "RpcCall will process JSON : %s", jsonCallP);
+#endif
+
 	// analyze the json call and build the parameters vector
 	string function;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
@@ -102,6 +114,10 @@ unsigned long JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResult
 			memcpy(jsonCallResultP, jsonResult.c_str(), jsonResult.length() + 1);
 		}
 	}
+
+#ifdef JSONRPCCLIENT_TRACES
+	LogVText(JSONRPCCLIENT_MODULE, 0, true, "RpcCall got JSON result : %s", jsonResult.c_str());
+#endif
 
 	// we now can free the parameter copies
 	JsonParameters::CleanupParameters(params);

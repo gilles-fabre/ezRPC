@@ -8,15 +8,15 @@
       <node name="globalFilters">
         <map>
           <entry key="nPidFilters" value="0"/>
-          <entry key="nModFilters" value="7"/>
-          <entry key="nProgFilters" value="5"/>
+          <entry key="nModFilters" value="8"/>
+          <entry key="nProgFilters" value="6"/>
           <entry key="nWindows" value="5"/>
-          <entry key="divider" value="1"/>
+          <entry key="divider" value="4"/>
           <entry key="divider1" value="314"/>
-          <entry key="Name" value="289"/>
-          <entry key="Mask" value="166"/>
-          <entry key="Value" value="165"/>
-          <entry key="PID" value="288"/>
+          <entry key="Name" value="15"/>
+          <entry key="Mask" value="15"/>
+          <entry key="Value" value="15"/>
+          <entry key="PID" value="15"/>
         </map>
         <node name="modFilter0">
           <map>
@@ -74,6 +74,14 @@
             <entry key="color" value="0xFF530FFF"/>
           </map>
         </node>
+        <node name="modFilter7">
+          <map>
+            <entry key="modId" value="0x00000020"/>
+            <entry key="modMask" value="0x000000FF"/>
+            <entry key="name" value="JSON_SERVER"/>
+            <entry key="color" value="0xFF59B2FF"/>
+          </map>
+        </node>
         <node name="progFilter0">
           <map>
             <entry key="name" value="ezRPC_TestServer"/>
@@ -104,6 +112,12 @@
             <entry key="color" value="0xFF000000"/>
           </map>
         </node>
+        <node name="progFilter5">
+          <map>
+            <entry key="name" value="ezRPC_JsonTestServer"/>
+            <entry key="color" value="0xFF000000"/>
+          </map>
+        </node>
         <node name="window0">
           <map>
             <entry key="x" value="0"/>
@@ -117,7 +131,7 @@
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="regexp" value=""/>
-            <entry key="nModFilters" value="7"/>
+            <entry key="nModFilters" value="8"/>
             <entry key="mod0" value="LINK"/>
             <entry key="mod1" value="TRANSPORT"/>
             <entry key="mod2" value="CLIENT"/>
@@ -125,16 +139,18 @@
             <entry key="mod4" value="SERVER"/>
             <entry key="mod5" value="THREAD"/>
             <entry key="mod6" value="STATE_MACHINE"/>
-            <entry key="Name" value="65"/>
-            <entry key="Mask" value="38"/>
-            <entry key="Value" value="37"/>
-            <entry key="nProgFilters" value="5"/>
+            <entry key="mod7" value="JSON_SERVER"/>
+            <entry key="Name" value="99"/>
+            <entry key="Mask" value="57"/>
+            <entry key="Value" value="57"/>
+            <entry key="nProgFilters" value="6"/>
             <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="prog1" value="ezStateMachine_Test"/>
             <entry key="prog2" value="ezStateMachineServer"/>
             <entry key="prog3" value="ezRPC_TestClient"/>
             <entry key="prog4" value="ezRPC_JsonTestClient"/>
-            <entry key="PID" value="65"/>
+            <entry key="prog5" value="ezRPC_JsonTestServer"/>
+            <entry key="PID" value="99"/>
           </map>
         </node>
         <node name="window1">
@@ -153,16 +169,17 @@
             <entry key="nModFilters" value="2"/>
             <entry key="mod0" value="TRANSPORT"/>
             <entry key="mod1" value="LINK"/>
-            <entry key="Name" value="67"/>
-            <entry key="Mask" value="44"/>
-            <entry key="Value" value="43"/>
-            <entry key="nProgFilters" value="5"/>
+            <entry key="Name" value="45"/>
+            <entry key="Mask" value="31"/>
+            <entry key="Value" value="30"/>
+            <entry key="nProgFilters" value="6"/>
             <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="prog1" value="ezStateMachine_Test"/>
             <entry key="prog2" value="ezStateMachineServer"/>
             <entry key="prog3" value="ezRPC_TestClient"/>
             <entry key="prog4" value="ezRPC_JsonTestClient"/>
-            <entry key="PID" value="66"/>
+            <entry key="prog5" value="ezRPC_JsonTestServer"/>
+            <entry key="PID" value="45"/>
           </map>
         </node>
         <node name="window2">
@@ -180,16 +197,17 @@
             <entry key="regexp" value=""/>
             <entry key="nModFilters" value="1"/>
             <entry key="mod0" value="RPC"/>
-            <entry key="Name" value="71"/>
-            <entry key="Mask" value="46"/>
-            <entry key="Value" value="46"/>
-            <entry key="nProgFilters" value="5"/>
+            <entry key="Name" value="104"/>
+            <entry key="Mask" value="66"/>
+            <entry key="Value" value="65"/>
+            <entry key="nProgFilters" value="6"/>
             <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="prog1" value="ezStateMachine_Test"/>
             <entry key="prog2" value="ezStateMachineServer"/>
             <entry key="prog3" value="ezRPC_TestClient"/>
             <entry key="prog4" value="ezRPC_JsonTestClient"/>
-            <entry key="PID" value="71"/>
+            <entry key="prog5" value="ezRPC_JsonTestServer"/>
+            <entry key="PID" value="103"/>
           </map>
         </node>
         <node name="window3">
@@ -205,20 +223,22 @@
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="regexp" value=""/>
-            <entry key="nModFilters" value="3"/>
+            <entry key="nModFilters" value="4"/>
             <entry key="mod0" value="SERVER"/>
             <entry key="mod1" value="CLIENT"/>
             <entry key="mod2" value="RPC"/>
-            <entry key="Name" value="74"/>
-            <entry key="Mask" value="47"/>
-            <entry key="Value" value="46"/>
-            <entry key="nProgFilters" value="5"/>
+            <entry key="mod3" value="JSON_SERVER"/>
+            <entry key="Name" value="46"/>
+            <entry key="Mask" value="27"/>
+            <entry key="Value" value="27"/>
+            <entry key="nProgFilters" value="6"/>
             <entry key="prog0" value="ezRPC_TestServer"/>
             <entry key="prog1" value="ezStateMachine_Test"/>
             <entry key="prog2" value="ezStateMachineServer"/>
             <entry key="prog3" value="ezRPC_TestClient"/>
             <entry key="prog4" value="ezRPC_JsonTestClient"/>
-            <entry key="PID" value="73"/>
+            <entry key="prog5" value="ezRPC_JsonTestServer"/>
+            <entry key="PID" value="46"/>
           </map>
         </node>
         <node name="window4">
@@ -230,18 +250,19 @@
             <entry key="isMaximum" value="false"/>
             <entry key="title" value="State Machine Traces"/>
             <entry key="divider" value="1"/>
-            <entry key="divider1" value="62"/>
+            <entry key="divider1" value="124"/>
             <entry key="haveGhostDivider" value="false"/>
             <entry key="ghostDivider" value="0"/>
             <entry key="regexp" value=""/>
             <entry key="nModFilters" value="1"/>
             <entry key="mod0" value="STATE_MACHINE"/>
-            <entry key="Name" value="89"/>
-            <entry key="Mask" value="47"/>
-            <entry key="Value" value="47"/>
-            <entry key="nProgFilters" value="1"/>
+            <entry key="Name" value="119"/>
+            <entry key="Mask" value="65"/>
+            <entry key="Value" value="65"/>
+            <entry key="nProgFilters" value="2"/>
             <entry key="prog0" value="ezStateMachineServer"/>
-            <entry key="PID" value="88"/>
+            <entry key="prog1" value="ezRPC_JsonTestServer"/>
+            <entry key="PID" value="118"/>
           </map>
         </node>
       </node>

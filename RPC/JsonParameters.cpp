@@ -13,6 +13,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 	if (function.empty())
 		return false;
 
+#ifdef JSONPARAMETERS_TRACES
+	LogVText(JSONPARAMETERS_MODULE, 0, true, ">>> Building Parameters from Json %s", jsonCallP);
+#endif
+
 	try {
 		json jparams = call["parameters"];
 		if (!jparams.is_null() && jparams.is_array() && !jparams.empty()) {
@@ -20,7 +24,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 				switch (RemoteProcedureCall::GetParameterType(param["type"])) {
 					case RemoteProcedureCall::STRING: {
 						string value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<string>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<string>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<string>(value));
 					}
 					break;
 
@@ -33,7 +40,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::BYTE: {
 						uint8_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<uint8_t>(value));
 					}
 					break;
 
@@ -46,7 +56,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::CHAR: {
 						char value = (uint8_t)param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<char>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<char>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<char>(value));
 					}
 					break;
 
@@ -59,7 +72,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::UINT16: {
 						uint16_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<uint16_t>(value));
 					}
 					break;
 
@@ -72,7 +88,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::UINT32: {
 						uint32_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<uint32_t>(value));
 					}
 					break;
 
@@ -85,7 +104,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::UINT64: {
 						uint64_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<uint64_t>(value));
 					}
 					break;
 
@@ -98,7 +120,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::INT16: {
 						int16_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<int16_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<int16_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<int16_t>(value));
 					}
 					break;
 
@@ -111,7 +136,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::INT32: {
 						int32_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<int32_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<int32_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<int32_t>(value));
 					}
 				   break;
 
@@ -124,7 +152,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::INT64: {
 						int64_t value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<int64_t>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<int64_t>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<int64_t>(value));
 					}
 				   break;
 
@@ -137,7 +168,10 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 
 					case RemoteProcedureCall::DOUBLE: {
 						double value = param["value"];
-						params->push_back(new RemoteProcedureCall::Parameter<double>(value));
+						if (param["reference"] != nullptr)
+							params->push_back(new RemoteProcedureCall::Parameter<double>(value, param["reference"]));
+						else
+							params->push_back(new RemoteProcedureCall::Parameter<double>(value));
 					}
 					break;
 
@@ -245,9 +279,13 @@ bool JsonParameters::BuildJsonFromResultParameters(string& function, shared_ptr<
 		jsonResult = jsonReply.dump();
 	}
 	catch (exception& e) {
-		cerr << "BuildJsonFromParameters - exception caught : " << e.what() << endl;
+		cerr << "BuildJsonFromResultParameters - exception caught : " << e.what() << endl;
 		return false;
 	}
+
+#ifdef JSONPARAMETERS_TRACES
+	LogVText(JSONPARAMETERS_MODULE, 0, true, "<<< From Result Parameters built Json %s", jsonResult.c_str());
+#endif
 
 	return true;
 }
@@ -265,6 +303,8 @@ bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<ve
 			for (int i = 0; i < num_params; i++) {
 				RemoteProcedureCall::ParameterBase* paramP = params->at(i);
 				json param;
+
+				param["reference"] = paramP->GetCallerPointer(); // if called from straight C++ (no json rpc on the client side), keep the origin ptr
 				switch (paramP->GetType()) {
 					case RemoteProcedureCall::ParamType::STRING_REF:
 						param["type"] = "STRING_REF";
@@ -394,9 +434,13 @@ bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<ve
 		jsonResult = jsonReply.dump();
 	}
 	catch (exception& e) {
-		cerr << "BuildJsonFromParameters - exception caught : " << e.what() << endl;
+		cerr << "BuildJsonFromCallParameters - exception caught : " << e.what() << endl;
 		return false;
 	}
+
+#ifdef JSONPARAMETERS_TRACES
+	LogVText(JSONPARAMETERS_MODULE, 0, true, "<<< From Call Parameters built Json %s", jsonResult.c_str());
+#endif
 
 	return true;
 }

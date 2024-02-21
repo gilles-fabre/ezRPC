@@ -7,6 +7,7 @@ namespace ezRPC
 	{
 		public string? type { get; set; }
 		public object? value { get; set; }
+		public UInt64? reference { get; set; }
 	}
 
 	public class JsonCall
