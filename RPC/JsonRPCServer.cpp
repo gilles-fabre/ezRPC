@@ -40,7 +40,7 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResultP, 1024);
 
 		// converts result json to params.
-		string jsonResult;
+		params->clear();
 		JsonParameters::BuildParametersFromJson(jsonCallResultP, name, params);
 		
 		delete[] jsonCallResultP;

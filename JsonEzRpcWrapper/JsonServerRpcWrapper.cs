@@ -3,9 +3,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 
-[UnmanagedFunctionPointer(CallingConvention.StdCall)]
-public delegate ulong ServerProcedure(byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen); 
-
+[UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Ansi)]
+public delegate ulong ServerProcedure(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen); 
 
 namespace ezRPC
 {
@@ -32,6 +31,13 @@ namespace ezRPC
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void DestroyRpcServer(ulong serverId);
+
+		public static void SetUnmanagedAsciizBuffer(string value, IntPtr bufferP) {
+			byte[] bytes = new byte[value.Length + 1];
+			System.Text.Encoding.ASCII.GetBytes(value).CopyTo(bytes, 0);
+			bytes[value.Length] = 0;
+			Marshal.Copy(bytes, 0, bufferP, bytes.Length);
+		}
 
 		public void CreateServer(TransportType transport, string serverAddr)
 		{

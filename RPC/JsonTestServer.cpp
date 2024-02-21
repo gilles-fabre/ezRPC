@@ -85,7 +85,6 @@ static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t
 	string text = call["parameters"][1]["value"];
 	int16_t num = call["parameters"][2]["value"];
 
-	string concatText = text;
 	for (int i = 0; i < num; i++)
 		cout << text << endl;
 
@@ -93,7 +92,7 @@ static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)concatText.length();
+	return (unsigned long)num;
 }
 
 static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
