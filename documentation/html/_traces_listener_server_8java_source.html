@@ -187,30 +187,30 @@ $(function(){initNavTree('_traces_listener_server_8java_source.html',''); initRe
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classtraces_listener_1_1_traces_listener_server.html#a5290e3b8cbfb2fde4ab9d63d4505aaf4">   81</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classtraces_listener_1_1_traces_listener_server.html#a5290e3b8cbfb2fde4ab9d63d4505aaf4">addDataThread</a>(<a class="code hl_class" href="classtraces_listener_1_1_data_thread.html">DataThread</a> aDataThread) {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">boolean</span> result;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">boolean</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// Register all observers for the new data thread</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        Iterator&lt;Object&gt; observersIterator = tracesObservers.listIterator();</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">while</span> (observersIterator.hasNext())</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            aDataThread.addObserver((Observer) observersIterator.next());</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        result = dataThreads.add(aDataThread);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = dataThreads.add(aDataThread);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="comment">// Notify Server observers that a new data thread was added</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        setChanged();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        notifyObservers(aDataThread);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
 </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classtraces_listener_1_1_traces_listener_server.html#adcd65bb954ea9be8d79d1694ecb58ebd">   94</a></span>    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code hl_function" href="classtraces_listener_1_1_traces_listener_server.html#adcd65bb954ea9be8d79d1694ecb58ebd">removeDataThread</a>(<a class="code hl_class" href="classtraces_listener_1_1_data_thread.html">DataThread</a> aDataThread) {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordtype">boolean</span> result = dataThreads.remove(aDataThread);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">if</span> (result) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordtype">boolean</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = dataThreads.remove(aDataThread);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>) {</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="comment">// Unregister all data thread observers, close stream.</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            aDataThread.shutdown();</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="comment">// Notify server observers that a data thread was removed.</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            setChanged();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            notifyObservers(aDataThread);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
 </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
@@ -271,6 +271,7 @@ $(function(){initNavTree('_traces_listener_server_8java_source.html',''); initRe
 <div class="ttc" id="aclasstraces_listener_1_1_traces_listener_server_html_adcd65bb954ea9be8d79d1694ecb58ebd"><div class="ttname"><a href="classtraces_listener_1_1_traces_listener_server.html#adcd65bb954ea9be8d79d1694ecb58ebd">tracesListener.TracesListenerServer.removeDataThread</a></div><div class="ttdeci">boolean removeDataThread(DataThread aDataThread)</div><div class="ttdef"><b>Definition</b> <a href="#l00094">TracesListenerServer.java:94</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_listener_server_html_adcfdffcb51c5abaf54029e1fe5315892"><div class="ttname"><a href="classtraces_listener_1_1_traces_listener_server.html#adcfdffcb51c5abaf54029e1fe5315892">tracesListener.TracesListenerServer.run</a></div><div class="ttdeci">void run()</div><div class="ttdef"><b>Definition</b> <a href="#l00042">TracesListenerServer.java:42</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_listener_server_html_ae7842fb6a69acf4d842c7a22c7618734"><div class="ttname"><a href="classtraces_listener_1_1_traces_listener_server.html#ae7842fb6a69acf4d842c7a22c7618734">tracesListener.TracesListenerServer.removeAllDataThreads</a></div><div class="ttdeci">void removeAllDataThreads()</div><div class="ttdef"><b>Definition</b> <a href="#l00106">TracesListenerServer.java:106</a></div></div>
+<div class="ttc" id="asax__parse_8cpp_html_a5734a27c6f335279bf9b0b57ae9b8f76"><div class="ttname"><a href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a></div><div class="ttdeci">bool result</div><div class="ttdef"><b>Definition</b> <a href="sax__parse_8cpp_source.html#l00121">sax_parse.cpp:121</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

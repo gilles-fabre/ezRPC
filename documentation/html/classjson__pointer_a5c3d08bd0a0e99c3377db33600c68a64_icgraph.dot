@@ -1,0 +1,16 @@
+digraph "json_pointer::empty"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="json_pointer::empty",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="return whether pointer points to the root document"];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="json_pointer::back",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classjson__pointer.html#aba71e63e4032cfc46dd90aeb09e5cb0f",tooltip="return last reference token"];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="json_pointer::parent\l_pointer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classjson__pointer.html#aa03c0c1206e171342d27a4583258858b",tooltip="returns the parent of this JSON pointer"];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="json_pointer::pop_back",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classjson__pointer.html#a662118b470c87a1b564946c2602c49ce",tooltip="remove last reference token"];
+  Node4 -> Node3 [id="edge4_Node000004_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+}

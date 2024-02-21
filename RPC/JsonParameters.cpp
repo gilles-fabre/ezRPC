@@ -4,6 +4,18 @@
 
 using nlohmann::json;
 
+/*
+* \brief Builds a parameters vector out of Json serialized form of an RPC call. This function can
+*		 be called either on the client side (JsonRCPClient) or on the server side (JsonRPCServer).
+*		 when called from a straight RPCClient, the "reference" parameter conveys the client side
+*		 pointer to the variable associated with the parameter. 
+* 
+* \param jsonCallP is the well formed Json serialization form of the RPC Call.
+* \param function is the name of the called remote procedure.
+* \param params receives the extracted call parameters from the Json.
+* 
+* \return true is everything went fine, false else.
+*/
 bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params) {
 	json call = json::parse(jsonCallP);
 	if (call.is_null() || !call.contains("function"))
@@ -195,6 +207,16 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 	return true;
 }
 
+/*
+* \brief Builds a Json serialized form of an RPC call result out of a call result parameters vector. Only ptr
+*		 values are serialized.
+*
+* \param jsonResult is the well formed Json serialization form of the RPC Call result.
+* \param function is the name of the returning remote procedure.
+* \param params contains the resulting call parameters.
+*
+* \return true is everything went fine, false else.
+*/
 bool JsonParameters::BuildJsonFromResultParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
 	try {
 		// parse the parameters vector 'back' and build the result json
@@ -290,6 +312,15 @@ bool JsonParameters::BuildJsonFromResultParameters(string& function, shared_ptr<
 	return true;
 }
 
+/*
+* \brief Builds a Json serialized form of an RPC call out of a call parameters vector. All parameters are serialized.
+*
+* \param jsonResult is the well formed Json serialization form of the RPC call.
+* \param function is the name of the called remote procedure.
+* \param params contains the call parameters.
+*
+* \return true is everything went fine, false else.
+*/
 bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
 	try {
 		// parse the parameters vector 'back' and build the result json

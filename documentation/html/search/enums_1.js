@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messageparam_0',['MessageParam',['../log2reporter__prv_8h.html#a50f922c02c73640ac57e2af99ca7536b',1,'log2reporter_prv.h']]]
+  ['datatype_0',['DataType',['../log2reporter__prv_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6',1,'log2reporter_prv.h']]]
 ];

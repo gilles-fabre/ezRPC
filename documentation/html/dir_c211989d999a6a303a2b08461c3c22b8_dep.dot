@@ -7,5 +7,5 @@ digraph "C:/Dev/ezRPC/Thread"
   compound=true
   dir_c211989d999a6a303a2b08461c3c22b8 [label="Thread", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_c211989d999a6a303a2b08461c3c22b8.html",tooltip=""];
   dir_0aab817486fdc7dd6c4f9aa62ba91991 [label="LogReporter", fillcolor="#edf0f7", color="red", style="filled", URL="dir_0aab817486fdc7dd6c4f9aa62ba91991.html",tooltip=""];
-  dir_c211989d999a6a303a2b08461c3c22b8->dir_0aab817486fdc7dd6c4f9aa62ba91991 [headlabel="1", labeldistance=1.5 headhref="dir_000013_000007.html" href="dir_000013_000007.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_c211989d999a6a303a2b08461c3c22b8->dir_0aab817486fdc7dd6c4f9aa62ba91991 [headlabel="1", labeldistance=1.5 headhref="dir_000096_000058.html" href="dir_000096_000058.html" color="steelblue1" fontcolor="steelblue1"];
 }

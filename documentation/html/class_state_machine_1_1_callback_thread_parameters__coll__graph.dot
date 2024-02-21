@@ -5,10 +5,12 @@ digraph "StateMachine::CallbackThreadParameters"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   Node1 [id="Node000001",label="StateMachine::CallbackThread\lParameters",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
-  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_destinationP\nm_sourceP",fontcolor="grey" ];
-  Node2 [id="Node000002",label="State",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state.html",tooltip="State represents a machine state, it owns the paths to the connected (through Events and Actions) Sta..."];
-  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_machineP",fontcolor="grey" ];
-  Node3 [id="Node000003",label="StateMachine",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state_machine.html",tooltip="Defines a dynamically programmable thread safe state machine. Only the DoTransition method is thread ..."];
-  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_threadP",fontcolor="grey" ];
-  Node4 [id="Node000004",label="Thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_thread.html",tooltip=" "];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_callback_name\nm_transition_name",fontcolor="grey" ];
+  Node2 [id="Node000002",label="string\< T \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classstring.html",tooltip=" "];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_destinationP\nm_sourceP",fontcolor="grey" ];
+  Node3 [id="Node000003",label="State",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state.html",tooltip="State represents a machine state, it owns the paths to the connected (through Events and Actions) Sta..."];
+  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_machineP",fontcolor="grey" ];
+  Node4 [id="Node000004",label="StateMachine",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state_machine.html",tooltip="Defines a dynamically programmable thread safe state machine. Only the DoTransition method is thread ..."];
+  Node5 -> Node1 [id="edge4_Node000001_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_threadP",fontcolor="grey" ];
+  Node5 [id="Node000005",label="Thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_thread.html",tooltip=" "];
 }

@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="detail::is_compatible\l_integer_type_impl\< RealInteger\lType, CompatibleNumberIntegerType,\l enable_if_t\< std::is_integral\l\< RealIntegerType \>::value &&std\l::is_integral\< CompatibleNumberIntegerType\l \>::value &&!std::is_same\< bool, CompatibleNumberInteger\lType \>::value \> \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdetail_1_1is__compatible__integer__type__impl_3_01_real_integer_type_00_01_compatible_numb0041c726545da1e9f9d50a47e3f940c2.html",tooltip=" "];
+}

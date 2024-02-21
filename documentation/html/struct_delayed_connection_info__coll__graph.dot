@@ -7,4 +7,6 @@ digraph "DelayedConnectionInfo"
   Node1 [id="Node000001",label="DelayedConnectionInfo",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" machineP",fontcolor="grey" ];
   Node2 [id="Node000002",label="StateMachine",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state_machine.html",tooltip="Defines a dynamically programmable thread safe state machine. Only the DoTransition method is thread ..."];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" addr",fontcolor="grey" ];
+  Node3 [id="Node000003",label="string\< T \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classstring.html",tooltip=" "];
 }

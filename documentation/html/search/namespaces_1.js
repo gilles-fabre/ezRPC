@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reporter_0',['reporter',['../namespacereporter.html',1,'']]]
+  ['amalgamate_0',['amalgamate',['../namespaceamalgamate.html',1,'']]]
 ];

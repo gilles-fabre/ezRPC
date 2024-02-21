@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="State",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state.html",tooltip="State represents a machine state, it owns the paths to the connected (through Events and Actions) Sta..."];
+  Node0 [id="Node000000",label="detail::external_constructor\l\< value_t::number_integer \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdetail_1_1external__constructor_3_01value__t_1_1number__integer_01_4.html",tooltip=" "];
 }

@@ -182,17 +182,17 @@ $(function(){initNavTree('_multi_colored_text_area_8java_source.html',''); initR
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            }</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        String result = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        String <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordtype">int</span> start = 0, end = 0;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">while</span> ((end = s.indexOf(<span class="charliteral">&#39;\n&#39;</span>, start)) &gt;= 0) {</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            String line = s.substring(start, end + 1);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            start = end + 1;</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            Matcher m = pattern.matcher(line);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">if</span> (m.find())</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                 result += line;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                 <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> += line;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// Append the given text in the given color.</span></div>
@@ -279,13 +279,13 @@ $(function(){initNavTree('_multi_colored_text_area_8java_source.html',''); initR
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <span class="comment">// Not at the end of the document (user changed position).</span></div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="comment">// Have to count lines.</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            String text = getText();</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="keywordtype">int</span> n = 1;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="keywordtype">int</span> <a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a> = 1;</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i &lt; dotPos; i++) {</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                <span class="keywordflow">if</span> (text.charAt(i) == <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                    n++;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                    <a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>++;</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                }</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            }</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            currentLine = n;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            currentLine = <a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>;</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        }</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
 </div>
@@ -334,14 +334,14 @@ $(function(){initNavTree('_multi_colored_text_area_8java_source.html',''); initR
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        }</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        String text = getText();</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordtype">int</span> i = charIndexFromLineNumber(text, l);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordtype">int</span> j = i;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">while</span> (j &lt; text.length() &amp;&amp; text.charAt(j) != <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            j++;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a> = i;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">while</span> (<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a> &lt; text.length() &amp;&amp; text.charAt(<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>) != <span class="charliteral">&#39;\n&#39;</span>) {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>++;</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keywordflow">if</span> (i &lt; j &amp;&amp; text.charAt(j-1) == <span class="charliteral">&#39;\r&#39;</span>) {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            j--; <span class="comment">// windows eol...</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keywordflow">if</span> (i &lt; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a> &amp;&amp; text.charAt(<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>-1) == <span class="charliteral">&#39;\r&#39;</span>) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>--; <span class="comment">// windows eol...</span></div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        }</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordtype">int</span> lineLen = j - i;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordtype">int</span> lineLen = <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a> - i;</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        i = EOLHack.translateIndexToCaretView(text, i);</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        setCaretPosition(i + lineLen);</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        moveCaretPosition(i);</div>
@@ -429,6 +429,9 @@ $(function(){initNavTree('_multi_colored_text_area_8java_source.html',''); initR
 <div class="ttc" id="aclassreporter_1_1_multi_colored_text_area_html_adb7300191bfbe09fc369afc503a3931d"><div class="ttname"><a href="classreporter_1_1_multi_colored_text_area.html#adb7300191bfbe09fc369afc503a3931d">reporter.MultiColoredTextArea.clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition</b> <a href="#l00116">MultiColoredTextArea.java:116</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_multi_colored_text_area_html_ae3654255541771b995573a95c0639b42"><div class="ttname"><a href="classreporter_1_1_multi_colored_text_area.html#ae3654255541771b995573a95c0639b42">reporter.MultiColoredTextArea.getLineCount</a></div><div class="ttdeci">int getLineCount()</div><div class="ttdef"><b>Definition</b> <a href="#l00126">MultiColoredTextArea.java:126</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_multi_colored_text_area_html_af35ee638cac971f6507221c7c51a007a"><div class="ttname"><a href="classreporter_1_1_multi_colored_text_area.html#af35ee638cac971f6507221c7c51a007a">reporter.MultiColoredTextArea.append</a></div><div class="ttdeci">void append(String s, Color color)</div><div class="ttdef"><b>Definition</b> <a href="#l00088">MultiColoredTextArea.java:88</a></div></div>
+<div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
+<div class="ttc" id="asax__parse_8cpp_html_a5734a27c6f335279bf9b0b57ae9b8f76"><div class="ttname"><a href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a></div><div class="ttdeci">bool result</div><div class="ttdef"><b>Definition</b> <a href="sax__parse_8cpp_source.html#l00121">sax_parse.cpp:121</a></div></div>
+<div class="ttc" id="aunit-udt_8cpp_html_aeda809c9c9c3a54beef6a1870365e3c4"><div class="ttname"><a href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a></div><div class="ttdeci">const udt::name n</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00238">unit-udt.cpp:238</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

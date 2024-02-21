@@ -219,7 +219,7 @@ $(function(){initNavTree('_window_settings_dialog_8java_source.html',''); initRe
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            TracesFilter filter = mainFrame.<a class="code hl_function" href="classreporter_1_1_main_frame.html#ae77dd9514f3cbb8fc58f26e75abdcf4d">getFilter</a>();</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            globalModIds = <span class="keyword">new</span> String[filter.nModuleIdFilters()];</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0; i&lt;filter.nModuleIdFilters(); i++)</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                globalModIds[i]=filter.getModuleIdFilter(i).getName();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                globalModIds[i]=filter.<a class="code hl_function" href="classtraces_listener_1_1_traces_filter.html#a8ec59768b27ef872aedf6f2f5b02bee6">getModuleIdFilter</a>(i).<a class="code hl_function" href="classtraces_listener_1_1_module_filter.html#a27843988465bec218d462295602979cc">getName</a>();</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            globalModList = <span class="keyword">new</span> JList(globalModIds);</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        }</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">return</span> globalModList;</div>
@@ -419,17 +419,17 @@ $(function(){initNavTree('_window_settings_dialog_8java_source.html',''); initRe
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    }</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> delModules(<span class="keywordtype">int</span> indices[]) {</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        <span class="keywordtype">int</span> i,j,k;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>        <span class="keywordtype">int</span> i,<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>,k;</div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        String tmpModIds[] = <span class="keyword">new</span> String[windowModIds.length - indices.length];</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        i=j=k=0;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        i=<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>=k=0;</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keywordflow">while</span> (k&lt;indices.length) {</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>            <span class="keywordflow">while</span> (j&lt;indices[k])</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                tmpModIds[i++] = windowModIds[j++];</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            j++;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>            <span class="keywordflow">while</span> (<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>&lt;indices[k])</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                tmpModIds[i++] = windowModIds[<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>++];</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>++;</div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>            k++;</div>
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        }</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="keywordflow">while</span> (i&lt;tmpModIds.length)</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>            tmpModIds[i++] = windowModIds[j++];</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>            tmpModIds[i++] = windowModIds[<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>++];</div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        windowModIds = tmpModIds;</div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        contentFrame.setModIdNames(windowModIds);</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    }</div>
@@ -521,8 +521,11 @@ $(function(){initNavTree('_window_settings_dialog_8java_source.html',''); initRe
 <div class="ttc" id="aclassreporter_1_1_window_settings_dialog_html"><div class="ttname"><a href="classreporter_1_1_window_settings_dialog.html">reporter.WindowSettingsDialog</a></div><div class="ttdef"><b>Definition</b> <a href="#l00027">WindowSettingsDialog.java:27</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_window_settings_dialog_html_a9f1a3a4b06f7fc1c0a6b798ca915c5b6"><div class="ttname"><a href="classreporter_1_1_window_settings_dialog.html#a9f1a3a4b06f7fc1c0a6b798ca915c5b6">reporter.WindowSettingsDialog.WindowSettingsDialog</a></div><div class="ttdeci">WindowSettingsDialog(MainFrame owner, ContentFrame content)</div><div class="ttdef"><b>Definition</b> <a href="#l00059">WindowSettingsDialog.java:59</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_window_settings_dialog_html_af4cec0893d337da687a361834a646097"><div class="ttname"><a href="classreporter_1_1_window_settings_dialog.html#af4cec0893d337da687a361834a646097">reporter.WindowSettingsDialog.doIt</a></div><div class="ttdeci">static void doIt(MainFrame owner, ContentFrame content)</div><div class="ttdef"><b>Definition</b> <a href="#l00078">WindowSettingsDialog.java:78</a></div></div>
+<div class="ttc" id="aclasstraces_listener_1_1_module_filter_html_a27843988465bec218d462295602979cc"><div class="ttname"><a href="classtraces_listener_1_1_module_filter.html#a27843988465bec218d462295602979cc">tracesListener.ModuleFilter.getName</a></div><div class="ttdeci">String getName()</div><div class="ttdef"><b>Definition</b> <a href="_module_filter_8java_source.html#l00055">ModuleFilter.java:55</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_filter_html"><div class="ttname"><a href="classtraces_listener_1_1_traces_filter.html">tracesListener.TracesFilter</a></div><div class="ttdef"><b>Definition</b> <a href="_traces_filter_8java_source.html#l00010">TracesFilter.java:10</a></div></div>
+<div class="ttc" id="aclasstraces_listener_1_1_traces_filter_html_a8ec59768b27ef872aedf6f2f5b02bee6"><div class="ttname"><a href="classtraces_listener_1_1_traces_filter.html#a8ec59768b27ef872aedf6f2f5b02bee6">tracesListener.TracesFilter.getModuleIdFilter</a></div><div class="ttdeci">ModuleFilter getModuleIdFilter(int index)</div><div class="ttdef"><b>Definition</b> <a href="_traces_filter_8java_source.html#l00059">TracesFilter.java:59</a></div></div>
 <div class="ttc" id="anamespacetraces_listener_html"><div class="ttname"><a href="namespacetraces_listener.html">tracesListener</a></div><div class="ttdef"><b>Definition</b> <a href="_byte_util_8java_source.html#l00001">ByteUtil.java:1</a></div></div>
+<div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

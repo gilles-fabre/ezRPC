@@ -122,107 +122,112 @@ $(function(){initNavTree('_link_8h_source.html',''); initResizable(); });
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="log2reporter_8h.html">log2reporter.h</a>&gt;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="_link_8h.html#a66f151b0a7bcdc3e9b17d9cdbd6c2a23">   23</a></span><span class="preprocessor">#define LINK_TRACES 1</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">   24</a></span><span class="preprocessor">#define LINK_MODULE 0x2</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define MSG_DONTWAIT 0</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define MSG_NOSIGNAL 0</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">   30</a></span><span class="preprocessor">#define SOCKET int</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_link.html">   40</a></span><span class="keyword">class </span><a class="code hl_class" href="class_link.html">Link</a> {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> m_in;    <span class="comment">// in/out file descriptors (might be the same)</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> m_out;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">   45</a></span>    <a class="code hl_function" href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">Link</a>(<a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> in, <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> out) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        m_in = in;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        m_out = out;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define LINK_TRACES 1</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">   27</a></span><span class="preprocessor">#define LINK_MODULE 0x2</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define MSG_DONTWAIT 0</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define MSG_NOSIGNAL 0</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">   33</a></span><span class="preprocessor">#define SOCKET int</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_link.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="class_link.html">Link</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> m_in;    <span class="comment">// in/out file descriptors (might be the same)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> m_out;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">   48</a></span>    <a class="code hl_function" href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">Link</a>(<a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> in, <a class="code hl_define" href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> out) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        m_in = in;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        m_out = out;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">   50</a></span>    <a class="code hl_function" href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">~Link</a>() {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_function" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Close</a>();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">   53</a></span>    <a class="code hl_function" href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">~Link</a>() {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <a class="code hl_function" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Close</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a3f671bd4cd0eb8324033108f4ba06c06">Send</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_len);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a3f671bd4cd0eb8324033108f4ba06c06">Send</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#ae1338c6201643f440f5490111c3f8bc7">Receive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_len);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#ae1338c6201643f440f5490111c3f8bc7">Receive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a8ed27120a9874765f7eae32927524b81">Peek</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
-<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">WaitForRead</a>() {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        fd_set readset;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">int</span>     result;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">do</span> {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>           FD_ZERO(&amp;readset);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>           FD_SET(m_out, &amp;readset);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>           result = select((<span class="keywordtype">int</span>)m_out + 1, &amp;readset, NULL, NULL, NULL);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        } <span class="keywordflow">while</span> (result == -1 &amp;&amp; errno == EINTR);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a3f671bd4cd0eb8324033108f4ba06c06">Send</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_len);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a3f671bd4cd0eb8324033108f4ba06c06">Send</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#ae1338c6201643f440f5490111c3f8bc7">Receive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> data_len);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#ae1338c6201643f440f5490111c3f8bc7">Receive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_link.html#a8ed27120a9874765f7eae32927524b81">Peek</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* byte_buffer, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data_lenP);</div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">   62</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">WaitForRead</a>() {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        fd_set readset;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordtype">int</span>     <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>           FD_ZERO(&amp;readset);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>           FD_SET(m_out, &amp;readset);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>           <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = select((<span class="keywordtype">int</span>)m_out + 1, &amp;readset, NULL, NULL, NULL);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        } <span class="keywordflow">while</span> (<a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> == -1 &amp;&amp; errno == EINTR);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
 </div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">   69</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">WaitForWrite</a>() {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        fd_set writeset;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">int</span>     result;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">do</span> {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>           FD_ZERO(&amp;writeset);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>           FD_SET(m_out, &amp;writeset);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>           result = select((<span class="keywordtype">int</span>)m_out + 1, NULL, &amp;writeset, NULL, NULL);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        } <span class="keywordflow">while</span> (result == -1 &amp;&amp; errno == EINTR);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">WaitForWrite</a>() {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        fd_set writeset;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">int</span>     <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>           FD_ZERO(&amp;writeset);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>           FD_SET(m_out, &amp;writeset);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>           <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = select((<span class="keywordtype">int</span>)m_out + 1, NULL, &amp;writeset, NULL, NULL);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        } <span class="keywordflow">while</span> (<a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> == -1 &amp;&amp; errno == EINTR);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
 </div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">   79</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Close</a>() {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#ifdef LINK_TRACES</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">LINK_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Link::Close(), in socket == %d, out socket == %d&quot;</span>,  m_in, m_out);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// close the in/out file descriptors</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">if</span> (m_in != -1 &amp;&amp; m_in != m_out)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            closesocket(m_in);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            close(m_in);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (m_out != -1)</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            closesocket(m_out);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            close(m_out);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        m_in = -1;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        m_out = -1;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">   82</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Close</a>() {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#ifdef LINK_TRACES</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">LINK_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Link::Close(), in socket == %d, out socket == %d&quot;</span>,  m_in, m_out);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="comment">// close the in/out file descriptors</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">if</span> (m_in != -1 &amp;&amp; m_in != m_out)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            closesocket(m_in);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            close(m_in);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">if</span> (m_out != -1)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            closesocket(m_out);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            close(m_out);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        m_in = -1;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        m_out = -1;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
 </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>};</div>
 </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif </span><span class="comment">// _LINK_H</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="ttc" id="a_link_8h_html_a7b533ff9d553f281ebb787a1f749a428"><div class="ttname"><a href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">LINK_MODULE</a></div><div class="ttdeci">#define LINK_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00024">Link.h:24</a></div></div>
-<div class="ttc" id="a_link_8h_html_aff55fe551a9992a54ec54621c524d0a4"><div class="ttname"><a href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a></div><div class="ttdeci">#define SOCKET</div><div class="ttdef"><b>Definition</b> <a href="#l00030">Link.h:30</a></div></div>
-<div class="ttc" id="aclass_link_html"><div class="ttname"><a href="class_link.html">Link</a></div><div class="ttdoc">Simply send and receive data on the in/out link created by the parent transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00040">Link.h:40</a></div></div>
-<div class="ttc" id="aclass_link_html_a1bf57c07acafeaf2120e8b829927045e"><div class="ttname"><a href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">Link::Link</a></div><div class="ttdeci">Link(SOCKET in, SOCKET out)</div><div class="ttdef"><b>Definition</b> <a href="#l00045">Link.h:45</a></div></div>
-<div class="ttc" id="aclass_link_html_a2021d0a1d1d99c6d66ba4673cf6a21f4"><div class="ttname"><a href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Link::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdef"><b>Definition</b> <a href="#l00079">Link.h:79</a></div></div>
-<div class="ttc" id="aclass_link_html_a3243a5bee1813ec7bb7b2c4d63f7df19"><div class="ttname"><a href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">Link::WaitForRead</a></div><div class="ttdeci">void WaitForRead()</div><div class="ttdef"><b>Definition</b> <a href="#l00059">Link.h:59</a></div></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif </span><span class="comment">// _LINK_H</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="ttc" id="a_link_8h_html_a7b533ff9d553f281ebb787a1f749a428"><div class="ttname"><a href="_link_8h.html#a7b533ff9d553f281ebb787a1f749a428">LINK_MODULE</a></div><div class="ttdeci">#define LINK_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00027">Link.h:27</a></div></div>
+<div class="ttc" id="a_link_8h_html_aff55fe551a9992a54ec54621c524d0a4"><div class="ttname"><a href="_link_8h.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a></div><div class="ttdeci">#define SOCKET</div><div class="ttdef"><b>Definition</b> <a href="#l00033">Link.h:33</a></div></div>
+<div class="ttc" id="aclass_link_html"><div class="ttname"><a href="class_link.html">Link</a></div><div class="ttdoc">Simply send and receive data on the in/out link created by the parent transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00043">Link.h:43</a></div></div>
+<div class="ttc" id="aclass_link_html_a1bf57c07acafeaf2120e8b829927045e"><div class="ttname"><a href="class_link.html#a1bf57c07acafeaf2120e8b829927045e">Link::Link</a></div><div class="ttdeci">Link(SOCKET in, SOCKET out)</div><div class="ttdef"><b>Definition</b> <a href="#l00048">Link.h:48</a></div></div>
+<div class="ttc" id="aclass_link_html_a2021d0a1d1d99c6d66ba4673cf6a21f4"><div class="ttname"><a href="class_link.html#a2021d0a1d1d99c6d66ba4673cf6a21f4">Link::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdef"><b>Definition</b> <a href="#l00082">Link.h:82</a></div></div>
+<div class="ttc" id="aclass_link_html_a3243a5bee1813ec7bb7b2c4d63f7df19"><div class="ttname"><a href="class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19">Link::WaitForRead</a></div><div class="ttdeci">void WaitForRead()</div><div class="ttdef"><b>Definition</b> <a href="#l00062">Link.h:62</a></div></div>
 <div class="ttc" id="aclass_link_html_a3f671bd4cd0eb8324033108f4ba06c06"><div class="ttname"><a href="class_link.html#a3f671bd4cd0eb8324033108f4ba06c06">Link::Send</a></div><div class="ttdeci">bool Send(unsigned char *byte_buffer, unsigned int data_len)</div><div class="ttdoc">Sends data_len bytes from byte_buffer to the linked peer. This a blocking complete send.</div><div class="ttdef"><b>Definition</b> <a href="_link_8cpp_source.html#l00012">Link.cpp:12</a></div></div>
-<div class="ttc" id="aclass_link_html_a666e442abb3122fe5eb1705f1b2d650d"><div class="ttname"><a href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">Link::~Link</a></div><div class="ttdeci">~Link()</div><div class="ttdef"><b>Definition</b> <a href="#l00050">Link.h:50</a></div></div>
+<div class="ttc" id="aclass_link_html_a666e442abb3122fe5eb1705f1b2d650d"><div class="ttname"><a href="class_link.html#a666e442abb3122fe5eb1705f1b2d650d">Link::~Link</a></div><div class="ttdeci">~Link()</div><div class="ttdef"><b>Definition</b> <a href="#l00053">Link.h:53</a></div></div>
 <div class="ttc" id="aclass_link_html_a8ed27120a9874765f7eae32927524b81"><div class="ttname"><a href="class_link.html#a8ed27120a9874765f7eae32927524b81">Link::Peek</a></div><div class="ttdeci">bool Peek(unsigned char *byte_buffer, unsigned int *data_lenP)</div><div class="ttdoc">Peeks up to data_len bytes into byte_buffer from the linked peer. This a blocking potentially non com...</div><div class="ttdef"><b>Definition</b> <a href="_link_8cpp_source.html#l00136">Link.cpp:136</a></div></div>
-<div class="ttc" id="aclass_link_html_a9584c72c3ae2276bb1ed91f73e03f6a7"><div class="ttname"><a href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">Link::WaitForWrite</a></div><div class="ttdeci">void WaitForWrite()</div><div class="ttdef"><b>Definition</b> <a href="#l00069">Link.h:69</a></div></div>
+<div class="ttc" id="aclass_link_html_a9584c72c3ae2276bb1ed91f73e03f6a7"><div class="ttname"><a href="class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7">Link::WaitForWrite</a></div><div class="ttdeci">void WaitForWrite()</div><div class="ttdef"><b>Definition</b> <a href="#l00072">Link.h:72</a></div></div>
 <div class="ttc" id="aclass_link_html_ae1338c6201643f440f5490111c3f8bc7"><div class="ttname"><a href="class_link.html#ae1338c6201643f440f5490111c3f8bc7">Link::Receive</a></div><div class="ttdeci">bool Receive(unsigned char *byte_buffer, unsigned int data_len)</div><div class="ttdoc">Receives data_len bytes into byte_buffer from the linked peer. This a blocking complete receive.</div><div class="ttdef"><b>Definition</b> <a href="_link_8cpp_source.html#l00074">Link.cpp:74</a></div></div>
 <div class="ttc" id="alog2reporter_8c_html_a5e1aa3e4ebff4a98212651cae466756e"><div class="ttname"><a href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a></div><div class="ttdeci">void LogVText(uint32_t module, uint8_t indent, bool lineBreak, const char *formatP,...)</div><div class="ttdef"><b>Definition</b> <a href="log2reporter_8c_source.html#l00754">log2reporter.c:754</a></div></div>
 <div class="ttc" id="alog2reporter_8h_html"><div class="ttname"><a href="log2reporter_8h.html">log2reporter.h</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
+<div class="ttc" id="asax__parse_8cpp_html_a5734a27c6f335279bf9b0b57ae9b8f76"><div class="ttname"><a href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a></div><div class="ttdeci">bool result</div><div class="ttdef"><b>Definition</b> <a href="sax__parse_8cpp_source.html#l00121">sax_parse.cpp:121</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

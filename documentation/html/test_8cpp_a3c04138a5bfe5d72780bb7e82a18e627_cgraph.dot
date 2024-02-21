@@ -15,9 +15,9 @@ digraph "main"
   Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
   Node3 -> Node6 [id="edge5_Node000003_Node000006",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a25e88f16f1beec5b66eec3f3bc43eecf",tooltip="Serializes the given function call so the resulting byte stream can be sent over the associated link ..."];
+  Node6 [id="Node000006",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a5b660d14ec46ce03d08bb3658e7f1b31",tooltip=" "];
   Node6 -> Node4 [id="edge6_Node000006_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node3 -> Node7 [id="edge7_Node000003_Node000007",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a96c3278928409ed5bcd18a0b64478e07",tooltip=" "];
+  Node7 [id="Node000007",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a0f9d8970cedb77b3411f620a6e143a3f",tooltip=" "];
   Node7 -> Node4 [id="edge8_Node000007_Node000004",color="steelblue1",style="solid",tooltip=" "];
 }

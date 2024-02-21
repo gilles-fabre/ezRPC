@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['param_5fheader_5fsize_0',['PARAM_HEADER_SIZE',['../log2reporter__prv_8h.html#a4aaceb40de57e4b7475ee05f7cf08987',1,'log2reporter_prv.h']]],
-  ['parametersafecast_1',['ParameterSafeCast',['../_remote_procedure_call_8h.html#a0bb31dbe98511669ce6c5a5cf06f5158',1,'RemoteProcedureCall.h']]],
-  ['pid_5fdata_5fsize_2',['PID_DATA_SIZE',['../log2reporter__prv_8h.html#aee6255102a2199137b1fd716b2a2674a',1,'log2reporter_prv.h']]],
-  ['platform_5fid_3',['PLATFORM_ID',['../_c_make_c_compiler_id_8c.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID:&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID:&#160;CMakeCXXCompilerId.cpp']]],
-  ['protocol_5fversion_5fmajor_4',['PROTOCOL_VERSION_MAJOR',['../log2reporter__prv_8h.html#a2ec4920ff3b207d71c2ae86d807dbdd7',1,'log2reporter_prv.h']]],
-  ['protocol_5fversion_5fminor_5',['PROTOCOL_VERSION_MINOR',['../log2reporter__prv_8h.html#a9ff5cd412ba2c8563fa89754cf534d41',1,'log2reporter_prv.h']]]
+  ['libfuzzer_5fposix_0',['LIBFUZZER_POSIX',['../_fuzzer_defs_8h.html#a710408c3bb12e96065864629bc3dfb43',1,'FuzzerDefs.h']]],
+  ['link_5fmodule_1',['LINK_MODULE',['../_link_8h.html#a7b533ff9d553f281ebb787a1f749a428',1,'Link.h']]],
+  ['llvm_5ffuzzer_5fdefines_5fsanitizer_5fweak_5fhoooks_2',['LLVM_FUZZER_DEFINES_SANITIZER_WEAK_HOOOKS',['../_fuzzer_trace_state_8cpp.html#ae11a1b638349caf635d7797678987169',1,'FuzzerTraceState.cpp']]],
+  ['log_5ffile_5fextension_3',['LOG_FILE_EXTENSION',['../log2reporter__prv_8h.html#ac9d16ba9cae5c91a2fec635476fb622a',1,'log2reporter_prv.h']]],
+  ['log_5fsettings_5fextension_4',['LOG_SETTINGS_EXTENSION',['../log2reporter__prv_8h.html#a40f77e9b5f9679d06ebdd0940d74b990',1,'log2reporter_prv.h']]]
 ];

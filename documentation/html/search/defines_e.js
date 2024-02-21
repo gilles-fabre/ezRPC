@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['thread_5fmodule_0',['THREAD_MODULE',['../_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec',1,'Thread.h']]],
-  ['thread_5ftraces_1',['THREAD_TRACES',['../_thread_8h.html#a1aab2a9ec7c3a99dee81f18ad6db97c6',1,'Thread.h']]],
-  ['tid_5fdata_5fsize_2',['TID_DATA_SIZE',['../log2reporter__prv_8h.html#a39da4e324286642bc378ba5af2faa1e3',1,'log2reporter_prv.h']]],
-  ['time_5fdata_5fsize_3',['TIME_DATA_SIZE',['../log2reporter__prv_8h.html#aa2ff2febb1706820cca1a38fdc3d5c3d',1,'log2reporter_prv.h']]],
-  ['trace_5freporter_5fdefault_5fip_4',['TRACE_REPORTER_DEFAULT_IP',['../log2reporter_8h.html#a92fe2de6155f3e0537894d6c7f6e724f',1,'log2reporter.h']]],
-  ['trace_5freporter_5fdefault_5fport_5',['TRACE_REPORTER_DEFAULT_PORT',['../log2reporter_8h.html#afeb79be3722684680f45fdae4abf607e',1,'log2reporter.h']]],
-  ['traces_5foff_6',['TRACES_OFF',['../log2reporter_8h.html#a9360925259a39ecf37d15d0b032bf237',1,'log2reporter.h']]],
-  ['transport_5fmodule_7',['TRANSPORT_MODULE',['../_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e',1,'Transport.h']]],
-  ['transport_5ftraces_8',['TRANSPORT_TRACES',['../_transport_8h.html#a384e820e9372b35dc590b5b3177d907d',1,'Transport.h']]]
+  ['param_5fheader_5fsize_0',['PARAM_HEADER_SIZE',['../log2reporter__prv_8h.html#a4aaceb40de57e4b7475ee05f7cf08987',1,'log2reporter_prv.h']]],
+  ['parametersafecast_1',['ParameterSafeCast',['../_remote_procedure_call_8h.html#a0bb31dbe98511669ce6c5a5cf06f5158',1,'RemoteProcedureCall.h']]],
+  ['pid_5fdata_5fsize_2',['PID_DATA_SIZE',['../log2reporter__prv_8h.html#aee6255102a2199137b1fd716b2a2674a',1,'log2reporter_prv.h']]],
+  ['platform_5fid_3',['PLATFORM_ID',['../_c_make_c_compiler_id_8c.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID:&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID:&#160;CMakeCXXCompilerId.cpp']]],
+  ['protocol_5fversion_5fmajor_4',['PROTOCOL_VERSION_MAJOR',['../log2reporter__prv_8h.html#a2ec4920ff3b207d71c2ae86d807dbdd7',1,'log2reporter_prv.h']]],
+  ['protocol_5fversion_5fminor_5',['PROTOCOL_VERSION_MINOR',['../log2reporter__prv_8h.html#a9ff5cd412ba2c8563fa89754cf534d41',1,'log2reporter_prv.h']]]
 ];

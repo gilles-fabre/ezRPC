@@ -184,9 +184,9 @@ $(function(){initNavTree('_color_circle_8java_source.html',''); initResizable();
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            color = <span class="keyword">new</span> Color(r, g, b);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">public</span> <span class="keywordtype">void</span> setColor(Color c) {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (c != <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                setRGB(c.getRed(), c.getGreen(), c.getBlue());</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">public</span> <span class="keywordtype">void</span> setColor(Color <a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a>) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a> != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                setRGB(<a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a>.getRed(), <a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a>.getGreen(), <a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a>.getBlue());</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        }</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keyword">public</span> Color getColor() {</div>
@@ -246,14 +246,14 @@ $(function(){initNavTree('_color_circle_8java_source.html',''); initResizable();
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> s = 100; s &gt;= 0; s -= saturation_step) {</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keywordtype">int</span> arcw = wheelRect.width * s / 100;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                <span class="keywordtype">int</span> arch = wheelRect.height * s / 100;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <span class="keywordtype">float</span> sat = s / 100F;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                <span class="keywordtype">float</span> sat = s / 100<a class="code hl_typedef" href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a>;</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> h = 0; h &lt;= 360; h += hue_step) {</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                    <span class="keywordtype">float</span> hue = h / 360F;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                    <span class="keywordflow">if</span> (hue &gt;= 1F)</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                        hue = 0F;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                    <span class="keywordtype">float</span> hue = h / 360<a class="code hl_typedef" href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                    <span class="keywordflow">if</span> (hue &gt;= 1<a class="code hl_typedef" href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a>)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                        hue = 0<a class="code hl_typedef" href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a>;</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                    Color c = Color.getHSBColor(hue, sat, 1F);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                    wheelGraphics.setColor(c);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                    Color <a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a> = Color.getHSBColor(hue, sat, 1<a class="code hl_typedef" href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a>);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                    wheelGraphics.setColor(<a class="code hl_variable" href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a>);</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                    wheelGraphics.fillArc(wheelCenterX - (arcw &gt;&gt; 1), wheelCenterY - (arch &gt;&gt; 1), arcw, arch, h, hue_step);</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                }</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            }</div>
@@ -356,6 +356,7 @@ $(function(){initNavTree('_color_circle_8java_source.html',''); initResizable();
 </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>}</div>
 </div>
+<div class="ttc" id="a_caller_callee_test_8cpp_html_a7b142dbbe5c082b9b2faa34e0cffd804"><div class="ttname"><a href="_caller_callee_test_8cpp.html#a7b142dbbe5c082b9b2faa34e0cffd804">F</a></div><div class="ttdeci">void(* F)()</div><div class="ttdef"><b>Definition</b> <a href="_caller_callee_test_8cpp_source.html#l00012">CallerCalleeTest.cpp:12</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_a_r_g_b_color_picker_1_1_a_r_g_b_color_picker_panel_html"><div class="ttname"><a href="classreporter_1_1_a_r_g_b_color_picker_1_1_a_r_g_b_color_picker_panel.html">reporter.ARGBColorPicker.ARGBColorPickerPanel</a></div><div class="ttdef"><b>Definition</b> <a href="_a_r_g_b_color_picker_8java_source.html#l00054">ARGBColorPicker.java:54</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_a_r_g_b_color_picker_html"><div class="ttname"><a href="classreporter_1_1_a_r_g_b_color_picker.html">reporter.ARGBColorPicker</a></div><div class="ttdef"><b>Definition</b> <a href="_a_r_g_b_color_picker_8java_source.html#l00020">ARGBColorPicker.java:20</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_color_circle_html"><div class="ttname"><a href="classreporter_1_1_color_circle.html">reporter.ColorCircle</a></div><div class="ttdef"><b>Definition</b> <a href="#l00017">ColorCircle.java:17</a></div></div>
@@ -370,6 +371,7 @@ $(function(){initNavTree('_color_circle_8java_source.html',''); initResizable();
 <div class="ttc" id="aclassreporter_1_1_color_circle_html_aefb868efd7c9ea3575b20f64783d8dc1"><div class="ttname"><a href="classreporter_1_1_color_circle.html#aefb868efd7c9ea3575b20f64783d8dc1">reporter.ColorCircle.paint</a></div><div class="ttdeci">void paint(Graphics g)</div><div class="ttdef"><b>Definition</b> <a href="#l00131">ColorCircle.java:131</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_color_circle_html_aff69ccacf13b90703dbb3ee4525cae97"><div class="ttname"><a href="classreporter_1_1_color_circle.html#aff69ccacf13b90703dbb3ee4525cae97">reporter.ColorCircle.mouseClicked</a></div><div class="ttdeci">void mouseClicked(MouseEvent arg0)</div><div class="ttdef"><b>Definition</b> <a href="#l00238">ColorCircle.java:238</a></div></div>
 <div class="ttc" id="anamespacereporter_html"><div class="ttname"><a href="namespacereporter.html">reporter</a></div><div class="ttdef"><b>Definition</b> <a href="_app_8java_source.html#l00001">App.java:1</a></div></div>
+<div class="ttc" id="aunit-udt_8cpp_html_ad05251febe96c2da9d4527834d3b92c5"><div class="ttname"><a href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a></div><div class="ttdeci">const udt::country c</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00239">unit-udt.cpp:239</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

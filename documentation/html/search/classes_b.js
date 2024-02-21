@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['tcptransport_0',['TcpTransport',['../class_tcp_transport.html',1,'']]],
-  ['thread_1',['Thread',['../class_thread.html',1,'']]],
-  ['timerthreadparameters_2',['TimerThreadParameters',['../class_state_machine_1_1_timer_thread_parameters.html',1,'StateMachine']]],
-  ['tracemessage_3',['TraceMessage',['../classtraces_listener_1_1_trace_message.html',1,'tracesListener']]],
-  ['tracesdatathread_4',['TracesDataThread',['../classtraces_listener_1_1_traces_data_thread.html',1,'tracesListener']]],
-  ['tracesdecoder_5',['TracesDecoder',['../classtraces_listener_1_1_traces_decoder.html',1,'tracesListener']]],
-  ['tracesfilter_6',['TracesFilter',['../classtraces_listener_1_1_traces_filter.html',1,'tracesListener']]],
-  ['traceslistenerserver_7',['TracesListenerServer',['../classtraces_listener_1_1_traces_listener_server.html',1,'tracesListener']]],
-  ['tracesobserver_8',['TracesObserver',['../classtraces_listener_1_1_traces_observer.html',1,'tracesListener']]],
-  ['transition_9',['Transition',['../class_transition.html',1,'']]],
-  ['transport_10',['Transport',['../class_transport.html',1,'']]]
+  ['mainframe_0',['MainFrame',['../classreporter_1_1_main_frame.html',1,'reporter']]],
+  ['mainframeve_1',['MainFrameVE',['../classreporter_1_1_main_frame_v_e.html',1,'reporter']]],
+  ['make_5fvoid_2',['make_void',['../structdetail_1_1make__void.html',1,'detail::make_void&lt; Ts &gt;'],['../structnlohmann_1_1detail_1_1make__void.html',1,'nlohmann::detail::make_void&lt; Ts &gt;']]],
+  ['mallocfreetracer_3',['MallocFreeTracer',['../structfuzzer_1_1_malloc_free_tracer.html',1,'fuzzer']]],
+  ['mergefileinfo_4',['MergeFileInfo',['../structfuzzer_1_1_merge_file_info.html',1,'fuzzer']]],
+  ['merger_5',['Merger',['../structfuzzer_1_1_merger.html',1,'fuzzer']]],
+  ['message_6',['Message',['../struct_message.html',1,'']]],
+  ['messagebuilder_7',['MessageBuilder',['../structdoctest_1_1detail_1_1_message_builder.html',1,'doctest::detail']]],
+  ['messagedata_8',['MessageData',['../structdoctest_1_1_message_data.html',1,'doctest']]],
+  ['messageheader_9',['MessageHeader',['../struct_message_header.html',1,'']]],
+  ['modiddefinitiondialog_10',['ModIdDefinitionDialog',['../classreporter_1_1_mod_id_definition_dialog.html',1,'reporter']]],
+  ['modiddefinitiondialogve_11',['ModIdDefinitionDialogVE',['../classreporter_1_1_mod_id_definition_dialog_v_e.html',1,'reporter']]],
+  ['modidtable_12',['ModIdTable',['../classreporter_1_1_mod_id_table.html',1,'reporter']]],
+  ['modidtablemodel_13',['ModIdTableModel',['../classreporter_1_1_mod_id_table_model.html',1,'reporter']]],
+  ['modidtabletransferhandler_14',['ModIdTableTransferHandler',['../classreporter_1_1_mod_id_table_transfer_handler.html',1,'reporter']]],
+  ['modulefilter_15',['ModuleFilter',['../classtraces_listener_1_1_module_filter.html',1,'tracesListener']]],
+  ['multicoloredtextarea_16',['MultiColoredTextArea',['../classreporter_1_1_multi_colored_text_area.html',1,'reporter']]],
+  ['mutationdispatcher_17',['MutationDispatcher',['../classfuzzer_1_1_mutation_dispatcher.html',1,'fuzzer']]],
+  ['my_5fallocator_18',['my_allocator',['../classmy__allocator.html',1,'']]]
 ];

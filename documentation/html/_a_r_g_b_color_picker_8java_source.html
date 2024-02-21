@@ -178,13 +178,13 @@ $(function(){initNavTree('_a_r_g_b_color_picker_8java_source.html',''); initResi
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keyword">class </span>ChangeRedAction <span class="keyword">implements</span> ChangeListener {</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keyword">public</span> <span class="keywordtype">void</span> stateChanged(ChangeEvent e) {</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                Color oldColor = colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#acfb12ec12f88c56b880a20be58967be4">colorCircle</a>.getBackground();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                <span class="keywordtype">int</span> value = oldColor.getRed();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                <span class="keywordtype">int</span> <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = oldColor.getRed();</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                    value = JSlider.class.cast(e.getSource()).getValue();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = JSlider.class.cast(e.getSource()).getValue();</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#a5a8e8497320ee1bdd2935a53541753ce">redSpinner</a>.setValue(value);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                } <span class="keywordflow">catch</span> (ClassCastException ex) {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                    value = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#af3bb4367865b76817af6f0b0fe8e88b8">redSlider</a>.setValue(value);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
@@ -197,13 +197,13 @@ $(function(){initNavTree('_a_r_g_b_color_picker_8java_source.html',''); initResi
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keyword">class </span>ChangeGreenAction <span class="keyword">implements</span> ChangeListener {</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="keyword">public</span> <span class="keywordtype">void</span> stateChanged(ChangeEvent e) {</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                Color oldColor = colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#acfb12ec12f88c56b880a20be58967be4">colorCircle</a>.getBackground();</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordtype">int</span> value = oldColor.getGreen();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordtype">int</span> <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = oldColor.getGreen();</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    value = JSlider.class.cast(e.getSource()).getValue();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = JSlider.class.cast(e.getSource()).getValue();</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#ab842e2b27d58741fae7feca028740c63">greenSpinner</a>.setValue(value);</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                } <span class="keywordflow">catch</span> (ClassCastException ex) {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    value = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#ae5d38ae79c7a1acb5c1a6fc4193651ad">greenSlider</a>.setValue(value);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                }</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
@@ -216,13 +216,13 @@ $(function(){initNavTree('_a_r_g_b_color_picker_8java_source.html',''); initResi
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keyword">class </span>ChangeBlueAction <span class="keyword">implements</span> ChangeListener {</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keyword">public</span> <span class="keywordtype">void</span> stateChanged(ChangeEvent e) {</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                Color oldColor = colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#acfb12ec12f88c56b880a20be58967be4">colorCircle</a>.getBackground();</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordtype">int</span> value = oldColor.getBlue();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="keywordtype">int</span> <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = oldColor.getBlue();</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                    value = JSlider.class.cast(e.getSource()).getValue();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = JSlider.class.cast(e.getSource()).getValue();</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#a96e6ef0f750754f964ef34cd94b5b12b">blueSpinner</a>.setValue(value);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                } <span class="keywordflow">catch</span> (ClassCastException ex) {</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                    value = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                    <a class="code hl_enumvalue" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = Integer.class.cast(JSpinner.class.cast(e.getSource()).getValue());</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                    colorPanel.<a class="code hl_variable" href="classreporter_1_1_a_r_g_b_color_panel.html#a2ca8ef5f7a46faafb4e380c6fe1c4a63">blueSlider</a>.setValue(value);</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                }</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
@@ -308,6 +308,7 @@ $(function(){initNavTree('_a_r_g_b_color_picker_8java_source.html',''); initResi
 <div class="ttc" id="aclassreporter_1_1_a_r_g_b_color_picker_html_ad4facfda42dacd232575fb4de3ed1d49"><div class="ttname"><a href="classreporter_1_1_a_r_g_b_color_picker.html#ad4facfda42dacd232575fb4de3ed1d49">reporter.ARGBColorPicker.getColor</a></div><div class="ttdeci">Color getColor()</div><div class="ttdef"><b>Definition</b> <a href="#l00182">ARGBColorPicker.java:182</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_strings_html"><div class="ttname"><a href="classreporter_1_1_strings.html">reporter.Strings</a></div><div class="ttdef"><b>Definition</b> <a href="_strings_8java_source.html#l00006">Strings.java:6</a></div></div>
 <div class="ttc" id="aclassreporter_1_1_strings_html_a5f57c2d5b23e62c444b2a453b39c8a2c"><div class="ttname"><a href="classreporter_1_1_strings.html#a5f57c2d5b23e62c444b2a453b39c8a2c">reporter.Strings.getString</a></div><div class="ttdeci">static String getString(String key)</div><div class="ttdef"><b>Definition</b> <a href="_strings_8java_source.html#l00012">Strings.java:12</a></div></div>
+<div class="ttc" id="anamespacedetail_html_a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804"><div class="ttname"><a href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">detail::parse_event_t::value</a></div><div class="ttdeci">@ value</div><div class="ttdoc">the parser finished reading a JSON value</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

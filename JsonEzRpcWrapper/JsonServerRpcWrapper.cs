@@ -8,6 +8,9 @@ public delegate ulong ServerProcedure(string jsonCall, IntPtr jsonCallResultP, u
 
 namespace ezRPC
 {
+	/**
+	* This class is a wrapper to the C++ JsonRPServer API.
+	*/
 	public class JsonServerRpcWrapper
 	{
 		ulong m_serverId {  get; set; }	

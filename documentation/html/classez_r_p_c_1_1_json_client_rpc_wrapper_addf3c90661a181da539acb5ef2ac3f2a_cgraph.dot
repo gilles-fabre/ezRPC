@@ -1,0 +1,13 @@
+digraph "ezRPC.JsonClientRpcWrapper.Call"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="ezRPC.JsonClientRpcWrapper.Call",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="ezRPC.JsonCall.FromJson",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classez_r_p_c_1_1_json_call.html#a8031deea4dc774abb53c0ef3fe8e996a",tooltip="Builds a call instance out of a string contained jsonCall serialization. The latter must be properly ..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="ezRPC.JsonClientRpcWrapper.\lRpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classez_r_p_c_1_1_json_client_rpc_wrapper.html#ad95ba941faded54e25c0e26951a32811",tooltip=" "];
+}

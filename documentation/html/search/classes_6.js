@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['linenumberdialog_0',['LineNumberDialog',['../classreporter_1_1_line_number_dialog.html',1,'reporter']]],
-  ['linenumberdialogve_1',['LineNumberDialogVE',['../classreporter_1_1_line_number_dialog_v_e.html',1,'reporter']]],
-  ['link_2',['Link',['../class_link.html',1,'']]],
-  ['logdatathread_3',['LogDataThread',['../classtraces_listener_1_1_log_data_thread.html',1,'tracesListener']]],
-  ['logger_4',['Logger',['../class_c_sharp_log2_reporter_1_1_logger.html',1,'CSharpLog2Reporter']]],
-  ['lookandfeelcombobox_5',['LookAndFeelComboBox',['../classreporter_1_1_look_and_feel_combo_box.html',1,'reporter']]]
+  ['gen_0',['Gen',['../structdetail_1_1utility__internal_1_1_gen.html',1,'detail::utility_internal::Gen&lt; T, N &gt;'],['../structnlohmann_1_1detail_1_1utility__internal_1_1_gen.html',1,'nlohmann::detail::utility_internal::Gen&lt; T, N &gt;']]],
+  ['gen_3c_20t_2c_200_20_3e_1',['Gen&lt; T, 0 &gt;',['../structdetail_1_1utility__internal_1_1_gen_3_01_t_00_010_01_4.html',1,'detail::utility_internal::Gen&lt; T, 0 &gt;'],['../structnlohmann_1_1detail_1_1utility__internal_1_1_gen_3_01_t_00_010_01_4.html',1,'nlohmann::detail::utility_internal::Gen&lt; T, 0 &gt;']]],
+  ['globalsettingspanel_2',['GlobalSettingsPanel',['../classreporter_1_1_global_settings_panel.html',1,'reporter']]]
 ];

@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="ns::foo_serializer\l\< T, typename std::enable\l_if\< !std::is_same\< foo,\l T \>::value \>::type \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structns_1_1foo__serializer_3_01_t_00_01typename_01std_1_1enable__if_3_01_9std_1_1is__same_3_01f46896d89d9a2165fde7843aa3d3a576d.html",tooltip=" "];
+}

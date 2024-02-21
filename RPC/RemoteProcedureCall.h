@@ -112,11 +112,11 @@ public:
 	class ParameterBase {
 	protected:
 		ParamType 		m_type;
-		uint64_t		m_caller_valP;
+		uint64_t		m_callerValuePointer;
 
 	public:
 		ParameterBase(ParamType type, uint64_t caller_valP) {
-			m_caller_valP = caller_valP;
+			m_callerValuePointer = caller_valP;
 			m_type = type;
 		}
 
@@ -131,11 +131,11 @@ public:
 
 		// pointer getters
 		bool IsValidPointer() {
-			return m_caller_valP != 0;
+			return m_callerValuePointer != 0;
 		}
 
 		uint64_t GetCallerPointer() {
-			return m_caller_valP;
+			return m_callerValuePointer;
 		}
 	};
 
@@ -152,8 +152,8 @@ public:
 		 * 		  presence (for an output parameter).
 		 * 
 		 * \param value is the parameter value
-		 * \param caller_valP is the shadow parameter address (to return a 
-		 * 					  value to the caller if set). Set to 0 by default.
+		 * \param callerValuePtr is the shadow parameter address (to return a 
+		 * 		  value to the caller if set). Set to 0 by default.
 		*/
 		Parameter(ParamType type) : ParameterBase(type, 0) {
 			m_value = type;
@@ -203,10 +203,10 @@ public:
 			m_value = value;
 		}
 
-		Parameter(const Parameter& other) : ParameterBase(other.m_type, other.m_caller_valP) {
+		Parameter(const Parameter& other) : ParameterBase(other.m_type, other.m_callerValuePointer) {
 			m_value = other.m_value;
 		}
-		Parameter(Parameter&& other) : ParameterBase(other.m_type, other.m_caller_valP)  {
+		Parameter(Parameter&& other) : ParameterBase(other.m_type, other.m_callerValuePointer)  {
 			m_value = other.m_value;
 			other.m_type = EMPTY;
 		}
@@ -224,13 +224,13 @@ public:
 		 * \fn Get<Type>Reference
 		 * \brief parameter getter, return a reference to the embedded
 		 * 		  parameter value such that it can be modified.
-		 * \param update_from_ptr if set, the initially passed value 
+		 * \param updateFromPtr if set, the initially passed value 
 		 *        is overwritten by the pointed RPCClient side variable
 		 *		  which the RPCServer may have modified (out variable).
 		*/
-		T& GetReference(bool update_from_ptr = false) {
-			if (update_from_ptr && m_caller_valP)
-				m_value = *((T*)(m_caller_valP));
+		T& GetReference(bool updateFromPtr = false) {
+			if (updateFromPtr && m_callerValuePointer)
+				m_value = *((T*)(m_callerValuePointer));
 			return m_value;
 		}
 	};
@@ -248,22 +248,22 @@ public:
 	}
 
 	// rpc call caller side
-	void				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
-	void 				PrepareSerializeCall(AsyncID asyncId, const string& func_name, vector<unsigned char>& serialized_call, unsigned long* resultP, va_list vl);
-	void 				SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serialized_call);
+	void				PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
+	void 				PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, va_list vl);
+	void 				SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall);
 
 	// rpc function callee side
 
-	vector<ParameterBase*>* DeserializeCall(AsyncID& asyncId, string& func_name);
-	void					SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long ret_val);
+	vector<ParameterBase*>* DeserializeCall(AsyncID& asyncId, string& funcName);
+	void					SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
 
 	void Close() {
 		if (m_linkP)
 			m_linkP->Close();
 	}
 
-	static ParamType GetParameterType(const string& type_name) {
-		auto t = m_types.find(type_name);
+	static ParamType GetParameterType(const string& typeName) {
+		auto t = m_types.find(typeName);
 		if (t != m_types.end())
 		return t->second;
 
@@ -273,6 +273,6 @@ public:
 
 #define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
 
-typedef unsigned long RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP);
+typedef unsigned long RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* userDataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['jcontentpane_0',['jContentPane',['../classreporter_1_1_line_number_dialog_v_e.html#a7ed4951df999a3aa3eebcfd325373c74',1,'reporter.LineNumberDialogVE.jContentPane'],['../classreporter_1_1_mod_id_definition_dialog_v_e.html#a5822d8c87f097400dc9152006657a0ae',1,'reporter.ModIdDefinitionDialogVE.jContentPane'],['../classreporter_1_1_prog_definition_dialog_v_e.html#a10cf865630dc6b3402c279caf28b190d',1,'reporter.ProgDefinitionDialogVE.jContentPane'],['../classreporter_1_1_window_name_dialog_v_e.html#adb90fb6ef630d46169ae9321ee7630bd',1,'reporter.WindowNameDialogVE.jContentPane']]],
-  ['jsplitpane_1',['jSplitPane',['../classreporter_1_1_content_frame_v_e.html#a96ecf935464f1a84b3fdd0eab897ef8d',1,'reporter::ContentFrameVE']]],
-  ['jsplitpane1_2',['jSplitPane1',['../classreporter_1_1_content_frame_v_e.html#a1245222896a36457b7957f9ede683caa',1,'reporter::ContentFrameVE']]]
+  ['9_0',['v2.0.9',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2home_2releases.html#autotoc_md1667',1,'']]],
+  ['9_200_20v3_209_200_20a_202020_2007_2027_1',['&lt;a href=&quot;https://github.com/nlohmann/json/releases/tag/v3.9.0&quot; &gt;v3.9.0&lt;/a&gt; (2020-07-27)',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2_change_log.html#autotoc_md11',1,'']]],
+  ['9_201_20v3_209_201_20a_202020_2008_2006_2',['&lt;a href=&quot;https://github.com/nlohmann/json/releases/tag/v3.9.1&quot; &gt;v3.9.1&lt;/a&gt; (2020-08-06)',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2_change_log.html#autotoc_md10',1,'']]],
+  ['9_202_200_209_20a_202016_2012_2016_3',['&lt;a href=&quot;https://github.com/nlohmann/json/releases/tag/2.0.9&quot; &gt;2.0.9&lt;/a&gt; (2016-12-16)',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2_change_log.html#autotoc_md42',1,'']]],
+  ['9_20v2_200_209_20a_202016_2012_2016_4',['&lt;a href=&quot;https://github.com/nlohmann/json/releases/tag/v2.0.9&quot; &gt;v2.0.9&lt;/a&gt; (2016-12-16)',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2_change_log.html#autotoc_md41',1,'']]]
 ];

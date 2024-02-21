@@ -116,16 +116,16 @@ Macros</h2></td></tr>
 <tr class="separator:adbc5372f40838899018fadbc89bd588b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba35d0d200deaeb06aee95ca297acb28" id="r_aba35d0d200deaeb06aee95ca297acb28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba35d0d200deaeb06aee95ca297acb28">ARCHITECTURE_ID</a></td></tr>
 <tr class="separator:aba35d0d200deaeb06aee95ca297acb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1280362da42492bbc11aa78cbf776ad" id="r_ad1280362da42492bbc11aa78cbf776ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1280362da42492bbc11aa78cbf776ad">DEC</a>(n)</td></tr>
+<tr class="memitem:ad1280362da42492bbc11aa78cbf776ad" id="r_ad1280362da42492bbc11aa78cbf776ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1280362da42492bbc11aa78cbf776ad">DEC</a>(<a class="el" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)</td></tr>
 <tr class="separator:ad1280362da42492bbc11aa78cbf776ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46d5d95daa1bef867bd0179594310ed5" id="r_a46d5d95daa1bef867bd0179594310ed5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46d5d95daa1bef867bd0179594310ed5">HEX</a>(n)</td></tr>
+<tr class="memitem:a46d5d95daa1bef867bd0179594310ed5" id="r_a46d5d95daa1bef867bd0179594310ed5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46d5d95daa1bef867bd0179594310ed5">HEX</a>(<a class="el" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)</td></tr>
 <tr class="separator:a46d5d95daa1bef867bd0179594310ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34cc889e576a1ae6c84ae9e0a851ba21" id="r_a34cc889e576a1ae6c84ae9e0a851ba21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34cc889e576a1ae6c84ae9e0a851ba21">CXX_STD</a>&#160;&#160;&#160;__cplusplus</td></tr>
 <tr class="separator:a34cc889e576a1ae6c84ae9e0a851ba21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *<a class="el" href="afl__driver_8cpp.html#a5d7d76db953dad5fc7ae40344df71c58">argv</a>[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -218,19 +218,20 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">#define DEC</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">n</span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><a class="el" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 10000000)%10)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 1000000)%10)),  \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 100000)%10)),   \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 10000)%10)),    \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 1000)%10)),     \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 100)%10)),      \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((n) / 10)%10)),       \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> +  ((n) % 10))</div>
+<b>Value:</b><div class="fragment"><div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 10000000)%10)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 1000000)%10)),  \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 100000)%10)),   \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 10000)%10)),    \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 1000)%10)),     \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 100)%10)),      \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + (((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) / 10)%10)),       \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> +  ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>) % 10))</div>
+<div class="ttc" id="aunit-udt_8cpp_html_aeda809c9c9c3a54beef6a1870365e3c4"><div class="ttname"><a href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a></div><div class="ttdeci">const udt::name n</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00238">unit-udt.cpp:238</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_c_make_c_x_x_compiler_id_8cpp_source.html#l00705">705</a> of file <a class="el" href="_c_make_c_x_x_compiler_id_8cpp_source.html">CMakeCXXCompilerId.cpp</a>.</p>
 
@@ -245,19 +246,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">#define HEX</td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">n</span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><a class="el" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;28 &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;24 &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;20 &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;16 &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;12 &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;8  &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)&gt;&gt;4  &amp; 0xF)), \</div>
-<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((n)     &amp; 0xF))</div>
+<b>Value:</b><div class="fragment"><div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;28 &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;24 &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;20 &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;16 &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;12 &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;8  &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)&gt;&gt;4  &amp; 0xF)), \</div>
+<div class="line">  (<span class="charliteral">&#39;0&#39;</span> + ((<a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>)     &amp; 0xF))</div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_c_make_c_x_x_compiler_id_8cpp_source.html#l00716">716</a> of file <a class="el" href="_c_make_c_x_x_compiler_id_8cpp_source.html">CMakeCXXCompilerId.cpp</a>.</p>
 

@@ -7,6 +7,9 @@ public delegate void AsyncJsonCallReplyProcedureType(ulong asyncId, JsonCall? ca
 
 namespace ezRPC
 {
+	/**
+	 * This class is a wrapper to the C++ JsonRPClient API.
+	 */
 	public class JsonClientRpcWrapper
 	{
 		ulong m_clientId {  get; set; }	
