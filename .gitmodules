@@ -1,0 +1,4 @@
+[submodule "RPC/json"]
+	path = RPC/json
+	url = https://github.com/nlohmann/json.git
+	branch = develop
