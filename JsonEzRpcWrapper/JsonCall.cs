@@ -1,12 +1,14 @@
 ﻿
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ezRPC
 {
 	public class Parameter
 	{
 		public string? type { get; set; }	  // the parameter type, see RemoteProcedureCall.h for details
-		public object? value { get; set; }	  // the passed/returned value	
+		public object? value { get; set; }    // the passed/returned value	
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
 		public UInt64? reference { get; set; } // this is set when the caller is NOT a json caller, but a straight RPC client. It contains the (uint64_t)ptr to the client's variable
 	}
 
