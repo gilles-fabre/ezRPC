@@ -23,7 +23,7 @@ add_library(ezRPC SHARED
 			RPC/JsonRPCClient.cpp RPC/JsonRPCServer.cpp RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp RPC/JsonParameters.cpp
 		    Transport/Transport.cpp Transport/TcpTransport.cpp Transport/FileTransport.cpp Transport/Link.cpp
 		    Thread/Thread.cpp)
-						
+
 target_link_libraries(ezRPC LogReporter)
 
 add_executable(ezRPC_TestServer 
@@ -144,6 +144,8 @@ endif()
 
 install(FILES RPC/ezRPC_TestServer.log-settings DESTINATION bin)
 install(FILES RPC/ezRPC_TestClient.log-settings DESTINATION bin)
+install(FILES RPC/ezRPC_JsonTestServer.log-settings DESTINATION bin)
+install(FILES RPC/ezRPC_JsonTestClient.log-settings DESTINATION bin)
 
 if (NOT WIN32)
 install(FILES StateMachine/ezStateMachine_Test.log-settings DESTINATION bin)
