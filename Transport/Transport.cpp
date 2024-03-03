@@ -22,7 +22,7 @@ struct sockaddr_un {
 #include "TcpTransport.h"
 #include "FileTransport.h"
 
-using namespace std;
+//using namespace std;
 
 /**
  * \fn Transport* Transport::CreateTransport(TransportType transport_type)
@@ -31,24 +31,26 @@ using namespace std;
  * \param transport_type specifies the requested type of underlying transport
  * \return an instance of specialized transport, NULL if an error occured
  */
-Transport* Transport::CreateTransport(TransportType transport_type) {
-	Transport* transport = NULL;
+ReturnValue<Transport*, CommunicationErrors>&& Transport::CreateTransport(TransportType transport_type) {
+	ReturnValue<Transport*, CommunicationErrors>r;
+	Transport									*transportP = NULL;
+
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "Transport::CreateTransport(%d)", transport_type);
 #endif
 
 	switch (transport_type) {
 		case TCP:
-			transport = new TcpTransport();
+			transportP = new TcpTransport();
 #ifdef TRANSPORT_TRACES
-			LogVText(TRANSPORT_MODULE, 4, true, "created transport %p of type TCP", transport);
+			LogVText(TRANSPORT_MODULE, 4, true, "created transport %p of type TCP", transportP);
 #endif
 			break;
 
 		case FILE:
-			transport = new FileTransport();
+			transportP = new FileTransport();
 #ifdef TRANSPORT_TRACES
-			LogVText(TRANSPORT_MODULE, 4, true, "created transport %p of type FILE", transport);
+			LogVText(TRANSPORT_MODULE, 4, true, "created transport %p of type FILE", transportP);
 #endif
 			break;
 
@@ -57,6 +59,7 @@ Transport* Transport::CreateTransport(TransportType transport_type) {
 			break;
 	}
 
-	return transport;
+	r = ReturnValue<Transport*, CommunicationErrors>{transportP, transportP ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::BadProtocol};
+	return std::move(r);
 }
 

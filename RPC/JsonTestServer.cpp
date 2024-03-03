@@ -5,10 +5,8 @@
 #include <JsonRPCServer.h>
 #include <nlohmann/json.hpp>
 
-using namespace std;
+//using namespace std;
 using json = nlohmann::json;
-
-using namespace std;
 
 uint64_t g_jserver;
 

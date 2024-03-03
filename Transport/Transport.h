@@ -50,10 +50,10 @@ public:
 #endif
 	}
 
-	static Transport *CreateTransport(TransportType transportType);
+	static ReturnValue<Transport*, CommunicationErrors>&& CreateTransport(TransportType transportType);
 
-	virtual Link* LinkRequest(const string &serverAddress) = 0;
-	virtual Link* WaitForLinkRequest(const string &serverAddress) = 0;
+	virtual ReturnValue<Link*, CommunicationErrors>&& LinkRequest(const string &serverAddress) = 0;
+	virtual ReturnValue<Link*, CommunicationErrors>&& WaitForLinkRequest(const string &serverAddress) = 0;
 
 	virtual void Close() {
 #ifdef TRANSPORT_TRACES

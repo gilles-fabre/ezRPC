@@ -5,7 +5,7 @@
 #include <JsonRPCClient.h>
 #include <nlohmann/json.hpp>
 
-using namespace std;
+//using namespace std;
 using json = nlohmann::json;
 
 string	  g_string;

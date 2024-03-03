@@ -8,7 +8,7 @@
 
 #include "RemoteProcedureCall.h"
 
-using namespace std;
+//using namespace std;
 
 const unordered_map<string, RemoteProcedureCall::ParamType> RemoteProcedureCall::m_types = {
 	{"ptr",			PTR},
@@ -71,7 +71,7 @@ bool RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataL
  * \fn unsigned char* RemoteProcedureCall::ReceivePacket(unsigned long& dataLen)
  * \brief Receives a data packet over the transport link.
  * 
- * \param data_len is the number of bytes to receive. This is blocking call!
+ * \param dataLen is the number of bytes to receive. This is blocking call!
  * 
  * \return a newly (m)allocated buffer pointing the received data. This buffer must
  * 		   be freed by the caller. Returns NULL if an error occured.

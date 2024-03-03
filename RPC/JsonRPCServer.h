@@ -5,7 +5,7 @@
 #include <log2reporter.h>
 #include <RPCServer.h>
 
-using namespace std;
+//using namespace std;
 
 #ifdef _DEBUG
 #define JSONRPCSERVER_TRACES 1

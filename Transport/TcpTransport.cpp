@@ -20,7 +20,7 @@ struct sockaddr_un {
 
 #include "TcpTransport.h"
 
-using namespace std;
+//using namespace std;
 
 #ifdef WIN32
 uint8_t TcpTransport::m_WSAStartupDone = 0;
@@ -33,9 +33,10 @@ uint8_t TcpTransport::m_WSAStartupDone = 0;
  * \param server_address is the IP address to listen on
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
-	SOCKET				connSocket;
-	struct 	sockaddr_in server_addr = {0,};
+ReturnValue<Link*, CommunicationErrors>&& TcpTransport::WaitForLinkRequest(const string& serverAddress) {
+	ReturnValue<Link*, CommunicationErrors>	r;
+	SOCKET									connSocket;
+	struct 	sockaddr_in						server_addr = {0,};
 
 #ifdef WIN32
 	struct 	sockaddr 	server_storage;
@@ -56,14 +57,16 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 
 	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid server address!" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	// get the server port
 	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	// check numeric port set
@@ -72,7 +75,8 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	ps >> portNum;
 	if (ps.fail()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: non numeric address port!" << endl;
-		return NULL; // port must be numeric
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	ipAddr = serverAddress.substr(0, found);
@@ -86,7 +90,8 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	if (m_srvSocket == -1) {
 		if ((m_srvSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-			return NULL;
+			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+			return std::move(r);
 		}
 
 		// configure settings of the server address struct
@@ -113,7 +118,8 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 			close(m_s_socket);
 #endif    
 			m_srvSocket = -1;
-			return NULL;
+			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+			return std::move(r);
 		}
 	}
 #ifdef TRANSPORT_TRACES
@@ -123,7 +129,8 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_srvSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };
+		return std::move(r);
 	}
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "accepting connection on socket %d", m_srvSocket);
@@ -133,7 +140,8 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	addr_size = sizeof(server_storage);
 	if ((connSocket = accept(m_srvSocket, (struct sockaddr*)&server_storage, &addr_size)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't accept connection (" << strerror(errno) << ")" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		return std::move(r);
 	}
 
 	if (setsockopt(connSocket, SOL_SOCKET, (SO_REUSEPORT | SO_REUSEADDR), (char*)&off, sizeof(off)) < 0) {
@@ -144,16 +152,18 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 		close(c_socket);
 #endif
 		connSocket = -1;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+		return std::move(r);
 	}
 
-	Link* new_linkP = new Link(connSocket, connSocket);
-	m_links.push_back(new_linkP);
+	Link* newLinkP = new Link(connSocket, connSocket);
+	m_links.push_back(newLinkP);
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
+	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	return new_linkP;
+	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
 
 /**
@@ -164,13 +174,14 @@ Link* TcpTransport::WaitForLinkRequest(const string& serverAddress) {
  * \param server_address is the IP addr of the server to connect to
  * \return a connected link to the peer, NULL upon error
  */
-Link* TcpTransport::LinkRequest(const string& serverAddress) {
-	SOCKET 				connSocket;
-	struct 	sockaddr_in server_addr = {0,};
-	string				ipAddr;
-	string				port;
-	int					portNum;
-	int 				retval;
+ReturnValue<Link*, CommunicationErrors>&& TcpTransport::LinkRequest(const string& serverAddress) {
+	ReturnValue<Link*, CommunicationErrors>r;
+	SOCKET 								   connSocket;
+	struct 	sockaddr_in					   server_addr = {0,};
+	string								   ipAddr;
+	string								   port;
+	int									   portNum;
+	int 								   retval;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", serverAddress.c_str());
@@ -178,14 +189,16 @@ Link* TcpTransport::LinkRequest(const string& serverAddress) {
 
 	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty address!" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	// get the server port
 	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	// check numeric port set
@@ -194,7 +207,8 @@ Link* TcpTransport::LinkRequest(const string& serverAddress) {
 	ps >> portNum;
 	if (ps.fail()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: non numeric address port!" << endl;
-		return NULL; // port must be numeric
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		return std::move(r);
 	}
 
 	ipAddr = serverAddress.substr(0, found);
@@ -207,7 +221,8 @@ Link* TcpTransport::LinkRequest(const string& serverAddress) {
 	// create the client socket
 	if ((connSocket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+		return std::move(r);
 	}
 
 	// configure settings of the server address struct
@@ -231,14 +246,16 @@ Link* TcpTransport::LinkRequest(const string& serverAddress) {
 #else
 		close(c_socket);
 #endif    
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		return std::move(r);
 	}
 
-	Link* new_linkP = new Link(connSocket, connSocket);
-	m_links.push_back(new_linkP);
+	Link* newLinkP = new Link(connSocket, connSocket);
+	m_links.push_back(newLinkP);
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
+	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	return new_linkP;
+	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }

@@ -5,7 +5,7 @@
 #include <RPCServer.h>
 
 
-using namespace std;
+//using namespace std;
 
 RPCServer* gRpcServerP = NULL;
 

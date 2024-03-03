@@ -5,7 +5,7 @@
 #include <RPCClient.h>
 #include <JsonRPCClient.h>
 
-using namespace std;
+//using namespace std;
 
 string	  g_string;
 Semaphore g_sem_put_str(0);

@@ -19,6 +19,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <log2reporter.h>
+#include "ReturnValue.h"
+#include "CommunicationErrors.h"
 
 #ifdef _DEBUG
 #define LINK_TRACES 1
@@ -54,11 +56,11 @@ public:
 		Close();
 	}
 
-	bool Send(unsigned char* byte_buffer, unsigned int data_len);
-	bool Send(unsigned char* byte_buffer, unsigned int* data_lenP);
-	bool Receive(unsigned char* byte_buffer, unsigned int data_len);
-	bool Receive(unsigned char* byte_buffer, unsigned int* data_lenP);
-	bool Peek(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors>&& Send(unsigned char* byte_buffer, unsigned int data_len);
+	ReturnValue<bool, CommunicationErrors>&& Send(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors>&& Receive(unsigned char* byte_buffer, unsigned int data_len);
+	ReturnValue<bool, CommunicationErrors>&& Receive(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors>&& Peek(unsigned char* byte_buffer, unsigned int* data_lenP);
 	void WaitForRead() {
         fd_set readset;
         int 	result;

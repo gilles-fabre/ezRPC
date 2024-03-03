@@ -4,8 +4,9 @@
 #include <unistd.h>
 #endif
 
-#define _EXPORTING
+//using namespace std;
 
+#define _EXPORTING
 #include "RPCServer.h"
 
 /**

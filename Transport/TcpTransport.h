@@ -29,8 +29,8 @@ public:
 		Close();
 	}
 
-	Link* LinkRequest(const string &serverAddress);
-	Link* WaitForLinkRequest(const string &serverAddress);
+	ReturnValue<Link*, CommunicationErrors>&& LinkRequest(const string &serverAddress);
+	ReturnValue<Link*, CommunicationErrors>&& WaitForLinkRequest(const string &serverAddress);
 	void Close() {
 		Transport::Close();
 

@@ -52,7 +52,7 @@ class TestApplication
 	static ulong Increment(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2)
+		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
 		{
 			short num = short.Parse(call.parameters[1].value.ToString());
 

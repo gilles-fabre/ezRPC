@@ -20,7 +20,7 @@ struct sockaddr_un {
 
 #include "FileTransport.h"
 
-using namespace std;
+//using namespace std;
 
 /**
  * \fn Link* FileTransport::WaitForLinkRequest(const string& server_address)
@@ -29,13 +29,14 @@ using namespace std;
  * \param server_address is the file name to listen on
  * \return a connected link to the peer, NULL upon error
  */
-Link* FileTransport::WaitForLinkRequest(const string& server_address) {
-	int 					connSocket;
-	sockaddr_un 			server_addr = { 0, };
-	struct sockaddr_storage server_storage;
-	socklen_t 				addr_size;
-	int 					retval;
-	int 					off = 0;
+ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(const string& server_address) {
+	ReturnValue<Link*, CommunicationErrors>	r;
+	int 									connSocket;
+	sockaddr_un 							server_addr = { 0, };
+	struct sockaddr_storage					server_storage;
+	socklen_t 								addr_size;
+	int 									retval;
+	int 									off = 0;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::WaitForLinkRequest(%s)", server_address.c_str());
@@ -43,7 +44,8 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 
 	if (server_address.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty filename!" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{NULL, CommunicationErrors::ErrorCode::InvalidAddress};
+		return std::move(r);
 	}
 
 	if (m_srvSocket == -1) {
@@ -56,7 +58,8 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 		// create the server socket
 		if ((m_srvSocket = (int)socket(AF_UNIX, SOCK_STREAM, IPPROTO_TCP)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-			return NULL;
+			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+			return std::move(r);
 		}
 
 		// configure settings of the server address struct
@@ -80,7 +83,8 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 			close(m_s_socket);
 #endif
 			m_srvSocket = -1;
-			return NULL;
+			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+			return std::move(r);
 		}
 	}
 #ifdef TRANSPORT_TRACES
@@ -90,7 +94,8 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_srvSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };
+		return std::move(r);
 	}
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "accepting connection on socket", m_srvSocket);
@@ -107,16 +112,18 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
 #else
 		close(c_socket);
 #endif
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+		return std::move(r);
 	}
 
-	Link* new_linkP = new Link(connSocket, connSocket);
-	m_links.push_back(new_linkP);
+	Link* newLinkP = new Link(connSocket, connSocket);
+	m_links.push_back(newLinkP);
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
+	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	return new_linkP;
+	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
 
 /**
@@ -127,10 +134,11 @@ Link* FileTransport::WaitForLinkRequest(const string& server_address) {
  * \param server_address is the filename the server is listening on
  * \return a connected link to the peer, NULL upon error
  */
-Link* FileTransport::LinkRequest(const string& server_address) {
-	int 		connSocket;
-	sockaddr_un server_addr = { 0, };
-	int 		retval;
+ReturnValue<Link*, CommunicationErrors>&& FileTransport::LinkRequest(const string& server_address) {
+	ReturnValue<Link*, CommunicationErrors>	r;
+	int 									connSocket;
+	sockaddr_un								server_addr = { 0, };
+	int 									retval;
 	
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "FileTransport::LinkRequest(%s)", server_address.c_str());
@@ -139,7 +147,8 @@ Link* FileTransport::LinkRequest(const string& server_address) {
 	// create the client socket
 	if ((connSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{NULL, CommunicationErrors::ErrorCode::SocketCreationError};
+		return std::move(r);
 	}
 
 	// configure settings of the server address struct
@@ -160,14 +169,16 @@ Link* FileTransport::LinkRequest(const string& server_address) {
 #else
 		close(c_socket);
 #endif
-		return NULL;
+		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		return std::move(r);
 	}
 
-	Link* new_linkP = new Link(connSocket, connSocket);
-	m_links.push_back(new_linkP);
+	Link* newLinkP = new Link(connSocket, connSocket);
+	m_links.push_back(newLinkP);
 #ifdef TRANSPORT_TRACES
-	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", new_linkP);
+	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	return new_linkP;
+	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }

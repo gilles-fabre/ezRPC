@@ -11,8 +11,6 @@
 
 #include "RemoteProcedureCall.h"
 
-using namespace std;
-
 #ifdef _DEBUG
 #define RPCSERVER_TRACES 1
 #endif

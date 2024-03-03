@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.9)
 
 project(ezRPC)
+if (NOT WIN32)
+set(CMAKE_CXX_STANDARD 17) 
+else()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+add_definitions(-DWIN32_LEAN_AND_MEAN)
+endif()
 
 if (NOT WIN32)
 set(CMAKE_BUILD_TYPE "Debug")  # remove this to generate Release makefiles under Linux
@@ -19,7 +25,7 @@ message("ezRPC.CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
 add_library(LogReporter SHARED 
 			LogReporter/log2reporter.c)
 
-add_library(ezRPC SHARED 
+add_library(ezRPC SHARED
 			RPC/JsonRPCClient.cpp RPC/JsonRPCServer.cpp RPC/RPCServer.cpp RPC/RPCClient.cpp RPC/RemoteProcedureCall.cpp RPC/JsonParameters.cpp
 		    Transport/Transport.cpp Transport/TcpTransport.cpp Transport/FileTransport.cpp Transport/Link.cpp
 		    Thread/Thread.cpp)
@@ -38,18 +44,16 @@ add_executable(ezRPC_JsonTestClient
 add_executable(ezRPC_JsonTestServer
 			   RPC/JsonTestServer.cpp)
 
-target_link_libraries(ezRPC_TestServer ezRPC)
-target_link_libraries(ezRPC_TestClient ezRPC)
-target_link_libraries(ezRPC_JsonTestClient ezRPC)
-target_link_libraries(ezRPC_JsonTestServer ezRPC)
+target_link_libraries(ezRPC_TestServer ezRPC LogReporter)
+target_link_libraries(ezRPC_TestClient ezRPC LogReporter)
+target_link_libraries(ezRPC_JsonTestClient ezRPC LogReporter)
+target_link_libraries(ezRPC_JsonTestServer ezRPC LogReporter)
 
 if (NOT WIN32)
 add_library(ezStateMachine SHARED
 			StateMachine/StateMachine.cpp)
 
-target_link_libraries(ezStateMachine LogReporter)
-
-target_link_libraries(ezStateMachine ezRPC jsoncpp)
+target_link_libraries(ezStateMachine ezRPC LogReporter jsoncpp)
 
 add_executable(ezStateMachine_Test 
 			   StateMachine/test.cpp)
@@ -64,6 +68,7 @@ endif()
 
 target_include_directories(ezRPC 
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
 						   "${CMAKE_INSTALL_PREFIX}/RPC/json/include" 
 						   "${CMAKE_INSTALL_PREFIX}/RPC" 
 						   "${CMAKE_INSTALL_PREFIX}/Transport" 
@@ -72,6 +77,7 @@ target_include_directories(ezRPC
 
 target_include_directories(ezRPC_TestServer 
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
@@ -79,6 +85,7 @@ target_include_directories(ezRPC_TestServer
 
 target_include_directories(ezRPC_TestClient
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
@@ -86,6 +93,7 @@ target_include_directories(ezRPC_TestClient
 
 target_include_directories(ezRPC_JsonTestClient
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
 						   "${CMAKE_INSTALL_PREFIX}/RPC/json/include" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
@@ -94,6 +102,7 @@ target_include_directories(ezRPC_JsonTestClient
 
 target_include_directories(ezRPC_JsonTestServer
 							PUBLIC
+						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
 						   "${CMAKE_INSTALL_PREFIX}/RPC/json/include" 
 							"${CMAKE_INSTALL_PREFIX}/RPC" 
 						    "${CMAKE_INSTALL_PREFIX}/Transport" 
@@ -204,6 +213,8 @@ install(TARGETS ezStateMachine_Test
         ARCHIVE DESTINATION lib)
 
 install(FILES 
+		ReturnValue/ReturnValue.h
+		ReturnValue/ErrorCodes.h
 		StateMachine/StateMachine.h
 		RPC/JsonRPCClient.h
 		RPC/RPCClient.h
