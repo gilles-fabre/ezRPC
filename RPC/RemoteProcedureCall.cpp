@@ -1589,7 +1589,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallRetur
 	// send all the serialized call parameters over to the peer
 	{
 		unique_lock<mutex> lock(m_srv_send_mutex); 
-		r = SendPacket(serializedCall.data(), (unsigned long)serializedCall.size()); // #### TODO : handle error & find a proper way to return an error.
+		r = SendPacket(serializedCall.data(), (unsigned long)serializedCall.size()); 
 	}
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serializedCall.size());
