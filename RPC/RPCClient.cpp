@@ -22,14 +22,17 @@
  * 
  * \return the Remote Procedure result.
  */
-unsigned long RPCClient::RpcCall(string function, ...) {
+ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string function, ...) {
+	ReturnValue<unsigned long, CommunicationErrors> r;
+
 #ifdef RPCCLIENT_TRACES
 	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCall(%s)", function.c_str());
 #endif
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		return 0;
+		r = ReturnValue<unsigned long, CommunicationErrors>{0, CommunicationErrors::ErrorCode::CommunicationDropped};
+		return std::move(r);
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -44,7 +47,8 @@ unsigned long RPCClient::RpcCall(string function, ...) {
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, vl);
 	va_end(vl);
 
-	m_rpcP->SendSerializedCall(0, serializedCall);
+	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+		return std::move(r);
 
 	#ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -52,17 +56,22 @@ unsigned long RPCClient::RpcCall(string function, ...) {
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	return result;
+	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
 
-unsigned long RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+	ReturnValue<unsigned long, CommunicationErrors> r;
+
 #ifdef RPCCLIENT_TRACES
 	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCall(%s) - vector based", function.c_str());
 #endif
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		return -1; // #### TODO : find a proper way to return an error.
+
+		r = ReturnValue<unsigned long, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		return std::move(r);
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -74,7 +83,8 @@ unsigned long RPCClient::RpcCall(string function, vector<RemoteProcedureCall::Pa
 	unsigned long			result;
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, paramsP);
 
-	m_rpcP->SendSerializedCall(0, serializedCall);
+	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+		return std::move(r);
 
 #ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -82,7 +92,8 @@ unsigned long RPCClient::RpcCall(string function, vector<RemoteProcedureCall::Pa
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	return result;
+	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
 
 /**
@@ -98,7 +109,9 @@ unsigned long RPCClient::RpcCall(string function, vector<RemoteProcedureCall::Pa
  *
  * \return the asynchronous call identifier, also passed to the callback procedure upon async rpc completion.
  */
-AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, ...) {
+ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, ...) {
+	ReturnValue<AsyncID, CommunicationErrors> r;
+
 	// build the asyncId
 	stringstream ss;
 	ss << function << "-" << chrono::system_clock::now().time_since_epoch().count();
@@ -110,7 +123,9 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		return 0;
+
+		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		return std::move(r);
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -139,9 +154,11 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 		aThread->detach();
 		detachedSem.R();
 
-		m_rpcP->SendSerializedCall(_asyncId, *_serializedCall); // this is the block call, the server has processed the service when we're unblocked
+		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())  
+			return std::move(r);
 
 		{
+			// this is the block call, the server has processed the service when we're unblocked
 			unique_lock<mutex> lock(m_asyncProcsMutex);
 			auto i = m_async_procs.find(_asyncId);
 			if (i != m_async_procs.end()) {
@@ -149,6 +166,9 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 				m_async_procs.erase(_asyncId);
 			}
 		}
+
+		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{asyncId, CommunicationErrors::ErrorCode::None};
+		return std::move(rt);
 	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
@@ -159,10 +179,13 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCallAsync %lu executed in %f second(s)", asyncId, elapsed.count());
 #endif
 
-	return asyncId;
+	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
 
-AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+	ReturnValue<AsyncID, CommunicationErrors> r;
+
 	// build the asyncId
 	stringstream ss;
 	ss << function << "-" << chrono::system_clock::now().time_since_epoch().count();
@@ -174,7 +197,9 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		return 0;
+
+		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		return std::move(r);
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -200,8 +225,10 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 		aThread->detach();
 		detachedSem.R();
 
-		m_rpcP->SendSerializedCall(_asyncId, *_serializedCall); // this is the block call, the server has processed the service when we're unblocked
+		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
+			return std::move(r);
 
+		// this is the block call, the server has processed the service when we're unblocked
 		{
 			unique_lock<mutex> lock(m_asyncProcsMutex);
 			auto i = m_async_procs.find(_asyncId);
@@ -210,7 +237,10 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 				m_async_procs.erase(_asyncId);
 			}
 		}
-		}, asyncId, serializedCall, result);
+
+		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
+		return std::move(rt);
+	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
 
@@ -220,5 +250,7 @@ AsyncID RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCallAsync %lu executed in %f second(s)", asyncId, elapsed.count());
 #endif
 
-	return asyncId;
+
+	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
+	return std::move(r);
 }
