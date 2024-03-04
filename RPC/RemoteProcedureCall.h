@@ -257,7 +257,7 @@ public:
 	// rpc function callee side
 
 	ReturnValue<vector<ParameterBase*>*, CommunicationErrors>&& DeserializeCall(AsyncID& asyncId, string& funcName);
-	void														SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
+	ReturnValue<bool, CommunicationErrors>&&					SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
 
 	void Close() {
 		if (m_linkP)

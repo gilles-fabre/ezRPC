@@ -862,7 +862,8 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendSerializedCall
 	unsigned long buff_len = (unsigned long)serializedCall.size();
 	{
 		unique_lock<mutex> lock(m_cli_send_mutex);
-		SendPacket((unsigned char*)serializedCall.data(), buff_len); // #### TODO : handle error & find a proper way to return an error.
+		if ((r = SendPacket((unsigned char*)serializedCall.data(), buff_len)).IsError()) 
+			return std::move(r);
 	}
 
 #ifdef RPC_TRACES
@@ -1416,20 +1417,22 @@ clean_up:
  * \param paramP points to a parameter vector built by DeserializeCall
  * \param retVal is the server's procedure return value
  */
-void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
-	vector<unsigned char> 	serializedCall;
-	ParamType				type;
-	unsigned char			b;
-	unsigned char* 			p;
-	char					c;
-	int16_t					i16;
-	uint16_t				ui16;
-	int32_t					i32;
-	uint32_t				ui32;
-	int64_t					i64;
-	uint64_t				ui64;
-	double					d;
-	string					s;
+ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
+	ReturnValue<bool, CommunicationErrors> r;
+	vector<unsigned char> 				   serializedCall;
+	ParamType							   type;
+	unsigned char						   b;
+	unsigned char* 						   p;
+	char								   c;
+	int16_t								   i16;
+	uint16_t							   ui16;
+	int32_t								   i32;
+	uint32_t							   ui32;
+	int64_t								   i64;
+	uint64_t							   ui64;
+	double								   d;
+	string								   s;
+
 #ifdef RPC_TRACES
 	LogText(RPC_MODULE, 0, true, "RemoteProcedureCal::SerializeCallReturn(...)");
 #endif
@@ -1456,7 +1459,7 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector
 	LogVText(RPC_MODULE, 4, true, "pushed return result: %lu", ui64);
 #endif
 
-	// push all ptr parameters back
+	// push (only) ptr parameters back
 	for (vector<ParameterBase*>::iterator i = params->begin(); i != params->end(); i++) {
 		if (!(*i)->IsValidPointer())
 			continue;
@@ -1572,7 +1575,8 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector
 
 			default:
 				cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid parameter type!" << endl;
-				break;
+				r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::BadArgument};
+				return std::move(r);
 		}
 	}
 
@@ -1585,11 +1589,13 @@ void RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector
 	// send all the serialized call parameters over to the peer
 	{
 		unique_lock<mutex> lock(m_srv_send_mutex); 
-		SendPacket(serializedCall.data(), (unsigned long)serializedCall.size()); // #### TODO : handle error & find a proper way to return an error.
+		r = SendPacket(serializedCall.data(), (unsigned long)serializedCall.size()); // #### TODO : handle error & find a proper way to return an error.
 	}
 #ifdef RPC_TRACES
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serializedCall.size());
 #endif
+
+	return std::move(r);
 }
 
 /**
