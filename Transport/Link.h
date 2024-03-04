@@ -56,11 +56,11 @@ public:
 		Close();
 	}
 
-	ReturnValue<bool, CommunicationErrors>&& Send(unsigned char* byte_buffer, unsigned int data_len);
-	ReturnValue<bool, CommunicationErrors>&& Send(unsigned char* byte_buffer, unsigned int* data_lenP);
-	ReturnValue<bool, CommunicationErrors>&& Receive(unsigned char* byte_buffer, unsigned int data_len);
-	ReturnValue<bool, CommunicationErrors>&& Receive(unsigned char* byte_buffer, unsigned int* data_lenP);
-	ReturnValue<bool, CommunicationErrors>&& Peek(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors> Send(unsigned char* byte_buffer, unsigned int data_len);
+	ReturnValue<bool, CommunicationErrors> Send(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors> Receive(unsigned char* byte_buffer, unsigned int data_len);
+	ReturnValue<bool, CommunicationErrors> Receive(unsigned char* byte_buffer, unsigned int* data_lenP);
+	ReturnValue<bool, CommunicationErrors> Peek(unsigned char* byte_buffer, unsigned int* data_lenP);
 	void WaitForRead() {
         fd_set readset;
         int 	result;

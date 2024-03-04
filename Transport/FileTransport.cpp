@@ -29,7 +29,7 @@ using namespace std;
  * \param server_address is the file name to listen on
  * \return a connected link to the peer, NULL upon error
  */
-ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(const string& server_address) {
+ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const string& server_address) {
 	ReturnValue<Link*, CommunicationErrors>	r;
 	int 									connSocket;
 	sockaddr_un 							server_addr = { 0, };
@@ -45,7 +45,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 	if (server_address.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty filename!" << endl;
 		r = ReturnValue<Link*, CommunicationErrors>{NULL, CommunicationErrors::ErrorCode::InvalidAddress};
-		return std::move(r);
+		return r;
 	}
 
 	if (m_srvSocket == -1) {
@@ -59,7 +59,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 		if ((m_srvSocket = (int)socket(AF_UNIX, SOCK_STREAM, IPPROTO_TCP)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
-			return std::move(r);
+			return r;
 		}
 
 		// configure settings of the server address struct
@@ -84,7 +84,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 #endif
 			m_srvSocket = -1;
 			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
-			return std::move(r);
+			return r;
 		}
 	}
 #ifdef TRANSPORT_TRACES
@@ -95,7 +95,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 	if ((retval = listen(m_srvSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
 		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };
-		return std::move(r);
+		return r;
 	}
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 4, true, "accepting connection on socket", m_srvSocket);
@@ -113,7 +113,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 		close(c_socket);
 #endif
 		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
-		return std::move(r);
+		return r;
 	}
 
 	Link* newLinkP = new Link(connSocket, connSocket);
@@ -123,7 +123,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
 #endif
 
 	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -134,7 +134,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::WaitForLinkRequest(cons
  * \param server_address is the filename the server is listening on
  * \return a connected link to the peer, NULL upon error
  */
-ReturnValue<Link*, CommunicationErrors>&& FileTransport::LinkRequest(const string& server_address) {
+ReturnValue<Link*, CommunicationErrors> FileTransport::LinkRequest(const string& server_address) {
 	ReturnValue<Link*, CommunicationErrors>	r;
 	int 									connSocket;
 	sockaddr_un								server_addr = { 0, };
@@ -148,7 +148,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::LinkRequest(const strin
 	if ((connSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 		r = ReturnValue<Link*, CommunicationErrors>{NULL, CommunicationErrors::ErrorCode::SocketCreationError};
-		return std::move(r);
+		return r;
 	}
 
 	// configure settings of the server address struct
@@ -170,7 +170,7 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::LinkRequest(const strin
 		close(c_socket);
 #endif
 		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
-		return std::move(r);
+		return r;
 	}
 
 	Link* newLinkP = new Link(connSocket, connSocket);
@@ -180,5 +180,5 @@ ReturnValue<Link*, CommunicationErrors>&& FileTransport::LinkRequest(const strin
 #endif
 
 	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }

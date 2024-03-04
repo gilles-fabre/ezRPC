@@ -22,7 +22,7 @@
  * 
  * \return the Remote Procedure result.
  */
-ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string function, ...) {
+ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string function, ...) {
 	ReturnValue<unsigned long, CommunicationErrors> r;
 
 #ifdef RPCCLIENT_TRACES
@@ -32,7 +32,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 		r = ReturnValue<unsigned long, CommunicationErrors>{0, CommunicationErrors::ErrorCode::CommunicationDropped};
-		return std::move(r);
+		return r;
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -48,7 +48,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 	va_end(vl);
 
 	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
-		return std::move(r);
+		return r;
 
 	#ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -57,10 +57,10 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 #endif
 
 	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
-ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
 	ReturnValue<unsigned long, CommunicationErrors> r;
 
 #ifdef RPCCLIENT_TRACES
@@ -71,7 +71,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
 		r = ReturnValue<unsigned long, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
-		return std::move(r);
+		return r;
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -84,7 +84,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, paramsP);
 
 	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
-		return std::move(r);
+		return r;
 
 #ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -93,7 +93,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
 #endif
 
 	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -109,7 +109,7 @@ ReturnValue<unsigned long, CommunicationErrors>&& RPCClient::RpcCall(string func
  *
  * \return the asynchronous call identifier, also passed to the callback procedure upon async rpc completion.
  */
-ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, ...) {
+ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, ...) {
 	ReturnValue<AsyncID, CommunicationErrors> r;
 
 	// build the asyncId
@@ -125,7 +125,7 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
 		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
-		return std::move(r);
+		return r;
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -155,7 +155,7 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 		detachedSem.R();
 
 		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())  
-			return std::move(r);
+			return r;
 
 		{
 			// this is the block call, the server has processed the service when we're unblocked
@@ -180,10 +180,10 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 #endif
 
 	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
-ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
 	ReturnValue<AsyncID, CommunicationErrors> r;
 
 	// build the asyncId
@@ -199,7 +199,7 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
 		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
-		return std::move(r);
+		return r;
 	}
 
 #ifdef RPCCLIENT_TRACES
@@ -226,7 +226,7 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 		detachedSem.R();
 
 		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
-			return std::move(r);
+			return r;
 
 		// this is the block call, the server has processed the service when we're unblocked
 		{
@@ -252,5 +252,5 @@ ReturnValue<AsyncID, CommunicationErrors>&& RPCClient::RpcCallAsync(AsyncReplyPr
 
 
 	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }

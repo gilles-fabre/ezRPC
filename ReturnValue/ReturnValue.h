@@ -27,7 +27,7 @@ public:
     *this = std::move(other);
   }
   ReturnValue& operator =(const ReturnValue& other) {
-    m_value = other.value;
+    m_value = other.m_value;
     return *this;
   }
   ReturnValue& operator =(ReturnValue&& other) noexcept {

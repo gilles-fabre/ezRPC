@@ -47,14 +47,14 @@ const unordered_map<string, RemoteProcedureCall::ParamType> RemoteProcedureCall:
  * 
  * \return true if everything went fine, false else.
 */
-ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataLen) {
+ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataLen) {
 	ReturnValue<bool, CommunicationErrors> r;
 	uint64_t 							   len = dataLen;
 	unsigned char 						   buffer[sizeof(uint64_t)];
 
 	if (len == 0 || !bufferP) {
 		r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::BadArgument};
-		return std::move(r);
+		return r;
 	}
 
 	// encode the packet length
@@ -72,7 +72,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendPacket(unsigne
 		return std::move(rv);
 
 	r = ReturnValue<bool, CommunicationErrors>{ true, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -84,7 +84,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendPacket(unsigne
  * \return a newly (m)allocated buffer pointing the received data. This buffer must
  * 		   be freed by the caller. Returns NULL if an error occured.
 */
-ReturnValue<unsigned char*, CommunicationErrors>&& RemoteProcedureCall::ReceivePacket(unsigned long& dataLen) {
+ReturnValue<unsigned char*, CommunicationErrors> RemoteProcedureCall::ReceivePacket(unsigned long& dataLen) {
 	ReturnValue<unsigned char*, CommunicationErrors> r;
 	unsigned char*								     bufferP;
 	uint64_t 									     len;
@@ -94,32 +94,32 @@ ReturnValue<unsigned char*, CommunicationErrors>&& RemoteProcedureCall::ReceiveP
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_linkP->Receive(buffer, (unsigned long)sizeof(len))).IsError()) {
 		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
-		return std::move(r);
+		return r;
 	}
 
 	int offset = 0;
 	len = decode_uint64(buffer, offset);
 	if ((dataLen = (unsigned long)NTOHLL(len)) == 0) {
 		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::MissingData };
-		return std::move(r);
+		return r;
 	}
 
 	// allocate the necessary bufferP
 	bufferP = (unsigned char*)malloc(dataLen);
 	if (!bufferP) {
 		r = ReturnValue<unsigned char*, CommunicationErrors>{ bufferP, CommunicationErrors::ErrorCode::AllocationError };
-		return std::move(r);
+		return r;
 	}
 
 	// wait and read the whole call stream
 	if ((rv = m_linkP->Receive(bufferP, (unsigned long)dataLen)).IsError()) {
 		free(bufferP);
 		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
-		return std::move(r);
+		return r;
 	}
 
 	r = ReturnValue<unsigned char*, CommunicationErrors>{ bufferP, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -851,7 +851,7 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
  * \param serializedCall is the serialized vector of parameters to build with the vl list of
  *		  arguments
  */
-ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall) {
+ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall) {
 	ReturnValue<bool, CommunicationErrors> r;
 
 #ifdef RPC_TRACES
@@ -863,7 +863,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendSerializedCall
 	{
 		unique_lock<mutex> lock(m_cli_send_mutex);
 		if ((r = SendPacket((unsigned char*)serializedCall.data(), buff_len)).IsError()) 
-			return std::move(r);
+			return r;
 	}
 
 #ifdef RPC_TRACES
@@ -878,7 +878,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendSerializedCall
 		ReturnValue<unsigned char*, CommunicationErrors> rv;
 		if ((rv = ReceivePacket(buff_len)).IsError()) {
 			r = ReturnValue < bool, CommunicationErrors>{false, rv.GetError<CommunicationErrors::ErrorCode>()};
-			return std::move(r); 
+			return r; 
 		} 
 
 		bufferP = rv.GetResult();
@@ -887,7 +887,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SendSerializedCall
 	r = DeserializeCallReturn(dummy, bufferP); 
 	free(bufferP);
 
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -1017,7 +1017,7 @@ inline uint16_t RemoteProcedureCall::decode_uint16(unsigned char* bufferP, int& 
  * \param bufferP is the function call byte stream built by SerializeCall
  * \return a vector of parameters associated with the function call
  */
-ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors>&& RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& function) {
+ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors> RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& function) {
 	ReturnValue<vector<ParameterBase*>*, CommunicationErrors> r;
 	vector<RemoteProcedureCall::ParameterBase*>*			  resultP;
 	ParamType												  type;
@@ -1049,7 +1049,7 @@ ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors>&&
 		ReturnValue<unsigned char*, CommunicationErrors> rv;
 		if ((rv = ReceivePacket(len)).IsError()) {
 			r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{NULL, rv.GetError<CommunicationErrors::ErrorCode>()};
-			return std::move(r);
+			return r;
 		}
 
 		bufferP = rv.GetResult();
@@ -1381,7 +1381,7 @@ ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors>&&
 
 	free (bufferP);
 	r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{ resultP, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 
 clean_up:
 	if (bufferP)
@@ -1390,7 +1390,7 @@ clean_up:
 	delete resultP;
 
 	r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::ProtocolError };
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -1417,7 +1417,7 @@ clean_up:
  * \param paramP points to a parameter vector built by DeserializeCall
  * \param retVal is the server's procedure return value
  */
-ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
+ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
 	ReturnValue<bool, CommunicationErrors> r;
 	vector<unsigned char> 				   serializedCall;
 	ParamType							   type;
@@ -1576,7 +1576,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallRetur
 			default:
 				cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid parameter type!" << endl;
 				r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::BadArgument};
-				return std::move(r);
+				return r;
 		}
 	}
 
@@ -1595,7 +1595,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallRetur
 	LogVText(RPC_MODULE, 4, true, "sent %ld bytes...", serializedCall.size());
 #endif
 
-	return std::move(r);
+	return r;
 }
 
 /**
@@ -1608,7 +1608,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::SerializeCallRetur
  * \param bufferP points to a function call byte stream built by SerializeCallReturn
  * \return true upon success, else return false
  */
-ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP) {
+ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP) {
 	ReturnValue<bool, CommunicationErrors> r;
 	unsigned long*						   resultP;
 	int									   offset = 0;
@@ -1632,7 +1632,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::DeserializeCallRet
 	if (bufferP[offset++] != (unsigned char)ASYNC_ID) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing callee asynchronous identifier!" << endl;
 		r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::ProtocolError};
-		return std::move(r);
+		return r;
 	}
 	asyncId = (AsyncID)decode_uint64(bufferP, offset);
 	asyncId = NTOHLL((uint64_t)asyncId);
@@ -1648,7 +1648,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::DeserializeCallRet
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing return result address!" << endl;
 		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::MissingData };
-		return std::move(r);
+		return r;
 	}
 
 	ui64 = decode_uint64(bufferP, offset);
@@ -1662,7 +1662,7 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::DeserializeCallRet
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing result value!" << endl;
 		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::MissingData };
-		return std::move(r);
+		return r;
 	}
 
 	// set the result
@@ -1797,6 +1797,6 @@ ReturnValue<bool, CommunicationErrors>&& RemoteProcedureCall::DeserializeCallRet
 	}
 
 	r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::None };
-	return std::move(r);
+	return r;
 }
 

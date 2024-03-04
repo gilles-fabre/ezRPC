@@ -31,7 +31,7 @@ using namespace std;
  * \param transport_type specifies the requested type of underlying transport
  * \return an instance of specialized transport, NULL if an error occured
  */
-ReturnValue<Transport*, CommunicationErrors>&& Transport::CreateTransport(TransportType transport_type) {
+ReturnValue<Transport*, CommunicationErrors> Transport::CreateTransport(TransportType transport_type) {
 	ReturnValue<Transport*, CommunicationErrors> r;
 	Transport									 *transportP = NULL;
 
@@ -60,6 +60,6 @@ ReturnValue<Transport*, CommunicationErrors>&& Transport::CreateTransport(Transp
 	}
 
 	r = ReturnValue<Transport*, CommunicationErrors>{transportP, transportP ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::BadProtocol};
-	return std::move(r);
+	return r;
 }
 

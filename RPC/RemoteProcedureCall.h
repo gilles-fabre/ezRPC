@@ -47,11 +47,11 @@ class RemoteProcedureCall {
 	mutex m_srv_receive_mutex;	 // protect the transport against concurrent receive (async calls multiplexing)
 
 	// invoked internally (by SerializeCall) upon rpc reply receipt
-	ReturnValue<bool, CommunicationErrors>&& DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP);
+	ReturnValue<bool, CommunicationErrors> DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP);
 
 	// exchange sized call streams
-	ReturnValue<bool, CommunicationErrors>&&		   SendPacket(unsigned char* bufferP, unsigned long data_len);
-	ReturnValue<unsigned char*, CommunicationErrors>&& ReceivePacket(unsigned long& data_len);
+	ReturnValue<bool, CommunicationErrors>			 SendPacket(unsigned char* bufferP, unsigned long data_len);
+	ReturnValue<unsigned char*, CommunicationErrors> ReceivePacket(unsigned long& data_len);
 
 	// utility methods to push parameter values [and pointers] into the
 	// call stream serialization vector and read/decode parameter
@@ -250,14 +250,14 @@ public:
 	}
 
 	// rpc call caller side
-	void									 PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
-	void 									 PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, va_list vl);
-	ReturnValue<bool, CommunicationErrors>&& SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall);
+	void								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
+	void 								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, va_list vl);
+	ReturnValue<bool, CommunicationErrors> SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall);
 
 	// rpc function callee side
 
-	ReturnValue<vector<ParameterBase*>*, CommunicationErrors>&& DeserializeCall(AsyncID& asyncId, string& funcName);
-	ReturnValue<bool, CommunicationErrors>&&					SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
+	ReturnValue<vector<ParameterBase*>*, CommunicationErrors> DeserializeCall(AsyncID& asyncId, string& funcName);
+	ReturnValue<bool, CommunicationErrors>					  SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
 
 	void Close() {
 		if (m_linkP)
