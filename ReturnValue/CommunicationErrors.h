@@ -5,6 +5,7 @@ public:
   typedef enum _ErrorCode { None, 
 							EmptyResult, 
 							BadArgument, 
+							AllocationError,
 							MissingData, 
 							CommunicationDropped, 
 							BadProtocol, 
@@ -13,10 +14,12 @@ public:
 							InvalidAddress, 
 							SocketSettingError,
 							SocketListeningError,
+							ProtocolError,
 							END } ErrorCode;
   static constexpr const char* m_errors[] = { "None", 
 											  "EmptyResult", 
 											  "BadArgument", 
+											  "AllocationError",
 											  "MissingData", 
 											  "CommunicationDropped", 
                                               "BadProtocol", 
@@ -24,7 +27,8 @@ public:
 											  "SocketConnectionError", 
 											  "InvalidAddress",
 											  "SocketSettingError",
-											  "SocketListeningError" };
+											  "SocketListeningError",
+											  "ProtocolError" };
 };
 
 

@@ -36,17 +36,17 @@ public:
   }
 
   bool IsError() {
-    return !m_value.first.has_value() || m_value.second != E::None;
+    return m_value.second != E::None;
   }
 
-  template <typename C>
-  operator C() {
-    return static_cast<C>(m_value.second);
+  template <typename E>
+  operator E() {
+    return static_cast<E>(m_value.second);
   }
 
-  template <typename C>
-  C GetError() {
-    return static_cast<C>(m_value.second);
+  template <typename E>
+  E GetError() {
+    return static_cast<E>(m_value.second);
   }
 
   string GetErrorString() {

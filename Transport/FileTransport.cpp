@@ -20,7 +20,7 @@ struct sockaddr_un {
 
 #include "FileTransport.h"
 
-//using namespace std;
+using namespace std;
 
 /**
  * \fn Link* FileTransport::WaitForLinkRequest(const string& server_address)

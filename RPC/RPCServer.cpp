@@ -4,7 +4,7 @@
 #include <unistd.h>
 #endif
 
-//using namespace std;
+using namespace std;
 
 #define _EXPORTING
 #include "RPCServer.h"
@@ -104,7 +104,15 @@ void RPCServer::ServiceCallback(void* paramsP) {
 #endif
 
 		// wait and deserialize call stream
-		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rpc.DeserializeCall(asyncId, name));
+		ReturnValue rv = rpc.DeserializeCall(asyncId, name);
+		if (rv.IsError()) {
+#ifdef RPCSERVER_TRACES
+			LogVText(RPCSERVER_MODULE, 8, true, "server_error %s", rv.GetErrorString());
+#endif
+			break;
+		}
+
+		shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params(rv.GetResult());
 		if (!rpc_params.get() || rpc_params.get()->size() == 0) {
 #ifdef RPCSERVER_TRACES
 			LogVText(RPCSERVER_MODULE, 8, true, "server_error, couldn't deserialize parameters!");

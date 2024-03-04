@@ -22,7 +22,7 @@ struct sockaddr_un {
 #include "TcpTransport.h"
 #include "FileTransport.h"
 
-//using namespace std;
+using namespace std;
 
 /**
  * \fn Transport* Transport::CreateTransport(TransportType transport_type)
@@ -32,8 +32,8 @@ struct sockaddr_un {
  * \return an instance of specialized transport, NULL if an error occured
  */
 ReturnValue<Transport*, CommunicationErrors>&& Transport::CreateTransport(TransportType transport_type) {
-	ReturnValue<Transport*, CommunicationErrors>r;
-	Transport									*transportP = NULL;
+	ReturnValue<Transport*, CommunicationErrors> r;
+	Transport									 *transportP = NULL;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "Transport::CreateTransport(%d)", transport_type);

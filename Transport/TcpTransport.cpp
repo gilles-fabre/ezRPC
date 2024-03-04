@@ -20,7 +20,7 @@ struct sockaddr_un {
 
 #include "TcpTransport.h"
 
-//using namespace std;
+using namespace std;
 
 #ifdef WIN32
 uint8_t TcpTransport::m_WSAStartupDone = 0;
@@ -175,13 +175,13 @@ ReturnValue<Link*, CommunicationErrors>&& TcpTransport::WaitForLinkRequest(const
  * \return a connected link to the peer, NULL upon error
  */
 ReturnValue<Link*, CommunicationErrors>&& TcpTransport::LinkRequest(const string& serverAddress) {
-	ReturnValue<Link*, CommunicationErrors>r;
-	SOCKET 								   connSocket;
-	struct 	sockaddr_in					   server_addr = {0,};
-	string								   ipAddr;
-	string								   port;
-	int									   portNum;
-	int 								   retval;
+	ReturnValue<Link*, CommunicationErrors> r;
+	SOCKET 								    connSocket;
+	struct 	sockaddr_in					    server_addr = {0,};
+	string								    ipAddr;
+	string								    port;
+	int									    portNum;
+	int 								    retval;
 
 #ifdef TRANSPORT_TRACES
 	LogVText(TRANSPORT_MODULE, 0, true, "TcpTransport::LinkRequest(%s)", serverAddress.c_str());
