@@ -7,8 +7,8 @@ var class_transport =
     [ "Transport", "class_transport.html#a36928c178aa490c02aa25b4b12e2bf63", null ],
     [ "~Transport", "class_transport.html#a0d41bb59cb5b3e04dbfee3044e736e8d", null ],
     [ "Close", "class_transport.html#a999a45e65a145dc7d0af3f493b118134", null ],
-    [ "LinkRequest", "class_transport.html#a1f383f4e4b0f811e2323ca0b5feea679", null ],
+    [ "LinkRequest", "class_transport.html#a9215d05644cf00b1952c68d13b4d743d", null ],
     [ "ReleaseLink", "class_transport.html#aec47a4d9c4682420086d5de73b64e531", null ],
-    [ "WaitForLinkRequest", "class_transport.html#a9624a5f696e2a80373a43eb3fc20f936", null ],
+    [ "WaitForLinkRequest", "class_transport.html#acf7df983a29f23b8270908523380aeda", null ],
     [ "m_links", "class_transport.html#ac24850dae0b08da1f1cc5989c69bb768", null ]
 ];

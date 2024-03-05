@@ -7,7 +7,9 @@
  *
  *	\param byteBuffer points to the data to be sent
  *	\param dataLen is the amount of data to be sent
- *	\return TRUE if all data could be sent, else returns FALSE.
+ * 
+ *	\return (bool)ReturnValue is true if data could be sent, false else (and the
+ *			error code is set).
  */
 ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, unsigned int dataLen) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -49,7 +51,8 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
  *
  *	\param byteBuffer points to the data to be sent
  *	\param dataLen is the max amount of data to be sent
- *	\return TRUE if data could be sent, else returns FALSE.
+ *	\return (bool)ReturnValue is true if data could be sent, false else (and the
+ *					error code is set).
  */
 ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, unsigned int* dataLenP) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -79,7 +82,8 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
  *
  *	\param byteBuffer points to the reception buffer
  *	\param dataLen is the amount of data to be received
- *	\return TRUE if all data could be received, else returns FALSE.
+ *	\return (bool)ReturnValue is true if all data could be received, false else (and the
+ *			error code is set).
  */
 ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, unsigned int dataLen) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -121,7 +125,9 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
  *
  *	\param byteBuffer points to the reception buffer
  *	\param dataLen is the max amount of data to be received
- *	\return TRUE if data could be received, else returns FALSE.
+ * 
+ *	\return (bool)ReturnValue is true if data was received, false else (and the
+ *			error code is set).
  */
 ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, unsigned int* dataLenP) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -151,7 +157,8 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
  *
  *	\param byteBuffer points to the reception buffer
  *	\param dataLen is the max amount of data to be received
- *	\return TRUE if data could be received, else returns FALSE.
+ *	\return (bool)ReturnValue is true if data was received, false else (and the
+ *			error code is set).
  */
 ReturnValue<bool, CommunicationErrors> Link::Peek(unsigned char* byteBuffer, unsigned int* dataLenP) {
 	ReturnValue<bool, CommunicationErrors> r;

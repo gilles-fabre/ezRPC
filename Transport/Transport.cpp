@@ -29,7 +29,8 @@ using namespace std;
  * \brief Returns a newly created transport for the given transport type
  *
  * \param transport_type specifies the requested type of underlying transport
- * \return an instance of specialized transport, NULL if an error occured
+ * \return (Transport*)ReturnValue a valid ptr to a Transport instance, NULL else (and the
+ *					error code is set).
  */
 ReturnValue<Transport*, CommunicationErrors> Transport::CreateTransport(TransportType transport_type) {
 	ReturnValue<Transport*, CommunicationErrors> r;

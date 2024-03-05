@@ -31,7 +31,9 @@ uint8_t TcpTransport::m_WSAStartupDone = 0;
  * \brief Waits for a LinkRequest and returns the resulting link
  *
  * \param server_address is the IP address to listen on
- * \return a connected link to the peer, NULL upon error
+ * 
+ * \return (Link*)ReturnValue a valid ptr to a Link instance, NULL else (and the
+ *			error code is set).
  */
 ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const string& serverAddress) {
 	ReturnValue<Link*, CommunicationErrors>	r;
@@ -172,7 +174,9 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
  * 		  returns the resulting link
  *
  * \param server_address is the IP addr of the server to connect to
- * \return a connected link to the peer, NULL upon error
+ * 
+ * \return (Link*)ReturnValue a valid ptr to a Link instance, NULL else (and the
+ *		   error code is set).
  */
 ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& serverAddress) {
 	ReturnValue<Link*, CommunicationErrors> r;

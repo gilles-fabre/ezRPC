@@ -1,7 +1,7 @@
 var searchData=
 [
   ['waita_0',['WaitA',['../class_semaphore.html#a2a0d38841031c070d6e11604e9ae20e5',1,'Semaphore']]],
-  ['waitforlinkrequest_1',['WaitForLinkRequest',['../class_file_transport.html#a3e0626b8680c30df4fc402ee74f8b07e',1,'FileTransport::WaitForLinkRequest()'],['../class_tcp_transport.html#afe9c64d818bc6149333e48e28ab97b28',1,'TcpTransport::WaitForLinkRequest()'],['../class_transport.html#a9624a5f696e2a80373a43eb3fc20f936',1,'Transport::WaitForLinkRequest()']]],
+  ['waitforlinkrequest_1',['WaitForLinkRequest',['../class_file_transport.html#a4f7890b520360e013890cf378224b135',1,'FileTransport::WaitForLinkRequest()'],['../class_tcp_transport.html#a517aa1803c9ebcd5214c28503b69f219',1,'TcpTransport::WaitForLinkRequest()'],['../class_transport.html#acf7df983a29f23b8270908523380aeda',1,'Transport::WaitForLinkRequest()']]],
   ['waitforread_2',['WaitForRead',['../class_link.html#a3243a5bee1813ec7bb7b2c4d63f7df19',1,'Link']]],
   ['waitforwrite_3',['WaitForWrite',['../class_link.html#a9584c72c3ae2276bb1ed91f73e03f6a7',1,'Link']]],
   ['what_4',['what',['../classdetail_1_1exception.html#ae75d7315f5f2d85958da6d961375caf0',1,'detail::exception::what() const noexcept override'],['../classdetail_1_1exception.html#ae75d7315f5f2d85958da6d961375caf0',1,'detail::exception::what() const noexcept override'],['../classnlohmann_1_1detail_1_1exception.html#ad863f4455f8bb2ea006a78e6fcf0b090',1,'nlohmann::detail::exception::what()']]],

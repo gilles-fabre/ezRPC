@@ -37,6 +37,7 @@ var hierarchy =
     [ "nlohmann::basic_json< ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType >", "classnlohmann_1_1basic__json.html", null ],
     [ "std::basic_ostream< charT, traits >", "classstd_1_1basic__ostream.html", null ],
     [ "std::basic_ostream< CharType >", "classstd_1_1basic__ostream.html", null ],
+    [ "BasicErrors", "class_basic_errors.html", null ],
     [ "detail::binary_reader< BasicJsonType, InputAdapterType, SAX >", "classdetail_1_1binary__reader.html", null ],
     [ "nlohmann::detail::binary_reader< BasicJsonType, InputAdapterType, SAX >", "classnlohmann_1_1detail_1_1binary__reader.html", null ],
     [ "detail::binary_writer< BasicJsonType, CharType >", "classdetail_1_1binary__writer.html", null ],
@@ -73,6 +74,7 @@ var hierarchy =
       [ "detail::char_traits< T >", "structdetail_1_1char__traits.html", null ]
     ] ],
     [ "tracesListener.CmdLineServer", "classtraces_listener_1_1_cmd_line_server.html", null ],
+    [ "CommunicationErrors", "class_communication_errors.html", null ],
     [ "udt::contact", "structudt_1_1contact.html", null ],
     [ "udt::contact_book", "structudt_1_1contact__book.html", null ],
     [ "detail::container_input_adapter_factory_impl::container_input_adapter_factory< ContainerType, Enable >", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory.html", null ],
@@ -128,6 +130,7 @@ var hierarchy =
     [ "nlohmann::detail::utility_internal::Extend< integer_sequence< T, Ints... >, SeqSize, 0 >", "structnlohmann_1_1detail_1_1utility__internal_1_1_extend_3_01integer__sequence_3_01_t_00_01_intse4b696320406a0717efa9a961a507d9c.html", null ],
     [ "detail::utility_internal::Extend< integer_sequence< T, Ints... >, SeqSize, 1 >", "structdetail_1_1utility__internal_1_1_extend_3_01integer__sequence_3_01_t_00_01_ints_8_8_8_01_4_00_01_seq_size_00_011_01_4.html", null ],
     [ "nlohmann::detail::utility_internal::Extend< integer_sequence< T, Ints... >, SeqSize, 1 >", "structnlohmann_1_1detail_1_1utility__internal_1_1_extend_3_01integer__sequence_3_01_t_00_01_ints55b30810c0f772136f5c0a2221b86a09.html", null ],
+    [ "ExtendedErrors", "class_extended_errors.html", null ],
     [ "detail::external_constructor< value_t >", "structdetail_1_1external__constructor.html", null ],
     [ "nlohmann::detail::external_constructor< value_t >", "structnlohmann_1_1detail_1_1external__constructor.html", null ],
     [ "detail::external_constructor< value_t::array >", "structdetail_1_1external__constructor_3_01value__t_1_1array_01_4.html", null ],
@@ -505,6 +508,7 @@ var hierarchy =
     [ "doctest::detail::types::remove_reference< T & >", "structdoctest_1_1detail_1_1types_1_1remove__reference_3_01_t_01_6_01_4.html", null ],
     [ "doctest::detail::types::remove_reference< T && >", "structdoctest_1_1detail_1_1types_1_1remove__reference_3_01_t_01_6_6_01_4.html", null ],
     [ "doctest::detail::Result", "structdoctest_1_1detail_1_1_result.html", null ],
+    [ "ReturnValue< T, E >", "class_return_value.html", null ],
     [ "std::reverse_iterator", null, [
       [ "detail::json_reverse_iterator< Base >", "classdetail_1_1json__reverse__iterator.html", null ],
       [ "detail::json_reverse_iterator< Base >", "classdetail_1_1json__reverse__iterator.html", null ],

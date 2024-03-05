@@ -126,37 +126,40 @@ $(function(){initNavTree('_transport_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a>;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_transport.html#a11ae89ffd0a9e9e33693aaf31f618335">   34</a></span><a class="code hl_class" href="class_transport.html">Transport</a>* <a class="code hl_function" href="class_transport.html#a11ae89ffd0a9e9e33693aaf31f618335">Transport::CreateTransport</a>(<a class="code hl_enumeration" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">TransportType</a> transport_type) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="class_transport.html">Transport</a>* transport = NULL;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Transport::CreateTransport(%d)&quot;</span>, transport_type);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">switch</span> (transport_type) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28a780495c0809320322a6cc3982bb51cd0">TCP</a>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            transport = <span class="keyword">new</span> <a class="code hl_class" href="class_tcp_transport.html">TcpTransport</a>();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;created transport %p of type TCP&quot;</span>, transport);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28afdb2ea502ab60332522f535c79ddc8f6">FILE</a>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            transport = <span class="keyword">new</span> <a class="code hl_class" href="class_file_transport.html">FileTransport</a>();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;created transport %p of type FILE&quot;</span>, transport);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: unknown Transport type!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> transport;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_transport.html#a21d73da321d7e17430451c74677aa674">   35</a></span>ReturnValue&lt;Transport*, CommunicationErrors&gt; <a class="code hl_function" href="class_transport.html#a21d73da321d7e17430451c74677aa674">Transport::CreateTransport</a>(<a class="code hl_enumeration" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">TransportType</a> transport_type) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    ReturnValue&lt;Transport*, CommunicationErrors&gt; r;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="class_transport.html">Transport</a>                                    *transportP = NULL;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Transport::CreateTransport(%d)&quot;</span>, transport_type);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">switch</span> (transport_type) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28a780495c0809320322a6cc3982bb51cd0">TCP</a>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            transportP = <span class="keyword">new</span> <a class="code hl_class" href="class_tcp_transport.html">TcpTransport</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;created transport %p of type TCP&quot;</span>, transportP);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28afdb2ea502ab60332522f535c79ddc8f6">FILE</a>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            transportP = <span class="keyword">new</span> <a class="code hl_class" href="class_file_transport.html">FileTransport</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;created transport %p of type FILE&quot;</span>, transportP);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: unknown Transport type!&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    r = ReturnValue&lt;Transport*, CommunicationErrors&gt;{transportP, transportP ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::BadProtocol};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="ttc" id="a_file_transport_8h_html"><div class="ttname"><a href="_file_transport_8h.html">FileTransport.h</a></div></div>
 <div class="ttc" id="a_tcp_transport_8h_html"><div class="ttname"><a href="_tcp_transport_8h.html">TcpTransport.h</a></div></div>
 <div class="ttc" id="a_transport_8h_html"><div class="ttname"><a href="_transport_8h.html">Transport.h</a></div></div>
@@ -164,7 +167,7 @@ $(function(){initNavTree('_transport_8cpp_source.html',''); initResizable(); });
 <div class="ttc" id="aclass_file_transport_html"><div class="ttname"><a href="class_file_transport.html">FileTransport</a></div><div class="ttdef"><b>Definition</b> <a href="_file_transport_8h_source.html#l00008">FileTransport.h:8</a></div></div>
 <div class="ttc" id="aclass_tcp_transport_html"><div class="ttname"><a href="class_tcp_transport.html">TcpTransport</a></div><div class="ttdef"><b>Definition</b> <a href="_tcp_transport_8h_source.html#l00008">TcpTransport.h:8</a></div></div>
 <div class="ttc" id="aclass_transport_html"><div class="ttname"><a href="class_transport.html">Transport</a></div><div class="ttdoc">Abstract transport over any of the supported transports.</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00033">Transport.h:33</a></div></div>
-<div class="ttc" id="aclass_transport_html_a11ae89ffd0a9e9e33693aaf31f618335"><div class="ttname"><a href="class_transport.html#a11ae89ffd0a9e9e33693aaf31f618335">Transport::CreateTransport</a></div><div class="ttdeci">static Transport * CreateTransport(TransportType transportType)</div><div class="ttdoc">Returns a newly created transport for the given transport type.</div><div class="ttdef"><b>Definition</b> <a href="#l00034">Transport.cpp:34</a></div></div>
+<div class="ttc" id="aclass_transport_html_a21d73da321d7e17430451c74677aa674"><div class="ttname"><a href="class_transport.html#a21d73da321d7e17430451c74677aa674">Transport::CreateTransport</a></div><div class="ttdeci">static ReturnValue&lt; Transport *, CommunicationErrors &gt; CreateTransport(TransportType transportType)</div><div class="ttdoc">Returns a newly created transport for the given transport type.</div><div class="ttdef"><b>Definition</b> <a href="#l00035">Transport.cpp:35</a></div></div>
 <div class="ttc" id="aclass_transport_html_a6fa98f5de79b12d04a073c526ff1eb28"><div class="ttname"><a href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a></div><div class="ttdeci">TransportType</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00038">Transport.h:38</a></div></div>
 <div class="ttc" id="aclass_transport_html_a6fa98f5de79b12d04a073c526ff1eb28a780495c0809320322a6cc3982bb51cd0"><div class="ttname"><a href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28a780495c0809320322a6cc3982bb51cd0">Transport::TCP</a></div><div class="ttdeci">@ TCP</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00038">Transport.h:38</a></div></div>
 <div class="ttc" id="aclass_transport_html_a6fa98f5de79b12d04a073c526ff1eb28afdb2ea502ab60332522f535c79ddc8f6"><div class="ttname"><a href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28afdb2ea502ab60332522f535c79ddc8f6">Transport::FILE</a></div><div class="ttdeci">@ FILE</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00039">Transport.h:39</a></div></div>

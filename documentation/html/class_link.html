@@ -110,21 +110,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1bf57c07acafeaf2120e8b829927045e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a666e442abb3122fe5eb1705f1b2d650d" id="r_a666e442abb3122fe5eb1705f1b2d650d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a666e442abb3122fe5eb1705f1b2d650d">~Link</a> ()</td></tr>
 <tr class="separator:a666e442abb3122fe5eb1705f1b2d650d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f671bd4cd0eb8324033108f4ba06c06" id="r_a3f671bd4cd0eb8324033108f4ba06c06"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f671bd4cd0eb8324033108f4ba06c06">Send</a> (unsigned char *byte_buffer, unsigned int data_len)</td></tr>
-<tr class="memdesc:a3f671bd4cd0eb8324033108f4ba06c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends data_len bytes from byte_buffer to the linked peer. This a blocking complete send.  <br /></td></tr>
-<tr class="separator:a3f671bd4cd0eb8324033108f4ba06c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503fcb0ab4e40494439bcd335e27b7e3" id="r_a503fcb0ab4e40494439bcd335e27b7e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a503fcb0ab4e40494439bcd335e27b7e3">Send</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
-<tr class="memdesc:a503fcb0ab4e40494439bcd335e27b7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends up to data_len bytes from byte_buffer to the linked peer. This a blocking potentially non complete send.  <br /></td></tr>
-<tr class="separator:a503fcb0ab4e40494439bcd335e27b7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1338c6201643f440f5490111c3f8bc7" id="r_ae1338c6201643f440f5490111c3f8bc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1338c6201643f440f5490111c3f8bc7">Receive</a> (unsigned char *byte_buffer, unsigned int data_len)</td></tr>
-<tr class="memdesc:ae1338c6201643f440f5490111c3f8bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives data_len bytes into byte_buffer from the linked peer. This a blocking complete receive.  <br /></td></tr>
-<tr class="separator:ae1338c6201643f440f5490111c3f8bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e4bc0c466107ddee622e445f39f440a" id="r_a7e4bc0c466107ddee622e445f39f440a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4bc0c466107ddee622e445f39f440a">Receive</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
-<tr class="memdesc:a7e4bc0c466107ddee622e445f39f440a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives up to data_len bytes into byte_buffer from the linked peer. This a blocking potentially non complete receive.  <br /></td></tr>
-<tr class="separator:a7e4bc0c466107ddee622e445f39f440a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ed27120a9874765f7eae32927524b81" id="r_a8ed27120a9874765f7eae32927524b81"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ed27120a9874765f7eae32927524b81">Peek</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
-<tr class="memdesc:a8ed27120a9874765f7eae32927524b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks up to data_len bytes into byte_buffer from the linked peer. This a blocking potentially non complete receive.  <br /></td></tr>
-<tr class="separator:a8ed27120a9874765f7eae32927524b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7206b80a29481217e2bef37864870569" id="r_a7206b80a29481217e2bef37864870569"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7206b80a29481217e2bef37864870569">Send</a> (unsigned char *byte_buffer, unsigned int data_len)</td></tr>
+<tr class="memdesc:a7206b80a29481217e2bef37864870569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends dataLen bytes from byteBuffer to the linked peer. This a blocking complete send.  <br /></td></tr>
+<tr class="separator:a7206b80a29481217e2bef37864870569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a738315dc00cfb1fdd0544f6e40f26a" id="r_a3a738315dc00cfb1fdd0544f6e40f26a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a738315dc00cfb1fdd0544f6e40f26a">Send</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
+<tr class="memdesc:a3a738315dc00cfb1fdd0544f6e40f26a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends up to dataLen bytes from byteBuffer to the linked peer. This a blocking potentially non complete send.  <br /></td></tr>
+<tr class="separator:a3a738315dc00cfb1fdd0544f6e40f26a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e6b468f4193d013d91c02a483fdd9a2" id="r_a9e6b468f4193d013d91c02a483fdd9a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e6b468f4193d013d91c02a483fdd9a2">Receive</a> (unsigned char *byte_buffer, unsigned int data_len)</td></tr>
+<tr class="memdesc:a9e6b468f4193d013d91c02a483fdd9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives dataLen bytes into byteBuffer from the linked peer. This a blocking complete receive.  <br /></td></tr>
+<tr class="separator:a9e6b468f4193d013d91c02a483fdd9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a6082391bcbd95738bc5dc4d3d9682" id="r_a61a6082391bcbd95738bc5dc4d3d9682"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61a6082391bcbd95738bc5dc4d3d9682">Receive</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
+<tr class="memdesc:a61a6082391bcbd95738bc5dc4d3d9682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives up to dataLen bytes into byteBuffer from the linked peer. This a blocking potentially non complete receive.  <br /></td></tr>
+<tr class="separator:a61a6082391bcbd95738bc5dc4d3d9682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1499fc70c0bfa95ef213ca41c8be54d9" id="r_a1499fc70c0bfa95ef213ca41c8be54d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1499fc70c0bfa95ef213ca41c8be54d9">Peek</a> (unsigned char *byte_buffer, unsigned int *data_lenP)</td></tr>
+<tr class="memdesc:a1499fc70c0bfa95ef213ca41c8be54d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks up to dataLen bytes into byteBuffer from the linked peer. This a blocking potentially non complete receive.  <br /></td></tr>
+<tr class="separator:a1499fc70c0bfa95ef213ca41c8be54d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3243a5bee1813ec7bb7b2c4d63f7df19" id="r_a3243a5bee1813ec7bb7b2c4d63f7df19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3243a5bee1813ec7bb7b2c4d63f7df19">WaitForRead</a> ()</td></tr>
 <tr class="separator:a3243a5bee1813ec7bb7b2c4d63f7df19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9584c72c3ae2276bb1ed91f73e03f6a7" id="r_a9584c72c3ae2276bb1ed91f73e03f6a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9584c72c3ae2276bb1ed91f73e03f6a7">WaitForWrite</a> ()</td></tr>
@@ -135,7 +135,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simply send and receive data on the in/out link created by the parent transport. </p>
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00043">43</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00045">45</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1bf57c07acafeaf2120e8b829927045e" name="a1bf57c07acafeaf2120e8b829927045e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bf57c07acafeaf2120e8b829927045e">&#9670;&#160;</a></span>Link()</h2>
@@ -164,7 +164,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00048">48</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00050">50</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 
 </div>
 </div>
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00053">53</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00055">55</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -224,7 +224,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00082">82</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00084">84</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -238,192 +238,192 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a8ed27120a9874765f7eae32927524b81" name="a8ed27120a9874765f7eae32927524b81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ed27120a9874765f7eae32927524b81">&#9670;&#160;</a></span>Peek()</h2>
+<a id="a1499fc70c0bfa95ef213ca41c8be54d9" name="a1499fc70c0bfa95ef213ca41c8be54d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1499fc70c0bfa95ef213ca41c8be54d9">&#9670;&#160;</a></span>Peek()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Link::Peek </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Link::Peek </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byte_buffer</em>, </span></td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byteBuffer</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>data_lenP</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>dataLenP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Peeks up to data_len bytes into byte_buffer from the linked peer. This a blocking potentially non complete receive. </p>
+<p>Peeks up to dataLen bytes into byteBuffer from the linked peer. This a blocking potentially non complete receive. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte_buffer</td><td>points to the reception buffer </td></tr>
-    <tr><td class="paramname">data_len</td><td>is the max amount of data to be received </td></tr>
+    <tr><td class="paramname">byteBuffer</td><td>points to the reception buffer </td></tr>
+    <tr><td class="paramname">dataLen</td><td>is the max amount of data to be received </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if data could be received, else returns FALSE. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if data was received, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00136">136</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00163">163</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_link_a8ed27120a9874765f7eae32927524b81_cgraph.png" border="0" usemap="#aclass_link_a8ed27120a9874765f7eae32927524b81_cgraph" alt=""/></div>
+<div class="center"><img src="class_link_a1499fc70c0bfa95ef213ca41c8be54d9_cgraph.png" border="0" usemap="#aclass_link_a1499fc70c0bfa95ef213ca41c8be54d9_cgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a7e4bc0c466107ddee622e445f39f440a" name="a7e4bc0c466107ddee622e445f39f440a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e4bc0c466107ddee622e445f39f440a">&#9670;&#160;</a></span>Receive() <span class="overload">[1/2]</span></h2>
+<a id="a61a6082391bcbd95738bc5dc4d3d9682" name="a61a6082391bcbd95738bc5dc4d3d9682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61a6082391bcbd95738bc5dc4d3d9682">&#9670;&#160;</a></span>Receive() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Link::Receive </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Link::Receive </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byte_buffer</em>, </span></td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byteBuffer</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>data_lenP</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>dataLenP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Receives up to data_len bytes into byte_buffer from the linked peer. This a blocking potentially non complete receive. </p>
+<p>Receives up to dataLen bytes into byteBuffer from the linked peer. This a blocking potentially non complete receive. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte_buffer</td><td>points to the reception buffer </td></tr>
-    <tr><td class="paramname">data_len</td><td>is the max amount of data to be received </td></tr>
+    <tr><td class="paramname">byteBuffer</td><td>points to the reception buffer </td></tr>
+    <tr><td class="paramname">dataLen</td><td>is the max amount of data to be received</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if data could be received, else returns FALSE. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if data was received, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00112">112</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00132">132</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_link_a7e4bc0c466107ddee622e445f39f440a_cgraph.png" border="0" usemap="#aclass_link_a7e4bc0c466107ddee622e445f39f440a_cgraph" alt=""/></div>
+<div class="center"><img src="class_link_a61a6082391bcbd95738bc5dc4d3d9682_cgraph.png" border="0" usemap="#aclass_link_a61a6082391bcbd95738bc5dc4d3d9682_cgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="ae1338c6201643f440f5490111c3f8bc7" name="ae1338c6201643f440f5490111c3f8bc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1338c6201643f440f5490111c3f8bc7">&#9670;&#160;</a></span>Receive() <span class="overload">[2/2]</span></h2>
+<a id="a9e6b468f4193d013d91c02a483fdd9a2" name="a9e6b468f4193d013d91c02a483fdd9a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e6b468f4193d013d91c02a483fdd9a2">&#9670;&#160;</a></span>Receive() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Link::Receive </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Link::Receive </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byte_buffer</em>, </span></td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byteBuffer</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>data_len</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>dataLen</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Receives data_len bytes into byte_buffer from the linked peer. This a blocking complete receive. </p>
+<p>Receives dataLen bytes into byteBuffer from the linked peer. This a blocking complete receive. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte_buffer</td><td>points to the reception buffer </td></tr>
-    <tr><td class="paramname">data_len</td><td>is the amount of data to be received </td></tr>
+    <tr><td class="paramname">byteBuffer</td><td>points to the reception buffer </td></tr>
+    <tr><td class="paramname">dataLen</td><td>is the amount of data to be received </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if all data could be received, else returns FALSE. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if all data could be received, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00074">74</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00088">88</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_link_ae1338c6201643f440f5490111c3f8bc7_cgraph.png" border="0" usemap="#aclass_link_ae1338c6201643f440f5490111c3f8bc7_cgraph" alt=""/></div>
+<div class="center"><img src="class_link_a9e6b468f4193d013d91c02a483fdd9a2_cgraph.png" border="0" usemap="#aclass_link_a9e6b468f4193d013d91c02a483fdd9a2_cgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a503fcb0ab4e40494439bcd335e27b7e3" name="a503fcb0ab4e40494439bcd335e27b7e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a503fcb0ab4e40494439bcd335e27b7e3">&#9670;&#160;</a></span>Send() <span class="overload">[1/2]</span></h2>
+<a id="a3a738315dc00cfb1fdd0544f6e40f26a" name="a3a738315dc00cfb1fdd0544f6e40f26a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a738315dc00cfb1fdd0544f6e40f26a">&#9670;&#160;</a></span>Send() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Link::Send </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Link::Send </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byte_buffer</em>, </span></td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byteBuffer</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>data_lenP</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int *</td>          <td class="paramname"><span class="paramname"><em>dataLenP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends up to data_len bytes from byte_buffer to the linked peer. This a blocking potentially non complete send. </p>
+<p>Sends up to dataLen bytes from byteBuffer to the linked peer. This a blocking potentially non complete send. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte_buffer</td><td>points to the data to be sent </td></tr>
-    <tr><td class="paramname">data_len</td><td>is the max amount of data to be sent </td></tr>
+    <tr><td class="paramname">byteBuffer</td><td>points to the data to be sent </td></tr>
+    <tr><td class="paramname">dataLen</td><td>is the max amount of data to be sent </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if data could be sent, else returns FALSE. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if data could be sent, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00050">50</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00057">57</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_link_a503fcb0ab4e40494439bcd335e27b7e3_cgraph.png" border="0" usemap="#aclass_link_a503fcb0ab4e40494439bcd335e27b7e3_cgraph" alt=""/></div>
+<div class="center"><img src="class_link_a3a738315dc00cfb1fdd0544f6e40f26a_cgraph.png" border="0" usemap="#aclass_link_a3a738315dc00cfb1fdd0544f6e40f26a_cgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a3f671bd4cd0eb8324033108f4ba06c06" name="a3f671bd4cd0eb8324033108f4ba06c06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f671bd4cd0eb8324033108f4ba06c06">&#9670;&#160;</a></span>Send() <span class="overload">[2/2]</span></h2>
+<a id="a7206b80a29481217e2bef37864870569" name="a7206b80a29481217e2bef37864870569"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7206b80a29481217e2bef37864870569">&#9670;&#160;</a></span>Send() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Link::Send </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Link::Send </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byte_buffer</em>, </span></td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>byteBuffer</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>data_len</em></span>&#160;)</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>dataLen</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends data_len bytes from byte_buffer to the linked peer. This a blocking complete send. </p>
+<p>Sends dataLen bytes from byteBuffer to the linked peer. This a blocking complete send. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte_buffer</td><td>points to the data to be sent </td></tr>
-    <tr><td class="paramname">data_len</td><td>is the amount of data to be sent </td></tr>
+    <tr><td class="paramname">byteBuffer</td><td>points to the data to be sent </td></tr>
+    <tr><td class="paramname">dataLen</td><td>is the amount of data to be sent</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if all data could be sent, else returns FALSE. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if data could be sent, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00012">12</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8cpp_source.html#l00014">14</a> of file <a class="el" href="_link_8cpp_source.html">Link.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_link_a3f671bd4cd0eb8324033108f4ba06c06_cgraph.png" border="0" usemap="#aclass_link_a3f671bd4cd0eb8324033108f4ba06c06_cgraph" alt=""/></div>
+<div class="center"><img src="class_link_a7206b80a29481217e2bef37864870569_cgraph.png" border="0" usemap="#aclass_link_a7206b80a29481217e2bef37864870569_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -451,7 +451,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00062">62</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00064">64</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 
 </div>
 </div>
@@ -478,7 +478,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00072">72</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_link_8h_source.html#l00074">74</a> of file <a class="el" href="_link_8h_source.html">Link.h</a>.</p>
 
 </div>
 </div>

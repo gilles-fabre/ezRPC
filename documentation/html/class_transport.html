@@ -125,10 +125,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a36928c178aa490c02aa25b4b12e2bf63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d41bb59cb5b3e04dbfee3044e736e8d" id="r_a0d41bb59cb5b3e04dbfee3044e736e8d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d41bb59cb5b3e04dbfee3044e736e8d">~Transport</a> ()</td></tr>
 <tr class="separator:a0d41bb59cb5b3e04dbfee3044e736e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f383f4e4b0f811e2323ca0b5feea679" id="r_a1f383f4e4b0f811e2323ca0b5feea679"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_link.html">Link</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f383f4e4b0f811e2323ca0b5feea679">LinkRequest</a> (const <a class="el" href="classstring.html">string</a> &amp;serverAddress)=0</td></tr>
-<tr class="separator:a1f383f4e4b0f811e2323ca0b5feea679"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9624a5f696e2a80373a43eb3fc20f936" id="r_a9624a5f696e2a80373a43eb3fc20f936"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_link.html">Link</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9624a5f696e2a80373a43eb3fc20f936">WaitForLinkRequest</a> (const <a class="el" href="classstring.html">string</a> &amp;serverAddress)=0</td></tr>
-<tr class="separator:a9624a5f696e2a80373a43eb3fc20f936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9215d05644cf00b1952c68d13b4d743d" id="r_a9215d05644cf00b1952c68d13b4d743d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_link.html">Link</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9215d05644cf00b1952c68d13b4d743d">LinkRequest</a> (const <a class="el" href="classstring.html">string</a> &amp;serverAddress)=0</td></tr>
+<tr class="separator:a9215d05644cf00b1952c68d13b4d743d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7df983a29f23b8270908523380aeda" id="r_acf7df983a29f23b8270908523380aeda"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_link.html">Link</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf7df983a29f23b8270908523380aeda">WaitForLinkRequest</a> (const <a class="el" href="classstring.html">string</a> &amp;serverAddress)=0</td></tr>
+<tr class="separator:acf7df983a29f23b8270908523380aeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999a45e65a145dc7d0af3f493b118134" id="r_a999a45e65a145dc7d0af3f493b118134"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a999a45e65a145dc7d0af3f493b118134">Close</a> ()</td></tr>
 <tr class="separator:a999a45e65a145dc7d0af3f493b118134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec47a4d9c4682420086d5de73b64e531" id="r_aec47a4d9c4682420086d5de73b64e531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec47a4d9c4682420086d5de73b64e531">ReleaseLink</a> (<a class="el" href="class_link.html">Link</a> *linkP)</td></tr>
@@ -137,9 +137,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a11ae89ffd0a9e9e33693aaf31f618335" id="r_a11ae89ffd0a9e9e33693aaf31f618335"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_transport.html">Transport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11ae89ffd0a9e9e33693aaf31f618335">CreateTransport</a> (<a class="el" href="#a6fa98f5de79b12d04a073c526ff1eb28">TransportType</a> transportType)</td></tr>
-<tr class="memdesc:a11ae89ffd0a9e9e33693aaf31f618335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a newly created transport for the given transport type.  <br /></td></tr>
-<tr class="separator:a11ae89ffd0a9e9e33693aaf31f618335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d73da321d7e17430451c74677aa674" id="r_a21d73da321d7e17430451c74677aa674"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_transport.html">Transport</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21d73da321d7e17430451c74677aa674">CreateTransport</a> (<a class="el" href="#a6fa98f5de79b12d04a073c526ff1eb28">TransportType</a> transportType)</td></tr>
+<tr class="memdesc:a21d73da321d7e17430451c74677aa674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a newly created transport for the given transport type.  <br /></td></tr>
+<tr class="separator:a21d73da321d7e17430451c74677aa674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -276,8 +276,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a11ae89ffd0a9e9e33693aaf31f618335" name="a11ae89ffd0a9e9e33693aaf31f618335"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11ae89ffd0a9e9e33693aaf31f618335">&#9670;&#160;</a></span>CreateTransport()</h2>
+<a id="a21d73da321d7e17430451c74677aa674" name="a21d73da321d7e17430451c74677aa674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d73da321d7e17430451c74677aa674">&#9670;&#160;</a></span>CreateTransport()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +286,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_transport.html">Transport</a> * Transport::CreateTransport </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_transport.html">Transport</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Transport::CreateTransport </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="#a6fa98f5de79b12d04a073c526ff1eb28">TransportType</a></td>          <td class="paramname"><span class="paramname"><em>transport_type</em></span></td><td>)</td>
           <td></td>
@@ -306,24 +306,24 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>an instance of specialized transport, NULL if an error occured </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(Transport*)<a class="el" href="class_return_value.html">ReturnValue</a> a valid ptr to a <a class="el" href="class_transport.html" title="Abstract transport over any of the supported transports.">Transport</a> instance, NULL else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_transport_8cpp_source.html#l00034">34</a> of file <a class="el" href="_transport_8cpp_source.html">Transport.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transport_8cpp_source.html#l00035">35</a> of file <a class="el" href="_transport_8cpp_source.html">Transport.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_transport_a11ae89ffd0a9e9e33693aaf31f618335_cgraph.png" border="0" usemap="#aclass_transport_a11ae89ffd0a9e9e33693aaf31f618335_cgraph" alt=""/></div>
+<div class="center"><img src="class_transport_a21d73da321d7e17430451c74677aa674_cgraph.png" border="0" usemap="#aclass_transport_a21d73da321d7e17430451c74677aa674_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_transport_a11ae89ffd0a9e9e33693aaf31f618335_icgraph.png" border="0" usemap="#aclass_transport_a11ae89ffd0a9e9e33693aaf31f618335_icgraph" alt=""/></div>
+<div class="center"><img src="class_transport_a21d73da321d7e17430451c74677aa674_icgraph.png" border="0" usemap="#aclass_transport_a21d73da321d7e17430451c74677aa674_icgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a1f383f4e4b0f811e2323ca0b5feea679" name="a1f383f4e4b0f811e2323ca0b5feea679"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f383f4e4b0f811e2323ca0b5feea679">&#9670;&#160;</a></span>LinkRequest()</h2>
+<a id="a9215d05644cf00b1952c68d13b4d743d" name="a9215d05644cf00b1952c68d13b4d743d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9215d05644cf00b1952c68d13b4d743d">&#9670;&#160;</a></span>LinkRequest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -332,7 +332,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_link.html">Link</a> * Transport::LinkRequest </td>
+          <td class="memname">virtual <a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_link.html">Link</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Transport::LinkRequest </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classstring.html">string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>serverAddress</em></span></td><td>)</td>
           <td></td>
@@ -345,11 +345,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_file_transport.html#a965eb3b1fc4f3a7925ed2673f78217b3">FileTransport</a>, and <a class="el" href="class_tcp_transport.html#a38e44ece2b10ba5c8c374357f3e785c2">TcpTransport</a>.</p>
+<p>Implemented in <a class="el" href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">FileTransport</a>, and <a class="el" href="class_tcp_transport.html#a9600fbc77b27b1037479349abe15e358">TcpTransport</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_transport_a1f383f4e4b0f811e2323ca0b5feea679_icgraph.png" border="0" usemap="#aclass_transport_a1f383f4e4b0f811e2323ca0b5feea679_icgraph" alt=""/></div>
+<div class="center"><img src="class_transport_a9215d05644cf00b1952c68d13b4d743d_icgraph.png" border="0" usemap="#aclass_transport_a9215d05644cf00b1952c68d13b4d743d_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -383,8 +383,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a9624a5f696e2a80373a43eb3fc20f936" name="a9624a5f696e2a80373a43eb3fc20f936"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9624a5f696e2a80373a43eb3fc20f936">&#9670;&#160;</a></span>WaitForLinkRequest()</h2>
+<a id="acf7df983a29f23b8270908523380aeda" name="acf7df983a29f23b8270908523380aeda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf7df983a29f23b8270908523380aeda">&#9670;&#160;</a></span>WaitForLinkRequest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,7 +393,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_link.html">Link</a> * Transport::WaitForLinkRequest </td>
+          <td class="memname">virtual <a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="class_link.html">Link</a> *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; Transport::WaitForLinkRequest </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classstring.html">string</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>serverAddress</em></span></td><td>)</td>
           <td></td>
@@ -406,7 +406,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_file_transport.html#a3e0626b8680c30df4fc402ee74f8b07e">FileTransport</a>, and <a class="el" href="class_tcp_transport.html#afe9c64d818bc6149333e48e28ab97b28">TcpTransport</a>.</p>
+<p>Implemented in <a class="el" href="class_file_transport.html#a4f7890b520360e013890cf378224b135">FileTransport</a>, and <a class="el" href="class_tcp_transport.html#a517aa1803c9ebcd5214c28503b69f219">TcpTransport</a>.</p>
 
 </div>
 </div>

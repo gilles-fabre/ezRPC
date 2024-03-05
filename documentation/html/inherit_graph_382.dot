@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="udt::contact",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structudt_1_1contact.html",tooltip=" "];
+  Node0 [id="Node000000",label="Transition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transition.html",tooltip="Holds a source State to destination State transition info. The source state is implicit (owns the tra..."];
 }

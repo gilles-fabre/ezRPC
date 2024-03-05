@@ -21,13 +21,14 @@ var searchData=
   ['erase_5f_5fsize_5ftype_2ecpp_18',['erase__size_type.cpp',['../erase____size__type_8cpp.html',1,'']]],
   ['error_5fhandler_5ft_2ecpp_19',['error_handler_t.cpp',['../error__handler__t_8cpp.html',1,'']]],
   ['error_5fhandler_5ft_2emd_20',['error_handler_t.md',['../error__handler__t_8md.html',1,'']]],
-  ['example_2ecpp_21',['example.cpp',['../conan_2example_8cpp.html',1,'(Global Namespace)'],['../example_8cpp.html',1,'(Global Namespace)'],['../vcpkg_2example_8cpp.html',1,'(Global Namespace)']]],
-  ['exception_2ecpp_22',['exception.cpp',['../exception_8cpp.html',1,'']]],
-  ['exception_2emd_23',['exception.md',['../exception_8md.html',1,'']]],
-  ['exceptions_2ehpp_24',['exceptions.hpp',['../exceptions_8hpp.html',1,'']]],
-  ['exceptions_2emd_25',['exceptions.md',['../exceptions_8md.html',1,'']]],
-  ['ezrpc_5fcsharpjsontestclient_2eassemblyinfo_2ecs_26',['ezRPC_CSharpJsonTestClient.AssemblyInfo.cs',['../ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'']]],
-  ['ezrpc_5fcsharpjsontestclient_2eglobalusings_2eg_2ecs_27',['ezRPC_CSharpJsonTestClient.GlobalUsings.g.cs',['../ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'']]],
-  ['ezrpc_5fcsharpjsontestserver_2eassemblyinfo_2ecs_28',['ezRPC_CSharpJsonTestServer.AssemblyInfo.cs',['../ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'']]],
-  ['ezrpc_5fcsharpjsontestserver_2eglobalusings_2eg_2ecs_29',['ezRPC_CSharpJsonTestServer.GlobalUsings.g.cs',['../ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'']]]
+  ['errorcodes_2eh_21',['ErrorCodes.h',['../_error_codes_8h.html',1,'']]],
+  ['example_2ecpp_22',['example.cpp',['../conan_2example_8cpp.html',1,'(Global Namespace)'],['../example_8cpp.html',1,'(Global Namespace)'],['../vcpkg_2example_8cpp.html',1,'(Global Namespace)']]],
+  ['exception_2ecpp_23',['exception.cpp',['../exception_8cpp.html',1,'']]],
+  ['exception_2emd_24',['exception.md',['../exception_8md.html',1,'']]],
+  ['exceptions_2ehpp_25',['exceptions.hpp',['../exceptions_8hpp.html',1,'']]],
+  ['exceptions_2emd_26',['exceptions.md',['../exceptions_8md.html',1,'']]],
+  ['ezrpc_5fcsharpjsontestclient_2eassemblyinfo_2ecs_27',['ezRPC_CSharpJsonTestClient.AssemblyInfo.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['ezrpc_5fcsharpjsontestclient_2eglobalusings_2eg_2ecs_28',['ezRPC_CSharpJsonTestClient.GlobalUsings.g.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'(Global Namespace)']]],
+  ['ezrpc_5fcsharpjsontestserver_2eassemblyinfo_2ecs_29',['ezRPC_CSharpJsonTestServer.AssemblyInfo.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['ezrpc_5fcsharpjsontestserver_2eglobalusings_2eg_2ecs_30',['ezRPC_CSharpJsonTestServer.GlobalUsings.g.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'(Global Namespace)']]]
 ];

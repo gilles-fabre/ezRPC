@@ -5,7 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="detail::lexer_base\l\< BasicJsonType \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1lexer__base.html",tooltip=" "];
-  Node0 -> Node1 [id="edge13_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="detail::lexer\< BasicJson\lType, InputAdapterType \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1lexer.html",tooltip="lexical analysis"];
+  Node0 [id="Node000000",label="detail::json_sax_dom\l_callback_parser\< BasicJson\lType \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1json__sax__dom__callback__parser.html",tooltip=" "];
 }

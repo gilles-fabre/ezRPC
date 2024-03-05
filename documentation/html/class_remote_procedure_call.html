@@ -163,14 +163,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5b660d14ec46ce03d08bb3658e7f1b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab9a51151b6cdb7f447e6178639e4f95" id="r_aab9a51151b6cdb7f447e6178639e4f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9a51151b6cdb7f447e6178639e4f95">PrepareSerializeCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, const <a class="el" href="classstring.html">string</a> &amp;funcName, vector&lt; unsigned char &gt; &amp;serializedCall, unsigned long *resultP, va_list vl)</td></tr>
 <tr class="separator:aab9a51151b6cdb7f447e6178639e4f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9d8970cedb77b3411f620a6e143a3f" id="r_a0f9d8970cedb77b3411f620a6e143a3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f9d8970cedb77b3411f620a6e143a3f">SendSerializedCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, vector&lt; unsigned char &gt; &amp;serializedCall)</td></tr>
-<tr class="separator:a0f9d8970cedb77b3411f620a6e143a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc6a96b761184e15d3e912840b7ead53" id="r_afc6a96b761184e15d3e912840b7ead53"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc6a96b761184e15d3e912840b7ead53">DeserializeCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;asyncId, <a class="el" href="classstring.html">string</a> &amp;funcName)</td></tr>
-<tr class="memdesc:afc6a96b761184e15d3e912840b7ead53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a function call byte stream built by SerializeCall.  <br /></td></tr>
-<tr class="separator:afc6a96b761184e15d3e912840b7ead53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a852eb509c42fef1a40ea1f12670a1a1d" id="r_a852eb509c42fef1a40ea1f12670a1a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a852eb509c42fef1a40ea1f12670a1a1d">SerializeCallReturn</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; &gt; params, unsigned long retVal)</td></tr>
-<tr class="memdesc:a852eb509c42fef1a40ea1f12670a1a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare serialized call return byte stream and send it over the associated link.  <br /></td></tr>
-<tr class="separator:a852eb509c42fef1a40ea1f12670a1a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38512a538a448e528fc162e179345ea4" id="r_a38512a538a448e528fc162e179345ea4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38512a538a448e528fc162e179345ea4">SendSerializedCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, vector&lt; unsigned char &gt; &amp;serializedCall)</td></tr>
+<tr class="separator:a38512a538a448e528fc162e179345ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6937c70ae1967f3b78062ab1fdfe0f6d" id="r_a6937c70ae1967f3b78062ab1fdfe0f6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6937c70ae1967f3b78062ab1fdfe0f6d">DeserializeCall</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;asyncId, <a class="el" href="classstring.html">string</a> &amp;funcName)</td></tr>
+<tr class="memdesc:a6937c70ae1967f3b78062ab1fdfe0f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a function call byte stream built by SerializeCall.  <br /></td></tr>
+<tr class="separator:a6937c70ae1967f3b78062ab1fdfe0f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c666a98323918a3c7fd9ace5c3872b" id="r_a17c666a98323918a3c7fd9ace5c3872b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17c666a98323918a3c7fd9ace5c3872b">SerializeCallReturn</a> (<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> * &gt; &gt; params, unsigned long retVal)</td></tr>
+<tr class="memdesc:a17c666a98323918a3c7fd9ace5c3872b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare serialized call return byte stream and send it over the associated link.  <br /></td></tr>
+<tr class="separator:a17c666a98323918a3c7fd9ace5c3872b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31cda1aad54d910ea156ee3a74668805" id="r_a31cda1aad54d910ea156ee3a74668805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31cda1aad54d910ea156ee3a74668805">Close</a> ()</td></tr>
 <tr class="separator:a31cda1aad54d910ea156ee3a74668805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -187,7 +187,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Instantiate an object of this class with a <a class="el" href="class_link.html" title="Simply send and receive data on the in/out link created by the parent transport.">Link</a> to pass calls to the connected peer and retrieve a result. Calls are either synchronous or asynchronous, parameters are 'in' or 'out'. out parameters must be passed as pointers, prefixed by a PTR type. </p>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00040">40</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00042">42</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a218ab2d7145fa1223358e7d8490024a1" name="a218ab2d7145fa1223358e7d8490024a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a218ab2d7145fa1223358e7d8490024a1">&#9670;&#160;</a></span>ParamType</h2>
@@ -228,7 +228,7 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf" name="a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf"></a>EMPTY&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00075">75</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00077">77</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +264,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00246">246</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00248">248</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00260">260</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00262">262</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -301,14 +301,14 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="afc6a96b761184e15d3e912840b7ead53" name="afc6a96b761184e15d3e912840b7ead53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc6a96b761184e15d3e912840b7ead53">&#9670;&#160;</a></span>DeserializeCall()</h2>
+<a id="a6937c70ae1967f3b78062ab1fdfe0f6d" name="a6937c70ae1967f3b78062ab1fdfe0f6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6937c70ae1967f3b78062ab1fdfe0f6d">&#9670;&#160;</a></span>DeserializeCall()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; * RemoteProcedureCall::DeserializeCall </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; *, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; RemoteProcedureCall::DeserializeCall </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>asyncId</em>, </span></td>
         </tr>
@@ -325,17 +325,17 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramname">asyncId</td><td>is asynchronous call identifier, which will be returned with the result to match it. It is O if the call is synchronous </td></tr>
     <tr><td class="paramname">function</td><td>receives the name of the function to call </td></tr>
-    <tr><td class="paramname">bufferP</td><td>is the function call byte stream built by SerializeCall </td></tr>
+    <tr><td class="paramname">bufferP</td><td>is the function call byte stream built by SerializeCall</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a vector of parameters associated with the function call </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(vector&lt;RemoteProcedureCall::ParameterBase*&gt;*)<a class="el" href="class_return_value.html">ReturnValue</a> a valid ptr to a vector of <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">ParameterBase</a> if no error occured, NULL else (and an error set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00991">991</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l01027">1027</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_remote_procedure_call_afc6a96b761184e15d3e912840b7ead53_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_afc6a96b761184e15d3e912840b7ead53_cgraph" alt=""/></div>
+<div class="center"><img src="class_remote_procedure_call_a6937c70ae1967f3b78062ab1fdfe0f6d_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_a6937c70ae1967f3b78062ab1fdfe0f6d_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -363,7 +363,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00265">265</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00267">267</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -406,7 +406,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00220">220</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00242">242</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -449,7 +449,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00518">518</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00540">540</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -463,14 +463,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a0f9d8970cedb77b3411f620a6e143a3f" name="a0f9d8970cedb77b3411f620a6e143a3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f9d8970cedb77b3411f620a6e143a3f">&#9670;&#160;</a></span>SendSerializedCall()</h2>
+<a id="a38512a538a448e528fc162e179345ea4" name="a38512a538a448e528fc162e179345ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38512a538a448e528fc162e179345ea4">&#9670;&#160;</a></span>SendSerializedCall()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void RemoteProcedureCall::SendSerializedCall </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; RemoteProcedureCall::SendSerializedCall </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></td>          <td class="paramname"><span class="paramname"><em>asyncId</em>, </span></td>
         </tr>
@@ -482,28 +482,28 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00834">834</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l00859">859</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_remote_procedure_call_a0f9d8970cedb77b3411f620a6e143a3f_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_a0f9d8970cedb77b3411f620a6e143a3f_cgraph" alt=""/></div>
+<div class="center"><img src="class_remote_procedure_call_a38512a538a448e528fc162e179345ea4_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_a38512a538a448e528fc162e179345ea4_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_remote_procedure_call_a0f9d8970cedb77b3411f620a6e143a3f_icgraph.png" border="0" usemap="#aclass_remote_procedure_call_a0f9d8970cedb77b3411f620a6e143a3f_icgraph" alt=""/></div>
+<div class="center"><img src="class_remote_procedure_call_a38512a538a448e528fc162e179345ea4_icgraph.png" border="0" usemap="#aclass_remote_procedure_call_a38512a538a448e528fc162e179345ea4_icgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a852eb509c42fef1a40ea1f12670a1a1d" name="a852eb509c42fef1a40ea1f12670a1a1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a852eb509c42fef1a40ea1f12670a1a1d">&#9670;&#160;</a></span>SerializeCallReturn()</h2>
+<a id="a17c666a98323918a3c7fd9ace5c3872b" name="a17c666a98323918a3c7fd9ace5c3872b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17c666a98323918a3c7fd9ace5c3872b">&#9670;&#160;</a></span>SerializeCallReturn()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void RemoteProcedureCall::SerializeCallReturn </td>
+          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; bool, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; RemoteProcedureCall::SerializeCallReturn </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></td>          <td class="paramname"><span class="paramname"><em>asyncId</em>, </span></td>
         </tr>
@@ -539,16 +539,17 @@ Here is the caller graph for this function:</div>
   <table class="params">
     <tr><td class="paramname">asyncId</td><td>is asynchronous call identifier, which will be returned with the result to match it. It is O if the call is synchronous </td></tr>
     <tr><td class="paramname">paramP</td><td>points to a parameter vector built by DeserializeCall </td></tr>
-    <tr><td class="paramname">retVal</td><td>is the server's procedure return value </td></tr>
+    <tr><td class="paramname">retVal</td><td>is the server's procedure return value</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool)<a class="el" href="class_return_value.html">ReturnValue</a> is true if data could be sent, false else (and the error code is set). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l01383">1383</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8cpp_source.html#l01430">1430</a> of file <a class="el" href="_remote_procedure_call_8cpp_source.html">RemoteProcedureCall.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_remote_procedure_call_a852eb509c42fef1a40ea1f12670a1a1d_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_a852eb509c42fef1a40ea1f12670a1a1d_cgraph" alt=""/></div>
+<div class="center"><img src="class_remote_procedure_call_a17c666a98323918a3c7fd9ace5c3872b_cgraph.png" border="0" usemap="#aclass_remote_procedure_call_a17c666a98323918a3c7fd9ace5c3872b_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -600,31 +601,31 @@ Here is the call graph for this function:</div>
 <div class="line">    {<span class="stringliteral">&quot;ASYNC_ID&quot;</span>,    <a class="code hl_enumvalue" href="#a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789">ASYNC_ID</a>},</div>
 <div class="line">    {<span class="stringliteral">&quot;EMPTY&quot;</span>,       <a class="code hl_enumvalue" href="#a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf">EMPTY</a>}</div>
 <div class="line">}</div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50">RemoteProcedureCall::DOUBLE</a></div><div class="ttdeci">@ DOUBLE</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00092">RemoteProcedureCall.h:92</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf">RemoteProcedureCall::EMPTY</a></div><div class="ttdeci">@ EMPTY</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00099">RemoteProcedureCall.h:99</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c">RemoteProcedureCall::END_OF_CALL</a></div><div class="ttdeci">@ END_OF_CALL</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00097">RemoteProcedureCall.h:97</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a4d0d37617b91977a89f420a50918a2f9"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a4d0d37617b91977a89f420a50918a2f9">RemoteProcedureCall::UINT64_REF</a></div><div class="ttdeci">@ UINT64_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00091">RemoteProcedureCall.h:91</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a55378dc26a955b8826238eb281f74f30"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a55378dc26a955b8826238eb281f74f30">RemoteProcedureCall::CHAR_REF</a></div><div class="ttdeci">@ CHAR_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00079">RemoteProcedureCall.h:79</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a580be0922934f3fe3b05816b20e6f522"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a580be0922934f3fe3b05816b20e6f522">RemoteProcedureCall::BYTE</a></div><div class="ttdeci">@ BYTE</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00076">RemoteProcedureCall.h:76</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789">RemoteProcedureCall::ASYNC_ID</a></div><div class="ttdeci">@ ASYNC_ID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00098">RemoteProcedureCall.h:98</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4">RemoteProcedureCall::STRING</a></div><div class="ttdeci">@ STRING</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00094">RemoteProcedureCall.h:94</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a76c5ef4ed2a59cfd7f22b61a46ec92fd"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a76c5ef4ed2a59cfd7f22b61a46ec92fd">RemoteProcedureCall::STRING_REF</a></div><div class="ttdeci">@ STRING_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00095">RemoteProcedureCall.h:95</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a7958ebd1e3428040acb54ed7bb200821"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a7958ebd1e3428040acb54ed7bb200821">RemoteProcedureCall::BYTE_REF</a></div><div class="ttdeci">@ BYTE_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00077">RemoteProcedureCall.h:77</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a81bca1343ea53d73659e7584f9fd7045"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a81bca1343ea53d73659e7584f9fd7045">RemoteProcedureCall::UINT16</a></div><div class="ttdeci">@ UINT16</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00082">RemoteProcedureCall.h:82</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a8941c43ad4a1d7427919e41d8a521701"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a8941c43ad4a1d7427919e41d8a521701">RemoteProcedureCall::DOUBLE_REF</a></div><div class="ttdeci">@ DOUBLE_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00093">RemoteProcedureCall.h:93</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a8c15a41145e371cc46eba7337424f17c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a8c15a41145e371cc46eba7337424f17c">RemoteProcedureCall::INT64_REF</a></div><div class="ttdeci">@ INT64_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00089">RemoteProcedureCall.h:89</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a92d4119997766d97a7e77c16b1f5ce9e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a92d4119997766d97a7e77c16b1f5ce9e">RemoteProcedureCall::INT16_REF</a></div><div class="ttdeci">@ INT16_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00081">RemoteProcedureCall.h:81</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a9a849994753a05d8417f2682ff95760c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a9a849994753a05d8417f2682ff95760c">RemoteProcedureCall::INT64</a></div><div class="ttdeci">@ INT64</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00088">RemoteProcedureCall.h:88</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a9d51bef4b665196c4cfc1d4504b240a3"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a9d51bef4b665196c4cfc1d4504b240a3">RemoteProcedureCall::UINT64</a></div><div class="ttdeci">@ UINT64</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00090">RemoteProcedureCall.h:90</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b">RemoteProcedureCall::RESULT_ADDRESS</a></div><div class="ttdeci">@ RESULT_ADDRESS</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00096">RemoteProcedureCall.h:96</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab0384dcb9815f533dd2c50f2211aaabb"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab0384dcb9815f533dd2c50f2211aaabb">RemoteProcedureCall::CHAR</a></div><div class="ttdeci">@ CHAR</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00078">RemoteProcedureCall.h:78</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab8358560a67b764cc57496ab6315464a"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab8358560a67b764cc57496ab6315464a">RemoteProcedureCall::UINT32_REF</a></div><div class="ttdeci">@ UINT32_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00087">RemoteProcedureCall.h:87</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab9b90a6bee6a3e29c22217c307818a58"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab9b90a6bee6a3e29c22217c307818a58">RemoteProcedureCall::UINT16_REF</a></div><div class="ttdeci">@ UINT16_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00083">RemoteProcedureCall.h:83</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1acb2c2d95480f8912232b3e11b9fc1140"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1acb2c2d95480f8912232b3e11b9fc1140">RemoteProcedureCall::INT32_REF</a></div><div class="ttdeci">@ INT32_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00085">RemoteProcedureCall.h:85</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00">RemoteProcedureCall::PTR</a></div><div class="ttdeci">@ PTR</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00075">RemoteProcedureCall.h:75</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ae33d4762c0a589e8946fc2bef4787d7e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ae33d4762c0a589e8946fc2bef4787d7e">RemoteProcedureCall::UINT32</a></div><div class="ttdeci">@ UINT32</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00086">RemoteProcedureCall.h:86</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ae6dd33bd0cd2733bc33184cad33f803e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ae6dd33bd0cd2733bc33184cad33f803e">RemoteProcedureCall::INT32</a></div><div class="ttdeci">@ INT32</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00084">RemoteProcedureCall.h:84</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1afd354a1f46430f38c87dc4c6facfb695"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1afd354a1f46430f38c87dc4c6facfb695">RemoteProcedureCall::INT16</a></div><div class="ttdeci">@ INT16</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00080">RemoteProcedureCall.h:80</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a0976c54f38cf97d9d04126c3b6d02d50">RemoteProcedureCall::DOUBLE</a></div><div class="ttdeci">@ DOUBLE</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00094">RemoteProcedureCall.h:94</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a19238f73a2d0403f4f0af175895167cf">RemoteProcedureCall::EMPTY</a></div><div class="ttdeci">@ EMPTY</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00101">RemoteProcedureCall.h:101</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a3e8e0fc5f9d51bbe381a3513b8cc6c5c">RemoteProcedureCall::END_OF_CALL</a></div><div class="ttdeci">@ END_OF_CALL</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00099">RemoteProcedureCall.h:99</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a4d0d37617b91977a89f420a50918a2f9"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a4d0d37617b91977a89f420a50918a2f9">RemoteProcedureCall::UINT64_REF</a></div><div class="ttdeci">@ UINT64_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00093">RemoteProcedureCall.h:93</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a55378dc26a955b8826238eb281f74f30"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a55378dc26a955b8826238eb281f74f30">RemoteProcedureCall::CHAR_REF</a></div><div class="ttdeci">@ CHAR_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00081">RemoteProcedureCall.h:81</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a580be0922934f3fe3b05816b20e6f522"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a580be0922934f3fe3b05816b20e6f522">RemoteProcedureCall::BYTE</a></div><div class="ttdeci">@ BYTE</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00078">RemoteProcedureCall.h:78</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a5a03f9b04195165459523292fc226789">RemoteProcedureCall::ASYNC_ID</a></div><div class="ttdeci">@ ASYNC_ID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00100">RemoteProcedureCall.h:100</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a6a183af405ce0e3619b99846779540f4">RemoteProcedureCall::STRING</a></div><div class="ttdeci">@ STRING</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00096">RemoteProcedureCall.h:96</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a76c5ef4ed2a59cfd7f22b61a46ec92fd"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a76c5ef4ed2a59cfd7f22b61a46ec92fd">RemoteProcedureCall::STRING_REF</a></div><div class="ttdeci">@ STRING_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00097">RemoteProcedureCall.h:97</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a7958ebd1e3428040acb54ed7bb200821"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a7958ebd1e3428040acb54ed7bb200821">RemoteProcedureCall::BYTE_REF</a></div><div class="ttdeci">@ BYTE_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00079">RemoteProcedureCall.h:79</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a81bca1343ea53d73659e7584f9fd7045"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a81bca1343ea53d73659e7584f9fd7045">RemoteProcedureCall::UINT16</a></div><div class="ttdeci">@ UINT16</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00084">RemoteProcedureCall.h:84</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a8941c43ad4a1d7427919e41d8a521701"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a8941c43ad4a1d7427919e41d8a521701">RemoteProcedureCall::DOUBLE_REF</a></div><div class="ttdeci">@ DOUBLE_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00095">RemoteProcedureCall.h:95</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a8c15a41145e371cc46eba7337424f17c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a8c15a41145e371cc46eba7337424f17c">RemoteProcedureCall::INT64_REF</a></div><div class="ttdeci">@ INT64_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00091">RemoteProcedureCall.h:91</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a92d4119997766d97a7e77c16b1f5ce9e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a92d4119997766d97a7e77c16b1f5ce9e">RemoteProcedureCall::INT16_REF</a></div><div class="ttdeci">@ INT16_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00083">RemoteProcedureCall.h:83</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a9a849994753a05d8417f2682ff95760c"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a9a849994753a05d8417f2682ff95760c">RemoteProcedureCall::INT64</a></div><div class="ttdeci">@ INT64</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00090">RemoteProcedureCall.h:90</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1a9d51bef4b665196c4cfc1d4504b240a3"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1a9d51bef4b665196c4cfc1d4504b240a3">RemoteProcedureCall::UINT64</a></div><div class="ttdeci">@ UINT64</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00092">RemoteProcedureCall.h:92</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1aa59ea077c1dff7b60b7ba1ba46ae9b6b">RemoteProcedureCall::RESULT_ADDRESS</a></div><div class="ttdeci">@ RESULT_ADDRESS</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00098">RemoteProcedureCall.h:98</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab0384dcb9815f533dd2c50f2211aaabb"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab0384dcb9815f533dd2c50f2211aaabb">RemoteProcedureCall::CHAR</a></div><div class="ttdeci">@ CHAR</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00080">RemoteProcedureCall.h:80</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab8358560a67b764cc57496ab6315464a"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab8358560a67b764cc57496ab6315464a">RemoteProcedureCall::UINT32_REF</a></div><div class="ttdeci">@ UINT32_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00089">RemoteProcedureCall.h:89</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ab9b90a6bee6a3e29c22217c307818a58"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ab9b90a6bee6a3e29c22217c307818a58">RemoteProcedureCall::UINT16_REF</a></div><div class="ttdeci">@ UINT16_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00085">RemoteProcedureCall.h:85</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1acb2c2d95480f8912232b3e11b9fc1140"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1acb2c2d95480f8912232b3e11b9fc1140">RemoteProcedureCall::INT32_REF</a></div><div class="ttdeci">@ INT32_REF</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00087">RemoteProcedureCall.h:87</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ad53b3ea9e76c42b4189440bde0de8d00">RemoteProcedureCall::PTR</a></div><div class="ttdeci">@ PTR</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00077">RemoteProcedureCall.h:77</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ae33d4762c0a589e8946fc2bef4787d7e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ae33d4762c0a589e8946fc2bef4787d7e">RemoteProcedureCall::UINT32</a></div><div class="ttdeci">@ UINT32</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00088">RemoteProcedureCall.h:88</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1ae6dd33bd0cd2733bc33184cad33f803e"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1ae6dd33bd0cd2733bc33184cad33f803e">RemoteProcedureCall::INT32</a></div><div class="ttdeci">@ INT32</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00086">RemoteProcedureCall.h:86</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html_a218ab2d7145fa1223358e7d8490024a1afd354a1f46430f38c87dc4c6facfb695"><div class="ttname"><a href="#a218ab2d7145fa1223358e7d8490024a1afd354a1f46430f38c87dc4c6facfb695">RemoteProcedureCall::INT16</a></div><div class="ttdeci">@ INT16</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00082">RemoteProcedureCall.h:82</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00013">13</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 

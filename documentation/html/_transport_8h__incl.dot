@@ -33,4 +33,16 @@ digraph "C:/Dev/ezRPC/Transport/Transport.h"
   Node10 -> Node14 [id="edge14_Node000010_Node000014",color="steelblue1",style="solid",tooltip=" "];
   Node14 [id="Node000014",label="errno.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node10 -> Node7 [id="edge15_Node000010_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node10 -> Node15 [id="edge16_Node000010_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="ReturnValue.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_return_value_8h.html",tooltip=" "];
+  Node15 -> Node6 [id="edge17_Node000015_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node16 [id="edge18_Node000015_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="optional",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node15 -> Node17 [id="edge19_Node000015_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node17 [id="Node000017",label="cassert",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node15 -> Node3 [id="edge20_Node000015_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node15 -> Node18 [id="edge21_Node000015_Node000018",color="steelblue1",style="solid",tooltip=" "];
+  Node18 [id="Node000018",label="ErrorCodes.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_error_codes_8h.html",tooltip=" "];
+  Node10 -> Node19 [id="edge22_Node000010_Node000019",color="steelblue1",style="solid",tooltip=" "];
+  Node19 [id="Node000019",label="CommunicationErrors.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_communication_errors_8h.html",tooltip=" "];
 }

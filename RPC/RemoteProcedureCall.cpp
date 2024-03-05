@@ -45,7 +45,8 @@ const unordered_map<string, RemoteProcedureCall::ParamType> RemoteProcedureCall:
  * \param bufferP contains the data to be sent
  * \param dataLen is the number of bytes to sent from bufferP
  * 
- * \return true if everything went fine, false else.
+ * \return (bool)ReturnValue is true if data could be sent, false else (and the
+ *		   error code is set).
 */
 ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned char* bufferP, unsigned long dataLen) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -81,8 +82,9 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned 
  * 
  * \param dataLen is the number of bytes to receive. This is blocking call!
  * 
- * \return a newly (m)allocated buffer pointing the received data. This buffer must
- * 		   be freed by the caller. Returns NULL if an error occured.
+ * \return if no error was encountered, (unsigned char*)ReturnValue is a newly 
+ *		   (m)allocated buffer pointing the received data. This buffer must be freed by the caller. 
+ *		   Returns (unsigned char*)ReturnValue == NULL if an error occured.
 */
 ReturnValue<unsigned char*, CommunicationErrors> RemoteProcedureCall::ReceivePacket(unsigned long& dataLen) {
 	ReturnValue<unsigned char*, CommunicationErrors> r;
@@ -850,6 +852,9 @@ void RemoteProcedureCall::PrepareSerializeCall(AsyncID asyncId, const string& fu
  *				 the result to match it. It is O if the call is synchronous
  * \param serializedCall is the serialized vector of parameters to build with the vl list of
  *		  arguments
+ * 
+ * \return (bool)ReturnValue is true if data could be sent, false else (and the
+ *		   error code is set).
  */
 ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -1015,8 +1020,10 @@ inline uint16_t RemoteProcedureCall::decode_uint16(unsigned char* bufferP, int& 
  *		  the result to match it. It is O if the call is synchronous
  * \param function receives the name of the function to call
  * \param bufferP is the function call byte stream built by SerializeCall
- * \return a vector of parameters associated with the function call
- */
+ * 
+ * \return (vector<RemoteProcedureCall::ParameterBase*>*)ReturnValue a valid ptr to a vector of ParameterBase if 
+ *		   no error occured, NULL else (and an error set).
+*/
 ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors> RemoteProcedureCall::DeserializeCall(AsyncID& asyncId, string& function) {
 	ReturnValue<vector<ParameterBase*>*, CommunicationErrors> r;
 	vector<RemoteProcedureCall::ParameterBase*>*			  resultP;
@@ -1416,6 +1423,9 @@ clean_up:
  *				  the result to match it. It is O if the call is synchronous
  * \param paramP points to a parameter vector built by DeserializeCall
  * \param retVal is the server's procedure return value
+ * 
+ * \return (bool)ReturnValue is true if data could be sent, false else (and the
+ *		   error code is set).
  */
 ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal) {
 	ReturnValue<bool, CommunicationErrors> r;
@@ -1606,7 +1616,9 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SerializeCallReturn(
  * \param asyncId is asynchronous call identifier, which will be returned with
  *				  the result to match it. It is O if the call is synchronous
  * \param bufferP points to a function call byte stream built by SerializeCallReturn
- * \return true upon success, else return false
+ * 
+ * \return (bool)ReturnValue is true if data could be sent, false else (and the
+ *		   error code is set).
  */
 ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP) {
 	ReturnValue<bool, CommunicationErrors> r;

@@ -27,7 +27,9 @@ using namespace std;
  * \brief Waits for a LinkRequest and returns the resulting link
  *
  * \param server_address is the file name to listen on
- * \return a connected link to the peer, NULL upon error
+ * 
+ * \return (Link*)ReturnValue a valid ptr to a Link instance, NULL else (and the
+ *		   error code is set).
  */
 ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const string& server_address) {
 	ReturnValue<Link*, CommunicationErrors>	r;
@@ -132,7 +134,9 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
  * 		  returns the resulting link
  *
  * \param server_address is the filename the server is listening on
- * \return a connected link to the peer, NULL upon error
+ * 
+ * \return (Link*)ReturnValue a valid ptr to a Link instance, NULL else (and the
+ *		   error code is set).
  */
 ReturnValue<Link*, CommunicationErrors> FileTransport::LinkRequest(const string& server_address) {
 	ReturnValue<Link*, CommunicationErrors>	r;

@@ -20,7 +20,7 @@
  * \param function is the name of the Remote Procedure called
  * \param ... variadic, is a set of param types and paramters, ended by END_OF_CALL
  * 
- * \return the Remote Procedure result.
+ * \return (unsigned long)ReturnValue the Remote Procedure result if no error was encountered.
  */
 ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string function, ...) {
 	ReturnValue<unsigned long, CommunicationErrors> r;
@@ -107,7 +107,8 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
  * \param function is the name of the Remote Procedure called
  * \param ... variadic, is a set of param types and paramters, ended by END_OF_CALL
  *
- * \return the asynchronous call identifier, also passed to the callback procedure upon async rpc completion.
+ * \return (AsyncID)ReturnValue a valid (non 0) AsyncID, 0 else (and the
+ *					error code is set).
  */
 ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProcedure* procedureP, string function, ...) {
 	ReturnValue<AsyncID, CommunicationErrors> r;

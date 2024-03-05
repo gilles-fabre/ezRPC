@@ -11,8 +11,10 @@ var searchData=
   ['rend_2emd_8',['rend.md',['../rend_8md.html',1,'']]],
   ['repeatedbytestest_2ecpp_9',['RepeatedBytesTest.cpp',['../_repeated_bytes_test_8cpp.html',1,'']]],
   ['repeatedmemcmp_2ecpp_10',['RepeatedMemcmp.cpp',['../_repeated_memcmp_8cpp.html',1,'']]],
-  ['rpcclient_2ecpp_11',['RPCClient.cpp',['../_r_p_c_client_8cpp.html',1,'']]],
-  ['rpcclient_2eh_12',['RPCClient.h',['../_r_p_c_client_8h.html',1,'']]],
-  ['rpcserver_2ecpp_13',['RPCServer.cpp',['../_r_p_c_server_8cpp.html',1,'']]],
-  ['rpcserver_2eh_14',['RPCServer.h',['../_r_p_c_server_8h.html',1,'']]]
+  ['returnvalue_2ecpp_11',['ReturnValue.cpp',['../_return_value_8cpp.html',1,'']]],
+  ['returnvalue_2eh_12',['ReturnValue.h',['../_return_value_8h.html',1,'']]],
+  ['rpcclient_2ecpp_13',['RPCClient.cpp',['../_r_p_c_client_8cpp.html',1,'']]],
+  ['rpcclient_2eh_14',['RPCClient.h',['../_r_p_c_client_8h.html',1,'']]],
+  ['rpcserver_2ecpp_15',['RPCServer.cpp',['../_r_p_c_server_8cpp.html',1,'']]],
+  ['rpcserver_2eh_16',['RPCServer.h',['../_r_p_c_server_8h.html',1,'']]]
 ];

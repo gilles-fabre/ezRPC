@@ -113,175 +113,173 @@ $(function(){initNavTree('_r_p_c_server_8h_source.html',''); initResizable(); })
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_remote_procedure_call_8h.html">RemoteProcedureCall.h</a>&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define RPCSERVER_TRACES 1</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">   19</a></span><span class="preprocessor">#define RPCSERVER_MODULE 0x6</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#pragma warning(disable:4251)</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef _EXPORTING</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define DECLSPEC __declspec(dllexport)</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define DECLSPEC __declspec(dllimport)</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#ifdef WIN32</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class   </span>DECLSPEC <a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a> {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#else</span></div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html">   44</a></span><span class="keyword">class   </span><a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="class_transport.html">Transport</a>*                      m_transportP;           <span class="comment">// transport used to talk to this server</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">string</span>                          m_address;              <span class="comment">// associated address</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span>*                           m_user_dataP;           <span class="comment">// optional user data passed to rpc procedures</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_thread.html">Thread</a>*                         m_listening_threadP;    <span class="comment">// responsible for listening and spawning service threads</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    vector&lt;Thread*&gt;                 m_serving_threads;      <span class="comment">// all running and &#39;linked&#39; service threads, waiting for remote procedure calls</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    unordered_map&lt;string, RemoteProcedure*&gt; m_rpc_map;              <span class="comment">// the procedures to call based on their names</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">class </span>ServiceParameters {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a>*  m_serverP;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_class" href="class_link.html">Link</a>*       m_linkP;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        ServiceParameters(<a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a>* serverP, <a class="code hl_class" href="class_link.html">Link</a>* linkP) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            m_serverP = serverP;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            m_linkP = linkP;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> ListeningCallback(<span class="keywordtype">void</span> *);                  <span class="comment">// threads&#39; functions</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> CallServiceAndReply(<a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>&amp; rpc, <span class="keywordtype">string</span>&amp; name, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a>* procP, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, shared_ptr&lt;ServiceParameters&gt; params, shared_ptr&lt;vector&lt;RemoteProcedureCall::ParameterBase*&gt;&gt; rpc_params);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> ServiceCallback(<span class="keywordtype">void</span> *);    </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00091" data-start="{" data-end="}">
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">   91</a></span>    <a class="code hl_function" href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">RPCServer</a>(<a class="code hl_enumeration" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport_type, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;address, <span class="keywordtype">void</span> *user_dataP = NULL) {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        m_listening_threadP = NULL;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        m_transportP = <a class="code hl_function" href="class_transport.html#a11ae89ffd0a9e9e33693aaf31f618335">Transport::CreateTransport</a>(transport_type);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        m_address = address;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        m_user_dataP = user_dataP;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define RPCSERVER_TRACES 1</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">   17</a></span><span class="preprocessor">#define RPCSERVER_MODULE 0x6</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#pragma warning(disable:4251)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef _EXPORTING</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define DECLSPEC __declspec(dllexport)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define DECLSPEC __declspec(dllimport)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifdef WIN32</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class   </span>DECLSPEC <a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#else</span></div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html">   42</a></span><span class="keyword">class   </span><a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a> {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_class" href="class_transport.html">Transport</a>*                      m_transportP;           <span class="comment">// transport used to talk to this server</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">string</span>                          m_address;              <span class="comment">// associated address</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span>*                           m_user_dataP;           <span class="comment">// optional user data passed to rpc procedures</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="class_thread.html">Thread</a>*                         m_listening_threadP;    <span class="comment">// responsible for listening and spawning service threads</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    vector&lt;Thread*&gt;                 m_serving_threads;      <span class="comment">// all running and &#39;linked&#39; service threads, waiting for remote procedure calls</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    unordered_map&lt;string, RemoteProcedure*&gt; m_rpc_map;              <span class="comment">// the procedures to call based on their names</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">class </span>ServiceParameters {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a>*  m_serverP;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_class" href="class_link.html">Link</a>*       m_linkP;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        ServiceParameters(<a class="code hl_class" href="class_r_p_c_server.html">RPCServer</a>* serverP, <a class="code hl_class" href="class_link.html">Link</a>* linkP) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            m_serverP = serverP;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            m_linkP = linkP;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    };</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> ListeningCallback(<span class="keywordtype">void</span> *);                  <span class="comment">// threads&#39; functions</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> CallServiceAndReply(<a class="code hl_class" href="class_remote_procedure_call.html">RemoteProcedureCall</a>&amp; rpc, <span class="keywordtype">string</span>&amp; name, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a>* procP, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, shared_ptr&lt;ServiceParameters&gt; params, shared_ptr&lt;vector&lt;RemoteProcedureCall::ParameterBase*&gt;&gt; rpc_params);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> ServiceCallback(<span class="keywordtype">void</span> *);    </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">   89</a></span>    <a class="code hl_function" href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">RPCServer</a>(<a class="code hl_enumeration" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport_type, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;address, <span class="keywordtype">void</span> *user_dataP = NULL) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        m_listening_threadP = NULL;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        m_transportP = <a class="code hl_function" href="class_transport.html#a21d73da321d7e17430451c74677aa674">Transport::CreateTransport</a>(transport_type);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        m_address = address;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        m_user_dataP = user_dataP;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
 </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">  103</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">~RPCServer</a>() {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCServer::~RpcServer()&quot;</span>);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_variable" href="_fuzzer_trace_p_c_8cpp.html#aff07dda81eaf318a2363886ff231917f">Stop</a>();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">if</span> (m_transportP) </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keyword">delete</span> m_transportP;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        m_transportP = NULL;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">  101</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">~RPCServer</a>() {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCServer::~RpcServer()&quot;</span>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_variable" href="_fuzzer_trace_p_c_8cpp.html#aff07dda81eaf318a2363886ff231917f">Stop</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">if</span> (m_transportP) </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keyword">delete</span> m_transportP;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        m_transportP = NULL;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">  122</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">RegisterProcedure</a>(<span class="keywordtype">string</span> name, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a> *procedureP) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        m_rpc_map[name] = procedureP;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">  120</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">RegisterProcedure</a>(<span class="keywordtype">string</span> name, <a class="code hl_typedef" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a> *procedureP) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        m_rpc_map[name] = procedureP;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
 </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="foldopen" id="foldopen00132" data-start="{" data-end="}">
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">  132</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">UnregisterProcedure</a>(<span class="keywordtype">string</span> name) {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        m_rpc_map.erase(name);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">  130</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">UnregisterProcedure</a>(<span class="keywordtype">string</span> name) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        m_rpc_map.erase(name);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
 </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">  142</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">Run</a>() {</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#aa749371ba8362eaeea768f7d395b3dae">Run</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="foldopen" id="foldopen00140" data-start="{" data-end="}">
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">  140</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">Run</a>() {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#aa749371ba8362eaeea768f7d395b3dae">Run</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    }</div>
 </div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">  156</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">RunAndWait</a>() {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#adf4a0146595eefa17ccb8d7aacd33b41">RunAndWait</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">  154</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">RunAndWait</a>() {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#adf4a0146595eefa17ccb8d7aacd33b41">RunAndWait</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
 </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">  168</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">Iterate</a>() {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#af0eb13dd34fb8547d10d4341246b8e03">Iterate</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">  166</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">Iterate</a>() {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#af0eb13dd34fb8547d10d4341246b8e03">Iterate</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
 </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
-<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">  180</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">IterateAndWait</a>() {</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a41b5c7adb2c080981c373d3d35c69e0d">IterateAndWait</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="foldopen" id="foldopen00178" data-start="{" data-end="}">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">  178</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">IterateAndWait</a>() {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keywordflow">if</span> (!m_listening_threadP)</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            m_listening_threadP = <span class="keyword">new</span> <a class="code hl_class" href="class_thread.html">Thread</a>(&amp;ListeningCallback);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">if</span> (!m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>() &amp;&amp; !m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">IsAskedToStop</a>())</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a41b5c7adb2c080981c373d3d35c69e0d">IterateAndWait</a>((<span class="keywordtype">void</span> *)<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
 </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="foldopen" id="foldopen00192" data-start="{" data-end="}">
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">  192</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">Stop</a>() {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCServer::Stop()&quot;</span>);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">if</span> (m_transportP) {</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Closing transport&quot;</span>);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            m_transportP-&gt;<a class="code hl_function" href="class_transport.html#a999a45e65a145dc7d0af3f493b118134">Close</a>();</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">if</span> (m_listening_threadP) {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keywordflow">if</span> (m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>())</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5994590ea53d7b36ca9fc2bffedb8941">Stop</a>();</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            <span class="keyword">delete</span> m_listening_threadP;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            m_listening_threadP = NULL;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="keywordflow">for</span> (vector&lt;Thread *&gt;::iterator i = m_serving_threads.begin(); i != m_serving_threads.end(); i++)</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            <span class="keyword">delete</span> (*i);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        m_serving_threads.clear();</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="foldopen" id="foldopen00190" data-start="{" data-end="}">
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">  190</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">Stop</a>() {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;RPCServer::Stop()&quot;</span>);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">if</span> (m_transportP) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#ifdef RPCSERVER_TRACES</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <a class="code hl_function" href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a>(<a class="code hl_define" href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Closing transport&quot;</span>);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            m_transportP-&gt;<a class="code hl_function" href="class_transport.html#a999a45e65a145dc7d0af3f493b118134">Close</a>();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keywordflow">if</span> (m_listening_threadP) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <span class="keywordflow">if</span> (m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">IsRunning</a>())</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                m_listening_threadP-&gt;<a class="code hl_function" href="class_thread.html#a5994590ea53d7b36ca9fc2bffedb8941">Stop</a>();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <span class="keyword">delete</span> m_listening_threadP;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            m_listening_threadP = NULL;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">for</span> (vector&lt;Thread *&gt;::iterator i = m_serving_threads.begin(); i != m_serving_threads.end(); i++)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            <span class="keyword">delete</span> (*i);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        m_serving_threads.clear();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    }</div>
 </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>};</div>
 </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#endif </span><span class="comment">/* _RPC_SERVER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#endif </span><span class="comment">/* _RPC_SERVER_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_fuzzer_trace_p_c_8cpp_html_aff07dda81eaf318a2363886ff231917f"><div class="ttname"><a href="_fuzzer_trace_p_c_8cpp.html#aff07dda81eaf318a2363886ff231917f">Stop</a></div><div class="ttdeci">uint32_t * Stop</div><div class="ttdef"><b>Definition</b> <a href="_fuzzer_trace_p_c_8cpp_source.html#l00269">FuzzerTracePC.cpp:269</a></div></div>
-<div class="ttc" id="a_r_p_c_server_8h_html_af1cc870489249542c3fc7bc138fa7c0f"><div class="ttname"><a href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a></div><div class="ttdeci">#define RPCSERVER_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00019">RPCServer.h:19</a></div></div>
+<div class="ttc" id="a_r_p_c_server_8h_html_af1cc870489249542c3fc7bc138fa7c0f"><div class="ttname"><a href="_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f">RPCSERVER_MODULE</a></div><div class="ttdeci">#define RPCSERVER_MODULE</div><div class="ttdef"><b>Definition</b> <a href="#l00017">RPCServer.h:17</a></div></div>
 <div class="ttc" id="a_remote_procedure_call_8h_html"><div class="ttname"><a href="_remote_procedure_call_8h.html">RemoteProcedureCall.h</a></div></div>
-<div class="ttc" id="a_remote_procedure_call_8h_html_a40e700db37fe1d33530863c4fc5e5a65"><div class="ttname"><a href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a></div><div class="ttdeci">unsigned long RemoteProcedure(string &amp;function, shared_ptr&lt; vector&lt; RemoteProcedureCall::ParameterBase * &gt; &gt; params, void *userDataP)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00276">RemoteProcedureCall.h:276</a></div></div>
-<div class="ttc" id="a_remote_procedure_call_8h_html_abc67c9d81d5fde9559b47f86502e2957"><div class="ttname"><a href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></div><div class="ttdeci">uint64_t AsyncID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00030">RemoteProcedureCall.h:30</a></div></div>
+<div class="ttc" id="a_remote_procedure_call_8h_html_a40e700db37fe1d33530863c4fc5e5a65"><div class="ttname"><a href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a></div><div class="ttdeci">unsigned long RemoteProcedure(string &amp;function, shared_ptr&lt; vector&lt; RemoteProcedureCall::ParameterBase * &gt; &gt; params, void *userDataP)</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00278">RemoteProcedureCall.h:278</a></div></div>
+<div class="ttc" id="a_remote_procedure_call_8h_html_abc67c9d81d5fde9559b47f86502e2957"><div class="ttname"><a href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></div><div class="ttdeci">uint64_t AsyncID</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00032">RemoteProcedureCall.h:32</a></div></div>
 <div class="ttc" id="a_thread_8h_html"><div class="ttname"><a href="_thread_8h.html">Thread.h</a></div></div>
 <div class="ttc" id="a_transport_8h_html"><div class="ttname"><a href="_transport_8h.html">Transport.h</a></div></div>
-<div class="ttc" id="aclass_link_html"><div class="ttname"><a href="class_link.html">Link</a></div><div class="ttdoc">Simply send and receive data on the in/out link created by the parent transport.</div><div class="ttdef"><b>Definition</b> <a href="_link_8h_source.html#l00043">Link.h:43</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html"><div class="ttname"><a href="class_r_p_c_server.html">RPCServer</a></div><div class="ttdoc">An instance of RPCServer provides RPCClients with an address[:port] to connect to,...</div><div class="ttdef"><b>Definition</b> <a href="#l00044">RPCServer.h:44</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_a052d64b45ee81f39dbf038d95f99ff08"><div class="ttname"><a href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">RPCServer::Iterate</a></div><div class="ttdeci">void Iterate()</div><div class="ttdoc">Iterates on Run.</div><div class="ttdef"><b>Definition</b> <a href="#l00168">RPCServer.h:168</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_a5cfaec27a0c5a0b7529858ba54773232"><div class="ttname"><a href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">RPCServer::RPCServer</a></div><div class="ttdeci">RPCServer(Transport::TransportType transport_type, const string &amp;address, void *user_dataP=NULL)</div><div class="ttdoc">RPCServer constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00091">RPCServer.h:91</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_a8528062f54f43807e392739dbea93e2b"><div class="ttname"><a href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">RPCServer::RegisterProcedure</a></div><div class="ttdeci">void RegisterProcedure(string name, RemoteProcedure *procedureP)</div><div class="ttdoc">Registers a procedure so it can be called by a Remote Client.</div><div class="ttdef"><b>Definition</b> <a href="#l00122">RPCServer.h:122</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_a8e252fd5fcca7dda0d4074ff6e42b0f7"><div class="ttname"><a href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">RPCServer::UnregisterProcedure</a></div><div class="ttdeci">void UnregisterProcedure(string name)</div><div class="ttdoc">Unregisters a procedure.</div><div class="ttdef"><b>Definition</b> <a href="#l00132">RPCServer.h:132</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_a9931bbb33dd747794b4699f2ac5f92b7"><div class="ttname"><a href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">RPCServer::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">One shot run of the server, will accept a single connection and then serve the connected client....</div><div class="ttdef"><b>Definition</b> <a href="#l00142">RPCServer.h:142</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_aa0789295acfd6111907957f4feafcebe"><div class="ttname"><a href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">RPCServer::IterateAndWait</a></div><div class="ttdeci">void IterateAndWait()</div><div class="ttdef"><b>Definition</b> <a href="#l00180">RPCServer.h:180</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_abbfc93a1189b152880e947ed27c85bca"><div class="ttname"><a href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">RPCServer::RunAndWait</a></div><div class="ttdeci">void RunAndWait()</div><div class="ttdoc">One shot run of the server, will accept a single connection and then serve the connected client....</div><div class="ttdef"><b>Definition</b> <a href="#l00156">RPCServer.h:156</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_af7fadfc5744d79966897e40665bb0999"><div class="ttname"><a href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">RPCServer::~RPCServer</a></div><div class="ttdeci">virtual ~RPCServer()</div><div class="ttdoc">RPCClient destructor. Closes and destroys the associated RPC and Transport members.</div><div class="ttdef"><b>Definition</b> <a href="#l00103">RPCServer.h:103</a></div></div>
-<div class="ttc" id="aclass_r_p_c_server_html_afa561558cb0ceafb0556c4fd34e44683"><div class="ttname"><a href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">RPCServer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the associated transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00192">RPCServer.h:192</a></div></div>
-<div class="ttc" id="aclass_remote_procedure_call_html"><div class="ttname"><a href="class_remote_procedure_call.html">RemoteProcedureCall</a></div><div class="ttdoc">Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a re...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00040">RemoteProcedureCall.h:40</a></div></div>
+<div class="ttc" id="aclass_link_html"><div class="ttname"><a href="class_link.html">Link</a></div><div class="ttdoc">Simply send and receive data on the in/out link created by the parent transport.</div><div class="ttdef"><b>Definition</b> <a href="_link_8h_source.html#l00045">Link.h:45</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html"><div class="ttname"><a href="class_r_p_c_server.html">RPCServer</a></div><div class="ttdoc">An instance of RPCServer provides RPCClients with an address[:port] to connect to,...</div><div class="ttdef"><b>Definition</b> <a href="#l00042">RPCServer.h:42</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_a052d64b45ee81f39dbf038d95f99ff08"><div class="ttname"><a href="class_r_p_c_server.html#a052d64b45ee81f39dbf038d95f99ff08">RPCServer::Iterate</a></div><div class="ttdeci">void Iterate()</div><div class="ttdoc">Iterates on Run.</div><div class="ttdef"><b>Definition</b> <a href="#l00166">RPCServer.h:166</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_a5cfaec27a0c5a0b7529858ba54773232"><div class="ttname"><a href="class_r_p_c_server.html#a5cfaec27a0c5a0b7529858ba54773232">RPCServer::RPCServer</a></div><div class="ttdeci">RPCServer(Transport::TransportType transport_type, const string &amp;address, void *user_dataP=NULL)</div><div class="ttdoc">RPCServer constructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00089">RPCServer.h:89</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_a8528062f54f43807e392739dbea93e2b"><div class="ttname"><a href="class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b">RPCServer::RegisterProcedure</a></div><div class="ttdeci">void RegisterProcedure(string name, RemoteProcedure *procedureP)</div><div class="ttdoc">Registers a procedure so it can be called by a Remote Client.</div><div class="ttdef"><b>Definition</b> <a href="#l00120">RPCServer.h:120</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_a8e252fd5fcca7dda0d4074ff6e42b0f7"><div class="ttname"><a href="class_r_p_c_server.html#a8e252fd5fcca7dda0d4074ff6e42b0f7">RPCServer::UnregisterProcedure</a></div><div class="ttdeci">void UnregisterProcedure(string name)</div><div class="ttdoc">Unregisters a procedure.</div><div class="ttdef"><b>Definition</b> <a href="#l00130">RPCServer.h:130</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_a9931bbb33dd747794b4699f2ac5f92b7"><div class="ttname"><a href="class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7">RPCServer::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">One shot run of the server, will accept a single connection and then serve the connected client....</div><div class="ttdef"><b>Definition</b> <a href="#l00140">RPCServer.h:140</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_aa0789295acfd6111907957f4feafcebe"><div class="ttname"><a href="class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe">RPCServer::IterateAndWait</a></div><div class="ttdeci">void IterateAndWait()</div><div class="ttdef"><b>Definition</b> <a href="#l00178">RPCServer.h:178</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_abbfc93a1189b152880e947ed27c85bca"><div class="ttname"><a href="class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca">RPCServer::RunAndWait</a></div><div class="ttdeci">void RunAndWait()</div><div class="ttdoc">One shot run of the server, will accept a single connection and then serve the connected client....</div><div class="ttdef"><b>Definition</b> <a href="#l00154">RPCServer.h:154</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_af7fadfc5744d79966897e40665bb0999"><div class="ttname"><a href="class_r_p_c_server.html#af7fadfc5744d79966897e40665bb0999">RPCServer::~RPCServer</a></div><div class="ttdeci">virtual ~RPCServer()</div><div class="ttdoc">RPCClient destructor. Closes and destroys the associated RPC and Transport members.</div><div class="ttdef"><b>Definition</b> <a href="#l00101">RPCServer.h:101</a></div></div>
+<div class="ttc" id="aclass_r_p_c_server_html_afa561558cb0ceafb0556c4fd34e44683"><div class="ttname"><a href="class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683">RPCServer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the associated transport.</div><div class="ttdef"><b>Definition</b> <a href="#l00190">RPCServer.h:190</a></div></div>
+<div class="ttc" id="aclass_remote_procedure_call_html"><div class="ttname"><a href="class_remote_procedure_call.html">RemoteProcedureCall</a></div><div class="ttdoc">Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a re...</div><div class="ttdef"><b>Definition</b> <a href="_remote_procedure_call_8h_source.html#l00042">RemoteProcedureCall.h:42</a></div></div>
 <div class="ttc" id="aclass_thread_html"><div class="ttname"><a href="class_thread.html">Thread</a></div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00089">Thread.h:89</a></div></div>
 <div class="ttc" id="aclass_thread_html_a155bd8214dbbadd0cd70f393e0695e4e"><div class="ttname"><a href="class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e">Thread::IsAskedToStop</a></div><div class="ttdeci">bool IsAskedToStop()</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00132">Thread.h:132</a></div></div>
 <div class="ttc" id="aclass_thread_html_a41b5c7adb2c080981c373d3d35c69e0d"><div class="ttname"><a href="class_thread.html#a41b5c7adb2c080981c373d3d35c69e0d">Thread::IterateAndWait</a></div><div class="ttdeci">void IterateAndWait(void *parametersP=NULL)</div><div class="ttdef"><b>Definition</b> <a href="_thread_8cpp_source.html#l00064">Thread.cpp:64</a></div></div>
@@ -291,12 +289,11 @@ $(function(){initNavTree('_r_p_c_server_8h_source.html',''); initResizable(); })
 <div class="ttc" id="aclass_thread_html_adf4a0146595eefa17ccb8d7aacd33b41"><div class="ttname"><a href="class_thread.html#adf4a0146595eefa17ccb8d7aacd33b41">Thread::RunAndWait</a></div><div class="ttdeci">void RunAndWait(void *parametersP=NULL)</div><div class="ttdef"><b>Definition</b> <a href="_thread_8cpp_source.html#l00098">Thread.cpp:98</a></div></div>
 <div class="ttc" id="aclass_thread_html_af0eb13dd34fb8547d10d4341246b8e03"><div class="ttname"><a href="class_thread.html#af0eb13dd34fb8547d10d4341246b8e03">Thread::Iterate</a></div><div class="ttdeci">void Iterate(void *parametersP=NULL)</div><div class="ttdef"><b>Definition</b> <a href="_thread_8cpp_source.html#l00081">Thread.cpp:81</a></div></div>
 <div class="ttc" id="aclass_transport_html"><div class="ttname"><a href="class_transport.html">Transport</a></div><div class="ttdoc">Abstract transport over any of the supported transports.</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00033">Transport.h:33</a></div></div>
-<div class="ttc" id="aclass_transport_html_a11ae89ffd0a9e9e33693aaf31f618335"><div class="ttname"><a href="class_transport.html#a11ae89ffd0a9e9e33693aaf31f618335">Transport::CreateTransport</a></div><div class="ttdeci">static Transport * CreateTransport(TransportType transportType)</div><div class="ttdoc">Returns a newly created transport for the given transport type.</div><div class="ttdef"><b>Definition</b> <a href="_transport_8cpp_source.html#l00034">Transport.cpp:34</a></div></div>
+<div class="ttc" id="aclass_transport_html_a21d73da321d7e17430451c74677aa674"><div class="ttname"><a href="class_transport.html#a21d73da321d7e17430451c74677aa674">Transport::CreateTransport</a></div><div class="ttdeci">static ReturnValue&lt; Transport *, CommunicationErrors &gt; CreateTransport(TransportType transportType)</div><div class="ttdoc">Returns a newly created transport for the given transport type.</div><div class="ttdef"><b>Definition</b> <a href="_transport_8cpp_source.html#l00035">Transport.cpp:35</a></div></div>
 <div class="ttc" id="aclass_transport_html_a6fa98f5de79b12d04a073c526ff1eb28"><div class="ttname"><a href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a></div><div class="ttdeci">TransportType</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00038">Transport.h:38</a></div></div>
 <div class="ttc" id="aclass_transport_html_a999a45e65a145dc7d0af3f493b118134"><div class="ttname"><a href="class_transport.html#a999a45e65a145dc7d0af3f493b118134">Transport::Close</a></div><div class="ttdeci">virtual void Close()</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00058">Transport.h:58</a></div></div>
 <div class="ttc" id="alog2reporter_8c_html_adc647e2de83a0fbf4741a13e7a08d2b4"><div class="ttname"><a href="log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4">LogText</a></div><div class="ttdeci">void LogText(uint32_t module, uint8_t indent, bool lineBreak, const char *textP)</div><div class="ttdef"><b>Definition</b> <a href="log2reporter_8c_source.html#l00687">log2reporter.c:687</a></div></div>
 <div class="ttc" id="alog2reporter_8h_html"><div class="ttname"><a href="log2reporter_8h.html">log2reporter.h</a></div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
