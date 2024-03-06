@@ -3,7 +3,6 @@
 #include <vector>
 
 #include <RPCClient.h>
-#include <JsonRPCClient.h>
 
 using namespace std;
 

@@ -21,28 +21,44 @@ using namespace std;
 */
 template <typename T, class E>
 class	ReturnValue {
-  pair<optional<T>, int> m_value;
+  pair<optional<T>, int>* m_valueP;
 
 public:
-  ReturnValue() : m_value{ {}, static_cast<int>(E::ErrorCode::EmptyResult) } {}
+  ReturnValue() {
+      m_valueP = new pair<optional<T>, int>{ {}, static_cast<int>(E::ErrorCode::EmptyResult) };
+  }
   template <typename C>
-  ReturnValue(C error) : m_value{ {}, static_cast<int>(error) } {}
-  ReturnValue(T result) : m_value{ result, static_cast<int>(E::ErrorCode::None) } {}
+  ReturnValue(C error) {
+      m_valueP = new pair<optional<T>, int>{ {}, static_cast<int>(error) };
+  }
+  ReturnValue(T result) {
+      m_valueP = new pair<optional<T>, int>{ result, static_cast<int>(E::ErrorCode::None)};
+  }
   template <typename C>
-  ReturnValue(T result, C error) : m_value{ result, static_cast<int>(error) } {}
+  ReturnValue(T result, C error) {
+      m_valueP = new pair<optional<T>, int>{ result, static_cast<int>(error) };
+  }
   ReturnValue(const ReturnValue& other) {
-    *this = other;
+      m_valueP = NULL;
+      *this = other;
   }
   ReturnValue(ReturnValue&& other) noexcept {
-    *this = std::move(other);
+      m_valueP= NULL;
+      *this = other;
+  }
+  ~ReturnValue() {
+      delete m_valueP;
+      m_valueP = NULL;
   }
   ReturnValue& operator =(const ReturnValue& other) {
-    m_value = other.m_value;
-    return *this;
+      delete m_valueP;
+      m_valueP = new pair <optional<T>, int>{ other.m_valueP->first, other.m_valueP->second };
+      return *this;
   }
   ReturnValue& operator =(ReturnValue&& other) noexcept {
-    m_value = std::move(other.m_value);
-    return *this;
+      m_valueP = other.m_valueP;
+      other.m_valueP = NULL;
+      return *this;
   }
 
   /**
@@ -51,7 +67,7 @@ public:
   * \return true in the case an error is returned by the called function/method.
   */
   bool IsError() {
-    return m_value.second != E::None;
+    return m_valueP->second != E::None;
   }
 
   /**
@@ -61,16 +77,16 @@ public:
   */
   template <typename E>
   operator E() {
-    return static_cast<E>(m_value.second);
+    return static_cast<E>(m_valueP->second);
   }
 
   template <typename E>
   E GetError() {
-    return static_cast<E>(m_value.second);
+    return static_cast<E>(m_valueP->second);
   }
 
   string GetErrorString() {
-    int i = m_value.second;
+    int i = m_valueP->second;
     assert(i >= 0 || i < static_cast<int>(E::ErrorCode::END));
     return E::m_errors[i];
   }
@@ -81,11 +97,11 @@ public:
   *         encountered, undefined else.
   */
   operator T& () {
-    return *m_value.first;
+    return *(m_valueP->first);
   }
 
   T& GetResult() {
-    return *m_value.first;
+    return *(m_valueP->first);
   }
 
   /**
@@ -96,10 +112,10 @@ public:
   }
 
   string ToString() {
-    int i = m_value.second;
+    int i = m_valueP->second;
     assert(i >= 0 || i < static_cast<int>(E::ErrorCode::END));
     stringstream ss;
-    ss << "{" << *m_value.first << "," << E::m_errors[i] << "}";
+    ss << "{" << *(m_valueP->first) << "," << E::m_errors[i] << "}";
     return ss.str();
   }
 };

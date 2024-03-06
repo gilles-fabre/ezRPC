@@ -35,9 +35,13 @@ class TestApplication
 	static ulong IncrementDouble(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2)
+		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
 		{
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			double num = double.Parse(call.parameters[1].value.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
 
 			num += 0.1;
 			call.parameters[1].value = num;
@@ -54,7 +58,11 @@ class TestApplication
 		JsonCall? call = JsonCall.FromJson(jsonCall);
 		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
 		{
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			short num = short.Parse(call.parameters[1].value.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
 
 			++num;
 			call.parameters[1].value = num;
@@ -69,8 +77,11 @@ class TestApplication
 	static ulong Concatenate(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3)
+		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
 		{
+#pragma warning disable CS8600 // Possible null reference argument.
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			string text = call.parameters[1].value.ToString();
 			short num = short.Parse(call.parameters[2].value.ToString());
 
@@ -85,6 +96,10 @@ class TestApplication
 				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
 
 			return (ulong)concatText.Length;
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
+#pragma warning restore CS8600 // Possible null reference argument.
+
 		}
 
 		return (ulong)0;
@@ -93,10 +108,16 @@ class TestApplication
 	static ulong RepeatPrint(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3)
+		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
 		{
+#pragma warning disable CS8600 // Possible null reference argument.
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			string text = call.parameters[1].value.ToString();
 			short num = short.Parse(call.parameters[2].value.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
+#pragma warning restore CS8600 // Possible null reference argument.
 
 			for (short i = 0; i < num; i++) 
 				Console.WriteLine(text);
@@ -114,10 +135,14 @@ class TestApplication
 	static ulong SumNumbers(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3)
+		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
 		{
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			short num1 = short.Parse(call.parameters[1].value.ToString());
 			short num2 = short.Parse(call.parameters[2].value.ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
 
 			Console.WriteLine("{0}", num1 + num2);
 
@@ -132,13 +157,17 @@ class TestApplication
 	static ulong GetString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2)
+		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
 		{
 			Console.WriteLine("enter a string: ");
 			string? text = Console.ReadLine();
 			if (text != null)
 			{
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 				call.parameters[1].value = text;
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
 				string resultJson = call.ToJson();
 				if (resultJson.Length < (int)jsonCallResultLen)
 					JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
@@ -153,8 +182,12 @@ class TestApplication
 	static ulong PutString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2) {
+		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null) {
+#pragma warning disable CS8602 // Possible null reference argument.
+#pragma warning disable CS8604 // Possible null reference argument.
 			Console.WriteLine("string passed : {0}", call.parameters[1].value);
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Possible null reference argument.
 
 			string resultJson = call.ToJson();
 			if (resultJson.Length < (int)jsonCallResultLen)
