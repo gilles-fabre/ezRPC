@@ -4,9 +4,9 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <log2reporter.h>
+#include <thread>
 
-#include <Thread.h>
+#include <log2reporter.h>
 #include <Transport.h>
 
 #include "RemoteProcedureCall.h"
@@ -197,11 +197,15 @@ public:
 			LogText(RPCSERVER_MODULE, 4, true, "Closing transport");
 #endif
 			m_transportP->Close();
+			delete m_transportP;
+			m_transportP = NULL;
 		}
 
 		if (m_listening_threadP) {
 			if (m_listening_threadP->IsRunning())
 				m_listening_threadP->Stop();
+
+			while (m_listening_threadP->IsRunning()) Sleep(10);
 
 			delete m_listening_threadP;
 			m_listening_threadP = NULL;

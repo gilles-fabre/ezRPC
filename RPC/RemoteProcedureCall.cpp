@@ -66,11 +66,11 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned 
 
 	// send the packet len
 	if ((rv = m_linkP->Send(buffer, (unsigned long)sizeof(len))).IsError()) 
-		return std::move(rv);
+		return rv;
 
 	// send the whole call stream
 	if ((rv = m_linkP->Send(bufferP, dataLen)).IsError())
-		return std::move(rv);
+		return rv;
 
 	r = ReturnValue<bool, CommunicationErrors>{ true, CommunicationErrors::ErrorCode::None };
 	return r;

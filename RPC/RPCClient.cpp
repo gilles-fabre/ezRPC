@@ -169,7 +169,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 		}
 
 		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{asyncId, CommunicationErrors::ErrorCode::None};
-		return std::move(rt);
+		return rt;
 	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
@@ -240,7 +240,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 		}
 
 		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
-		return std::move(rt);
+		return rt;
 	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
