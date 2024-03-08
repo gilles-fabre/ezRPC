@@ -14,13 +14,13 @@ Semaphore g_sem_get_str(0);
 
 char g_Buffer[256 + 1];
 
-static void GetStringAsyncReplyProc(AsyncID asyncId) {
-	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << endl;
+static void GetStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << " and result : " << result << endl;
 	g_sem_get_str.R();
 }
 
-static void PutStringAsyncReplyProc(AsyncID asyncId) {
-	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << endl;
+static void PutStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << " and result : " << result << endl;
 	g_sem_put_str.R();
 }
 

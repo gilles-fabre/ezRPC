@@ -8,7 +8,6 @@ var files_dup =
     [ "ReturnValue", "dir_218548f2e7b9cceb413c39518a6f1c15.html", "dir_218548f2e7b9cceb413c39518a6f1c15" ],
     [ "RPC", "dir_5e7820cd9865310f5cd4c55ebafcb2ee.html", "dir_5e7820cd9865310f5cd4c55ebafcb2ee" ],
     [ "StateMachine", "dir_758002af70109fbe67b2b6cdc47130b7.html", "dir_758002af70109fbe67b2b6cdc47130b7" ],
-    [ "Tests", "dir_33c78a012c8d08979f57a54a07694c46.html", "dir_33c78a012c8d08979f57a54a07694c46" ],
     [ "Thread", "dir_c211989d999a6a303a2b08461c3c22b8.html", "dir_c211989d999a6a303a2b08461c3c22b8" ],
     [ "Transport", "dir_fe0408bba8e1b297be50641f0afa584a.html", "dir_fe0408bba8e1b297be50641f0afa584a" ],
     [ "UnitTests", "dir_4be4f7b278e009bf0f1906cf31fb73bd.html", "dir_4be4f7b278e009bf0f1906cf31fb73bd" ]

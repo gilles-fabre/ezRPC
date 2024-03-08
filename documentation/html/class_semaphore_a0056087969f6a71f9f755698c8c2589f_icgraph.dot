@@ -28,19 +28,13 @@ digraph "Semaphore::Inc"
   Node4 -> Node11 [id="edge11_Node000004_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node11 [id="Node000011",label="RPCServer::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683",tooltip="Stops the associated transport."];
   Node11 -> Node12 [id="edge12_Node000011_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node12 [id="Node000012",label="RPC_Test::TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c___test.html#a3c7b5e609fb1b9c850baedc95036ec4b",tooltip=" "];
+  Node12 [id="Node000012",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72",tooltip=" "];
   Node11 -> Node13 [id="edge13_Node000011_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node13 [id="Node000013",label="RPC_Test::TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c___test.html#a74964873055904cf946e87a54dc96334",tooltip=" "];
+  Node13 [id="Node000013",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4",tooltip=" "];
   Node11 -> Node14 [id="edge14_Node000011_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node14 [id="Node000014",label="RPC_Test::TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c___test.html#ad55c3d222b4836ba35a61ebf5a5bfdbf",tooltip=" "];
+  Node14 [id="Node000014",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a8b7b742a943c4a1c2c2d2240a7e4c2e7",tooltip=" "];
   Node11 -> Node15 [id="edge15_Node000011_Node000015",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node15 [id="Node000015",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72",tooltip=" "];
-  Node11 -> Node16 [id="edge16_Node000011_Node000016",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node16 [id="Node000016",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4",tooltip=" "];
-  Node11 -> Node17 [id="edge17_Node000011_Node000017",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node17 [id="Node000017",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a8b7b742a943c4a1c2c2d2240a7e4c2e7",tooltip=" "];
-  Node11 -> Node18 [id="edge18_Node000011_Node000018",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node18 [id="Node000018",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#ad56cb8fa97ca6c0b84ec15fb791e6194",tooltip=" "];
-  Node1 -> Node19 [id="edge19_Node000001_Node000019",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node19 [id="Node000019",label="Thread::StopAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#aaa2b113b5a394479a4f3edc280bca1ba",tooltip=" "];
+  Node15 [id="Node000015",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#ad56cb8fa97ca6c0b84ec15fb791e6194",tooltip=" "];
+  Node1 -> Node16 [id="edge16_Node000001_Node000016",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="Thread::StopAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#aaa2b113b5a394479a4f3edc280bca1ba",tooltip=" "];
 }

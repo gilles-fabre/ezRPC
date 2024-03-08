@@ -59,7 +59,7 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 	JsonParameters::CleanupParameters(i->second->m_params);
 
 	// invoke the callback, passing it the async id so the client catch find back the corresponding async call and the parameters/results
-	(i->second->m_replyProcP)(asyncId);
+	(i->second->m_replyProcP)(asyncId, result);
 
 	{
 		// free the the async params we don't need anymore

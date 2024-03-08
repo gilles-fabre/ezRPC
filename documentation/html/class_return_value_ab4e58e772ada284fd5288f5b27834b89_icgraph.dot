@@ -23,16 +23,14 @@ digraph "ReturnValue::GetError"
   Node5 -> Node9 [id="edge8_Node000005_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node9 [id="Node000009",label="main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_test_client_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627",tooltip=" "];
   Node5 -> Node10 [id="edge9_Node000005_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node10 [id="Node000010",label="RPC_Test::TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c___test.html#a74964873055904cf946e87a54dc96334",tooltip=" "];
+  Node10 [id="Node000010",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72",tooltip=" "];
   Node5 -> Node11 [id="edge10_Node000005_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node11 [id="Node000011",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72",tooltip=" "];
-  Node5 -> Node12 [id="edge11_Node000005_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node12 [id="Node000012",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4",tooltip=" "];
+  Node11 [id="Node000011",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4",tooltip=" "];
+  Node3 -> Node12 [id="edge11_Node000003_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#aff234c5bae9ea1a10ddbc223ec6bd50b",tooltip=" "];
   Node3 -> Node13 [id="edge12_Node000003_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node13 [id="Node000013",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#aff234c5bae9ea1a10ddbc223ec6bd50b",tooltip=" "];
-  Node3 -> Node14 [id="edge13_Node000003_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node14 [id="Node000014",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#ad1ea9d5d63414cd67f6f3ba1719ecfd2",tooltip=" "];
-  Node14 -> Node9 [id="edge14_Node000014_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node14 -> Node11 [id="edge15_Node000014_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node14 -> Node12 [id="edge16_Node000014_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="RPCClient::RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_client.html#ad1ea9d5d63414cd67f6f3ba1719ecfd2",tooltip=" "];
+  Node13 -> Node9 [id="edge13_Node000013_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node10 [id="edge14_Node000013_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node11 [id="edge15_Node000013_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
 }

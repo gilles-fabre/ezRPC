@@ -10,13 +10,6 @@ digraph "C:/Dev/ezRPC/build/packages/Microsoft.googletest.v140.windesktop.msvcst
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="C:/Dev/ezRPC/RPC/json\l/tests/thirdparty/Fuzzer\l/test/FuzzerUnittest.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html",tooltip=" "];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="C:/Dev/ezRPC/Tests\l/pch.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_tests_2pch_8h.html",tooltip=" "];
-  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="C:/Dev/ezRPC/Tests\l/pch.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_tests_2pch_8cpp.html",tooltip=" "];
-  Node4 -> Node6 [id="edge5_Node000004_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="C:/Dev/ezRPC/Tests\l/test.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_tests_2test_8cpp.html",tooltip=" "];
-  Node2 -> Node6 [id="edge6_Node000002_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 -> Node7 [id="edge7_Node000002_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="C:/Dev/ezRPC/build\l/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt\l-dyn.1.8.1.7/build/native/include/gtest/gtest-spi.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$gtest-spi_8h.html",tooltip=" "];
-  Node2 -> Node1 [id="edge8_Node000002_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="C:/Dev/ezRPC/build\l/packages/Microsoft.googletest.v140.windesktop.msvcstl.static.rt\l-dyn.1.8.1.7/build/native/include/gtest/gtest-spi.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$gtest-spi_8h.html",tooltip=" "];
+  Node2 -> Node1 [id="edge4_Node000002_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
 }

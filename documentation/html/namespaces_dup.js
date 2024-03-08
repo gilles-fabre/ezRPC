@@ -57,12 +57,6 @@ var namespaces_dup =
     [ "persons", "namespacepersons.html", "namespacepersons" ],
     [ "proto2", "namespaceproto2.html", null ],
     [ "reporter", "namespacereporter.html", "namespacereporter" ],
-    [ "RPC_Test", "namespace_r_p_c___test.html", [
-      [ "TEST", "namespace_r_p_c___test.html#a3c7b5e609fb1b9c850baedc95036ec4b", null ],
-      [ "TEST", "namespace_r_p_c___test.html#a74964873055904cf946e87a54dc96334", null ],
-      [ "TEST", "namespace_r_p_c___test.html#ad55c3d222b4836ba35a61ebf5a5bfdbf", null ],
-      [ "gRpcServerP", "namespace_r_p_c___test.html#a92c250c197095f57a3148f9c2935b245", null ]
-    ] ],
     [ "RPCTests", "namespace_r_p_c_tests.html", [
       [ "TEST_CLASS", "namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72", null ],
       [ "TEST_CLASS", "namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4", null ],

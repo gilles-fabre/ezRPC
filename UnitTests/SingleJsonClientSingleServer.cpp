@@ -21,6 +21,7 @@ namespace RPCTests {
 	TEST_CLASS(SingleJsonClientSingleServerTests) {
 	public:
 		static AsyncID			s_asyncId;
+		static unsigned long    s_result;
 		static Semaphore		s_asyncSem;
 		static unsigned long	s_asyncResult;
 		static char				s_buffer[JSON_BUFFER_SIZE];
@@ -33,7 +34,7 @@ namespace RPCTests {
 		static unsigned long SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 		static unsigned long Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 
-		static void		ClientAsyncReplyHandler(AsyncID asyncId);
+		static void		ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
 		SingleJsonClientSingleServerTests() : m_rpcServer(Transport::TCP, RPC_SERVER_ADDRESS) {
 			thread t([&]() {
@@ -158,6 +159,7 @@ namespace RPCTests {
 				AsyncID asyncId = RpcCallAsync(m_jsonClient, call.dump().c_str(), s_buffer, sizeof(s_buffer), ClientAsyncReplyHandler);
 
 				s_asyncSem.A();
+				Assert::AreEqual(unsigned long(5555), s_result);
 				Assert::AreEqual(asyncId, s_asyncId);
 			}
 
@@ -226,6 +228,7 @@ namespace RPCTests {
 	};
 
 	AsyncID			SingleJsonClientSingleServerTests::s_asyncId;
+	unsigned long   SingleJsonClientSingleServerTests::s_result;
 	Semaphore		SingleJsonClientSingleServerTests::s_asyncSem(0);
 	unsigned long	SingleJsonClientSingleServerTests::s_asyncResult;
 	char			SingleJsonClientSingleServerTests::s_buffer[JSON_BUFFER_SIZE];
@@ -288,8 +291,9 @@ namespace RPCTests {
 		return (unsigned long)text.length();
 	}
 
-	void SingleJsonClientSingleServerTests::ClientAsyncReplyHandler(AsyncID asyncId) {
+	void SingleJsonClientSingleServerTests::ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result) {
 		s_asyncId = asyncId;
+		s_result = result;
 		s_asyncSem.R();
 	}
 }

@@ -22,17 +22,15 @@ digraph "C:/Dev/ezRPC/RPC/RPCServer.h"
   Node1 -> Node9 [id="edge8_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node9 [id="Node000009",label="C:/Dev/ezRPC/StateMachine\l/StateMachineServer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_state_machine_server_8cpp.html",tooltip=" "];
   Node1 -> Node10 [id="edge9_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node10 [id="Node000010",label="C:/Dev/ezRPC/StateMachine\l/test.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_state_machine_2test_8cpp.html",tooltip=" "];
+  Node10 [id="Node000010",label="C:/Dev/ezRPC/StateMachine\l/test.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$test_8cpp.html",tooltip=" "];
   Node1 -> Node11 [id="edge10_Node000001_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node11 [id="Node000011",label="C:/Dev/ezRPC/Tests\l/test.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_tests_2test_8cpp.html",tooltip=" "];
+  Node11 [id="Node000011",label="C:/Dev/ezRPC/UnitTests\l/ClientServerPairTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_client_server_pair_tests_8cpp.html",tooltip=" "];
   Node1 -> Node12 [id="edge11_Node000001_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node12 [id="Node000012",label="C:/Dev/ezRPC/UnitTests\l/ClientServerPairTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_client_server_pair_tests_8cpp.html",tooltip=" "];
-  Node1 -> Node13 [id="edge12_Node000001_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node13 [id="Node000013",label="C:/Dev/ezRPC/UnitTests\l/MultiClientSingleServerTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_multi_client_single_server_tests_8cpp.html",tooltip=" "];
-  Node1 -> Node5 [id="edge13_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node14 [id="edge14_Node000001_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node14 [id="Node000014",label="C:/Dev/ezRPC/UnitTests\l/SingleClientSingleServerTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_single_client_single_server_tests_8cpp.html",tooltip=" "];
-  Node1 -> Node6 [id="edge15_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node15 [id="edge16_Node000001_Node000015",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node15 [id="Node000015",label="C:/Dev/ezRPC/UnitTests\l/SingleJsonClientSingleServer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_single_json_client_single_server_8cpp.html",tooltip=" "];
+  Node12 [id="Node000012",label="C:/Dev/ezRPC/UnitTests\l/MultiClientSingleServerTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_multi_client_single_server_tests_8cpp.html",tooltip=" "];
+  Node1 -> Node5 [id="edge12_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node13 [id="edge13_Node000001_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="C:/Dev/ezRPC/UnitTests\l/SingleClientSingleServerTests.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_single_client_single_server_tests_8cpp.html",tooltip=" "];
+  Node1 -> Node6 [id="edge14_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node14 [id="edge15_Node000001_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="C:/Dev/ezRPC/UnitTests\l/SingleJsonClientSingleServer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_single_json_client_single_server_8cpp.html",tooltip=" "];
 }

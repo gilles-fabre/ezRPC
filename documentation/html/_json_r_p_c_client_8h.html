@@ -128,15 +128,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:acaaa2e04ca278a7c58583221a8772f07" id="r_acaaa2e04ca278a7c58583221a8772f07"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a>(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>)</td></tr>
-<tr class="memdesc:acaaa2e04ca278a7c58583221a8772f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides C APIs on top of <a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> services.  <br /></td></tr>
-<tr class="separator:acaaa2e04ca278a7c58583221a8772f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace88a75c814f657c60169012ba882989" id="r_ace88a75c814f657c60169012ba882989"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace88a75c814f657c60169012ba882989">AsyncJsonReplyProcedure</a>(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>, unsigned long <a class="el" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>)</td></tr>
+<tr class="memdesc:ace88a75c814f657c60169012ba882989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides C APIs on top of <a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> services.  <br /></td></tr>
+<tr class="separator:ace88a75c814f657c60169012ba882989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad6d23d514134841e7ff7760133251669" id="r_ad6d23d514134841e7ff7760133251669"><td class="memItemLeft" align="right" valign="top">DECLSPEC uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6d23d514134841e7ff7760133251669">CreateRpcClient</a> (<a class="el" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport, const char *serverAddrP)</td></tr>
 <tr class="separator:ad6d23d514134841e7ff7760133251669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bd84de1a032da8b93e28f45fe452bdd" id="r_a3bd84de1a032da8b93e28f45fe452bdd"><td class="memItemLeft" align="right" valign="top">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bd84de1a032da8b93e28f45fe452bdd">RpcCallAsync</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a> *replyProcP)</td></tr>
+<tr class="memitem:a3bd84de1a032da8b93e28f45fe452bdd" id="r_a3bd84de1a032da8b93e28f45fe452bdd"><td class="memItemLeft" align="right" valign="top">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bd84de1a032da8b93e28f45fe452bdd">RpcCallAsync</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="#ace88a75c814f657c60169012ba882989">AsyncJsonReplyProcedure</a> *replyProcP)</td></tr>
 <tr class="separator:a3bd84de1a032da8b93e28f45fe452bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d5c6b5276a4552578728090607a1104" id="r_a0d5c6b5276a4552578728090607a1104"><td class="memItemLeft" align="right" valign="top">DECLSPEC uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d5c6b5276a4552578728090607a1104">RpcCall</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
 <tr class="separator:a0d5c6b5276a4552578728090607a1104"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,14 +161,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="acaaa2e04ca278a7c58583221a8772f07" name="acaaa2e04ca278a7c58583221a8772f07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acaaa2e04ca278a7c58583221a8772f07">&#9670;&#160;</a></span>AsyncJsonReplyProcedure</h2>
+<a id="ace88a75c814f657c60169012ba882989" name="ace88a75c814f657c60169012ba882989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace88a75c814f657c60169012ba882989">&#9670;&#160;</a></span>AsyncJsonReplyProcedure</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void AsyncJsonReplyProcedure(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>)</td>
+          <td class="memname">typedef void AsyncJsonReplyProcedure(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>, unsigned long <a class="el" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -300,7 +300,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#ace88a75c814f657c60169012ba882989">AsyncJsonReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
