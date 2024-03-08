@@ -124,8 +124,9 @@ public:
 
 	    virtual ~ParameterBase() {
 #ifdef RPC_TRACES
-			LogVText(RPC_MODULE, 0, true, "deleting parameter %p, of type %c...", this, m_type);
+			LogVText(RPC_MODULE, 0, true, "deleting ParameterBase %p, of type %c...", this, m_type);
 #endif
+			m_callerValuePointer = 0;
 		}
 
 		// type accessor
@@ -220,6 +221,14 @@ public:
 		Parameter& operator =(const Parameter& other) {
 			*this = other;
 			return *this;
+		}
+
+		~Parameter() {
+#ifdef RPC_TRACES
+			LogVText(RPC_MODULE, 0, true, "deleting Parameter %p...", this);
+#endif
+			if (IsValidPointer())
+				delete (T*)GetCallerPointer();
 		}
 
 		/**

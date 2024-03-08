@@ -477,54 +477,9 @@ bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<ve
 }
 
 void JsonParameters::CleanupParameters(shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params) {
-	if (params->size() > 1) { // we don't process the END_OF_CALL parameter
-		int num_params = (int)params->size();
-		for (int i = 0; i < num_params; i++) {
-			RemoteProcedureCall::ParameterBase* paramP = params->at(i);
+	for (RemoteProcedureCall::ParameterBase* p : *params) 
+		delete p;
 
-			if (paramP->IsValidPointer()) {
-				switch (paramP->GetType()) {
-					case RemoteProcedureCall::ParamType::STRING:
-						delete ((string*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::BYTE:
-						delete ((uint8_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::CHAR:
-						delete ((uint8_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::UINT16:
-						delete ((uint16_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::INT16:
-						delete ((int16_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::UINT32:
-						delete ((uint32_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::INT32:
-						delete ((int32_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::UINT64:
-						delete ((uint64_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::INT64:
-						delete ((int64_t*)paramP->GetCallerPointer());
-					break;
-
-					case RemoteProcedureCall::ParamType::DOUBLE:
-						delete ((double*)paramP->GetCallerPointer());
-					break;
-				}
-			}
-		}
-	}
+	params->clear();
+	params.reset();
 }
