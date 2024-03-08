@@ -95,17 +95,17 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::adl_serializer::&lt;/small&gt;to_json</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md67"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType, <span class="keyword">typename</span> TargetType = ValueType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md77"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType, <span class="keyword">typename</span> TargetType = ValueType&gt;</div>
 <div class="line"><span class="keyword">static</span> <span class="keyword">auto</span> to_json(BasicJsonType&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, TargetType &amp;&amp; val) <span class="keyword">noexcept</span>(</div>
 <div class="line">    <span class="keyword">noexcept</span>(::nlohmann::to_json(<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, std::forward&lt;TargetType&gt;(val))))</div>
 <div class="line">-&gt; <span class="keyword">decltype</span>(::nlohmann::to_json(<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, std::forward&lt;TargetType&gt;(val)), void())</div>
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 </div><!-- fragment --><p>This function is usually called by the constructors of the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2index.html">basic_json</a> class.</p>
-<h1><a class="anchor" id="autotoc_md68"></a>
+<h1><a class="anchor" id="autotoc_md78"></a>
 Parameters</h1>
 <p><code>j</code> (out) : JSON value to write to</p>
 <p><code>val</code> (in) : value to read from</p>
-<h1><a class="anchor" id="autotoc_md69"></a>
+<h1><a class="anchor" id="autotoc_md79"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows how a `to_json` function can be implemented for a user-defined type. This function is called
 by the `adl_serializer` when the constructor `basic_json(ns::person)` is called.
@@ -119,12 +119,12 @@ Output:
 ```json
 --8&lt;-- "examples/to_json.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md70"></a>
+</pre> <h1><a class="anchor" id="autotoc_md80"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2adl__serializer_2from__json.html">from_json</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md71"></a>
+<h1><a class="anchor" id="autotoc_md81"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.1.0. </li>

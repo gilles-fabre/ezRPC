@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::adl_serializer::&lt;/small&gt;from_json</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md58"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md68"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType, <span class="keyword">typename</span> TargetType = ValueType&gt;</div>
 <div class="line"><span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json</a>(BasicJsonType &amp;&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, TargetType&amp; val) <span class="keyword">noexcept</span>(</div>
 <div class="line">    <span class="keyword">noexcept</span>(::nlohmann::from_json(std::forward&lt;BasicJsonType&gt;(<a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>), val)))</div>
@@ -114,14 +114,14 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>This function is chosen for default-constructible value types.</li>
 <li>This function is chosen for value types which are not default-constructible.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md59"></a>
+<h1><a class="anchor" id="autotoc_md69"></a>
 Parameters</h1>
 <p><code>j</code> (in) : JSON value to read from</p>
 <p><code>val</code> (out) : value to write to</p>
-<h1><a class="anchor" id="autotoc_md60"></a>
+<h1><a class="anchor" id="autotoc_md70"></a>
 Return value</h1>
 <p>Copy of the JSON value, converted to <code>ValueType</code></p>
-<h1><a class="anchor" id="autotoc_md61"></a>
+<h1><a class="anchor" id="autotoc_md71"></a>
 Examples</h1>
 <p>??? example "Example: (1) Default-constructible type" </p><pre class="fragment">The example below shows how a `from_json` function can be implemented for a user-defined type. This function is
 called by the `adl_serializer` when `template get&lt;ns::person&gt;()` is called.
@@ -147,12 +147,12 @@ Output:
 ```json
 --8&lt;-- "examples/from_json__non_default_constructible.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md62"></a>
+</pre> <h1><a class="anchor" id="autotoc_md72"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2adl__serializer_2to__json.html">to_json</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md63"></a>
+<h1><a class="anchor" id="autotoc_md73"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.1.0. </li>

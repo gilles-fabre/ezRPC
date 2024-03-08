@@ -95,31 +95,31 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;get_ref</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md378"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ReferenceType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md388"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ReferenceType&gt;</div>
 <div class="line">ReferenceType get_ref();</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ReferenceType&gt;</div>
 <div class="line"><span class="keyword">const</span> ReferenceType get_ref() <span class="keyword">const</span>;</div>
 </div><!-- fragment --><p>Implicit reference access to the internally stored JSON value. No copies are made.</p>
-<h1><a class="anchor" id="autotoc_md379"></a>
+<h1><a class="anchor" id="autotoc_md389"></a>
 Template parameters</h1>
 <p><code>ReferenceType</code> : reference type; must be a reference to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2array__t.html"><code>array_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2string__t.html"><code>string_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2boolean__t.html"><code>boolean_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__integer__t.html"><code>number_integer_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__unsigned__t.html"><code>number_unsigned_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__float__t.html"><code>number_float_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2binary__t.html"><code>binary_t</code></a>. Enforced by a static assertion.</p>
-<h1><a class="anchor" id="autotoc_md380"></a>
+<h1><a class="anchor" id="autotoc_md390"></a>
 Return value</h1>
 <p>reference to the internally stored JSON value if the requested reference type fits to the JSON value; throws <a href="../../home/exceptions.md#jsonexceptiontype_error303"><code>type_error.303</code></a> otherwise</p>
-<h1><a class="anchor" id="autotoc_md381"></a>
+<h1><a class="anchor" id="autotoc_md391"></a>
 Exception safety</h1>
 <p>Strong exception safety: if an exception occurs, the original value stays intact.</p>
-<h1><a class="anchor" id="autotoc_md382"></a>
+<h1><a class="anchor" id="autotoc_md392"></a>
 Exceptions</h1>
 <p>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error303"><code>type_error.303</code></a> if the requested reference type does not match the stored JSON value type; example: <code>"incompatible ReferenceType for get_ref, actual type is binary"</code>.</p>
-<h1><a class="anchor" id="autotoc_md383"></a>
+<h1><a class="anchor" id="autotoc_md393"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md384"></a>
+<h1><a class="anchor" id="autotoc_md394"></a>
 Notes</h1>
 <p>!!! danger "Undefined behavior" </p><pre class="fragment">Writing data to the referee of the result yields an undefined state.
-</pre> <h1><a class="anchor" id="autotoc_md385"></a>
+</pre> <h1><a class="anchor" id="autotoc_md395"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows several calls to `get_ref()`.
 
@@ -132,7 +132,7 @@ Output:
 ```json
 --8&lt;-- "examples/get_ref.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md386"></a>
+</pre> <h1><a class="anchor" id="autotoc_md396"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.1.0.</li>

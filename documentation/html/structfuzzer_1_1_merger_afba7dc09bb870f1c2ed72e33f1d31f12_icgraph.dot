@@ -10,4 +10,12 @@ digraph "fuzzer::Merger::Parse"
   Node2 [id="Node000002",label="fuzzer::Merger::Parse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_merger.html#a2e55839ebf944b008bcb79014c26d139",tooltip=" "];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="fuzzer::Merger::ParseOrExit",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_merger.html#a00d5bdf3131e81ca24b31af530bbe6db",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="fuzzer::Fuzzer::CrashResistant\lMerge",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a3777acf379198d5339bf6baf0e9ad011",tooltip=" "];
+  Node3 -> Node5 [id="edge4_Node000003_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="fuzzer::Fuzzer::CrashResistant\lMergeInternalStep",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a960f37bdf1d61e7043609ace07d411e4",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#aaca518a7349ca163f96f2ddb2392ba41",tooltip=" "];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#a80f1c81c6eff2bd5dd6b63b893f1c835",tooltip=" "];
 }

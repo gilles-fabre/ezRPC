@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;exception</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md272"></a> </p><div class="fragment"><div class="line"><span class="keyword">class </span>exception : <span class="keyword">public</span> std::exception;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md282"></a> </p><div class="fragment"><div class="line"><span class="keyword">class </span>exception : <span class="keyword">public</span> std::exception;</div>
 </div><!-- fragment --><p>This class is an extension of <a href="https://en.cppreference.com/w/cpp/error/exception"><code>std::exception</code></a> objects with a member <code>id</code> for exception ids. It is used as the base class for all exceptions thrown by the <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code> class. This class can hence be used as "wildcard" to catch exceptions, see example below.</p>
 <div class="fragment"><div class="line">std::exception &lt;|-- basic_json::exception</div>
 <div class="line">basic_json::exception &lt;|-- basic_json::parse_error</div>
@@ -122,20 +122,20 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2out__of__range.html"><code>out_of_range</code></a> for exceptions indicating access out of the defined range</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2other__error.html"><code>other_error</code></a> for exceptions indicating other library errors</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md273"></a>
+<h1><a class="anchor" id="autotoc_md283"></a>
 Member functions</h1>
 <ul>
 <li><b>what</b> - returns explanatory string</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md274"></a>
+<h1><a class="anchor" id="autotoc_md284"></a>
 Member variables</h1>
 <ul>
 <li><b>id</b> - the id of the exception</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md275"></a>
+<h1><a class="anchor" id="autotoc_md285"></a>
 Notes</h1>
 <p>To have nothrow-copy-constructible exceptions, we internally use <code>std::runtime_error</code> which can cope with arbitrary-length error messages. Intermediate strings are built with static functions and then passed to the actual constructor.</p>
-<h1><a class="anchor" id="autotoc_md276"></a>
+<h1><a class="anchor" id="autotoc_md286"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how arbitrary library exceptions can be caught.
 
@@ -148,10 +148,10 @@ Output:
 ```json
 --8&lt;-- "examples/exception.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md277"></a>
+</pre> <h1><a class="anchor" id="autotoc_md287"></a>
 See also</h1>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2home_2exceptions.html">List of exceptions</a></p>
-<h1><a class="anchor" id="autotoc_md278"></a>
+<h1><a class="anchor" id="autotoc_md288"></a>
 Version history</h1>
 <ul>
 <li>Since version 3.0.0. </li>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['to_5fjson_0',['to_json',['../structns_1_1person.html#a140e6784b932eedb40287a0ed3ec85c0',1,'ns::person::to_json'],['../structns_1_1person.html#a140e6784b932eedb40287a0ed3ec85c0',1,'ns::person::to_json'],['../structns_1_1person.html#a140e6784b932eedb40287a0ed3ec85c0',1,'ns::person::to_json']]]
+  ['json_5fpointer_0',['json_pointer',['../classjson__pointer.html#ab0a623288bc1272870149ad50f799a73',1,'json_pointer::json_pointer'],['../classjson__pointer.html#ac0c286c862821e0abe7a98d11b8d7aea',1,'json_pointer::json_pointer']]]
 ];

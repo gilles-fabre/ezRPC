@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;items</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md536"></a> </p><div class="fragment"><div class="line">iteration_proxy&lt;iterator&gt; items() noexcept;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md546"></a> </p><div class="fragment"><div class="line">iteration_proxy&lt;iterator&gt; items() noexcept;</div>
 <div class="line">iteration_proxy&lt;const_iterator&gt; items() const noexcept;</div>
 </div><!-- fragment --><p>This function allows accessing <code>iterator::key()</code> and <code>iterator::value()</code> during range-based for loops. In these loops, a reference to the JSON values is returned, so there is no access to the underlying iterator.</p>
 <p>For loop without <code>items()</code> function:</p>
@@ -119,21 +119,21 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line">{</div>
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;key: &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;, value:&quot;</span> &lt;&lt; val &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md537"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md547"></a>
 Return value</h1>
 <p>iteration proxy object wrapping the current value with an interface to use in range-based for loops</p>
-<h1><a class="anchor" id="autotoc_md538"></a>
+<h1><a class="anchor" id="autotoc_md548"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md539"></a>
+<h1><a class="anchor" id="autotoc_md549"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md540"></a>
+<h1><a class="anchor" id="autotoc_md550"></a>
 Notes</h1>
 <p>When iterating over an array, <code>key()</code> will return the index of the element as string (see example). For primitive types (e.g., numbers), <code>key()</code> returns an empty string.</p>
 <p>!!! danger "Lifetime issues" </p><pre class="fragment">Using `items()` on temporary objects is dangerous. Make sure the object's lifetime exceeds the iteration. See
 &lt;https://github.com/nlohmann/json/issues/2040&gt; for more information.
-</pre> <h1><a class="anchor" id="autotoc_md541"></a>
+</pre> <h1><a class="anchor" id="autotoc_md551"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows an example for `items()`.
 
@@ -146,7 +146,7 @@ Output:
 ```json
 --8&lt;-- "examples/items.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md542"></a>
+</pre> <h1><a class="anchor" id="autotoc_md552"></a>
 Version history</h1>
 <ul>
 <li>Added <code>iterator_wrapper</code> in version 3.0.0.</li>

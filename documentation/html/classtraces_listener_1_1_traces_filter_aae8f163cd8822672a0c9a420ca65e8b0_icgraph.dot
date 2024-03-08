@@ -8,4 +8,6 @@ digraph "tracesListener.TracesFilter.nModuleIdFilters"
   Node1 [id="Node000001",label="tracesListener.TracesFilter.n\lModuleIdFilters",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="reporter.ModIdTableModel.get\lRowCount",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classreporter_1_1_mod_id_table_model.html#a3ee7b77f69c297703037d1705b5f70dd",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="tracesListener.CmdLineServer.main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_cmd_line_server.html#a536db19b04997bd3044cec876dff14ea",tooltip=" "];
 }

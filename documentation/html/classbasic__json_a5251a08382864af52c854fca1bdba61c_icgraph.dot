@@ -11,16 +11,19 @@ digraph "basic_json::begin"
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="basic_json::front",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ad4dd162b4990cfb69925193797415f7e",tooltip="access the first element"];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="basic_json::operator[]",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ab4f511db82b9d5eba85d5b2b8e1c6dbb",tooltip="access specified array element"];
-  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="basic_json::merge_patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a8676ac2433fe299b8d420f00a0741395",tooltip="applies a JSON Merge Patch"];
-  Node5 -> Node5 [id="edge5_Node000005_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 -> Node6 [id="edge6_Node000004_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="basic_json::merge_patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a8676ac2433fe299b8d420f00a0741395",tooltip="applies a JSON Merge Patch"];
+  Node4 -> Node4 [id="edge4_Node000004_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node5 [id="edge5_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="basic_json::operator[]",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ab4f511db82b9d5eba85d5b2b8e1c6dbb",tooltip="access specified array element"];
+  Node5 -> Node4 [id="edge6_Node000005_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 -> Node6 [id="edge7_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="basic_json::operator[]",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a87cae3810ae0a9c56b17842b06fc405e",tooltip=" "];
-  Node4 -> Node7 [id="edge7_Node000004_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 -> Node7 [id="edge8_Node000005_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node7 [id="Node000007",label="basic_json::operator[]",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ab12a4386e6913012ca4dffa0245fdf99",tooltip=" "];
-  Node1 -> Node8 [id="edge8_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node8 [id="edge9_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="basic_json::patch_inplace",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a693812b31e106dec9166e93d8f6dd7d7",tooltip="applies a JSON patch in-place without copying the object"];
-  Node1 -> Node9 [id="edge9_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="basic_json::rend",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a8d8855a8c04ee7986ae8bab283c4f0de",tooltip="returns an iterator to the reverse-end"];
+  Node8 -> Node9 [id="edge10_Node000008_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="basic_json::patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a145a004c0a2fa5be84b260ecc98ab5d9",tooltip="applies a JSON patch to a copy of the current object"];
+  Node1 -> Node10 [id="edge11_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="basic_json::rend",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a8d8855a8c04ee7986ae8bab283c4f0de",tooltip="returns an iterator to the reverse-end"];
 }

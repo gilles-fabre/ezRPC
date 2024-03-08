@@ -95,35 +95,35 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::&lt;/small&gt;operator&gt;&gt;(basic_json)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1265"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classstd_1_1basic__istream.html">std::istream</a>&amp; operator&gt;&gt;(<a class="code hl_class" href="classstd_1_1basic__istream.html">std::istream</a>&amp; i, <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>);</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1275"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classstd_1_1basic__istream.html">std::istream</a>&amp; operator&gt;&gt;(<a class="code hl_class" href="classstd_1_1basic__istream.html">std::istream</a>&amp; i, <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>);</div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 <div class="ttc" id="aclassstd_1_1basic__istream_html"><div class="ttname"><a href="classstd_1_1basic__istream.html">std::basic_istream</a></div><div class="ttdef"><b>Definition</b> <a href="doctest_8h_source.html#l00536">doctest.h:536</a></div></div>
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 </div><!-- fragment --><p>Deserializes an input stream to a JSON value.</p>
-<h1><a class="anchor" id="autotoc_md1266"></a>
+<h1><a class="anchor" id="autotoc_md1276"></a>
 Parameters</h1>
 <p><code>i</code> (in, out) : input stream to read a serialized JSON value from</p>
 <p><code>j</code> (in, out) : JSON value to write the deserialized input to</p>
-<h1><a class="anchor" id="autotoc_md1267"></a>
+<h1><a class="anchor" id="autotoc_md1277"></a>
 Return value</h1>
 <p>the stream <code>i</code></p>
-<h1><a class="anchor" id="autotoc_md1268"></a>
+<h1><a class="anchor" id="autotoc_md1278"></a>
 Exceptions</h1>
 <ul>
 <li>Throws <a href="../home/exceptions.md#jsonexceptionparse_error101"><code>parse_error.101</code></a> in case of an unexpected token.</li>
 <li>Throws <a href="../home/exceptions.md#jsonexceptionparse_error102"><code>parse_error.102</code></a> if to_unicode fails or surrogate error.</li>
 <li>Throws <a href="../home/exceptions.md#jsonexceptionparse_error103"><code>parse_error.103</code></a> if to_unicode fails.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1269"></a>
+<h1><a class="anchor" id="autotoc_md1279"></a>
 Complexity</h1>
 <p>Linear in the length of the input. The parser is a predictive LL(1) parser.</p>
-<h1><a class="anchor" id="autotoc_md1270"></a>
+<h1><a class="anchor" id="autotoc_md1280"></a>
 Notes</h1>
 <p>A UTF-8 byte order mark is silently ignored.</p>
 <p>!!! warning "Deprecation" </p><pre class="fragment">This function replaces function `#!cpp std::istream&amp; operator&lt;&lt;(basic_json&amp; j, std::istream&amp; i)` which has
 been deprecated in version 3.0.0. It will be removed in version 4.0.0. Please replace calls like `#!cpp j &lt;&lt; i;`
 with `#!cpp i &gt;&gt; j;`.
-</pre> <h1><a class="anchor" id="autotoc_md1271"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1281"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows how a JSON value is constructed by reading a serialization from a stream.
 
@@ -136,13 +136,13 @@ Output:
 ```json
 --8&lt;-- "examples/operator_deserialize.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1272"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1282"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2accept.html">accept</a> - check if the input is valid JSON</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse.html">parse</a> - deserialize from a compatible input</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1273"></a>
+<h1><a class="anchor" id="autotoc_md1283"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0. Deprecated in version 3.0.0. </li>

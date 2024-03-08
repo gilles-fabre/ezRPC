@@ -6,11 +6,11 @@ var classez_r_p_c_1_1_json_client_rpc_wrapper =
     ] ],
     [ "AsyncCall", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a3ab7e6dda4fe9478d0fcba9f5699c7e7", null ],
     [ "AsyncJsonReplyProcedureType", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a398c4744e77bccc2c5f783b9f4f2a93e", null ],
-    [ "AsyncRpcCall", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a6a345a1275edbcc1ddddb22f714691c2", null ],
     [ "Call", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#addf3c90661a181da539acb5ef2ac3f2a", null ],
     [ "CreateClient", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a0d16111ee5a334b2d4804229aa6beba3", null ],
     [ "CreateRpcClient", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a4bfa6c95c27f51a23ef1a5e00469cd5c", null ],
     [ "DestroyClient", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#aa8ff990f02372d5a74d3b5d3c7af9411", null ],
     [ "DestroyRpcClient", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#a1b3132d63c0803e79510aa79b34647bc", null ],
-    [ "RpcCall", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#ad95ba941faded54e25c0e26951a32811", null ]
+    [ "RpcCall", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#ad95ba941faded54e25c0e26951a32811", null ],
+    [ "RpcCallAsync", "classez_r_p_c_1_1_json_client_rpc_wrapper.html#ac3c08d7aef742018bf52baee096cff45", null ]
 ];

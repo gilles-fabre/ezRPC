@@ -10,4 +10,6 @@ digraph "basic_json::insert"
   Node2 [id="Node000002",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ae5da62116a40a0f86e87f11fdd54e9f0",tooltip="inserts element into array"];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="basic_json::patch_inplace",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a693812b31e106dec9166e93d8f6dd7d7",tooltip="applies a JSON patch in-place without copying the object"];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="basic_json::patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a145a004c0a2fa5be84b260ecc98ab5d9",tooltip="applies a JSON patch to a copy of the current object"];
 }

@@ -84,6 +84,6 @@ var namespacefuzzer =
     [ "ToASCII", "namespacefuzzer.html#a07453d010a6d388b7b0781cff2c3dbb7", null ],
     [ "WriteToFile", "namespacefuzzer.html#a55062839741b460271791a94c5ccedab", null ],
     [ "EF", "namespacefuzzer.html#a7b851009ee8118fda6221671b4e9944d", null ],
-    [ "Flags", "namespacefuzzer.html#a4aff8f0e72fa15aeb16501d19744f0d7", null ],
+    [ "Flags", "namespacefuzzer.html#ae89142f0bab6ccd136ee43f6121f308e", null ],
     [ "TPC", "namespacefuzzer.html#a6383d55bceb5c33d4b34fcb48f817acf", null ]
 ];

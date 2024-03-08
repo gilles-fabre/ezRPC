@@ -31,7 +31,7 @@ typedef void AsyncJsonReplyProcedure(AsyncID);
 
 extern "C" {
 DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
-DECLSPEC AsyncID  AsyncRpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+DECLSPEC AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
 DECLSPEC uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 DECLSPEC void	  DestroyRpcClient(uint64_t clientId);
 };
@@ -74,7 +74,7 @@ class	JsonRPCClient {
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);
 
-	AsyncID	 AsyncRpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+	AsyncID	 RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
 	unsigned long RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 };
 

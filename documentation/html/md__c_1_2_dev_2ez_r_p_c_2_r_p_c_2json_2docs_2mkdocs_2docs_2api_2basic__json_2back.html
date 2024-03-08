@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;back</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md109"></a> </p><div class="fragment"><div class="line">reference back();</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md119"></a> </p><div class="fragment"><div class="line">reference back();</div>
 <div class="line"> </div>
 <div class="line">const_reference back() <span class="keyword">const</span>;</div>
 </div><!-- fragment --><p>Returns a reference to the last element in the container. For a JSON container <code>c</code>, the expression <code>c.back()</code> is equivalent to</p>
@@ -103,22 +103,22 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line">--tmp;</div>
 <div class="line"><span class="keywordflow">return</span> *tmp;</div>
 <div class="ttc" id="aunit-udt_8cpp_html_ad05251febe96c2da9d4527834d3b92c5"><div class="ttname"><a href="unit-udt_8cpp.html#ad05251febe96c2da9d4527834d3b92c5">c</a></div><div class="ttdeci">const udt::country c</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00239">unit-udt.cpp:239</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md110"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md120"></a>
 Return value</h1>
 <p>In case of a structured type (array or object), a reference to the last element is returned. In case of number, string, boolean, or binary values, a reference to the value is returned.</p>
-<h1><a class="anchor" id="autotoc_md111"></a>
+<h1><a class="anchor" id="autotoc_md121"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md112"></a>
+<h1><a class="anchor" id="autotoc_md122"></a>
 Exceptions</h1>
 <p>If the JSON value is <code>#!json null</code>, exception <a href="../../home/exceptions.md#jsonexceptioninvalid_iterator214"><code>invalid_iterator.214</code></a> is thrown.</p>
-<h1><a class="anchor" id="autotoc_md113"></a>
+<h1><a class="anchor" id="autotoc_md123"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md114"></a>
+<h1><a class="anchor" id="autotoc_md124"></a>
 Notes</h1>
 <p>!!! info "Precondition" </p><pre class="fragment">The array or object must not be empty. Calling `back` on an empty array or object yields undefined behavior.
-</pre> <h1><a class="anchor" id="autotoc_md115"></a>
+</pre> <h1><a class="anchor" id="autotoc_md125"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows an example for `back()`.
 
@@ -131,12 +131,12 @@ Output:
 ```json
 --8&lt;-- "examples/back.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md116"></a>
+</pre> <h1><a class="anchor" id="autotoc_md126"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2front.html">front</a> to access the first element</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md117"></a>
+<h1><a class="anchor" id="autotoc_md127"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

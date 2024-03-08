@@ -9,7 +9,9 @@ digraph "tracesListener.TracesObserver.update"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="tracesListener.ByteUtil.format\lHexInteger",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_byte_util.html#a82d516b5fbc7b49c3cf5ad55625e084e",tooltip=" "];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="tracesListener.DataThread.get\lFirstMessage",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_data_thread.html#a6f114ecc198e0ac1de42faa52b3fd850",tooltip=" "];
+  Node3 [id="Node000003",label="tracesListener.TraceMessage.get\lDataString",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_trace_message.html#a8de62e4de0a5a4d006e7a2266479b656",tooltip=" "];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="tracesListener.TracesFilter.message\lMatches",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_traces_filter.html#af0554273bde86cae7203402785a65438",tooltip=" "];
+  Node4 [id="Node000004",label="tracesListener.DataThread.get\lFirstMessage",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_data_thread.html#a6f114ecc198e0ac1de42faa52b3fd850",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="tracesListener.TracesFilter.message\lMatches",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_traces_filter.html#af0554273bde86cae7203402785a65438",tooltip=" "];
 }

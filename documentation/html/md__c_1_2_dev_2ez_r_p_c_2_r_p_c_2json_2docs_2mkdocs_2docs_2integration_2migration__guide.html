@@ -95,11 +95,11 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Migration Guide</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1727"></a> This page collects some guidelines on how to future-proof your code for future versions of this library.</p>
-<h1><a class="anchor" id="autotoc_md1728"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1737"></a> This page collects some guidelines on how to future-proof your code for future versions of this library.</p>
+<h1><a class="anchor" id="autotoc_md1738"></a>
 Replace deprecated functions</h1>
 <p>The following functions have been deprecated and will be removed in the next major version (i.e., 4.0.0). All deprecations are annotated with <a href="https://nemequ.github.io/hedley/api-reference.html#HEDLEY_DEPRECATED_FOR"><code>HEDLEY_DEPRECATED_FOR</code></a> to report which function to use instead.</p>
-<h3><a class="anchor" id="autotoc_md1729"></a>
+<h3><a class="anchor" id="autotoc_md1739"></a>
 Parsing</h3>
 <ul>
 <li><p class="startli">Function <code>friend <a class="el" href="namespacestd.html#a3891b048d9663e32878ba34284d62294">std::istream</a>&amp; operator&lt;&lt;(<a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a>&amp;, <a class="el" href="namespacestd.html#a3891b048d9663e32878ba34284d62294">std::istream</a>&amp;)</code> is deprecated since 3.0.0. Please use <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2operator__gtgt.html"><code>friend std::istream&amp; operator&gt;&gt;(std::istream&amp;, basic_json&amp;)</code></a> instead.</p>
@@ -125,7 +125,7 @@ ss &gt;&gt; j;
   ```
 </pre> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1730"></a>
+<h3><a class="anchor" id="autotoc_md1740"></a>
 JSON Pointers</h3>
 <ul>
 <li><p class="startli">Comparing JSON Pointers with strings via <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2operator__eq.html"><code>operator==</code></a> and <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2operator__ne.html"><code>operator!=</code></a> is deprecated since 3.11.2. To compare a <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2index.html"><code>json_pointer</code></a> <code>p</code> with a string <code>s</code>, convert <code>s</code> to a <code><a class="el" href="classjson__pointer.html" title="JSON Pointer defines a string syntax for identifying a specific value within a JSON document.">json_pointer</a></code> first and use <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2operator__eq.html"><code>json_pointer::operator==</code></a> or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2operator__ne.html"><code>json_pointer::operator!=</code></a>.</p>
@@ -159,7 +159,7 @@ assert(lhs == nlohmann::json::json_pointer("/foo/bar/1"));
 </pre><p> Thereby, <code><a class="el" href="classnlohmann_1_1basic__json.html#aa8f1f93b32da01b42413643be32b2c27" title="JSON Pointer, see nlohmann::json_pointer.">nlohmann::my_json::json_pointer</a></code> is an alias for <code><a class="el" href="classnlohmann_1_1json__pointer.html" title="JSON Pointer defines a string syntax for identifying a specific value within a JSON document.">nlohmann::json_pointer</a>&lt;my_string_type&gt;</code> and is always an alias to the <code><a class="el" href="classjson__pointer.html" title="JSON Pointer defines a string syntax for identifying a specific value within a JSON document.">json_pointer</a></code> with the appropriate string type for all specializations of <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code>.</p>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1731"></a>
+<h3><a class="anchor" id="autotoc_md1741"></a>
 Miscellaneous functions</h3>
 <ul>
 <li><p class="startli">The function <code>iterator_wrapper</code> is deprecated since 3.1.0. Please use the member function <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2items.html"><code>items</code></a> instead.</p>
@@ -194,7 +194,7 @@ Miscellaneous functions</h3>
   ```
 </pre> </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1732"></a>
+<h1><a class="anchor" id="autotoc_md1742"></a>
 Replace implicit conversions</h1>
 <p>Implicit conversions via <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2operator___value_type.html"><code>operator ValueType</code></a> will be switched off by default in the next major release of the library.</p>
 <p>You can prepare existing code by already defining <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__use__implicit__conversions.html"><code>JSON_USE_IMPLICIT_CONVERSIONS</code></a> to <code>0</code> and replace any implicit conversions with calls to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2get.html"><code>get</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2get__to.html"><code>get_to</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2get__ref.html"><code>get_ref</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2get__ptr.html"><code>get_ptr</code></a>.</p>
@@ -212,7 +212,7 @@ Replace implicit conversions</h1>
   j.get_to(s);
   ```
 </pre><p> You can prepare existing code by already defining <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__use__implicit__conversions.html"><code>JSON_USE_IMPLICIT_CONVERSIONS</code></a> to <code>0</code> and replace any implicit conversions with calls to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2get.html"><code>get</code></a>.</p>
-<h1><a class="anchor" id="autotoc_md1733"></a>
+<h1><a class="anchor" id="autotoc_md1743"></a>
 Import namespace <code>literals</code> for UDLs</h1>
 <p>The user-defined string literals <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2operator__literal__json.html"><code>operator</code></a>"_json&lt;/tt&gt;" and <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2operator__literal__json__pointer.html"><code>operator</code></a>"_json_pointer&lt;/tt&gt;" will be removed from the global namespace in the next major release of the library.</p>
 <p><code><code>=== "Deprecated" </p><pre class="fragment">  ```cpp
@@ -224,7 +224,7 @@ Import namespace <code>literals</code> for UDLs</h1>
   ```
 </pre><p> To prepare existing code, define <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__use__global__udls.html"><code>JSON_USE_GLOBAL_UDLS</code></a> to <code>0</code> and bring the string literals into scope where needed.</code></code></p>
 <p><code><code></code></code></p>
-<h1><a class="anchor" id="autotoc_md1734"></a>
+<h1><a class="anchor" id="autotoc_md1744"></a>
 <code><code>Do not hard-code the complete library namespace</code></code></h1>
 <p><code><code></code></code></p>
 <p><code><code>The <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2namespace.html"><code>nlohmann</code> namespace</a> contains a sub-namespace to avoid problems when different versions or configurations of the library are used in the same project. Always use <code>nlohmann</code> as namespace or, when the exact version and configuration is relevant, use macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2nlohmann__json__namespace.html"><code>NLOHMANN_JSON_NAMESPACE</code></a> to denote the namespace.</code></code></p>
@@ -247,7 +247,7 @@ Import namespace <code>literals</code> for UDLs</h1>
   }
   ```
 </pre><p> </code></code></p>
-<h1><a class="anchor" id="autotoc_md1735"></a>
+<h1><a class="anchor" id="autotoc_md1745"></a>
 <code><code>Do not use the <code>details</code> namespace</code></code></h1>
 <p><code><code></code></code></p>
 <p><code><code>The <code>details</code> namespace is not part of the public API of the library and can change in any version without announcement. Do not rely on any function or type in the <code>details</code> namespace. </code></code></p>

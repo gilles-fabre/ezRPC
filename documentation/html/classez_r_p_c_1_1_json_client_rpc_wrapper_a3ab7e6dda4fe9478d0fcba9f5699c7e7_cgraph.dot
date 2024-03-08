@@ -7,5 +7,5 @@ digraph "ezRPC.JsonClientRpcWrapper.AsyncCall"
   rankdir="LR";
   Node1 [id="Node000001",label="ezRPC.JsonClientRpcWrapper.\lAsyncCall",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="ezRPC.JsonClientRpcWrapper.\lAsyncRpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classez_r_p_c_1_1_json_client_rpc_wrapper.html#a6a345a1275edbcc1ddddb22f714691c2",tooltip=" "];
+  Node2 [id="Node000002",label="ezRPC.JsonClientRpcWrapper.\lRpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classez_r_p_c_1_1_json_client_rpc_wrapper.html#ac3c08d7aef742018bf52baee096cff45",tooltip=" "];
 }

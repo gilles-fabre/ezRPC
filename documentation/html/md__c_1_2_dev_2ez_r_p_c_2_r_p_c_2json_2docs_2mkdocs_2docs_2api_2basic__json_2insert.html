@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;insert</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md432"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md442"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line">iterator insert(const_iterator pos, <span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; val);</div>
 <div class="line">iterator insert(const_iterator pos, <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp;&amp; val);</div>
 <div class="line"> </div>
@@ -118,7 +118,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Inserts elements from initializer list <code>ilist</code> into array before iterator <code>pos</code>.</li>
 <li>Inserts elements from range <code>[first, last)</code> into object.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md433"></a>
+<h1><a class="anchor" id="autotoc_md443"></a>
 Parameters</h1>
 <p><code>pos</code> (in) : iterator before which the content will be inserted; may be the <code>end()</code> iterator</p>
 <p><code>val</code> (in) : value to insert</p>
@@ -126,7 +126,7 @@ Parameters</h1>
 <p><code>first</code> (in) : begin of the range of elements to insert</p>
 <p><code>last</code> (in) : end of the range of elements to insert</p>
 <p><code>ilist</code> (in) : initializer list to insert the values from</p>
-<h1><a class="anchor" id="autotoc_md434"></a>
+<h1><a class="anchor" id="autotoc_md444"></a>
 Return value</h1>
 <ol type="1">
 <li>iterator pointing to the inserted <code>val</code>.</li>
@@ -135,10 +135,10 @@ Return value</h1>
 <li>iterator pointing to the first element inserted, or <code>pos</code> if <code>ilist</code> is empty</li>
 <li>(none)</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md435"></a>
+<h1><a class="anchor" id="autotoc_md445"></a>
 Exception safety</h1>
 <p>Strong exception safety: if an exception occurs, the original value stays intact.</p>
-<h1><a class="anchor" id="autotoc_md436"></a>
+<h1><a class="anchor" id="autotoc_md446"></a>
 Exceptions</h1>
 <ol type="1">
 <li>The function can throw the following exceptions:<ul>
@@ -170,7 +170,7 @@ Exceptions</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md437"></a>
+<h1><a class="anchor" id="autotoc_md447"></a>
 Complexity</h1>
 <ol type="1">
 <li>Constant plus linear in the distance between <code>pos</code> and end of the container.</li>
@@ -179,7 +179,7 @@ Complexity</h1>
 <li>Linear in <code>ilist.size()</code> plus linear in the distance between <code>pos</code> and end of the container.</li>
 <li>Logarithmic: <code>O(N*log(size() + N))</code>, where <code>N</code> is the number of elements to insert.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md438"></a>
+<h1><a class="anchor" id="autotoc_md448"></a>
 Examples</h1>
 <p>??? example "Example (1): insert element into array" </p><pre class="fragment">The example shows how `insert()` is used.
 
@@ -236,7 +236,7 @@ Output:
 ```json
 --8&lt;-- "examples/insert__range_object.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md439"></a>
+</pre> <h1><a class="anchor" id="autotoc_md449"></a>
 Version history</h1>
 <ol type="1">
 <li>Added in version 1.0.0.</li>

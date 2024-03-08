@@ -95,28 +95,28 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;get_ptr</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md370"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Po<span class="keywordtype">int</span>erType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md380"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Po<span class="keywordtype">int</span>erType&gt;</div>
 <div class="line">PointerType get_ptr() noexcept;</div>
 <div class="line"> </div>
 <div class="line">template&lt;typename PointerType&gt;</div>
 <div class="line">constexpr const PointerType get_ptr() const noexcept;</div>
 </div><!-- fragment --><p>Implicit pointer access to the internally stored JSON value. No copies are made.</p>
-<h1><a class="anchor" id="autotoc_md371"></a>
+<h1><a class="anchor" id="autotoc_md381"></a>
 Template parameters</h1>
 <p><code>PointerType</code> : pointer type; must be a pointer to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2array__t.html"><code>array_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2string__t.html"><code>string_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2boolean__t.html"><code>boolean_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__integer__t.html"><code>number_integer_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__unsigned__t.html"><code>number_unsigned_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__float__t.html"><code>number_float_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2binary__t.html"><code>binary_t</code></a>. Other types will not compile.</p>
-<h1><a class="anchor" id="autotoc_md372"></a>
+<h1><a class="anchor" id="autotoc_md382"></a>
 Return value</h1>
 <p>pointer to the internally stored JSON value if the requested pointer type fits to the JSON value; <code>#!cpp nullptr</code> otherwise</p>
-<h1><a class="anchor" id="autotoc_md373"></a>
+<h1><a class="anchor" id="autotoc_md383"></a>
 Exception safety</h1>
 <p>No-throw guarantee: this function never throws exceptions.</p>
-<h1><a class="anchor" id="autotoc_md374"></a>
+<h1><a class="anchor" id="autotoc_md384"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md375"></a>
+<h1><a class="anchor" id="autotoc_md385"></a>
 Notes</h1>
 <p>!!! danger "Undefined behavior" </p><pre class="fragment">Writing data to the pointee of the result yields an undefined state.
-</pre> <h1><a class="anchor" id="autotoc_md376"></a>
+</pre> <h1><a class="anchor" id="autotoc_md386"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows how pointers to internal values of a JSON value can be requested. Note that no type
 conversions are made and a `#!cpp nullptr` is returned if the value and the requested pointer type does not match.
@@ -130,7 +130,7 @@ Output:
 ```json
 --8&lt;-- "examples/get_ptr.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md377"></a>
+</pre> <h1><a class="anchor" id="autotoc_md387"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

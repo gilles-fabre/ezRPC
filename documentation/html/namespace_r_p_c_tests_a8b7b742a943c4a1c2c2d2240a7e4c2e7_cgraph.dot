@@ -1,0 +1,47 @@
+digraph "RPCTests::TEST_CLASS"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="RPCServer::IterateAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#aa0789295acfd6111907957f4feafcebe",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Thread::IsAskedToStop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#a155bd8214dbbadd0cd70f393e0695e4e",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Semaphore::Val",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_semaphore.html#a7fd7443fbd208c348251e966a2b60221",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Thread::IsRunning",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965",tooltip=" "];
+  Node5 -> Node4 [id="edge5_Node000005_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node6 [id="edge6_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Thread::IterateAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#a41b5c7adb2c080981c373d3d35c69e0d",tooltip=" "];
+  Node6 -> Node7 [id="edge7_Node000006_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Semaphore::A",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_semaphore.html#a5b2c3b765195da053f029f6d3378f367",tooltip=" "];
+  Node7 -> Node8 [id="edge8_Node000007_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="Semaphore::Dec",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_semaphore.html#a5c2d2b766ed89a3613872a007e793a18",tooltip=" "];
+  Node6 -> Node5 [id="edge9_Node000006_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node9 [id="edge10_Node000006_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="Thread::Iterate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#af0eb13dd34fb8547d10d4341246b8e03",tooltip=" "];
+  Node9 -> Node5 [id="edge11_Node000009_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node9 -> Node10 [id="edge12_Node000009_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="LogVText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e",tooltip=" "];
+  Node10 -> Node11 [id="edge13_Node000010_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
+  Node6 -> Node10 [id="edge14_Node000006_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node12 [id="edge15_Node000001_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="RPCServer::RegisterProcedure",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#a8528062f54f43807e392739dbea93e2b",tooltip="Registers a procedure so it can be called by a Remote Client."];
+  Node1 -> Node13 [id="edge16_Node000001_Node000013",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="RPCServer::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#afa561558cb0ceafb0556c4fd34e44683",tooltip="Stops the associated transport."];
+  Node13 -> Node14 [id="edge17_Node000013_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="Transport::Close",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transport.html#a999a45e65a145dc7d0af3f493b118134",tooltip=" "];
+  Node14 -> Node10 [id="edge18_Node000014_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node5 [id="edge19_Node000013_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node11 [id="edge20_Node000013_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node15 [id="edge21_Node000013_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="Thread::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#a5994590ea53d7b36ca9fc2bffedb8941",tooltip=" "];
+  Node15 -> Node16 [id="edge22_Node000015_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="Semaphore::Inc",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_semaphore.html#a0056087969f6a71f9f755698c8c2589f",tooltip=" "];
+  Node15 -> Node5 [id="edge23_Node000015_Node000005",color="steelblue1",style="solid",tooltip=" "];
+}

@@ -160,7 +160,7 @@ $(function(){initNavTree('_traces_listener_server_8java_source.html',''); initRe
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            addDataThread(clientDataThread);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="comment">// Start the new data thread</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordflow">if</span> (autoStartDataThreads)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                clientDataThread.start();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                clientDataThread.<a class="code hl_function" href="classtraces_listener_1_1_data_thread.html#a616eb588fdb41d6648a4e4b2c3eed5ff">start</a>();</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        shutdown();</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
@@ -205,7 +205,7 @@ $(function(){initNavTree('_traces_listener_server_8java_source.html',''); initRe
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordtype">boolean</span> <a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a> = dataThreads.remove(aDataThread);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="sax__parse_8cpp.html#a5734a27c6f335279bf9b0b57ae9b8f76">result</a>) {</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="comment">// Unregister all data thread observers, close stream.</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            aDataThread.shutdown();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            aDataThread.<a class="code hl_function" href="classtraces_listener_1_1_data_thread.html#ac8dda0e6de56401fc2dbe9d322c5fc28">shutdown</a>();</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="comment">// Notify server observers that a data thread was removed.</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            setChanged();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            notifyObservers(aDataThread);</div>
@@ -258,6 +258,8 @@ $(function(){initNavTree('_traces_listener_server_8java_source.html',''); initRe
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
 </div>
 <div class="ttc" id="aclasstraces_listener_1_1_data_thread_html"><div class="ttname"><a href="classtraces_listener_1_1_data_thread.html">tracesListener.DataThread</a></div><div class="ttdef"><b>Definition</b> <a href="_data_thread_8java_source.html#l00006">DataThread.java:6</a></div></div>
+<div class="ttc" id="aclasstraces_listener_1_1_data_thread_html_a616eb588fdb41d6648a4e4b2c3eed5ff"><div class="ttname"><a href="classtraces_listener_1_1_data_thread.html#a616eb588fdb41d6648a4e4b2c3eed5ff">tracesListener.DataThread.start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition</b> <a href="_data_thread_8java_source.html#l00015">DataThread.java:15</a></div></div>
+<div class="ttc" id="aclasstraces_listener_1_1_data_thread_html_ac8dda0e6de56401fc2dbe9d322c5fc28"><div class="ttname"><a href="classtraces_listener_1_1_data_thread.html#ac8dda0e6de56401fc2dbe9d322c5fc28">tracesListener.DataThread.shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdef"><b>Definition</b> <a href="_data_thread_8java_source.html#l00036">DataThread.java:36</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_data_thread_html"><div class="ttname"><a href="classtraces_listener_1_1_traces_data_thread.html">tracesListener.TracesDataThread</a></div><div class="ttdef"><b>Definition</b> <a href="_traces_data_thread_8java_source.html#l00008">TracesDataThread.java:8</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_listener_server_html"><div class="ttname"><a href="classtraces_listener_1_1_traces_listener_server.html">tracesListener.TracesListenerServer</a></div><div class="ttdef"><b>Definition</b> <a href="#l00012">TracesListenerServer.java:12</a></div></div>
 <div class="ttc" id="aclasstraces_listener_1_1_traces_listener_server_html_a0bd2e89bc10e8c829d78bb192343535f"><div class="ttname"><a href="classtraces_listener_1_1_traces_listener_server.html#a0bd2e89bc10e8c829d78bb192343535f">tracesListener.TracesListenerServer.addTracesObserver</a></div><div class="ttdeci">boolean addTracesObserver(Observer anObserver)</div><div class="ttdef"><b>Definition</b> <a href="#l00112">TracesListenerServer.java:112</a></div></div>

@@ -95,15 +95,15 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Parser Callbacks</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1427"></a> </p>
-<h1><a class="anchor" id="autotoc_md1428"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1437"></a> </p>
+<h1><a class="anchor" id="autotoc_md1438"></a>
 Overview</h1>
 <p>With a parser callback function, the result of parsing a JSON text can be influenced. When passed to <code>parse</code>, it is called on certain events (passed as <code>parse_event_t</code> via parameter <code>event</code>) with a set recursion depth <code>depth</code> and context JSON value <code>parsed</code>. The return value of the callback function is a boolean indicating whether the element that emitted the callback shall be kept or not.</p>
 <p>The type of the callback function is:</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
 <div class="line"><span class="keyword">using </span>parser_callback_t =</div>
 <div class="line">    std::function&lt;bool(<span class="keywordtype">int</span> depth, parse_event_t event, BasicJsonType&amp; parsed)&gt;;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1429"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1439"></a>
 Callback event types</h1>
 <p>We distinguish six scenarios (determined by the event type) in which the callback function can be called. The following table describes the values of the parameters <code>depth</code>, <code>event</code>, and <code>parsed</code>.</p>
 <table class="markdownTable">
@@ -147,7 +147,7 @@ these calls are made to the callback function:
 | `value`        | 2     | `#!json 13.406667` |
 | `array_end`    | 1     | `#!json [52.519444,13.406667]` |
 | `object_end`   | 0     | `#!json {"location":[52.519444,13.406667],"name":"Berlin"}` |
-</pre> <h1><a class="anchor" id="autotoc_md1430"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1440"></a>
 Return value</h1>
 <p>Discarding a value (i.e., returning <code>#!c false</code>) has different effects depending on the context in which the function was called:</p>
 <ul>

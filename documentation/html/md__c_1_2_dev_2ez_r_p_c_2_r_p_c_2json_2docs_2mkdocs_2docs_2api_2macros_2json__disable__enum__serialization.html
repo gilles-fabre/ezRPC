@@ -95,20 +95,20 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON_DISABLE_ENUM_SERIALIZATION</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1154"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DISABLE_ENUM_SERIALIZATION </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1164"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DISABLE_ENUM_SERIALIZATION </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --><p>When defined to <code>1</code>, default serialization and deserialization functions for enums are excluded and have to be provided by the user, for example, using <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2nlohmann__json__serialize__enum.html"><code>NLOHMANN_JSON_SERIALIZE_ENUM</code></a> (see <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2arbitrary__types.html">arbitrary type conversions</a> for more details).</p>
 <p>Parsing or serializing an enum will result in a compiler error.</p>
 <p>This works for both unscoped and scoped enums.</p>
-<h1><a class="anchor" id="autotoc_md1155"></a>
+<h1><a class="anchor" id="autotoc_md1165"></a>
 Default definition</h1>
 <p>The default value is <code>0</code>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DISABLE_ENUM_SERIALIZATION 0</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1156"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1166"></a>
 Notes</h1>
 <p>!!! hint "CMake option" </p><pre class="fragment">Enum serialization can also be controlled with the CMake option
 [`JSON_DisableEnumSerialization`](../../integration/cmake.md#json_disableenumserialization)
 (`OFF` by default) which defines `JSON_DISABLE_ENUM_SERIALIZATION` accordingly.
-</pre> <h1><a class="anchor" id="autotoc_md1157"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1167"></a>
 Examples</h1>
 <p>??? example "Example 1: Disabled behavior" </p><pre class="fragment">The code below forces the library **not** to create default serialization/deserialization functions `from_json` and `to_json`, meaning the code below
 **does not** compile.
@@ -214,12 +214,12 @@ int main()
     Choice ch = j.template get&lt;Choice&gt;();
 }
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1158"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1168"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2nlohmann__json__serialize__enum.html"><code>NLOHMANN_JSON_SERIALIZE_ENUM</code></a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1159"></a>
+<h1><a class="anchor" id="autotoc_md1169"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.11.0. </li>

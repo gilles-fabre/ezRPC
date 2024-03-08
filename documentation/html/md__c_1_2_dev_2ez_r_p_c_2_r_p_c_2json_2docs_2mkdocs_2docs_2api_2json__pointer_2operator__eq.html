@@ -95,27 +95,27 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::json_pointer::&lt;/small&gt;operator==</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1001"></a> </p><div class="fragment"><div class="line"><span class="comment">// until C++20</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1011"></a> </p><div class="fragment"><div class="line"><span class="comment">// until C++20</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> RefStringTypeLhs, <span class="keyword">typename</span> RefStringTypeRhs&gt;</div>
 <div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="json__pointer_8hpp.html#a613a4889154f7ab2ee4efbe0fe147cf2">operator==</a>(</div>
-<div class="line">    <span class="keyword">const</span> json_pointer&lt;RefStringTypeLhs&gt;&amp; lhs,</div>
-<div class="line">    <span class="keyword">const</span> json_pointer&lt;RefStringTypeRhs&gt;&amp; rhs) <span class="keyword">noexcept</span>;            <span class="comment">// (1)</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer&lt;RefStringTypeLhs&gt;</a>&amp; lhs,</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer&lt;RefStringTypeRhs&gt;</a>&amp; rhs) <span class="keyword">noexcept</span>;            <span class="comment">// (1)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> RefStringTypeLhs, <span class="keyword">typename</span> StringType&gt;</div>
 <div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="json__pointer_8hpp.html#a613a4889154f7ab2ee4efbe0fe147cf2">operator==</a>(</div>
-<div class="line">    <span class="keyword">const</span> json_pointer&lt;RefStringTypeLhs&gt;&amp; lhs,</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer&lt;RefStringTypeLhs&gt;</a>&amp; lhs,</div>
 <div class="line">    <span class="keyword">const</span> StringType&amp; rhs);                                         <span class="comment">// (2)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> RefStringTypeRhs, <span class="keyword">typename</span> StringType&gt;</div>
 <div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="json__pointer_8hpp.html#a613a4889154f7ab2ee4efbe0fe147cf2">operator==</a>(</div>
 <div class="line">    <span class="keyword">const</span> StringType&amp; lhs,</div>
-<div class="line">    <span class="keyword">const</span> json_pointer&lt;RefStringTypeRhs&gt;&amp; rhs);                     <span class="comment">// (2)</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer&lt;RefStringTypeRhs&gt;</a>&amp; rhs);                     <span class="comment">// (2)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// since C++20</span></div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classjson__pointer.html">json_pointer</a> {</div>
 <div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> RefStringTypeRhs&gt;</div>
 <div class="line">    <span class="keywordtype">bool</span> <a class="code hl_friend" href="classjson__pointer.html#a613a4889154f7ab2ee4efbe0fe147cf2">operator==</a>(</div>
-<div class="line">        <span class="keyword">const</span> json_pointer&lt;RefStringTypeRhs&gt;&amp; rhs) <span class="keyword">const</span> <span class="keyword">noexcept</span>;  <span class="comment">// (1)</span></div>
+<div class="line">        <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer&lt;RefStringTypeRhs&gt;</a>&amp; rhs) <span class="keyword">const</span> <span class="keyword">noexcept</span>;  <span class="comment">// (1)</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">bool</span> <a class="code hl_friend" href="classjson__pointer.html#a613a4889154f7ab2ee4efbe0fe147cf2">operator==</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classjson__pointer.html#a21dae78c5120aa3044d4c0fa1d970291">string_t</a>&amp; rhs) <span class="keyword">const</span>;                     <span class="comment">// (2)</span></div>
 <div class="line">};</div>
@@ -127,24 +127,24 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Compares two JSON pointers for equality by comparing their reference tokens.</li>
 <li>Compares a JSON pointer and a string or a string and a JSON pointer for equality by converting the string to a JSON pointer and comparing the JSON pointers according to 1.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1002"></a>
+<h1><a class="anchor" id="autotoc_md1012"></a>
 Template parameters</h1>
 <p><code>RefStringTypeLhs</code>, <code>RefStringTypeRhs</code> : the string type of the left-hand side or right-hand side JSON pointer, respectively</p>
 <p><code>StringType</code> : the string type derived from the <code><a class="el" href="classjson__pointer.html" title="JSON Pointer defines a string syntax for identifying a specific value within a JSON document.">json_pointer</a></code> operand (<a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2string__t.html"><code>json_pointer::string_t</code></a>)</p>
-<h1><a class="anchor" id="autotoc_md1003"></a>
+<h1><a class="anchor" id="autotoc_md1013"></a>
 Parameters</h1>
 <p><code>lhs</code> (in) : first value to consider</p>
 <p><code>rhs</code> (in) : second value to consider</p>
-<h1><a class="anchor" id="autotoc_md1004"></a>
+<h1><a class="anchor" id="autotoc_md1014"></a>
 Return value</h1>
 <p>whether the values <code>lhs</code>/<code>*this</code> and <code>rhs</code> are equal</p>
-<h1><a class="anchor" id="autotoc_md1005"></a>
+<h1><a class="anchor" id="autotoc_md1015"></a>
 Exception safety</h1>
 <ol type="1">
 <li>No-throw guarantee: this function never throws exceptions.</li>
 <li>Strong exception safety: if an exception occurs, the original value stays intact.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1006"></a>
+<h1><a class="anchor" id="autotoc_md1016"></a>
 Exceptions</h1>
 <ol type="1">
 <li>(none)</li>
@@ -154,13 +154,13 @@ Exceptions</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1007"></a>
+<h1><a class="anchor" id="autotoc_md1017"></a>
 Complexity</h1>
 <p>Constant if <code>lhs</code> and <code>rhs</code> differ in the number of reference tokens, otherwise linear in the number of reference tokens.</p>
-<h1><a class="anchor" id="autotoc_md1008"></a>
+<h1><a class="anchor" id="autotoc_md1018"></a>
 Notes</h1>
 <p>!!! warning "Deprecation" </p><pre class="fragment">Overload 2 is deprecated and will be removed in a future major version release.
-</pre> <h1><a class="anchor" id="autotoc_md1009"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1019"></a>
 Examples</h1>
 <p>??? example "Example: (1) Comparing JSON pointers" </p><pre class="fragment">The example demonstrates comparing JSON pointers.
 
@@ -184,7 +184,7 @@ Output:
 ```
 --8&lt;-- "examples/json_pointer__operator__equal_stringtype.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1010"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1020"></a>
 Version history</h1>
 <ol type="1">
 <li>Added in version 2.1.0. Added C++20 member functions in version 3.11.2.</li>

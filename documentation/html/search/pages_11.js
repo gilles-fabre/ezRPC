@@ -15,10 +15,11 @@ var searchData=
   ['patch_5finplace_12',['&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;patch_inplace',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2patch__inplace.html',1,'']]],
   ['pkg_20config_13',['Pkg-config',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2integration_2pkg-config.html',1,'']]],
   ['pointer_14',['JSON Pointer',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2json__pointer.html',1,'']]],
-  ['pop_5fback_15',['&lt;small&gt;nlohmann::json_pointer::&lt;/small&gt;pop_back',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2pop__back.html',1,'']]],
-  ['pretty_20printer_16',['GDB Pretty Printer',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2gdb__pretty__printer_2_r_e_a_d_m_e.html',1,'']]],
-  ['printer_17',['GDB Pretty Printer',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2gdb__pretty__printer_2_r_e_a_d_m_e.html',1,'']]],
-  ['push_5fback_18',['push_back',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2push__back.html',1,'&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;push_back'],['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2push__back.html',1,'&lt;small&gt;nlohmann::json_pointer::&lt;/small&gt;push_back']]],
-  ['py_19',['py',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2generate__natvis_2_r_e_a_d_m_e.html',1,'generate_natvis.py'],['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2serve__header_2_r_e_a_d_m_e.html',1,'serve_header.py']]],
-  ['py_20amalgamate_20c_20source_20and_20header_20files_20',['amalgamate.py - Amalgamate C source and header files',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2amalgamate_2_r_e_a_d_m_e.html',1,'']]]
+  ['points_15',['Customization Points',['../md__c_1_2_dev_2ez_r_p_c_2build_2packages_2_microsoft_8googletest_8v140_8windesktop_8msvcstl_8stafbc53f99014c0d26cc5a4520ce738a0c.html',1,'']]],
+  ['pop_5fback_16',['&lt;small&gt;nlohmann::json_pointer::&lt;/small&gt;pop_back',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2pop__back.html',1,'']]],
+  ['pretty_20printer_17',['GDB Pretty Printer',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2gdb__pretty__printer_2_r_e_a_d_m_e.html',1,'']]],
+  ['printer_18',['GDB Pretty Printer',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2gdb__pretty__printer_2_r_e_a_d_m_e.html',1,'']]],
+  ['push_5fback_19',['push_back',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2push__back.html',1,'&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;push_back'],['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2push__back.html',1,'&lt;small&gt;nlohmann::json_pointer::&lt;/small&gt;push_back']]],
+  ['py_20',['py',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2generate__natvis_2_r_e_a_d_m_e.html',1,'generate_natvis.py'],['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2serve__header_2_r_e_a_d_m_e.html',1,'serve_header.py']]],
+  ['py_20amalgamate_20c_20source_20and_20header_20files_21',['amalgamate.py - Amalgamate C source and header files',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2tools_2amalgamate_2_r_e_a_d_m_e.html',1,'']]]
 ];

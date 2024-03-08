@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::&lt;/small&gt;operator""_json</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1274"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classnlohmann_1_1basic__json.html">json</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span><a class="code hl_variable" href="unit-json__pointer_8cpp.html#a4ff849685af2d1bc46095b4311f6a708">_json</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* s, <a class="code hl_typedef" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">std::size_t</a> <a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>);</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1284"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classnlohmann_1_1basic__json.html">json</a> <span class="keyword">operator</span> <span class="stringliteral">&quot;&quot;</span><a class="code hl_variable" href="unit-json__pointer_8cpp.html#a4ff849685af2d1bc46095b4311f6a708">_json</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* s, <a class="code hl_typedef" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">std::size_t</a> <a class="code hl_variable" href="unit-udt_8cpp.html#aeda809c9c9c3a54beef6a1870365e3c4">n</a>);</div>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html"><div class="ttname"><a href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a></div><div class="ttdoc">a class to store JSON values</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l17281">json_v3_10_5.hpp:17282</a></div></div>
 <div class="ttc" id="anamespacestd_html_a2a88bc267d8fe2228f9ef18e79d79268"><div class="ttname"><a href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">std::size_t</a></div><div class="ttdeci">decltype(sizeof(void *)) size_t</div><div class="ttdef"><b>Definition</b> <a href="doctest_8h_source.html#l00524">doctest.h:524</a></div></div>
 <div class="ttc" id="aunit-json__pointer_8cpp_html_a4ff849685af2d1bc46095b4311f6a708"><div class="ttname"><a href="unit-json__pointer_8cpp.html#a4ff849685af2d1bc46095b4311f6a708">_json</a></div><div class="ttdeci">_json</div><div class="ttdef"><b>Definition</b> <a href="unit-json__pointer_8cpp_source.html#l00234">unit-json_pointer.cpp:234</a></div></div>
@@ -108,20 +108,20 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacenlohmann.html">nlohmann</a>;</div>
 <div class="ttc" id="anamespacenlohmann_html"><div class="ttname"><a href="namespacenlohmann.html">nlohmann</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="from__json____non__default__constructible_8cpp_source.html#l00021">from_json__non_default_constructible.cpp:22</a></div></div>
 </div><!-- fragment --><p>This is suggested to ease migration to the next major version release of the library. See <a href="macros/json_use_global_udls.md#notes">'JSON_USE_GLOBAL_UDLS`</a> for details.</p>
-<h1><a class="anchor" id="autotoc_md1275"></a>
+<h1><a class="anchor" id="autotoc_md1285"></a>
 Parameters</h1>
 <p><code>s</code> (in) : a string representation of a JSON object</p>
 <p><code>n</code> (in) : length of string <code>s</code></p>
-<h1><a class="anchor" id="autotoc_md1276"></a>
+<h1><a class="anchor" id="autotoc_md1286"></a>
 Return value</h1>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json.html"><code>json</code></a> value parsed from <code>s</code></p>
-<h1><a class="anchor" id="autotoc_md1277"></a>
+<h1><a class="anchor" id="autotoc_md1287"></a>
 Exceptions</h1>
 <p>The function can throw anything that <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse.html"><code>parse(s, s+n)</code></a> would throw.</p>
-<h1><a class="anchor" id="autotoc_md1278"></a>
+<h1><a class="anchor" id="autotoc_md1288"></a>
 Complexity</h1>
 <p>Linear.</p>
-<h1><a class="anchor" id="autotoc_md1279"></a>
+<h1><a class="anchor" id="autotoc_md1289"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how to create JSON values from string literals.
 
@@ -134,7 +134,7 @@ Output:
 ```json
 --8&lt;-- "examples/operator_literal_json.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1280"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1290"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

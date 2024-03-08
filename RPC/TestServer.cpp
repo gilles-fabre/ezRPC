@@ -7,11 +7,11 @@
 
 using namespace std;
 
-RPCServer* gRpcServerP = NULL;
+RPCServer* s_rpcServerP = NULL;
 
 static unsigned long ByeBye(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
-	if (gRpcServerP)
-		gRpcServerP->Stop();
+	if (s_rpcServerP)
+		s_rpcServerP->Stop();
 
 	return (unsigned long)0;
 }
@@ -172,7 +172,7 @@ int main(int argc, char **argv) {
 	string serverAddr = argv[2];
 
 	RPCServer server(proto == "tcp" ? Transport::TCP : Transport::FILE, serverAddr);
-	gRpcServerP = &server;
+	s_rpcServerP = &server;
 
 	server.RegisterProcedure("nop", &Nop);
 	server.RegisterProcedure("inc", &Increment);

@@ -70,9 +70,10 @@ var searchData=
   ['unit_2dwindows_5fh_2ecpp_67',['unit-windows_h.cpp',['../unit-windows__h_8cpp.html',1,'']]],
   ['unit_2dwstring_2ecpp_68',['unit-wstring.cpp',['../unit-wstring_8cpp.html',1,'']]],
   ['unit_2ecpp_69',['unit.cpp',['../unit_8cpp.html',1,'']]],
-  ['update_2ecpp_70',['update.cpp',['../update_8cpp.html',1,'']]],
-  ['update_2emd_71',['update.md',['../update_8md.html',1,'']]],
-  ['update_5f_5frange_2ecpp_72',['update__range.cpp',['../update____range_8cpp.html',1,'']]],
-  ['use_5fcurrent_2ecpp_73',['use_current.cpp',['../use__current_8cpp.html',1,'']]],
-  ['use_5fv3_5f10_5f5_2ecpp_74',['use_v3_10_5.cpp',['../use__v3__10__5_8cpp.html',1,'']]]
+  ['unittestssettings_2eh_70',['UnitTestsSettings.h',['../_unit_tests_settings_8h.html',1,'']]],
+  ['update_2ecpp_71',['update.cpp',['../update_8cpp.html',1,'']]],
+  ['update_2emd_72',['update.md',['../update_8md.html',1,'']]],
+  ['update_5f_5frange_2ecpp_73',['update__range.cpp',['../update____range_8cpp.html',1,'']]],
+  ['use_5fcurrent_2ecpp_74',['use_current.cpp',['../use__current_8cpp.html',1,'']]],
+  ['use_5fv3_5f10_5f5_2ecpp_75',['use_v3_10_5.cpp',['../use__v3__10__5_8cpp.html',1,'']]]
 ];

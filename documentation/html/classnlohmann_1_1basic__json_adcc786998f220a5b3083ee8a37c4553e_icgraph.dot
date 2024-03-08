@@ -10,4 +10,6 @@ digraph "nlohmann::basic_json::patch"
   Node2 [id="Node000002",label="main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$diff_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4",tooltip=" "];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="TEST_CASE",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$unit-json__patch_8cpp.html#a58658ae29d75546f62ea0ceb24fd3b20",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="TEST_CASE",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$unit-regression1_8cpp.html#aaf8ede2ee452657fac3746e57b58c22c",tooltip=" "];
 }

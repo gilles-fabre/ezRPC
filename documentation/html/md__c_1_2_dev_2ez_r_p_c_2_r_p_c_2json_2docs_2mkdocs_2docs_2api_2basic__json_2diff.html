@@ -95,28 +95,28 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;diff</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md211"></a> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> diff(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; source,</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md221"></a> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> diff(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; source,</div>
 <div class="line">                       <span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; target);</div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 </div><!-- fragment --><p>Creates a <a href="http://jsonpatch.com">JSON Patch</a> so that value <code>source</code> can be changed into the value <code>target</code> by calling <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2patch.html"><code>patch</code></a> function.</p>
 <p>For two JSON values <code>source</code> and <code>target</code>, the following code yields always <code>#!cpp true</code>: </p><div class="fragment"><div class="line">source.patch(diff(source, target)) == target;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md212"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md222"></a>
 Parameters</h1>
 <p><code>source</code> (in) : JSON value to compare from</p>
 <p><code>target</code> (in) : JSON value to compare against</p>
-<h1><a class="anchor" id="autotoc_md213"></a>
+<h1><a class="anchor" id="autotoc_md223"></a>
 Return value</h1>
 <p>a JSON patch to convert the <code>source</code> to <code>target</code></p>
-<h1><a class="anchor" id="autotoc_md214"></a>
+<h1><a class="anchor" id="autotoc_md224"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md215"></a>
+<h1><a class="anchor" id="autotoc_md225"></a>
 Complexity</h1>
 <p>Linear in the lengths of <code>source</code> and <code>target</code>.</p>
-<h1><a class="anchor" id="autotoc_md216"></a>
+<h1><a class="anchor" id="autotoc_md226"></a>
 Notes</h1>
 <p>Currently, only <code>remove</code>, <code>add</code>, and <code>replace</code> operations are generated.</p>
-<h1><a class="anchor" id="autotoc_md217"></a>
+<h1><a class="anchor" id="autotoc_md227"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how a JSON patch is created as a diff for two JSON values.
 
@@ -129,12 +129,12 @@ Output:
 ```json
 --8&lt;-- "examples/diff.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md218"></a>
+</pre> <h1><a class="anchor" id="autotoc_md228"></a>
 See also</h1>
 <ul>
 <li><a href="https://tools.ietf.org/html/rfc6902">RFC 6902 (JSON Patch)</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md219"></a>
+<h1><a class="anchor" id="autotoc_md229"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.0.0. </li>

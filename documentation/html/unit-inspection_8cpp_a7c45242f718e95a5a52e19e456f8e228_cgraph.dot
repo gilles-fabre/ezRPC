@@ -49,6 +49,7 @@ digraph "TEST_CASE"
   Node17 [id="Node000017",label="nlohmann::basic_json\l::parse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a15018ade392a844ea32d5188d1a0b9c6",tooltip="deserialize from a compatible input"];
   Node17 -> Node18 [id="edge26_Node000017_Node000018",color="steelblue1",style="solid",tooltip=" "];
   Node18 [id="Node000018",label="nlohmann::detail::input\l_adapter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a616a53cc3114fdc113fc44e6af4c3c7f",tooltip=" "];
-  Node1 -> Node19 [id="edge27_Node000001_Node000019",color="steelblue1",style="solid",tooltip=" "];
+  Node17 -> Node17 [id="edge27_Node000017_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node19 [id="edge28_Node000001_Node000019",color="steelblue1",style="solid",tooltip=" "];
   Node19 [id="Node000019",label="nlohmann::basic_json\l::type",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a5b7c4b35a0ad9f97474912a08965d7ad",tooltip="return the type of the JSON value (explicit)"];
 }

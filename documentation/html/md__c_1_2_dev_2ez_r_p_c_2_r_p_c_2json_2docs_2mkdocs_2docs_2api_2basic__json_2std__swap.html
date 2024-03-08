@@ -95,25 +95,26 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">std::swap&lt;basic_json&gt;</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md824"></a> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a> {</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md834"></a> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a> {</div>
 <div class="line">    <span class="keywordtype">void</span> <a class="code hl_function" href="namespacestd.html#a4874fd00297ff5aef2872379cb521783">swap</a>(<a class="code hl_class" href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a>&amp; j1, <a class="code hl_class" href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a>&amp; <a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a>);</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html"><div class="ttname"><a href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a></div><div class="ttdoc">a class to store JSON values</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l17281">json_v3_10_5.hpp:17282</a></div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="gtest-tuple_8h_source.html#l00113">gtest-tuple.h:113</a></div></div>
 <div class="ttc" id="anamespacestd_html_a4874fd00297ff5aef2872379cb521783"><div class="ttname"><a href="namespacestd.html#a4874fd00297ff5aef2872379cb521783">std::swap</a></div><div class="ttdeci">NLOHMANN_BASIC_JSON_TPL_DECLARATION void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL &amp;j1, nlohmann::NLOHMANN_BASIC_JSON_TPL &amp;j2) noexcept(//NOLINT(readability-inconsistent-declaration-parameter-name, cert-dcl58-cpp) is_nothrow_move_constructible&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;::value &amp;&amp;//NOLINT(misc-redundant-expression, cppcoreguidelines-noexcept-swap, performance-noexcept-swap) is_nothrow_move_assignable&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;::value)</div><div class="ttdoc">exchanges the values of two JSON objects</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l05235">json.hpp:5235</a></div></div>
 <div class="ttc" id="aunit-udt_8cpp_html_af0a091aa0e0539bf37d5db14c01f2bd6"><div class="ttname"><a href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a></div><div class="ttdeci">custom_json const j2</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00667">unit-udt.cpp:667</a></div></div>
 </div><!-- fragment --><p>Exchanges the values of two JSON objects.</p>
-<h1><a class="anchor" id="autotoc_md825"></a>
+<h1><a class="anchor" id="autotoc_md835"></a>
 Parameters</h1>
 <p><code>j1</code> (in, out) : value to be replaced by <code>j2</code></p>
 <p><code>j2</code> (in, out) : value to be replaced by <code>j1</code></p>
-<h1><a class="anchor" id="autotoc_md826"></a>
+<h1><a class="anchor" id="autotoc_md836"></a>
 Possible implementation</h1>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> swap(<a class="code hl_class" href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a>&amp; j1, <a class="code hl_class" href="classnlohmann_1_1basic__json.html">nlohmann::basic_json</a>&amp; <a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a>)</div>
 <div class="line">{</div>
-<div class="line">    j1.swap(<a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a>);</div>
+<div class="line">    j1.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a94295a06e0e7b3867fe83afbee4cb202">swap</a>(<a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md827"></a>
+<div class="ttc" id="aclassnlohmann_1_1basic__json_html_a94295a06e0e7b3867fe83afbee4cb202"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#a94295a06e0e7b3867fe83afbee4cb202">nlohmann::basic_json::swap</a></div><div class="ttdeci">void swap(reference other) noexcept(std::is_nothrow_move_constructible&lt; value_t &gt;::value &amp;&amp;std::is_nothrow_move_assignable&lt; value_t &gt;::value &amp;&amp;std::is_nothrow_move_constructible&lt; json_value &gt;::value &amp;&amp;std::is_nothrow_move_assignable&lt; json_value &gt;::value)</div><div class="ttdoc">exchanges the values</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l20360">json_v3_10_5.hpp:20360</a></div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md837"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how two values are swapped with `std::swap`.
 
@@ -126,12 +127,12 @@ Output:
 ```json
 --8&lt;-- "examples/std_swap.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md828"></a>
+</pre> <h1><a class="anchor" id="autotoc_md838"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2swap.html">swap</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md829"></a>
+<h1><a class="anchor" id="autotoc_md839"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

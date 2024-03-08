@@ -95,27 +95,27 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">to_string(basic_json)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md874"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md884"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
 <div class="line">std::string <a class="code hl_function" href="operator__spaceship____const__reference_8c_09_0920_8cpp.html#ab1f881d0a42d68760fab0c42d73154f4">to_string</a>(<span class="keyword">const</span> BasicJsonType&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>);</div>
 <div class="ttc" id="aoperator__spaceship____const__reference_8c_09_0920_8cpp_html_ab1f881d0a42d68760fab0c42d73154f4"><div class="ttname"><a href="operator__spaceship____const__reference_8c_09_0920_8cpp.html#ab1f881d0a42d68760fab0c42d73154f4">to_string</a></div><div class="ttdeci">const char * to_string(const std::partial_ordering &amp;po)</div><div class="ttdef"><b>Definition</b> <a href="operator__spaceship____const__reference_8c_09_0920_8cpp_source.html#l00007">operator_spaceship__const_reference.c++20.cpp:7</a></div></div>
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 </div><!-- fragment --><p>This function implements a user-defined to_string for JSON objects.</p>
-<h1><a class="anchor" id="autotoc_md875"></a>
+<h1><a class="anchor" id="autotoc_md885"></a>
 Template parameters</h1>
 <p><code>BasicJsonType</code> : a specialization of <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2index.html"><code>basic_json</code></a></p>
-<h1><a class="anchor" id="autotoc_md876"></a>
+<h1><a class="anchor" id="autotoc_md886"></a>
 Return value</h1>
 <p>string containing the serialization of the JSON value</p>
-<h1><a class="anchor" id="autotoc_md877"></a>
+<h1><a class="anchor" id="autotoc_md887"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes to any JSON value.</p>
-<h1><a class="anchor" id="autotoc_md878"></a>
+<h1><a class="anchor" id="autotoc_md888"></a>
 Exceptions</h1>
 <p>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error316"><code>type_error.316</code></a> if a string stored inside the JSON value is not UTF-8 encoded</p>
-<h1><a class="anchor" id="autotoc_md879"></a>
+<h1><a class="anchor" id="autotoc_md889"></a>
 Complexity</h1>
 <p>Linear.</p>
-<h1><a class="anchor" id="autotoc_md880"></a>
+<h1><a class="anchor" id="autotoc_md890"></a>
 Possible implementation</h1>
 <div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
 <div class="line">std::string <a class="code hl_function" href="operator__spaceship____const__reference_8c_09_0920_8cpp.html#ab1f881d0a42d68760fab0c42d73154f4">to_string</a>(<span class="keyword">const</span> BasicJsonType&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>)</div>
@@ -123,7 +123,7 @@ Possible implementation</h1>
 <div class="line">    <span class="keywordflow">return</span> <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a476756fb08e7f2416aad116d137977f4">dump</a>();</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_a476756fb08e7f2416aad116d137977f4"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#a476756fb08e7f2416aad116d137977f4">nlohmann::basic_json::dump</a></div><div class="ttdeci">string_t dump(const int indent=-1, const char indent_char=' ', const bool ensure_ascii=false, const error_handler_t error_handler=error_handler_t::strict) const</div><div class="ttdoc">serialization</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l18426">json_v3_10_5.hpp:18426</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md881"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md891"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how the library's `to_string()` function integrates with others, allowing
 argument-dependent lookup.
@@ -137,12 +137,12 @@ Output:
 ```json
 --8&lt;-- "examples/to_string.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md882"></a>
+</pre> <h1><a class="anchor" id="autotoc_md892"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2dump.html">dump</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md883"></a>
+<h1><a class="anchor" id="autotoc_md893"></a>
 Version history</h1>
 <p>Added in version 3.7.0. </p>
 </div></div><!-- contents -->

@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;binary</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md133"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md143"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> binary(<span class="keyword">const</span> <span class="keyword">typename</span> binary_t::container_type&amp; init);</div>
 <div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> binary(<span class="keyword">typename</span> binary_t::container_type&amp;&amp; init);</div>
 <div class="line"> </div>
@@ -110,23 +110,23 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Creates a JSON binary array value from a given binary container with subtype.</li>
 </ol>
 <p>Binary values are part of various binary formats, such as CBOR, MessagePack, and BSON. This constructor is used to create a value for serialization to those formats.</p>
-<h1><a class="anchor" id="autotoc_md134"></a>
+<h1><a class="anchor" id="autotoc_md144"></a>
 Parameters</h1>
 <p><code>init</code> (in) : container containing bytes to use as binary type</p>
 <p><code>subtype</code> (in) : subtype to use in CBOR, MessagePack, and BSON</p>
-<h1><a class="anchor" id="autotoc_md135"></a>
+<h1><a class="anchor" id="autotoc_md145"></a>
 Return value</h1>
 <p>JSON binary array value</p>
-<h1><a class="anchor" id="autotoc_md136"></a>
+<h1><a class="anchor" id="autotoc_md146"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md137"></a>
+<h1><a class="anchor" id="autotoc_md147"></a>
 Complexity</h1>
 <p>Linear in the size of <code>init</code>; constant for <code>typename binary_t::container_type&amp;&amp; init</code> versions.</p>
-<h1><a class="anchor" id="autotoc_md138"></a>
+<h1><a class="anchor" id="autotoc_md148"></a>
 Notes</h1>
 <p>Note, this function exists because of the difficulty in correctly specifying the correct template overload in the standard value ctor, as both JSON arrays and JSON binary arrays are backed with some form of a <code>std::vector</code>. Because JSON binary arrays are a non-standard extension it was decided that it would be best to prevent automatic initialization of a binary array type, for backwards compatibility and so it does not happen on accident.</p>
-<h1><a class="anchor" id="autotoc_md139"></a>
+<h1><a class="anchor" id="autotoc_md149"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how to create a binary value.
 
@@ -139,7 +139,7 @@ Output:
 ```json
 --8&lt;-- "examples/binary.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md140"></a>
+</pre> <h1><a class="anchor" id="autotoc_md150"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.8.0. </li>

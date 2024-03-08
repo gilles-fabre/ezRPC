@@ -10,4 +10,6 @@ digraph "fuzzer::Random::Get_mt19937"
   Node2 [id="Node000002",label="fuzzer::InputCorpus\l::ChooseUnitIdxToMutate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_input_corpus.html#ae38fd42e90a48c5c94f5575bd68b3f5e",tooltip=" "];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="fuzzer::InputCorpus\l::ChooseUnitToMutate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_input_corpus.html#a57f2871e2fe6f0465cc94ca2f5041fe0",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#aad9e8923a41140151cf52209bd2b76b4",tooltip=" "];
 }

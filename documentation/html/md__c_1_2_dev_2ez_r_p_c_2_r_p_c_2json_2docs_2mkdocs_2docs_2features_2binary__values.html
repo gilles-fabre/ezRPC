@@ -95,9 +95,9 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Binary Values</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1342"></a> The library implements several <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2index.html">binary formats</a> that encode JSON in an efficient way. Most of these formats support binary values; that is, values that have semantics define outside the library and only define a sequence of bytes to be stored.</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1352"></a> The library implements several <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2index.html">binary formats</a> that encode JSON in an efficient way. Most of these formats support binary values; that is, values that have semantics define outside the library and only define a sequence of bytes to be stored.</p>
 <p>JSON itself does not have a binary value. As such, binary values are an extension that this library implements to store values received by a binary format. Binary values are never created by the JSON parser, and are only part of a serialized JSON text if they have been created manually or via a binary format.</p>
-<h1><a class="anchor" id="autotoc_md1343"></a>
+<h1><a class="anchor" id="autotoc_md1353"></a>
 API for binary values</h1>
 <div class="fragment"><div class="line">class json::binary_t {</div>
 <div class="line">    -- setters --</div>
@@ -115,15 +115,18 @@ API for binary values</h1>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_ad6c955145bebde84d93991ffed7cd389"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#ad6c955145bebde84d93991ffed7cd389">nlohmann::basic_json::binary_t</a></div><div class="ttdeci">nlohmann::byte_container_with_subtype&lt; BinaryType &gt; binary_t</div><div class="ttdoc">a type for a packed binary type</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l17537">json_v3_10_5.hpp:17537</a></div></div>
 </div><!-- fragment --><p>There are several convenience functions to check and set the subtype:</p>
 <div class="fragment"><div class="line">binary.has_subtype();                   <span class="comment">// returns false</span></div>
-<div class="line">binary_with_subtype.has_subtype();      <span class="comment">// returns true</span></div>
+<div class="line">binary_with_subtype.<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">has_subtype</a>();      <span class="comment">// returns true</span></div>
 <div class="line"> </div>
-<div class="line">binary_with_subtype.clear_subtype();</div>
-<div class="line">binary_with_subtype.has_subtype();      <span class="comment">// returns true</span></div>
+<div class="line">binary_with_subtype.<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#a7b122b28ff2b8680557ca44ac9748e49">clear_subtype</a>();</div>
+<div class="line">binary_with_subtype.<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">has_subtype</a>();      <span class="comment">// returns true</span></div>
 <div class="line"> </div>
-<div class="line">binary_with_subtype.set_subtype(42);</div>
+<div class="line">binary_with_subtype.<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#aa8f9fca70673949d7483a6097d00d61c">set_subtype</a>(42);</div>
 <div class="line">binary.set_subtype(23);</div>
 <div class="line"> </div>
 <div class="line">binary.subtype();                       <span class="comment">// returns 23</span></div>
+<div class="ttc" id="aclassnlohmann_1_1byte__container__with__subtype_html_a7b122b28ff2b8680557ca44ac9748e49"><div class="ttname"><a href="classnlohmann_1_1byte__container__with__subtype.html#a7b122b28ff2b8680557ca44ac9748e49">nlohmann::byte_container_with_subtype::clear_subtype</a></div><div class="ttdeci">void clear_subtype() noexcept</div><div class="ttdoc">clears the binary subtype</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l05042">json_v3_10_5.hpp:5042</a></div></div>
+<div class="ttc" id="aclassnlohmann_1_1byte__container__with__subtype_html_a9fc42fb07003bf7048c2f1fc79478e02"><div class="ttname"><a href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">nlohmann::byte_container_with_subtype::has_subtype</a></div><div class="ttdeci">constexpr bool has_subtype() const noexcept</div><div class="ttdoc">return whether the value has a subtype</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l05035">json_v3_10_5.hpp:5035</a></div></div>
+<div class="ttc" id="aclassnlohmann_1_1byte__container__with__subtype_html_aa8f9fca70673949d7483a6097d00d61c"><div class="ttname"><a href="classnlohmann_1_1byte__container__with__subtype.html#aa8f9fca70673949d7483a6097d00d61c">nlohmann::byte_container_with_subtype::set_subtype</a></div><div class="ttdeci">void set_subtype(subtype_type subtype_) noexcept</div><div class="ttdoc">sets the binary subtype</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l05020">json_v3_10_5.hpp:5020</a></div></div>
 </div><!-- fragment --><p>As <code><a class="el" href="classnlohmann_1_1basic__json.html#ad6c955145bebde84d93991ffed7cd389" title="a type for a packed binary type">json::binary_t</a></code> is subclassing <code>std::vector&lt;std::uint8_t&gt;</code>, all member functions are available:</p>
 <div class="fragment"><div class="line">binary.size();  <span class="comment">// returns 4</span></div>
 <div class="line">binary[1];      <span class="comment">// returns 0xFE</span></div>
@@ -140,7 +143,6 @@ API for binary values</h1>
 <div class="fragment"><div class="line"><a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a23c2e02101cc62e1aec1d6ddaef0e340">get_binary</a>().<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">has_subtype</a>();  <span class="comment">// returns true</span></div>
 <div class="line"><a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a23c2e02101cc62e1aec1d6ddaef0e340">get_binary</a>().size();         <span class="comment">// returns 4</span></div>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_a23c2e02101cc62e1aec1d6ddaef0e340"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#a23c2e02101cc62e1aec1d6ddaef0e340">nlohmann::basic_json::get_binary</a></div><div class="ttdeci">binary_t &amp; get_binary()</div><div class="ttdoc">get a binary value</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l19055">json_v3_10_5.hpp:19055</a></div></div>
-<div class="ttc" id="aclassnlohmann_1_1byte__container__with__subtype_html_a9fc42fb07003bf7048c2f1fc79478e02"><div class="ttname"><a href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">nlohmann::byte_container_with_subtype::has_subtype</a></div><div class="ttdeci">constexpr bool has_subtype() const noexcept</div><div class="ttdoc">return whether the value has a subtype</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l05035">json_v3_10_5.hpp:5035</a></div></div>
 </div><!-- fragment --><p>For convenience, binary JSON values can be constructed via <code>json::binary</code>:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a> = json::binary({0xCA, 0xFE, 0xBA, 0xBE}, 23);</div>
 <div class="line"><span class="keyword">auto</span> j3 = json::binary({0xCA, 0xFE, 0xBA, 0xBE});</div>
@@ -149,10 +151,10 @@ API for binary values</h1>
 <div class="line">j3.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a23c2e02101cc62e1aec1d6ddaef0e340">get_binary</a>().<a class="code hl_function" href="classnlohmann_1_1byte__container__with__subtype.html#a9fc42fb07003bf7048c2f1fc79478e02">has_subtype</a>();  <span class="comment">// returns false</span></div>
 <div class="line">j3.get_binary().subtype();      <span class="comment">// returns std::uint64_t(-1) as j3 has no subtype</span></div>
 <div class="ttc" id="aunit-udt_8cpp_html_af0a091aa0e0539bf37d5db14c01f2bd6"><div class="ttname"><a href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a></div><div class="ttdeci">custom_json const j2</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00667">unit-udt.cpp:667</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1344"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1354"></a>
 Serialization</h1>
 <p>Binary values are serialized differently according to the formats.</p>
-<h2><a class="anchor" id="autotoc_md1345"></a>
+<h2><a class="anchor" id="autotoc_md1355"></a>
 JSON</h2>
 <p>JSON does not have a binary type, and this library does not introduce a new type as this would break conformance. Instead, binary values are serialized as an object with two keys: <code>bytes</code> holds an array of integers, and <code>subtype</code> is an integer or <code>null</code>.</p>
 <p>??? example </p><pre class="fragment">Code:
@@ -178,7 +180,7 @@ Output:
 ```
 </pre><p> !!! warning "No roundtrip for binary values" </p><pre class="fragment">The JSON parser will not parse the objects generated by binary values back to binary values. This is by design to
 remain standards compliant. Serializing binary values to JSON is only implemented for debugging purposes.
-</pre> <h2><a class="anchor" id="autotoc_md1346"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1356"></a>
 BJData</h2>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2bjdata.html">BJData</a> neither supports binary values nor subtypes, and proposes to serialize binary values as array of uint8 values. This translation is implemented by the library.</p>
 <p>??? example </p><pre class="fragment">Code:
@@ -232,7 +234,7 @@ yield the following value:
   "binary": [202, 254, 186, 190]
 }
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1347"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1357"></a>
 BSON</h2>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2bson.html">BSON</a> supports binary values and subtypes. If a subtype is given, it is used and added as unsigned 8-bit integer. If no subtype is given, the generic binary subtype 0x00 is used.</p>
 <p>??? example </p><pre class="fragment">Code:
@@ -268,7 +270,7 @@ Note that the serialization preserves the subtype, and deserializing `v` would y
   }
 }
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1348"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1358"></a>
 CBOR</h2>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2cbor.html">CBOR</a> supports binary values, but no subtypes. Subtypes will be serialized as tags. Any binary value will be serialized as byte strings. The library will choose the smallest representation using the length of the byte array.</p>
 <p>??? example </p><pre class="fragment">Code:
@@ -304,7 +306,7 @@ Note that the subtype is serialized as tag. However, parsing tagged values yield
   }
 }
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1349"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1359"></a>
 MessagePack</h2>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2messagepack.html">MessagePack</a> supports binary values and subtypes. If a subtype is given, the ext family is used. The library will choose the smallest representation among fixext1, fixext2, fixext4, fixext8, ext8, ext16, and ext32. The subtype is then added as signed 8-bit integer.</p>
 <p>If no subtype is given, the bin family (bin8, bin16, bin32) is used.</p>
@@ -340,7 +342,7 @@ Note that the serialization preserves the subtype, and deserializing `v` would y
   }
 }
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1350"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1360"></a>
 UBJSON</h2>
 <p><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2ubjson.html">UBJSON</a> neither supports binary values nor subtypes, and proposes to serialize binary values as array of uint8 values. This translation is implemented by the library.</p>
 <p>??? example </p><pre class="fragment">Code:

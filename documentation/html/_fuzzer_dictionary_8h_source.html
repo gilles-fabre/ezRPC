@@ -137,13 +137,13 @@ $(function(){initNavTree('_fuzzer_dictionary_8h_source.html',''); initResizable(
 </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classfuzzer_1_1_fixed_word.html#a8d72bf9667ebca88ae87c47a5129b90a">   34</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classfuzzer_1_1_fixed_word.html#a8d72bf9667ebca88ae87c47a5129b90a">operator==</a>(<span class="keyword">const</span> FixedWord&lt;kMaxSize&gt; &amp;w)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classfuzzer_1_1_fixed_word.html#a8d72bf9667ebca88ae87c47a5129b90a">   34</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classfuzzer_1_1_fixed_word.html#a8d72bf9667ebca88ae87c47a5129b90a">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classfuzzer_1_1_fixed_word.html">FixedWord&lt;kMaxSize&gt;</a> &amp;w)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> Size == w.Size &amp;&amp; 0 == memcmp(<a class="code hl_struct" href="struct_data.html">Data</a>, w.Data, Size);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  }</div>
 </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classfuzzer_1_1_fixed_word.html#a0f7a6fbeeebcbfcfb7a76f9ec2cea13a">   38</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classfuzzer_1_1_fixed_word.html#a0f7a6fbeeebcbfcfb7a76f9ec2cea13a">operator&lt;</a>(<span class="keyword">const</span> FixedWord&lt;kMaxSize&gt; &amp;w)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classfuzzer_1_1_fixed_word.html#a0f7a6fbeeebcbfcfb7a76f9ec2cea13a">   38</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classfuzzer_1_1_fixed_word.html#a0f7a6fbeeebcbfcfb7a76f9ec2cea13a">operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classfuzzer_1_1_fixed_word.html">FixedWord&lt;kMaxSize&gt;</a> &amp;w)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span> (Size != w.Size)</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordflow">return</span> Size &lt; w.Size;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">return</span> memcmp(<a class="code hl_struct" href="struct_data.html">Data</a>, w.Data, Size) &lt; 0;</div>
@@ -160,7 +160,7 @@ $(function(){initNavTree('_fuzzer_dictionary_8h_source.html',''); initResizable(
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
 </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespacefuzzer.html#ac60cccc992cd873288df2fba27c61181">   53</a></span><span class="keyword">typedef</span> FixedWord&lt;27&gt; <a class="code hl_typedef" href="namespacefuzzer.html#ac60cccc992cd873288df2fba27c61181">Word</a>; <span class="comment">// 28 bytes.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespacefuzzer.html#ac60cccc992cd873288df2fba27c61181">   53</a></span><span class="keyword">typedef</span> <a class="code hl_class" href="classfuzzer_1_1_fixed_word.html">FixedWord&lt;27&gt;</a> <a class="code hl_typedef" href="namespacefuzzer.html#ac60cccc992cd873288df2fba27c61181">Word</a>; <span class="comment">// 28 bytes.</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classfuzzer_1_1_dictionary_entry.html">   55</a></span><span class="keyword">class </span><a class="code hl_class" href="classfuzzer_1_1_dictionary_entry.html">DictionaryEntry</a> {</div>

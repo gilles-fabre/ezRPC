@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;from_ubjson</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md334"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md344"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputType&gt;</div>
 <div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> from_ubjson(InputType&amp;&amp; i,</div>
 <div class="line">                              <span class="keyword">const</span> <span class="keywordtype">bool</span> strict = <span class="keyword">true</span>,</div>
@@ -112,7 +112,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Reads from an iterator range.</li>
 </ol>
 <p>The exact mapping and its limitations is described on a <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2ubjson.html">dedicated page</a>.</p>
-<h1><a class="anchor" id="autotoc_md335"></a>
+<h1><a class="anchor" id="autotoc_md345"></a>
 Template parameters</h1>
 <p><code>InputType</code> : A compatible input, for instance: </p><pre class="fragment">- an `std::istream` object
 - a `FILE` pointer
@@ -120,30 +120,30 @@ Template parameters</h1>
 - a pointer to a null-terminated string of single byte characters
 - an object `obj` for which `begin(obj)` and `end(obj)` produces a valid pair of iterators.
 </pre><p> <code>IteratorType</code> : a compatible iterator type</p>
-<h1><a class="anchor" id="autotoc_md336"></a>
+<h1><a class="anchor" id="autotoc_md346"></a>
 Parameters</h1>
 <p><code>i</code> (in) : an input in UBJSON format convertible to an input adapter</p>
 <p><code>first</code> (in) : iterator to start of the input</p>
 <p><code>last</code> (in) : iterator to end of the input</p>
 <p><code>strict</code> (in) : whether to expect the input to be consumed until EOF (<code>#!cpp true</code> by default)</p>
 <p><code>allow_exceptions</code> (in) : whether to throw exceptions in case of a parse error (optional, <code>#!cpp true</code> by default)</p>
-<h1><a class="anchor" id="autotoc_md337"></a>
+<h1><a class="anchor" id="autotoc_md347"></a>
 Return value</h1>
 <p>deserialized JSON value; in case of a parse error and <code>allow_exceptions</code> set to <code>#!cpp false</code>, the return value will be <code>value_t::discarded</code>. The latter can be checked with <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__discarded.html"><code>is_discarded</code></a>.</p>
-<h1><a class="anchor" id="autotoc_md338"></a>
+<h1><a class="anchor" id="autotoc_md348"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md339"></a>
+<h1><a class="anchor" id="autotoc_md349"></a>
 Exceptions</h1>
 <ul>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionparse_error110">parse_error.110</a> if the given input ends prematurely or the end of file was not reached when <code>strict</code> was set to true</li>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionparse_error112">parse_error.112</a> if a parse error occurs</li>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionparse_error113">parse_error.113</a> if a string could not be parsed successfully</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md340"></a>
+<h1><a class="anchor" id="autotoc_md350"></a>
 Complexity</h1>
 <p>Linear in the size of the input.</p>
-<h1><a class="anchor" id="autotoc_md341"></a>
+<h1><a class="anchor" id="autotoc_md351"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows the deserialization of a byte vector in UBJSON format to a JSON value.
 
@@ -156,7 +156,7 @@ Output:
 ```json
 --8&lt;-- "examples/from_ubjson.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md342"></a>
+</pre> <h1><a class="anchor" id="autotoc_md352"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.1.0.</li>

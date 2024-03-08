@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;operator!=</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md696"></a> </p><div class="fragment"><div class="line"><span class="comment">// until C++20</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md706"></a> </p><div class="fragment"><div class="line"><span class="comment">// until C++20</span></div>
 <div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="json__pointer_8hpp.html#aa72a84c70e970b738f1262cfd8a66b4d">operator!=</a>(const_reference lhs, const_reference rhs) <span class="keyword">noexcept</span>;   <span class="comment">// (1)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ScalarType&gt;</div>
@@ -124,30 +124,30 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </li>
 <li>Compares a JSON value and a scalar or a scalar and a JSON value for inequality by converting the scalar to a JSON value and comparing both JSON values according to 1.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md697"></a>
+<h1><a class="anchor" id="autotoc_md707"></a>
 Template parameters</h1>
 <p><code>ScalarType</code> : a scalar type according to <code>std::is_scalar&lt;ScalarType&gt;::value</code></p>
-<h1><a class="anchor" id="autotoc_md698"></a>
+<h1><a class="anchor" id="autotoc_md708"></a>
 Parameters</h1>
 <p><code>lhs</code> (in) : first value to consider</p>
 <p><code>rhs</code> (in) : second value to consider</p>
-<h1><a class="anchor" id="autotoc_md699"></a>
+<h1><a class="anchor" id="autotoc_md709"></a>
 Return value</h1>
 <p>whether the values <code>lhs</code>/<code>*this</code> and <code>rhs</code> are not equal</p>
-<h1><a class="anchor" id="autotoc_md700"></a>
+<h1><a class="anchor" id="autotoc_md710"></a>
 Exception safety</h1>
 <p>No-throw guarantee: this function never throws exceptions.</p>
-<h1><a class="anchor" id="autotoc_md701"></a>
+<h1><a class="anchor" id="autotoc_md711"></a>
 Complexity</h1>
 <p>Linear.</p>
-<h1><a class="anchor" id="autotoc_md702"></a>
+<h1><a class="anchor" id="autotoc_md712"></a>
 Notes</h1>
 <p>!!! note "Comparing `NaN`" </p><pre class="fragment">`NaN` values are unordered within the domain of numbers.
 The following comparisons all yield `#!cpp false`:
   1. Comparing a `NaN` with itself.
   2. Comparing a `NaN` with another `NaN`.
   3. Comparing a `NaN` and any other number.
-</pre> <h1><a class="anchor" id="autotoc_md703"></a>
+</pre> <h1><a class="anchor" id="autotoc_md713"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example demonstrates comparing several JSON types.
 
@@ -171,7 +171,7 @@ Output:
 ```json
 --8&lt;-- "examples/operator__notequal__nullptr_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md704"></a>
+</pre> <h1><a class="anchor" id="autotoc_md714"></a>
 Version history</h1>
 <ol type="1">
 <li>Added in version 1.0.0. Added C++20 member functions in version 3.11.0.</li>

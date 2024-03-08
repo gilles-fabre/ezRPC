@@ -12,4 +12,12 @@ digraph "main"
   Node3 [id="Node000003",label="nlohmann::basic_json\l::basic_json",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a19734fbc9c97d536832892ddacd6b62a",tooltip="create an empty value with a given type"];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="nlohmann::detail::input\l_adapter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a616a53cc3114fdc113fc44e6af4c3c7f",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="nlohmann::detail::binary\l_reader::sax_parse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1binary__reader.html#ab4afd9ee276bbb15a0f898061aad94dd",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::detail::parse\l_error::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1parse__error.html#ae77bd584cb9101140790219af7fec1ce",tooltip="create a parse error exception"];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="nlohmann::detail::exception\l::diagnostics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#aa353a7dba4fd179f7224b8a2a238a264",tooltip=" "];
+  Node6 -> Node8 [id="edge7_Node000006_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="nlohmann::detail::exception\l::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#abf41a7e9178356314082284e6cfea278",tooltip=" "];
 }

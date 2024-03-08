@@ -117,8 +117,8 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad6d23d514134841e7ff7760133251669" id="r_ad6d23d514134841e7ff7760133251669"><td class="memItemLeft" align="right" valign="top">DECLSPEC uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6d23d514134841e7ff7760133251669">CreateRpcClient</a> (<a class="el" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport, const char *serverAddrP)</td></tr>
 <tr class="separator:ad6d23d514134841e7ff7760133251669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a755e5d78c8073551d4e8d57e27ac44ea" id="r_a755e5d78c8073551d4e8d57e27ac44ea"><td class="memItemLeft" align="right" valign="top">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a755e5d78c8073551d4e8d57e27ac44ea">AsyncRpcCall</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="_json_r_p_c_client_8h.html#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a> replyProcP)</td></tr>
-<tr class="separator:a755e5d78c8073551d4e8d57e27ac44ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df5f226eb8cbb4cc9a90937ed298442" id="r_a6df5f226eb8cbb4cc9a90937ed298442"><td class="memItemLeft" align="right" valign="top">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6df5f226eb8cbb4cc9a90937ed298442">RpcCallAsync</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="_json_r_p_c_client_8h.html#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a> replyProcP)</td></tr>
+<tr class="separator:a6df5f226eb8cbb4cc9a90937ed298442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d5c6b5276a4552578728090607a1104" id="r_a0d5c6b5276a4552578728090607a1104"><td class="memItemLeft" align="right" valign="top">DECLSPEC uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d5c6b5276a4552578728090607a1104">RpcCall</a> (uint64_t clientId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
 <tr class="separator:a0d5c6b5276a4552578728090607a1104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acda11b5657e9c30a24050a9b60b551ad" id="r_acda11b5657e9c30a24050a9b60b551ad"><td class="memItemLeft" align="right" valign="top">DECLSPEC void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acda11b5657e9c30a24050a9b60b551ad">DestroyRpcClient</a> (uint64_t clientId)</td></tr>
@@ -142,49 +142,6 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a755e5d78c8073551d4e8d57e27ac44ea" name="a755e5d78c8073551d4e8d57e27ac44ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a755e5d78c8073551d4e8d57e27ac44ea">&#9670;&#160;</a></span>AsyncRpcCall()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> AsyncRpcCall </td>
-          <td>(</td>
-          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>clientId</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>jsonCallP</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>jsonCallResultP</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a></td>          <td class="paramname"><span class="paramname"><em>jsonCallResultLen</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_json_r_p_c_client_8h.html#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a></td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_json_r_p_c_client_8cpp_source.html#l00014">14</a> of file <a class="el" href="_json_r_p_c_client_8cpp_source.html">JsonRPCClient.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="_json_r_p_c_client_8cpp_a755e5d78c8073551d4e8d57e27ac44ea_icgraph.png" border="0" usemap="#a_json_r_p_c_client_8cpp_a755e5d78c8073551d4e8d57e27ac44ea_icgraph" alt=""/></div>
-</div>
-
-</div>
-</div>
 <a id="ad6d23d514134841e7ff7760133251669" name="ad6d23d514134841e7ff7760133251669"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6d23d514134841e7ff7760133251669">&#9670;&#160;</a></span>CreateRpcClient()</h2>
 
@@ -271,6 +228,49 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_json_r_p_c_client_8cpp_a0d5c6b5276a4552578728090607a1104_icgraph.png" border="0" usemap="#a_json_r_p_c_client_8cpp_a0d5c6b5276a4552578728090607a1104_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6df5f226eb8cbb4cc9a90937ed298442" name="a6df5f226eb8cbb4cc9a90937ed298442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df5f226eb8cbb4cc9a90937ed298442">&#9670;&#160;</a></span>RpcCallAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DECLSPEC <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> RpcCallAsync </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>clientId</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>jsonCallP</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>jsonCallResultP</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a></td>          <td class="paramname"><span class="paramname"><em>jsonCallResultLen</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_json_r_p_c_client_8h.html#acaaa2e04ca278a7c58583221a8772f07">AsyncJsonReplyProcedure</a></td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_json_r_p_c_client_8cpp_source.html#l00014">14</a> of file <a class="el" href="_json_r_p_c_client_8cpp_source.html">JsonRPCClient.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="_json_r_p_c_client_8cpp_a6df5f226eb8cbb4cc9a90937ed298442_icgraph.png" border="0" usemap="#a_json_r_p_c_client_8cpp_a6df5f226eb8cbb4cc9a90937ed298442_icgraph" alt=""/></div>
 </div>
 
 </div>

@@ -113,8 +113,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a398c4744e77bccc2c5f783b9f4f2a93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bfa6c95c27f51a23ef1a5e00469cd5c" id="r_a4bfa6c95c27f51a23ef1a5e00469cd5c"><td class="memItemLeft" align="right" valign="top">static ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bfa6c95c27f51a23ef1a5e00469cd5c">CreateRpcClient</a> (<a class="el" href="#a44e122cca9e08254eef37b5bb13b6d93">TransportType</a> transport, byte[] serverAddr)</td></tr>
 <tr class="separator:a4bfa6c95c27f51a23ef1a5e00469cd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a345a1275edbcc1ddddb22f714691c2" id="r_a6a345a1275edbcc1ddddb22f714691c2"><td class="memItemLeft" align="right" valign="top">static ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a345a1275edbcc1ddddb22f714691c2">AsyncRpcCall</a> (ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, <a class="el" href="#a398c4744e77bccc2c5f783b9f4f2a93e">AsyncJsonReplyProcedureType</a> replyProc)</td></tr>
-<tr class="separator:a6a345a1275edbcc1ddddb22f714691c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c08d7aef742018bf52baee096cff45" id="r_ac3c08d7aef742018bf52baee096cff45"><td class="memItemLeft" align="right" valign="top">static ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c08d7aef742018bf52baee096cff45">RpcCallAsync</a> (ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, <a class="el" href="#a398c4744e77bccc2c5f783b9f4f2a93e">AsyncJsonReplyProcedureType</a> replyProc)</td></tr>
+<tr class="separator:ac3c08d7aef742018bf52baee096cff45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad95ba941faded54e25c0e26951a32811" id="r_ad95ba941faded54e25c0e26951a32811"><td class="memItemLeft" align="right" valign="top">static ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad95ba941faded54e25c0e26951a32811">RpcCall</a> (ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen)</td></tr>
 <tr class="separator:ad95ba941faded54e25c0e26951a32811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b3132d63c0803e79510aa79b34647bc" id="r_a1b3132d63c0803e79510aa79b34647bc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b3132d63c0803e79510aa79b34647bc">DestroyRpcClient</a> (ulong clientId)</td></tr>
@@ -209,47 +209,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6a345a1275edbcc1ddddb22f714691c2" name="a6a345a1275edbcc1ddddb22f714691c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a345a1275edbcc1ddddb22f714691c2">&#9670;&#160;</a></span>AsyncRpcCall()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static ulong ezRPC.JsonClientRpcWrapper.AsyncRpcCall </td>
-          <td>(</td>
-          <td class="paramtype">ulong</td>          <td class="paramname"><span class="paramname"><em>clientId</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">byte[]</td>          <td class="paramname"><span class="paramname"><em>jsonCall</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">byte[]</td>          <td class="paramname"><span class="paramname"><em>jsonCallResult</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ulong</td>          <td class="paramname"><span class="paramname"><em>jsonCallResultLen</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#a398c4744e77bccc2c5f783b9f4f2a93e">AsyncJsonReplyProcedureType</a></td>          <td class="paramname"><span class="paramname"><em>replyProc</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classez_r_p_c_1_1_json_client_rpc_wrapper_a6a345a1275edbcc1ddddb22f714691c2_icgraph.png" border="0" usemap="#aclassez_r_p_c_1_1_json_client_rpc_wrapper_a6a345a1275edbcc1ddddb22f714691c2_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -437,6 +396,47 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classez_r_p_c_1_1_json_client_rpc_wrapper_ad95ba941faded54e25c0e26951a32811_icgraph.png" border="0" usemap="#aclassez_r_p_c_1_1_json_client_rpc_wrapper_ad95ba941faded54e25c0e26951a32811_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac3c08d7aef742018bf52baee096cff45" name="ac3c08d7aef742018bf52baee096cff45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c08d7aef742018bf52baee096cff45">&#9670;&#160;</a></span>RpcCallAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ulong ezRPC.JsonClientRpcWrapper.RpcCallAsync </td>
+          <td>(</td>
+          <td class="paramtype">ulong</td>          <td class="paramname"><span class="paramname"><em>clientId</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]</td>          <td class="paramname"><span class="paramname"><em>jsonCall</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]</td>          <td class="paramname"><span class="paramname"><em>jsonCallResult</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong</td>          <td class="paramname"><span class="paramname"><em>jsonCallResultLen</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a398c4744e77bccc2c5f783b9f4f2a93e">AsyncJsonReplyProcedureType</a></td>          <td class="paramname"><span class="paramname"><em>replyProc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classez_r_p_c_1_1_json_client_rpc_wrapper_ac3c08d7aef742018bf52baee096cff45_icgraph.png" border="0" usemap="#aclassez_r_p_c_1_1_json_client_rpc_wrapper_ac3c08d7aef742018bf52baee096cff45_icgraph" alt=""/></div>
 </div>
 
 </div>

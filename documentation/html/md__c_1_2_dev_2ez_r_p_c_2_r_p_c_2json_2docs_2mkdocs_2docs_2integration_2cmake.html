@@ -95,11 +95,11 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">CMake</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1708"></a> </p>
-<h1><a class="anchor" id="autotoc_md1709"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1718"></a> </p>
+<h1><a class="anchor" id="autotoc_md1719"></a>
 Integration</h1>
 <p>You can use the <code>nlohmann_json::nlohmann_json</code> interface target in CMake. This target populates the appropriate usage requirements for <a href="https://cmake.org/cmake/help/latest/prop_tgt/INTERFACE_INCLUDE_DIRECTORIES.html"><code>INTERFACE_INCLUDE_DIRECTORIES</code></a> to point to the appropriate include directories and <a href="https://cmake.org/cmake/help/latest/prop_tgt/INTERFACE_COMPILE_FEATURES.html"><code>INTERFACE_COMPILE_FEATURES</code></a> for the necessary C++11 flags.</p>
-<h2><a class="anchor" id="autotoc_md1710"></a>
+<h2><a class="anchor" id="autotoc_md1720"></a>
 External</h2>
 <p>To use this library from a CMake project, you can locate it directly with <a href="https://cmake.org/cmake/help/latest/command/find_package.html"><code>find_package()</code></a> and use the namespaced imported target from the generated package configuration:</p>
 <p>!!! example </p><pre class="fragment">```cmake title="CMakeLists.txt"
@@ -112,7 +112,7 @@ add_executable(example example.cpp)
 target_link_libraries(example PRIVATE nlohmann_json::nlohmann_json)
 ```
 </pre><p> The package configuration file, <code>nlohmann_jsonConfig.cmake</code>, can be used either from an install tree or directly out of the build tree.</p>
-<h2><a class="anchor" id="autotoc_md1711"></a>
+<h2><a class="anchor" id="autotoc_md1721"></a>
 Embedded</h2>
 <p>To embed the library directly into an existing CMake project, place the entire source tree in a subdirectory and call <code>add_subdirectory()</code> in your <code>CMakeLists.txt</code> file.</p>
 <p>!!! example </p><pre class="fragment">```cmake title="CMakeLists.txt"
@@ -131,7 +131,7 @@ target_link_libraries(example PRIVATE nlohmann_json::nlohmann_json)
 </pre><p> !!! note </p><pre class="fragment">Do not use `#!cmake include(nlohmann_json/CMakeLists.txt)`, since that carries with it unintended consequences that
 will break the build. It is generally discouraged (although not necessarily well documented as such) to use
 `#!cmake include(...)` for pulling in other CMake projects anyways.
-</pre><h2><a class="anchor" id="autotoc_md1712"></a>
+</pre><h2><a class="anchor" id="autotoc_md1722"></a>
 Supporting Both</h2>
 <p>To allow your project to support either an externally supplied or an embedded JSON library, you can use a pattern akin to the following.</p>
 <p>!!! example </p><pre class="fragment">```cmake title="CMakeLists.txt"
@@ -157,7 +157,7 @@ endif()
 ```
 
 `thirdparty/nlohmann_json` is then a complete copy of this source tree.
-</pre><h2><a class="anchor" id="autotoc_md1713"></a>
+</pre><h2><a class="anchor" id="autotoc_md1723"></a>
 FetchContent</h2>
 <p>Since CMake v3.11, <a href="https://cmake.org/cmake/help/v3.11/module/FetchContent.html">FetchContent</a> can be used to automatically download a release as a dependency at configure type.</p>
 <p>!!! example </p><pre class="fragment">```cmake title="CMakeLists.txt"
@@ -185,39 +185,39 @@ FetchContent_Declare(json
 However, the repository &lt;https://github.com/nlohmann/json&gt; download size is quite large. You might want to depend on
 a smaller repository. For instance, you might want to replace the URL in the example by
 &lt;https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent&gt;.
-</pre> <h1><a class="anchor" id="autotoc_md1714"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1724"></a>
 CMake Options</h1>
-<h2><a class="anchor" id="autotoc_md1715"></a>
+<h2><a class="anchor" id="autotoc_md1725"></a>
 <code>JSON_BuildTests</code></h2>
 <p>Build the unit tests when <a href="https://cmake.org/cmake/help/latest/command/enable_testing.html"><code>BUILD_TESTING</code></a> is enabled. This option is <code>ON</code> by default if the library's CMake project is the top project. That is, when integrating the library as described above, the test suite is not built unless explicitly switched on with this option.</p>
-<h2><a class="anchor" id="autotoc_md1716"></a>
+<h2><a class="anchor" id="autotoc_md1726"></a>
 <code>JSON_CI</code></h2>
 <p>Enable CI build targets. The exact targets are used during the several CI steps and are subject to change without notice. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1717"></a>
+<h2><a class="anchor" id="autotoc_md1727"></a>
 <code>JSON_Diagnostics</code></h2>
 <p>Enable <a href="../home/exceptions.md#extended-diagnostic-messages">extended diagnostic messages</a> by defining macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__diagnostics.html"><code>JSON_DIAGNOSTICS</code></a>. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1718"></a>
+<h2><a class="anchor" id="autotoc_md1728"></a>
 <code>JSON_DisableEnumSerialization</code></h2>
 <p>Disable default <code>enum</code> serialization by defining the macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__disable__enum__serialization.html"><code>JSON_DISABLE_ENUM_SERIALIZATION</code></a>. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1719"></a>
+<h2><a class="anchor" id="autotoc_md1729"></a>
 <code>JSON_FastTests</code></h2>
 <p>Skip expensive/slow test suites. This option is <code>OFF</code> by default. Depends on <code>JSON_BuildTests</code>.</p>
-<h2><a class="anchor" id="autotoc_md1720"></a>
+<h2><a class="anchor" id="autotoc_md1730"></a>
 <code>JSON_GlobalUDLs</code></h2>
 <p>Place user-defined string literals in the global namespace by defining the macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__use__global__udls.html"><code>JSON_USE_GLOBAL_UDLS</code></a>. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1721"></a>
+<h2><a class="anchor" id="autotoc_md1731"></a>
 <code>JSON_ImplicitConversions</code></h2>
 <p>Enable implicit conversions by defining macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__use__implicit__conversions.html"><code>JSON_USE_IMPLICIT_CONVERSIONS</code></a>. This option is <code>ON</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1722"></a>
+<h2><a class="anchor" id="autotoc_md1732"></a>
 <code>JSON_Install</code></h2>
 <p>Install CMake targets during install step. This option is <code>ON</code> by default if the library's CMake project is the top project.</p>
-<h2><a class="anchor" id="autotoc_md1723"></a>
+<h2><a class="anchor" id="autotoc_md1733"></a>
 <code>JSON_MultipleHeaders</code></h2>
 <p>Use non-amalgamated version of the library. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1724"></a>
+<h2><a class="anchor" id="autotoc_md1734"></a>
 <code>JSON_SystemInclude</code></h2>
 <p>Treat the library headers like system headers (i.e., adding <code>SYSTEM</code> to the <a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html"><code>target_include_directories</code></a> call) to checks for this library by tools like Clang-Tidy. This option is <code>OFF</code> by default.</p>
-<h2><a class="anchor" id="autotoc_md1725"></a>
+<h2><a class="anchor" id="autotoc_md1735"></a>
 <code>JSON_Valgrind</code></h2>
 <p>Execute test suite with <a href="https://valgrind.org">Valgrind</a>. This option is <code>OFF</code> by default. Depends on <code>JSON_BuildTests</code>. </p>
 </div></div><!-- contents -->

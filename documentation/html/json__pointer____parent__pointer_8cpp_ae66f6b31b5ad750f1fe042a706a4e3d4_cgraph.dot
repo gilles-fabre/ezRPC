@@ -1,0 +1,22 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="main",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="nlohmann::json_pointer\l::parent_pointer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1json__pointer.html#afdaacce1edb7145e0434e014f0e8685a",tooltip="returns the parent of this JSON pointer"];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="nlohmann::json_pointer\l::empty",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1json__pointer.html#a649252bda4a2e75a0915b11a25d8bcc3",tooltip="return whether pointer points to the root document"];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="nlohmann::json_pointer\l::pop_back",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1json__pointer.html#a4b1ee4d511ca195bed896a3da47e264c",tooltip="remove last reference token"];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="nlohmann::detail::out\l_of_range::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1out__of__range.html#a238f1bda3b6c92b5970fbf9187ccd325",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::detail::exception\l::diagnostics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#aa353a7dba4fd179f7224b8a2a238a264",tooltip=" "];
+  Node5 -> Node7 [id="edge6_Node000005_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="nlohmann::detail::exception\l::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#abf41a7e9178356314082284e6cfea278",tooltip=" "];
+  Node4 -> Node3 [id="edge7_Node000004_Node000003",color="steelblue1",style="solid",tooltip=" "];
+}

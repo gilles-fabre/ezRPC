@@ -16,4 +16,6 @@ digraph "tracesListener.TracesDataThread.runInnards"
   Node5 [id="Node000005",label="tracesListener.ByteUtil.extract\lShort",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_byte_util.html#acd91e67cab6a4a51d20f5f89b371e0f3",tooltip=" "];
   Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="tracesListener.TracesListener\lServer.removeDataThread",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_traces_listener_server.html#adcd65bb954ea9be8d79d1694ecb58ebd",tooltip=" "];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="tracesListener.DataThread.shutdown",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_data_thread.html#ac8dda0e6de56401fc2dbe9d322c5fc28",tooltip=" "];
 }

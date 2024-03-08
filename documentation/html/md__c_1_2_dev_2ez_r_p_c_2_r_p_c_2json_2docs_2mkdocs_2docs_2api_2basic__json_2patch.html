@@ -95,19 +95,19 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;patch</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md767"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> patch(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; json_patch) <span class="keyword">const</span>;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md777"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> patch(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; json_patch) <span class="keyword">const</span>;</div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 </div><!-- fragment --><p><a href="http://jsonpatch.com">JSON Patch</a> defines a JSON document structure for expressing a sequence of operations to apply to a JSON document. With this function, a JSON Patch is applied to the current JSON value by executing all operations from the patch.</p>
-<h1><a class="anchor" id="autotoc_md768"></a>
+<h1><a class="anchor" id="autotoc_md778"></a>
 Parameters</h1>
 <p><code>json_patch</code> (in) : JSON patch document</p>
-<h1><a class="anchor" id="autotoc_md769"></a>
+<h1><a class="anchor" id="autotoc_md779"></a>
 Return value</h1>
 <p>patched document</p>
-<h1><a class="anchor" id="autotoc_md770"></a>
+<h1><a class="anchor" id="autotoc_md780"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md771"></a>
+<h1><a class="anchor" id="autotoc_md781"></a>
 Exceptions</h1>
 <ul>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionparse_error104"><code>parse_error.104</code></a> if the JSON patch does not consist of an array of objects.</li>
@@ -117,13 +117,13 @@ Exceptions</h1>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionout_of_range405"><code>out_of_range.405</code></a> if JSON pointer has no parent ("add", "remove", "move")</li>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptionother_error501"><code>out_of_range.501</code></a> if "test" operation was unsuccessful.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md772"></a>
+<h1><a class="anchor" id="autotoc_md782"></a>
 Complexity</h1>
 <p>Linear in the size of the JSON value and the length of the JSON patch. As usually only a fraction of the JSON value is affected by the patch, the complexity can usually be neglected.</p>
-<h1><a class="anchor" id="autotoc_md773"></a>
+<h1><a class="anchor" id="autotoc_md783"></a>
 Notes</h1>
 <p>The application of a patch is atomic: Either all operations succeed and the patched document is returned or an exception is thrown. In any case, the original value is not changed: the patch is applied to a copy of the value.</p>
-<h1><a class="anchor" id="autotoc_md774"></a>
+<h1><a class="anchor" id="autotoc_md784"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how a JSON patch is applied to a value.
 
@@ -136,7 +136,7 @@ Output:
 ```json
 --8&lt;-- "examples/patch.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md775"></a>
+</pre> <h1><a class="anchor" id="autotoc_md785"></a>
 See also</h1>
 <ul>
 <li><a href="https://tools.ietf.org/html/rfc6902">RFC 6902 (JSON Patch)</a></li>
@@ -144,7 +144,7 @@ See also</h1>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2patch__inplace.html">patch_inplace</a> applies a JSON Patch without creating a copy of the document</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2merge__patch.html">merge_patch</a> applies a JSON Merge Patch</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md776"></a>
+<h1><a class="anchor" id="autotoc_md786"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.0.0. </li>

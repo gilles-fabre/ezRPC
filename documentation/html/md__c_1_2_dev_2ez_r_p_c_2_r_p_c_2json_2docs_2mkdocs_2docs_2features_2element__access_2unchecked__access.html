@@ -95,8 +95,8 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Unchecked access: operator[]</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1360"></a> </p>
-<h1><a class="anchor" id="autotoc_md1361"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1370"></a> </p>
+<h1><a class="anchor" id="autotoc_md1371"></a>
 Overview</h1>
 <p>Elements in a JSON object and a JSON array can be accessed via <code>operator[]</code> similar to a <code>#!cpp std::map</code> and a <code>#!cpp std::vector</code>, respectively.</p>
 <p>??? example "Read access" </p><pre class="fragment">Consider the following JSON value:
@@ -151,7 +151,7 @@ This code produces the following JSON value:
     "hobbies": ["running", "reading", null, "cooking"]
 }
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1362"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1372"></a>
 Notes</h1>
 <p>!!! info "Design rationale" </p><pre class="fragment">The library behaves differently to `#!cpp std::vector` and `#!cpp std::map`:
 
@@ -171,7 +171,7 @@ exception is thrown.
   on [runtime assertions](../assertions.md) for more information.
 </pre><p> !!! failure "Exceptions" </p><pre class="fragment">`operator[]` can only be used with objects (with a string argument) or with arrays (with a numeric argument). For
 other types, a [`basic_json::type_error`](../../home/exceptions.md#jsonexceptiontype_error305) is thrown.
-</pre> <h1><a class="anchor" id="autotoc_md1363"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1373"></a>
 Summary</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">

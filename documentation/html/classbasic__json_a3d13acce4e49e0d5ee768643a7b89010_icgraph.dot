@@ -16,6 +16,8 @@ digraph "basic_json::push_back"
   Node5 [id="Node000005",label="basic_json::operator+=",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a3af74b651da5642cd8b77a3ecc635331",tooltip="add an object to an object"];
   Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="basic_json::patch_inplace",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a693812b31e106dec9166e93d8f6dd7d7",tooltip="applies a JSON patch in-place without copying the object"];
-  Node1 -> Node7 [id="edge6_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="basic_json::push_back",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a4fcacc90f17b156f0b6c8e0430624853",tooltip="add an object to an object"];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="basic_json::patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a145a004c0a2fa5be84b260ecc98ab5d9",tooltip="applies a JSON patch to a copy of the current object"];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="basic_json::push_back",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a4fcacc90f17b156f0b6c8e0430624853",tooltip="add an object to an object"];
 }

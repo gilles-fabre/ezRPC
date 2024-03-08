@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON_CATCH_USER, JSON_THROW_USER, JSON_TRY_USER</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1201"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1211"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="preprocessor">#define JSON_CATCH_USER(exception) </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
 <div class="line"><span class="comment">// (2)</span></div>
 <div class="line"><span class="preprocessor">#define JSON_THROW_USER(exception) </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
@@ -107,10 +107,10 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>This macro overrides <code>#!cpp throw</code> calls inside the library. The argument is the exception to be thrown. Note that <code>JSON_THROW_USER</code> should leave the current scope (e.g., by throwing or aborting), as continuing after it may yield undefined behavior.</li>
 <li>This macro overrides <code>#!cpp try</code> calls inside the library. It has no arguments and is always followed by a scope.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1202"></a>
+<h1><a class="anchor" id="autotoc_md1212"></a>
 Parameters</h1>
 <p><code>exception</code> (in) : an exception type</p>
-<h1><a class="anchor" id="autotoc_md1203"></a>
+<h1><a class="anchor" id="autotoc_md1213"></a>
 Default definition</h1>
 <p>By default, the macros map to their respective C++ keywords:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_CATCH_USER(exception) catch(exception)</span></div>
@@ -120,7 +120,7 @@ Default definition</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_THROW_USER(exception) std::abort()</span></div>
 <div class="line"><span class="preprocessor">#define JSON_TRY_USER              if (true)</span></div>
 <div class="line"><span class="preprocessor">#define JSON_CATCH_USER(exception) if (false)</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1204"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1214"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The code below switches off exceptions and creates a log entry with a detailed error message in case of errors.
 
@@ -137,13 +137,13 @@ Examples</h1>
 
 #include &lt;nlohmann/json.hpp&gt;
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1205"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1215"></a>
 See also</h1>
 <ul>
 <li><a href="../../home/exceptions.md#switch-off-exceptions">Switch off exceptions</a> for more information how to switch off exceptions</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__noexception.html">JSON_NOEXCEPTION</a> - switch off exceptions</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1206"></a>
+<h1><a class="anchor" id="autotoc_md1216"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.1.0. </li>

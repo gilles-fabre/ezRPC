@@ -8,4 +8,6 @@ digraph "main"
   Node1 [id="Node000001",label="main",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="nlohmann::basic_json\l::object",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a9a4df356e05415438fadf8a15e583903",tooltip="explicitly create an object from an initializer list"];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="nlohmann::basic_json\l::type",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a5b7c4b35a0ad9f97474912a08965d7ad",tooltip="return the type of the JSON value (explicit)"];
 }

@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;from_bson</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md306"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md316"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputType&gt;</div>
 <div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> from_bson(InputType&amp;&amp; i,</div>
 <div class="line">                            <span class="keyword">const</span> <span class="keywordtype">bool</span> strict = <span class="keyword">true</span>,</div>
@@ -112,7 +112,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Reads from an iterator range.</li>
 </ol>
 <p>The exact mapping and its limitations is described on a <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2bson.html">dedicated page</a>.</p>
-<h1><a class="anchor" id="autotoc_md307"></a>
+<h1><a class="anchor" id="autotoc_md317"></a>
 Template parameters</h1>
 <p><code>InputType</code> : A compatible input, for instance: </p><pre class="fragment">- an `std::istream` object
 - a `FILE` pointer
@@ -120,26 +120,26 @@ Template parameters</h1>
 - a pointer to a null-terminated string of single byte characters
 - an object `obj` for which `begin(obj)` and `end(obj)` produces a valid pair of iterators.
 </pre><p> <code>IteratorType</code> : a compatible iterator type</p>
-<h1><a class="anchor" id="autotoc_md308"></a>
+<h1><a class="anchor" id="autotoc_md318"></a>
 Parameters</h1>
 <p><code>i</code> (in) : an input in BSON format convertible to an input adapter</p>
 <p><code>first</code> (in) : iterator to start of the input</p>
 <p><code>last</code> (in) : iterator to end of the input</p>
 <p><code>strict</code> (in) : whether to expect the input to be consumed until EOF (<code>#!cpp true</code> by default)</p>
 <p><code>allow_exceptions</code> (in) : whether to throw exceptions in case of a parse error (optional, <code>#!cpp true</code> by default)</p>
-<h1><a class="anchor" id="autotoc_md309"></a>
+<h1><a class="anchor" id="autotoc_md319"></a>
 Return value</h1>
 <p>deserialized JSON value; in case of a parse error and <code>allow_exceptions</code> set to <code>#!cpp false</code>, the return value will be <code>value_t::discarded</code>. The latter can be checked with <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__discarded.html"><code>is_discarded</code></a>.</p>
-<h1><a class="anchor" id="autotoc_md310"></a>
+<h1><a class="anchor" id="autotoc_md320"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md311"></a>
+<h1><a class="anchor" id="autotoc_md321"></a>
 Exceptions</h1>
 <p>Throws <a href="../../home/exceptions.md#jsonexceptionparse_error114"><code>parse_error.114</code></a> if an unsupported BSON record type is encountered.</p>
-<h1><a class="anchor" id="autotoc_md312"></a>
+<h1><a class="anchor" id="autotoc_md322"></a>
 Complexity</h1>
 <p>Linear in the size of the input.</p>
-<h1><a class="anchor" id="autotoc_md313"></a>
+<h1><a class="anchor" id="autotoc_md323"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows the deserialization of a byte vector in BSON format to a JSON value.
 
@@ -152,7 +152,7 @@ Output:
 ```json
 --8&lt;-- "examples/from_bson.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md314"></a>
+</pre> <h1><a class="anchor" id="autotoc_md324"></a>
 See also</h1>
 <ul>
 <li><a href="http://bsonspec.org/spec.html">BSON specification</a></li>
@@ -161,7 +161,7 @@ See also</h1>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2from__msgpack.html">from_msgpack</a> for the related MessagePack format</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2from__ubjson.html">from_ubjson</a> for the related UBJSON format</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md315"></a>
+<h1><a class="anchor" id="autotoc_md325"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.4.0.</li>

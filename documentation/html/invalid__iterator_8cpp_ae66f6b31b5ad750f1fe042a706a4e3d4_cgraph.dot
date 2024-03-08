@@ -9,5 +9,13 @@ digraph "main"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="nlohmann::basic_json\l::begin",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a23b495b4c282e4afacf382f5b49af7c7",tooltip="returns an iterator to the first element"];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="nlohmann::detail::exception\l::what",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#ad863f4455f8bb2ea006a78e6fcf0b090",tooltip="returns the explanatory string"];
+  Node3 [id="Node000003",label="nlohmann::detail::iter\l_impl::key",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1iter__impl.html#a9aa08ccaf6e80f7bd9513c0d054efb64",tooltip="return the key of an object iterator"];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="nlohmann::detail::invalid\l_iterator::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1invalid__iterator.html#a34104b98ab00564e564176b4d2ba7c3c",tooltip=" "];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="nlohmann::detail::exception\l::diagnostics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#aa353a7dba4fd179f7224b8a2a238a264",tooltip=" "];
+  Node4 -> Node6 [id="edge5_Node000004_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::detail::exception\l::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#abf41a7e9178356314082284e6cfea278",tooltip=" "];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="nlohmann::detail::exception\l::what",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#ad863f4455f8bb2ea006a78e6fcf0b090",tooltip="returns the explanatory string"];
 }

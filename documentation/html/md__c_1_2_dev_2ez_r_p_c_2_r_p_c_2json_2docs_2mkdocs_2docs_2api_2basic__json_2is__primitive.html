@@ -95,31 +95,31 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;is_primitive</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md512"></a> </p><div class="fragment"><div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> is_primitive() const noexcept;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md522"></a> </p><div class="fragment"><div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> is_primitive() const noexcept;</div>
 </div><!-- fragment --><p>This function returns <code>#!cpp true</code> if and only if the JSON type is primitive (string, number, boolean, <code>#!json null</code>, binary).</p>
-<h1><a class="anchor" id="autotoc_md513"></a>
+<h1><a class="anchor" id="autotoc_md523"></a>
 Return value</h1>
 <p><code>#!cpp true</code> if type is primitive (string, number, boolean, <code>#!json null</code>, or binary), <code>#!cpp false</code> otherwise.</p>
-<h1><a class="anchor" id="autotoc_md514"></a>
+<h1><a class="anchor" id="autotoc_md524"></a>
 Exception safety</h1>
 <p>No-throw guarantee: this member function never throws exceptions.</p>
-<h1><a class="anchor" id="autotoc_md515"></a>
+<h1><a class="anchor" id="autotoc_md525"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md516"></a>
+<h1><a class="anchor" id="autotoc_md526"></a>
 Possible implementation</h1>
 <div class="fragment"><div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> is_primitive() const noexcept</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">return</span> is_null() || is_string() || is_boolean() || is_number() || is_binary();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md517"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md527"></a>
 Notes</h1>
 <p>The term <em>primitive</em> stems from <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>:</p>
 <blockquote class="doxtable">
 <p>&zwj;JSON can represent four primitive types (strings, numbers, booleans, and null) and two structured types (objects and arrays). </p>
 </blockquote>
 <p>This library extends primitive types to binary types, because binary types are roughly comparable to strings. Hence, <code>is_primitive()</code> returns <code>#!cpp true</code> for binary values.</p>
-<h1><a class="anchor" id="autotoc_md518"></a>
+<h1><a class="anchor" id="autotoc_md528"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code exemplifies `is_primitive()` for all JSON types.
 
@@ -132,7 +132,7 @@ Output:
 ```json
 --8&lt;-- "examples/is_primitive.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md519"></a>
+</pre> <h1><a class="anchor" id="autotoc_md529"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__structured.html">is_structured()</a> returns whether JSON value is structured</li>
@@ -142,7 +142,7 @@ See also</h1>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__number.html">is_number()</a> returns whether JSON value is a number</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__binary.html">is_binary()</a> returns whether JSON value is a binary array</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md520"></a>
+<h1><a class="anchor" id="autotoc_md530"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

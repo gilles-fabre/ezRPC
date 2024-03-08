@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;push_back</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md786"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md796"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keywordtype">void</span> push_back(<a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp;&amp; val);</div>
 <div class="line"><span class="keywordtype">void</span> push_back(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; val);</div>
 <div class="line"> </div>
@@ -116,26 +116,26 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <p class="startli"><code>init</code> is converted into an object element and added using <code>push_back(const typename object_t::value_type&amp;)</code>. Otherwise, <code>init</code> is converted to a JSON value and added using <code>push_back(<a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a>&amp;&amp;)</code>.</p>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md787"></a>
+<h1><a class="anchor" id="autotoc_md797"></a>
 Parameters</h1>
 <p><code>val</code> (in) : the value to add to the JSON array/object</p>
 <p><code>init</code> (in) : an initializer list</p>
-<h1><a class="anchor" id="autotoc_md788"></a>
+<h1><a class="anchor" id="autotoc_md798"></a>
 Exceptions</h1>
 <p>All functions can throw the following exception:</p><ul>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error308"><code>type_error.308</code></a> when called on a type other than JSON array or null; example: <code>"cannot use push_back() with number"</code></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md789"></a>
+<h1><a class="anchor" id="autotoc_md799"></a>
 Complexity</h1>
 <ol type="1">
 <li>Amortized constant.</li>
 <li>Logarithmic in the size of the container, O(log(<code>size()</code>)).</li>
 <li>Linear in the size of the initializer list <code>init</code>.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md790"></a>
+<h1><a class="anchor" id="autotoc_md800"></a>
 Notes</h1>
 <p>(3) This function is required to resolve an ambiguous overload error, because pairs like <code>{"key", "value"}</code> can be both interpreted as <code>object_t::value_type</code> or <code>std::initializer_list&lt;<a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a>&gt;</code>, see <a href="https://github.com/nlohmann/json/issues/235">#235</a> for more information.</p>
-<h1><a class="anchor" id="autotoc_md791"></a>
+<h1><a class="anchor" id="autotoc_md801"></a>
 Examples</h1>
 <p>??? example "Example: (1) add element to array" </p><pre class="fragment">The example shows how `push_back()` and `+=` can be used to add elements to a JSON array. Note how the `null` value
 was silently converted to a JSON array.
@@ -172,7 +172,7 @@ Output:
 ```json
 --8&lt;-- "examples/push_back__initializer_list.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md792"></a>
+</pre> <h1><a class="anchor" id="autotoc_md802"></a>
 Version history</h1>
 <ol type="1">
 <li>Since version 1.0.0.</li>

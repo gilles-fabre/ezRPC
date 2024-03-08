@@ -26,5 +26,6 @@ var searchData=
   ['count_23',['&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;count',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2count.html',1,'']]],
   ['covenant_20code_20of_20conduct_24',['Contributor Covenant Code of Conduct',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2home_2code__of__conduct.html',1,'']]],
   ['crbegin_25',['&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;crbegin',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2crbegin.html',1,'']]],
-  ['crend_26',['&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;crend',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2crend.html',1,'']]]
+  ['crend_26',['&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;crend',['../md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2crend.html',1,'']]],
+  ['customization_20points_27',['Customization Points',['../md__c_1_2_dev_2ez_r_p_c_2build_2packages_2_microsoft_8googletest_8v140_8windesktop_8msvcstl_8stafbc53f99014c0d26cc5a4520ce738a0c.html',1,'']]]
 ];

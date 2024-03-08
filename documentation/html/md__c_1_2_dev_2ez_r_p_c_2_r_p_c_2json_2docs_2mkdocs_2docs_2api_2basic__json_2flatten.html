@@ -95,22 +95,22 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;flatten</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md289"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> flatten() <span class="keyword">const</span>;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md299"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> flatten() <span class="keyword">const</span>;</div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 </div><!-- fragment --><p>The function creates a JSON object whose keys are JSON pointers (see <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a>) and whose values are all primitive (see <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2is__primitive.html"><code>is_primitive()</code></a> for more information). The original JSON value can be restored using the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2unflatten.html"><code>unflatten()</code></a> function.</p>
-<h1><a class="anchor" id="autotoc_md290"></a>
+<h1><a class="anchor" id="autotoc_md300"></a>
 Return value</h1>
 <p>an object that maps JSON pointers to primitive values</p>
-<h1><a class="anchor" id="autotoc_md291"></a>
+<h1><a class="anchor" id="autotoc_md301"></a>
 Exception safety</h1>
 <p>Strong exception safety: if an exception occurs, the original value stays intact.</p>
-<h1><a class="anchor" id="autotoc_md292"></a>
+<h1><a class="anchor" id="autotoc_md302"></a>
 Complexity</h1>
 <p>Linear in the size the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md293"></a>
+<h1><a class="anchor" id="autotoc_md303"></a>
 Notes</h1>
 <p>Empty objects and arrays are flattened to <code>#!json null</code> and will not be reconstructed correctly by the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2unflatten.html"><code>unflatten()</code></a> function.</p>
-<h1><a class="anchor" id="autotoc_md294"></a>
+<h1><a class="anchor" id="autotoc_md304"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how a JSON object is flattened to an object whose keys consist of JSON pointers.
 
@@ -123,12 +123,12 @@ Output:
 ```json
 --8&lt;-- "examples/flatten.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md295"></a>
+</pre> <h1><a class="anchor" id="autotoc_md305"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2unflatten.html">unflatten</a> the reverse function</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md296"></a>
+<h1><a class="anchor" id="autotoc_md306"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.0.0. </li>

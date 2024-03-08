@@ -14,4 +14,8 @@ digraph "nlohmann::detail::parser::accept"
   Node4 [id="Node000004",label="nlohmann::detail::exception\l::diagnostics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#aa353a7dba4fd179f7224b8a2a238a264",tooltip=" "];
   Node3 -> Node5 [id="edge4_Node000003_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="nlohmann::detail::exception\l::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#abf41a7e9178356314082284e6cfea278",tooltip=" "];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::detail::lexer\l::get_position",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1lexer.html#a948c80b8bd8a3095b544e4655e1ca37e",tooltip="return position of last read token"];
+  Node2 -> Node7 [id="edge6_Node000002_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="nlohmann::detail::lexer\l::get_token_string",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1lexer.html#ae000b7571480e528dee4b281f63d5b15",tooltip=" "];
 }

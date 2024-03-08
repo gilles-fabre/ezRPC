@@ -14,4 +14,19 @@ digraph "nlohmann::basic_json::basic_json"
   Node4 [id="Node000004",label="nlohmann::detail::exception\l::diagnostics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#aa353a7dba4fd179f7224b8a2a238a264",tooltip=" "];
   Node3 -> Node5 [id="edge4_Node000003_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="nlohmann::detail::exception\l::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1exception.html#abf41a7e9178356314082284e6cfea278",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::basic_json\l::emplace",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#af244c096197a233edba4c83200ae66ac",tooltip="add an object to an object if key does not exist"];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="nlohmann::basic_json\l::begin",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a23b495b4c282e4afacf382f5b49af7c7",tooltip="returns an iterator to the first element"];
+  Node6 -> Node3 [id="edge7_Node000006_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node6 -> Node8 [id="edge8_Node000006_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="nlohmann::basic_json\l::is_null",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#aedc7afad96292b5ab61a2e0ad3067f5f",tooltip="return whether value is null"];
+  Node6 -> Node9 [id="edge9_Node000006_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="nlohmann::basic_json\l::is_object",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a57e8411a770a6263d6d8f2116c37f3aa",tooltip="return whether value is an object"];
+  Node6 -> Node10 [id="edge10_Node000006_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="nlohmann::basic_json\l::type_name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#ab8811fc4eab6091b32b34b3ac3e90474",tooltip="return the type as string"];
+  Node1 -> Node11 [id="edge11_Node000001_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="nlohmann::detail::json\l_ref::moved_or_copied",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1json__ref.html#ae39e523218bf05cac3fb5b5b1cd5efb6",tooltip=" "];
+  Node1 -> Node12 [id="edge12_Node000001_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="nlohmann::basic_json\l::object",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a9a4df356e05415438fadf8a15e583903",tooltip="explicitly create an object from an initializer list"];
 }

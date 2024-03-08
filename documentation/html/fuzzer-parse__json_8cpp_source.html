@@ -142,7 +142,7 @@ $(function(){initNavTree('fuzzer-parse__json_8cpp_source.html',''); initResizabl
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="comment">// step 2: round trip</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// first serialization</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            std::string <span class="keyword">const</span> s1 = j1.dump();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            std::string <span class="keyword">const</span> s1 = j1.<a class="code hl_function" href="classnlohmann_1_1basic__json.html#a476756fb08e7f2416aad116d137977f4">dump</a>();</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="comment">// parse serialization</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <a class="code hl_class" href="classnlohmann_1_1basic__json.html">json</a> <span class="keyword">const</span> <a class="code hl_variable" href="unit-udt_8cpp.html#af0a091aa0e0539bf37d5db14c01f2bd6">j2</a> = <a class="code hl_function" href="classnlohmann_1_1basic__json.html#a15018ade392a844ea32d5188d1a0b9c6">json::parse</a>(s1);</div>

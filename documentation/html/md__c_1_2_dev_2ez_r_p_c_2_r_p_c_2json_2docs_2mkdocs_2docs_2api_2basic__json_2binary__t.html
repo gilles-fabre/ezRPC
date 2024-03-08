@@ -95,7 +95,8 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;binary_t</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md141"></a> </p><div class="fragment"><div class="line"><span class="keyword">using </span>binary_t = byte_container_with_subtype&lt;BinaryType&gt;;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md151"></a> </p><div class="fragment"><div class="line"><span class="keyword">using </span>binary_t = <a class="code hl_class" href="classbyte__container__with__subtype.html">byte_container_with_subtype&lt;BinaryType&gt;</a>;</div>
+<div class="ttc" id="aclassbyte__container__with__subtype_html"><div class="ttname"><a href="classbyte__container__with__subtype.html">byte_container_with_subtype</a></div><div class="ttdoc">an internal type for a backed binary type</div><div class="ttdef"><b>Definition</b> <a href="byte__container__with__subtype_8hpp_source.html#l00022">byte_container_with_subtype.hpp:23</a></div></div>
 </div><!-- fragment --><p>This type is a type designed to carry binary data that appears in various serialized formats, such as CBOR's Major Type 2, MessagePack's bin, and BSON's generic binary subtype. This type is NOT a part of standard JSON and exists solely for compatibility with these binary types. As such, it is simply defined as an ordered sequence of zero or more byte values.</p>
 <p>Additionally, as an implementation detail, the subtype of the binary data is carried around as a <code>std::uint64_t</code>, which is compatible with both of the binary data formats that use binary subtyping, (though the specific numbering is incompatible with each other, and it is up to the user to translate between them). The subtype is added to <code>BinaryType</code> via the helper type <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2byte__container__with__subtype_2index.html">byte_container_with_subtype</a>.</p>
 <p><a href="https://tools.ietf.org/html/rfc7049">CBOR's RFC 7049</a> describes this type as: </p><blockquote class="doxtable">
@@ -109,18 +110,18 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </blockquote>
 <p>None of these impose any limitations on the internal representation other than the basic unit of storage be some type of array whose parts are decomposable into bytes.</p>
 <p>The default representation of this binary format is a <code>#!cpp std::vector&lt;std::uint8_t&gt;</code>, which is a very common way to represent a byte array in modern C++.</p>
-<h1><a class="anchor" id="autotoc_md142"></a>
+<h1><a class="anchor" id="autotoc_md152"></a>
 Template parameters</h1>
 <p><code>BinaryType</code> : container type to store arrays</p>
-<h1><a class="anchor" id="autotoc_md143"></a>
+<h1><a class="anchor" id="autotoc_md153"></a>
 Notes</h1>
-<h3><a class="anchor" id="autotoc_md144"></a>
+<h3><a class="anchor" id="autotoc_md154"></a>
 Default type</h3>
 <p>The default values for <code>BinaryType</code> is <code>#!cpp std::vector&lt;std::uint8_t&gt;</code>.</p>
-<h3><a class="anchor" id="autotoc_md145"></a>
+<h3><a class="anchor" id="autotoc_md155"></a>
 Storage</h3>
 <p>Binary Arrays are stored as pointers in a <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code> type. That is, for any access to array values, a pointer of the type <code>#!cpp binary_t*</code> must be dereferenced.</p>
-<h3><a class="anchor" id="autotoc_md146"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 Notes on subtypes</h3>
 <ul>
 <li>CBOR<ul>
@@ -138,7 +139,7 @@ Notes on subtypes</h3>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md147"></a>
+<h1><a class="anchor" id="autotoc_md157"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows that `binary_t` is by default, a typedef to
 `#!cpp nlohmann::byte_container_with_subtype&lt;std::vector&lt;std::uint8_t&gt;&gt;`.
@@ -152,12 +153,12 @@ Output:
 ```json
 --8&lt;-- "examples/binary_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md148"></a>
+</pre> <h1><a class="anchor" id="autotoc_md158"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2byte__container__with__subtype_2index.html">byte_container_with_subtype</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md149"></a>
+<h1><a class="anchor" id="autotoc_md159"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.8.0. Changed type of subtype to <code>std::uint64_t</code> in version 3.10.0. </li>

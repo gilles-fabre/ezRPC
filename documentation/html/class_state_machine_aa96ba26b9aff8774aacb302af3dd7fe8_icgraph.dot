@@ -7,5 +7,9 @@ digraph "StateMachine::InitiateTransitionTimer"
   rankdir="RL";
   Node1 [id="Node000001",label="StateMachine::InitiateTransition\lTimer",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="StateMachine::DoTransition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb",tooltip="Executes the given transition on the current state."];
+  Node2 [id="Node000002",label="StateMachine::CreateFrom\lDefinition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479",tooltip="This factory method creates a state machine from the given definition."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="StateMachine::DoTransition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb",tooltip="Executes the given transition on the current state."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="StateMachine::TimerThread\lCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ab502559100a6bc6d7cbf0bbaff8a6d3a",tooltip=" "];
 }

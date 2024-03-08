@@ -95,13 +95,13 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;default_object_comparator_t</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md208"></a> </p><div class="fragment"><div class="line"><span class="keyword">using </span>default_object_comparator_t = std::less&lt;StringType&gt;;  <span class="comment">// until C++14</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md218"></a> </p><div class="fragment"><div class="line"><span class="keyword">using </span>default_object_comparator_t = std::less&lt;StringType&gt;;  <span class="comment">// until C++14</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using </span>default_object_comparator_t = std::less&lt;&gt;;            <span class="comment">// since C++14</span></div>
 </div><!-- fragment --><p>The default comparator used by <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a>.</p>
 <p>Since C++14 a transparent comparator is used which prevents unnecessary string construction when looking up a key in an object.</p>
 <p>The actual comparator used depends on <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a> and can be obtained via <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__comparator__t.html"><code>object_comparator_t</code></a>.</p>
-<h1><a class="anchor" id="autotoc_md209"></a>
+<h1><a class="anchor" id="autotoc_md219"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below demonstrates the default comparator.
 
@@ -114,7 +114,7 @@ Output:
 ```json
 --8&lt;-- "examples/default_object_comparator_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md210"></a>
+</pre> <h1><a class="anchor" id="autotoc_md220"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.11.0. </li>

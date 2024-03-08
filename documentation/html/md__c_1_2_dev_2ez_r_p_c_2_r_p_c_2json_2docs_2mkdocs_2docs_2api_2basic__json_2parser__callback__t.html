@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;parser_callback_t</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md762"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md772"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
 <div class="line"><span class="keyword">using </span>parser_callback_t =</div>
 <div class="line">    std::function&lt;bool(<span class="keywordtype">int</span> depth, parse_event_t event, BasicJsonType&amp; parsed)&gt;;</div>
 </div><!-- fragment --><p>With a parser callback function, the result of parsing a JSON text can be influenced. When passed to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse.html"><code>parse</code></a>, it is called on certain events (passed as <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse__event__t.html"><code>parse_event_t</code></a> via parameter <code>event</code>) with a set recursion depth <code>depth</code> and context JSON value <code>parsed</code>. The return value of the callback function is a boolean indicating whether the element that emitted the callback shall be kept or not.</p>
@@ -122,15 +122,15 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Discarded values in structured types are skipped. That is, the parser will behave as if the discarded value was never read.</li>
 <li>In case a value outside a structured type is skipped, it is replaced with <code>null</code>. This case happens if the top-level element is skipped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md763"></a>
+<h1><a class="anchor" id="autotoc_md773"></a>
 Parameters</h1>
 <p><code>depth</code> (in) : the depth of the recursion during parsing</p>
 <p><code>event</code> (in) : an event of type <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse__event__t.html"><code>parse_event_t</code></a> indicating the context in the callback function has been called</p>
 <p><code>parsed</code> (in, out) : the current intermediate parse result; note that writing to this value has no effect for <code>parse_event_t::key</code> events</p>
-<h1><a class="anchor" id="autotoc_md764"></a>
+<h1><a class="anchor" id="autotoc_md774"></a>
 Return value</h1>
 <p>Whether the JSON value which called the function during parsing should be kept (<code>#!cpp true</code>) or not (<code>#!cpp false</code>). In the latter case, it is either skipped completely or replaced by an empty discarded object.</p>
-<h1><a class="anchor" id="autotoc_md765"></a>
+<h1><a class="anchor" id="autotoc_md775"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below demonstrates the `parse()` function with
 and without callback function.
@@ -144,7 +144,7 @@ Output:
 ```json
 --8&lt;-- "examples/parse__string__parser_callback_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md766"></a>
+</pre> <h1><a class="anchor" id="autotoc_md776"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0. </li>

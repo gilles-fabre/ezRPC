@@ -9,4 +9,15 @@ digraph "reporter.ModIdDefinitionDialog.doIt"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="reporter.ModIdDefinition\lDialog.doIt",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classreporter_1_1_mod_id_definition_dialog.html#a7b5e654b8b8acc891fa41acb484319ae",tooltip=" "];
   Node2 -> Node2 [id="edge2_Node000002_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node3 [id="edge3_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="tracesListener.ModuleFilter.get\lColor",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_module_filter.html#a9c7ac046154a29d71e5ccf2c529413fb",tooltip=" "];
+  Node1 -> Node4 [id="edge4_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="tracesListener.ModuleFilter.get\lFormattedModId",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_module_filter.html#a485110a53f08c7b7c82d379ce60ba191",tooltip=" "];
+  Node4 -> Node5 [id="edge5_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="tracesListener.ByteUtil.format\lHexInteger",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_byte_util.html#a82d516b5fbc7b49c3cf5ad55625e084e",tooltip=" "];
+  Node1 -> Node6 [id="edge6_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="tracesListener.ModuleFilter.get\lFormattedModMask",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_module_filter.html#a616c5577e22bf9cdf4fb00fcd96b71e4",tooltip=" "];
+  Node6 -> Node5 [id="edge7_Node000006_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node7 [id="edge8_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="tracesListener.ModuleFilter.getName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_module_filter.html#a27843988465bec218d462295602979cc",tooltip=" "];
 }

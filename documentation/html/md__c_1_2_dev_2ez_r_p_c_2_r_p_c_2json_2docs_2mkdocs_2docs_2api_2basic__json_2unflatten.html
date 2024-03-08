@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;unflatten</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md909"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> unflatten() <span class="keyword">const</span>;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md919"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a> unflatten() <span class="keyword">const</span>;</div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 </div><!-- fragment --><p>The function restores the arbitrary nesting of a JSON value that has been flattened before using the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2flatten.html"><code>flatten()</code></a> function. The JSON value must meet certain constraints:</p>
 <ol type="1">
@@ -103,26 +103,26 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>The keys must be JSON pointers (see <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a>)</li>
 <li>The mapped values must be primitive JSON types.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md910"></a>
+<h1><a class="anchor" id="autotoc_md920"></a>
 Return value</h1>
 <p>the original JSON from a flattened version</p>
-<h1><a class="anchor" id="autotoc_md911"></a>
+<h1><a class="anchor" id="autotoc_md921"></a>
 Exception safety</h1>
 <p>Strong exception safety: if an exception occurs, the original value stays intact.</p>
-<h1><a class="anchor" id="autotoc_md912"></a>
+<h1><a class="anchor" id="autotoc_md922"></a>
 Exceptions</h1>
 <p>The function can throw the following exceptions:</p>
 <ul>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error314"><code>type_error.314</code></a> if value is not an object</li>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error315"><code>type_error.315</code></a> if object values are not primitive</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md913"></a>
+<h1><a class="anchor" id="autotoc_md923"></a>
 Complexity</h1>
 <p>Linear in the size the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md914"></a>
+<h1><a class="anchor" id="autotoc_md924"></a>
 Notes</h1>
 <p>Empty objects and arrays are flattened by <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2flatten.html"><code>flatten()</code></a> to <code>#!json null</code> values and can not unflattened to their original type. Apart from this example, for a JSON value <code>j</code>, the following is always true: <code>#!cpp j == j.flatten().unflatten()</code>.</p>
-<h1><a class="anchor" id="autotoc_md915"></a>
+<h1><a class="anchor" id="autotoc_md925"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how a flattened JSON object is unflattened into the original nested JSON object.
 
@@ -135,12 +135,12 @@ Output:
 ```json
 --8&lt;-- "examples/unflatten.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md916"></a>
+</pre> <h1><a class="anchor" id="autotoc_md926"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2flatten.html">flatten</a> the reverse function</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md917"></a>
+<h1><a class="anchor" id="autotoc_md927"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.0.0. </li>

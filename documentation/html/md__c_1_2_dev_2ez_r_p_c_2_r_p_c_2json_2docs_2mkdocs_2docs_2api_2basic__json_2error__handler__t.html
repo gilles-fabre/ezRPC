@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;error_handler_t</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md269"></a> </p><div class="fragment"><div class="line"><span class="keyword">enum class</span> error_handler_t {</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md279"></a> </p><div class="fragment"><div class="line"><span class="keyword">enum class</span> error_handler_t {</div>
 <div class="line">    strict,</div>
 <div class="line">    replace,</div>
 <div class="line">    ignore</div>
@@ -104,7 +104,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <p>strict : throw a <code>type_error</code> exception in case of invalid UTF-8</p>
 <p>replace : replace invalid UTF-8 sequences with U+FFFD (� REPLACEMENT CHARACTER)</p>
 <p>ignore : ignore invalid UTF-8 sequences; all bytes are copied to the output unchanged</p>
-<h1><a class="anchor" id="autotoc_md270"></a>
+<h1><a class="anchor" id="autotoc_md280"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows how the different values of the `error_handler_t` influence the behavior of
 [`dump`](dump.md) when reading serializing an invalid UTF-8 sequence.
@@ -118,7 +118,7 @@ Output:
 ```json
 --8&lt;-- "examples/error_handler_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md271"></a>
+</pre> <h1><a class="anchor" id="autotoc_md281"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.4.0. </li>

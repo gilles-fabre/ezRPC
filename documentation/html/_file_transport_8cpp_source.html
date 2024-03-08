@@ -125,8 +125,8 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a>;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_file_transport.html#a4f7890b520360e013890cf378224b135">   34</a></span>ReturnValue&lt;Link*, CommunicationErrors&gt; <a class="code hl_function" href="class_file_transport.html#a4f7890b520360e013890cf378224b135">FileTransport::WaitForLinkRequest</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    ReturnValue&lt;Link*, CommunicationErrors&gt; r;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_file_transport.html#a4f7890b520360e013890cf378224b135">   34</a></span><a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a> <a class="code hl_function" href="class_file_transport.html#a4f7890b520360e013890cf378224b135">FileTransport::WaitForLinkRequest</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a> r;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span>                                     connSocket;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    sockaddr_un                             server_addr = { 0, };</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">struct </span>sockaddr_storage                 server_storage;</div>
@@ -140,7 +140,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">if</span> (server_address.empty()) {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: empty filename!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        r = ReturnValue&lt;Link*, CommunicationErrors&gt;{NULL, CommunicationErrors::ErrorCode::InvalidAddress};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{NULL, CommunicationErrors::ErrorCode::InvalidAddress};</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
@@ -154,7 +154,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// create the server socket</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> ((m_srvSocket = (<span class="keywordtype">int</span>)socket(AF_UNIX, SOCK_STREAM, IPPROTO_TCP)) == -1) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t create socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
@@ -179,7 +179,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            close(m_s_socket);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            m_srvSocket = -1;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
@@ -190,7 +190,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// listen on the socket, with 1 max connection request queued</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">if</span> ((retval = listen(m_srvSocket, 1))) {</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t listen on socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
@@ -208,7 +208,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        close(c_socket);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
@@ -218,14 +218,14 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;will return link %p&quot;</span>, newLinkP);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ newLinkP, CommunicationErrors::ErrorCode::None };</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ newLinkP, CommunicationErrors::ErrorCode::None };</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
 </div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">  141</a></span>ReturnValue&lt;Link*, CommunicationErrors&gt; <a class="code hl_function" href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">FileTransport::LinkRequest</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    ReturnValue&lt;Link*, CommunicationErrors&gt; r;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">  141</a></span><a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a> <a class="code hl_function" href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">FileTransport::LinkRequest</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; server_address) {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a> r;</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">int</span>                                     connSocket;</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    sockaddr_un                             server_addr = { 0, };</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">int</span>                                     retval;</div>
@@ -237,7 +237,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// create the client socket</span></div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">if</span> ((connSocket = (<span class="keywordtype">int</span>)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t create socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        r = ReturnValue&lt;Link*, CommunicationErrors&gt;{NULL, CommunicationErrors::ErrorCode::SocketCreationError};</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{NULL, CommunicationErrors::ErrorCode::SocketCreationError};</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
@@ -259,7 +259,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        close(c_socket);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
@@ -269,7 +269,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_transport_8h.html#a283a40818e4bb313d5d7ccc24d76324e">TRANSPORT_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;will return link %p&quot;</span>, newLinkP);</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    r = ReturnValue&lt;Link*, CommunicationErrors&gt;{ newLinkP, CommunicationErrors::ErrorCode::None };</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    r = <a class="code hl_class" href="class_return_value.html">ReturnValue&lt;Link*, CommunicationErrors&gt;</a>{ newLinkP, CommunicationErrors::ErrorCode::None };</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
 </div>
@@ -278,9 +278,10 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="ttc" id="aclass_file_transport_html_a4954d0a00a1d191e7d18d99b8043c991"><div class="ttname"><a href="class_file_transport.html#a4954d0a00a1d191e7d18d99b8043c991">FileTransport::LinkRequest</a></div><div class="ttdeci">ReturnValue&lt; Link *, CommunicationErrors &gt; LinkRequest(const string &amp;serverAddress)</div><div class="ttdoc">Connects to a server blocked on WaitLinkRequest and returns the resulting link.</div><div class="ttdef"><b>Definition</b> <a href="#l00141">FileTransport.cpp:141</a></div></div>
 <div class="ttc" id="aclass_file_transport_html_a4f7890b520360e013890cf378224b135"><div class="ttname"><a href="class_file_transport.html#a4f7890b520360e013890cf378224b135">FileTransport::WaitForLinkRequest</a></div><div class="ttdeci">ReturnValue&lt; Link *, CommunicationErrors &gt; WaitForLinkRequest(const string &amp;serverAddress)</div><div class="ttdoc">Waits for a LinkRequest and returns the resulting link.</div><div class="ttdef"><b>Definition</b> <a href="#l00034">FileTransport.cpp:34</a></div></div>
 <div class="ttc" id="aclass_link_html"><div class="ttname"><a href="class_link.html">Link</a></div><div class="ttdoc">Simply send and receive data on the in/out link created by the parent transport.</div><div class="ttdef"><b>Definition</b> <a href="_link_8h_source.html#l00045">Link.h:45</a></div></div>
+<div class="ttc" id="aclass_return_value_html"><div class="ttname"><a href="class_return_value.html">ReturnValue</a></div><div class="ttdef"><b>Definition</b> <a href="_return_value_8h_source.html#l00023">ReturnValue.h:23</a></div></div>
 <div class="ttc" id="aclass_transport_html_ac24850dae0b08da1f1cc5989c69bb768"><div class="ttname"><a href="class_transport.html#ac24850dae0b08da1f1cc5989c69bb768">Transport::m_links</a></div><div class="ttdeci">vector&lt; Link * &gt; m_links</div><div class="ttdef"><b>Definition</b> <a href="_transport_8h_source.html#l00035">Transport.h:35</a></div></div>
 <div class="ttc" id="alog2reporter_8c_html_a5e1aa3e4ebff4a98212651cae466756e"><div class="ttname"><a href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a></div><div class="ttdeci">void LogVText(uint32_t module, uint8_t indent, bool lineBreak, const char *formatP,...)</div><div class="ttdef"><b>Definition</b> <a href="log2reporter_8c_source.html#l00754">log2reporter.c:754</a></div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="gtest-tuple_8h_source.html#l00113">gtest-tuple.h:113</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

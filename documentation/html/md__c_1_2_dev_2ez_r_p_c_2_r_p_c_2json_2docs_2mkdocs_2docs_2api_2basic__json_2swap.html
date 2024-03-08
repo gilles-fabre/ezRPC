@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;swap</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md839"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md849"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keywordtype">void</span> swap(reference other) <span class="keyword">noexcept</span>;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// (2)</span></div>
@@ -124,12 +124,12 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Exchanges the contents of a binary value with those of <code>other</code>. Does not invoke any move, copy, or swap operations on individual elements. All iterators and references remain valid. The past-the-end iterator is invalidated.</li>
 <li>Exchanges the contents of a binary value with those of <code>other</code>. Does not invoke any move, copy, or swap operations on individual elements. All iterators and references remain valid. The past-the-end iterator is invalidated. Unlike version (6), no binary subtype is involved.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md840"></a>
+<h1><a class="anchor" id="autotoc_md850"></a>
 Parameters</h1>
 <p><code>other</code> (in, out) : value to exchange the contents with</p>
 <p><code>left</code> (in, out) : value to exchange the contents with</p>
 <p><code>right</code> (in, out) : value to exchange the contents with</p>
-<h1><a class="anchor" id="autotoc_md841"></a>
+<h1><a class="anchor" id="autotoc_md851"></a>
 Exceptions</h1>
 <ol type="1">
 <li>No-throw guarantee: this function never throws exceptions.</li>
@@ -140,10 +140,10 @@ Exceptions</h1>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error310"><code>type_error.310</code></a> if called on JSON values other than binaries; example: <code>"cannot use swap() with boolean"</code></li>
 <li>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error310"><code>type_error.310</code></a> if called on JSON values other than binaries; example: <code>"cannot use swap() with boolean"</code></li>
 </ol>
-<h1><a class="anchor" id="autotoc_md842"></a>
+<h1><a class="anchor" id="autotoc_md852"></a>
 Complexity</h1>
 <p>Constant.</p>
-<h1><a class="anchor" id="autotoc_md843"></a>
+<h1><a class="anchor" id="autotoc_md853"></a>
 Examples</h1>
 <p>??? example "Example: Swap JSON value (1, 2)" </p><pre class="fragment">The example below shows how JSON values can be swapped with `swap()`.
 
@@ -200,12 +200,12 @@ Output:
 ```json
 --8&lt;-- "examples/swap__binary_t.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md844"></a>
+</pre> <h1><a class="anchor" id="autotoc_md854"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2std__swap.html">std::swap&lt;basic_json&gt;</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md845"></a>
+<h1><a class="anchor" id="autotoc_md855"></a>
 Version history</h1>
 <ol type="1">
 <li>Since version 1.0.0.</li>

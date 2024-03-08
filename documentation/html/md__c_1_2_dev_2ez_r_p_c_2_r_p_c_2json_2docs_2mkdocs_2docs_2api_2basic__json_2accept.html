@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;accept</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md72"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md82"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputType&gt;</div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> accept(InputType&amp;&amp; i,</div>
 <div class="line">                   <span class="keyword">const</span> <span class="keywordtype">bool</span> ignore_comments = <span class="keyword">false</span>);</div>
@@ -112,7 +112,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </li>
 </ol>
 <p>Unlike the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse.html"><code>parse</code></a> function, this function neither throws an exception in case of invalid JSON input (i.e., a parse error) nor creates diagnostic information.</p>
-<h1><a class="anchor" id="autotoc_md73"></a>
+<h1><a class="anchor" id="autotoc_md83"></a>
 Template parameters</h1>
 <p><code>InputType</code> : A compatible input, for instance: </p><pre class="fragment">- an `std::istream` object
 - a `FILE` pointer (must not be null)
@@ -122,27 +122,27 @@ Template parameters</h1>
 - an object `obj` for which `begin(obj)` and `end(obj)` produces a valid pair of iterators.
 </pre><p> <code>IteratorType</code> : a compatible iterator type, for instance. </p><pre class="fragment">- a pair of `std::string::iterator` or `std::vector&lt;std::uint8_t&gt;::iterator`
 - a pair of pointers such as `ptr` and `ptr + len`
-</pre> <h1><a class="anchor" id="autotoc_md74"></a>
+</pre> <h1><a class="anchor" id="autotoc_md84"></a>
 Parameters</h1>
 <p><code>i</code> (in) : Input to parse from.</p>
 <p><code>ignore_comments</code> (in) : whether comments should be ignored and treated like whitespace (<code>#!cpp true</code>) or yield a parse error (<code>#!cpp false</code>); (optional, <code>#!cpp false</code> by default)</p>
 <p><code>first</code> (in) : iterator to start of character range</p>
 <p><code>last</code> (in) : iterator to end of character range</p>
-<h1><a class="anchor" id="autotoc_md75"></a>
+<h1><a class="anchor" id="autotoc_md85"></a>
 Return value</h1>
 <p>Whether the input is valid JSON.</p>
-<h1><a class="anchor" id="autotoc_md76"></a>
+<h1><a class="anchor" id="autotoc_md86"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md77"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 Complexity</h1>
 <p>Linear in the length of the input. The parser is a predictive LL(1) parser.</p>
-<h1><a class="anchor" id="autotoc_md78"></a>
+<h1><a class="anchor" id="autotoc_md88"></a>
 Notes</h1>
 <p>(1) A UTF-8 byte order mark is silently ignored.</p>
 <p>!!! danger "Runtime assertion" </p><pre class="fragment">The precondition that a passed `#!cpp FILE` pointer must not be null is enforced with a
 [runtime assertion](../../features/assertions.md).
-</pre> <h1><a class="anchor" id="autotoc_md79"></a>
+</pre> <h1><a class="anchor" id="autotoc_md89"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below demonstrates the `accept()` function reading from a string.
 
@@ -155,13 +155,13 @@ Output:
 ```json
 --8&lt;-- "examples/accept__string.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md80"></a>
+</pre> <h1><a class="anchor" id="autotoc_md90"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2parse.html">parse</a> - deserialize from a compatible input</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2operator__gtgt.html">operator&gt;&gt;</a> - deserialize from stream</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md81"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.0.0.</li>

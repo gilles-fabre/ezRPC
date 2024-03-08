@@ -95,24 +95,24 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON_ASSERT</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1143"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_ASSERT(x) </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1153"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_ASSERT(x) </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --><p>This macro controls which code is executed for <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2assertions.html">runtime assertions</a> of the library.</p>
-<h1><a class="anchor" id="autotoc_md1144"></a>
+<h1><a class="anchor" id="autotoc_md1154"></a>
 Parameters</h1>
 <p><code>x</code> (in) : expression of scalar type</p>
-<h1><a class="anchor" id="autotoc_md1145"></a>
+<h1><a class="anchor" id="autotoc_md1155"></a>
 Default definition</h1>
 <p>The default value is <a href="https://en.cppreference.com/w/cpp/error/assert"><code>#!cpp assert(x)</code></a>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_ASSERT(x) assert(x)</span></div>
 </div><!-- fragment --><p>Therefore, assertions can be switched off by defining <code>NDEBUG</code>.</p>
-<h1><a class="anchor" id="autotoc_md1146"></a>
+<h1><a class="anchor" id="autotoc_md1156"></a>
 Notes</h1>
 <ul>
 <li>The library uses numerous assertions to guarantee invariants and to abort in case of otherwise undefined behavior (e.g., when calling operator[] with a missing object key on a <code>const</code> object). See page <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2assertions.html">runtime assertions</a> for more information.</li>
 <li>Defining the macro to code that does not call <code>std::abort</code> may leave the library in an undefined state.</li>
 <li>The macro is undefined outside the library.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1147"></a>
+<h1><a class="anchor" id="autotoc_md1157"></a>
 Examples</h1>
 <p>??? example "Example 1: default behavior" </p><pre class="fragment">The following code will trigger an assertion at runtime:
 
@@ -156,7 +156,7 @@ Output:
 ```
 assertion error in operator[]
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1148"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1158"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.9.0. </li>

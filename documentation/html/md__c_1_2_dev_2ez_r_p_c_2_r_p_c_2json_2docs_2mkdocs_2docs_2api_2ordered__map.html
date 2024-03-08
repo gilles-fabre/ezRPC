@@ -95,18 +95,18 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::&lt;/small&gt;ordered_map</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1301"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Key, <span class="keyword">class</span> T, <span class="keyword">class</span> IgnoredLess = std::less&lt;Key&gt;,</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1311"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Key, <span class="keyword">class</span> T, <span class="keyword">class</span> IgnoredLess = std::less&lt;Key&gt;,</div>
 <div class="line">         <span class="keyword">class</span> Allocator = std::allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;</div>
 <div class="line"><span class="keyword">struct </span><a class="code hl_struct" href="structordered__map.html">ordered_map</a> : std::vector&lt;std::pair&lt;const Key, T&gt;, Allocator&gt;;</div>
 <div class="ttc" id="astructordered__map_html"><div class="ttname"><a href="structordered__map.html">ordered_map</a></div><div class="ttdoc">a minimal map-like container that preserves insertion order</div><div class="ttdef"><b>Definition</b> <a href="single__include_2nlohmann_2json_8hpp_source.html#l19034">json.hpp:19035</a></div></div>
 </div><!-- fragment --><p>A minimal map-like container that preserves insertion order for use within <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2ordered__json.html"><code>nlohmann::ordered_json</code></a> (<code><a class="el" href="classnlohmann_1_1basic__json.html" title="a class to store JSON values">nlohmann::basic_json</a>&lt;<a class="el" href="structordered__map.html" title="a minimal map-like container that preserves insertion order">ordered_map</a>&gt;</code>).</p>
-<h1><a class="anchor" id="autotoc_md1302"></a>
+<h1><a class="anchor" id="autotoc_md1312"></a>
 Template parameters</h1>
 <p><code>Key</code> : key type</p>
 <p><code>T</code> : mapped type</p>
 <p><code>IgnoredLess</code> : comparison function (ignored and only added to ensure compatibility with <code>#!cpp std::map</code>)</p>
 <p><code>Allocator</code> : allocator type</p>
-<h1><a class="anchor" id="autotoc_md1303"></a>
+<h1><a class="anchor" id="autotoc_md1313"></a>
 Member types</h1>
 <ul>
 <li><b>key_type</b> - key type (<code>Key</code>)</li>
@@ -121,7 +121,7 @@ Member types</h1>
 <div class="line">std::equal_to&lt;&gt;     <span class="comment">// since C++14</span></div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1304"></a>
+<h1><a class="anchor" id="autotoc_md1314"></a>
 Member functions</h1>
 <ul>
 <li>(constructor)</li>
@@ -134,7 +134,7 @@ Member functions</h1>
 <li><b>find</b></li>
 <li><b>insert</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1305"></a>
+<h1><a class="anchor" id="autotoc_md1315"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows the different behavior of `std::map` and `nlohmann::ordered_map`.
 
@@ -147,12 +147,12 @@ Output:
 ```json
 --8&lt;-- "examples/ordered_map.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1306"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1316"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2ordered__json.html">ordered_json</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1307"></a>
+<h1><a class="anchor" id="autotoc_md1317"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.9.0 to implement <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2ordered__json.html"><code>nlohmann::ordered_json</code></a>.</li>

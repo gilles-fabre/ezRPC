@@ -95,16 +95,16 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Runtime Assertions</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1314"></a> The code contains numerous debug assertions to ensure class invariants are valid or to detect undefined behavior. Whereas the former class invariants are nothing to be concerned of, the latter checks for undefined behavior are to detect bugs in client code.</p>
-<h1><a class="anchor" id="autotoc_md1315"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1324"></a> The code contains numerous debug assertions to ensure class invariants are valid or to detect undefined behavior. Whereas the former class invariants are nothing to be concerned of, the latter checks for undefined behavior are to detect bugs in client code.</p>
+<h1><a class="anchor" id="autotoc_md1325"></a>
 Switch off runtime assertions</h1>
 <p>Runtime assertions can be switched off by defining the preprocessor macro <code>NDEBUG</code> (see the <a href="https://en.cppreference.com/w/cpp/error/assert">documentation of assert</a>) which is the default for release builds.</p>
-<h1><a class="anchor" id="autotoc_md1316"></a>
+<h1><a class="anchor" id="autotoc_md1326"></a>
 Change assertion behavior</h1>
 <p>The behavior of runtime assertions can be changes by defining macro <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__assert.html"><code>JSON_ASSERT(x)</code></a> before including the <code>json.hpp</code> header.</p>
-<h1><a class="anchor" id="autotoc_md1317"></a>
+<h1><a class="anchor" id="autotoc_md1327"></a>
 Function with runtime assertions</h1>
-<h2><a class="anchor" id="autotoc_md1318"></a>
+<h2><a class="anchor" id="autotoc_md1328"></a>
 Unchecked object access to a const value</h2>
 <p>Function <code>operator[]</code> implements unchecked access for objects. Whereas a missing key is added in case of non-const objects, accessing a const object with a missing key is undefined behavior (think of a dereferenced null pointer) and yields a runtime assertion.</p>
 <p>If you are not sure whether an element in an object exists, use checked access with the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2at.html"><code>at</code> function</a> or call the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2contains.html"><code>contains</code> function</a> before.</p>
@@ -128,7 +128,7 @@ Output:
 ```
 Assertion failed: (m_value.object-&gt;find(key) != m_value.object-&gt;end()), function operator[], file json.hpp, line 2144.
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1319"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1329"></a>
 Constructing from an uninitialized iterator range</h2>
 <p>Constructing a JSON value from an iterator range (see <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2basic__json.html">constructor</a>) with an uninitialized iterator is undefined behavior and yields a runtime assertion.</p>
 <p>??? example "Example 2: Uninitialized iterator range" </p><pre class="fragment">The following code will trigger an assertion at runtime:
@@ -150,7 +150,7 @@ Output:
 ```
 Assertion failed: (m_object != nullptr), function operator++, file iter_impl.hpp, line 368.
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1320"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1330"></a>
 Operations on uninitialized iterators</h2>
 <p>Any operation on uninitialized iterators (i.e., iterators that are not associated with any JSON value) is undefined behavior and yields a runtime assertion.</p>
 <p>??? example "Example 3: Uninitialized iterator" </p><pre class="fragment">The following code will trigger an assertion at runtime:
@@ -172,7 +172,7 @@ Output:
 ```
 Assertion failed: (m_object != nullptr), function operator++, file iter_impl.hpp, line 368.
 ```
-</pre> <h2><a class="anchor" id="autotoc_md1321"></a>
+</pre> <h2><a class="anchor" id="autotoc_md1331"></a>
 Reading from a null <code>FILE</code> pointer</h2>
 <p>Reading from a null <code>#!cpp FILE</code> pointer is undefined behavior and yields a runtime assertion. This can happen when calling <code>#!cpp std::fopen</code> on a nonexistent file.</p>
 <p>??? example "Example 4: Uninitialized iterator" </p><pre class="fragment">The following code will trigger an assertion at runtime:

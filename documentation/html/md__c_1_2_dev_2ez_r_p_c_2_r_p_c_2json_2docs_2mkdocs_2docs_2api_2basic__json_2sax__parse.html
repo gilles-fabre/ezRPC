@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;sax_parse</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md805"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md815"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputType, <span class="keyword">typename</span> SAX&gt;</div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> sax_parse(InputType&amp;&amp; i,</div>
 <div class="line">                      SAX* sax,</div>
@@ -118,7 +118,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </li>
 </ol>
 <p>The SAX event lister must follow the interface of <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__sax_2index.html"><code>json_sax</code></a>.</p>
-<h1><a class="anchor" id="autotoc_md806"></a>
+<h1><a class="anchor" id="autotoc_md816"></a>
 Template parameters</h1>
 <p><code>InputType</code> : A compatible input, for instance: </p><pre class="fragment">- an `std::istream` object
 - a `FILE` pointer
@@ -128,7 +128,7 @@ Template parameters</h1>
   iterators.
 </pre><p> <code>IteratorType</code> : Description</p>
 <p><code>SAX</code> : Description</p>
-<h1><a class="anchor" id="autotoc_md807"></a>
+<h1><a class="anchor" id="autotoc_md817"></a>
 Parameters</h1>
 <p><code>i</code> (in) : Input to parse from.</p>
 <p><code>sax</code> (in) : SAX event listener</p>
@@ -137,18 +137,18 @@ Parameters</h1>
 <p><code>ignore_comments</code> (in) : whether comments should be ignored and treated like whitespace (<code>#!cpp true</code>) or yield a parse error (<code>#!cpp false</code>); (optional, <code>#!cpp false</code> by default)</p>
 <p><code>first</code> (in) : iterator to start of character range</p>
 <p><code>last</code> (in) : iterator to end of character range</p>
-<h1><a class="anchor" id="autotoc_md808"></a>
+<h1><a class="anchor" id="autotoc_md818"></a>
 Return value</h1>
 <p>return value of the last processed SAX event</p>
-<h1><a class="anchor" id="autotoc_md809"></a>
+<h1><a class="anchor" id="autotoc_md819"></a>
 Exception safety</h1>
-<h1><a class="anchor" id="autotoc_md810"></a>
+<h1><a class="anchor" id="autotoc_md820"></a>
 Complexity</h1>
 <p>Linear in the length of the input. The parser is a predictive LL(1) parser. The complexity can be higher if the SAX consumer <code>sax</code> has a super-linear complexity.</p>
-<h1><a class="anchor" id="autotoc_md811"></a>
+<h1><a class="anchor" id="autotoc_md821"></a>
 Notes</h1>
 <p>A UTF-8 byte order mark is silently ignored.</p>
-<h1><a class="anchor" id="autotoc_md812"></a>
+<h1><a class="anchor" id="autotoc_md822"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below demonstrates the `sax_parse()` function reading from string and processing the events with a
 user-defined SAX event consumer.
@@ -162,7 +162,7 @@ Output:
 ```json
 --8&lt;-- "examples/sax_parse.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md813"></a>
+</pre> <h1><a class="anchor" id="autotoc_md823"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.2.0.</li>

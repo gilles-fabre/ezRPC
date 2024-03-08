@@ -55,9 +55,28 @@ var namespaces_dup =
     [ "nlohmann-json", "namespacenlohmann-json.html", "namespacenlohmann-json" ],
     [ "ns", "namespacens.html", "namespacens" ],
     [ "persons", "namespacepersons.html", "namespacepersons" ],
+    [ "proto2", "namespaceproto2.html", null ],
     [ "reporter", "namespacereporter.html", "namespacereporter" ],
+    [ "RPC_Test", "namespace_r_p_c___test.html", [
+      [ "TEST", "namespace_r_p_c___test.html#a3c7b5e609fb1b9c850baedc95036ec4b", null ],
+      [ "TEST", "namespace_r_p_c___test.html#a74964873055904cf946e87a54dc96334", null ],
+      [ "TEST", "namespace_r_p_c___test.html#ad55c3d222b4836ba35a61ebf5a5bfdbf", null ],
+      [ "gRpcServerP", "namespace_r_p_c___test.html#a92c250c197095f57a3148f9c2935b245", null ]
+    ] ],
+    [ "RPCTests", "namespace_r_p_c_tests.html", [
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72", null ],
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4", null ],
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a4108cc39b0f490de16d74264861b6458", null ],
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a8b7b742a943c4a1c2c2d2240a7e4c2e7", null ],
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a0de1b2dd52ddc28a27c8ca79fff10c76", null ],
+      [ "TEST_CLASS", "namespace_r_p_c_tests.html#ad56cb8fa97ca6c0b84ec15fb791e6194", null ]
+    ] ],
     [ "serve_header", "namespaceserve__header.html", "namespaceserve__header" ],
     [ "std", "namespacestd.html", "namespacestd" ],
+    [ "testing", "namespacetesting.html", "namespacetesting" ],
+    [ "testing_internal", "namespacetesting__internal.html", [
+      [ "DefaultPrintNonContainerTo", "namespacetesting__internal.html#a3f49d3d0c996242f9d383c850097a656", null ]
+    ] ],
     [ "tracesListener", "namespacetraces_listener.html", "namespacetraces_listener" ],
     [ "udt", "namespaceudt.html", "namespaceudt" ],
     [ "utils", "namespaceutils.html", [

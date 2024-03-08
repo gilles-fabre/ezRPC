@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;to_ubjson</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md884"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md894"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">static</span> std::vector&lt;std::uint8_t&gt; to_ubjson(<span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>,</div>
 <div class="line">                                           <span class="keyword">const</span> <span class="keywordtype">bool</span> use_size = <span class="keyword">false</span>,</div>
 <div class="line">                                           <span class="keyword">const</span> <span class="keywordtype">bool</span> use_type = <span class="keyword">false</span>);</div>
@@ -114,25 +114,25 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Writes the UBJSON serialization to an output adapter.</li>
 </ol>
 <p>The exact mapping and its limitations is described on a <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2binary__formats_2ubjson.html">dedicated page</a>.</p>
-<h1><a class="anchor" id="autotoc_md885"></a>
+<h1><a class="anchor" id="autotoc_md895"></a>
 Parameters</h1>
 <p><code>j</code> (in) : JSON value to serialize</p>
 <p><code>o</code> (in) : output adapter to write serialization to</p>
 <p><code>use_size</code> (in) : whether to add size annotations to container types; optional, <code>#!cpp false</code> by default.</p>
 <p><code>use_type</code> (in) : whether to add type annotations to container types (must be combined with <code>#!cpp use_size = true</code>); optional, <code>#!cpp false</code> by default.</p>
-<h1><a class="anchor" id="autotoc_md886"></a>
+<h1><a class="anchor" id="autotoc_md896"></a>
 Return value</h1>
 <ol type="1">
 <li>UBJSON serialization as byte vector</li>
 <li>(none)</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md887"></a>
+<h1><a class="anchor" id="autotoc_md897"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md888"></a>
+<h1><a class="anchor" id="autotoc_md898"></a>
 Complexity</h1>
 <p>Linear in the size of the JSON value <code>j</code>.</p>
-<h1><a class="anchor" id="autotoc_md889"></a>
+<h1><a class="anchor" id="autotoc_md899"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows the serialization of a JSON value to a byte vector in UBJSON format.
 
@@ -145,7 +145,7 @@ Output:
 ```json
 --8&lt;-- "examples/to_ubjson.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md890"></a>
+</pre> <h1><a class="anchor" id="autotoc_md900"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.1.0. </li>

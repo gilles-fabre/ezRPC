@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::&lt;/small&gt;operator&lt;&lt;(basic_json), &lt;small&gt;nlohmann::&lt;/small&gt;operator&lt;&lt;(json_pointer)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1289"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; operator&lt;&lt;(<a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; o, <span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>);      <span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1299"></a> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; operator&lt;&lt;(<a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; o, <span class="keyword">const</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>);      <span class="comment">// (1)</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; operator&lt;&lt;(<a class="code hl_class" href="classstd_1_1basic__ostream.html">std::ostream</a>&amp; o, <span class="keyword">const</span> <a class="code hl_class" href="classjson__pointer.html">json_pointer</a>&amp; ptr);  <span class="comment">// (2)</span></div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
@@ -110,29 +110,29 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </li>
 <li><code>Write a string representation of the given JSON pointer</code>ptr<code>to the output stream</code>o<code>. The string representation is obtained using the [</code>to_string`](<a class="el" href="json__pointer_2to__string_8md.html">json_pointer/to_string.md</a>) member function.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1290"></a>
+<h1><a class="anchor" id="autotoc_md1300"></a>
 Parameters</h1>
 <p><code>o</code> (in, out) : stream to write to</p>
 <p><code>j</code> (in) : JSON value to serialize</p>
 <p><code>ptr</code> (in) : JSON pointer to write</p>
-<h1><a class="anchor" id="autotoc_md1291"></a>
+<h1><a class="anchor" id="autotoc_md1301"></a>
 Return value</h1>
 <p>the stream <code>o</code></p>
-<h1><a class="anchor" id="autotoc_md1292"></a>
+<h1><a class="anchor" id="autotoc_md1302"></a>
 Exceptions</h1>
 <ol type="1">
 <li>Throws <a href="../home/exceptions.md#jsonexceptiontype_error316"><code>type_error.316</code></a> if a string stored inside the JSON value is not UTF-8 encoded. Note that unlike the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2dump.html"><code>dump</code></a> member functions, no <code>error_handler</code> can be set.</li>
 <li>None.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1293"></a>
+<h1><a class="anchor" id="autotoc_md1303"></a>
 Complexity</h1>
 <p>Linear.</p>
-<h1><a class="anchor" id="autotoc_md1294"></a>
+<h1><a class="anchor" id="autotoc_md1304"></a>
 Notes</h1>
 <p>!!! warning "Deprecation" </p><pre class="fragment">Function  `#!cpp std::ostream&amp; operator&lt;&lt;(std::ostream&amp; o, const basic_json&amp; j)` replaces function
 `#!cpp std::ostream&amp; operator&gt;&gt;(const basic_json&amp; j, std::ostream&amp; o)` which has been deprecated in version 3.0.0.
 It will be removed in version 4.0.0. Please replace calls like `#!cpp j &gt;&gt; o;` with `#!cpp o &lt;&lt; j;`.
-</pre> <h1><a class="anchor" id="autotoc_md1295"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1305"></a>
 Examples</h1>
 <p>??? example "Example: (1) serialize JSON value to stream" </p><pre class="fragment">The example below shows the serialization with different parameters to `width` to adjust the indentation level.
 
@@ -156,7 +156,7 @@ Output:
 ```json
 --8&lt;-- "examples/operator_ltlt__json_pointer.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1296"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1306"></a>
 Version history</h1>
 <ol type="1">
 <li>Added in version 1.0.0. Added support for indentation character and deprecated <code>#!cpp <a class="el" href="namespacestd.html#a6d1736434ff6d516a3df38cbb7487ea5">std::ostream</a>&amp; operator&gt;&gt;(const <a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a>&amp; j, <a class="el" href="namespacestd.html#a6d1736434ff6d516a3df38cbb7487ea5">std::ostream</a>&amp; o)</code> in version 3.0.0.</li>

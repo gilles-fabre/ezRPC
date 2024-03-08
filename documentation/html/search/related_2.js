@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detail_3a_3aexternal_5fconstructor_0',['detail::external_constructor',['../classbasic__json.html#a6275ed57bae6866cdf5db5370a7ad47c',1,'basic_json::external_constructor'],['../classnlohmann_1_1basic__json.html#a6275ed57bae6866cdf5db5370a7ad47c',1,'nlohmann::basic_json::external_constructor'],['../classbasic__json.html#a3b6ff4868cdf4db1db051059046282de',1,'basic_json::external_constructor']]]
+  ['basic_5fjson_0',['basic_json',['../classjson__pointer.html#a069a4f73a702f4c2bc0d14ca1565a7b0',1,'json_pointer::basic_json'],['../classnlohmann_1_1json__pointer.html#ada3100cdb8700566051828f1355fa745',1,'nlohmann::json_pointer::basic_json']]]
 ];

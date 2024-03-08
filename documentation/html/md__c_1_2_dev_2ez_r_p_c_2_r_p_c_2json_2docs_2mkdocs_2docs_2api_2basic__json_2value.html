@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;value</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md924"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md934"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ValueType&gt;</div>
 <div class="line">ValueType value(<span class="keyword">const</span> <span class="keyword">typename</span> object_t::key_type&amp; key,</div>
 <div class="line">                ValueType&amp;&amp; default_value) <span class="keyword">const</span>;</div>
@@ -130,25 +130,25 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <p>!!! note "Differences to `at` and `operator[]`" </p><pre class="fragment">- Unlike [`at`](at.md), this function does not throw if the given `key`/`ptr` was not found.
 - Unlike [`operator[]`](operator[].md), this function does not implicitly add an element to the position defined by
  `key`/`ptr` key. This function is furthermore also applicable to const objects.
-</pre> <h1><a class="anchor" id="autotoc_md925"></a>
+</pre> <h1><a class="anchor" id="autotoc_md935"></a>
 Template parameters</h1>
 <p><code>KeyType</code> : A type for an object key other than <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2index.html"><code>json_pointer</code></a> that is comparable with <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2string__t.html"><code>string_t</code></a> using <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__comparator__t.html"><code>object_comparator_t</code></a>. This can also be a string view (C++17). <code>ValueType</code> : type compatible to JSON values, for instance <code>#!cpp int</code> for JSON integer numbers, <code>#!cpp bool</code> for JSON booleans, or <code>#!cpp std::vector</code> types for JSON arrays. Note the type of the expected value at <code>key</code>/<code>ptr</code> and the default value <code>default_value</code> must be compatible.</p>
-<h1><a class="anchor" id="autotoc_md926"></a>
+<h1><a class="anchor" id="autotoc_md936"></a>
 Parameters</h1>
 <p><code>key</code> (in) : key of the element to access</p>
 <p><code>default_value</code> (in) : the value to return if <code>key</code>/<code>ptr</code> found no value</p>
 <p><code>ptr</code> (in) : a JSON pointer to the element to access</p>
-<h1><a class="anchor" id="autotoc_md927"></a>
+<h1><a class="anchor" id="autotoc_md937"></a>
 Return value</h1>
 <ol type="1">
 <li>copy of the element at key <code>key</code> or <code>default_value</code> if <code>key</code> is not found</li>
 <li>copy of the element at key <code>key</code> or <code>default_value</code> if <code>key</code> is not found</li>
 <li>copy of the element at JSON Pointer <code>ptr</code> or <code>default_value</code> if no value for <code>ptr</code> is found</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md928"></a>
+<h1><a class="anchor" id="autotoc_md938"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes to any JSON value.</p>
-<h1><a class="anchor" id="autotoc_md929"></a>
+<h1><a class="anchor" id="autotoc_md939"></a>
 Exceptions</h1>
 <ol type="1">
 <li>The function can throw the following exceptions:<ul>
@@ -163,14 +163,14 @@ Exceptions</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md930"></a>
+<h1><a class="anchor" id="autotoc_md940"></a>
 Complexity</h1>
 <ol type="1">
 <li>Logarithmic in the size of the container.</li>
 <li>Logarithmic in the size of the container.</li>
 <li>Logarithmic in the size of the container.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md931"></a>
+<h1><a class="anchor" id="autotoc_md941"></a>
 Examples</h1>
 <p>??? example "Example: (1) access specified object element with default value" </p><pre class="fragment">The example below shows how object elements can be queried with a default value.
 
@@ -205,13 +205,13 @@ Output:
 ```json
 --8&lt;-- "examples/value__json_ptr.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md932"></a>
+</pre> <h1><a class="anchor" id="autotoc_md942"></a>
 See also</h1>
 <ul>
 <li>see <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2at.html"><code>at</code></a> for access by reference with range checking</li>
 <li>see <code>operator[]</code> for unchecked access by reference</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md933"></a>
+<h1><a class="anchor" id="autotoc_md943"></a>
 Version history</h1>
 <ol type="1">
 <li>Added in version 1.0.0. Changed parameter <code>default_value</code> type from <code>const ValueType&amp;</code> to <code>ValueType&amp;&amp;</code> in version 3.11.0.</li>

@@ -95,15 +95,15 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON_DIAGNOSTICS</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1149"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DIAGNOSTICS </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1159"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DIAGNOSTICS </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --><p>This macro enables <a href="../../home/exceptions.md#extended-diagnostic-messages">extended diagnostics for exception messages</a>. Possible values are <code>1</code> to enable or <code>0</code> to disable (default).</p>
 <p>When enabled, exception messages contain a <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2json__pointer.html">JSON Pointer</a> to the JSON value that triggered the exception. Note that enabling this macro increases the size of every JSON value by one pointer and adds some runtime overhead.</p>
-<h1><a class="anchor" id="autotoc_md1150"></a>
+<h1><a class="anchor" id="autotoc_md1160"></a>
 Default definition</h1>
 <p>The default value is <code>0</code> (extended diagnostics are switched off).</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_DIAGNOSTICS 0</span></div>
 </div><!-- fragment --><p>When the macro is not defined, the library will define it to its default value.</p>
-<h1><a class="anchor" id="autotoc_md1151"></a>
+<h1><a class="anchor" id="autotoc_md1161"></a>
 Notes</h1>
 <p>!!! note "ABI compatibility" </p><pre class="fragment">As of version 3.11.0, this macro is no longer required to be defined consistently throughout a codebase to avoid
 One Definition Rule (ODR) violations, as the value of this macro is encoded in the namespace, resulting in distinct
@@ -116,7 +116,7 @@ Where possible, it is still recommended that all code define this the same way f
 </pre><p> !!! hint "CMake option" </p><pre class="fragment">Diagnostic messages can also be controlled with the CMake option
 [`JSON_Diagnostics`](../../integration/cmake.md#json_diagnostics) (`OFF` by default)
 which defines `JSON_DIAGNOSTICS` accordingly.
-</pre> <h1><a class="anchor" id="autotoc_md1152"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1162"></a>
 Examples</h1>
 <p>??? example "Example 1: default behavior" </p><pre class="fragment">```cpp
 --8&lt;-- "examples/diagnostics_standard.cpp"
@@ -140,7 +140,7 @@ Output:
 ```
 
 Now the exception message contains a JSON Pointer `/address/housenumber` that indicates which value has the wrong type.
-</pre> <h1><a class="anchor" id="autotoc_md1153"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1163"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.10.0.</li>

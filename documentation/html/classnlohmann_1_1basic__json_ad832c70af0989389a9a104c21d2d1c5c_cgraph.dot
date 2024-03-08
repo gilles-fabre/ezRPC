@@ -8,4 +8,8 @@ digraph "nlohmann::basic_json::parse"
   Node1 [id="Node000001",label="nlohmann::basic_json\l::parse",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="deserialize from a pair of character iterators"];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="nlohmann::detail::input\l_adapter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a616a53cc3114fdc113fc44e6af4c3c7f",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="nlohmann::basic_json\l::parse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a15018ade392a844ea32d5188d1a0b9c6",tooltip="deserialize from a compatible input"];
+  Node3 -> Node2 [id="edge3_Node000003_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node3 -> Node3 [id="edge4_Node000003_Node000003",color="steelblue1",style="solid",tooltip=" "];
 }

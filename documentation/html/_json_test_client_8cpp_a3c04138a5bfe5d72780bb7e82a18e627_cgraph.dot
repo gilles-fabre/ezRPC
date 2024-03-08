@@ -11,11 +11,13 @@ digraph "main"
   Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="Semaphore::Dec",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_semaphore.html#a5c2d2b766ed89a3613872a007e793a18",tooltip=" "];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="AsyncRpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#a755e5d78c8073551d4e8d57e27ac44ea",tooltip=" "];
+  Node4 [id="Node000004",label="CreateRpcClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#ad6d23d514134841e7ff7760133251669",tooltip=" "];
   Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="CreateRpcClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#ad6d23d514134841e7ff7760133251669",tooltip=" "];
+  Node5 [id="Node000005",label="DestroyRpcClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#acda11b5657e9c30a24050a9b60b551ad",tooltip=" "];
   Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="DestroyRpcClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#acda11b5657e9c30a24050a9b60b551ad",tooltip=" "];
+  Node6 [id="Node000006",label="nlohmann::basic_json\l::dump",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a476756fb08e7f2416aad116d137977f4",tooltip="serialization"];
   Node1 -> Node7 [id="edge6_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
   Node7 [id="Node000007",label="RpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#a0d5c6b5276a4552578728090607a1104",tooltip=" "];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="RpcCallAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_r_p_c_client_8cpp.html#a6df5f226eb8cbb4cc9a90937ed298442",tooltip=" "];
 }

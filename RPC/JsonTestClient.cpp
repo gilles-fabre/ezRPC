@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
 				parameters += param;
 			}
 			call["parameters"] = parameters;
-			AsyncRpcCall(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), GetStringAsyncReplyProc);
+			RpcCallAsync(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), GetStringAsyncReplyProc);
 			g_sem_get_str.A();
 		}
 	}
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 				parameters += param;
 			}
 			call["parameters"] = parameters;
-			AsyncRpcCall(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), PutStringAsyncReplyProc);
+			RpcCallAsync(jclient, call.dump().c_str(), g_Buffer, sizeof(g_Buffer), PutStringAsyncReplyProc);
 			g_sem_put_str.A();
 		}
 	} 

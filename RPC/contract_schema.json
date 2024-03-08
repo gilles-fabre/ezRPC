@@ -17,8 +17,22 @@
               "enum": [
                 "STRING",
                 "STRING_REF",
+                "BYTE",
+                "BYTE_REF",
+                "CHAR",
+                "CHAR_REF",
+                "UINT16",
+                "UINT16_REF",
+                "UINT32",
+                "UINT32_REF",
                 "UINT64",
                 "UINT64_REF",
+                "INT16",
+                "INT16_REF",
+                "INT32",
+                "INT32_REF",
+                "INT64",
+                "INT64_REF",
                 "DOUBLE",
                 "DOUBLE_REF"
               ]

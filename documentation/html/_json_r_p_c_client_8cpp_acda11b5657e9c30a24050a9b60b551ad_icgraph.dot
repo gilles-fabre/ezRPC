@@ -8,4 +8,8 @@ digraph "DestroyRpcClient"
   Node1 [id="Node000001",label="DestroyRpcClient",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_json_test_client_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a0de1b2dd52ddc28a27c8ca79fff10c76",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#ad56cb8fa97ca6c0b84ec15fb791e6194",tooltip=" "];
 }

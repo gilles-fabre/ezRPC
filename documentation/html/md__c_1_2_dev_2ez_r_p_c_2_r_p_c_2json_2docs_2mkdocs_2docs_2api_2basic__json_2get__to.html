@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;get_to</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md387"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ValueType&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md397"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ValueType&gt;</div>
 <div class="line">ValueType&amp; get_to(ValueType&amp; v) <span class="keyword">const</span> <span class="keyword">noexcept</span>(</div>
 <div class="line">    <span class="keyword">noexcept</span>(JSONSerializer&lt;ValueType&gt;::from_json(</div>
 <div class="line">        std::declval&lt;const basic_json_t&amp;&gt;(), v)));</div>
@@ -107,16 +107,16 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li><code>ValueType</code> is not <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code>,</li>
 <li><code>json_serializer&lt;ValueType&gt;</code> has a <code><a class="el" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json()</a></code> method of the form <code>void from_json(const <a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a>&amp;, ValueType&amp;)</code></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md388"></a>
+<h1><a class="anchor" id="autotoc_md398"></a>
 Template parameters</h1>
 <p><code>ValueType</code> : the value type to return</p>
-<h1><a class="anchor" id="autotoc_md389"></a>
+<h1><a class="anchor" id="autotoc_md399"></a>
 Return value</h1>
 <p>the input parameter, allowing chaining calls</p>
-<h1><a class="anchor" id="autotoc_md390"></a>
+<h1><a class="anchor" id="autotoc_md400"></a>
 Exceptions</h1>
 <p>Depends on what <code>json_serializer&lt;ValueType&gt;</code> <code><a class="el" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json()</a></code> method throws</p>
-<h1><a class="anchor" id="autotoc_md391"></a>
+<h1><a class="anchor" id="autotoc_md401"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows several conversions from JSON values to other types. There a few things to note: (1)
 Floating-point numbers can be converted to integers, (2) A JSON array can be converted to a standard
@@ -132,7 +132,7 @@ Output:
 ```json
 --8&lt;-- "examples/get_to.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md392"></a>
+</pre> <h1><a class="anchor" id="autotoc_md402"></a>
 Version history</h1>
 <ul>
 <li>Since version 3.3.0. </li>

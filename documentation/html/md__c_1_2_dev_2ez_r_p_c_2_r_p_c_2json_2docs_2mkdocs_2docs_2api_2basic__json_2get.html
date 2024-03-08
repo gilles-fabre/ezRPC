@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;get</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md352"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md362"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ValueType&gt;</div>
 <div class="line">ValueType get() const noexcept(</div>
 <div class="line">    noexcept(JSONSerializer&lt;ValueType&gt;::<a class="code hl_function" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json</a>(</div>
@@ -111,7 +111,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line"> </div>
 <div class="line">template&lt;typename PointerType&gt;</div>
 <div class="line">constexpr const PointerType get_ptr() const noexcept;</div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="gtest-tuple_8h_source.html#l00113">gtest-tuple.h:113</a></div></div>
 <div class="ttc" id="aunit-regression2_8cpp_html_ae14d47158b902877a3fc6840ea80dd02"><div class="ttname"><a href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json</a></div><div class="ttdeci">void from_json(const json &amp;j, Data &amp;data)</div><div class="ttdef"><b>Definition</b> <a href="unit-regression2_8cpp_source.html#l00098">unit-regression2.cpp:98</a></div></div>
 </div><!-- fragment --><ol type="1">
 <li><p class="startli">Explicit type conversion between the JSON value and a compatible value which is <a href="https://en.cppreference.com/w/cpp/named_req/CopyConstructible">CopyConstructible</a> and <a href="https://en.cppreference.com/w/cpp/named_req/DefaultConstructible">DefaultConstructible</a>. The value is converted by calling the <code>json_serializer&lt;ValueType&gt;</code> <code><a class="el" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json()</a></code> method.</p>
@@ -135,25 +135,25 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </div><!-- fragment --></li>
 <li>Explicit pointer access to the internally stored JSON value. No copies are made.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md353"></a>
+<h1><a class="anchor" id="autotoc_md363"></a>
 Template parameters</h1>
 <p><code>ValueType</code> : the value type to return</p>
 <p><code>BasicJsonType</code> : a specialization of <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code></p>
 <p><code>PointerType</code> : pointer type; must be a pointer to <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2array__t.html"><code>array_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2string__t.html"><code>string_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2boolean__t.html"><code>boolean_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__integer__t.html"><code>number_integer_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__unsigned__t.html"><code>number_unsigned_t</code></a>, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2number__float__t.html"><code>number_float_t</code></a>, or <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2binary__t.html"><code>binary_t</code></a>. Other types will not compile.</p>
-<h1><a class="anchor" id="autotoc_md354"></a>
+<h1><a class="anchor" id="autotoc_md364"></a>
 Return value</h1>
 <ol type="1">
 <li>copy of the JSON value, converted to <code>ValueType</code></li>
 <li>a copy of <code>#!cpp *this</code>, converted into <code>BasicJsonType</code></li>
 <li>pointer to the internally stored JSON value if the requested pointer type fits to the JSON value; <code>#!cpp nullptr</code> otherwise</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md355"></a>
+<h1><a class="anchor" id="autotoc_md365"></a>
 Exceptions</h1>
 <p>Depends on what <code>json_serializer&lt;ValueType&gt;</code> <code><a class="el" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json()</a></code> method throws</p>
-<h1><a class="anchor" id="autotoc_md356"></a>
+<h1><a class="anchor" id="autotoc_md366"></a>
 Notes</h1>
 <p>!!! danger "Undefined behavior" </p><pre class="fragment">Writing data to the pointee (overload 3) of the result yields an undefined state.
-</pre> <h1><a class="anchor" id="autotoc_md357"></a>
+</pre> <h1><a class="anchor" id="autotoc_md367"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example below shows several conversions from JSON values
 to other types. There a few things to note: (1) Floating-point numbers can
@@ -182,7 +182,7 @@ Output:
 ```json
 --8&lt;-- "examples/get__PointerType.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md358"></a>
+</pre> <h1><a class="anchor" id="autotoc_md368"></a>
 Version history</h1>
 <ol type="1">
 <li>Since version 2.1.0.</li>

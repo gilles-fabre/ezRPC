@@ -1,0 +1,11 @@
+digraph "tracesListener.ProgFilter.getColor"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="tracesListener.ProgFilter.get\lColor",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="reporter.ProgDefinitionDialog.doIt",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classreporter_1_1_prog_definition_dialog.html#a1a94c1b6b0ecc4f8d1ba84ad8e2a3635",tooltip=" "];
+}

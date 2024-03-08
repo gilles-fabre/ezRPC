@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;update</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md918"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md928"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><span class="keywordtype">void</span> update(const_reference <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, <span class="keywordtype">bool</span> merge_objects = <span class="keyword">false</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// (2)</span></div>
@@ -107,13 +107,13 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 </ol>
 <p>When <code>merge_objects</code> is <code>#!c false</code> (default), existing keys are overwritten. When <code>merge_objects</code> is <code>#!c true</code>, recursively merges objects with common keys.</p>
 <p>The function is motivated by Python's <a href="https://docs.python.org/3.6/library/stdtypes.html#dict.update">dict.update</a> function.</p>
-<h1><a class="anchor" id="autotoc_md919"></a>
+<h1><a class="anchor" id="autotoc_md929"></a>
 Parameters</h1>
 <p><code>j</code> (in) : JSON object to read values from</p>
 <p><code>merge_objects</code> (in) : when <code>#!c true</code>, existing keys are not overwritten, but contents of objects are merged recursively (default: <code>#!c false</code>)</p>
 <p><code>first</code> (in) : begin of the range of elements to insert</p>
 <p><code>last</code> (in) : end of the range of elements to insert</p>
-<h1><a class="anchor" id="autotoc_md920"></a>
+<h1><a class="anchor" id="autotoc_md930"></a>
 Exceptions</h1>
 <ol type="1">
 <li>The function can throw the following exceptions:<ul>
@@ -127,13 +127,13 @@ Exceptions</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md921"></a>
+<h1><a class="anchor" id="autotoc_md931"></a>
 Complexity</h1>
 <ol type="1">
 <li>O(N*log(size() + N)), where N is the number of elements to insert.</li>
 <li>O(N*log(size() + N)), where N is the number of elements to insert.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md922"></a>
+<h1><a class="anchor" id="autotoc_md932"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows how `update()` is used.
 
@@ -210,7 +210,7 @@ effective_settings.update(user_settings, true);
     "name": {"de": "Maus", "en": "mouse", "es": "ratón"}
 }
 ```
-</pre> <h1><a class="anchor" id="autotoc_md923"></a>
+</pre> <h1><a class="anchor" id="autotoc_md933"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.0.0.</li>

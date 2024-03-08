@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">Arbitrary Type Conversions</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1308"></a> Every type can be serialized in JSON, not just STL containers and scalar types. Usually, you would do something along those lines:</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1318"></a> Every type can be serialized in JSON, not just STL containers and scalar types. Usually, you would do something along those lines:</p>
 <div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacens.html">ns</a> {</div>
 <div class="line">    <span class="comment">// a simple struct to model a person</span></div>
 <div class="line">    <span class="keyword">struct </span>person {</div>
@@ -146,7 +146,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line"><a class="code hl_function" href="_fuzzer_trace_p_c_8cpp.html#aa099297e8e2ed3ff1bcc3de3ff413238">assert</a>(<a class="code hl_variable" href="unit-udt_8cpp.html#a1dd9fae95006795d666b2d7b04463aff">p</a> == <a class="code hl_variable" href="unit-udt_8cpp.html#ab129b5adf5b5823e67703b625ffc7c66">p2</a>);</div>
 <div class="ttc" id="a_fuzzer_trace_p_c_8cpp_html_aa099297e8e2ed3ff1bcc3de3ff413238"><div class="ttname"><a href="_fuzzer_trace_p_c_8cpp.html#aa099297e8e2ed3ff1bcc3de3ff413238">assert</a></div><div class="ttdeci">assert(Idx&lt; N)</div></div>
 <div class="ttc" id="aunit-udt_8cpp_html_ab129b5adf5b5823e67703b625ffc7c66"><div class="ttname"><a href="unit-udt_8cpp.html#ab129b5adf5b5823e67703b625ffc7c66">p2</a></div><div class="ttdeci">auto p2</div><div class="ttdef"><b>Definition</b> <a href="unit-udt_8cpp_source.html#l00662">unit-udt.cpp:662</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1309"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1319"></a>
 Basic usage</h1>
 <p>To make this work with one of your types, you only need to provide two functions:</p>
 <div class="fragment"><div class="line"><span class="keyword">using </span><a class="code hl_class" href="classnlohmann_1_1basic__json.html">json</a> = <a class="code hl_typedef" href="namespacenlohmann.html#a8ba8c5483f73a36e716558571ff97d57">nlohmann::json</a>;</div>
@@ -176,7 +176,7 @@ Basic usage</h1>
 <li>In function <code>from_json</code>, use function <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2at.html"><code>at()</code></a> to access the object values rather than <code>operator[]</code>. In case a key does not exist, <code>at</code> throws an exception that you can handle, whereas <code>operator[]</code> exhibits undefined behavior.</li>
 <li>You do not need to add serializers or deserializers for STL types like <code>std::vector</code>: the library already implements these.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1310"></a>
+<h1><a class="anchor" id="autotoc_md1320"></a>
 Simplify your life with macros</h1>
 <p>If you just want to serialize/deserialize some structs, the <code>to_json</code>/<code>from_json</code> functions can be a lot of boilerplate.</p>
 <p>There are four macros to make your life easier as long as you (1) want to use a JSON object as serialization and (2) want to use the member variable names as object keys in that object:</p>
@@ -214,7 +214,7 @@ namespace ns {
     };
 }
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1311"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1321"></a>
 How do I convert third-party types?</h1>
 <p>This requires a bit more advanced technique. But first, let's see how this conversion mechanism works:</p>
 <p>The library uses <b>JSON Serializers</b> to convert types to json. The default serializer for <code><a class="el" href="namespacenlohmann.html#a8ba8c5483f73a36e716558571ff97d57" title="default specialization">nlohmann::json</a></code> is <code><a class="el" href="structnlohmann_1_1adl__serializer.html" title="default JSONSerializer template argument">nlohmann::adl_serializer</a></code> (ADL means <a href="https://en.cppreference.com/w/cpp/language/adl">Argument-Dependent Lookup</a>).</p>
@@ -262,7 +262,7 @@ How do I convert third-party types?</h1>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_aedc7afad96292b5ab61a2e0ad3067f5f"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#aedc7afad96292b5ab61a2e0ad3067f5f">nlohmann::basic_json::is_null</a></div><div class="ttdeci">constexpr bool is_null() const noexcept</div><div class="ttdoc">return whether value is null</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l18469">json_v3_10_5.hpp:18469</a></div></div>
 </div><!-- fragment --><p>!!! note "ABI compatibility" </p><pre class="fragment">Use [`NLOHMANN_JSON_NAMESPACE_BEGIN`](../api/macros/nlohmann_json_namespace_begin.md) and `NLOHMANN_JSON_NAMESPACE_END`
 instead of `#!cpp namespace nlohmann { }` in code which may be linked with different versions of this library.
-</pre> <h1><a class="anchor" id="autotoc_md1312"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1322"></a>
 How can I use <code>get()</code> for non-default constructible/non-copyable types?</h1>
 <p>There is a way, if your type is <a href="https://en.cppreference.com/w/cpp/named_req/MoveConstructible">MoveConstructible</a>. You will need to specialize the <code><a class="el" href="structadl__serializer.html" title="namespace for Niels Lohmann">adl_serializer</a></code> as well, but with a special <code>from_json</code> overload:</p>
 <div class="fragment"><div class="line"><span class="keyword">struct </span>move_only_type {</div>
@@ -294,7 +294,7 @@ How can I use <code>get()</code> for non-default constructible/non-copyable type
 <div class="ttc" id="anamespacenlohmann_html"><div class="ttname"><a href="namespacenlohmann.html">nlohmann</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="from__json____non__default__constructible_8cpp_source.html#l00021">from_json__non_default_constructible.cpp:22</a></div></div>
 <div class="ttc" id="astructnlohmann_1_1adl__serializer_html_a8180f52bf21fc610705bc521f22116ae"><div class="ttname"><a href="structnlohmann_1_1adl__serializer.html#a8180f52bf21fc610705bc521f22116ae">nlohmann::adl_serializer::from_json</a></div><div class="ttdeci">static auto from_json(BasicJsonType &amp;&amp;j, TargetType &amp;val) noexcept(noexcept(::nlohmann::from_json(std::forward&lt; BasicJsonType &gt;(j), val))) -&gt; decltype(::nlohmann::from_json(std::forward&lt; BasicJsonType &gt;(j), val), void())</div><div class="ttdoc">convert a JSON value to any value type</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l04930">json_v3_10_5.hpp:4930</a></div></div>
 <div class="ttc" id="astructnlohmann_1_1adl__serializer_html_afdcc8f0204ce8ac7d28a5403f6e1f0e7"><div class="ttname"><a href="structnlohmann_1_1adl__serializer.html#afdcc8f0204ce8ac7d28a5403f6e1f0e7">nlohmann::adl_serializer::to_json</a></div><div class="ttdeci">static auto to_json(BasicJsonType &amp;j, TargetType &amp;&amp;val) noexcept(noexcept(::nlohmann::to_json(j, std::forward&lt; TargetType &gt;(val)))) -&gt; decltype(::nlohmann::to_json(j, std::forward&lt; TargetType &gt;(val)), void())</div><div class="ttdoc">convert any value type to a JSON value</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l04950">json_v3_10_5.hpp:4950</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1313"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1323"></a>
 Can I write my own serializer? (Advanced use)</h1>
 <p>Yes. You might want to take a look at <a href="https://github.com/nlohmann/json/blob/develop/tests/src/unit-udt.cpp"><code>unit-udt.cpp</code></a> in the test suite, to see a few examples.</p>
 <p>If you write your own serializer, you'll need to do a few things:</p>

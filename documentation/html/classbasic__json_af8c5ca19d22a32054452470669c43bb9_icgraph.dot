@@ -12,10 +12,12 @@ digraph "basic_json::insert_iterator"
   Node3 [id="Node000003",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#ae5da62116a40a0f86e87f11fdd54e9f0",tooltip="inserts element into array"];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="basic_json::patch_inplace",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a693812b31e106dec9166e93d8f6dd7d7",tooltip="applies a JSON patch in-place without copying the object"];
-  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a68e1707248a00a2608a304da5ae5c911",tooltip="inserts range of elements into array"];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="basic_json::patch",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a145a004c0a2fa5be84b260ecc98ab5d9",tooltip="applies a JSON patch to a copy of the current object"];
   Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#abdfee6a3db80431a24c68bfaf038c47d",tooltip="inserts elements from initializer list into array"];
+  Node6 [id="Node000006",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a68e1707248a00a2608a304da5ae5c911",tooltip="inserts range of elements into array"];
   Node1 -> Node7 [id="edge6_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a47b623200562da188886a385c716d101",tooltip="inserts copies of element into array"];
+  Node7 [id="Node000007",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#abdfee6a3db80431a24c68bfaf038c47d",tooltip="inserts elements from initializer list into array"];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="basic_json::insert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classbasic__json.html#a47b623200562da188886a385c716d101",tooltip="inserts copies of element into array"];
 }

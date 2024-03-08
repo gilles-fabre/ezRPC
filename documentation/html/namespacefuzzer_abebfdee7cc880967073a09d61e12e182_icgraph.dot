@@ -20,13 +20,15 @@ digraph "fuzzer::Hash"
   Node7 [id="Node000007",label="fuzzer::Fuzzer::Loop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a0306e29f06ced3d24ed0417ea2fef34b",tooltip=" "];
   Node2 -> Node8 [id="edge7_Node000002_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="fuzzer::Fuzzer::ShuffleAnd\lMinimize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a368fcca328a7e72c500caf081227f7ef",tooltip=" "];
-  Node1 -> Node1 [id="edge8_Node000001_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node9 [id="edge9_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="fuzzer::InputCorpus\l::HasUnit",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_input_corpus.html#a3c108aa07e1cd4ea35bb96af686dab44",tooltip=" "];
-  Node9 -> Node6 [id="edge10_Node000009_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node10 [id="edge11_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node10 [id="Node000010",label="fuzzer::MinimizeCrashInput",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacefuzzer.html#ad1a84d03ed48306c3319143e4412ef59",tooltip=" "];
-  Node10 -> Node4 [id="edge12_Node000010_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node11 [id="edge13_Node000001_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node11 [id="Node000011",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#a2917978eccc0cf92d847f8b06103fcbd",tooltip=" "];
+  Node2 -> Node9 [id="edge8_Node000002_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#aad9e8923a41140151cf52209bd2b76b4",tooltip=" "];
+  Node1 -> Node1 [id="edge9_Node000001_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node10 [id="edge10_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="fuzzer::InputCorpus\l::HasUnit",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_input_corpus.html#a3c108aa07e1cd4ea35bb96af686dab44",tooltip=" "];
+  Node10 -> Node6 [id="edge11_Node000010_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node11 [id="edge12_Node000001_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="fuzzer::MinimizeCrashInput",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacefuzzer.html#ad1a84d03ed48306c3319143e4412ef59",tooltip=" "];
+  Node11 -> Node4 [id="edge13_Node000011_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node12 [id="edge14_Node000001_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="TEST",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_unittest_8cpp.html#a2917978eccc0cf92d847f8b06103fcbd",tooltip=" "];
 }

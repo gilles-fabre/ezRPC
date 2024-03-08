@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;parse_error</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md752"></a> </p><div class="fragment"><div class="line"><span class="keyword">class </span>parse_error : <span class="keyword">public</span> exception;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md762"></a> </p><div class="fragment"><div class="line"><span class="keyword">class </span>parse_error : <span class="keyword">public</span> exception;</div>
 </div><!-- fragment --><p>This exception is thrown by the library when a parse error occurs. Parse errors can occur during the deserialization of JSON text, BSON, CBOR, MessagePack, UBJSON, as well as when using JSON Patch.</p>
 <p>Member <code>byte</code> holds the byte index of the last read character in the input file (see note below).</p>
 <p>Exceptions have ids 1xx (see <a href="../../home/exceptions.md#parse-errors">list of parse errors</a>).</p>
@@ -116,21 +116,21 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line">class basic_json::parse_error #FFFF00 {</div>
 <div class="line">    + const std::size_t byte</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md753"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md763"></a>
 Member functions</h1>
 <ul>
 <li><b>what</b> - returns explanatory string</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md754"></a>
+<h1><a class="anchor" id="autotoc_md764"></a>
 Member variables</h1>
 <ul>
 <li><b>id</b> - the id of the exception</li>
 <li><b>byte</b> - byte index of the parse error</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md755"></a>
+<h1><a class="anchor" id="autotoc_md765"></a>
 Notes</h1>
 <p>For an input with $n$ bytes, 1 is the index of the first character and $n+1$ is the index of the terminating null byte or the end of file. This also holds true when reading a byte vector for binary formats.</p>
-<h1><a class="anchor" id="autotoc_md756"></a>
+<h1><a class="anchor" id="autotoc_md766"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows how a `parse_error` exception can be caught.
 
@@ -143,7 +143,7 @@ Output:
 ```json
 --8&lt;-- "examples/parse_error.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md757"></a>
+</pre> <h1><a class="anchor" id="autotoc_md767"></a>
 See also</h1>
 <ul>
 <li><a href="../../home/exceptions.md#parse-errors">List of parse errors</a></li>
@@ -152,7 +152,7 @@ See also</h1>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2out__of__range.html"><code>out_of_range</code></a> for exceptions indicating access out of the defined range</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2other__error.html"><code>other_error</code></a> for exceptions indicating other library errors</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md758"></a>
+<h1><a class="anchor" id="autotoc_md768"></a>
 Version history</h1>
 <ul>
 <li>Since version 3.0.0. </li>

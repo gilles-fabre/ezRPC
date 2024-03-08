@@ -28,11 +28,17 @@ digraph "TEST_CASE"
   Node10 [id="Node000010",label="nlohmann::basic_json\l::basic_json",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a19734fbc9c97d536832892ddacd6b62a",tooltip="create an empty value with a given type"];
   Node9 -> Node11 [id="edge12_Node000009_Node000011",color="steelblue1",style="solid",tooltip=" "];
   Node11 [id="Node000011",label="nlohmann::detail::input\l_adapter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a616a53cc3114fdc113fc44e6af4c3c7f",tooltip=" "];
-  Node1 -> Node12 [id="edge13_Node000001_Node000012",color="steelblue1",style="solid",tooltip=" "];
-  Node12 [id="Node000012",label="nlohmann::basic_json\l::is_number_integer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#ac4b4acf2c0ad075c0dc125a65c102362",tooltip="return whether value is an integer number"];
-  Node1 -> Node13 [id="edge14_Node000001_Node000013",color="steelblue1",style="solid",tooltip=" "];
-  Node13 [id="Node000013",label="nlohmann::basic_json\l::is_number_unsigned",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a5493f2ed1e07b0ece428bd5a47e2fb95",tooltip="return whether value is an unsigned integer number"];
-  Node1 -> Node14 [id="edge15_Node000001_Node000014",color="steelblue1",style="solid",tooltip=" "];
-  Node14 [id="Node000014",label="nlohmann::basic_json\l::to_bson",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a21302d2c392af239d66df71098d69f73",tooltip="create a BSON serialization of a given JSON value"];
-  Node14 -> Node14 [id="edge16_Node000014_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node9 -> Node12 [id="edge13_Node000009_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="nlohmann::detail::binary\l_reader::sax_parse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1binary__reader.html#ab4afd9ee276bbb15a0f898061aad94dd",tooltip=" "];
+  Node12 -> Node13 [id="edge14_Node000012_Node000013",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="nlohmann::detail::parse\l_error::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1parse__error.html#ae77bd584cb9101140790219af7fec1ce",tooltip="create a parse error exception"];
+  Node13 -> Node4 [id="edge15_Node000013_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node13 -> Node5 [id="edge16_Node000013_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node14 [id="edge17_Node000001_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="nlohmann::basic_json\l::is_number_integer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#ac4b4acf2c0ad075c0dc125a65c102362",tooltip="return whether value is an integer number"];
+  Node1 -> Node15 [id="edge18_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="nlohmann::basic_json\l::is_number_unsigned",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a5493f2ed1e07b0ece428bd5a47e2fb95",tooltip="return whether value is an unsigned integer number"];
+  Node1 -> Node16 [id="edge19_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="nlohmann::basic_json\l::to_bson",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classnlohmann_1_1basic__json.html#a21302d2c392af239d66df71098d69f73",tooltip="create a BSON serialization of a given JSON value"];
+  Node16 -> Node16 [id="edge20_Node000016_Node000016",color="steelblue1",style="solid",tooltip=" "];
 }

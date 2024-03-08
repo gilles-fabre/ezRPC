@@ -95,30 +95,30 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;array</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md82"></a> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> <a class="code hl_variable" href="_load_test_8cpp.html#a792d6eeeb0acc4674d47aa40992d6014">array</a>(initializer_list_t init = {});</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md92"></a> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_class" href="classbasic__json.html">basic_json</a> <a class="code hl_variable" href="_load_test_8cpp.html#a792d6eeeb0acc4674d47aa40992d6014">array</a>(initializer_list_t init = {});</div>
 <div class="ttc" id="a_load_test_8cpp_html_a792d6eeeb0acc4674d47aa40992d6014"><div class="ttname"><a href="_load_test_8cpp.html#a792d6eeeb0acc4674d47aa40992d6014">array</a></div><div class="ttdeci">int array[kArraySize]</div><div class="ttdef"><b>Definition</b> <a href="_load_test_8cpp_source.html#l00013">LoadTest.cpp:13</a></div></div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
 </div><!-- fragment --><p>Creates a JSON array value from a given initializer list. That is, given a list of values <code>a, b, c</code>, creates the JSON value <code>#!json [a, b, c]</code>. If the initializer list is empty, the empty array <code>#!json []</code> is created.</p>
-<h1><a class="anchor" id="autotoc_md83"></a>
+<h1><a class="anchor" id="autotoc_md93"></a>
 Parameters</h1>
 <p><code>init</code> (in) : initializer list with JSON values to create an array from (optional)</p>
-<h1><a class="anchor" id="autotoc_md84"></a>
+<h1><a class="anchor" id="autotoc_md94"></a>
 Return value</h1>
 <p>JSON array value</p>
-<h1><a class="anchor" id="autotoc_md85"></a>
+<h1><a class="anchor" id="autotoc_md95"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes in the JSON value.</p>
-<h1><a class="anchor" id="autotoc_md86"></a>
+<h1><a class="anchor" id="autotoc_md96"></a>
 Complexity</h1>
 <p>Linear in the size of <code>init</code>.</p>
-<h1><a class="anchor" id="autotoc_md87"></a>
+<h1><a class="anchor" id="autotoc_md97"></a>
 Notes</h1>
 <p>This function is only needed to express two edge cases that cannot be realized with the initializer list constructor (<a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2basic__json.html"><code>basic_json(initializer_list_t, bool, value_t)</code></a>). These cases are:</p>
 <ol type="1">
 <li>creating an array whose elements are all pairs whose first element is a string &ndash; in this case, the initializer list constructor would create an object, taking the first elements as keys</li>
 <li>creating an empty array &ndash; passing the empty initializer list to the initializer list constructor yields an empty object</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md88"></a>
+<h1><a class="anchor" id="autotoc_md98"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code shows an example for the `array` function.
 
@@ -131,13 +131,13 @@ Output:
 ```json
 --8&lt;-- "examples/array.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md89"></a>
+</pre> <h1><a class="anchor" id="autotoc_md99"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2basic__json.html"><code>basic_json(initializer_list_t)</code></a> - create a JSON value from an initializer list</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object.html"><code>object</code></a> - create a JSON object value from an initializer list</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md90"></a>
+<h1><a class="anchor" id="autotoc_md100"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0. </li>

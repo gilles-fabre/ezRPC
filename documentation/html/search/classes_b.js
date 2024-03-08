@@ -6,7 +6,7 @@ var searchData=
   ['mallocfreetracer_3',['MallocFreeTracer',['../structfuzzer_1_1_malloc_free_tracer.html',1,'fuzzer']]],
   ['mergefileinfo_4',['MergeFileInfo',['../structfuzzer_1_1_merge_file_info.html',1,'fuzzer']]],
   ['merger_5',['Merger',['../structfuzzer_1_1_merger.html',1,'fuzzer']]],
-  ['message_6',['Message',['../struct_message.html',1,'']]],
+  ['message_6',['Message',['../struct_message.html',1,'Message'],['../classtesting_1_1_message.html',1,'testing::Message']]],
   ['messagebuilder_7',['MessageBuilder',['../structdoctest_1_1detail_1_1_message_builder.html',1,'doctest::detail']]],
   ['messagedata_8',['MessageData',['../structdoctest_1_1_message_data.html',1,'doctest']]],
   ['messageheader_9',['MessageHeader',['../struct_message_header.html',1,'']]],
@@ -18,5 +18,6 @@ var searchData=
   ['modulefilter_15',['ModuleFilter',['../classtraces_listener_1_1_module_filter.html',1,'tracesListener']]],
   ['multicoloredtextarea_16',['MultiColoredTextArea',['../classreporter_1_1_multi_colored_text_area.html',1,'reporter']]],
   ['mutationdispatcher_17',['MutationDispatcher',['../classfuzzer_1_1_mutation_dispatcher.html',1,'fuzzer']]],
-  ['my_5fallocator_18',['my_allocator',['../classmy__allocator.html',1,'']]]
+  ['mutex_18',['Mutex',['../classtesting_1_1internal_1_1_mutex.html',1,'testing::internal']]],
+  ['my_5fallocator_19',['my_allocator',['../classmy__allocator.html',1,'']]]
 ];

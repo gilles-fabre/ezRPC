@@ -11,9 +11,9 @@ DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char
 	return (uint64_t)new JsonRPCClient(transport, serverAddrP);
 }
 
-DECLSPEC AsyncID  AsyncRpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
+DECLSPEC AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
 	auto client = (JsonRPCClient*)clientId;
-	return client->AsyncRpcCall(jsonCallP, jsonCallResultP, jsonCallResultLen, replyProcP);
+	return client->RpcCallAsync(jsonCallP, jsonCallResultP, jsonCallResultLen, replyProcP);
 }
 
 DECLSPEC uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -68,7 +68,7 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 	}
 }
 
-AsyncID	JsonRPCClient::AsyncRpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
+AsyncID	JsonRPCClient::RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
 #ifdef JSONRPCCLIENT_TRACES
 	LogVText(JSONRPCCLIENT_MODULE, 0, true, "AsyncRpcCall will process JSON : %s", jsonCallP);
 #endif

@@ -113,19 +113,19 @@ $(function(){initNavTree('_thread_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread::IterateSafely(%p)&quot;</span>, threadP);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    threadP-&gt;m_running.Reset(1);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    threadP-&gt;m_exited.Reset(0);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    threadP-&gt;m_stopped.Reset(0);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    threadP-&gt;m_running.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(1);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    threadP-&gt;m_exited.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(0);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    threadP-&gt;m_stopped.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(0);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">while</span> (threadP-&gt;m_stopped.WaitA(1)) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">while</span> (threadP-&gt;m_stopped.<a class="code hl_function" href="class_semaphore.html#a2a0d38841031c070d6e11604e9ae20e5">WaitA</a>(1)) {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef THREAD_TRACES</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread iteration (%p)&quot;</span>, threadP);</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        (*(threadP-&gt;m_callbackP))(threadP-&gt;m_parametersP);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    }</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    threadP-&gt;m_running.Dec();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    threadP-&gt;m_exited.Inc();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    threadP-&gt;m_running.<a class="code hl_function" href="class_semaphore.html#a5c2d2b766ed89a3613872a007e793a18">Dec</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    threadP-&gt;m_exited.<a class="code hl_function" href="class_semaphore.html#a0056087969f6a71f9f755698c8c2589f">Inc</a>();</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#ifdef THREAD_TRACES</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread::IterateSafely(%p) exiting&quot;</span>, threadP);</div>
@@ -143,9 +143,9 @@ $(function(){initNavTree('_thread_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread::RunSafely(%p)&quot;</span>, threadP);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    threadP-&gt;m_running.Reset(1);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    threadP-&gt;m_exited.Reset(0);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    threadP-&gt;m_stopped.Reset(0);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    threadP-&gt;m_running.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(1);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    threadP-&gt;m_exited.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(0);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    threadP-&gt;m_stopped.<a class="code hl_function" href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Reset</a>(0);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#ifdef THREAD_TRACES</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 4, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread run (%p)&quot;</span>, threadP);</div>
@@ -153,8 +153,8 @@ $(function(){initNavTree('_thread_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    (*(threadP-&gt;m_callbackP))(threadP-&gt;m_parametersP);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    threadP-&gt;m_running.Dec();</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    threadP-&gt;m_exited.Inc();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    threadP-&gt;m_running.<a class="code hl_function" href="class_semaphore.html#a5c2d2b766ed89a3613872a007e793a18">Dec</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    threadP-&gt;m_exited.<a class="code hl_function" href="class_semaphore.html#a0056087969f6a71f9f755698c8c2589f">Inc</a>();</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#ifdef THREAD_TRACES</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e">LogVText</a>(<a class="code hl_define" href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a>, 0, <span class="keyword">true</span>, <span class="stringliteral">&quot;Thread::RunSafely(%p) exiting&quot;</span>, threadP);</div>
@@ -238,7 +238,11 @@ $(function(){initNavTree('_thread_8cpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
 <div class="ttc" id="a_thread_8h_html"><div class="ttname"><a href="_thread_8h.html">Thread.h</a></div></div>
 <div class="ttc" id="a_thread_8h_html_ae45e1b24ef24adba2ad5efaf3d4e97ec"><div class="ttname"><a href="_thread_8h.html#ae45e1b24ef24adba2ad5efaf3d4e97ec">THREAD_MODULE</a></div><div class="ttdeci">#define THREAD_MODULE</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00012">Thread.h:12</a></div></div>
+<div class="ttc" id="aclass_semaphore_html_a0056087969f6a71f9f755698c8c2589f"><div class="ttname"><a href="class_semaphore.html#a0056087969f6a71f9f755698c8c2589f">Semaphore::Inc</a></div><div class="ttdeci">int Inc()</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00063">Thread.h:63</a></div></div>
+<div class="ttc" id="aclass_semaphore_html_a2a0d38841031c070d6e11604e9ae20e5"><div class="ttname"><a href="class_semaphore.html#a2a0d38841031c070d6e11604e9ae20e5">Semaphore::WaitA</a></div><div class="ttdeci">int WaitA(unsigned long timeout)</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00040">Thread.h:40</a></div></div>
+<div class="ttc" id="aclass_semaphore_html_a48ac64691167102051debd5b5227d3e9"><div class="ttname"><a href="class_semaphore.html#a48ac64691167102051debd5b5227d3e9">Semaphore::Reset</a></div><div class="ttdeci">void Reset(int value)</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00081">Thread.h:81</a></div></div>
 <div class="ttc" id="aclass_semaphore_html_a5b2c3b765195da053f029f6d3378f367"><div class="ttname"><a href="class_semaphore.html#a5b2c3b765195da053f029f6d3378f367">Semaphore::A</a></div><div class="ttdeci">int A()</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00037">Thread.h:37</a></div></div>
+<div class="ttc" id="aclass_semaphore_html_a5c2d2b766ed89a3613872a007e793a18"><div class="ttname"><a href="class_semaphore.html#a5c2d2b766ed89a3613872a007e793a18">Semaphore::Dec</a></div><div class="ttdeci">int Dec()</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00028">Thread.h:28</a></div></div>
 <div class="ttc" id="aclass_thread_html"><div class="ttname"><a href="class_thread.html">Thread</a></div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00089">Thread.h:89</a></div></div>
 <div class="ttc" id="aclass_thread_html_a41b5c7adb2c080981c373d3d35c69e0d"><div class="ttname"><a href="class_thread.html#a41b5c7adb2c080981c373d3d35c69e0d">Thread::IterateAndWait</a></div><div class="ttdeci">void IterateAndWait(void *parametersP=NULL)</div><div class="ttdef"><b>Definition</b> <a href="#l00064">Thread.cpp:64</a></div></div>
 <div class="ttc" id="aclass_thread_html_a5c52914aa095e6244a1d3b5bf7d97965"><div class="ttname"><a href="class_thread.html#a5c52914aa095e6244a1d3b5bf7d97965">Thread::IsRunning</a></div><div class="ttdeci">bool IsRunning()</div><div class="ttdef"><b>Definition</b> <a href="_thread_8h_source.html#l00128">Thread.h:128</a></div></div>

@@ -15,5 +15,5 @@ var _fuzzer_driver_8cpp =
     [ "MinimizeCrashInput", "_fuzzer_driver_8cpp.html#ad1a84d03ed48306c3319143e4412ef59", null ],
     [ "MinimizeCrashInputInternalStep", "_fuzzer_driver_8cpp.html#a1553a49adb4d4d19b4f4dd52ff54cb68", null ],
     [ "RunOneTest", "_fuzzer_driver_8cpp.html#a1fe190c22f9575ec572ce81d57c7e483", null ],
-    [ "Flags", "_fuzzer_driver_8cpp.html#a4aff8f0e72fa15aeb16501d19744f0d7", null ]
+    [ "Flags", "_fuzzer_driver_8cpp.html#ae89142f0bab6ccd136ee43f6121f308e", null ]
 ];

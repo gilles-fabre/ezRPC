@@ -1,0 +1,15 @@
+digraph "testing::internal::FloatingPoint::AlmostEquals"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="testing::internal::\lFloatingPoint::AlmostEquals",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="testing::internal::\lFloatingPoint::is_nan",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtesting_1_1internal_1_1_floating_point.html#a1fc654fd206efa98e480aa1e034f30d5",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="testing::internal::\lFloatingPoint::exponent_bits",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtesting_1_1internal_1_1_floating_point.html#af6bf8fab8df572ecb137a3516ff390ae",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="testing::internal::\lFloatingPoint::fraction_bits",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classtesting_1_1internal_1_1_floating_point.html#aa17337e50a2ac855719bc0676529558f",tooltip=" "];
+}

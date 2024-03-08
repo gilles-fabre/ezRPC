@@ -95,25 +95,25 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;emplace_back</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md237"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md247"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</div>
 <div class="line">reference emplace_back(Args&amp;&amp; ... args);</div>
 </div><!-- fragment --><p>Creates a JSON value from the passed parameters <code>args</code> to the end of the JSON value. If the function is called on a JSON <code>#!json null</code> value, an empty array is created before appending the value created from <code>args</code>.</p>
-<h1><a class="anchor" id="autotoc_md238"></a>
+<h1><a class="anchor" id="autotoc_md248"></a>
 Template parameters</h1>
 <p><code>Args</code> : compatible types to create a <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code> object</p>
-<h1><a class="anchor" id="autotoc_md239"></a>
+<h1><a class="anchor" id="autotoc_md249"></a>
 Parameters</h1>
 <p><code>args</code> (in) : arguments to forward to a constructor of <code><a class="el" href="classbasic__json.html" title="namespace for Niels Lohmann">basic_json</a></code></p>
-<h1><a class="anchor" id="autotoc_md240"></a>
+<h1><a class="anchor" id="autotoc_md250"></a>
 Return value</h1>
 <p>reference to the inserted element</p>
-<h1><a class="anchor" id="autotoc_md241"></a>
+<h1><a class="anchor" id="autotoc_md251"></a>
 Exceptions</h1>
 <p>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error311"><code>type_error.311</code></a> when called on a type other than JSON array or <code>#!json null</code>; example: <code>"cannot use emplace_back() with number"</code></p>
-<h1><a class="anchor" id="autotoc_md242"></a>
+<h1><a class="anchor" id="autotoc_md252"></a>
 Complexity</h1>
 <p>Amortized constant.</p>
-<h1><a class="anchor" id="autotoc_md243"></a>
+<h1><a class="anchor" id="autotoc_md253"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The example shows how `emplace_back()` can be used to add elements to a JSON array. Note how the `null` value was
 silently converted to a JSON array.
@@ -127,7 +127,7 @@ Output:
 ```json
 --8&lt;-- "examples/emplace_back.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md244"></a>
+</pre> <h1><a class="anchor" id="autotoc_md254"></a>
 Version history</h1>
 <ul>
 <li>Since version 2.0.8.</li>

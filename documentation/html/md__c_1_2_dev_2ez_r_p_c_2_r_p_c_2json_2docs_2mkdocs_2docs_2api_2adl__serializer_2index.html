@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::&lt;/small&gt;adl_serializer</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md64"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>, <span class="keyword">typename</span>&gt;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md74"></a> </p><div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>, <span class="keyword">typename</span>&gt;</div>
 <div class="line"><span class="keyword">struct </span><a class="code hl_struct" href="structadl__serializer.html">adl_serializer</a>;</div>
 <div class="ttc" id="astructadl__serializer_html"><div class="ttname"><a href="structadl__serializer.html">adl_serializer</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="adl__serializer_8hpp_source.html#l00022">adl_serializer.hpp:23</a></div></div>
 </div><!-- fragment --><p>Serializer that uses ADL (<a href="https://en.cppreference.com/w/cpp/language/adl">Argument-Dependent Lookup</a>) to choose <code>to_json</code>/<code>from_json</code> functions from the types' namespaces.</p>
@@ -115,13 +115,13 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 <div class="ttc" id="astructadl__serializer_html_a0216149429fe899cf45cbf14e08e2166"><div class="ttname"><a href="structadl__serializer.html#a0216149429fe899cf45cbf14e08e2166">adl_serializer::to_json</a></div><div class="ttdeci">static auto to_json(BasicJsonType &amp;j, TargetType &amp;&amp;val) noexcept(noexcept(::nlohmann::to_json(j, std::forward&lt; TargetType &gt;(val)))) -&gt; decltype(::nlohmann::to_json(j, std::forward&lt; TargetType &gt;(val)), void())</div><div class="ttdoc">convert any value type to a JSON value</div><div class="ttdef"><b>Definition</b> <a href="adl__serializer_8hpp_source.html#l00047">adl_serializer.hpp:47</a></div></div>
 <div class="ttc" id="astructadl__serializer_html_a5645c63fe43bd9b4ebc9917f9c99d0fd"><div class="ttname"><a href="structadl__serializer.html#a5645c63fe43bd9b4ebc9917f9c99d0fd">adl_serializer::from_json</a></div><div class="ttdeci">static auto from_json(BasicJsonType &amp;&amp;j, TargetType &amp;val) noexcept(noexcept(::nlohmann::from_json(std::forward&lt; BasicJsonType &gt;(j), val))) -&gt; decltype(::nlohmann::from_json(std::forward&lt; BasicJsonType &gt;(j), val), void())</div><div class="ttdoc">convert a JSON value to any value type</div><div class="ttdef"><b>Definition</b> <a href="adl__serializer_8hpp_source.html#l00027">adl_serializer.hpp:27</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md65"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md75"></a>
 Member functions</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2adl__serializer_2from__json.html"><b>from_json</b></a> - convert a JSON value to any value type</li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2adl__serializer_2to__json.html"><b>to_json</b></a> - convert any value type to a JSON value</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md66"></a>
+<h1><a class="anchor" id="autotoc_md76"></a>
 Version history</h1>
 <ul>
 <li>Added in version 2.1.0. </li>

@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1219"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1229"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON </span><span class="comment">/* value */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --><p>This macro enables the (incorrect) legacy comparison behavior of discarded JSON values. Possible values are <code>1</code> to enable or <code>0</code> to disable (default).</p>
 <p>When enabled, comparisons involving at least one discarded JSON value yield results as follows:</p>
 <table class="markdownTable">
@@ -115,12 +115,12 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <td class="markdownTableBodyNone"><code>&gt;</code>   </td><td class="markdownTableBodyNone"><code>#!cpp false</code>   </td></tr>
 </table>
 <p>Otherwise, comparisons involving at least one discarded JSON value always yield <code>#!cpp false</code>.</p>
-<h1><a class="anchor" id="autotoc_md1220"></a>
+<h1><a class="anchor" id="autotoc_md1230"></a>
 Default definition</h1>
 <p>The default value is <code>0</code>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON 0</span></div>
 </div><!-- fragment --><p>When the macro is not defined, the library will define it to its default value.</p>
-<h1><a class="anchor" id="autotoc_md1221"></a>
+<h1><a class="anchor" id="autotoc_md1231"></a>
 Notes</h1>
 <p>!!! warning "Inconsistent behavior in C++20 and beyond" </p><pre class="fragment">When targeting C++20 or above, enabling the legacy comparison behavior is _strongly_
 discouraged.
@@ -140,7 +140,7 @@ New code should not depend on it and existing code should try to remove or rewri
 </pre><p> !!! hint "CMake option" </p><pre class="fragment">Legacy comparison can also be controlled with the CMake option
 [`JSON_LegacyDiscardedValueComparison`](../../integration/cmake.md#json_legacydiscardedvaluecomparison)
 (`OFF` by default) which defines `JSON_USE_LEGACY_DISCARDED_VALUE_COMPARISON` accordingly.
-</pre> <h1><a class="anchor" id="autotoc_md1222"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1232"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The code below switches on the legacy discarded value comparison behavior in the library.
 
@@ -150,7 +150,7 @@ Examples</h1>
 
 ...
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1223"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1233"></a>
 Version history</h1>
 <ul>
 <li>Added in version 3.11.0. </li>

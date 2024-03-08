@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wide_5fstring_5finput_5fhelper_0',['wide_string_input_helper',['../classdetail_1_1iterator__input__adapter.html#ab86106ba230f1542b94dcd96e6ab3221',1,'detail::iterator_input_adapter::wide_string_input_helper'],['../classnlohmann_1_1detail_1_1iterator__input__adapter.html#ab86106ba230f1542b94dcd96e6ab3221',1,'nlohmann::detail::iterator_input_adapter::wide_string_input_helper'],['../classdetail_1_1iterator__input__adapter.html#a9d76b26caf447d741d5621b21f0b00a5',1,'detail::iterator_input_adapter::wide_string_input_helper']]]
+  ['linked_5fptr_0',['linked_ptr',['../classtesting_1_1internal_1_1linked__ptr.html#a7763f286ca03a7f7363a033d996c8c1c',1,'testing::internal::linked_ptr']]]
 ];

@@ -21,4 +21,8 @@ digraph "detail::parser::accept"
   Node3 -> Node8 [id="edge7_Node000003_Node000008",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="detail::exception::name",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1exception.html#a8f1eb56b9964c8dd84d89d0da98d883b",tooltip=" "];
   Node8 -> Node4 [id="edge8_Node000008_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node9 [id="edge9_Node000002_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="detail::lexer::get\l_position",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1lexer.html#a569266654a88a2dc6f0e9a587067fc9d",tooltip="return position of last read token"];
+  Node2 -> Node10 [id="edge10_Node000002_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="detail::lexer::get\l_token_string",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdetail_1_1lexer.html#a41481d87dc1bcaaf532f529fbc0e690b",tooltip=" "];
 }

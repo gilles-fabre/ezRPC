@@ -95,8 +95,8 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">JSON Pointer</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1378"></a> </p>
-<h1><a class="anchor" id="autotoc_md1379"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1388"></a> </p>
+<h1><a class="anchor" id="autotoc_md1389"></a>
 Introduction</h1>
 <p>The library supports <b>JSON Pointer</b> (<a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a>) as alternative means to address structured values. A JSON Pointer is a string that identifies a specific value within a JSON document.</p>
 <p>Consider the following JSON document</p>
@@ -116,7 +116,7 @@ Introduction</h1>
 <td class="markdownTableBodyNone">`<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json {"array":["A","B","C"],"nested":{"one":1,"two":2,"three":[true,false]}}<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowEven"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/array<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json ["A","B","C"]<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowOdd"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/array/0<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json A<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowEven"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/array/1<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json B<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowOdd"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/array/2<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json C<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowEven"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json {"one":1,"two":2,"three":[true,false]}<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowOdd"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested/one<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json 1<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowEven"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested/two<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json 2<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowOdd"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested/three<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json [true,false]<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowEven"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested/three/0<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json true<code>\ilinebr &lt;/td&gt; &lt;/tr&gt; &lt;tr class="markdownTableRowOdd"&gt; &lt;td class="markdownTableBodyNone"&gt;</code>/nested/three/1<code>\ilinebr &lt;/td&gt; &lt;td class="markdownTableBodyNone"&gt;</code>#!json false`   </td></tr>
 </table>
 <p>Note <code>/</code> does not identify the root (i.e., the whole document), but an object entry with empty key <code>""</code>. See <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a> for more information.</p>
-<h1><a class="anchor" id="autotoc_md1380"></a>
+<h1><a class="anchor" id="autotoc_md1390"></a>
 JSON Pointer creation</h1>
 <p>JSON Pointers can be created from a string:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classnlohmann_1_1json__pointer.html">json::json_pointer</a> <a class="code hl_variable" href="unit-udt_8cpp.html#a1dd9fae95006795d666b2d7b04463aff">p</a> = <span class="stringliteral">&quot;/nested/one&quot;</span>;</div>
@@ -125,7 +125,7 @@ JSON Pointer creation</h1>
 </div><!-- fragment --><p>Furthermore, a user-defined string literal can be used to achieve the same result:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_variable" href="unit-udt_8cpp.html#a1dd9fae95006795d666b2d7b04463aff">p</a> = <span class="stringliteral">&quot;/nested/one&quot;</span>_json_pointer;</div>
 </div><!-- fragment --><p>The escaping rules of <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a> are implemented. See the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2json__pointer.html">constructor documentation</a> for more information.</p>
-<h1><a class="anchor" id="autotoc_md1381"></a>
+<h1><a class="anchor" id="autotoc_md1391"></a>
 Value access</h1>
 <p>JSON Pointers can be used in the <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2at.html"><code>at</code></a>, <code>operator[]</code>, and <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2value.html"><code>value</code></a> functions just like object keys or array indices.</p>
 <div class="fragment"><div class="line"><span class="comment">// the JSON value from above</span></div>
@@ -148,7 +148,7 @@ Value access</h1>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_a52b18a5b7e68652c65b070900c438c6e"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#a52b18a5b7e68652c65b070900c438c6e">nlohmann::basic_json::at</a></div><div class="ttdeci">reference at(size_type idx)</div><div class="ttdoc">access specified array element with bounds checking</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l19090">json_v3_10_5.hpp:19090</a></div></div>
 <div class="ttc" id="aclassnlohmann_1_1basic__json_html_aa8f1f93b32da01b42413643be32b2c27"><div class="ttname"><a href="classnlohmann_1_1basic__json.html#aa8f1f93b32da01b42413643be32b2c27">nlohmann::basic_json::json_pointer</a></div><div class="ttdeci">::nlohmann::json_pointer&lt; basic_json &gt; json_pointer</div><div class="ttdoc">JSON Pointer, see nlohmann::json_pointer.</div><div class="ttdef"><b>Definition</b> <a href="json__v3__10__5_8hpp_source.html#l17344">json_v3_10_5.hpp:17344</a></div></div>
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1382"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1392"></a>
 Flatten / unflatten</h1>
 <p>The library implements a function <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2flatten.html"><code>flatten</code></a> to convert any JSON document into a JSON object where each key is a JSON Pointer and each value is a primitive JSON value (i.e., a string, boolean, number, or null).</p>
 <div class="fragment"><div class="line"><span class="comment">// the JSON value from above</span></div>
@@ -176,7 +176,7 @@ Flatten / unflatten</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>The reverse function, <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2unflatten.html"><code>unflatten</code></a> recreates the original value.</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> j_original = j_flat.unflatten();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1383"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1393"></a>
 See also</h1>
 <ul>
 <li>Class <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2json__pointer_2index.html"><code>json_pointer</code></a></li>

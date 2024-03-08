@@ -23,7 +23,7 @@ namespace ezRPC
 		public static extern ulong CreateRpcClient(TransportType transport, byte[] serverAddr);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong AsyncRpcCall(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProc);
+		public static extern ulong RpcCallAsync(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen, AsyncJsonReplyProcedureType replyProc);
 
 		[DllImport("ezRPC.dll", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong RpcCall(ulong clientId, byte[] jsonCall, byte[] jsonCallResult, ulong jsonCallResultLen);
@@ -52,7 +52,7 @@ namespace ezRPC
 				return 0;
 
 			byte[] jsonCallResult = new byte[maxJsonReplyLen + 1];	
-			return AsyncRpcCall(m_clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId) =>
+			return RpcCallAsync(m_clientId, System.Text.Encoding.ASCII.GetBytes(JsonSerializer.Serialize<JsonCall>(call)), jsonCallResult, maxJsonReplyLen, (_asyncId) =>
 			{
 				JsonCall? callResult = JsonCall.FromJson(jsonCallResult);
 				replyProc(_asyncId, callResult);

@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;basic_json</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md118"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md128"></a> </p><div class="fragment"><div class="line"><span class="comment">// (1)</span></div>
 <div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a>(<span class="keyword">const</span> value_t v);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// (2)</span></div>
@@ -130,7 +130,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <div class="line"><a class="code hl_class" href="classbasic__json.html">basic_json</a>(<a class="code hl_class" href="classbasic__json.html">basic_json</a>&amp;&amp; other) noexcept;</div>
 <div class="ttc" id="aclassarray_html"><div class="ttname"><a href="classarray.html">array</a></div><div class="ttdef"><b>Definition</b> <a href="unit-regression1_8cpp_source.html#l01507">unit-regression1.cpp:1507</a></div></div>
 <div class="ttc" id="aclassbasic__json_html"><div class="ttname"><a href="classbasic__json.html">basic_json</a></div><div class="ttdoc">namespace for Niels Lohmann</div><div class="ttdef"><b>Definition</b> <a href="include_2nlohmann_2json_8hpp_source.html#l00097">json.hpp:99</a></div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="iteration__proxy_8hpp_source.html#l00213">iteration_proxy.hpp:214</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="gtest-tuple_8h_source.html#l00113">gtest-tuple.h:113</a></div></div>
 <div class="ttc" id="anamespacestd_html_a147badd87f1e15108e8dbee257b60b84"><div class="ttname"><a href="namespacestd.html#a147badd87f1e15108e8dbee257b60b84">std::nullptr_t</a></div><div class="ttdeci">decltype(nullptr) nullptr_t</div><div class="ttdef"><b>Definition</b> <a href="doctest_8h_source.html#l00523">doctest.h:523</a></div></div>
 </div><!-- fragment --><ol type="1">
 <li>Create an empty JSON value with a given type. The value will be default initialized with an empty value which depends on the type:</li>
@@ -196,7 +196,7 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
 <li>Creates a copy of a given JSON value.</li>
 <li>Move constructor. Constructs a JSON value with the contents of the given value <code>other</code> using move semantics. It "steals" the resources from <code>other</code> and leaves it as JSON <code>#!json null</code> value.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md119"></a>
+<h1><a class="anchor" id="autotoc_md129"></a>
 Template parameters</h1>
 <p><code>CompatibleType</code> : a type such that: </p><pre class="fragment">- `CompatibleType` is not derived from `std::istream`,
 - `CompatibleType` is not `basic_json` (to avoid hijacking copy/move constructors),
@@ -207,7 +207,7 @@ Template parameters</h1>
 </pre><p> <code>BasicJsonType</code>: : a type such that: </p><pre class="fragment">- `BasicJsonType` is a `basic_json` type.
 - `BasicJsonType` has different template arguments than `basic_json_t`.
 </pre><p> <code>U</code>: : <code>uncvref_t&lt;CompatibleType&gt;</code></p>
-<h1><a class="anchor" id="autotoc_md120"></a>
+<h1><a class="anchor" id="autotoc_md130"></a>
 Parameters</h1>
 <p><code>v</code> (in) : the type of the value to create</p>
 <p><code>val</code> (in) : the value to be forwarded to the respective constructor</p>
@@ -218,7 +218,7 @@ Parameters</h1>
 <p><code>first</code> (in) : begin of the range to copy from (included)</p>
 <p><code>last</code> (in) : end of the range to copy from (excluded)</p>
 <p><code>other</code> (in) : the JSON value to copy/move</p>
-<h1><a class="anchor" id="autotoc_md121"></a>
+<h1><a class="anchor" id="autotoc_md131"></a>
 Exception safety</h1>
 <ol type="1">
 <li>Strong guarantee: if an exception is thrown, there are no changes to any JSON value.</li>
@@ -231,7 +231,7 @@ Exception safety</h1>
 <li>Strong guarantee: if an exception is thrown, there are no changes to any JSON value.</li>
 <li>No-throw guarantee: this constructor never throws exceptions.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md122"></a>
+<h1><a class="anchor" id="autotoc_md132"></a>
 Exceptions</h1>
 <ol type="1">
 <li>(none)</li>
@@ -252,7 +252,7 @@ Exceptions</h1>
 <li>(none)</li>
 <li>The function does not throw exceptions.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md123"></a>
+<h1><a class="anchor" id="autotoc_md133"></a>
 Complexity</h1>
 <ol type="1">
 <li>Constant.</li>
@@ -265,7 +265,7 @@ Complexity</h1>
 <li>Linear in the size of <code>other</code>.</li>
 <li>Constant.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md124"></a>
+<h1><a class="anchor" id="autotoc_md134"></a>
 Notes</h1>
 <ul>
 <li><p class="startli">Overload 5:</p>
@@ -288,7 +288,7 @@ function, yielding the JSON `#!json null` value.
 - `other` is a JSON `#!json null` value
 </pre> </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md125"></a>
+<h1><a class="anchor" id="autotoc_md135"></a>
 Examples</h1>
 <p>??? example "Example: (1) create an empty value with a given type" </p><pre class="fragment">The following code shows the constructor for different `value_t` values.
 
@@ -380,7 +380,7 @@ Output:
 ```json
 --8&lt;-- "examples/basic_json__moveconstructor.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md126"></a>
+</pre> <h1><a class="anchor" id="autotoc_md136"></a>
 Version history</h1>
 <ol type="1">
 <li>Since version 1.0.0.</li>

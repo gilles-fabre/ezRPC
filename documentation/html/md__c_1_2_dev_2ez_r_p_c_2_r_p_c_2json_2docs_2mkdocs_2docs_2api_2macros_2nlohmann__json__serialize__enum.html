@@ -95,14 +95,14 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">NLOHMANN_JSON_SERIALIZE_ENUM</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md1253"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define NLOHMANN_JSON_SERIALIZE_ENUM(type, conversion...)</span></div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md1263"></a> </p><div class="fragment"><div class="line"><span class="preprocessor">#define NLOHMANN_JSON_SERIALIZE_ENUM(type, conversion...)</span></div>
 </div><!-- fragment --><p>By default, enum values are serialized to JSON as integers. In some cases this could result in undesired behavior. If an enum is modified or re-ordered after data has been serialized to JSON, the later de-serialized JSON data may be undefined or a different enum value than was originally intended.</p>
 <p>The <code>NLOHMANN_JSON_SERIALIZE_ENUM</code> allows to define a user-defined serialization for every enumerator.</p>
-<h1><a class="anchor" id="autotoc_md1254"></a>
+<h1><a class="anchor" id="autotoc_md1264"></a>
 Parameters</h1>
 <p><code>type</code> (in) : name of the enum to serialize/deserialize</p>
 <p><code>conversion</code> (in) : a pair of an enumerator and a JSON serialization; arbitrary pairs can be given as a comma-separated list</p>
-<h1><a class="anchor" id="autotoc_md1255"></a>
+<h1><a class="anchor" id="autotoc_md1265"></a>
 Default definition</h1>
 <p>The macros add two friend functions to the class which take care of the serialization and deserialization:</p>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> BasicJsonType&gt;</div>
@@ -111,14 +111,14 @@ Default definition</h1>
 <div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json</a>(<span class="keyword">const</span> BasicJsonType&amp; <a class="code hl_variable" href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a>, type&amp; e);</div>
 <div class="ttc" id="aparse____allow__exceptions_8cpp_html_ae9579d4dac7b85222223b7d60c9d8f1e"><div class="ttname"><a href="parse____allow__exceptions_8cpp.html#ae9579d4dac7b85222223b7d60c9d8f1e">j</a></div><div class="ttdeci">json j</div><div class="ttdef"><b>Definition</b> <a href="parse____allow__exceptions_8cpp_source.html#l00026">parse__allow_exceptions.cpp:26</a></div></div>
 <div class="ttc" id="aunit-regression2_8cpp_html_ae14d47158b902877a3fc6840ea80dd02"><div class="ttname"><a href="unit-regression2_8cpp.html#ae14d47158b902877a3fc6840ea80dd02">from_json</a></div><div class="ttdeci">void from_json(const json &amp;j, Data &amp;data)</div><div class="ttdef"><b>Definition</b> <a href="unit-regression2_8cpp_source.html#l00098">unit-regression2.cpp:98</a></div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1256"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1266"></a>
 Notes</h1>
 <p>!!! info "Prerequisites" </p><pre class="fragment">The macro must be used inside the namespace of the enum.
 </pre><p> !!! important "Important notes" </p><pre class="fragment">- When using [`template get&lt;ENUM_TYPE&gt;()`](../basic_json/get.md), undefined JSON values will default to the first specified
   conversion. Select this default pair carefully. See example 1 below.
 - If an enum or JSON value is specified in multiple conversions, the first matching conversion from the top of the
   list will be returned when converting to or from JSON. See example 2 below.
-</pre> <h1><a class="anchor" id="autotoc_md1257"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1267"></a>
 Examples</h1>
 <p>??? example "Example 1: Basic usage" </p><pre class="fragment">The example shows how `NLOHMANN_JSON_SERIALIZE_ENUM` can be used to serialize/deserialize both classical enums and
 C++11 enum classes:
@@ -145,13 +145,13 @@ Output:
 ```json
 --8&lt;-- "examples/nlohmann_json_serialize_enum_2.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md1258"></a>
+</pre> <h1><a class="anchor" id="autotoc_md1268"></a>
 See also</h1>
 <ul>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2features_2enum__conversion.html">Specializing enum conversion</a></li>
 <li><a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2macros_2json__disable__enum__serialization.html"><code>JSON_DISABLE_ENUM_SERIALIZATION</code></a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1259"></a>
+<h1><a class="anchor" id="autotoc_md1269"></a>
 Version history</h1>
 <p>Added in version 3.4.0. </p>
 </div></div><!-- contents -->

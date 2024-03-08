@@ -95,9 +95,9 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;empty</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md245"></a> </p><div class="fragment"><div class="line"><span class="keywordtype">bool</span> empty() const noexcept;</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md255"></a> </p><div class="fragment"><div class="line"><span class="keywordtype">bool</span> empty() const noexcept;</div>
 </div><!-- fragment --><p>Checks if a JSON value has no elements (i.e. whether its <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2size.html"><code>size()</code></a> is <code>0</code>).</p>
-<h1><a class="anchor" id="autotoc_md246"></a>
+<h1><a class="anchor" id="autotoc_md256"></a>
 Return value</h1>
 <p>The return value depends on the different types and is defined as follows:</p>
 <table class="markdownTable">
@@ -118,22 +118,22 @@ Return value</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">array   </td><td class="markdownTableBodyNone">result of function <code>array_t::empty()</code>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md247"></a>
+<h1><a class="anchor" id="autotoc_md257"></a>
 Exception safety</h1>
 <p>No-throw guarantee: this function never throws exceptions.</p>
-<h1><a class="anchor" id="autotoc_md248"></a>
+<h1><a class="anchor" id="autotoc_md258"></a>
 Complexity</h1>
 <p>Constant, as long as <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2array__t.html"><code>array_t</code></a> and <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2object__t.html"><code>object_t</code></a> satisfy the <a href="https://en.cppreference.com/w/cpp/named_req/Container">Container</a> concept; that is, their <code>empty()</code> functions have constant complexity.</p>
-<h1><a class="anchor" id="autotoc_md249"></a>
+<h1><a class="anchor" id="autotoc_md259"></a>
 Possible implementation</h1>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> empty() const noexcept</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">return</span> size() == 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md250"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md260"></a>
 Notes</h1>
 <p>This function does not return whether a string stored as JSON value is empty &ndash; it returns whether the JSON container itself is empty which is <code>#!cpp false</code> in the case of a string.</p>
-<h1><a class="anchor" id="autotoc_md251"></a>
+<h1><a class="anchor" id="autotoc_md261"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following code uses `empty()` to check if a JSON object contains any elements.
 
@@ -146,7 +146,7 @@ Output:
 ```json
 --8&lt;-- "examples/empty.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md252"></a>
+</pre> <h1><a class="anchor" id="autotoc_md262"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

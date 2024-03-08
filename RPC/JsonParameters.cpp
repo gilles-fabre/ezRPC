@@ -329,7 +329,7 @@ bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<ve
 
 		json parameters = json::array();
 
-		if (params->size() > 1) { // we don't process the END_OF_CALL parameter
+		if (params->size() >= 1) { // we don't process the END_OF_CALL parameter
 			int num_params = (int)params->size();
 			for (int i = 0; i < num_params; i++) {
 				RemoteProcedureCall::ParameterBase* paramP = params->at(i);

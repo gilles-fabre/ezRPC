@@ -10,9 +10,13 @@ digraph "Thread::GetParameters"
   Node2 [id="Node000002",label="StateMachine::CancelTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a0fb3b2d1e0daeeacac4edee9d85d033d",tooltip=" "];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="StateMachine::DoTransition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb",tooltip="Executes the given transition on the current state."];
-  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="StateMachine::InitiateTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8",tooltip="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..."];
-  Node4 -> Node3 [id="edge4_Node000004_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 -> Node5 [id="edge5_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="StateMachine::Release",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a8295262a91454cd9b54aebbd8573cf08",tooltip="Stops the state machine's context pending threads, then mark the state machine as exiting so the garb..."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="StateMachine::TimerThread\lCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ab502559100a6bc6d7cbf0bbaff8a6d3a",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="StateMachine::InitiateTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8",tooltip="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..."];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="StateMachine::CreateFrom\lDefinition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479",tooltip="This factory method creates a state machine from the given definition."];
+  Node5 -> Node3 [id="edge6_Node000005_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node7 [id="edge7_Node000002_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="StateMachine::Release",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a8295262a91454cd9b54aebbd8573cf08",tooltip="Stops the state machine's context pending threads, then mark the state machine as exiting so the garb..."];
 }

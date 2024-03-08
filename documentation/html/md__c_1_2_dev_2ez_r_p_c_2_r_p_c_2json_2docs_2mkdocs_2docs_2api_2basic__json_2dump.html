@@ -95,37 +95,37 @@ $(function(){initNavTree('md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2d
   <div class="headertitle"><div class="title">&lt;small&gt;nlohmann::basic_json::&lt;/small&gt;dump</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md220"></a> </p><div class="fragment"><div class="line">string_t dump(<span class="keyword">const</span> <span class="keywordtype">int</span> indent = -1,</div>
+<div class="textblock"><p><a class="anchor" id="autotoc_md230"></a> </p><div class="fragment"><div class="line">string_t dump(<span class="keyword">const</span> <span class="keywordtype">int</span> indent = -1,</div>
 <div class="line">              <span class="keyword">const</span> <span class="keywordtype">char</span> indent_char = <span class="charliteral">&#39; &#39;</span>,</div>
 <div class="line">              <span class="keyword">const</span> <span class="keywordtype">bool</span> ensure_ascii = <span class="keyword">false</span>,</div>
 <div class="line">              <span class="keyword">const</span> error_handler_t error_handler = error_handler_t::strict) <span class="keyword">const</span>;</div>
 </div><!-- fragment --><p>Serialization function for JSON values. The function tries to mimic Python's <a href="https://docs.python.org/2/library/json.html#json.dump"><code>json.dumps()</code> function</a>, and currently supports its <code>indent</code> and <code>ensure_ascii</code> parameters.</p>
-<h1><a class="anchor" id="autotoc_md221"></a>
+<h1><a class="anchor" id="autotoc_md231"></a>
 Parameters</h1>
 <p><code>indent</code> (in) : If <code>indent</code> is nonnegative, then array elements and object members will be pretty-printed with that indent level. An indent level of <code>0</code> will only insert newlines. <code>-1</code> (the default) selects the most compact representation.</p>
 <p><code>indent_char</code> (in) : The character to use for indentation if <code>indent</code> is greater than <code>0</code>. The default is (space).</p>
 <p><code>ensure_ascii</code> (in) : If <code>ensure_ascii</code> is true, all non-ASCII characters in the output are escaped with <code>\uXXXX</code> sequences, and the result consists of ASCII characters only.</p>
 <p><code>error_handler</code> (in) : how to react on decoding errors; there are three possible values (see <a class="el" href="md__c_1_2_dev_2ez_r_p_c_2_r_p_c_2json_2docs_2mkdocs_2docs_2api_2basic__json_2error__handler__t.html"><code>error_handler_t</code></a>: <code>strict</code> (throws and exception in case a decoding error occurs; default), <code>replace</code> (replace invalid UTF-8 sequences with U+FFFD), and <code>ignore</code> (ignore invalid UTF-8 sequences during serialization; all bytes are copied to the output unchanged)).</p>
-<h1><a class="anchor" id="autotoc_md222"></a>
+<h1><a class="anchor" id="autotoc_md232"></a>
 Return value</h1>
 <p>string containing the serialization of the JSON value</p>
-<h1><a class="anchor" id="autotoc_md223"></a>
+<h1><a class="anchor" id="autotoc_md233"></a>
 Exception safety</h1>
 <p>Strong guarantee: if an exception is thrown, there are no changes to any JSON value.</p>
-<h1><a class="anchor" id="autotoc_md224"></a>
+<h1><a class="anchor" id="autotoc_md234"></a>
 Exceptions</h1>
 <p>Throws <a href="../../home/exceptions.md#jsonexceptiontype_error316"><code>type_error.316</code></a> if a string stored inside the JSON value is not UTF-8 encoded and <code>error_handler</code> is set to <code>strict</code></p>
-<h1><a class="anchor" id="autotoc_md225"></a>
+<h1><a class="anchor" id="autotoc_md235"></a>
 Complexity</h1>
 <p>Linear.</p>
-<h1><a class="anchor" id="autotoc_md226"></a>
+<h1><a class="anchor" id="autotoc_md236"></a>
 Notes</h1>
 <p>Binary values are serialized as object containing two keys:</p>
 <ul>
 <li>"bytes": an array of bytes as integers</li>
 <li>"subtype": the subtype as integer or <code>#!json null</code> if the binary has no subtype</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md227"></a>
+<h1><a class="anchor" id="autotoc_md237"></a>
 Examples</h1>
 <p>??? example </p><pre class="fragment">The following example shows the effect of different `indent`, `indent_char`, and `ensure_ascii` parameters to the
 result of the serialization.
@@ -139,7 +139,7 @@ Output:
 ```json
 --8&lt;-- "examples/dump.output"
 ```
-</pre> <h1><a class="anchor" id="autotoc_md228"></a>
+</pre> <h1><a class="anchor" id="autotoc_md238"></a>
 Version history</h1>
 <ul>
 <li>Added in version 1.0.0.</li>

@@ -7,7 +7,15 @@ digraph "State::DoTransition"
   rankdir="LR";
   Node1 [id="Node000001",label="State::DoTransition",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Executes the given transition on this, DOES NOT CALL the associated callback."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="LogVText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e",tooltip=" "];
-  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
+  Node2 [id="Node000002",label="Transition::GetCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transition.html#a2b09438541b416c602472d5966a77b09",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Transition::GetName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transition.html#adad51fa704428721861afdd754a5e615",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="State::GetName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state.html#a6499a6947be52414328c37300cc8a7c2",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Transition::GetState",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transition.html#a93dcfbe79cbe6c3e37c0b434be981362",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="LogVText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#a5e1aa3e4ebff4a98212651cae466756e",tooltip=" "];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
 }
