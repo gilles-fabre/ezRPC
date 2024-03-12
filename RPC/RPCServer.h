@@ -205,7 +205,7 @@ public:
 			if (m_listening_threadP->IsRunning())
 				m_listening_threadP->Stop();
 
-			while (m_listening_threadP->IsRunning()) Sleep(10);
+			while (m_listening_threadP->IsRunning()) std::this_thread::sleep_for(10ms);
 
 			delete m_listening_threadP;
 			m_listening_threadP = NULL;

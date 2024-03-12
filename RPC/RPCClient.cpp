@@ -47,8 +47,12 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, vl);
 	va_end(vl);
 
-	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+	ReturnValue<bool, CommunicationErrors> rv;
+	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
+		r = {0, (CommunicationErrors::ErrorCode)rv};
 		return r;
+	}
+
 
 	#ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
@@ -83,7 +87,9 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	unsigned long			result;
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, paramsP);
 
-	if ((r = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+	ReturnValue<bool, CommunicationErrors> rv;
+	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+		r = {0, CommunicationErrors::ErrorCode(rv)};
 		return r;
 
 #ifdef RPCCLIENT_TRACES
@@ -154,9 +160,12 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
 		aThread->detach();
 		detachedSem.R();
+		ReturnValue<bool, CommunicationErrors> rv;
 
-		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())  
+		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError()) {
+			r = {0, (CommunicationErrors::ErrorCode)rv};
 			return r;
+		}
 
 		{
 			// this is the block call, the server has processed the service when we're unblocked
@@ -168,8 +177,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 			}
 		}
 
-		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{asyncId, CommunicationErrors::ErrorCode::None};
-		return rt;
+		return r;
 	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
@@ -225,8 +233,9 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
 		aThread->detach();
 		detachedSem.R();
+		ReturnValue<bool, CommunicationErrors> rv;
 
-		if ((r = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
+		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
 			return r;
 
 		// this is the block call, the server has processed the service when we're unblocked

@@ -30,10 +30,22 @@ using namespace std;
 typedef void AsyncJsonReplyProcedure(AsyncID, unsigned long result);
 
 extern "C" {
-DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
-DECLSPEC AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
-DECLSPEC uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
-DECLSPEC void	  DestroyRpcClient(uint64_t clientId);
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t CreateRpcClient(Transport::TransportType transport, const char *serverAddrP);
+#ifdef WIN32
+DECLSPEC 
+#endif
+AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void	  DestroyRpcClient(uint64_t clientId);
 };
 
 /**

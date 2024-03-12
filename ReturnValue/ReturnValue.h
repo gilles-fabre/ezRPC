@@ -75,14 +75,14 @@ public:
   * \return E::ErrorCode::None if no error was encountered, E::ErrorCode::EmptyResult if the 
   *         function/method didn't process the call.
   */
-  template <typename E>
-  operator E() {
-    return static_cast<E>(m_valueP->second);
+  template <typename EC>
+  operator EC() {
+    return static_cast<EC>(m_valueP->second);
   }
 
-  template <typename E>
-  E GetError() {
-    return static_cast<E>(m_valueP->second);
+  template <typename EC>
+  EC GetError() {
+    return static_cast<EC>(m_valueP->second);
   }
 
   string GetErrorString() {

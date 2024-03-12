@@ -49,23 +49,6 @@ target_link_libraries(ezRPC_TestClient ezRPC LogReporter)
 target_link_libraries(ezRPC_JsonTestClient ezRPC LogReporter)
 target_link_libraries(ezRPC_JsonTestServer ezRPC LogReporter)
 
-if (NOT WIN32)
-add_library(ezStateMachine SHARED
-			StateMachine/StateMachine.cpp)
-
-target_link_libraries(ezStateMachine ezRPC LogReporter jsoncpp)
-
-add_executable(ezStateMachine_Test 
-			   StateMachine/test.cpp)
-
-add_executable(ezStateMachineServer 
-			   StateMachine/StateMachineServer.cpp)
-
-target_link_libraries(ezStateMachine_Test ezStateMachine)
-
-target_link_libraries(ezStateMachineServer ezStateMachine)
-endif()
-
 target_include_directories(ezRPC 
 							PUBLIC
 						   "${CMAKE_INSTALL_PREFIX}/ReturnValue" 
@@ -109,32 +92,6 @@ target_include_directories(ezRPC_JsonTestServer
 						    "${CMAKE_INSTALL_PREFIX}/Thread" 
 						    "${CMAKE_INSTALL_PREFIX}/LogReporter")
 
-if (NOT WIN32)
-target_include_directories(ezStateMachine 
-						   PUBLIC
-						  "${CMAKE_INSTALL_PREFIX}/RPC" 
-						  "${CMAKE_INSTALL_PREFIX}/Transport" 
-						  "${CMAKE_INSTALL_PREFIX}/Thread" 
-						  "${CMAKE_INSTALL_PREFIX}/LogReporter")
-
-target_include_directories(ezStateMachine_Test 
-							PUBLIC
-							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
-							"${CMAKE_INSTALL_PREFIX}/RPC" 
-							"${CMAKE_INSTALL_PREFIX}/Transport" 
-							"${CMAKE_INSTALL_PREFIX}/Thread" 
-							"${CMAKE_INSTALL_PREFIX}/LogReporter")
-							
-target_include_directories(ezStateMachineServer
-							PUBLIC
-							"${CMAKE_INSTALL_PREFIX}/StateMachine" 
-							"${CMAKE_INSTALL_PREFIX}/RPC" 
-							"${CMAKE_INSTALL_PREFIX}/Transport" 
-							"${CMAKE_INSTALL_PREFIX}/Thread" 
-							"${CMAKE_INSTALL_PREFIX}/LogReporter")
-
-endif()
-
 find_package(Threads REQUIRED)
 if(THREADS_HAVE_PTHREAD_ARG)
   target_compile_options(ezRPC PUBLIC "-pthread")
@@ -155,11 +112,6 @@ install(FILES RPC/ezRPC_TestServer.log-settings DESTINATION bin)
 install(FILES RPC/ezRPC_TestClient.log-settings DESTINATION bin)
 install(FILES RPC/ezRPC_JsonTestServer.log-settings DESTINATION bin)
 install(FILES RPC/ezRPC_JsonTestClient.log-settings DESTINATION bin)
-
-if (NOT WIN32)
-install(FILES StateMachine/ezStateMachine_Test.log-settings DESTINATION bin)
-install(FILES StateMachine/ezStateMachineServer.log-settings DESTINATION bin)
-endif()
 
 install(TARGETS LogReporter
         RUNTIME DESTINATION bin
@@ -196,30 +148,4 @@ install(TARGETS ezRPC
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
-if (NOT WIN32)
-install(TARGETS ezStateMachine
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
-
-install(TARGETS ezStateMachineServer
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
-
-install(TARGETS ezStateMachine_Test
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
-
-install(FILES 
-		ReturnValue/ReturnValue.h
-		ReturnValue/ErrorCodes.h
-		StateMachine/StateMachine.h
-		RPC/JsonRPCClient.h
-		RPC/RPCClient.h
-		RPC/RPCServer.h
-		RPC/RemoteProcedureCall.h
-		DESTINATION include)
-endif()
 		

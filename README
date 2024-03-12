@@ -25,11 +25,5 @@ dedicated Json RPC Wrapper (see ezRPC_CSharpTestClient/Server).
 A bunch of Unit Tests have been added (Windows only -native visual studio tests-) in addition 
 to all the test client/servers.
 
-NOTE : the StateMachine related code is Linux only, it implements a StateMachine 
-server, built upon the RPC mechanism, making it possible to load a state Machine, 
-instantiated from a json definition, and calling back into the give rpc server 
-callbacks upon state changes (or timeouts). This is just experimental, so it most likely 
-requires a bunch of extra work.
-
 Have fun, 
 gilles fabre

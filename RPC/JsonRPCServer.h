@@ -30,12 +30,30 @@
 typedef uint64_t ServerProcedure(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 
 extern "C" {
-DECLSPEC uint64_t CreateRpcServer(Transport::TransportType transport, const char *serverAddrP);
-DECLSPEC void	  RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP);
-DECLSPEC void	  UnregisterProcedure(uint64_t serverId, const char* nameP);
-DECLSPEC void	  DestroyRpcServer(uint64_t serverId);
-DECLSPEC void     IterateAndWait(uint64_t serverId);
-DECLSPEC void     Stop(uint64_t serverId);
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t CreateRpcServer(Transport::TransportType transport, const char *serverAddrP);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void	  RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void	  UnregisterProcedure(uint64_t serverId, const char* nameP);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void	  DestroyRpcServer(uint64_t serverId);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void     IterateAndWait(uint64_t serverId);
+#ifdef WIN32
+DECLSPEC 
+#endif
+void     Stop(uint64_t serverId);
 };
 
 /**

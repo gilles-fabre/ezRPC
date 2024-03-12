@@ -7,21 +7,33 @@ JsonRPCClient::JsonRPCClient(Transport::TransportType transport, const string& s
 	m_client = make_unique<RPCClient>(transport, serverAddr);
 }
 
-DECLSPEC uint64_t CreateRpcClient(Transport::TransportType transport, const char* serverAddrP) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t CreateRpcClient(Transport::TransportType transport, const char* serverAddrP) {
 	return (uint64_t)new JsonRPCClient(transport, serverAddrP);
 }
 
-DECLSPEC AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
 	auto client = (JsonRPCClient*)clientId;
 	return client->RpcCallAsync(jsonCallP, jsonCallResultP, jsonCallResultLen, replyProcP);
 }
 
-DECLSPEC uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	auto client = (JsonRPCClient*)clientId;
 	return client->RpcCall(jsonCallP, jsonCallResultP, jsonCallResultLen);
 }
 
-DECLSPEC void  DestroyRpcClient(uint64_t clientId) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void  DestroyRpcClient(uint64_t clientId) {
 	delete (JsonRPCClient*)clientId;
 }
 
@@ -38,7 +50,7 @@ void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
 			i = m_asyncParams.find(asyncId);
 			if (i != m_asyncParams.end())
 				break;
-			Sleep(5);
+			std::this_thread::sleep_for(5ms);
 		}
 	};
 

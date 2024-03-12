@@ -7,11 +7,17 @@ JsonRPCServer::JsonRPCServer(Transport::TransportType transport, const string& s
 	m_server = make_unique<RPCServer>(transport, serverAddr);
 }
 
-DECLSPEC uint64_t CreateRpcServer(Transport::TransportType transport, const char* serverAddrP) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+uint64_t CreateRpcServer(Transport::TransportType transport, const char* serverAddrP) {
 	return (uint64_t)new JsonRPCServer(transport, serverAddrP);
 }
 
-DECLSPEC void DestroyRpcServer(uint64_t serverId) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void DestroyRpcServer(uint64_t serverId) {
 	delete (JsonRPCServer*)serverId;
 }
 
@@ -57,7 +63,10 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 	return result;
 }
 
-DECLSPEC void RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void RegisterProcedure(uint64_t serverId, const char* nameP, ServerProcedure* procedureP) {
 	auto serverP = (JsonRPCServer*)serverId;
 	string name(nameP);
 
@@ -69,7 +78,10 @@ DECLSPEC void RegisterProcedure(uint64_t serverId, const char* nameP, ServerProc
 	serverP->m_server->RegisterProcedure(name, JsonRPCServer::JsonRPCServiceProc);
 }
 
-DECLSPEC void UnregisterProcedure(uint64_t serverId, const char* nameP) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void UnregisterProcedure(uint64_t serverId, const char* nameP) {
 	auto serverP = (JsonRPCServer*)serverId;
 	string name(nameP);
 
@@ -81,12 +93,18 @@ DECLSPEC void UnregisterProcedure(uint64_t serverId, const char* nameP) {
 	}
 }
 
-DECLSPEC void IterateAndWait(uint64_t serverId) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void IterateAndWait(uint64_t serverId) {
 	auto serverP = (JsonRPCServer*)serverId;
 	serverP->m_server->IterateAndWait();
 }
 
-DECLSPEC void Stop(uint64_t serverId) {
+#ifdef WIN32
+DECLSPEC 
+#endif
+void Stop(uint64_t serverId) {
 	auto serverP = (JsonRPCServer*)serverId;
 	serverP->m_server->Stop();
 }

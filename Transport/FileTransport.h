@@ -28,7 +28,7 @@ public:
 #ifdef WIN32
 			closesocket(m_srvSocket);
 #else
-			close(m_s_socket);
+			close(m_srvSocket);
 #endif
 
 		// don't need the file anymore

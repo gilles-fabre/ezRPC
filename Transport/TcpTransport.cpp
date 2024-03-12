@@ -117,7 +117,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 #ifdef WIN32
 			closesocket(m_srvSocket);
 #else
-			close(m_s_socket);
+			close(m_srvSocket);
 #endif    
 			m_srvSocket = -1;
 			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
@@ -151,7 +151,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 #ifdef WIN32
 		closesocket(connSocket);
 #else
-		close(c_socket);
+		close(connSocket);
 #endif
 		connSocket = -1;
 		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
@@ -248,7 +248,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 #ifdef WIN32
 		closesocket(connSocket);
 #else
-		close(c_socket);
+		close(connSocket);
 #endif    
 		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
 		return r;

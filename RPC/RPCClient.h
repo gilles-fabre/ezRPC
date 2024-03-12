@@ -56,7 +56,7 @@ public:
 	*/
 	RPCClient(Transport::TransportType transport_type,  const string& server_address) {
 		m_transportP = Transport::CreateTransport(transport_type);
-		Link *linkP = m_transportP ? m_transportP->LinkRequest((const string&)server_address) : NULL;
+		Link *linkP = m_transportP ? (Link*)m_transportP->LinkRequest((const string&)server_address) : NULL;
 		m_rpcP = linkP ? new RemoteProcedureCall(linkP) : NULL;
 	}
 
