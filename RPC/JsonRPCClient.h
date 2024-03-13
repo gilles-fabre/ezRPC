@@ -86,8 +86,8 @@ class	JsonRPCClient {
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);
 
-	AsyncID	 RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
-	unsigned long RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+	ReturnValue<AsyncID, CommunicationErrors>			  RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+	ReturnValue<unsigned long, CommunicationErrors> RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 };
 
 #endif /* _JSON_RPC_CLIENT_H */

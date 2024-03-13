@@ -15,6 +15,7 @@ public:
 							SocketSettingError,
 							SocketListeningError,
 							ProtocolError,
+							RpcParametersError,
 							END } ErrorCode;
   static constexpr const char* m_errors[] = { "None", 
 											  "EmptyResult", 
@@ -22,13 +23,14 @@ public:
 											  "AllocationError",
 											  "MissingData", 
 											  "CommunicationDropped", 
-                                              "BadProtocol", 
+											  "BadProtocol", 
 											  "SocketCreationError", 
 											  "SocketConnectionError", 
 											  "InvalidAddress",
 											  "SocketSettingError",
 											  "SocketListeningError",
-											  "ProtocolError" };
+											  "ProtocolError",
+											  "RpcParametersError" };
 };
 
 
