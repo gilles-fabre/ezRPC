@@ -27,7 +27,7 @@ namespace RPCTests {
 		static unsigned long Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 		static void			 ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
-		MultiClientSingleServerTests() : m_rpcServer(Transport::TCP, RPC_SERVER_ADDRESS) {
+		MultiClientSingleServerTests() : m_rpcServer(RPC_TRANSPORT, RPC_SERVER_ADDRESS) {
 			m_rpcServer.RegisterProcedure("Nop", &Nop);
 			m_rpcServer.RegisterProcedure("SumNumbers", &SumNumbers);
 			m_rpcServer.RegisterProcedure("Increment", &Increment);
@@ -37,6 +37,8 @@ namespace RPCTests {
 				m_rpcServer.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 		}
 
 		~MultiClientSingleServerTests() {
@@ -44,7 +46,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallNopAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -55,7 +57,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -72,7 +74,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallIncrementNumberAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
@@ -87,7 +89,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallIncrementNumberAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
@@ -106,7 +108,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallSumTwoNumbersAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -126,7 +128,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallConcatTwoStringsAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -146,7 +148,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallConcatTwoStringsAndStop) {
-			RPCClient rpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {

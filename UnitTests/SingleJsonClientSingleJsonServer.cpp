@@ -36,7 +36,7 @@ namespace RPCTests {
 		static void		ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
 		SingleJsonClientSingleJsonServerTests() {
-			m_jsonServer = CreateRpcServer(Transport::TCP, RPC_SERVER_ADDRESS);
+			m_jsonServer = CreateRpcServer(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			RegisterProcedure(m_jsonServer, "Nop", &Nop);
 			RegisterProcedure(m_jsonServer, "SumNumbers", &SumNumbers);
@@ -47,9 +47,10 @@ namespace RPCTests {
 				IterateAndWait(m_jsonServer);
 				});
 			t.detach();
-
 			// server must be ready for incoming connections
-			m_jsonClient = CreateRpcClient(Transport::TCP, RPC_SERVER_ADDRESS);
+			std::this_thread::sleep_for(1s);
+
+			m_jsonClient = CreateRpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 		}
 
 		~SingleJsonClientSingleJsonServerTests() {

@@ -28,7 +28,7 @@ namespace RPCTests {
 		static unsigned long Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 		static void			 ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
-		SingleClientSingleServerTests() : m_rpcServer(Transport::TCP, RPC_SERVER_ADDRESS) {
+		SingleClientSingleServerTests() : m_rpcServer(RPC_TRANSPORT, RPC_SERVER_ADDRESS) {
 			thread t([&]() {
 				m_rpcServer.RegisterProcedure("Nop", &Nop);
 				m_rpcServer.RegisterProcedure("SumNumbers", &SumNumbers);
@@ -38,9 +38,10 @@ namespace RPCTests {
 				m_rpcServer.IterateAndWait();
 				});
 			t.detach();
-
 			// server must be ready for incoming connections
-			m_rpcClient = make_unique<RPCClient>(Transport::TCP, RPC_SERVER_ADDRESS);
+			std::this_thread::sleep_for(1s);
+
+			m_rpcClient = make_unique<RPCClient>(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 		}
 
 		~SingleClientSingleServerTests() {

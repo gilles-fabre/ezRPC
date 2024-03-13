@@ -33,7 +33,7 @@ public:
 	static void		ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
 	SingleClientSingleJsonServerTests() {
-		m_jsonServer = CreateRpcServer(Transport::TCP, RPC_SERVER_ADDRESS);
+		m_jsonServer = CreateRpcServer(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 		RegisterProcedure(m_jsonServer, "Nop", &Nop);
 		RegisterProcedure(m_jsonServer, "SumNumbers", &SumNumbers);
@@ -44,9 +44,10 @@ public:
 			IterateAndWait(m_jsonServer);
 			});
 		t.detach();
-
 		// server must be ready for incoming connections
-		m_rpcClient = make_unique<RPCClient>(Transport::TCP, RPC_SERVER_ADDRESS);
+		std::this_thread::sleep_for(1s);
+
+		m_rpcClient = make_unique<RPCClient>(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 	}
 
 	~SingleClientSingleJsonServerTests() {

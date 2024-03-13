@@ -27,7 +27,7 @@ namespace RPCTests {
 		static void			 ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
 		TEST_METHOD(CallNopAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 
@@ -36,10 +36,12 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
-				RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+				RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 				client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 			}
 
@@ -48,7 +50,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("SumNumbers", &SumNumbers);
@@ -56,8 +58,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -75,7 +79,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallIncrementNumberAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("Increment", &Increment);
@@ -83,8 +87,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
@@ -100,7 +106,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallIncrementNumberAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("Increment", &Increment);
@@ -108,8 +114,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
@@ -129,7 +137,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallSumTwoNumbersAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("SumNumbers", &SumNumbers);
@@ -137,8 +145,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -159,7 +169,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(CallConcatTwoStringsAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("Concatenate", &Concatenate);
@@ -167,8 +177,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -189,7 +201,7 @@ namespace RPCTests {
 		}
 
 		TEST_METHOD(AsyncCallConcatTwoStringsAndStop) {
-			RPCServer server(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
 
 			server.RegisterProcedure("Concatenate", &Concatenate);
@@ -197,8 +209,10 @@ namespace RPCTests {
 				server.IterateAndWait();
 				});
 			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
 
-			RPCClient client(Transport::TCP, RPC_SERVER_ADDRESS);
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
