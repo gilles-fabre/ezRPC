@@ -104,6 +104,8 @@ AsyncID	JsonRPCClient::RpcCallAsync(const char* jsonCallP, char* jsonCallResultP
 
 unsigned long JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	unsigned long result = -1;
+	if (jsonCallResultLen) 
+		*jsonCallResultP = '\0';
 
 #ifdef JSONRPCCLIENT_TRACES
 	LogVText(JSONRPCCLIENT_MODULE, 0, true, "RpcCall will process JSON : %s", jsonCallP);
@@ -116,7 +118,11 @@ unsigned long JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResult
 		return -1; // #### TODO : find a proper way to return an error.
 
 	// invoke the rpc client.
-	result = m_client->RpcCall(function, params.get());
+	ReturnValue<unsigned long, CommunicationErrors> r;
+	if ((r = m_client->RpcCall(function, params.get())).IsError())
+		return -1; // #### TODO : find a proper way to return an error.
+
+	result = (unsigned long)r;
 
 	// build the result json.
 	string jsonResult;

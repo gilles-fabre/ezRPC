@@ -88,9 +88,10 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, paramsP);
 
 	ReturnValue<bool, CommunicationErrors> rv;
-	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError())
+	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
 		r = {0, CommunicationErrors::ErrorCode(rv)};
 		return r;
+	}
 
 #ifdef RPCCLIENT_TRACES
 	end = chrono::system_clock::now();
