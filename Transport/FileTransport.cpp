@@ -58,7 +58,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 		unlink(m_serverAddress.c_str());
 
 		// create the server socket
-		if ((m_srvSocket = (int)socket(AF_UNIX, SOCK_STREAM, IPPROTO_TCP)) == -1) {
+		if ((m_srvSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
 			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
 			return r;
