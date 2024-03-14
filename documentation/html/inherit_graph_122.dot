@@ -5,7 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="doctest::detail::IException\lTranslator",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdoctest_1_1detail_1_1_i_exception_translator.html",tooltip=" "];
-  Node0 -> Node1 [id="edge18_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="doctest::detail::Exception\lTranslator\< T \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdoctest_1_1detail_1_1_exception_translator.html",tooltip="OCLINT destructor of virtual class."];
+  Node0 [id="Node000000",label="doctest::detail::Relational\lComparator\< int, L, R \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdoctest_1_1detail_1_1_relational_comparator.html",tooltip=" "];
 }

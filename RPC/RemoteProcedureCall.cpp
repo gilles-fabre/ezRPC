@@ -54,7 +54,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned 
 	unsigned char 						   buffer[sizeof(uint64_t)];
 
 	if (len == 0 || !bufferP) {
-		r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::BadArgument};
+		r = {false, CommunicationErrors::ErrorCode::BadArgument};
 		return r;
 	}
 
@@ -72,7 +72,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SendPacket(unsigned 
 	if ((rv = m_linkP->Send(bufferP, dataLen)).IsError())
 		return rv;
 
-	r = ReturnValue<bool, CommunicationErrors>{ true, CommunicationErrors::ErrorCode::None };
+	r = { true, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -95,32 +95,32 @@ ReturnValue<unsigned char*, CommunicationErrors> RemoteProcedureCall::ReceivePac
 	// retrieve the packet len
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_linkP->Receive(buffer, (unsigned long)sizeof(len))).IsError()) {
-		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
+		r = { NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
 		return r;
 	}
 
 	int offset = 0;
 	len = decode_uint64(buffer, offset);
 	if ((dataLen = (unsigned long)NTOHLL(len)) == 0) {
-		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::MissingData };
+		r = { NULL, CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
 	// allocate the necessary bufferP
 	bufferP = (unsigned char*)malloc(dataLen);
 	if (!bufferP) {
-		r = ReturnValue<unsigned char*, CommunicationErrors>{ bufferP, CommunicationErrors::ErrorCode::AllocationError };
+		r = { bufferP, CommunicationErrors::ErrorCode::AllocationError };
 		return r;
 	}
 
 	// wait and read the whole call stream
 	if ((rv = m_linkP->Receive(bufferP, (unsigned long)dataLen)).IsError()) {
 		free(bufferP);
-		r = ReturnValue<unsigned char*, CommunicationErrors>{ NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
+		r = { NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
 		return r;
 	}
 
-	r = ReturnValue<unsigned char*, CommunicationErrors>{ bufferP, CommunicationErrors::ErrorCode::None };
+	r = { bufferP, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -1055,7 +1055,7 @@ ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors> R
 		unique_lock<mutex> lock(m_srv_receive_mutex);
 		ReturnValue<unsigned char*, CommunicationErrors> rv;
 		if ((rv = ReceivePacket(len)).IsError()) {
-			r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{NULL, rv.GetError<CommunicationErrors::ErrorCode>()};
+			r = {NULL, rv.GetError<CommunicationErrors::ErrorCode>()};
 			return r;
 		}
 
@@ -1387,7 +1387,7 @@ ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors> R
 	}
 
 	free (bufferP);
-	r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{ resultP, CommunicationErrors::ErrorCode::None };
+	r = { resultP, CommunicationErrors::ErrorCode::None };
 	return r;
 
 clean_up:
@@ -1396,7 +1396,7 @@ clean_up:
 
 	delete resultP;
 
-	r = ReturnValue<vector<ParameterBase*>*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::ProtocolError };
+	r = { NULL, CommunicationErrors::ErrorCode::ProtocolError };
 	return r;
 }
 
@@ -1585,7 +1585,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::SerializeCallReturn(
 
 			default:
 				cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid parameter type!" << endl;
-				r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::BadArgument};
+				r = {false, CommunicationErrors::ErrorCode::BadArgument};
 				return r;
 		}
 	}
@@ -1643,7 +1643,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 	// get the asyncId
 	if (bufferP[offset++] != (unsigned char)ASYNC_ID) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing callee asynchronous identifier!" << endl;
-		r = ReturnValue<bool, CommunicationErrors>{false, CommunicationErrors::ErrorCode::ProtocolError};
+		r = {false, CommunicationErrors::ErrorCode::ProtocolError};
 		return r;
 	}
 	asyncId = (AsyncID)decode_uint64(bufferP, offset);
@@ -1659,7 +1659,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 	// get the return result address
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing return result address!" << endl;
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::MissingData };
+		r = { false, CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
@@ -1673,7 +1673,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 	// get the result
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing result value!" << endl;
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::MissingData };
+		r = { false, CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
@@ -1808,7 +1808,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 		}
 	}
 
-	r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::None };
+	r = { false, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 

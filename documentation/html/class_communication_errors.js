@@ -15,6 +15,7 @@ var class_communication_errors =
       [ "SocketSettingError", "class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80a78b58b837d610809c8bc6037567b4dc1", null ],
       [ "SocketListeningError", "class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80a054e3c1714dc947e8a1a79215cae0ea7", null ],
       [ "ProtocolError", "class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80a28750247c23cf44c01004dbb3596ff53", null ],
+      [ "RpcParametersError", "class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80a9cb0fd5cf302d7329251decd52230543", null ],
       [ "END", "class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80aa2eaf82f31ca60ff3780548f9ea7a1a5", null ]
     ] ]
 ];

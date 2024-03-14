@@ -23,6 +23,14 @@ var namespaces_dup =
       [ "getCurrentTestSuite", "namespacedoctest__detail__test__suite__ns.html#a63d04c2e0ba35dff1e33cf0a24ec66c8", null ]
     ] ],
     [ "ezRPC", "namespaceez_r_p_c.html", "namespaceez_r_p_c" ],
+    [ "FILE_RPCtests", "namespace_f_i_l_e___r_p_ctests.html", [
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#ab98793b3c931111fc269ba033a6f47a7", null ],
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#ad1bff804e38bb7ba9c9fa3b69324cb99", null ],
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#a89785f93bbc59af8cd009b0b8d9a5fcd", null ],
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#a636ab43c3fef34f2597214851942d281", null ],
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#a3b6e47652e7686d3debd66cb87c30216", null ],
+      [ "TEST_CLASS", "namespace_f_i_l_e___r_p_ctests.html#a8455a86e0b70658b6e6e6b706dfab9ea", null ]
+    ] ],
     [ "filterbr", "namespacefilterbr.html", [
       [ "cond_lines", "namespacefilterbr.html#a4db2c10890511164c92dce26abea7a7f", null ],
       [ "cond_lines_from_file", "namespacefilterbr.html#aac4fe55e3348eccd24be4aa5fe5eb61f", null ],
@@ -57,16 +65,16 @@ var namespaces_dup =
     [ "persons", "namespacepersons.html", "namespacepersons" ],
     [ "proto2", "namespaceproto2.html", null ],
     [ "reporter", "namespacereporter.html", "namespacereporter" ],
-    [ "RPCTests", "namespace_r_p_c_tests.html", [
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72", null ],
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4", null ],
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a4108cc39b0f490de16d74264861b6458", null ],
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a8b7b742a943c4a1c2c2d2240a7e4c2e7", null ],
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#a0de1b2dd52ddc28a27c8ca79fff10c76", null ],
-      [ "TEST_CLASS", "namespace_r_p_c_tests.html#ad56cb8fa97ca6c0b84ec15fb791e6194", null ]
-    ] ],
     [ "serve_header", "namespaceserve__header.html", "namespaceserve__header" ],
     [ "std", "namespacestd.html", "namespacestd" ],
+    [ "TCP_RPCtests", "namespace_t_c_p___r_p_ctests.html", [
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#a6d29446a916427c66e0cd6dab3da1590", null ],
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#a2a7a75d2b788af25f6f371d1a63b3db2", null ],
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#aac4c22bc83990128f447f5a6ef233969", null ],
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#aa5e5866de8e8ead46be09df41748652d", null ],
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#a2e619f462da3b069a3d741df83b23427", null ],
+      [ "TEST_CLASS", "namespace_t_c_p___r_p_ctests.html#a91a887fad1546479bf8651b8ba595dd8", null ]
+    ] ],
     [ "testing", "namespacetesting.html", "namespacetesting" ],
     [ "testing_internal", "namespacetesting__internal.html", [
       [ "DefaultPrintNonContainerTo", "namespacetesting__internal.html#a3f49d3d0c996242f9d383c850097a656", null ]

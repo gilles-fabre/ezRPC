@@ -11,16 +11,14 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RPCTests {
+namespace FILE_RPCtests {
 
-	TEST_CLASS(SingleClientSingleServerTests) {
+	TEST_CLASS(ClientServerPairTests) {
 	public:
 		static AsyncID			s_asyncId;
 		static Semaphore		s_asyncSem;
 		static unsigned long	s_asyncResult;
-		
-		RPCServer				m_rpcServer;
-		unique_ptr<RPCClient>	m_rpcClient;
+		static RPCServer*		s_rpcServerP;
 
 		static unsigned long Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 		static unsigned long Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
@@ -28,39 +26,46 @@ namespace RPCTests {
 		static unsigned long Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
 		static void			 ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
 
-		SingleClientSingleServerTests() : m_rpcServer(RPC_TRANSPORT, RPC_SERVER_ADDRESS) {
-			thread t([&]() {
-				m_rpcServer.RegisterProcedure("Nop", &Nop);
-				m_rpcServer.RegisterProcedure("SumNumbers", &SumNumbers);
-				m_rpcServer.RegisterProcedure("Increment", &Increment);
-				m_rpcServer.RegisterProcedure("Concatenate", &Concatenate);
+		TEST_METHOD(CallNopAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
 
-				m_rpcServer.IterateAndWait();
+
+			thread t([&]() {
+				server.RegisterProcedure("Nop", &Nop);
+				server.IterateAndWait();
 				});
 			t.detach();
 			// server must be ready for incoming connections
 			std::this_thread::sleep_for(1s);
 
-			m_rpcClient = make_unique<RPCClient>(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
-		}
-
-		~SingleClientSingleServerTests() {
-			m_rpcServer.Stop();
-		}
-
-		TEST_METHOD(CallNopAndStop) {
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
-				m_rpcClient->RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+				RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+				client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
+			server.Stop();
 		}
 
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("SumNumbers", &SumNumbers);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
-				unsigned long result = m_rpcClient->RpcCall("SumNumbers",
+				unsigned long result = client.RpcCall("SumNumbers",
 					RemoteProcedureCall::INT16,
 					1234,
 					RemoteProcedureCall::INT16,
@@ -70,12 +75,26 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
+			server.Stop();
 		}
 
 		TEST_METHOD(CallIncrementNumberAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("Increment", &Increment);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
-				unsigned long result = m_rpcClient->RpcCall("Increment",
+				unsigned long result = client.RpcCall("Increment",
 					RemoteProcedureCall::PTR,
 					RemoteProcedureCall::INT16,
 					&i,
@@ -83,12 +102,26 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, uint16_t(RPC_CALL_ITERATIONS));
+			server.Stop();
 		}
 
 		TEST_METHOD(AsyncCallIncrementNumberAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("Increment", &Increment);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
-				AsyncID asyncId = m_rpcClient->RpcCallAsync(ClientAsyncReplyHandler,
+				AsyncID asyncId = client.RpcCallAsync(ClientAsyncReplyHandler, 
 					"Increment",
 					RemoteProcedureCall::PTR,
 					RemoteProcedureCall::INT16,
@@ -100,12 +133,26 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, uint16_t(RPC_CALL_ITERATIONS));
+			server.Stop();
 		}
 
 		TEST_METHOD(AsyncCallSumTwoNumbersAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("SumNumbers", &SumNumbers);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
-				AsyncID asyncId = m_rpcClient->RpcCallAsync(ClientAsyncReplyHandler,
+				AsyncID asyncId = client.RpcCallAsync(ClientAsyncReplyHandler,
 					"SumNumbers",
 					RemoteProcedureCall::INT16,
 					1234,
@@ -118,13 +165,27 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
+			server.Stop();
 		}
 
 		TEST_METHOD(CallConcatTwoStringsAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("Concatenate", &Concatenate);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
 				string str = "foo";
-				m_rpcClient->RpcCall("Concatenate",
+				client.RpcCall("Concatenate",
 					RemoteProcedureCall::PTR,
 					RemoteProcedureCall::STRING,
 					&str,
@@ -136,13 +197,27 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
+			server.Stop();
 		}
 
 		TEST_METHOD(AsyncCallConcatTwoStringsAndStop) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("Concatenate", &Concatenate);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(1s);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
 				string str = "foo";
-				AsyncID asyncId = m_rpcClient->RpcCallAsync(ClientAsyncReplyHandler,
+				AsyncID asyncId = client.RpcCallAsync(ClientAsyncReplyHandler, 
 					"Concatenate",
 					RemoteProcedureCall::PTR,
 					RemoteProcedureCall::STRING,
@@ -157,14 +232,16 @@ namespace RPCTests {
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
+			server.Stop();
 		}
 	};
 
-	AsyncID			SingleClientSingleServerTests::s_asyncId;
-	Semaphore		SingleClientSingleServerTests::s_asyncSem(0);
-	unsigned long	SingleClientSingleServerTests::s_asyncResult;
+	AsyncID			ClientServerPairTests::s_asyncId;
+	Semaphore		ClientServerPairTests::s_asyncSem(0);
+	unsigned long	ClientServerPairTests::s_asyncResult;
+	RPCServer*		ClientServerPairTests::s_rpcServerP = NULL;
 
-	unsigned long SingleClientSingleServerTests::Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	unsigned long ClientServerPairTests::Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 		if (v->size() < 2)
 			return -1;
 
@@ -181,11 +258,11 @@ namespace RPCTests {
 		return (unsigned long)i;
 	}
 
-	unsigned long SingleClientSingleServerTests::Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	unsigned long ClientServerPairTests::Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 		return 0;
 	}
 
-	unsigned long SingleClientSingleServerTests::SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	unsigned long ClientServerPairTests::SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 		if (v->size() < 3)
 			return -1;
 
@@ -202,7 +279,7 @@ namespace RPCTests {
 		return num1 + num2;
 	}
 
-	unsigned long SingleClientSingleServerTests::Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	unsigned long ClientServerPairTests::Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 		if (v->size() < 3)
 			return -1;
 
@@ -222,7 +299,7 @@ namespace RPCTests {
 		return (unsigned long)text.length();
 	}
 
-	void SingleClientSingleServerTests::ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result) {
+	void ClientServerPairTests::ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result) {
 		s_asyncId = asyncId;
 		s_asyncResult = result;
 		s_asyncSem.R();

@@ -8,7 +8,7 @@ var searchData=
   ['decimal_5fpoint_5',['decimal_point',['../classdetail_1_1serializer.html#a5f01fcbf64cb1e5f36d8853ebcd96412',1,'detail::serializer::decimal_point'],['../classnlohmann_1_1detail_1_1serializer.html#a311e5d6f4b31d5be0eb3c0cb20b6965a',1,'nlohmann::detail::serializer::decimal_point']]],
   ['default_6',['Default',['../structfuzzer_1_1_flag_description.html#a890648c4627746b74568d2447ead4fbd',1,'fuzzer::FlagDescription']]],
   ['default_7',['default',['../namespaceserve__header.html#a5da878e0f3615193764ec2f0962d1826',1,'serve_header']]],
-  ['delay_8',['delay',['../classserve__header_1_1_directory_event_bucket.html#a292e2bbdb0343b9b7cc16f915b899a15',1,'serve_header.DirectoryEventBucket.delay'],['../struct_delayed_connection_info.html#ab4a9ebefdc2746d5ca267349094a9655',1,'DelayedConnectionInfo::delay']]],
+  ['delay_8',['delay',['../classserve__header_1_1_directory_event_bucket.html#a292e2bbdb0343b9b7cc16f915b899a15',1,'serve_header::DirectoryEventBucket']]],
   ['deletemodidmi_9',['deleteModIdMI',['../classreporter_1_1_main_frame_v_e.html#a74fe6a7ac17fdd366c055954d0e8ada8',1,'reporter::MainFrameVE']]],
   ['deletemodidpumi_10',['deleteModIdPUMI',['../classreporter_1_1_content_frame_v_e.html#a1ea812b5f7656adb540da5c2c5584048',1,'reporter.ContentFrameVE.deleteModIdPUMI'],['../classreporter_1_1_main_frame_v_e.html#a2571f4c53d7de9f6ec30679424948d96',1,'reporter.MainFrameVE.deleteModIdPUMI']]],
   ['deleteprogmi_11',['deleteProgMI',['../classreporter_1_1_main_frame_v_e.html#a27f66acbdb0133717689c8f205228ce0',1,'reporter::MainFrameVE']]],

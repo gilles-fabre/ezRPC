@@ -59,7 +59,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 
 	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: invalid server address!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -67,7 +67,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -77,7 +77,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	ps >> portNum;
 	if (ps.fail()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: non numeric address port!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -92,7 +92,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	if (m_srvSocket == -1) {
 		if ((m_srvSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+			r = { NULL, CommunicationErrors::ErrorCode::SocketCreationError };
 			return r;
 		}
 
@@ -120,7 +120,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 			close(m_srvSocket);
 #endif    
 			m_srvSocket = -1;
-			r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+			r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };
 			return r;
 		}
 	}
@@ -131,7 +131,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_srvSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketListeningError };
+		r = { NULL, CommunicationErrors::ErrorCode::SocketListeningError };
 		return r;
 	}
 #ifdef TRANSPORT_TRACES
@@ -142,7 +142,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	addr_size = sizeof(server_storage);
 	if ((connSocket = accept(m_srvSocket, (struct sockaddr*)&server_storage, &addr_size)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't accept connection (" << strerror(errno) << ")" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		r = { NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
 		return r;
 	}
 
@@ -154,7 +154,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 		close(connSocket);
 #endif
 		connSocket = -1;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+		r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };
 		return r;
 	}
 
@@ -164,7 +164,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::WaitForLinkRequest(const s
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	r = { newLinkP, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -193,7 +193,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 
 	if (serverAddress.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty address!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -201,7 +201,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 	size_t found = serverAddress.find_last_of(':');
 	if (found ==  string::npos) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: server address misformated (ip_addr:port_number expected)!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -211,7 +211,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 	ps >> portNum;
 	if (ps.fail()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: non numeric address port!" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::InvalidAddress };
+		r = { NULL, CommunicationErrors::ErrorCode::InvalidAddress };
 		return r;
 	}
 
@@ -225,7 +225,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 	// create the client socket
 	if ((connSocket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+		r = { NULL, CommunicationErrors::ErrorCode::SocketCreationError };
 		return r;
 	}
 
@@ -250,7 +250,7 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 #else
 		close(connSocket);
 #endif    
-		r = ReturnValue<Link*, CommunicationErrors>{ NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		r = { NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
 		return r;
 	}
 
@@ -260,6 +260,6 @@ ReturnValue<Link*, CommunicationErrors> TcpTransport::LinkRequest(const string& 
 	LogVText(TRANSPORT_MODULE, 4, true, "will return link %p", newLinkP);
 #endif
 
-	r = ReturnValue<Link*, CommunicationErrors>{ newLinkP, CommunicationErrors::ErrorCode::None };
+	r = { newLinkP, CommunicationErrors::ErrorCode::None };
 	return r;
 }

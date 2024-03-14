@@ -9,7 +9,11 @@ digraph "RPCClient::RpcCallAsync"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_test_client_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627",tooltip=" "];
   Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#aa05fc2adc3c86a46ce961bb10e8bfd72",tooltip=" "];
+  Node3 [id="Node000003",label="FILE_RPCtests::TEST\l_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_f_i_l_e___r_p_ctests.html#ab98793b3c931111fc269ba033a6f47a7",tooltip=" "];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="RPCTests::TEST_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_r_p_c_tests.html#a3e7d557262b823a8d08a4f2960963af4",tooltip=" "];
+  Node4 [id="Node000004",label="TCP_RPCtests::TEST\l_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_t_c_p___r_p_ctests.html#a6d29446a916427c66e0cd6dab3da1590",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="FILE_RPCtests::TEST\l_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_f_i_l_e___r_p_ctests.html#ad1bff804e38bb7ba9c9fa3b69324cb99",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="TCP_RPCtests::TEST\l_CLASS",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespace_t_c_p___r_p_ctests.html#a2a7a75d2b788af25f6f371d1a63b3db2",tooltip=" "];
 }

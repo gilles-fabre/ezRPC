@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="JsonParameters",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_parameters.html",tooltip=" "];
+  Node0 [id="Node000000",label="JsonRPCClient",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_r_p_c_client.html",tooltip="Provides the user with a high abstraction level Remote Procedure Calls service."];
 }

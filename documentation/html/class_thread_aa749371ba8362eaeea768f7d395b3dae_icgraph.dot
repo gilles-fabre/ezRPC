@@ -7,21 +7,9 @@ digraph "Thread::Run"
   rankdir="RL";
   Node1 [id="Node000001",label="Thread::Run",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="StateMachine::DoTransition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ae5864f2f840fca87e1d3229703f681fb",tooltip="Executes the given transition on the current state."];
-  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="StateMachine::TimerThread\lCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#ab502559100a6bc6d7cbf0bbaff8a6d3a",tooltip=" "];
-  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="StateMachine::InitiateTransition\lTimer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#aa96ba26b9aff8774aacb302af3dd7fe8",tooltip="Clears the current transition timer (timeout) if any, then sets a new transition timer to the the giv..."];
-  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="StateMachine::CreateFrom\lDefinition",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a54afd6ed82abb59621d4011c6889b479",tooltip="This factory method creates a state machine from the given definition."];
-  Node4 -> Node2 [id="edge5_Node000004_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node6 [id="edge6_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="RPCServer::Run",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7",tooltip="One shot run of the server, will accept a single connection and then serve the connected client...."];
-  Node1 -> Node7 [id="edge7_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="Thread::RunAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#adf4a0146595eefa17ccb8d7aacd33b41",tooltip=" "];
-  Node7 -> Node8 [id="edge8_Node000007_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node8 [id="Node000008",label="RPCServer::RunAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca",tooltip="One shot run of the server, will accept a single connection and then serve the connected client...."];
-  Node1 -> Node9 [id="edge9_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="StateMachine::StateMachine",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_state_machine.html#a886e61db4c098668d64f65a1eade3b4a",tooltip="StateMachine constructor, WARNING: does not set the initial state."];
-  Node9 -> Node5 [id="edge10_Node000009_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="RPCServer::Run",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#a9931bbb33dd747794b4699f2ac5f92b7",tooltip="One shot run of the server, will accept a single connection and then serve the connected client...."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Thread::RunAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_thread.html#adf4a0146595eefa17ccb8d7aacd33b41",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="RPCServer::RunAndWait",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_r_p_c_server.html#abbfc93a1189b152880e947ed27c85bca",tooltip="One shot run of the server, will accept a single connection and then serve the connected client...."];
 }

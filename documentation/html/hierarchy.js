@@ -78,7 +78,6 @@ var hierarchy =
     [ "tracesListener.ByteUtil", "classtraces_listener_1_1_byte_util.html", null ],
     [ "detail::dtoa_impl::cached_power", "structdetail_1_1dtoa__impl_1_1cached__power.html", null ],
     [ "nlohmann::detail::dtoa_impl::cached_power", "structnlohmann_1_1detail_1_1dtoa__impl_1_1cached__power.html", null ],
-    [ "StateMachine::CallbackThreadParameters", "class_state_machine_1_1_callback_thread_parameters.html", null ],
     [ "std::char_traits< charT >", "structstd_1_1char__traits.html", [
       [ "detail::char_traits< char_type >", "structdetail_1_1char__traits.html", null ],
       [ "detail::char_traits< char_type >", "structdetail_1_1char__traits.html", null ]
@@ -115,7 +114,6 @@ var hierarchy =
     [ "fuzzer::Fuzzer::Coverage", "structfuzzer_1_1_fuzzer_1_1_coverage.html", null ],
     [ "doctest::CurrentTestCaseStats", "structdoctest_1_1_current_test_case_stats.html", null ],
     [ "Data", "struct_data.html", null ],
-    [ "DelayedConnectionInfo", "struct_delayed_connection_info.html", null ],
     [ "detail::detector< Default, AlwaysVoid, Op, Args >", "structdetail_1_1detector.html", null ],
     [ "nlohmann::detail::detector< Default, AlwaysVoid, Op, Args >", "structnlohmann_1_1detail_1_1detector.html", null ],
     [ "detail::detector< Default, void_t< Op< Args... > >, Op, Args... >", "structdetail_1_1detector_3_01_default_00_01void__t_3_01_op_3_01_args_8_8_8_01_4_01_4_00_01_op_00_01_args_8_8_8_01_4.html", null ],
@@ -628,8 +626,6 @@ var hierarchy =
     [ "udt::small_pod", "structudt_1_1small__pod.html", null ],
     [ "detail::span_input_adapter", "classdetail_1_1span__input__adapter.html", null ],
     [ "nlohmann::detail::span_input_adapter", "classnlohmann_1_1detail_1_1span__input__adapter.html", null ],
-    [ "State", "class_state.html", null ],
-    [ "StateMachine", "class_state_machine.html", null ],
     [ "detail::static_const< T >", "structdetail_1_1static__const.html", null ],
     [ "nlohmann::detail::static_const< T >", "structnlohmann_1_1detail_1_1static__const.html", null ],
     [ "testing::internal::StaticAssertTypeEqHelper< T1, T2 >", "structtesting_1_1internal_1_1_static_assert_type_eq_helper.html", null ],
@@ -682,7 +678,6 @@ var hierarchy =
     [ "doctest::detail::TestSuite", "structdoctest_1_1detail_1_1_test_suite.html", null ],
     [ "Thread", "class_thread.html", null ],
     [ "testing::internal::ThreadLocal< T >", "classtesting_1_1internal_1_1_thread_local.html", null ],
-    [ "StateMachine::TimerThreadParameters", "class_state_machine_1_1_timer_thread_parameters.html", null ],
     [ "detail::to_json_fn", "structdetail_1_1to__json__fn.html", null ],
     [ "nlohmann::detail::to_json_fn", "structnlohmann_1_1detail_1_1to__json__fn.html", null ],
     [ "fuzzer::TraceBasedMutation", "structfuzzer_1_1_trace_based_mutation.html", null ],
@@ -692,7 +687,6 @@ var hierarchy =
     [ "tracesListener.TracesFilter", "classtraces_listener_1_1_traces_filter.html", null ],
     [ "fuzzer::TraceState", "classfuzzer_1_1_trace_state.html", null ],
     [ "trait_test_arg< OfType, T, MinInRange, MaxInRange >", "structtrait__test__arg.html", null ],
-    [ "Transition", "class_transition.html", null ],
     [ "Transport", "class_transport.html", [
       [ "FileTransport", "class_file_transport.html", null ],
       [ "TcpTransport", "class_tcp_transport.html", null ]

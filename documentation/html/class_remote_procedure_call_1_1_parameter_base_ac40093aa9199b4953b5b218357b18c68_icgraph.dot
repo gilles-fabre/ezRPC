@@ -9,8 +9,7 @@ digraph "RemoteProcedureCall::ParameterBase::IsValidPointer"
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="JsonParameters::BuildJson\lFromResultParameters",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_parameters.html#adf9346ec92bea02dc136b17d378cdebc",tooltip=" "];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="JsonRPCClient::RpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_r_p_c_client.html#a81f0ec4cc1f77ed57668880cd40414ba",tooltip=" "];
+  Node3 [id="Node000003",label="JsonRPCClient::RpcCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_r_p_c_client.html#a747506052ce6f69b3673ddeed6f3190a",tooltip=" "];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="JsonParameters::CleanupParameters",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_json_parameters.html#a8cc34e18d1ef3ac69c5dc8d233062706",tooltip=" "];
-  Node4 -> Node3 [id="edge4_Node000004_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="RemoteProcedureCall\l::Parameter::~Parameter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call_1_1_parameter.html#a9acc9596459c2f0467f726b63153f7b6",tooltip=" "];
 }

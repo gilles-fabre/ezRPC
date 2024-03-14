@@ -11,7 +11,6 @@ digraph "C:/Dev/ezRPC/ezRPC_CSharpJsonTestServer/obj"
     graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_7c655f7a4c762eb990b8582b72c48e3c.html",tooltip=""]
     dir_7c655f7a4c762eb990b8582b72c48e3c [shape=plaintext, label="obj"];
   dir_f5dbf7a287379a47d0eb0d35c6fd13fa [label="Debug", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_f5dbf7a287379a47d0eb0d35c6fd13fa.html",tooltip=""];
-  dir_d85005a058dc6100096cb5c8b9c24aa8 [label="Release", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_d85005a058dc6100096cb5c8b9c24aa8.html",tooltip=""];
   }
   }
 }

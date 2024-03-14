@@ -60,7 +60,7 @@ ReturnValue<Transport*, CommunicationErrors> Transport::CreateTransport(Transpor
 			break;
 	}
 
-	r = ReturnValue<Transport*, CommunicationErrors>{transportP, transportP ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::BadProtocol};
+	r = {transportP, transportP ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::BadProtocol};
 	return r;
 }
 

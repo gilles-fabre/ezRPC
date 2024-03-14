@@ -10,12 +10,13 @@
 #include <JsonRPCServer.h>
 #include <nlohmann/json.hpp>
 
+#define TCP
 #include "UnitTestsSettings.h"
 
 using json = nlohmann::json;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RPCTests {
+namespace TCP_RPCtests {
 
 	TEST_CLASS(SingleClientSingleJsonServerTests) {
 public:

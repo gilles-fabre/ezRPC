@@ -27,8 +27,8 @@ var searchData=
   ['exception_2emd_24',['exception.md',['../exception_8md.html',1,'']]],
   ['exceptions_2ehpp_25',['exceptions.hpp',['../exceptions_8hpp.html',1,'']]],
   ['exceptions_2emd_26',['exceptions.md',['../exceptions_8md.html',1,'']]],
-  ['ezrpc_5fcsharpjsontestclient_2eassemblyinfo_2ecs_27',['ezRPC_CSharpJsonTestClient.AssemblyInfo.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
-  ['ezrpc_5fcsharpjsontestclient_2eglobalusings_2eg_2ecs_28',['ezRPC_CSharpJsonTestClient.GlobalUsings.g.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'(Global Namespace)']]],
-  ['ezrpc_5fcsharpjsontestserver_2eassemblyinfo_2ecs_29',['ezRPC_CSharpJsonTestServer.AssemblyInfo.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
-  ['ezrpc_5fcsharpjsontestserver_2eglobalusings_2eg_2ecs_30',['ezRPC_CSharpJsonTestServer.GlobalUsings.g.cs',['../_debug_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'(Global Namespace)'],['../_release_2net6_80_2ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'(Global Namespace)']]]
+  ['ezrpc_5fcsharpjsontestclient_2eassemblyinfo_2ecs_27',['ezRPC_CSharpJsonTestClient.AssemblyInfo.cs',['../ez_r_p_c___c_sharp_json_test_client_8_assembly_info_8cs.html',1,'']]],
+  ['ezrpc_5fcsharpjsontestclient_2eglobalusings_2eg_2ecs_28',['ezRPC_CSharpJsonTestClient.GlobalUsings.g.cs',['../ez_r_p_c___c_sharp_json_test_client_8_global_usings_8g_8cs.html',1,'']]],
+  ['ezrpc_5fcsharpjsontestserver_2eassemblyinfo_2ecs_29',['ezRPC_CSharpJsonTestServer.AssemblyInfo.cs',['../ez_r_p_c___c_sharp_json_test_server_8_assembly_info_8cs.html',1,'']]],
+  ['ezrpc_5fcsharpjsontestserver_2eglobalusings_2eg_2ecs_30',['ezRPC_CSharpJsonTestServer.GlobalUsings.g.cs',['../ez_r_p_c___c_sharp_json_test_server_8_global_usings_8g_8cs.html',1,'']]]
 ];

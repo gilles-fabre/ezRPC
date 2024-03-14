@@ -15,25 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ClientServerPairTests.cpp">
+    <ClCompile Include="ClientServerPairTests_tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MultiClientSingleServerTests.cpp">
+    <ClCompile Include="MultiClientSingleServerTests_tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SingleClientSingleServerTests.cpp">
+    <ClCompile Include="SingleClientSingleServerTests_tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SingleClientSingleJsonServer.cpp">
+    <ClCompile Include="SingleClientSingleJsonServer_tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SingleJsonClientSingleJsonServer.cpp">
+    <ClCompile Include="SingleJsonClientSingleJsonServer_tcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SingleJsonClientSingleServer.cpp">
+    <ClCompile Include="SingleJsonClientSingleServer_tcp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientServerPairTests_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiClientSingleServerTests_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleClientSingleJsonServer_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleClientSingleServerTests_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleJsonClientSingleJsonServer_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleJsonClientSingleServer_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

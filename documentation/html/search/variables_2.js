@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['b_0',['B',['../structfuzzer_1_1_table_of_recent_compares_1_1_pair.html#a9b7452acde2ad0f86b63e362389a58a0',1,'fuzzer::TableOfRecentCompares::Pair']]],
-  ['b_1',['b',['../class_foo.html#a3e81f3003413f5c331223ba7e0b846ac',1,'Foo::b'],['../struct_data.html#a62129b5a8a6f1b3aa1ee74a2c6deb06b',1,'Data::b'],['../classpersons_1_1person__with__public__alphabet.html#a5c66cec05a731ceb4073add6dd917448',1,'persons::person_with_public_alphabet::b']]],
+  ['b_0',['b',['../class_foo.html#a3e81f3003413f5c331223ba7e0b846ac',1,'Foo::b'],['../struct_data.html#a62129b5a8a6f1b3aa1ee74a2c6deb06b',1,'Data::b'],['../classpersons_1_1person__with__public__alphabet.html#a5c66cec05a731ceb4073add6dd917448',1,'persons::person_with_public_alphabet::b']]],
+  ['b_1',['B',['../structfuzzer_1_1_table_of_recent_compares_1_1_pair.html#a9b7452acde2ad0f86b63e362389a58a0',1,'fuzzer::TableOfRecentCompares::Pair']]],
   ['begin_2',['begin',['../structudt_1_1small__pod.html#a7c7f6cb4b8e635fd8e821e18816c7fdf',1,'udt::small_pod']]],
   ['binary_5fname_3',['binary_name',['../structdoctest_1_1_context_options.html#a0590006b4d10296c9a697e32ff886f74',1,'doctest::ContextOptions']]],
   ['blockcoverage_4',['BlockCoverage',['../structfuzzer_1_1_fuzzer_1_1_coverage.html#a2344e8e663c5d51b32549cbabb2cbf27',1,'fuzzer::Fuzzer::Coverage']]],

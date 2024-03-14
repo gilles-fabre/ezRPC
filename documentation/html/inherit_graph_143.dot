@@ -5,9 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="doctest::IContextScope",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdoctest_1_1_i_context_scope.html",tooltip=" "];
-  Node0 -> Node1 [id="edge29_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="doctest::detail::Context\lScopeBase",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdoctest_1_1detail_1_1_context_scope_base.html",tooltip=" "];
-  Node1 -> Node2 [id="edge30_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="doctest::detail::Context\lScope\< L \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classdoctest_1_1detail_1_1_context_scope.html",tooltip=" "];
+  Node0 [id="Node000000",label="doctest::IReporter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdoctest_1_1_i_reporter.html",tooltip=" "];
 }

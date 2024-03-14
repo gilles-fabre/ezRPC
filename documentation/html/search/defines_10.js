@@ -28,6 +28,7 @@ var searchData=
   ['rpc_5fcall_5fiterations_25',['RPC_CALL_ITERATIONS',['../_unit_tests_settings_8h.html#a3923cf458ec2e0e78e7e9a1182d9f4a8',1,'UnitTestsSettings.h']]],
   ['rpc_5fmodule_26',['RPC_MODULE',['../_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d',1,'RemoteProcedureCall.h']]],
   ['rpc_5fserver_5faddress_27',['RPC_SERVER_ADDRESS',['../_unit_tests_settings_8h.html#a1cc167de16e8543566e05bf8c8c6a09c',1,'UnitTestsSettings.h']]],
-  ['rpcclient_5fmodule_28',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
-  ['rpcserver_5fmodule_29',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]]
+  ['rpc_5ftransport_28',['RPC_TRANSPORT',['../_unit_tests_settings_8h.html#ac4d90a7b273c595a81a758830e1cdafe',1,'UnitTestsSettings.h']]],
+  ['rpcclient_5fmodule_29',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
+  ['rpcserver_5fmodule_30',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]]
 ];

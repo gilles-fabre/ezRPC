@@ -17,7 +17,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 									       last;
 
 	if (!byteBuffer || dataLen == 0 || m_out == -1) {
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { false, CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -26,7 +26,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 
 	while (total != dataLen) {
 		if ((last = send(m_out, (const char *)&byteBuffer[total], dataLen - total, MSG_NOSIGNAL)) <= 0) {
-			r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::CommunicationDropped };
+			r = { false, CommunicationErrors::ErrorCode::CommunicationDropped };
 			return r;
 		}
 
@@ -40,7 +40,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 	LogVText(LINK_MODULE, 8, true, "sent %d total bytes", total);
 #endif
 
-	r = ReturnValue<bool, CommunicationErrors>{ true, CommunicationErrors::ErrorCode::None };
+	r = { true, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -58,7 +58,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || *dataLenP == 0 || m_out == -1) {
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { false, CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -71,7 +71,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 #endif
 
 	bool allSent = *dataLenP > 0;
-	r = ReturnValue<bool, CommunicationErrors>{ allSent , allSent ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
+	r = { allSent , allSent ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
 	return r;
 }
 
@@ -91,7 +91,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 										   last;
 
 	if (!byteBuffer || dataLen == 0 || m_in == -1) {
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { false, CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -100,7 +100,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 
 	while (total != dataLen) {
 		if ((last = recv(m_in, (char*)&byteBuffer[total], dataLen - total, MSG_NOSIGNAL)) <= 0) {
-			r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::CommunicationDropped };
+			r = { false, CommunicationErrors::ErrorCode::CommunicationDropped };
 			return r;
 		}
 
@@ -114,7 +114,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 	LogVText(LINK_MODULE, 8, true, "received %d total bytes", total);
 #endif
 
-	r = ReturnValue<bool, CommunicationErrors>{ true, CommunicationErrors::ErrorCode::None };
+	r = { true, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -133,7 +133,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || m_in == -1) {
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { false, CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -146,7 +146,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 #endif
 
 	bool allReceived = *dataLenP > 0;
-	r = ReturnValue<bool, CommunicationErrors>{ allReceived , allReceived ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
+	r = { allReceived , allReceived ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
 	return r;
 }
 
@@ -164,7 +164,7 @@ ReturnValue<bool, CommunicationErrors> Link::Peek(unsigned char* byteBuffer, uns
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || *dataLenP == 0 || m_in == -1) {
-		r = ReturnValue<bool, CommunicationErrors>{ false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { false, CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -177,6 +177,6 @@ ReturnValue<bool, CommunicationErrors> Link::Peek(unsigned char* byteBuffer, uns
 #endif
 
 	bool allReceived = *dataLenP > 0;
-	r = ReturnValue<bool, CommunicationErrors>{ allReceived , allReceived ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
+	r = { allReceived , allReceived ? CommunicationErrors::ErrorCode::None : CommunicationErrors::ErrorCode::MissingData };
 	return r;
 }

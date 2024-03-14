@@ -31,7 +31,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		r = ReturnValue<unsigned long, CommunicationErrors>{0, CommunicationErrors::ErrorCode::CommunicationDropped};
+		r = {0, CommunicationErrors::ErrorCode::CommunicationDropped};
 		return r;
 	}
 
@@ -60,7 +60,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
+	r = { result, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -74,7 +74,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = ReturnValue<unsigned long, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -99,7 +99,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	r = ReturnValue<unsigned long, CommunicationErrors>{ result, CommunicationErrors::ErrorCode::None };
+	r = { result, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -132,7 +132,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -161,14 +161,12 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
 		aThread->detach();
 		detachedSem.R();
-		ReturnValue<bool, CommunicationErrors> rv;
+		ReturnValue<bool, CommunicationErrors>	  rv;
+		ReturnValue<AsyncID, CommunicationErrors> rt;
 
-		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError()) {
-			r = {0, (CommunicationErrors::ErrorCode)rv};
-			return r;
-		}
-
-		{
+		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError()) 
+			rt = {0, (CommunicationErrors::ErrorCode)rv};
+		else {
 			// this is the block call, the server has processed the service when we're unblocked
 			unique_lock<mutex> lock(m_asyncProcsMutex);
 			auto i = m_async_procs.find(_asyncId);
@@ -176,9 +174,11 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 				(*(i->second))(_asyncId, *_result);
 				m_async_procs.erase(_asyncId);
 			}
+
+			rt = { asyncId, CommunicationErrors::ErrorCode::None };
 		}
 
-		return r;
+		return rt;
 	}, asyncId, serializedCall, result);
 
 	detachedSem.A();
@@ -189,7 +189,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCallAsync %lu executed in %f second(s)", asyncId, elapsed.count());
 #endif
 
-	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
+	r = { asyncId, CommunicationErrors::ErrorCode::None };
 	return r;
 }
 
@@ -208,7 +208,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = ReturnValue<AsyncID, CommunicationErrors>{ 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -234,22 +234,24 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
 		aThread->detach();
 		detachedSem.R();
-		ReturnValue<bool, CommunicationErrors> rv;
+		ReturnValue<bool, CommunicationErrors>	  rv;
+		ReturnValue<AsyncID, CommunicationErrors> rt;
 
 		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
-			return r;
-
-		// this is the block call, the server has processed the service when we're unblocked
-		{
-			unique_lock<mutex> lock(m_asyncProcsMutex);
-			auto i = m_async_procs.find(_asyncId);
-			if (i != m_async_procs.end()) {
-				(*(i->second))(_asyncId, *_result);
-				m_async_procs.erase(_asyncId);
+			rt = { 0, (CommunicationErrors::ErrorCode)rv };
+		else {
+			// this is the block call, the server has processed the service when we're unblocked
+			{
+				unique_lock<mutex> lock(m_asyncProcsMutex);
+				auto i = m_async_procs.find(_asyncId);
+				if (i != m_async_procs.end()) {
+					(*(i->second))(_asyncId, *_result);
+					m_async_procs.erase(_asyncId);
+				}
 			}
+			rt = { asyncId, CommunicationErrors::ErrorCode::None };
 		}
 
-		ReturnValue<AsyncID, CommunicationErrors> rt = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
 		return rt;
 	}, asyncId, serializedCall, result);
 
@@ -262,6 +264,6 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 #endif
 
 
-	r = ReturnValue<AsyncID, CommunicationErrors>{ asyncId, CommunicationErrors::ErrorCode::None };
+	r = { asyncId, CommunicationErrors::ErrorCode::None };
 	return r;
 }

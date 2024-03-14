@@ -11,7 +11,6 @@ digraph "C:/Dev/ezRPC/JsonEzRpcWrapper/obj"
     graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_515ead11630b1b3d5a9082d9118353bf.html",tooltip=""]
     dir_515ead11630b1b3d5a9082d9118353bf [shape=plaintext, label="obj"];
   dir_59babbb52fd0d85eb64decc4edd46dec [label="Debug", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_59babbb52fd0d85eb64decc4edd46dec.html",tooltip=""];
-  dir_353a0f422f02b2a264cb2824f24e16e4 [label="Release", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_353a0f422f02b2a264cb2824f24e16e4.html",tooltip=""];
   }
   }
 }
