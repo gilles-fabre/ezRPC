@@ -40,7 +40,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			m_rpcClient = make_unique<RPCClient>(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 		}

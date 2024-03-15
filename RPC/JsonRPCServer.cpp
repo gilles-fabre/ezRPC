@@ -44,20 +44,18 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 	}
 
 	if (procP) {
-		char* jsonCallResultP = new char[1024];
+		unique_ptr<char[]> jsonCallResult = make_unique<char[]>(JSON_RESULT_MAX_SIZE);
 		
 		// invoke server's proc
-		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResultP, 1024);
+		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResult.get(), JSON_RESULT_MAX_SIZE);
 
 		// converts result json to params.
 		params->clear();
-		JsonParameters::BuildParametersFromJson(jsonCallResultP, name, params);
+		JsonParameters::BuildParametersFromJson(jsonCallResult.get(), name, params);
 		
 #ifdef JSONRPCSERVER_TRACES
-		LogVText(JSONRPCSERVER_MODULE, 0, true, "received from JSON service procedure : %s", jsonCallResultP);
+		LogVText(JSONRPCSERVER_MODULE, 0, true, "received from JSON service procedure : %s", jsonCallResult.get());
 #endif
-
-		delete[] jsonCallResultP;
 	}
 
 	return result;

@@ -25,6 +25,8 @@
 #endif
 #endif
 
+#define COMM_SETUP_RETRIES 5
+
 /**
  * \class RPCServer
  * \brief An instance of RPCServer provides RPCClients with an address[:port] to connect
@@ -47,6 +49,7 @@ class	RPCServer {
 	Thread*							m_listening_threadP;	// responsible for listening and spawning service threads
 	vector<Thread*> 				m_serving_threads;		// all running and 'linked' service threads, waiting for remote procedure calls
 	unordered_map<string, RemoteProcedure*> m_rpc_map;				// the procedures to call based on their names
+	int								m_retries;				// connection retries	
 
 	/**
 		 * \class ServiceParameters
@@ -91,6 +94,7 @@ public:
 		m_transportP = Transport::CreateTransport(transport_type);
 		m_address = address;
 		m_user_dataP = user_dataP;
+		m_retries = 0;
 	}
 
 	/**

@@ -121,7 +121,7 @@ ReturnValue<unsigned long, CommunicationErrors> JsonRPCClient::RpcCall(const cha
 	string function;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
 	if (!JsonParameters::BuildParametersFromJson(jsonCallP, function, params)) {
-		r = { 0, CommunicationErrors::ErrorCode::RpcParametersError };
+		r = { CommunicationErrors::ErrorCode::RpcParametersError };
 		return r;
 	}
 

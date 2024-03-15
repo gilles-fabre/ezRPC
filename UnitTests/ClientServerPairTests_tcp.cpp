@@ -38,7 +38,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
@@ -48,6 +48,57 @@ namespace TCP_RPCtests {
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
 			server.Stop();
+		}
+
+		TEST_METHOD(ClientErrorIfNoServer) {
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			ReturnValue<unsigned long, CommunicationErrors> r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+		}
+
+		TEST_METHOD(ClientErrorIfBadServerAddress) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+
+			thread t([&]() {
+				server.RegisterProcedure("Nop", &Nop);
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
+
+			RPCClient client(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
+			ReturnValue<unsigned long, CommunicationErrors> r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			server.Stop();
+		}
+
+		TEST_METHOD(ClientErrorWhenServerStops) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+
+			thread t([&]() {
+				server.RegisterProcedure("Nop", &Nop);
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			ReturnValue<unsigned long, CommunicationErrors> r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+
+			Assert::AreEqual(r.GetErrorString(), string(CommunicationErrors::m_errors[CommunicationErrors::ErrorCode::None]));
+			server.Stop();
+
+			r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
 		}
 
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
@@ -60,7 +111,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
@@ -89,7 +140,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
@@ -116,7 +167,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
@@ -147,7 +198,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
@@ -179,7 +230,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 
@@ -211,7 +262,7 @@ namespace TCP_RPCtests {
 				});
 			t.detach();
 			// server must be ready for incoming connections
-			std::this_thread::sleep_for(1s);
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 

@@ -17,7 +17,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 									       last;
 
 	if (!byteBuffer || dataLen == 0 || m_out == -1) {
-		r = { false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -26,7 +26,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 
 	while (total != dataLen) {
 		if ((last = send(m_out, (const char *)&byteBuffer[total], dataLen - total, MSG_NOSIGNAL)) <= 0) {
-			r = { false, CommunicationErrors::ErrorCode::CommunicationDropped };
+			r = { CommunicationErrors::ErrorCode::CommunicationDropped };
 			return r;
 		}
 
@@ -58,7 +58,7 @@ ReturnValue<bool, CommunicationErrors> Link::Send(unsigned char* byteBuffer, uns
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || *dataLenP == 0 || m_out == -1) {
-		r = { false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -91,7 +91,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 										   last;
 
 	if (!byteBuffer || dataLen == 0 || m_in == -1) {
-		r = { false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -100,7 +100,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 
 	while (total != dataLen) {
 		if ((last = recv(m_in, (char*)&byteBuffer[total], dataLen - total, MSG_NOSIGNAL)) <= 0) {
-			r = { false, CommunicationErrors::ErrorCode::CommunicationDropped };
+			r = { CommunicationErrors::ErrorCode::CommunicationDropped };
 			return r;
 		}
 
@@ -133,7 +133,7 @@ ReturnValue<bool, CommunicationErrors> Link::Receive(unsigned char* byteBuffer, 
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || m_in == -1) {
-		r = { false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES
@@ -164,7 +164,7 @@ ReturnValue<bool, CommunicationErrors> Link::Peek(unsigned char* byteBuffer, uns
 	ReturnValue<bool, CommunicationErrors> r;
 
 	if (!byteBuffer || !dataLenP || *dataLenP == 0 || m_in == -1) {
-		r = { false, CommunicationErrors::ErrorCode::BadArgument };
+		r = { CommunicationErrors::ErrorCode::BadArgument };
 		return r;
 	}
 #ifdef LINK_TRACES

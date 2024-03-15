@@ -95,28 +95,28 @@ ReturnValue<unsigned char*, CommunicationErrors> RemoteProcedureCall::ReceivePac
 	// retrieve the packet len
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_linkP->Receive(buffer, (unsigned long)sizeof(len))).IsError()) {
-		r = { NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
+		r = { rv.GetError<CommunicationErrors::ErrorCode>() };
 		return r;
 	}
 
 	int offset = 0;
 	len = decode_uint64(buffer, offset);
 	if ((dataLen = (unsigned long)NTOHLL(len)) == 0) {
-		r = { NULL, CommunicationErrors::ErrorCode::MissingData };
+		r = { CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
 	// allocate the necessary bufferP
 	bufferP = (unsigned char*)malloc(dataLen);
 	if (!bufferP) {
-		r = { bufferP, CommunicationErrors::ErrorCode::AllocationError };
+		r = { CommunicationErrors::ErrorCode::AllocationError };
 		return r;
 	}
 
 	// wait and read the whole call stream
 	if ((rv = m_linkP->Receive(bufferP, (unsigned long)dataLen)).IsError()) {
 		free(bufferP);
-		r = { NULL, rv.GetError<CommunicationErrors::ErrorCode>() };
+		r = { rv.GetError<CommunicationErrors::ErrorCode>() };
 		return r;
 	}
 
@@ -1055,7 +1055,7 @@ ReturnValue<vector<RemoteProcedureCall::ParameterBase*>*, CommunicationErrors> R
 		unique_lock<mutex> lock(m_srv_receive_mutex);
 		ReturnValue<unsigned char*, CommunicationErrors> rv;
 		if ((rv = ReceivePacket(len)).IsError()) {
-			r = {NULL, rv.GetError<CommunicationErrors::ErrorCode>()};
+			r = {rv.GetError<CommunicationErrors::ErrorCode>()};
 			return r;
 		}
 
@@ -1396,7 +1396,7 @@ clean_up:
 
 	delete resultP;
 
-	r = { NULL, CommunicationErrors::ErrorCode::ProtocolError };
+	r = { CommunicationErrors::ErrorCode::ProtocolError };
 	return r;
 }
 
@@ -1659,7 +1659,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 	// get the return result address
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing return result address!" << endl;
-		r = { false, CommunicationErrors::ErrorCode::MissingData };
+		r = { CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
@@ -1673,7 +1673,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 	// get the result
 	if (bufferP[offset++] != (unsigned char)UINT64) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: missing result value!" << endl;
-		r = { false, CommunicationErrors::ErrorCode::MissingData };
+		r = { CommunicationErrors::ErrorCode::MissingData };
 		return r;
 	}
 
@@ -1808,7 +1808,7 @@ ReturnValue<bool, CommunicationErrors> RemoteProcedureCall::DeserializeCallRetur
 		}
 	}
 
-	r = { false, CommunicationErrors::ErrorCode::None };
+	r = { CommunicationErrors::ErrorCode::None };
 	return r;
 }
 

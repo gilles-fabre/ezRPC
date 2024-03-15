@@ -31,9 +31,12 @@ void RPCServer::ListeningCallback(void* _serverP) {
 	LogText(RPCSERVER_MODULE, 4, true, "waiting for link request");
 #endif
 
-	Link* linkP = serverP->m_transportP->WaitForLinkRequest(serverP->m_address);
-	if (!linkP)
+	ReturnValue<Link*, CommunicationErrors> rv = serverP->m_transportP->WaitForLinkRequest(serverP->m_address);
+	if (rv.IsError()) {
+		if (++serverP->m_retries == COMM_SETUP_RETRIES)
+			exit(-1);
 		return;
+	}
 
 	Thread* threadP = new Thread(&ServiceCallback);
 	serverP->m_serving_threads.push_back(threadP);
@@ -41,7 +44,7 @@ void RPCServer::ListeningCallback(void* _serverP) {
 	LogText(RPCSERVER_MODULE, 4, true, "starting detached server thread...");
 #endif
 
-	threadP->Run((void*)new ServiceParameters(serverP, linkP));
+	threadP->Run((void*)new ServiceParameters(serverP, (Link*)rv));
 }
 
 /**

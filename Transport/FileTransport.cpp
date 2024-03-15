@@ -46,7 +46,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 
 	if (server_address.empty()) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: empty filename!" << endl;
-		r = {NULL, CommunicationErrors::ErrorCode::InvalidAddress};
+		r = {CommunicationErrors::ErrorCode::InvalidAddress};
 		return r;
 	}
 
@@ -60,7 +60,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 		// create the server socket
 		if ((m_srvSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 			cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-			r = { NULL, CommunicationErrors::ErrorCode::SocketCreationError };
+			r = { CommunicationErrors::ErrorCode::SocketCreationError };
 			return r;
 		}
 
@@ -85,7 +85,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 			close(m_srvSocket);
 #endif
 			m_srvSocket = -1;
-			r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+			r = { CommunicationErrors::ErrorCode::SocketSettingError };
 			return r;
 		}
 	}
@@ -96,7 +96,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 	// listen on the socket, with 1 max connection request queued
 	if ((retval = listen(m_srvSocket, 1))) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't listen on socket (" << strerror(errno) << ")" << endl;
-		r = { NULL, CommunicationErrors::ErrorCode::SocketListeningError };
+		r = { CommunicationErrors::ErrorCode::SocketListeningError };
 		return r;
 	}
 #ifdef TRANSPORT_TRACES
@@ -114,7 +114,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::WaitForLinkRequest(const 
 #else
 		close(connSocket);
 #endif
-		r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };
+		r = { CommunicationErrors::ErrorCode::SocketSettingError };
 		return r;
 	}
 
@@ -151,7 +151,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::LinkRequest(const string&
 	// create the client socket
 	if ((connSocket = (int)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: couldn't create socket (" << strerror(errno) << ")" << endl;
-		r = {NULL, CommunicationErrors::ErrorCode::SocketCreationError};
+		r = {CommunicationErrors::ErrorCode::SocketCreationError};
 		return r;
 	}
 
@@ -173,7 +173,7 @@ ReturnValue<Link*, CommunicationErrors> FileTransport::LinkRequest(const string&
 #else
 		close(connSocket);
 #endif
-		r = { NULL, CommunicationErrors::ErrorCode::SocketConnectionError };
+		r = { CommunicationErrors::ErrorCode::SocketConnectionError };
 		return r;
 	}
 

@@ -22,6 +22,8 @@
 #endif
 #endif
 
+#define JSON_RESULT_MAX_SIZE 102400
+
 /**
  * \JsonRPCServer C API
  * \brief Provides C APIs on top of RPCServer services

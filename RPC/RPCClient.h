@@ -55,9 +55,13 @@ public:
 	 * \param server_address is the server address (for the given transport_type)
 	*/
 	RPCClient(Transport::TransportType transport_type,  const string& server_address) {
-		m_transportP = Transport::CreateTransport(transport_type);
-		Link *linkP = m_transportP ? (Link*)m_transportP->LinkRequest((const string&)server_address) : NULL;
-		m_rpcP = linkP ? new RemoteProcedureCall(linkP) : NULL;
+		m_rpcP = NULL;
+		if (m_transportP = Transport::CreateTransport(transport_type)) {
+			ReturnValue rv = m_transportP->LinkRequest((const string&)server_address);
+			if (!rv.IsError()) {
+				m_rpcP = new RemoteProcedureCall((Link*)rv);
+			}
+		}
 	}
 
 	/**

@@ -27,15 +27,15 @@ public:
   ReturnValue() {
       m_valueP = new pair<optional<T>, int>{ {}, static_cast<int>(E::ErrorCode::EmptyResult) };
   }
-  template <typename C>
-  ReturnValue(C error) {
+  template <typename EC>
+  ReturnValue(EC error) {
       m_valueP = new pair<optional<T>, int>{ {}, static_cast<int>(error) };
   }
   ReturnValue(T result) {
       m_valueP = new pair<optional<T>, int>{ result, static_cast<int>(E::ErrorCode::None)};
   }
-  template <typename C>
-  ReturnValue(T result, C error) {
+  template <typename EC>
+  ReturnValue(T result, EC error) {
       m_valueP = new pair<optional<T>, int>{ result, static_cast<int>(error) };
   }
   ReturnValue(const ReturnValue& other) {

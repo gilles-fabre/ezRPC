@@ -31,7 +31,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		r = {0, CommunicationErrors::ErrorCode::CommunicationDropped};
+		r = {CommunicationErrors::ErrorCode::CommunicationDropped};
 		return r;
 	}
 
@@ -49,7 +49,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
-		r = {0, (CommunicationErrors::ErrorCode)rv};
+		r = {(CommunicationErrors::ErrorCode)rv};
 		return r;
 	}
 
@@ -74,7 +74,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -89,7 +89,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
-		r = {0, CommunicationErrors::ErrorCode(rv)};
+		r = {CommunicationErrors::ErrorCode(rv)};
 		return r;
 	}
 
@@ -132,7 +132,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -165,7 +165,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 		ReturnValue<AsyncID, CommunicationErrors> rt;
 
 		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError()) 
-			rt = {0, (CommunicationErrors::ErrorCode)rv};
+			rt = {(CommunicationErrors::ErrorCode)rv};
 		else {
 			// this is the block call, the server has processed the service when we're unblocked
 			unique_lock<mutex> lock(m_asyncProcsMutex);
@@ -208,7 +208,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = { 0, CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = { CommunicationErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -238,7 +238,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 		ReturnValue<AsyncID, CommunicationErrors> rt;
 
 		if ((rv = m_rpcP->SendSerializedCall(_asyncId, *_serializedCall)).IsError())
-			rt = { 0, (CommunicationErrors::ErrorCode)rv };
+			rt = { (CommunicationErrors::ErrorCode)rv };
 		else {
 			// this is the block call, the server has processed the service when we're unblocked
 			{
