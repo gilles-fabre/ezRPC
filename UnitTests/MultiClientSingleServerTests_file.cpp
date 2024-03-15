@@ -61,6 +61,32 @@ namespace FILE_RPCtests {
 			Assert::IsTrue(r.IsError());
 		}
 
+		TEST_METHOD(MissingArgumentsReturnAnError) {
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
+			RpcReturnValue r;
+			r = rpcClient.RpcCall("SumNumbers",
+				RemoteProcedureCall::INT16,
+				4321,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments]));
+		}
+
+		TEST_METHOD(NullPtrReturnAnError) {
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
+			RpcReturnValue r = rpcClient.RpcCall("Increment",
+				RemoteProcedureCall::PTR,
+				RemoteProcedureCall::INT16,
+				NULL,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::NullPointer]));
+		}
+
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
 			RPCClient rpcClient(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 

@@ -55,10 +55,32 @@ namespace FILE_RPCtests {
 		}
 
 		TEST_METHOD(ClientErrorIfBadServerAddress) {
-			RPCClient client(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
-			RpcReturnValue  r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+			RPCClient rpcClient(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
+			RpcReturnValue  r = rpcClient.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 
 			Assert::IsTrue(r.IsError());
+		}
+
+		TEST_METHOD(MissingArgumentsReturnAnError) {
+			RpcReturnValue r;
+			r = m_rpcClient->RpcCall("SumNumbers",
+				RemoteProcedureCall::INT16,
+				4321,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments]));
+		}
+
+		TEST_METHOD(NullPtrReturnAnError) {
+			RpcReturnValue r = m_rpcClient->RpcCall("Increment",
+				RemoteProcedureCall::PTR,
+				RemoteProcedureCall::INT16,
+				NULL,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::NullPointer]));
 		}
 
 		TEST_METHOD(CallSumTwoNumbersAndStop) {

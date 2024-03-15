@@ -55,6 +55,28 @@ namespace TCP_RPCtests {
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
 		}
 
+		TEST_METHOD(MissingArgumentsReturnAnError) {
+			RpcReturnValue r;
+			r = m_rpcClient->RpcCall("SumNumbers",
+				RemoteProcedureCall::INT16,
+				4321,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments]));
+		}
+
+		TEST_METHOD(NullPtrReturnAnError) {
+			RpcReturnValue r = m_rpcClient->RpcCall("Increment",
+				RemoteProcedureCall::PTR,
+				RemoteProcedureCall::INT16,
+				NULL,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::NullPointer]));
+		}
+
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {

@@ -74,6 +74,57 @@ namespace TCP_RPCtests {
 			server.Stop();
 		}
 
+
+		TEST_METHOD(MissingArgumentsReturnAnError) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("SumNumbers", &SumNumbers);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
+			RpcReturnValue r;
+			r = client.RpcCall("SumNumbers",
+				RemoteProcedureCall::INT16,
+				4321,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments]));
+			server.Stop();
+		}
+
+		TEST_METHOD(NullPtrReturnAnError) {
+			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+			s_rpcServerP = &server;
+
+			server.RegisterProcedure("Increment", &Increment);
+			thread t([&]() {
+				server.IterateAndWait();
+				});
+			t.detach();
+			// server must be ready for incoming connections
+			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
+
+			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
+
+			RpcReturnValue r = client.RpcCall("Increment",
+				RemoteProcedureCall::PTR,
+				RemoteProcedureCall::INT16,
+				NULL,
+				RemoteProcedureCall::END_OF_CALL);
+
+			Assert::IsTrue(r.IsError());
+			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::NullPointer]));
+			server.Stop();
+		}
+
 		TEST_METHOD(ClientErrorWhenServerStops) {
 			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
 			s_rpcServerP = &server;
