@@ -29,6 +29,7 @@ var searchData=
   ['check_5ftype_26',['CHECK_TYPE',['../unit-regression1_8cpp.html#ab7f3dcd7491c65b349fbefe312faaa3b',1,'unit-regression1.cpp']]],
   ['check_5funary_27',['CHECK_UNARY',['../doctest_8h.html#abcf94ba403b7c0d3a652a7c8da342858',1,'doctest.h']]],
   ['check_5funary_5ffalse_28',['CHECK_UNARY_FALSE',['../doctest_8h.html#ab6e15c04937a22c57a3222e8436d4fac',1,'doctest.h']]],
-  ['compiler_5fid_29',['COMPILER_ID',['../_c_make_c_compiler_id_8c.html#a81dee0709ded976b2e0319239f72d174',1,'COMPILER_ID:&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a81dee0709ded976b2e0319239f72d174',1,'COMPILER_ID:&#160;CMakeCXXCompilerId.cpp']]],
-  ['cxx_5fstd_30',['CXX_STD',['../_c_make_c_x_x_compiler_id_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]]
+  ['comm_5fsetup_5fretries_29',['COMM_SETUP_RETRIES',['../_r_p_c_server_8h.html#a7e722f6d635cea0965b362e3ec8684cf',1,'RPCServer.h']]],
+  ['compiler_5fid_30',['COMPILER_ID',['../_c_make_c_compiler_id_8c.html#a81dee0709ded976b2e0319239f72d174',1,'COMPILER_ID:&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a81dee0709ded976b2e0319239f72d174',1,'COMPILER_ID:&#160;CMakeCXXCompilerId.cpp']]],
+  ['cxx_5fstd_31',['CXX_STD',['../_c_make_c_x_x_compiler_id_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]]
 ];

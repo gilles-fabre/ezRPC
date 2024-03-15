@@ -54,9 +54,15 @@
     <ClCompile Include="SingleJsonClientSingleServer_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RemoteProcedures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoteProcedures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

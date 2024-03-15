@@ -580,6 +580,7 @@ var hierarchy =
     [ "testing::internal::RelationToSourceCopy", "structtesting_1_1internal_1_1_relation_to_source_copy.html", null ],
     [ "testing::internal::RelationToSourceReference", "structtesting_1_1internal_1_1_relation_to_source_reference.html", null ],
     [ "RemoteProcedureCall", "class_remote_procedure_call.html", null ],
+    [ "RemoteProcedureErrors", "class_remote_procedure_errors.html", null ],
     [ "doctest::detail::types::remove_const< T >", "structdoctest_1_1detail_1_1types_1_1remove__const.html", null ],
     [ "doctest::detail::types::remove_const< const T >", "structdoctest_1_1detail_1_1types_1_1remove__const_3_01const_01_t_01_4.html", null ],
     [ "doctest::detail::types::remove_reference< T >", "structdoctest_1_1detail_1_1types_1_1remove__reference.html", null ],
@@ -592,6 +593,9 @@ var hierarchy =
     [ "testing::internal::RemoveReference< T & >", "structtesting_1_1internal_1_1_remove_reference_3_01_t_01_6_01_4.html", null ],
     [ "doctest::detail::Result", "structdoctest_1_1detail_1_1_result.html", null ],
     [ "ReturnValue< T, E >", "class_return_value.html", null ],
+    [ "ReturnValue< uint32_t, RemoteProcedureErrors >", "class_return_value.html", [
+      [ "RpcReturnValue", "class_rpc_return_value.html", null ]
+    ] ],
     [ "std::reverse_iterator", null, [
       [ "detail::json_reverse_iterator< Base >", "classdetail_1_1json__reverse__iterator.html", null ],
       [ "detail::json_reverse_iterator< Base >", "classdetail_1_1json__reverse__iterator.html", null ],

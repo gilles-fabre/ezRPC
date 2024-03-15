@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af7fadfc5744d79966897e40665bb0999" id="r_af7fadfc5744d79966897e40665bb0999"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7fadfc5744d79966897e40665bb0999">~RPCServer</a> ()</td></tr>
 <tr class="memdesc:af7fadfc5744d79966897e40665bb0999"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> destructor. Closes and destroys the associated RPC and <a class="el" href="class_transport.html" title="Abstract transport over any of the supported transports.">Transport</a> members.  <br /></td></tr>
 <tr class="separator:af7fadfc5744d79966897e40665bb0999"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8528062f54f43807e392739dbea93e2b" id="r_a8528062f54f43807e392739dbea93e2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8528062f54f43807e392739dbea93e2b">RegisterProcedure</a> (<a class="el" href="classstring.html">string</a> name, <a class="el" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a> *procedureP)</td></tr>
+<tr class="memitem:a8528062f54f43807e392739dbea93e2b" id="r_a8528062f54f43807e392739dbea93e2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8528062f54f43807e392739dbea93e2b">RegisterProcedure</a> (<a class="el" href="classstring.html">string</a> name, <a class="el" href="_remote_procedure_call_8h.html#a97da39c8ef4c9c093a0aad4877130df7">RemoteProcedure</a> *procedureP)</td></tr>
 <tr class="memdesc:a8528062f54f43807e392739dbea93e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a procedure so it can be called by a Remote Client.  <br /></td></tr>
 <tr class="separator:a8528062f54f43807e392739dbea93e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e252fd5fcca7dda0d4074ff6e42b0f7" id="r_a8e252fd5fcca7dda0d4074ff6e42b0f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e252fd5fcca7dda0d4074ff6e42b0f7">UnregisterProcedure</a> (<a class="el" href="classstring.html">string</a> name)</td></tr>
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An instance of <a class="el" href="class_r_p_c_server.html" title="An instance of RPCServer provides RPCClients with an address[:port] to connect to,...">RPCServer</a> provides RPCClients with an address[:port] to connect to, over a given transport, and obtain a dedicated link (one per <a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a>). The latter can be used by the <a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> to remotely invoke procedures of the (linked) <a class="el" href="class_r_p_c_server.html" title="An instance of RPCServer provides RPCClients with an address[:port] to connect to,...">RPCServer</a>. Procedures can be dynamically added or removed from an <a class="el" href="class_r_p_c_server.html" title="An instance of RPCServer provides RPCClients with an address[:port] to connect to,...">RPCServer</a> instance. See <a class="el" href="class_remote_procedure_call.html" title="Instantiate an object of this class with a Link to pass calls to the connected peer and retrieve a re...">RemoteProcedureCall</a> to get the details of the remote procedure invocation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00042">42</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00044">44</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5cfaec27a0c5a0b7529858ba54773232" name="a5cfaec27a0c5a0b7529858ba54773232"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5cfaec27a0c5a0b7529858ba54773232">&#9670;&#160;</a></span>RPCServer()</h2>
@@ -180,7 +180,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00089">89</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00092">92</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -214,7 +214,7 @@ Here is the call graph for this function:</div>
 
 <p><a class="el" href="class_r_p_c_client.html" title="Provides the user with a high abstraction level Remote Procedure Calls service.">RPCClient</a> destructor. Closes and destroys the associated RPC and <a class="el" href="class_transport.html" title="Abstract transport over any of the supported transports.">Transport</a> members. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00101">101</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00105">105</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -250,7 +250,7 @@ Here is the call graph for this function:</div>
 <p>Iterates on Run. </p>
 <p>Iterates on Run then Wait. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00166">166</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00170">170</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -282,7 +282,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00178">178</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00182">182</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -313,7 +313,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="_remote_procedure_call_8h.html#a97da39c8ef4c9c093a0aad4877130df7">RemoteProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -332,7 +332,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00120">120</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00124">124</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -366,7 +366,7 @@ Here is the caller graph for this function:</div>
 
 <p>One shot run of the server, will accept a single connection and then serve the connected client. Exits when the connection drops. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00140">140</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00144">144</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -400,7 +400,7 @@ Here is the call graph for this function:</div>
 
 <p>One shot run of the server, will accept a single connection and then serve the connected client. Exits and Wait when the connection drops. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00154">154</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00158">158</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -434,7 +434,7 @@ Here is the call graph for this function:</div>
 
 <p>Stops the associated transport. </p>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00190">190</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00194">194</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -479,7 +479,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00130">130</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_r_p_c_server_8h_source.html#l00134">134</a> of file <a class="el" href="_r_p_c_server_8h_source.html">RPCServer.h</a>.</p>
 
 </div>
 </div>

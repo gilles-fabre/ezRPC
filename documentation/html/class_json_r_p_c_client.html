@@ -108,10 +108,10 @@ $(function(){initNavTree('class_json_r_p_c_client.html',''); initResizable(); })
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae1e9c2a7f534e38391e06de8c700cf37" id="r_ae1e9c2a7f534e38391e06de8c700cf37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1e9c2a7f534e38391e06de8c700cf37">JsonRPCClient</a> (<a class="el" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport, const <a class="el" href="classstring.html">string</a> &amp;serverAddr)</td></tr>
 <tr class="separator:ae1e9c2a7f534e38391e06de8c700cf37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63b79bf955270fef1cd21750c10c5a51" id="r_a63b79bf955270fef1cd21750c10c5a51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b79bf955270fef1cd21750c10c5a51">RpcCallAsync</a> (const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="_json_r_p_c_client_8h.html#ace88a75c814f657c60169012ba882989">AsyncJsonReplyProcedure</a> *replyProcP)</td></tr>
+<tr class="memitem:a63b79bf955270fef1cd21750c10c5a51" id="r_a63b79bf955270fef1cd21750c10c5a51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; <a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a>, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b79bf955270fef1cd21750c10c5a51">RpcCallAsync</a> (const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen, <a class="el" href="_json_r_p_c_client_8h.html#adae9b5850fbe32fce83dc5b0eab54b11">AsyncJsonReplyProcedure</a> *replyProcP)</td></tr>
 <tr class="separator:a63b79bf955270fef1cd21750c10c5a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a747506052ce6f69b3673ddeed6f3190a" id="r_a747506052ce6f69b3673ddeed6f3190a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; unsigned long, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a747506052ce6f69b3673ddeed6f3190a">RpcCall</a> (const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
-<tr class="separator:a747506052ce6f69b3673ddeed6f3190a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab335c7b91778461ac79bff15062d16dd" id="r_ab335c7b91778461ac79bff15062d16dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rpc_return_value.html">RpcReturnValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab335c7b91778461ac79bff15062d16dd">RpcCall</a> (const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
+<tr class="separator:ab335c7b91778461ac79bff15062d16dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides the user with a high abstraction level Remote Procedure Calls service. </p>
@@ -142,14 +142,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a747506052ce6f69b3673ddeed6f3190a" name="a747506052ce6f69b3673ddeed6f3190a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a747506052ce6f69b3673ddeed6f3190a">&#9670;&#160;</a></span>RpcCall()</h2>
+<a id="ab335c7b91778461ac79bff15062d16dd" name="ab335c7b91778461ac79bff15062d16dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab335c7b91778461ac79bff15062d16dd">&#9670;&#160;</a></span>RpcCall()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_return_value.html">ReturnValue</a>&lt; unsigned long, <a class="el" href="class_communication_errors.html">CommunicationErrors</a> &gt; JsonRPCClient::RpcCall </td>
+          <td class="memname"><a class="el" href="class_rpc_return_value.html">RpcReturnValue</a> JsonRPCClient::RpcCall </td>
           <td>(</td>
           <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>jsonCallP</em>, </span></td>
         </tr>
@@ -170,7 +170,7 @@ Public Member Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_json_r_p_c_client_a747506052ce6f69b3673ddeed6f3190a_cgraph.png" border="0" usemap="#aclass_json_r_p_c_client_a747506052ce6f69b3673ddeed6f3190a_cgraph" alt=""/></div>
+<div class="center"><img src="class_json_r_p_c_client_ab335c7b91778461ac79bff15062d16dd_cgraph.png" border="0" usemap="#aclass_json_r_p_c_client_ab335c7b91778461ac79bff15062d16dd_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -199,7 +199,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_json_r_p_c_client_8h.html#ace88a75c814f657c60169012ba882989">AsyncJsonReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="_json_r_p_c_client_8h.html#adae9b5850fbe32fce83dc5b0eab54b11">AsyncJsonReplyProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>replyProcP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

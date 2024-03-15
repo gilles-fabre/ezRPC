@@ -11,6 +11,7 @@ var dir_5e7820cd9865310f5cd4c55ebafcb2ee =
     [ "JsonTestServer.cpp", "_json_test_server_8cpp.html", "_json_test_server_8cpp" ],
     [ "RemoteProcedureCall.cpp", "_remote_procedure_call_8cpp.html", null ],
     [ "RemoteProcedureCall.h", "_remote_procedure_call_8h.html", "_remote_procedure_call_8h" ],
+    [ "RemoteProcedureErrors.h", "_remote_procedure_errors_8h.html", "_remote_procedure_errors_8h" ],
     [ "RPCClient.cpp", "_r_p_c_client_8cpp.html", "_r_p_c_client_8cpp" ],
     [ "RPCClient.h", "_r_p_c_client_8h.html", "_r_p_c_client_8h" ],
     [ "RPCServer.cpp", "_r_p_c_server_8cpp.html", "_r_p_c_server_8cpp" ],

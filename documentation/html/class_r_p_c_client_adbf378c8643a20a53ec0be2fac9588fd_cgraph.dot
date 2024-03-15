@@ -13,5 +13,7 @@ digraph "RPCClient::RPCClient"
   Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
   Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="Transport::LinkRequest",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transport.html#a9215d05644cf00b1952c68d13b4d743d",tooltip=" "];
+  Node5 [id="Node000005",label="ReturnValue::IsError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a8191a2c1b417c55e336f350bcee26810",tooltip="Returns true if the ReturnValue carries an error. In this case, the T value shall not be used."];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Transport::LinkRequest",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_transport.html#a9215d05644cf00b1952c68d13b4d743d",tooltip=" "];
 }

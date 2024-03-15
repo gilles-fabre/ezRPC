@@ -61,5 +61,7 @@ digraph "C:/Dev/ezRPC/RPC/JsonParameters.h"
   Node27 [id="Node000027",label="condition_variable",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node2 -> Node17 [id="edge29_Node000002_Node000017",color="steelblue1",style="solid",tooltip=" "];
   Node2 -> Node28 [id="edge30_Node000002_Node000028",color="steelblue1",style="solid",tooltip=" "];
-  Node28 [id="Node000028",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node28 [id="Node000028",label="RemoteProcedureErrors.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_remote_procedure_errors_8h.html",tooltip=" "];
+  Node2 -> Node29 [id="edge31_Node000002_Node000029",color="steelblue1",style="solid",tooltip=" "];
+  Node29 [id="Node000029",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
 }

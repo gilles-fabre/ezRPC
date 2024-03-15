@@ -14,12 +14,12 @@ Semaphore g_sem_get_str(0);
 
 char g_Buffer[256 + 1];
 
-static void GetStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+static void GetStringAsyncReplyProc(AsyncID asyncId, uint64_t result) {
 	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << " and result : " << result << endl;
 	g_sem_get_str.R();
 }
 
-static void PutStringAsyncReplyProc(AsyncID asyncId, unsigned long result) {
+static void PutStringAsyncReplyProc(AsyncID asyncId, uint64_t result) {
 	cout << "asyncId : " << asyncId << ", returned json : " << g_Buffer << " and result : " << result << endl;
 	g_sem_put_str.R();
 }
@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
 	for (int i = 0; i < argc; i++)
 		cout << "arg #" << i << ": " << argv[i] << endl;
 
-	unsigned long result = -1;
+	uint64_t result = -1;
 
 	string proto = argv[1];
 	string serverAddr = argv[2];

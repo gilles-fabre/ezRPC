@@ -5,9 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="std::char_traits\< char \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structstd_1_1char__traits.html",tooltip=" "];
-  Node0 -> Node1 [id="edge83_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="detail::char_traits\l\< signed char \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdetail_1_1char__traits_3_01signed_01char_01_4.html",tooltip=" "];
-  Node0 -> Node2 [id="edge84_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="detail::char_traits\l\< unsigned char \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structdetail_1_1char__traits_3_01unsigned_01char_01_4.html",tooltip=" "];
+  Node0 [id="Node000000",label="std::basic_ostream\l\< charT, traits \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classstd_1_1basic__ostream.html",tooltip=" "];
 }

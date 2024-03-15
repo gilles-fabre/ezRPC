@@ -9,7 +9,7 @@ var searchData=
   ['int32_5fref_6',['INT32_REF',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1acb2c2d95480f8912232b3e11b9fc1140',1,'RemoteProcedureCall']]],
   ['int64_7',['INT64',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a9a849994753a05d8417f2682ff95760c',1,'RemoteProcedureCall']]],
   ['int64_5fref_8',['INT64_REF',['../class_remote_procedure_call.html#a218ab2d7145fa1223358e7d8490024a1a8c15a41145e371cc46eba7337424f17c',1,'RemoteProcedureCall']]],
-  ['invalidaddress_9',['InvalidAddress',['../class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80ac8e98daf4955fc9619b08b53758c387e',1,'CommunicationErrors']]],
+  ['invalidaddress_9',['InvalidAddress',['../class_communication_errors.html#a921cd515bf48b016215a0704ae0bdf80ac8e98daf4955fc9619b08b53758c387e',1,'CommunicationErrors::InvalidAddress'],['../class_remote_procedure_errors.html#add273c7c1d13bc42f1aac9c252e706a7ad53cf2b6bc26374083441a89bd6d8a0a',1,'RemoteProcedureErrors::InvalidAddress']]],
   ['is_5fcheck_10',['is_check',['../namespacedoctest_1_1assert_type.html#ae1bb5bed722f34f1c38b83cb19d326d3a9ca6ff629647f2a90d4c01ce68800590',1,'doctest::assertType']]],
   ['is_5feq_11',['is_eq',['../namespacedoctest_1_1assert_type.html#ae1bb5bed722f34f1c38b83cb19d326d3a7010ae6142f085a3bfd85caa251c7499',1,'doctest::assertType']]],
   ['is_5ffalse_12',['is_false',['../namespacedoctest_1_1assert_type.html#ae1bb5bed722f34f1c38b83cb19d326d3a6539bad84e35008dc4a4a2c2d0793318',1,'doctest::assertType']]],

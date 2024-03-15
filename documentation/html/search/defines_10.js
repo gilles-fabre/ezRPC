@@ -25,10 +25,11 @@ var searchData=
   ['require_5fthrows_5fwith_5fmessage_22',['REQUIRE_THROWS_WITH_MESSAGE',['../doctest_8h.html#afafefd04c20691a9be44026da809e5c6',1,'doctest.h']]],
   ['require_5funary_23',['REQUIRE_UNARY',['../doctest_8h.html#a83daebae3fda51f918a5624574db9beb',1,'doctest.h']]],
   ['require_5funary_5ffalse_24',['REQUIRE_UNARY_FALSE',['../doctest_8h.html#abeeedde24675295715ea07fa2f9ed875',1,'doctest.h']]],
-  ['rpc_5fcall_5fiterations_25',['RPC_CALL_ITERATIONS',['../_unit_tests_settings_8h.html#a3923cf458ec2e0e78e7e9a1182d9f4a8',1,'UnitTestsSettings.h']]],
-  ['rpc_5fmodule_26',['RPC_MODULE',['../_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d',1,'RemoteProcedureCall.h']]],
-  ['rpc_5fserver_5faddress_27',['RPC_SERVER_ADDRESS',['../_unit_tests_settings_8h.html#a1cc167de16e8543566e05bf8c8c6a09c',1,'UnitTestsSettings.h']]],
-  ['rpc_5ftransport_28',['RPC_TRANSPORT',['../_unit_tests_settings_8h.html#ac4d90a7b273c595a81a758830e1cdafe',1,'UnitTestsSettings.h']]],
-  ['rpcclient_5fmodule_29',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
-  ['rpcserver_5fmodule_30',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]]
+  ['rpc_5fbad_5fserver_5faddress_25',['RPC_BAD_SERVER_ADDRESS',['../_unit_tests_settings_8h.html#a4e1728709a14a4962bed5bd3f1166469',1,'UnitTestsSettings.h']]],
+  ['rpc_5fcall_5fiterations_26',['RPC_CALL_ITERATIONS',['../_unit_tests_settings_8h.html#a3923cf458ec2e0e78e7e9a1182d9f4a8',1,'UnitTestsSettings.h']]],
+  ['rpc_5fmodule_27',['RPC_MODULE',['../_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d',1,'RemoteProcedureCall.h']]],
+  ['rpc_5fserver_5faddress_28',['RPC_SERVER_ADDRESS',['../_unit_tests_settings_8h.html#a1cc167de16e8543566e05bf8c8c6a09c',1,'UnitTestsSettings.h']]],
+  ['rpc_5ftransport_29',['RPC_TRANSPORT',['../_unit_tests_settings_8h.html#ac4d90a7b273c595a81a758830e1cdafe',1,'UnitTestsSettings.h']]],
+  ['rpcclient_5fmodule_30',['RPCCLIENT_MODULE',['../_r_p_c_client_8h.html#a7f35f1a348f5746dd6a6b1befddb9151',1,'RPCClient.h']]],
+  ['rpcserver_5fmodule_31',['RPCSERVER_MODULE',['../_r_p_c_server_8h.html#af1cc870489249542c3fc7bc138fa7c0f',1,'RPCServer.h']]]
 ];

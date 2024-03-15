@@ -14,6 +14,8 @@
 
 #include <ReturnValue.h>
 
+#include "RemoteProcedureErrors.h"
+
 #ifndef WIN32
 #include <arpa/inet.h>
 #endif
@@ -31,6 +33,72 @@ using namespace std;
 
 typedef uint64_t AsyncID;
 #define INVALID_ASYNC_ID (AsyncID)0
+
+class RpcReturnValue : public ReturnValue<uint32_t, RemoteProcedureErrors> {
+public:
+	RpcReturnValue() : ReturnValue() {}
+	RpcReturnValue(RemoteProcedureErrors::ErrorCode error) : ReturnValue(error) {}
+	RpcReturnValue(uint32_t result) : ReturnValue(result) {}
+	RpcReturnValue(uint32_t result, RemoteProcedureErrors::ErrorCode error) : ReturnValue(result, error) {}
+	
+	RpcReturnValue(const RpcReturnValue& other) {
+		m_valueP = NULL;
+		*this = other;
+	}
+	RpcReturnValue(RpcReturnValue&& other) noexcept {
+		m_valueP = NULL;
+		*this = other;
+	}
+	~RpcReturnValue() {
+		delete m_valueP;
+		m_valueP = NULL;
+	}
+	RpcReturnValue& operator =(const RpcReturnValue& other) {
+		delete m_valueP;
+		m_valueP = new pair <optional<uint32_t>, int>{ other.m_valueP->first, other.m_valueP->second };
+		return *this;
+	}
+	RpcReturnValue& operator =(RpcReturnValue&& other) noexcept {
+		delete m_valueP;
+		m_valueP = other.m_valueP;
+		other.m_valueP = NULL;
+		return *this;
+	}
+
+	operator RemoteProcedureErrors::ErrorCode() {
+		return static_cast<RemoteProcedureErrors::ErrorCode>(m_valueP->second);
+	}
+
+	RemoteProcedureErrors::ErrorCode GetError() {
+		return static_cast<RemoteProcedureErrors::ErrorCode>(m_valueP->second);
+	}
+
+	operator uint32_t& () {
+		return *(m_valueP->first);
+	}
+
+	uint32_t& GetResult() {
+		return *(m_valueP->first);
+	}
+
+	operator uint64_t () {
+		uint32_t vValue = IsError() ? 0 : GetResult();
+		uint32_t eValue = IsError() ? (uint32_t)GetError() : 0;
+
+		uint64_t value = eValue;
+		value <<= 32;
+		value |= vValue;
+		return value;
+	}
+
+	RpcReturnValue& operator =(uint64_t value) {
+		uint32_t eValue = (((uint64_t)value) & 0xFFFFFFFF00000000) >> 32;
+		uint32_t vValue = value & 0xFFFFFFFF;
+		delete m_valueP;
+		m_valueP = new pair <optional<uint32_t>, int>{ vValue, eValue};
+		return *this;
+	}
+};
 
 /**
  * \class RemoteProcedureCall
@@ -50,8 +118,8 @@ class RemoteProcedureCall {
 	ReturnValue<bool, CommunicationErrors> DeserializeCallReturn(AsyncID& asyncId, unsigned char* bufferP);
 
 	// exchange sized call streams
-	ReturnValue<bool, CommunicationErrors>			 SendPacket(unsigned char* bufferP, unsigned long data_len);
-	ReturnValue<unsigned char*, CommunicationErrors> ReceivePacket(unsigned long& data_len);
+	ReturnValue<bool, CommunicationErrors>			 SendPacket(unsigned char* bufferP, unsigned int data_len);
+	ReturnValue<unsigned char*, CommunicationErrors> ReceivePacket(unsigned int& data_len);
 
 	// utility methods to push parameter values [and pointers] into the
 	// call stream serialization vector and read/decode parameter
@@ -259,14 +327,14 @@ public:
 	}
 
 	// rpc call caller side
-	void								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
-	void 								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, unsigned long* resultP, va_list vl);
+	void								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, uint64_t* resultP, vector<RemoteProcedureCall::ParameterBase*>* v);
+	void 								   PrepareSerializeCall(AsyncID asyncId, const string& funcName, vector<unsigned char>& serializedCall, uint64_t* resultP, va_list vl);
 	ReturnValue<bool, CommunicationErrors> SendSerializedCall(AsyncID asyncId, vector<unsigned char>& serializedCall);
 
 	// rpc function callee side
 
 	ReturnValue<vector<ParameterBase*>*, CommunicationErrors> DeserializeCall(AsyncID& asyncId, string& funcName);
-	ReturnValue<bool, CommunicationErrors>					  SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, unsigned long retVal);
+	ReturnValue<bool, CommunicationErrors>					  SerializeCallReturn(AsyncID asyncId, shared_ptr<vector<ParameterBase*>> params, uint64_t retVal);
 
 	void Close() {
 		if (m_linkP)
@@ -284,6 +352,6 @@ public:
 
 #define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
 
-typedef unsigned long RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* userDataP);
+typedef RpcReturnValue RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* userDataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

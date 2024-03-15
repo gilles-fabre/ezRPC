@@ -84,7 +84,9 @@ digraph "C:/Dev/ezRPC/RPC/JsonTestServer.cpp"
   Node30 [id="Node000030",label="condition_variable",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node25 -> Node20 [id="edge49_Node000025_Node000020",color="steelblue1",style="solid",tooltip=" "];
   Node25 -> Node31 [id="edge50_Node000025_Node000031",color="steelblue1",style="solid",tooltip=" "];
-  Node31 [id="Node000031",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
-  Node1 -> Node32 [id="edge51_Node000001_Node000032",color="steelblue1",style="solid",tooltip=" "];
-  Node32 [id="Node000032",label="nlohmann/json.hpp",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node31 [id="Node000031",label="RemoteProcedureErrors.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_remote_procedure_errors_8h.html",tooltip=" "];
+  Node25 -> Node32 [id="edge51_Node000025_Node000032",color="steelblue1",style="solid",tooltip=" "];
+  Node32 [id="Node000032",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node33 [id="edge52_Node000001_Node000033",color="steelblue1",style="solid",tooltip=" "];
+  Node33 [id="Node000033",label="nlohmann/json.hpp",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
 }

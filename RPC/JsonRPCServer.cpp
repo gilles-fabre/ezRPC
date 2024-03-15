@@ -23,9 +23,10 @@ void DestroyRpcServer(uint64_t serverId) {
 
 mutex JsonRPCServer::m_serverProcsMutex;
 unordered_map<string, ServerProcedure*> JsonRPCServer::m_serverProcs;
-unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP) {
+RpcReturnValue JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP) {
+	RpcReturnValue	r;
 	string			jsonCall;
-	unsigned long	result = -1;
+	uint64_t		result = -1;
 	
 	// convert params to json
 	JsonParameters::BuildJsonFromCallParameters(name, params, jsonCall);
@@ -47,7 +48,7 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 		unique_ptr<char[]> jsonCallResult = make_unique<char[]>(JSON_RESULT_MAX_SIZE);
 		
 		// invoke server's proc
-		result = (unsigned long)(*procP)(jsonCall.c_str(), jsonCallResult.get(), JSON_RESULT_MAX_SIZE);
+		result = (uint64_t)(*procP)(jsonCall.c_str(), jsonCallResult.get(), JSON_RESULT_MAX_SIZE);
 
 		// converts result json to params.
 		params->clear();
@@ -58,7 +59,8 @@ unsigned long JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<
 #endif
 	}
 
-	return result;
+	r = result;
+	return r;
 }
 
 #ifdef WIN32

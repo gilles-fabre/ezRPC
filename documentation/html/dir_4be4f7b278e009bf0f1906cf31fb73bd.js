@@ -6,6 +6,8 @@ var dir_4be4f7b278e009bf0f1906cf31fb73bd =
     [ "MultiClientSingleServerTests_tcp.cpp", "_multi_client_single_server_tests__tcp_8cpp.html", "_multi_client_single_server_tests__tcp_8cpp" ],
     [ "pch.cpp", "pch_8cpp.html", null ],
     [ "pch.h", "pch_8h.html", null ],
+    [ "RemoteProcedures.cpp", "_remote_procedures_8cpp.html", "_remote_procedures_8cpp" ],
+    [ "RemoteProcedures.h", "_remote_procedures_8h.html", "_remote_procedures_8h" ],
     [ "SingleClientSingleJsonServer_file.cpp", "_single_client_single_json_server__file_8cpp.html", "_single_client_single_json_server__file_8cpp" ],
     [ "SingleClientSingleJsonServer_tcp.cpp", "_single_client_single_json_server__tcp_8cpp.html", "_single_client_single_json_server__tcp_8cpp" ],
     [ "SingleClientSingleServerTests_file.cpp", "_single_client_single_server_tests__file_8cpp.html", "_single_client_single_server_tests__file_8cpp" ],

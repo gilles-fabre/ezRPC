@@ -170,6 +170,7 @@
     </ClCompile>
     <ClCompile Include="ClientServerPairTests_tcp.cpp" />
     <ClCompile Include="MultiClientSingleServerTests_tcp.cpp" />
+    <ClCompile Include="RemoteProcedures.cpp" />
     <ClCompile Include="SingleClientSingleJsonServer_file.cpp" />
     <ClCompile Include="SingleClientSingleJsonServer_tcp.cpp" />
     <ClCompile Include="SingleClientSingleServerTests_file.cpp" />
@@ -181,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RemoteProcedures.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build\ezRPC.vcxproj">

@@ -252,6 +252,7 @@ var menudata={children:[
 {text:"e",url:"functions_eval.html#index_e"},
 {text:"f",url:"functions_eval.html#index_f"},
 {text:"i",url:"functions_eval.html#index_i"},
+{text:"j",url:"functions_eval.html#index_j"},
 {text:"m",url:"functions_eval.html#index_m"},
 {text:"n",url:"functions_eval.html#index_n"},
 {text:"o",url:"functions_eval.html#index_o"},
@@ -260,7 +261,8 @@ var menudata={children:[
 {text:"s",url:"functions_eval.html#index_s"},
 {text:"t",url:"functions_eval.html#index_t"},
 {text:"u",url:"functions_eval.html#index_u"},
-{text:"v",url:"functions_eval.html#index_v"}]},
+{text:"v",url:"functions_eval.html#index_v"},
+{text:"w",url:"functions_eval.html#index_w"}]},
 {text:"Properties",url:"functions_prop.html"},
 {text:"Related Symbols",url:"functions_rela.html",children:[
 {text:":",url:"functions_rela.html#index_:"},

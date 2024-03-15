@@ -27,7 +27,7 @@ using namespace std;
  * \brief Provides C APIs on top of RPCClient services
  */
 
-typedef void AsyncJsonReplyProcedure(AsyncID, unsigned long result);
+typedef void AsyncJsonReplyProcedure(AsyncID, uint64_t result);
 
 extern "C" {
 #ifdef WIN32
@@ -77,7 +77,7 @@ class	JsonRPCClient {
 	static mutex												   m_asyncParamsMutex;
 	static unordered_map<AsyncID, shared_ptr<AsyncJsonCallParams>> m_asyncParams;
 
-	static void AsyncRpcReplyProc(AsyncID asyncId, unsigned long result);
+	static void AsyncRpcReplyProc(AsyncID asyncId, uint64_t result);
 
 	static bool BuildParametersFromJson(const char* jsonCallP, string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params);
 	static bool BuildJsonFromParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult);
@@ -86,8 +86,8 @@ class	JsonRPCClient {
 public:
 	JsonRPCClient(Transport::TransportType transport, const string& serverAddr);
 
-	ReturnValue<AsyncID, CommunicationErrors>			  RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
-	ReturnValue<unsigned long, CommunicationErrors> RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+	ReturnValue<AsyncID, CommunicationErrors>  RpcCallAsync(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure* replyProcP);
+	RpcReturnValue							   RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 };
 
 #endif /* _JSON_RPC_CLIENT_H */

@@ -14,16 +14,16 @@
 #include "RPCClient.h"
 
 /**
- * \fn unsigned long RPCClient::RpcCall(string function, ...)
+ * \fn RpcReturnValue RPCClient::RpcCall(string function, ...)
  * \brief see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...
  * 
  * \param function is the name of the Remote Procedure called
  * \param ... variadic, is a set of param types and paramters, ended by END_OF_CALL
  * 
- * \return (unsigned long)ReturnValue the Remote Procedure result if no error was encountered.
+ * \return ReturnValue the Remote Procedure result if no error was encountered.
  */
-ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string function, ...) {
-	ReturnValue<unsigned long, CommunicationErrors> r;
+RpcReturnValue RPCClient::RpcCall(string function, ...) {
+	RpcReturnValue r;
 
 #ifdef RPCCLIENT_TRACES
 	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCall(%s)", function.c_str());
@@ -31,7 +31,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
-		r = {CommunicationErrors::ErrorCode::CommunicationDropped};
+		r = RpcReturnValue { RemoteProcedureErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -41,7 +41,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 #endif
 
 	vector<unsigned char>	serializedCall;
-	unsigned long			result;
+	uint64_t				result;
 	va_list vl;
 	va_start(vl, function);
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, vl);
@@ -49,7 +49,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
-		r = {(CommunicationErrors::ErrorCode)rv};
+		r = RpcReturnValue{(RemoteProcedureErrors::ErrorCode)rv};
 		return r;
 	}
 
@@ -60,12 +60,12 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	r = { result, CommunicationErrors::ErrorCode::None };
+	r = result;
 	return r;
 }
 
-ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
-	ReturnValue<unsigned long, CommunicationErrors> r;
+RpcReturnValue RPCClient::RpcCall(string function, vector<RemoteProcedureCall::ParameterBase*>* paramsP) {
+	RpcReturnValue r;
 
 #ifdef RPCCLIENT_TRACES
 	LogVText(RPCCLIENT_MODULE, 0, true, "RPCClient::RpcCall(%s) - vector based", function.c_str());
@@ -74,7 +74,7 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	if (!m_rpcP) {
 		cerr << __FILE__ << ", " << __FUNCTION__ << "(" << __LINE__ << ") Error: RemoteProcedureCall object couldn't be created!" << endl;
 
-		r = { CommunicationErrors::ErrorCode::CommunicationDropped };
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::CommunicationDropped };
 		return r;
 	}
 
@@ -84,12 +84,12 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 #endif
 
 	vector<unsigned char>	serializedCall;
-	unsigned long			result;
+	uint64_t				result;
 	m_rpcP->PrepareSerializeCall(0, function, serializedCall, &result, paramsP);
 
 	ReturnValue<bool, CommunicationErrors> rv;
 	if ((rv = m_rpcP->SendSerializedCall(0, serializedCall)).IsError()) {
-		r = {CommunicationErrors::ErrorCode(rv)};
+		r = RpcReturnValue{RemoteProcedureErrors::ErrorCode(rv)};
 		return r;
 	}
 
@@ -99,12 +99,12 @@ ReturnValue<unsigned long, CommunicationErrors> RPCClient::RpcCall(string functi
 	LogVText(RPCCLIENT_MODULE, 4, true, "RpcCall executed in %f second(s)", elapsed.count());
 #endif
 
-	r = { result, CommunicationErrors::ErrorCode::None };
+	r = result;
 	return r;
 }
 
 /**
- * \fn unsigned long RPCClient::RpcCallAsync(string function, ...)
+ * \fn RpcReturnValue RPCClient::RpcCallAsync(string function, ...)
  * \brief see RemoteProcedureCall::SerializedCall and RemoteProcedureCall::SendSerializedCall...
  * 
  * WARNING : ALL PASSED PARAMETERS MUST BE KEPT ALIVE/IN SCOPE UNTIL THE
@@ -142,7 +142,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 #endif
 
 	shared_ptr<vector<unsigned char>>	serializedCall = make_shared<vector<unsigned char>>();
-	shared_ptr<unsigned long>			result = make_shared<unsigned long>();
+	shared_ptr<uint64_t>				result = make_shared<uint64_t>();
 	va_list vl;
 	va_start(vl, function);
 	m_rpcP->PrepareSerializeCall(asyncId, function, *serializedCall, result.get(), vl);
@@ -158,7 +158,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	// create a thread which will wait for *a* deserialized reply
 	// this reply can be associated with any previous async call,
 	// hence we need to redirect it to the proper async reply procedure
-	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
+	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<uint64_t> _result) {
 		aThread->detach();
 		detachedSem.R();
 		ReturnValue<bool, CommunicationErrors>	  rv;
@@ -218,7 +218,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 #endif
 
 	shared_ptr<vector<unsigned char>>	serializedCall = make_shared<vector<unsigned char>>();
-	shared_ptr<unsigned long>			result = make_shared<unsigned long>();
+	shared_ptr<uint64_t>				result = make_shared<uint64_t>();
 	m_rpcP->PrepareSerializeCall(asyncId, function, *serializedCall, result.get(), paramsP);
 
 	Semaphore detachedSem(0);
@@ -231,7 +231,7 @@ ReturnValue<AsyncID, CommunicationErrors> RPCClient::RpcCallAsync(AsyncReplyProc
 	// create a thread which will wait for *a* deserialized reply
 	// this reply can be associated with any previous async call,
 	// hence we need to redirect it to the proper async reply procedure
-	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<unsigned long> _result) {
+	shared_ptr<thread> aThread = make_shared<thread>([&](AsyncID _asyncId, shared_ptr<vector<unsigned char>> _serializedCall, shared_ptr<uint64_t> _result) {
 		aThread->detach();
 		detachedSem.R();
 		ReturnValue<bool, CommunicationErrors>	  rv;

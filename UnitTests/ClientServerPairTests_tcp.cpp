@@ -9,6 +9,7 @@
 
 #define TCP
 #include "UnitTestsSettings.h"
+#include "RemoteProcedures.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -18,14 +19,10 @@ namespace TCP_RPCtests {
 	public:
 		static AsyncID			s_asyncId;
 		static Semaphore		s_asyncSem;
-		static unsigned long	s_asyncResult;
+		static uint64_t			s_asyncResult;
 		static RPCServer*		s_rpcServerP;
 
-		static unsigned long Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
-		static unsigned long Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
-		static unsigned long SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
-		static unsigned long Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP);
-		static void			 ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result);
+		static void			 ClientAsyncReplyHandler(AsyncID asyncId, uint64_t	result);
 
 		TEST_METHOD(CallNopAndStop) {
 			RPCServer server(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
@@ -52,7 +49,7 @@ namespace TCP_RPCtests {
 
 		TEST_METHOD(ClientErrorIfNoServer) {
 			RPCClient client(RPC_TRANSPORT, RPC_SERVER_ADDRESS);
-			ReturnValue<unsigned long, CommunicationErrors> r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+			RpcReturnValue r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 
 			Assert::IsTrue(r.IsError());
 		}
@@ -71,7 +68,7 @@ namespace TCP_RPCtests {
 			std::this_thread::sleep_for(SERVER_COMM_SETUP_DELAY);
 
 			RPCClient client(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
-			ReturnValue<unsigned long, CommunicationErrors> r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+			RpcReturnValue r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 
 			Assert::IsTrue(r.IsError());
 			server.Stop();
@@ -117,13 +114,14 @@ namespace TCP_RPCtests {
 
 			int i = 0;
 			while (i++ < RPC_CALL_ITERATIONS) {
-				unsigned long result = client.RpcCall("SumNumbers",
+				RpcReturnValue r = client.RpcCall("SumNumbers",
 					RemoteProcedureCall::INT16,
 					1234,
 					RemoteProcedureCall::INT16,
 					4321,
 					RemoteProcedureCall::END_OF_CALL);
-				Assert::AreEqual(unsigned long(5555), result);
+				Assert::IsTrue(!r.IsError());
+				Assert::AreEqual(uint64_t(5555), (uint64_t)r.GetResult());
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
@@ -146,7 +144,7 @@ namespace TCP_RPCtests {
 
 			uint16_t i = 0;
 			while (i < RPC_CALL_ITERATIONS) {
-				unsigned long result = client.RpcCall("Increment",
+				RpcReturnValue r = client.RpcCall("Increment",
 					RemoteProcedureCall::PTR,
 					RemoteProcedureCall::INT16,
 					&i,
@@ -213,7 +211,7 @@ namespace TCP_RPCtests {
 					RemoteProcedureCall::END_OF_CALL);
 				s_asyncSem.A();
 				Assert::AreEqual(asyncId, s_asyncId);
-				Assert::AreEqual(unsigned long(5555), s_asyncResult);
+				Assert::AreEqual(uint64_t(5555), s_asyncResult);
 			}
 
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
@@ -290,68 +288,10 @@ namespace TCP_RPCtests {
 
 	AsyncID			ClientServerPairTests::s_asyncId;
 	Semaphore		ClientServerPairTests::s_asyncSem(0);
-	unsigned long	ClientServerPairTests::s_asyncResult;
+	uint64_t		ClientServerPairTests::s_asyncResult;
 	RPCServer*		ClientServerPairTests::s_rpcServerP = NULL;
 
-	unsigned long ClientServerPairTests::Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
-		if (v->size() < 2)
-			return -1;
-
-		RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
-		RemoteProcedureCall::Parameter<int16_t>* p1 = ParameterSafeCast(int16_t, (*v)[1]);
-
-
-		if (!pReturn || !p1)
-			return -1;
-
-		int16_t& i = p1->GetReference();
-		++i;
-
-		return (unsigned long)i;
-	}
-
-	unsigned long ClientServerPairTests::Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
-		return 0;
-	}
-
-	unsigned long ClientServerPairTests::SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
-		if (v->size() < 3)
-			return -1;
-
-		RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
-		RemoteProcedureCall::Parameter<int16_t>* p1 = ParameterSafeCast(int16_t, (*v)[1]);
-		RemoteProcedureCall::Parameter<int16_t>* p2 = ParameterSafeCast(int16_t, (*v)[2]);
-
-		if (!pReturn || !p1 || !p2)
-			return -1;
-
-		int16_t num1 = p1->GetReference();
-		int16_t num2 = p2->GetReference();
-
-		return num1 + num2;
-	}
-
-	unsigned long ClientServerPairTests::Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
-		if (v->size() < 3)
-			return -1;
-
-		RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
-		RemoteProcedureCall::Parameter<string>* p1 = ParameterSafeCast(string, (*v)[1]);
-		RemoteProcedureCall::Parameter<int16_t>* p2 = ParameterSafeCast(int16_t, (*v)[2]);
-
-		if (!pReturn || !p1 || !p2)
-			return -1;
-
-		string& text = p1->GetReference();
-		string origin_text = text;
-		int16_t num = p2->GetReference();
-		for (int i = 0; i < num; i++)
-			text.append(origin_text);
-
-		return (unsigned long)text.length();
-	}
-
-	void ClientServerPairTests::ClientAsyncReplyHandler(AsyncID asyncId, unsigned long result) {
+	void ClientServerPairTests::ClientAsyncReplyHandler(AsyncID asyncId, uint64_t result) {
 		s_asyncId = asyncId;
 		s_asyncResult = result;
 		s_asyncSem.R();

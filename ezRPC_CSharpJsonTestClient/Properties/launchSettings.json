@@ -2,7 +2,8 @@
   "profiles": {
     "ezRPC_CSharpJsonTestClient": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Dev\\ezRPC\\bin"
+      "commandLineArgs": "tcp 127.0.0.1:4444 concat foo 50",
+      "workingDirectory": "C:\\Dev\\ezRPC\\build\\Debug"
     }
   }
 }

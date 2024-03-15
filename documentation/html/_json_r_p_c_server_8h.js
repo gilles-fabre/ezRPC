@@ -1,6 +1,7 @@
 var _json_r_p_c_server_8h =
 [
     [ "JsonRPCServer", "class_json_r_p_c_server.html", "class_json_r_p_c_server" ],
+    [ "JSON_RESULT_MAX_SIZE", "_json_r_p_c_server_8h.html#a6597ee719bbbf72c2a40ac8a98f78d0b", null ],
     [ "JSONRPCSERVER_MODULE", "_json_r_p_c_server_8h.html#a592e30e63da7d82451d8d27aade331b6", null ],
     [ "ServerProcedure", "_json_r_p_c_server_8h.html#a3910c6627b9f8d36b0f504c75fa3c32b", null ],
     [ "CreateRpcServer", "_json_r_p_c_server_8h.html#a1d03c6f80cdb148bc589978dee415fa3", null ],

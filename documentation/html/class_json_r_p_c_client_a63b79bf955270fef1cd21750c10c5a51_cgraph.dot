@@ -30,6 +30,6 @@ digraph "JsonRPCClient::RpcCallAsync"
   Node12 [id="Node000012",label="nlohmann::detail::input\l_adapter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacenlohmann_1_1detail.html#a616a53cc3114fdc113fc44e6af4c3c7f",tooltip=" "];
   Node11 -> Node11 [id="edge12_Node000011_Node000011",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node13 [id="edge13_Node000001_Node000013",color="steelblue1",style="solid",tooltip=" "];
-  Node13 [id="Node000013",label="ReturnValue::IsError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a0e9308a6f7eb58488b75a70df37e30d2",tooltip="Returns true if the ReturnValue carries an error. In this case, the T value shall not be used."];
+  Node13 [id="Node000013",label="ReturnValue::IsError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a8191a2c1b417c55e336f350bcee26810",tooltip="Returns true if the ReturnValue carries an error. In this case, the T value shall not be used."];
   Node1 -> Node9 [id="edge14_Node000001_Node000009",color="steelblue1",style="solid",tooltip=" "];
 }

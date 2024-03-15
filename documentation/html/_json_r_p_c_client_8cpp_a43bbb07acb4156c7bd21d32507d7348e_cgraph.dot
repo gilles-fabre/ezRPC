@@ -7,5 +7,5 @@ digraph "RpcCallAsync"
   rankdir="LR";
   Node1 [id="Node000001",label="RpcCallAsync",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="ReturnValue::IsError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a0e9308a6f7eb58488b75a70df37e30d2",tooltip="Returns true if the ReturnValue carries an error. In this case, the T value shall not be used."];
+  Node2 [id="Node000002",label="ReturnValue::IsError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a8191a2c1b417c55e336f350bcee26810",tooltip="Returns true if the ReturnValue carries an error. In this case, the T value shall not be used."];
 }

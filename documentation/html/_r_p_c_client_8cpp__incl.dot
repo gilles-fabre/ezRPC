@@ -90,5 +90,7 @@ digraph "C:/Dev/ezRPC/RPC/RPCClient.cpp"
   Node31 -> Node8 [id="edge51_Node000031_Node000008",color="steelblue1",style="solid",tooltip=" "];
   Node31 -> Node26 [id="edge52_Node000031_Node000026",color="steelblue1",style="solid",tooltip=" "];
   Node31 -> Node34 [id="edge53_Node000031_Node000034",color="steelblue1",style="solid",tooltip=" "];
-  Node34 [id="Node000034",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node34 [id="Node000034",label="RemoteProcedureErrors.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_remote_procedure_errors_8h.html",tooltip=" "];
+  Node31 -> Node35 [id="edge54_Node000031_Node000035",color="steelblue1",style="solid",tooltip=" "];
+  Node35 [id="Node000035",label="arpa/inet.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
 }

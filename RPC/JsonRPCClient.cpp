@@ -20,7 +20,7 @@ DECLSPEC
 AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
 	auto client = (JsonRPCClient*)clientId;
 	ReturnValue<AsyncID, CommunicationErrors> r = client->RpcCallAsync(jsonCallP, jsonCallResultP, jsonCallResultLen, replyProcP);
-	return r.IsError() ? 0 : (uint64_t)((AsyncID)r); // can't bring ReturnValue any higher (C code)
+	return r.IsError() ? 0 : (AsyncID)r; // can't bring ReturnValue any higher (C code)
 }
 
 #ifdef WIN32
@@ -28,8 +28,8 @@ DECLSPEC
 #endif
 uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	auto client = (JsonRPCClient*)clientId;
-	ReturnValue<unsigned long, CommunicationErrors> r = client->RpcCall(jsonCallP, jsonCallResultP, jsonCallResultLen);
-	return r.IsError() ? 0 : (uint64_t)((unsigned long)r); // can't bring ReturnValue any higher (C code)
+	RpcReturnValue r = client->RpcCall(jsonCallP, jsonCallResultP, jsonCallResultLen);
+	return r.IsError() ? 0 : (uint64_t)r.GetResult(); // can't bring ReturnValue any higher (C code)
 }
 
 #ifdef WIN32
@@ -42,7 +42,7 @@ void  DestroyRpcClient(uint64_t clientId) {
 mutex JsonRPCClient::m_asyncParamsMutex;
 unordered_map<AsyncID, shared_ptr<JsonRPCClient::AsyncJsonCallParams>> JsonRPCClient::m_asyncParams;
 
-void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, unsigned long result) {
+void JsonRPCClient::AsyncRpcReplyProc(AsyncID asyncId, uint64_t result) {
 	// make sure the asyncId was returned and the parameters block built BEFORE
 	// the RpcAsync reply proc was called....
 	unordered_map<AsyncID, shared_ptr<JsonRPCClient::AsyncJsonCallParams>>::iterator i;
@@ -108,8 +108,8 @@ ReturnValue<AsyncID, CommunicationErrors> JsonRPCClient::RpcCallAsync(const char
 	return r;
 }
 
-ReturnValue<unsigned long, CommunicationErrors> JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
-	ReturnValue<unsigned long, CommunicationErrors> r;
+RpcReturnValue JsonRPCClient::RpcCall(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+	RpcReturnValue r;
 	if (jsonCallResultLen) 
 		*jsonCallResultP = '\0';
 
@@ -121,7 +121,7 @@ ReturnValue<unsigned long, CommunicationErrors> JsonRPCClient::RpcCall(const cha
 	string function;
 	shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params = make_shared<vector<RemoteProcedureCall::ParameterBase*>>();
 	if (!JsonParameters::BuildParametersFromJson(jsonCallP, function, params)) {
-		r = { CommunicationErrors::ErrorCode::RpcParametersError };
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::RpcParametersError };
 		return r;
 	}
 

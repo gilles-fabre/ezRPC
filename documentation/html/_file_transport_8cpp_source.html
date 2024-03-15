@@ -140,7 +140,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">if</span> (server_address.empty()) {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: empty filename!&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        r = {NULL, CommunicationErrors::ErrorCode::InvalidAddress};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        r = {CommunicationErrors::ErrorCode::InvalidAddress};</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
@@ -154,7 +154,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// create the server socket</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> ((m_srvSocket = (<span class="keywordtype">int</span>)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t create socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            r = { NULL, CommunicationErrors::ErrorCode::SocketCreationError };</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            r = { CommunicationErrors::ErrorCode::SocketCreationError };</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
@@ -179,7 +179,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            close(m_srvSocket);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            m_srvSocket = -1;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            r = { CommunicationErrors::ErrorCode::SocketSettingError };</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
@@ -190,7 +190,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// listen on the socket, with 1 max connection request queued</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">if</span> ((retval = listen(m_srvSocket, 1))) {</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t listen on socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        r = { NULL, CommunicationErrors::ErrorCode::SocketListeningError };</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        r = { CommunicationErrors::ErrorCode::SocketListeningError };</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#ifdef TRANSPORT_TRACES</span></div>
@@ -208,7 +208,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        close(connSocket);</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        r = { NULL, CommunicationErrors::ErrorCode::SocketSettingError };</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        r = { CommunicationErrors::ErrorCode::SocketSettingError };</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
@@ -237,7 +237,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// create the client socket</span></div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">if</span> ((connSocket = (<span class="keywordtype">int</span>)socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        cerr &lt;&lt; __FILE__ &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; __FUNCTION__ &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; __LINE__ &lt;&lt; <span class="stringliteral">&quot;) Error: couldn&#39;t create socket (&quot;</span> &lt;&lt; strerror(errno) &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        r = {NULL, CommunicationErrors::ErrorCode::SocketCreationError};</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        r = {CommunicationErrors::ErrorCode::SocketCreationError};</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
@@ -259,7 +259,7 @@ $(function(){initNavTree('_file_transport_8cpp_source.html',''); initResizable()
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        close(connSocket);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        r = { NULL, CommunicationErrors::ErrorCode::SocketConnectionError };</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        r = { CommunicationErrors::ErrorCode::SocketConnectionError };</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>

@@ -21,6 +21,7 @@ using namespace std;
 */
 template <typename T, class E>
 class	ReturnValue {
+protected:
   pair<optional<T>, int>* m_valueP;
 
 public:
@@ -46,16 +47,17 @@ public:
       m_valueP= NULL;
       *this = other;
   }
-  ~ReturnValue() {
+  virtual ~ReturnValue() {
       delete m_valueP;
       m_valueP = NULL;
   }
-  ReturnValue& operator =(const ReturnValue& other) {
+  virtual ReturnValue& operator =(const ReturnValue& other) {
       delete m_valueP;
       m_valueP = new pair <optional<T>, int>{ other.m_valueP->first, other.m_valueP->second };
       return *this;
   }
-  ReturnValue& operator =(ReturnValue&& other) noexcept {
+  virtual ReturnValue& operator =(ReturnValue&& other) noexcept {
+      delete m_valueP;
       m_valueP = other.m_valueP;
       other.m_valueP = NULL;
       return *this;
@@ -66,7 +68,7 @@ public:
   *        T value shall not be used.
   * \return true in the case an error is returned by the called function/method.
   */
-  bool IsError() {
+  virtual bool IsError() {
     return m_valueP->second != E::None;
   }
 
@@ -85,7 +87,7 @@ public:
     return static_cast<EC>(m_valueP->second);
   }
 
-  string GetErrorString() {
+  virtual string GetErrorString() {
     int i = m_valueP->second;
     assert(i >= 0 || i < static_cast<int>(E::ErrorCode::END));
     return E::m_errors[i];
@@ -96,26 +98,30 @@ public:
   * \return the T value returned by the called function/method is no error was
   *         encountered, undefined else.
   */
-  operator T& () {
+  virtual operator T& () {
     return *(m_valueP->first);
   }
 
-  T& GetResult() {
+  virtual T& GetResult() {
     return *(m_valueP->first);
   }
 
   /**
   * \brief returns the human readable string representation of the ReturnValue. 
   */
-  operator string() {
+  virtual operator string() {
     return ToString();
   }
 
-  string ToString() {
+  virtual string ToString() {
     int i = m_valueP->second;
     assert(i >= 0 || i < static_cast<int>(E::ErrorCode::END));
     stringstream ss;
-    ss << "{" << *(m_valueP->first) << "," << E::m_errors[i] << "}";
+    if (IsError())
+        ss << "{" << "{empty}" << "," << E::m_errors[i] << "}";
+    else
+        ss << "{" << *m_valueP->first << "," << E::m_errors[i] << "}";
+
     return ss.str();
   }
 };

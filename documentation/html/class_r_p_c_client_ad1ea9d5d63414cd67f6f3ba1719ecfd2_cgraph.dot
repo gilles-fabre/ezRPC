@@ -11,13 +11,13 @@ digraph "RPCClient::RpcCallAsync"
   Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="LogText",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$log2reporter_8c.html#adc647e2de83a0fbf4741a13e7a08d2b4",tooltip=" "];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a5b660d14ec46ce03d08bb3658e7f1b31",tooltip=" "];
+  Node4 [id="Node000004",label="RemoteProcedureCall\l::PrepareSerializeCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a97806d754043eae1ab08e5f1b538f7de",tooltip=" "];
   Node4 -> Node2 [id="edge4_Node000004_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node5 [id="edge5_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="RemoteProcedureCall\l::SendSerializedCall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_remote_procedure_call.html#a38512a538a448e528fc162e179345ea4",tooltip=" "];
   Node5 -> Node6 [id="edge6_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="ReturnValue::GetError",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a1093e4b49af96a21a1b9861e11459de0",tooltip=" "];
   Node5 -> Node7 [id="edge7_Node000005_Node000007",color="steelblue1",style="solid",tooltip=" "];
-  Node7 [id="Node000007",label="ReturnValue::GetResult",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#a8c3dc2ad1a9e0796871b3db40aa382ce",tooltip=" "];
+  Node7 [id="Node000007",label="ReturnValue::GetResult",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_return_value.html#afc38ec32732624ea121f01f1a88a9a23",tooltip=" "];
   Node5 -> Node2 [id="edge8_Node000005_Node000002",color="steelblue1",style="solid",tooltip=" "];
 }

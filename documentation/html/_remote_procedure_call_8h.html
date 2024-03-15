@@ -109,6 +109,7 @@ $(function(){initNavTree('_remote_procedure_call_8h.html',''); initResizable(); 
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_thread_8h_source.html">Thread.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_return_value_8h_source.html">ReturnValue.h</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="_remote_procedure_errors_8h_source.html">RemoteProcedureErrors.h</a>&quot;</code><br />
 <code>#include &lt;arpa/inet.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RemoteProcedureCall.h:</div>
@@ -125,6 +126,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rpc_return_value.html">RpcReturnValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_remote_procedure_call.html">RemoteProcedureCall</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate an object of this class with a <a class="el" href="class_link.html" title="Simply send and receive data on the in/out link created by the parent transport.">Link</a> to pass calls to the connected peer and retrieve a result. Calls are either synchronous or asynchronous, parameters are 'in' or 'out'. out parameters must be passed as pointers, prefixed by a PTR type.  <a href="class_remote_procedure_call.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,8 +154,8 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:abc67c9d81d5fde9559b47f86502e2957" id="r_abc67c9d81d5fde9559b47f86502e2957"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a></td></tr>
 <tr class="separator:abc67c9d81d5fde9559b47f86502e2957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40e700db37fe1d33530863c4fc5e5a65" id="r_a40e700db37fe1d33530863c4fc5e5a65"><td class="memItemLeft" align="right" valign="top">typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40e700db37fe1d33530863c4fc5e5a65">RemoteProcedure</a>(<a class="el" href="classstring.html">string</a> &amp;function, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; &gt; params, void *userDataP)</td></tr>
-<tr class="separator:a40e700db37fe1d33530863c4fc5e5a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97da39c8ef4c9c093a0aad4877130df7" id="r_a97da39c8ef4c9c093a0aad4877130df7"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_rpc_return_value.html">RpcReturnValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97da39c8ef4c9c093a0aad4877130df7">RemoteProcedure</a>(<a class="el" href="classstring.html">string</a> &amp;function, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; &gt; params, void *userDataP)</td></tr>
+<tr class="separator:a97da39c8ef4c9c093a0aad4877130df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a806795ac46f7f8b024b4d5686c74074f" name="a806795ac46f7f8b024b4d5686c74074f"></a>
@@ -170,7 +173,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00029">29</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00031">31</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -186,7 +189,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00033">33</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00035">35</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -205,7 +208,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00030">30</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00032">32</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +231,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00285">285</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00353">353</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +247,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00027">27</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00029">29</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
@@ -261,23 +264,23 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00032">32</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00034">34</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>
-<a id="a40e700db37fe1d33530863c4fc5e5a65" name="a40e700db37fe1d33530863c4fc5e5a65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40e700db37fe1d33530863c4fc5e5a65">&#9670;&#160;</a></span>RemoteProcedure</h2>
+<a id="a97da39c8ef4c9c093a0aad4877130df7" name="a97da39c8ef4c9c093a0aad4877130df7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97da39c8ef4c9c093a0aad4877130df7">&#9670;&#160;</a></span>RemoteProcedure</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef unsigned long RemoteProcedure(<a class="el" href="classstring.html">string</a> &amp;function, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; &gt; params, void *userDataP)</td>
+          <td class="memname">typedef <a class="el" href="class_rpc_return_value.html">RpcReturnValue</a> RemoteProcedure(<a class="el" href="classstring.html">string</a> &amp;function, shared_ptr&lt; vector&lt; <a class="el" href="class_remote_procedure_call_1_1_parameter_base.html">RemoteProcedureCall::ParameterBase</a> * &gt; &gt; params, void *userDataP)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00287">287</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_remote_procedure_call_8h_source.html#l00355">355</a> of file <a class="el" href="_remote_procedure_call_8h_source.html">RemoteProcedureCall.h</a>.</p>
 
 </div>
 </div>

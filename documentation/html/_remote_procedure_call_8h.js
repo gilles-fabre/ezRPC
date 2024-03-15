@@ -1,5 +1,6 @@
 var _remote_procedure_call_8h =
 [
+    [ "RpcReturnValue", "class_rpc_return_value.html", "class_rpc_return_value" ],
     [ "RemoteProcedureCall", "class_remote_procedure_call.html", "class_remote_procedure_call" ],
     [ "RemoteProcedureCall::ParameterBase", "class_remote_procedure_call_1_1_parameter_base.html", "class_remote_procedure_call_1_1_parameter_base" ],
     [ "RemoteProcedureCall::Parameter< T >", "class_remote_procedure_call_1_1_parameter.html", "class_remote_procedure_call_1_1_parameter" ],
@@ -9,5 +10,5 @@ var _remote_procedure_call_8h =
     [ "ParameterSafeCast", "_remote_procedure_call_8h.html#a0bb31dbe98511669ce6c5a5cf06f5158", null ],
     [ "RPC_MODULE", "_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d", null ],
     [ "AsyncID", "_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957", null ],
-    [ "RemoteProcedure", "_remote_procedure_call_8h.html#a40e700db37fe1d33530863c4fc5e5a65", null ]
+    [ "RemoteProcedure", "_remote_procedure_call_8h.html#a97da39c8ef4c9c093a0aad4877130df7", null ]
 ];

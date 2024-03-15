@@ -17,7 +17,7 @@ static uint64_t ByeBye(const char* jsonCallP, char* jsonCallResultP, size_t json
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return 0;
 }
 
 static uint64_t Nop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -27,7 +27,7 @@ static uint64_t Nop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCal
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return 0;
 }
 
 static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -41,7 +41,7 @@ static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t j
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return 0;
 }
 
 static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -55,7 +55,7 @@ static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t j
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return 0;
 }
 
 static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -74,7 +74,7 @@ static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)concatText.length();
+	return (uint64_t)concatText.length();
 }
 
 static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -90,7 +90,7 @@ static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)num;
+	return (uint64_t)num;
 }
 
 static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -105,7 +105,7 @@ static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t 
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return (uint64_t)(num1 + num2);
 }
 
 static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -121,7 +121,7 @@ static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t j
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)text.length();
+	return (uint64_t)text.length();
 }
 
 static uint64_t PutString(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
@@ -136,7 +136,7 @@ static uint64_t PutString(const char* jsonCallP, char* jsonCallResultP, size_t j
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return (unsigned long)0;
+	return 0;
 }
 
 int main(int argc, char** argv) {

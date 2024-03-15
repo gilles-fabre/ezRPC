@@ -51,7 +51,16 @@ namespace ezRPC
 		 */
 		static public JsonCall? FromJson(string jsonString)
 		{
-			return JsonSerializer.Deserialize<JsonCall>(jsonString.TrimEnd('\0'));
+			JsonCall? call = null;
+
+			try
+			{
+				call = JsonSerializer.Deserialize<JsonCall>(jsonString.TrimEnd('\0'));
+			} catch(Exception e) {
+				System.Console.WriteLine(e);
+			}
+
+			return call;
 		}
 
 		/**
@@ -59,7 +68,18 @@ namespace ezRPC
 		 */
 		static public JsonCall? FromJson(byte[] jsonString)
 		{
-			return JsonCall.FromJson(System.Text.Encoding.ASCII.GetString(jsonString));
+			JsonCall? call = null;
+
+			try
+			{
+				return JsonCall.FromJson(System.Text.Encoding.ASCII.GetString(jsonString));
+			}
+			catch (Exception e)
+			{
+				System.Console.WriteLine(e);
+			}
+
+			return call;
 		}
 	}
 }
