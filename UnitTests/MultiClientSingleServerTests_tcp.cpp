@@ -56,7 +56,7 @@ namespace TCP_RPCtests {
 
 		TEST_METHOD(ClientErrorIfBadServerAddress) {
 			RPCClient rpcClient(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
-			RpcReturnValue  r = rpcClient.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+			RpcReturnValue r = rpcClient.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 
 			Assert::IsTrue(r.IsError());
 		}

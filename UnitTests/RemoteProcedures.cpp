@@ -120,8 +120,12 @@ uint64_t JsonNop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallRe
 	json call = json::parse(jsonCallP);
 
 	string jsonCallResult = call.dump();
-	if (jsonCallResult.length() < jsonCallResultLen)
+	if (jsonCallResult.length() < jsonCallResultLen) {
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+		r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
+	}
+	else
+		r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::JsonResultBufferTooSmall };
 
 	return (uint64_t)r;
 }
@@ -147,10 +151,12 @@ uint64_t JsonIncDouble(const char* jsonCallP, char* jsonCallResultP, size_t json
 		call["parameters"][1]["value"] = value;
 
 		string jsonCallResult = call.dump();
-		if (jsonCallResult.length() < jsonCallResultLen)
+		if (jsonCallResult.length() < jsonCallResultLen) {
 			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
-
-		r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
+			r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
+		}
+		else
+			r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::JsonResultBufferTooSmall };
 	}
 	catch (...) {
 		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
@@ -180,10 +186,12 @@ uint64_t JsonIncrement(const char* jsonCallP, char* jsonCallResultP, size_t json
 		call["parameters"][1]["value"] = value;
 
 		string jsonCallResult = call.dump();
-		if (jsonCallResult.length() < jsonCallResultLen)
+		if (jsonCallResult.length() < jsonCallResultLen) {
 			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
-
-		r = RpcReturnValue{ uint32_t(value), RemoteProcedureErrors::ErrorCode::None };
+			r = RpcReturnValue{ uint32_t(value), RemoteProcedureErrors::ErrorCode::None };
+		}
+		else
+			r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::JsonResultBufferTooSmall };
 	}
 	catch (...) {
 		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
@@ -223,10 +231,11 @@ uint64_t JsonConcatenate(const char* jsonCallP, char* jsonCallResultP, size_t js
 		call["parameters"][1]["value"] = concatText;
 
 		string jsonCallResult = call.dump();
-		if (jsonCallResult.length() < jsonCallResultLen)
+		if (jsonCallResult.length() < jsonCallResultLen) {
 			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
-
-		r = RpcReturnValue{ (uint32_t)concatText.length(), RemoteProcedureErrors::ErrorCode::None };
+			r = RpcReturnValue{ (uint32_t)concatText.length(), RemoteProcedureErrors::ErrorCode::None };
+		} else
+			r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::JsonResultBufferTooSmall };
 	} catch( ...) {
 		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
 	}
@@ -254,10 +263,12 @@ uint64_t JsonSumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jso
 		int16_t num2 = call["parameters"][2]["value"];
 
 		string jsonCallResult = call.dump();
-		if (jsonCallResult.length() < jsonCallResultLen)
+		if (jsonCallResult.length() < jsonCallResultLen) {
 			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
-
-		r = RpcReturnValue{ uint32_t(num1 + num2), RemoteProcedureErrors::ErrorCode::None };
+			r = RpcReturnValue{ uint32_t(num1 + num2), RemoteProcedureErrors::ErrorCode::None };
+		}
+		else
+			r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::JsonResultBufferTooSmall };
 	}
 	catch (...) {
 		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };

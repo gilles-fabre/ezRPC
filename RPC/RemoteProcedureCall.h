@@ -40,7 +40,10 @@ public:
 	RpcReturnValue(RemoteProcedureErrors::ErrorCode error) : ReturnValue(error) {}
 	RpcReturnValue(uint32_t result) : ReturnValue(result) {}
 	RpcReturnValue(uint32_t result, RemoteProcedureErrors::ErrorCode error) : ReturnValue(result, error) {}
-	
+	RpcReturnValue(uint64_t result) : ReturnValue() {
+		*this = result;
+	}
+
 	RpcReturnValue(const RpcReturnValue& other) {
 		m_valueP = NULL;
 		*this = other;

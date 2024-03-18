@@ -65,6 +65,23 @@ namespace FILE_RPCtests {
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
 		}
 
+		TEST_METHOD(MissingArgumentsReturnAnError) {
+			json call;
+			call["function"] = "SumNumbers";
+			json parameters = json::array();
+			{
+				json param;
+				param["type"] = "INT16";
+				param["value"] = 1234;
+				parameters += param;
+			}
+			call["parameters"] = parameters;
+
+			RpcReturnValue result = RpcCall(m_jsonClient, call.dump().c_str(), s_buffer, sizeof(s_buffer));
+			Assert::IsTrue(result.IsError());
+			Assert::AreEqual(result.GetErrorString(), string("WrongNumberOfArguments"));
+		}
+
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
 			json call;
 			call["function"] = "SumNumbers";

@@ -20,7 +20,7 @@ DECLSPEC
 AsyncID  RpcCallAsync(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen, AsyncJsonReplyProcedure replyProcP) {
 	auto client = (JsonRPCClient*)clientId;
 	ReturnValue<AsyncID, CommunicationErrors> r = client->RpcCallAsync(jsonCallP, jsonCallResultP, jsonCallResultLen, replyProcP);
-	return r.IsError() ? 0 : (AsyncID)r; // can't bring ReturnValue any higher (C code)
+	return (uint64_t)r;
 }
 
 #ifdef WIN32
@@ -29,7 +29,7 @@ DECLSPEC
 uint64_t RpcCall(uint64_t clientId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	auto client = (JsonRPCClient*)clientId;
 	RpcReturnValue r = client->RpcCall(jsonCallP, jsonCallResultP, jsonCallResultLen);
-	return r.IsError() ? 0 : (uint64_t)r.GetResult(); // can't bring ReturnValue any higher (C code)
+	return (uint64_t)r; 
 }
 
 #ifdef WIN32

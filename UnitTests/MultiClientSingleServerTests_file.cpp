@@ -56,7 +56,7 @@ namespace FILE_RPCtests {
 
 		TEST_METHOD(ClientErrorIfBadServerAddress) {
 			RPCClient client(RPC_TRANSPORT, RPC_BAD_SERVER_ADDRESS);
-			RpcReturnValue  r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
+			RpcReturnValue r = client.RpcCall("Nop", RemoteProcedureCall::END_OF_CALL);
 
 			Assert::IsTrue(r.IsError());
 		}
