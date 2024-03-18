@@ -123,8 +123,8 @@ class TestApplication {
 					function = functionStr,
 					parameters = new Parameter[] { new Parameter { type = "INT16_REF", value = Int16.Parse(args[3]) }}
 				};
-				jsonClient.Call(ref call, 256);
-				if (call != null)
+				RpcReturnValue r = jsonClient.Call(ref call, 256);
+				if (!r.IsError() && call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
 		} else if (functionStr == "inc_double") {
@@ -144,8 +144,8 @@ class TestApplication {
 					function = functionStr,
 					parameters = new Parameter[] { new Parameter { type = "DOUBLE_REF", value = Double.Parse(args[3]) } }
 				};
-				jsonClient.Call(ref call, 256);
-				if (call != null)
+				RpcReturnValue r = jsonClient.Call(ref call, 256);
+				if (!r.IsError() && call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
 		} else if (functionStr == "concat") {
@@ -166,8 +166,8 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "STRING_REF", value = args[3] },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				jsonClient.Call(ref call, 1024);
-				if (call != null)
+				RpcReturnValue r = jsonClient.Call(ref call, 1024);
+				if (!r.IsError() && call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
 		} else if (functionStr == "repeat") {
@@ -188,8 +188,8 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "STRING", value = args[3] },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				jsonClient.Call(ref call, 256);
-				if (call != null)
+				RpcReturnValue r = jsonClient.Call(ref call, 256);
+				if (!r.IsError() && call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
 		} else if (functionStr == "sum") {
@@ -210,8 +210,8 @@ class TestApplication {
 					parameters = new Parameter[] { new Parameter { type = "INT16", value = Int16.Parse(args[3]) },
 												   new Parameter { type = "INT16", value = Int16.Parse(args[4]) } }
 				};
-				jsonClient.Call(ref call, 256);
-				if (call != null)
+				RpcReturnValue r = jsonClient.Call(ref call, 256);
+				if (!r.IsError() && call != null)
 					Console.WriteLine("result : {0}", call.ToJson());
 			}
 		} else if (functionStr == "byebye") {

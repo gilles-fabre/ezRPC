@@ -39,9 +39,15 @@ class TestApplication
 			{
 				string resultJson = call.ToJson();
 				if (resultJson.Length < (int)jsonCallResultLen)
+				{
 					JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-				r = new RpcReturnValue((uint)0);
+					r = new RpcReturnValue((uint)0);
+				}
+				else
+				{
+					r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+				}
+				return r;
 			}
 		} catch {} 
 
@@ -72,9 +78,14 @@ class TestApplication
 						call.parameters[1].value = num;
 						string resultJson = call.ToJson();
 						if (resultJson.Length < (int)jsonCallResultLen)
+						{
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-						r = new RpcReturnValue((uint)0);
+							r = new RpcReturnValue((uint)0);
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
 						return r;
 					}
 				}
@@ -108,10 +119,14 @@ class TestApplication
 						++num;
 						call.parameters[1].value = num;
 						string resultJson = call.ToJson();
-						if (resultJson.Length < (int)jsonCallResultLen)
+						if (resultJson.Length < (int)jsonCallResultLen) { 
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-						r = new RpcReturnValue((uint)num);
+							r = new RpcReturnValue((uint)num);
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
 						return r;
 					}
 				}
@@ -151,11 +166,14 @@ class TestApplication
 						call.parameters[1].value = concatText;
 
 						string resultJson = call.ToJson();
-						if (resultJson.Length < (int)jsonCallResultLen)
+						if (resultJson.Length < (int)jsonCallResultLen) { 
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-
-						r = new RpcReturnValue((uint)concatText.Length);
+							r = new RpcReturnValue((uint)concatText.Length);
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
 						return r;
 					}
 				}
@@ -192,10 +210,14 @@ class TestApplication
 							Console.WriteLine(text);
 
 						string resultJson = call.ToJson();
-						if (resultJson.Length < (int)jsonCallResultLen)
+						if (resultJson.Length < (int)jsonCallResultLen) { 
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-						r = new RpcReturnValue((uint)0);
+							r = new RpcReturnValue((uint)0);
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
 						return r;
 					}
 				}
@@ -232,11 +254,15 @@ class TestApplication
 						Console.WriteLine("{0}", num1 + num2);
 
 						string resultJson = call.ToJson();
-						if (resultJson.Length < (int)jsonCallResultLen)
+						if (resultJson.Length < (int)jsonCallResultLen) { 
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-						r = new RpcReturnValue((uint)(num1 + num2));
-							return r;
+							r = new RpcReturnValue((uint)(num1 + num2));
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
+						return r;
 					}
 				}
 			}
@@ -270,10 +296,14 @@ class TestApplication
 						{
 							call.parameters[1].value = text;
 							string resultJson = call.ToJson();
-							if (resultJson.Length < (int)jsonCallResultLen)
+							if (resultJson.Length < (int)jsonCallResultLen) { 
 								JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-							r = new RpcReturnValue((uint)text.Length);
+								r = new RpcReturnValue((uint)text.Length);
+							}
+							else
+							{
+								r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+							}
 							return r;
 						}
 					}
@@ -306,10 +336,14 @@ class TestApplication
 						Console.WriteLine("string passed : {0}", call.parameters[1].value);
 
 						string resultJson = call.ToJson();
-						if (resultJson.Length < (int)jsonCallResultLen)
+						if (resultJson.Length < (int)jsonCallResultLen) { 
 							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-
-						r = new RpcReturnValue((uint)0);
+							r = new RpcReturnValue((uint)0);
+						}
+						else
+						{
+							r = new RpcReturnValue(ErrorCode.JsonResultBufferTooSmall);
+						}
 						return r;
 					}
 				}

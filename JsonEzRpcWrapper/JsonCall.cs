@@ -59,12 +59,10 @@ namespace ezRPC
 		public bool IsError() {
 			return m_error != ErrorCode.None;
 		}
-		public uint? GetResult()
-		{
+		public uint? GetResult() {
 			return m_value;
 		}
-		public ErrorCode GetError()
-		{
+		public ErrorCode GetError() {
 			return m_error;
 		}
 	}
@@ -121,9 +119,7 @@ namespace ezRPC
 			try
 			{
 				call = JsonSerializer.Deserialize<JsonCall>(jsonString.TrimEnd('\0'));
-			} catch(Exception e) {
-				System.Console.WriteLine(e);
-			}
+			} catch {}
 
 			return call;
 		}
@@ -137,12 +133,9 @@ namespace ezRPC
 
 			try
 			{
-				return JsonCall.FromJson(System.Text.Encoding.ASCII.GetString(jsonString));
+				call = JsonCall.FromJson(System.Text.Encoding.ASCII.GetString(jsonString));
 			}
-			catch (Exception e)
-			{
-				System.Console.WriteLine(e);
-			}
+			catch {}
 
 			return call;
 		}
