@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 class TestApplication
 {
@@ -14,187 +15,310 @@ class TestApplication
 
 	static ulong ByeBye(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		g_jsonServer!.Stop();
+		RpcReturnValue r = new RpcReturnValue();
 
-		return 0;
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else
+		{
+			g_jsonServer!.Stop();
+		}
+		return r;
 	}
 
 	static ulong Nop(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 1)
-		{
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
-		}
+		RpcReturnValue r = new RpcReturnValue();
 
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
+		{
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 1)
+			{
+				string resultJson = call.ToJson();
+				if (resultJson.Length < (int)jsonCallResultLen)
+					JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+				r = new RpcReturnValue((uint)0);
+			}
+		} catch {} 
+
+		r = new RpcReturnValue(ErrorCode.BadArgument);	
 		return 0;
 	}
 
 	static ulong IncrementDouble(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
+		RpcReturnValue r = new RpcReturnValue();
+
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
 		{
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			double num = double.Parse(call.parameters[1].value.ToString());
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 2)
+			{
+				Parameter p = call.parameters[1]!;
+				if (p.value != null)
+				{
+					string? s = p.value.ToString();
+					if (s != null)
+					{
+						double num = double.Parse(s);
 
-			num += 0.1;
-			call.parameters[1].value = num;
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+						num += 0.1;
+						call.parameters[1].value = num;
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+						r = new RpcReturnValue((uint)0);
+						return r;
+					}
+				}
+			}
 		}
+		catch {}
 
-		return 0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong Increment(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
+		RpcReturnValue r = new RpcReturnValue();
+
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
 		{
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			short num = short.Parse(call.parameters[1].value.ToString());
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 2)
+			{
+				Parameter p = call.parameters[1]!;
+				if (p.value != null)
+				{
+					string? s = p.value.ToString();
+					if (s != null)
+					{
+						short num = short.Parse(s);
 
-			++num;
-			call.parameters[1].value = num;
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+						++num;
+						call.parameters[1].value = num;
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+						r = new RpcReturnValue((uint)num);
+						return r;
+					}
+				}
+			}
 		}
+		catch {}
 
-		return 0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong Concatenate(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
+		RpcReturnValue r = new RpcReturnValue();
+
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
 		{
-#pragma warning disable CS8600 // Possible null reference argument.
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			string text = call.parameters[1].value.ToString();
-			short num = short.Parse(call.parameters[2].value.ToString());
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 3)
+			{
+				Parameter p1 = call.parameters[1]!;
+				Parameter p2 = call.parameters[2]!;
+				if (p1.value != null && p2.value != null)
+				{
+					string? text = p1.value.ToString();
+					string? s = p2.value.ToString();
+					if (text != null && s != null)
+					{
+						short num = short.Parse(s);
 
-			string concatText = text;
-			for (short i = 0; i < num; i++)
-				concatText += text;
+						string concatText = text;
+						for (short i = 0; i < num; i++)
+							concatText += text;
 
-			call.parameters[1].value = concatText;
+						call.parameters[1].value = concatText;
 
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
 
-			return (ulong)concatText.Length;
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
-#pragma warning restore CS8600 // Possible null reference argument.
 
+						r = new RpcReturnValue((uint)concatText.Length);
+						return r;
+					}
+				}
+			}
 		}
+		catch { }
 
-		return (ulong)0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong RepeatPrint(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
+		RpcReturnValue r = new RpcReturnValue();
+
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
 		{
-#pragma warning disable CS8600 // Possible null reference argument.
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			string text = call.parameters[1].value.ToString();
-			short num = short.Parse(call.parameters[2].value.ToString());
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
-#pragma warning restore CS8600 // Possible null reference argument.
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 3)
+			{
+				Parameter p1 = call.parameters[1]!;
+				Parameter p2 = call.parameters[2]!;
+				if (p1.value != null && p2.value != null)
+				{
+					string? text = p1.value.ToString();
+					string? s = p2.value.ToString();
+					if (text != null && s != null)
+					{
+						short num = short.Parse(s);
 
-			for (short i = 0; i < num; i++) 
-				Console.WriteLine(text);
+						for (short i = 0; i < num; i++)
+							Console.WriteLine(text);
 
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
 
-			return (ulong)num;
+						r = new RpcReturnValue((uint)0);
+						return r;
+					}
+				}
+			}
 		}
+		catch {}
 
-		return (ulong)0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong SumNumbers(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 3 && call.parameters[1].value != null && call.parameters[2].value != null)
+		RpcReturnValue r = new RpcReturnValue();
+
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
 		{
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			short num1 = short.Parse(call.parameters[1].value.ToString());
-			short num2 = short.Parse(call.parameters[2].value.ToString());
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 3)
+			{
+				Parameter p1 = call.parameters[1]!;
+				Parameter p2 = call.parameters[2]!;
+				if (p1.value != null && p2.value != null)
+				{
+					string? s1 = p1.value.ToString();
+					string? s2 = p2.value.ToString();
+					if (s1 != null && s2 != null)
+					{
+						short num1 = short.Parse(s1);
+						short num2 = short.Parse(s2);
 
-			Console.WriteLine("{0}", num1 + num2);
+						Console.WriteLine("{0}", num1 + num2);
 
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+						r = new RpcReturnValue((uint)(num1 + num2));
+							return r;
+					}
+				}
+			}
 		}
+		catch {}
 
-		return 0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong GetString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null)
-		{
-			Console.WriteLine("enter a string: ");
-			string? text = Console.ReadLine();
-			if (text != null)
-			{
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-				call.parameters[1].value = text;
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
-				string resultJson = call.ToJson();
-				if (resultJson.Length < (int)jsonCallResultLen)
-					JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+		RpcReturnValue r = new RpcReturnValue();
 
-				return (ulong)text.Length;
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
+		{
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 2)
+			{
+				Parameter p1 = call.parameters[1]!;
+				if (p1.value != null)
+				{
+					string? s = p1.value.ToString();
+					if (s != null)
+					{
+						Console.WriteLine("enter a string: ");
+						string? text = Console.ReadLine();
+						if (text != null)
+						{
+							call.parameters[1].value = text;
+							string resultJson = call.ToJson();
+							if (resultJson.Length < (int)jsonCallResultLen)
+								JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+							r = new RpcReturnValue((uint)text.Length);
+							return r;
+						}
+					}
+				}
 			}
 		}
+		catch {}
 
-		return 0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static ulong PutString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
-		JsonCall? call = JsonCall.FromJson(jsonCall);
-		if (call != null && call.parameters != null && call.parameters.Length == 2 && call.parameters[1].value != null) {
-#pragma warning disable CS8602 // Possible null reference argument.
-#pragma warning disable CS8604 // Possible null reference argument.
-			Console.WriteLine("string passed : {0}", call.parameters[1].value);
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8602 // Possible null reference argument.
+		RpcReturnValue r = new RpcReturnValue();
 
-			string resultJson = call.ToJson();
-			if (resultJson.Length < (int)jsonCallResultLen)
-				JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+		if (jsonCallResultP == IntPtr.Zero)
+			r = new RpcReturnValue(ErrorCode.NullPointer);
+		else try
+		{
+			JsonCall? call = JsonCall.FromJson(jsonCall);
+			if (call != null && call.parameters != null && call.parameters.Length == 2)
+			{
+				Parameter p1 = call.parameters[1]!;
+				if (p1.value != null)
+				{
+					string? s = p1.value.ToString();
+					if (s != null)
+					{
+						Console.WriteLine("string passed : {0}", call.parameters[1].value);
+
+						string resultJson = call.ToJson();
+						if (resultJson.Length < (int)jsonCallResultLen)
+							JsonServerRpcWrapper.SetUnmanagedAsciizBuffer(resultJson, jsonCallResultP);
+
+						r = new RpcReturnValue((uint)0);
+						return r;
+					}
+				}
+			}
 		}
+		catch {}
 
-		return 0;
+		r = new RpcReturnValue(ErrorCode.BadArgument);
+		return r;
 	}
 
 	static void Main(string[] args)

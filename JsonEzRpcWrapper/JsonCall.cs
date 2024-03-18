@@ -4,6 +4,71 @@ using System.Text.Json.Serialization;
 
 namespace ezRPC
 {
+	public enum ErrorCode
+	{
+		None,
+		EmptyResult,
+		BadArgument,
+		AllocationError,
+		MissingData,
+		CommunicationDropped,
+		BadProtocol,
+		SocketCreationError,
+		SocketConnectionError,
+		InvalidAddress,
+		SocketSettingError,
+		SocketListeningError,
+		ProtocolError,
+		RpcParametersError,
+		WrongNumberOfArguments,
+		NullPointer,
+		JsonParsingException,
+		JsonResultBufferTooSmall,
+		END
+	};
+
+	public struct RpcReturnValue
+	{
+		private uint?		m_value;
+		private ErrorCode	m_error;
+
+		public static implicit operator ulong(RpcReturnValue returnValue)
+		{
+			uint vValue = returnValue.m_value.HasValue ? returnValue.m_value.Value : 0;
+			uint eValue = returnValue.m_value.HasValue ? (uint)returnValue.m_error : 0;
+
+			ulong value = eValue;
+			value <<= 32;
+			value |= vValue;
+			return value;
+		}
+
+		public static implicit operator RpcReturnValue(ulong value)
+		{
+			uint eValue = (uint)((value & 0xFFFFFFFF00000000) >> 32);
+			uint vValue = (uint)(value & 0xFFFFFFFF);
+
+			return new RpcReturnValue { m_value = vValue, m_error = (ErrorCode)eValue };
+		}
+
+		public RpcReturnValue() { m_value = 0; m_error = ErrorCode.EmptyResult; }
+		public RpcReturnValue(uint value) { m_value = value; m_error = ErrorCode.None; }
+		public RpcReturnValue(ErrorCode error) { m_value = 0; m_error = error; }
+		public RpcReturnValue(uint value, ErrorCode error) { m_value = value; m_error = error; }
+
+		public bool IsError() {
+			return m_error != ErrorCode.None;
+		}
+		public uint? GetResult()
+		{
+			return m_value;
+		}
+		public ErrorCode GetError()
+		{
+			return m_error;
+		}
+	}
+
 	public class Parameter
 	{
 		public string? type { get; set; }	  // the parameter type, see RemoteProcedureCall.h for details
