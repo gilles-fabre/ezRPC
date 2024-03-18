@@ -26,7 +26,6 @@ unordered_map<string, ServerProcedure*> JsonRPCServer::m_serverProcs;
 RpcReturnValue JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP) {
 	RpcReturnValue	r;
 	string			jsonCall;
-	uint64_t		result = -1;
 	
 	// convert params to json
 	JsonParameters::BuildJsonFromCallParameters(name, params, jsonCall);
@@ -48,18 +47,18 @@ RpcReturnValue JsonRPCServer::JsonRPCServiceProc(string& name, shared_ptr<vector
 		unique_ptr<char[]> jsonCallResult = make_unique<char[]>(JSON_RESULT_MAX_SIZE);
 		
 		// invoke server's proc
-		result = (uint64_t)(*procP)(jsonCall.c_str(), jsonCallResult.get(), JSON_RESULT_MAX_SIZE);
-
-		// converts result json to params.
-		params->clear();
-		JsonParameters::BuildParametersFromJson(jsonCallResult.get(), name, params);
+		r = (*procP)(jsonCall.c_str(), jsonCallResult.get(), JSON_RESULT_MAX_SIZE);
+		if (!r.IsError()) {
+			// converts result json to params.
+			params->clear();
+			JsonParameters::BuildParametersFromJson(jsonCallResult.get(), name, params);
 		
-#ifdef JSONRPCSERVER_TRACES
-		LogVText(JSONRPCSERVER_MODULE, 0, true, "received from JSON service procedure : %s", jsonCallResult.get());
-#endif
+	#ifdef JSONRPCSERVER_TRACES
+			LogVText(JSONRPCSERVER_MODULE, 0, true, "received from JSON service procedure : %s", jsonCallResult.get());
+	#endif
+		}
 	}
 
-	r = result;
 	return r;
 }
 

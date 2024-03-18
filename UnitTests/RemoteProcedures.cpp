@@ -115,71 +115,153 @@ using namespace std;
 using json = nlohmann::json;
 
 uint64_t JsonNop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+	RpcReturnValue r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
+
 	json call = json::parse(jsonCallP);
 
 	string jsonCallResult = call.dump();
 	if (jsonCallResult.length() < jsonCallResultLen)
 		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
 
-	return 0;
+	return (uint64_t)r;
 }
 
 uint64_t JsonIncDouble(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
-	json call = json::parse(jsonCallP);
+	RpcReturnValue r;
 
-	double value = call["parameters"][1]["value"];
-	value += 0.1;
-	call["parameters"][1]["value"] = value;
+	try {
+		json call = json::parse(jsonCallP);
 
-	string jsonCallResult = call.dump();
-	if (jsonCallResult.length() < jsonCallResultLen)
-		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+		if (!call.contains("parameters") || !call["parameters"].is_array()) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+			return (uint64_t)r;
+		}
 
-	return (uint64_t)value;
+		if (call["parameters"].size() != 2) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments };
+			return (uint64_t)r;
+		}
+
+		double value = call["parameters"][1]["value"];
+		value += 0.1;
+		call["parameters"][1]["value"] = value;
+
+		string jsonCallResult = call.dump();
+		if (jsonCallResult.length() < jsonCallResultLen)
+			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+
+		r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
+	}
+	catch (...) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+	}
+
+	return (uint64_t)r;
 }
 
 uint64_t JsonIncrement(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
-	json call = json::parse(jsonCallP);
+	RpcReturnValue r;
 
-	int16_t value = call["parameters"][1]["value"];
-	value++;
-	call["parameters"][1]["value"] = value;
+	try {
+		json call = json::parse(jsonCallP);
 
-	string jsonCallResult = call.dump();
-	if (jsonCallResult.length() < jsonCallResultLen)
-		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+		if (!call.contains("parameters") || !call["parameters"].is_array()) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+			return (uint64_t)r;
+		}
 
-	return (uint64_t)value;
+		if (call["parameters"].size() != 2) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments };
+			return (uint64_t)r;
+		}
+
+		int16_t value = call["parameters"][1]["value"];
+		value++;
+		call["parameters"][1]["value"] = value;
+
+		string jsonCallResult = call.dump();
+		if (jsonCallResult.length() < jsonCallResultLen)
+			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+
+		r = RpcReturnValue{ uint32_t(value), RemoteProcedureErrors::ErrorCode::None };
+	}
+	catch (...) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+	}
+
+	return (uint64_t)r;
 }
 
 uint64_t JsonConcatenate(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
-	json call = json::parse(jsonCallP);
+	RpcReturnValue r;
 
-	string text = call["parameters"][1]["value"];
-	int16_t num = call["parameters"][2]["value"];
+	if (!jsonCallP || !*jsonCallP) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+		return (uint64_t)r;
+	}
 
-	string concatText = text;
-	for (int i = 0; i < num; i++)
-		concatText += text;
+	try {
+		json call = json::parse(jsonCallP);
 
-	call["parameters"][1]["value"] = concatText;
+		if (!call.contains("parameters") || !call["parameters"].is_array()) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+			return (uint64_t)r;
+		}
 
-	string jsonCallResult = call.dump();
-	if (jsonCallResult.length() < jsonCallResultLen)
-		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+		if (call["parameters"].size() != 3) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments };
+			return (uint64_t)r;
+		}
 
-	return (uint64_t)concatText.length();
+		string text = call["parameters"][1]["value"];
+		int16_t num = call["parameters"][2]["value"];
+
+		string concatText = text;
+		for (int i = 0; i < num; i++)
+			concatText += text;
+
+		call["parameters"][1]["value"] = concatText;
+
+		string jsonCallResult = call.dump();
+		if (jsonCallResult.length() < jsonCallResultLen)
+			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+
+		r = RpcReturnValue{ (uint32_t)concatText.length(), RemoteProcedureErrors::ErrorCode::None };
+	} catch( ...) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+	}
+
+	return (uint64_t)r;
 }
 
 uint64_t JsonSumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
-	json call = json::parse(jsonCallP);
+	RpcReturnValue r;
 
-	int16_t num1 = call["parameters"][1]["value"];
-	int16_t num2 = call["parameters"][2]["value"];
+	try {
+		json call = json::parse(jsonCallP);
 
-	string jsonCallResult = call.dump();
-	if (jsonCallResult.length() < jsonCallResultLen)
-		memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+		if (!call.contains("parameters") || !call["parameters"].is_array()) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+			return (uint64_t)r;
+		}
 
-	return uint64_t(num1 + num2);
+		if (call["parameters"].size() != 3) {
+			r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments };
+			return (uint64_t)r;
+		}
+
+		int16_t num1 = call["parameters"][1]["value"];
+		int16_t num2 = call["parameters"][2]["value"];
+
+		string jsonCallResult = call.dump();
+		if (jsonCallResult.length() < jsonCallResultLen)
+			memcpy(jsonCallResultP, jsonCallResult.c_str(), jsonCallResult.length() + 1);
+
+		r = RpcReturnValue{ uint32_t(num1 + num2), RemoteProcedureErrors::ErrorCode::None };
+	}
+	catch (...) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+	}
+
+	return (uint64_t)r;
 }
