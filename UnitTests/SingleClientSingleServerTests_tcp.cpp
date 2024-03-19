@@ -66,6 +66,21 @@ namespace TCP_RPCtests {
 			Assert::AreEqual(r.GetErrorString(), string(RemoteProcedureErrors::m_errors[RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments]));
 		}
 
+		TEST_METHOD(CancelAsyncProcedure) {
+			AsyncID asyncId = m_rpcClient->RpcCallAsync(ClientAsyncReplyHandler,
+				"CancellableProcedure",
+				RemoteProcedureCall::END_OF_CALL);
+
+			this_thread::sleep_for(1000ms);
+
+			m_rpcClient->RpcCall("CancelProcedure",
+				RemoteProcedureCall::UINT64,
+				(uint64_t)asyncId,
+				RemoteProcedureCall::END_OF_CALL);
+
+			s_asyncSem.A();
+		}
+
 		TEST_METHOD(NullPtrReturnAnError) {
 			RpcReturnValue r = m_rpcClient->RpcCall("Increment",
 				RemoteProcedureCall::PTR,

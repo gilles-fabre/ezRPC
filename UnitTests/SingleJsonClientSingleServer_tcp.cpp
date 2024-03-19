@@ -66,6 +66,28 @@ namespace TCP_RPCtests {
 			Assert::AreEqual(i, RPC_CALL_ITERATIONS + 1);
 		}
 
+		TEST_METHOD(CancelAsyncProcedure) {
+			json call;
+			call["function"] = "CancellableProcedure";
+
+			AsyncID asyncId = RpcCallAsync(m_jsonClient, call.dump().c_str(), s_buffer, sizeof(s_buffer), ClientAsyncReplyHandler);
+
+			this_thread::sleep_for(1000ms);
+
+			call["function"] = "CancelProcedure";
+			json parameters = json::array();
+			{
+				json param;
+				param["type"] = "UINT64";
+				param["value"] = asyncId;
+				parameters += param;
+			}
+			call["parameters"] = parameters;
+			RpcCall(m_jsonClient, call.dump().c_str(), s_buffer, sizeof(s_buffer));
+
+			s_asyncSem.A();
+		}
+
 		TEST_METHOD(CallSumTwoNumbersAndStop) {
 			json call;
 			call["function"] = "SumNumbers";
