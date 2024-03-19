@@ -10,5 +10,5 @@ var _remote_procedure_call_8h =
     [ "ParameterSafeCast", "_remote_procedure_call_8h.html#a0bb31dbe98511669ce6c5a5cf06f5158", null ],
     [ "RPC_MODULE", "_remote_procedure_call_8h.html#a986e3a8eceb4879cf9df2675ea76470d", null ],
     [ "AsyncID", "_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957", null ],
-    [ "RemoteProcedure", "_remote_procedure_call_8h.html#a97da39c8ef4c9c093a0aad4877130df7", null ]
+    [ "RemoteProcedure", "_remote_procedure_call_8h.html#ade012a7a3d96a2446e0eeccd415ab1e1", null ]
 ];

@@ -8,8 +8,4 @@ digraph "LLVMFuzzerMutate"
   Node1 [id="Node000001",label="LLVMFuzzerMutate",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="assert",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_fuzzer_trace_p_c_8cpp.html#aa099297e8e2ed3ff1bcc3de3ff413238",tooltip=" "];
-  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="fuzzer::MutationDispatcher\l::DefaultMutate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_mutation_dispatcher.html#a8c0a901b3167282ed07de767de9ed01f",tooltip=" "];
-  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="fuzzer::Fuzzer::GetMD",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a8b8d0ef2f5292085afb55957ac513b24",tooltip=" "];
 }

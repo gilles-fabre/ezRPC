@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 uint64_t g_jserver;
 
-static uint64_t ByeBye(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t ByeBye(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	string jsonCallResult = call.dump();
@@ -20,7 +20,7 @@ static uint64_t ByeBye(const char* jsonCallP, char* jsonCallResultP, size_t json
 	return 0;
 }
 
-static uint64_t Nop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t Nop(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	string jsonCallResult = call.dump();
@@ -30,7 +30,7 @@ static uint64_t Nop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCal
 	return 0;
 }
 
-static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t IncDouble(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	double value = call["parameters"][1]["value"];
@@ -44,7 +44,7 @@ static uint64_t IncDouble(const char* jsonCallP, char* jsonCallResultP, size_t j
 	return 0;
 }
 
-static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t Increment(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	int16_t value = call["parameters"][1]["value"];
@@ -58,7 +58,7 @@ static uint64_t Increment(const char* jsonCallP, char* jsonCallResultP, size_t j
 	return 0;
 }
 
-static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t Concatenate(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	string text = call["parameters"][1]["value"];
@@ -77,7 +77,7 @@ static uint64_t Concatenate(const char* jsonCallP, char* jsonCallResultP, size_t
 	return (uint64_t)concatText.length();
 }
 
-static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t RepeatPrint(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	string text = call["parameters"][1]["value"];
@@ -93,7 +93,7 @@ static uint64_t RepeatPrint(const char* jsonCallP, char* jsonCallResultP, size_t
 	return (uint64_t)num;
 }
 
-static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t SumNumbers(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	int16_t num1 = call["parameters"][1]["value"];
@@ -108,7 +108,7 @@ static uint64_t SumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t 
 	return (uint64_t)(num1 + num2);
 }
 
-static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t GetString(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	json call = json::parse(jsonCallP);
 
 	string text = call["parameters"][1]["value"];
@@ -124,7 +124,7 @@ static uint64_t GetString(const char* jsonCallP, char* jsonCallResultP, size_t j
 	return (uint64_t)text.length();
 }
 
-static uint64_t PutString(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+static uint64_t PutString(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 
 	json call = json::parse(jsonCallP);
 

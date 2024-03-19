@@ -29,7 +29,7 @@
  * \brief Provides C APIs on top of RPCServer services
  */
 
-typedef uint64_t ServerProcedure(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
+typedef uint64_t ServerProcedure(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen);
 
 extern "C" {
 #ifdef WIN32
@@ -74,7 +74,7 @@ public:
 
 	JsonRPCServer(Transport::TransportType transport, const string& serverAddr);
 
-	static RpcReturnValue JsonRPCServiceProc(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP);
+	static RpcReturnValue JsonRPCServiceProc(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* user_dataP);
 };
 
 #endif /* _JSON_RPC_SERVER_H */

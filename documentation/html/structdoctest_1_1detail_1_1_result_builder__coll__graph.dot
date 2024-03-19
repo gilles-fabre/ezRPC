@@ -13,7 +13,9 @@ digraph "doctest::detail::ResultBuilder"
   Node4 [id="Node000004",label="doctest::String",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classdoctest_1_1_string.html",tooltip=" "];
   Node5 -> Node4 [id="edge4_Node000004_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" data",fontcolor="grey" ];
   Node5 [id="Node000005",label="doctest::String::view",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node4 -> Node2 [id="edge5_Node000002_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_decomp\nm_exception",fontcolor="grey" ];
-  Node6 -> Node2 [id="edge6_Node000002_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_exception_string",fontcolor="grey" ];
-  Node6 [id="Node000006",label="doctest::AssertData\l::StringContains",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classdoctest_1_1_assert_data_1_1_string_contains.html",tooltip=" "];
+  Node6 -> Node4 [id="edge5_Node000004_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" npos",fontcolor="grey" ];
+  Node6 [id="Node000006",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node2 [id="edge6_Node000002_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_decomp\nm_exception",fontcolor="grey" ];
+  Node7 -> Node2 [id="edge7_Node000002_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_exception_string",fontcolor="grey" ];
+  Node7 [id="Node000007",label="doctest::AssertData\l::StringContains",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classdoctest_1_1_assert_data_1_1_string_contains.html",tooltip=" "];
 }

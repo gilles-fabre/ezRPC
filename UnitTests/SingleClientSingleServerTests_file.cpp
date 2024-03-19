@@ -31,6 +31,8 @@ namespace FILE_RPCtests {
 				m_rpcServer.RegisterProcedure("SumNumbers", &SumNumbers);
 				m_rpcServer.RegisterProcedure("Increment", &Increment);
 				m_rpcServer.RegisterProcedure("Concatenate", &Concatenate);
+				m_rpcServer.RegisterProcedure("CancellableProcedure", &CancellableProcedure);
+				m_rpcServer.RegisterProcedure("CancelProcedure", &CancelProcedure);
 
 				m_rpcServer.IterateAndWait();
 				});
@@ -126,6 +128,21 @@ namespace FILE_RPCtests {
 			}
 
 			Assert::AreEqual(i, uint16_t(RPC_CALL_ITERATIONS));
+		}
+
+		TEST_METHOD(CancelAsyncProcedure) {
+			AsyncID asyncId = m_rpcClient->RpcCallAsync(ClientAsyncReplyHandler,
+				"CancellableProcedure",
+				RemoteProcedureCall::END_OF_CALL);
+
+			this_thread::sleep_for(1000ms);
+
+			m_rpcClient->RpcCall("CancelProcedure",
+				RemoteProcedureCall::UINT64,
+				(uint64_t)asyncId,
+				RemoteProcedureCall::END_OF_CALL);
+
+			s_asyncSem.A();
 		}
 
 		TEST_METHOD(AsyncCallSumTwoNumbersAndStop) {

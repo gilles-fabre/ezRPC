@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 
 [UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Ansi)]
-public delegate ulong ServerProcedure(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen); 
+public delegate ulong ServerProcedure(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen); 
 
 namespace ezRPC
 {

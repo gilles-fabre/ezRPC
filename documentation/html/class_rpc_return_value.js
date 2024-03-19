@@ -4,6 +4,7 @@ var class_rpc_return_value =
     [ "RpcReturnValue", "class_rpc_return_value.html#a0068a7cb20e526ff700d0424c5538c04", null ],
     [ "RpcReturnValue", "class_rpc_return_value.html#ab821a066ae35972bc555e488d83a60f7", null ],
     [ "RpcReturnValue", "class_rpc_return_value.html#a91c6649be13447cb67a0f07d6fadf1a9", null ],
+    [ "RpcReturnValue", "class_rpc_return_value.html#aa4c9f5c89114915bf6858b67267c9ab3", null ],
     [ "RpcReturnValue", "class_rpc_return_value.html#a334d6259c8b44a4efb2fdc7f24b6af40", null ],
     [ "RpcReturnValue", "class_rpc_return_value.html#ad2543c779f8aad1a2c7a63fa4244fa55", null ],
     [ "~RpcReturnValue", "class_rpc_return_value.html#af4fd0120e9a1886789ff2686ac61b4a1", null ],

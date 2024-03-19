@@ -217,7 +217,7 @@ bool JsonParameters::BuildParametersFromJson(const char* jsonCallP, string& func
 *
 * \return true is everything went fine, false else.
 */
-bool JsonParameters::BuildJsonFromResultParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
+bool JsonParameters::BuildJsonFromResultParameters(const string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
 	try {
 		// parse the parameters vector 'back' and build the result json
 		json jsonReply;
@@ -321,7 +321,7 @@ bool JsonParameters::BuildJsonFromResultParameters(string& function, shared_ptr<
 *
 * \return true is everything went fine, false else.
 */
-bool JsonParameters::BuildJsonFromCallParameters(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
+bool JsonParameters::BuildJsonFromCallParameters(const string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>>& params, string& jsonResult) {
 	try {
 		// parse the parameters vector 'back' and build the result json
 		json jsonReply;

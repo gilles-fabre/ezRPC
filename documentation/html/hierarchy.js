@@ -602,6 +602,7 @@ var hierarchy =
       [ "nlohmann::detail::json_reverse_iterator< Base >", "classnlohmann_1_1detail_1_1json__reverse__iterator.html", null ]
     ] ],
     [ "RPCClient", "class_r_p_c_client.html", null ],
+    [ "ezRPC.RpcReturnValue", "structez_r_p_c_1_1_rpc_return_value.html", null ],
     [ "RPCServer", "class_r_p_c_server.html", null ],
     [ "Runnable", null, [
       [ "tracesListener.DataThread", "classtraces_listener_1_1_data_thread.html", [

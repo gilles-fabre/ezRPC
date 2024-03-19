@@ -9,7 +9,7 @@ using namespace std;
 
 RPCServer* s_rpcServerP = NULL;
 
-static RpcReturnValue ByeBye(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue ByeBye(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (s_rpcServerP)
@@ -18,13 +18,13 @@ static RpcReturnValue ByeBye(string& name, shared_ptr<vector<RemoteProcedureCall
 	return r;
 }
 
-static RpcReturnValue Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue Nop(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	return r;
 }
 
-static RpcReturnValue IncDouble(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue IncDouble(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {
@@ -49,7 +49,7 @@ static RpcReturnValue IncDouble(string& name, shared_ptr<vector<RemoteProcedureC
 	return r;
 }
 
-static RpcReturnValue Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue Increment(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {
@@ -74,7 +74,7 @@ static RpcReturnValue Increment(string& name, shared_ptr<vector<RemoteProcedureC
 	return r;
 }
 
-static RpcReturnValue Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue Concatenate(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 3) {
@@ -105,7 +105,7 @@ static RpcReturnValue Concatenate(string& name, shared_ptr<vector<RemoteProcedur
 	return r;
 }
 
-static RpcReturnValue RepeatPrint(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue RepeatPrint(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 3) {
@@ -133,7 +133,7 @@ static RpcReturnValue RepeatPrint(string& name, shared_ptr<vector<RemoteProcedur
 	return r;
 }
 
-static RpcReturnValue SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue SumNumbers(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 3) {
@@ -159,7 +159,7 @@ static RpcReturnValue SumNumbers(string& name, shared_ptr<vector<RemoteProcedure
 	return r;
 }
 
-static RpcReturnValue GetString(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue GetString(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {
@@ -185,7 +185,7 @@ static RpcReturnValue GetString(string& name, shared_ptr<vector<RemoteProcedureC
 	return r;
 }
 
-static RpcReturnValue PutString(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+static RpcReturnValue PutString(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {

@@ -9,5 +9,6 @@ digraph "fuzzer::Fuzzer::Coverage"
   Node2 [id="Node000002",label="size_t",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
   Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" VPMap",fontcolor="grey" ];
   Node3 [id="Node000003",label="fuzzer::ValueBitMap",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_value_bit_map.html",tooltip=" "];
-  Node2 -> Node3 [id="edge3_Node000003_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" kBitsInWord\nkMapSizeInBits\nkMapSizeInBitsAligned\nkMapSizeInWords\nkNumberOfItems",fontcolor="grey" ];
+  Node4 -> Node3 [id="edge3_Node000003_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" kBitsInWord\nkMapSizeInBits\nkMapSizeInBitsAligned\nkMapSizeInWords\nkNumberOfItems",fontcolor="grey" ];
+  Node4 [id="Node000004",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
 }

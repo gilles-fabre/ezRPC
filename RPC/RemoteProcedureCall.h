@@ -355,6 +355,6 @@ public:
 
 #define ParameterSafeCast(Type, BasePtr) dynamic_cast<RemoteProcedureCall::Parameter<Type>*>(BasePtr)
 
-typedef RpcReturnValue RemoteProcedure(string& function, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* userDataP);
+typedef RpcReturnValue RemoteProcedure(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> params, void* userDataP);
 
 #endif // _RPC_REMOTEPROCEDURECALL_H_

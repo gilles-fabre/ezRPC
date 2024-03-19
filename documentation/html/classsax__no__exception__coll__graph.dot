@@ -8,4 +8,6 @@ digraph "sax_no_exception"
   Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="nlohmann::detail::json\l_sax_dom_parser\< json \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classnlohmann_1_1detail_1_1json__sax__dom__parser.html",tooltip=" "];
   Node2 -> Node1 [id="edge2_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 -> Node1 [id="edge3_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" error_string",fontcolor="grey" ];
+  Node3 [id="Node000003",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
 }

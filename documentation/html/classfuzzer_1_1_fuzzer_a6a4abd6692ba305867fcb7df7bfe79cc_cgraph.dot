@@ -37,19 +37,13 @@ digraph "fuzzer::Fuzzer::FindExtraUnits"
   Node13 -> Node14 [id="edge17_Node000013_Node000014",color="steelblue1",style="solid",tooltip=" "];
   Node14 [id="Node000014",label="fuzzer::Fuzzer::InFuzzing\lThread",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a6b8043b43eaa243299df6d64ba8413b6",tooltip=" "];
   Node13 -> Node7 [id="edge18_Node000013_Node000007",color="steelblue1",style="solid",tooltip=" "];
-  Node13 -> Node15 [id="edge19_Node000013_Node000015",color="steelblue1",style="solid",tooltip=" "];
-  Node15 [id="Node000015",label="fuzzer::MallocFreeTracer\l::Start",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#a33e0a6e9470e71e395f44b3e285cc747",tooltip=" "];
-  Node15 -> Node16 [id="edge20_Node000015_Node000016",color="steelblue1",style="solid",tooltip=" "];
-  Node16 [id="Node000016",label="fuzzer::Printf",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacefuzzer.html#afab785891fdb74f8fd33bca421bde935",tooltip=" "];
-  Node13 -> Node17 [id="edge21_Node000013_Node000017",color="steelblue1",style="solid",tooltip=" "];
-  Node17 [id="Node000017",label="fuzzer::MallocFreeTracer\l::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#aeea33120b85a8a1fddf17646449c40cf",tooltip=" "];
-  Node17 -> Node16 [id="edge22_Node000017_Node000016",color="steelblue1",style="solid",tooltip=" "];
-  Node8 -> Node16 [id="edge23_Node000008_Node000016",color="steelblue1",style="solid",tooltip=" "];
-  Node8 -> Node18 [id="edge24_Node000008_Node000018",color="steelblue1",style="solid",tooltip=" "];
-  Node18 [id="Node000018",label="fuzzer::Fuzzer::secondsSince\lProcessStartUp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a71ac55e6fdd0979496a9c65f99fe33c5",tooltip=" "];
-  Node8 -> Node19 [id="edge25_Node000008_Node000019",color="steelblue1",style="solid",tooltip=" "];
-  Node19 [id="Node000019",label="fuzzer::TracePC::UpdateValue\lProfileMap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_trace_p_c.html#a0b16b7fef77ffd1f2db211cbf79120cc",tooltip=" "];
-  Node19 -> Node20 [id="edge26_Node000019_Node000020",color="steelblue1",style="solid",tooltip=" "];
-  Node20 [id="Node000020",label="fuzzer::ValueBitMap\l::MergeFrom",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_value_bit_map.html#af95bf22fe5b5b440c5bfd78e6f59dd60",tooltip=" "];
-  Node8 -> Node12 [id="edge27_Node000008_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node8 -> Node15 [id="edge19_Node000008_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="fuzzer::Printf",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacefuzzer.html#afab785891fdb74f8fd33bca421bde935",tooltip=" "];
+  Node8 -> Node16 [id="edge20_Node000008_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="fuzzer::Fuzzer::secondsSince\lProcessStartUp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#a71ac55e6fdd0979496a9c65f99fe33c5",tooltip=" "];
+  Node8 -> Node17 [id="edge21_Node000008_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node17 [id="Node000017",label="fuzzer::TracePC::UpdateValue\lProfileMap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_trace_p_c.html#a0b16b7fef77ffd1f2db211cbf79120cc",tooltip=" "];
+  Node17 -> Node18 [id="edge22_Node000017_Node000018",color="steelblue1",style="solid",tooltip=" "];
+  Node18 [id="Node000018",label="fuzzer::ValueBitMap\l::MergeFrom",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_value_bit_map.html#af95bf22fe5b5b440c5bfd78e6f59dd60",tooltip=" "];
+  Node8 -> Node12 [id="edge23_Node000008_Node000012",color="steelblue1",style="solid",tooltip=" "];
 }

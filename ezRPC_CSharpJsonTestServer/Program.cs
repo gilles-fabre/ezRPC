@@ -13,7 +13,7 @@ class TestApplication
 {
 	static JsonServerRpcWrapper? g_jsonServer;
 
-	static ulong ByeBye(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong ByeBye(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -26,7 +26,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong Nop(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong Nop(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -55,7 +55,7 @@ class TestApplication
 		return 0;
 	}
 
-	static ulong IncrementDouble(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong IncrementDouble(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -97,7 +97,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong Increment(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong Increment(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -138,7 +138,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong Concatenate(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong Concatenate(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -185,7 +185,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong RepeatPrint(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong RepeatPrint(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -229,7 +229,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong SumNumbers(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong SumNumbers(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -273,7 +273,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong GetString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong GetString(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 
@@ -316,7 +316,7 @@ class TestApplication
 		return r;
 	}
 
-	static ulong PutString(string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
+	static ulong PutString(ulong asyncId, string jsonCall, IntPtr jsonCallResultP, ulong jsonCallResultLen)
 	{
 		RpcReturnValue r = new RpcReturnValue();
 

@@ -4,7 +4,7 @@
 
 #include <RemoteProcedureCall.h>
 
-RpcReturnValue Increment(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+RpcReturnValue Increment(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {
@@ -28,7 +28,7 @@ RpcReturnValue Increment(string& name, shared_ptr<vector<RemoteProcedureCall::Pa
 	return r;
 }
 
-RpcReturnValue IncDouble(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+RpcReturnValue IncDouble(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 2) {
@@ -53,13 +53,47 @@ RpcReturnValue IncDouble(string& name, shared_ptr<vector<RemoteProcedureCall::Pa
 	return r;
 }
 
-RpcReturnValue Nop(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+AsyncID g_cancelId = 0;
+RpcReturnValue CancelProcedure(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	RpcReturnValue r((uint32_t)0);
+
+	if (v->size() < 2) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::WrongNumberOfArguments };
+		return r;
+	}
+
+	RemoteProcedureCall::Parameter<uint64_t>* pReturn = ParameterSafeCast(uint64_t, (*v)[0]);
+	RemoteProcedureCall::Parameter<uint64_t>* p1 = ParameterSafeCast(uint64_t, (*v)[1]);
+
+	if (!pReturn || !p1) {
+		r = RpcReturnValue{ RemoteProcedureErrors::ErrorCode::BadArgument };
+		return r;
+	}
+
+	g_cancelId = (AsyncID)p1->GetReference();
+
+	r = { 0 };
+	return r;
+}
+
+RpcReturnValue CancellableProcedure(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+	RpcReturnValue r((uint32_t)0);
+
+	while (g_cancelId != asyncId) 
+		std::this_thread::sleep_for(10ms);
+
+
+	r = { 0 };
+	return r;
+}
+
+RpcReturnValue Nop(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r((uint32_t)0);
 
 	return r;
 }
 
-RpcReturnValue SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+RpcReturnValue SumNumbers(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 3) {
@@ -83,7 +117,7 @@ RpcReturnValue SumNumbers(string& name, shared_ptr<vector<RemoteProcedureCall::P
 	return r;
 }
 
-RpcReturnValue Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
+RpcReturnValue Concatenate(AsyncID asyncId, const string& name, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> v, void* user_dataP) {
 	RpcReturnValue r;
 
 	if (v->size() < 3) {
@@ -114,7 +148,7 @@ RpcReturnValue Concatenate(string& name, shared_ptr<vector<RemoteProcedureCall::
 using namespace std;
 using json = nlohmann::json;
 
-uint64_t JsonNop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+uint64_t JsonNop(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	RpcReturnValue r = RpcReturnValue{ 0, RemoteProcedureErrors::ErrorCode::None };
 
 	json call = json::parse(jsonCallP);
@@ -130,7 +164,7 @@ uint64_t JsonNop(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallRe
 	return (uint64_t)r;
 }
 
-uint64_t JsonIncDouble(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+uint64_t JsonIncDouble(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	RpcReturnValue r;
 
 	try {
@@ -165,7 +199,7 @@ uint64_t JsonIncDouble(const char* jsonCallP, char* jsonCallResultP, size_t json
 	return (uint64_t)r;
 }
 
-uint64_t JsonIncrement(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+uint64_t JsonIncrement(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	RpcReturnValue r;
 
 	try {
@@ -200,7 +234,7 @@ uint64_t JsonIncrement(const char* jsonCallP, char* jsonCallResultP, size_t json
 	return (uint64_t)r;
 }
 
-uint64_t JsonConcatenate(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+uint64_t JsonConcatenate(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	RpcReturnValue r;
 
 	if (!jsonCallP || !*jsonCallP) {
@@ -243,7 +277,7 @@ uint64_t JsonConcatenate(const char* jsonCallP, char* jsonCallResultP, size_t js
 	return (uint64_t)r;
 }
 
-uint64_t JsonSumNumbers(const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
+uint64_t JsonSumNumbers(AsyncID asyncId, const char* jsonCallP, char* jsonCallResultP, size_t jsonCallResultLen) {
 	RpcReturnValue r;
 
 	try {

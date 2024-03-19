@@ -130,12 +130,12 @@ digraph "fuzzer::Printf"
   Node51 [id="Node000051",label="fuzzer::Fuzzer::SetMaxInputLen",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_fuzzer.html#af049926833d09bb487062779d6f881ba",tooltip=" "];
   Node1 -> Node9 [id="edge77_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node52 [id="edge78_Node000001_Node000052",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node52 [id="Node000052",label="fuzzer::MallocFreeTracer\l::Start",height=0.2,width=0.4,color="red", fillcolor="#FFF0F0", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#a33e0a6e9470e71e395f44b3e285cc747",tooltip=" "];
-  Node1 -> Node54 [id="edge79_Node000001_Node000054",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node54 [id="Node000054",label="fuzzer::MallocFreeTracer\l::Stop",height=0.2,width=0.4,color="red", fillcolor="#FFF0F0", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#aeea33120b85a8a1fddf17646449c40cf",tooltip=" "];
+  Node52 [id="Node000052",label="fuzzer::MallocFreeTracer\l::Start",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#a33e0a6e9470e71e395f44b3e285cc747",tooltip=" "];
+  Node1 -> Node53 [id="edge79_Node000001_Node000053",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node53 [id="Node000053",label="fuzzer::MallocFreeTracer\l::Stop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structfuzzer_1_1_malloc_free_tracer.html#aeea33120b85a8a1fddf17646449c40cf",tooltip=" "];
   Node1 -> Node32 [id="edge80_Node000001_Node000032",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node33 [id="edge81_Node000001_Node000033",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node55 [id="edge82_Node000001_Node000055",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node55 [id="Node000055",label="fuzzer::TraceState\l::TraceSwitchCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_trace_state.html#a90c1b3e1c63873c2ea8faa00ad29d411",tooltip=" "];
+  Node1 -> Node54 [id="edge82_Node000001_Node000054",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node54 [id="Node000054",label="fuzzer::TraceState\l::TraceSwitchCallback",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classfuzzer_1_1_trace_state.html#a90c1b3e1c63873c2ea8faa00ad29d411",tooltip=" "];
   Node1 -> Node38 [id="edge83_Node000001_Node000038",dir="back",color="steelblue1",style="solid",tooltip=" "];
 }

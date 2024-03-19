@@ -24,7 +24,7 @@ var searchData=
   ['returnvalue_21',['ReturnValue',['../class_return_value.html',1,'']]],
   ['returnvalue_3c_20uint32_5ft_2c_20remoteprocedureerrors_20_3e_22',['ReturnValue&lt; uint32_t, RemoteProcedureErrors &gt;',['../class_return_value.html',1,'']]],
   ['rpcclient_23',['RPCClient',['../class_r_p_c_client.html',1,'']]],
-  ['rpcreturnvalue_24',['RpcReturnValue',['../class_rpc_return_value.html',1,'']]],
+  ['rpcreturnvalue_24',['RpcReturnValue',['../structez_r_p_c_1_1_rpc_return_value.html',1,'ezRPC.RpcReturnValue'],['../class_rpc_return_value.html',1,'RpcReturnValue']]],
   ['rpcserver_25',['RPCServer',['../class_r_p_c_server.html',1,'']]],
   ['rvalueref_26',['RvalueRef',['../structtesting_1_1internal_1_1_rvalue_ref.html',1,'testing::internal']]]
 ];

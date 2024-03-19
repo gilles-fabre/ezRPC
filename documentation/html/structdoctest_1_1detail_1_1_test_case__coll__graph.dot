@@ -11,5 +11,7 @@ digraph "doctest::detail::TestCase"
   Node3 [id="Node000003",label="doctest::String",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classdoctest_1_1_string.html",tooltip=" "];
   Node4 -> Node3 [id="edge3_Node000003_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" data",fontcolor="grey" ];
   Node4 [id="Node000004",label="doctest::String::view",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node3 -> Node1 [id="edge4_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_full_name\nm_type",fontcolor="grey" ];
+  Node5 -> Node3 [id="edge4_Node000003_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" npos",fontcolor="grey" ];
+  Node5 [id="Node000005",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [id="edge5_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" m_full_name\nm_type",fontcolor="grey" ];
 }

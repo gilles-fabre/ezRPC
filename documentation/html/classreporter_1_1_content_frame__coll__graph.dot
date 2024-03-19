@@ -43,6 +43,8 @@ digraph "reporter.ContentFrame"
   Node18 [id="Node000018",label="Runnable",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
   Node19 -> Node16 [id="edge19_Node000016_Node000019",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" firstMessage",fontcolor="grey" ];
   Node19 [id="Node000019",label="tracesListener.TraceMessage",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$classtraces_listener_1_1_trace_message.html",tooltip=" "];
-  Node20 -> Node16 [id="edge20_Node000016_Node000020",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" thread",fontcolor="grey" ];
-  Node20 [id="Node000020",label="Thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_thread.html",tooltip=" "];
+  Node20 -> Node19 [id="edge20_Node000019_Node000020",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" _Binary\n_EndDump\n_StartDump\n_Text\n_TextLine",fontcolor="grey" ];
+  Node20 [id="Node000020",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node21 -> Node16 [id="edge21_Node000016_Node000021",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" thread",fontcolor="grey" ];
+  Node21 [id="Node000021",label="Thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_thread.html",tooltip=" "];
 }

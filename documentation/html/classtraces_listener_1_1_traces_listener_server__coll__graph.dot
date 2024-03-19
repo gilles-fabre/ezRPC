@@ -9,8 +9,10 @@ digraph "tracesListener.TracesListenerServer"
   Node2 [id="Node000002",label="Observable",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
   Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="Runnable",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" serverSocket",fontcolor="grey" ];
-  Node4 [id="Node000004",label="ServerSocket",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
-  Node5 -> Node1 [id="edge4_Node000001_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" dataThreads\ntracesObservers",fontcolor="grey" ];
-  Node5 [id="Node000005",label="ArrayList\< Object \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" _DefaultTracesPort",fontcolor="grey" ];
+  Node4 [id="Node000004",label="static",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [id="edge4_Node000001_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" serverSocket",fontcolor="grey" ];
+  Node5 [id="Node000005",label="ServerSocket",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node1 [id="edge5_Node000001_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" dataThreads\ntracesObservers",fontcolor="grey" ];
+  Node6 [id="Node000006",label="ArrayList\< Object \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
 }

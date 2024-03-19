@@ -69,7 +69,7 @@ void RPCServer::ListeningCallback(void* _serverP) {
  */
 
 void RPCServer::CallServiceAndReply(RemoteProcedureCall& rpc, string& name, RemoteProcedure* procP, AsyncID asyncId, shared_ptr<ServiceParameters> params, shared_ptr<vector<RemoteProcedureCall::ParameterBase*>> rpc_params) {
-	RpcReturnValue result = (*procP)(name, rpc_params, params->m_serverP->m_user_dataP);
+	RpcReturnValue result = (*procP)(asyncId, name, rpc_params, params->m_serverP->m_user_dataP);
 #ifdef RPCSERVER_TRACES
 	LogVText(RPCSERVER_MODULE, 8, true, "CallServiceAndReply for asyncId %lu returned %s", asyncId, result.ToString().c_str());
 #endif

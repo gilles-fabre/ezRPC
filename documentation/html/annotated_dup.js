@@ -239,7 +239,8 @@ var annotated_dup =
       [ "JsonCall", "classez_r_p_c_1_1_json_call.html", "classez_r_p_c_1_1_json_call" ],
       [ "JsonClientRpcWrapper", "classez_r_p_c_1_1_json_client_rpc_wrapper.html", "classez_r_p_c_1_1_json_client_rpc_wrapper" ],
       [ "JsonServerRpcWrapper", "classez_r_p_c_1_1_json_server_rpc_wrapper.html", "classez_r_p_c_1_1_json_server_rpc_wrapper" ],
-      [ "Parameter", "classez_r_p_c_1_1_parameter.html", "classez_r_p_c_1_1_parameter" ]
+      [ "Parameter", "classez_r_p_c_1_1_parameter.html", "classez_r_p_c_1_1_parameter" ],
+      [ "RpcReturnValue", "structez_r_p_c_1_1_rpc_return_value.html", "structez_r_p_c_1_1_rpc_return_value" ]
     ] ],
     [ "fuzzer", "namespacefuzzer.html", [
       [ "Dictionary", "classfuzzer_1_1_dictionary.html", "classfuzzer_1_1_dictionary" ],

@@ -131,15 +131,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a3910c6627b9f8d36b0f504c75fa3c32b" id="r_a3910c6627b9f8d36b0f504c75fa3c32b"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3910c6627b9f8d36b0f504c75fa3c32b">ServerProcedure</a>(const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
-<tr class="memdesc:a3910c6627b9f8d36b0f504c75fa3c32b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides C APIs on top of <a class="el" href="class_r_p_c_server.html" title="An instance of RPCServer provides RPCClients with an address[:port] to connect to,...">RPCServer</a> services.  <br /></td></tr>
-<tr class="separator:a3910c6627b9f8d36b0f504c75fa3c32b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2da5ad14bbc056a0ce404caab73d471f" id="r_a2da5ad14bbc056a0ce404caab73d471f"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2da5ad14bbc056a0ce404caab73d471f">ServerProcedure</a>(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td></tr>
+<tr class="memdesc:a2da5ad14bbc056a0ce404caab73d471f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides C APIs on top of <a class="el" href="class_r_p_c_server.html" title="An instance of RPCServer provides RPCClients with an address[:port] to connect to,...">RPCServer</a> services.  <br /></td></tr>
+<tr class="separator:a2da5ad14bbc056a0ce404caab73d471f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1d03c6f80cdb148bc589978dee415fa3" id="r_a1d03c6f80cdb148bc589978dee415fa3"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d03c6f80cdb148bc589978dee415fa3">CreateRpcServer</a> (<a class="el" href="class_transport.html#a6fa98f5de79b12d04a073c526ff1eb28">Transport::TransportType</a> transport, const char *serverAddrP)</td></tr>
 <tr class="separator:a1d03c6f80cdb148bc589978dee415fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f72251dab2a463c9a75516c4fef5c5" id="r_a05f72251dab2a463c9a75516c4fef5c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05f72251dab2a463c9a75516c4fef5c5">RegisterProcedure</a> (uint64_t serverId, const char *nameP, <a class="el" href="#a3910c6627b9f8d36b0f504c75fa3c32b">ServerProcedure</a> *procedureP)</td></tr>
+<tr class="memitem:a05f72251dab2a463c9a75516c4fef5c5" id="r_a05f72251dab2a463c9a75516c4fef5c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05f72251dab2a463c9a75516c4fef5c5">RegisterProcedure</a> (uint64_t serverId, const char *nameP, <a class="el" href="#a2da5ad14bbc056a0ce404caab73d471f">ServerProcedure</a> *procedureP)</td></tr>
 <tr class="separator:a05f72251dab2a463c9a75516c4fef5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc6aa73ed01bddb9b0f08e3c0ab56e20" id="r_abc6aa73ed01bddb9b0f08e3c0ab56e20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc6aa73ed01bddb9b0f08e3c0ab56e20">UnregisterProcedure</a> (uint64_t serverId, const char *nameP)</td></tr>
 <tr class="separator:abc6aa73ed01bddb9b0f08e3c0ab56e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,14 +184,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a3910c6627b9f8d36b0f504c75fa3c32b" name="a3910c6627b9f8d36b0f504c75fa3c32b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3910c6627b9f8d36b0f504c75fa3c32b">&#9670;&#160;</a></span>ServerProcedure</h2>
+<a id="a2da5ad14bbc056a0ce404caab73d471f" name="a2da5ad14bbc056a0ce404caab73d471f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2da5ad14bbc056a0ce404caab73d471f">&#9670;&#160;</a></span>ServerProcedure</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef uint64_t ServerProcedure(const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td>
+          <td class="memname">typedef uint64_t ServerProcedure(<a class="el" href="_remote_procedure_call_8h.html#abc67c9d81d5fde9559b47f86502e2957">AsyncID</a> asyncId, const char *jsonCallP, char *jsonCallResultP, <a class="el" href="namespacestd.html#a2a88bc267d8fe2228f9ef18e79d79268">size_t</a> jsonCallResultLen)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -299,7 +299,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a3910c6627b9f8d36b0f504c75fa3c32b">ServerProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a2da5ad14bbc056a0ce404caab73d471f">ServerProcedure</a> *</td>          <td class="paramname"><span class="paramname"><em>procedureP</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
